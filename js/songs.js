@@ -18,7 +18,7 @@ let songs = [
         key: "A",
         category: "Worship",
         language: "English",
-        file: "songs/Ilovethisfamily.html"
+        file: "songs/ilovethisfamily.html"
 	
 	    },
 
