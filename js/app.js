@@ -782,32 +782,18 @@ function startService(serviceId) {
 
     const service = services.find(s => s.id == serviceId);
 
-    if (!service) {
-        alert("Service not found.");
-        return;
-    }
+    if (!service) return;
 
     if (service.songs.length === 0) {
         alert("This service has no songs.");
         return;
     }
 
-    // Save the current service
-    localStorage.setItem(
-        "currentServiceId",
-        service.id
-    );
+    localStorage.setItem("currentServiceId", service.id);
+    localStorage.setItem("currentSongIndex", "0");
 
-    // Always start with the first song
-    localStorage.setItem(
-        "currentSongIndex",
-        "0"
-    );
-
-    // Save updated services
     saveServices();
 
-    // Open first song
     location.href = service.songs[0].file;
 }
 function deleteService(id) {
