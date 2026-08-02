@@ -1,0 +1,17 @@
+[
+  {
+    "title":"Sunday Worship",
+    "songs":[
+      "songs/amazing-grace.html",
+      "songs/holy-holy-holy.html",
+      "songs/way-maker.html"
+    ]
+  },
+  {
+    "title":"Prayer Meeting",
+    "songs":[
+      "songs/goodness-of-god.html",
+      "songs/i-surrender-all.html"
+    ]
+  }
+]

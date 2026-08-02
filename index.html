@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JFCM Songs Organizer</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ===========================
+     HEADER
+=========================== -->
+
+<header class="topbar">
+
+    <div class="logo">
+
+        🎵 JFCM Songs Organizer
+
+    </div>
+
+    <div class="top-actions">
+
+        <input
+    type="text"
+    id="searchBox"
+    placeholder="Search songs..."
+    onkeyup="searchSongs(this.value)">
+
+       <button onclick="searchSongs()">🔍 </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- ===========================
+     MAIN LAYOUT
+=========================== -->
+
+<div class="layout">
+
+<!-- ===========================
+     SIDEBAR
+=========================== -->
+
+<aside class="sidebar">
+
+<h3>LIBRARY</h3>
+
+<button id="allSongsBtn">🎵 All Songs</button>
+
+<button id="artistBtn" onclick="showArtist()">
+    🎤 Artist
+</button>
+
+<button id="categoryBtn">📂 Categories</button>
+
+<button id="favoritesBtn">⭐ Favorites</button>
+
+<button id="recentBtn">🕘 Recently Opened</button>
+
+<button id="continueBtn"> ▶ Continue Last Song </button>
+<button id="servicePlannerBtn">     📅 Service Planner </button>
+
+<hr>
+
+<h3>PLAYLISTS</h3>
+
+<button id="playlistBtn">
+
+➕ Playlist Manager
+
+</button>
+
+<hr>
+
+<h3>TOOLS</h3>
+
+<button id="presentationBtn">
+
+📺 Presentation Mode
+
+</button>
+
+<button id="printAllBtn">
+
+🖨 Print Library
+
+</button>
+
+<button id="settingsBtn">
+
+⚙ Settings
+
+</button>
+
+</aside>
+
+
+
+<!-- ===========================
+     CONTENT
+=========================== -->
+
+<main class="content">
+
+<div class="dashboard">
+
+<div class="card">
+
+<div class="number" id="totalSongs">
+
+0
+
+</div>
+
+<div class="label">
+
+Songs
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="number" id="totalArtists">
+
+0
+
+</div>
+
+<div class="label">
+
+Artists
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="number" id="totalFavorites">
+
+0
+
+</div>
+
+<div class="label">
+
+Favorites
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="number" id="totalPlaylists">
+
+0
+
+</div>
+
+<div class="label">
+
+Playlists
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<h2>
+
+All Songs
+
+</h2>
+
+<div id="songGrid">
+
+</div>
+
+</main>
+
+</div>
+
+
+
+<!-- Playlist Panel -->
+
+<!-- ======================================
+     PLAYLIST PANEL
+====================================== -->
+
+<div id="playlistPanel" class="playlist-panel">
+
+<div class="playlist-top">
+
+<h2>🎵 Playlist Manager</h2>
+
+<button id="closePlaylist">✖</button>
+
+</div>
+
+
+
+<div class="playlist-create">
+
+<input
+id="playlistName"
+type="text"
+placeholder="Enter playlist name">
+
+<button id="createPlaylist">
+
+➕ Create Playlist
+
+</button>
+
+</div>
+
+<hr>
+
+<div id="playlistList">
+
+</div>
+
+</div>
+
+<div id="servicePanel" class="playlist-panel">
+
+    <div class="playlist-top">
+
+        <h2>📅 Worship Service Planner</h2>
+	<button id="closeService">✖</button></div>
+
+        <input
+            type="text"
+            id="serviceName"
+            placeholder="Service Name">
+
+        <button id="createService">
+            Create Service
+        </button>
+
+        <hr>
+
+        <div id="serviceList"></div>
+
+
+
+    </div>
+
+</div>
+<!-- =================================== -->
+<!-- SONG PICKER -->
+<!-- =================================== -->
+
+<div id="songPicker" class="popup">
+
+    <div class="popup-box">
+
+        <div class="popup-header">
+
+            <h2>Select Songs</h2>
+
+            <button id="closeSongPicker">✖</button>
+
+        </div>
+
+        <input
+            type="text"
+            id="songPickerSearch"
+            placeholder="Search songs...">
+
+        <div id="songPickerList"></div>
+
+    </div>
+
+</div>
+<script src="js/songs.js"></script>
+<script src="data/services.js"></script>
+<script src="js/app.js"></script>
+
+
+
+</body>
+
+</html>
