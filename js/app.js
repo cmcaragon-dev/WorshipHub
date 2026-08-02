@@ -819,7 +819,6 @@ function deleteService(id) {
     localStorage.removeItem("currentSongIndex");
     localStorage.removeItem("resumePresentation");
 }
-
 function addSongsToPlaylist(playlistId){
 
     selectedPlaylist = playlists.find(
