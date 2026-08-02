@@ -613,13 +613,13 @@ location.href = nextFile;
             "true"
 
         );
-let previousFile = service.songs[index].file;
+let prevFile = service.songs[index].file;
 
 if (location.pathname.includes("/songs/")) {
-    previousFile = previousFile.replace(/^songs\//, "");
+    prevFile = prevFile.replace(/^songs\//, "");
 }
 
-location.href = previousFile;
+location.href = prevFile;
 
     },
 
