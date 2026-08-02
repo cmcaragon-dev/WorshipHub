@@ -1049,11 +1049,4 @@ function searchSongs(keyword = "") {
     });
 
 }
-function saveServices() {
 
-    localStorage.setItem(
-        "services",
-        JSON.stringify(services)
-    );
-
-}
