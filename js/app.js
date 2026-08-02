@@ -808,24 +808,28 @@ function startService(serviceId) {
     // Open first song
     location.href = service.songs[0].file;
 }
-function deleteService(id){
+function deleteService(id) {
 
-    if(!confirm("Delete this service?")) return;
+    const index = services.findIndex(s => s.id == id);
 
-    services = services.filter(s => s.id !== id);
+    if (index === -1) {
+        alert("Service not found.");
+        return;
+    }
 
-    localStorage.setItem("services", JSON.stringify(services));
+    if (!confirm("Delete this service?")) {
+        return;
+    }
 
-    const currentService =
-    JSON.parse(localStorage.getItem("currentService"));
-	function exitService(){
+    services.splice(index, 1);
 
-    localStorage.removeItem("currentService");
+    saveServices();
+
+    renderServices();
+
+    localStorage.removeItem("currentServiceId");
     localStorage.removeItem("currentSongIndex");
     localStorage.removeItem("resumePresentation");
-
-    location.href="index.html";
-
 }
 
     if(currentService && currentService.id === id){
@@ -1068,5 +1072,13 @@ function searchSongs(keyword = "") {
             title.includes(keyword) ? "" : "none";
 
     });
+
+}
+function saveServices() {
+
+    localStorage.setItem(
+        "services",
+        JSON.stringify(services)
+    );
 
 }
