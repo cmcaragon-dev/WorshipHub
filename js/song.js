@@ -577,6 +577,10 @@ if (location.pathname.includes("/songs/")) {
     nextFile = nextFile.replace(/^songs\//, "");
 }
 
+console.log("Current page:", location.pathname);
+console.log("Stored file:", service.songs[index].file);
+console.log("Next file:", nextFile);
+
 location.href = nextFile;
 
     },
