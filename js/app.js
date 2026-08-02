@@ -4,8 +4,6 @@
 
 let playlists =
 JSON.parse(localStorage.getItem("playlists")) || [];
-let services =
-JSON.parse(localStorage.getItem("services")) || [];
 
 const playlistBtn =
 document.getElementById("playlistBtn");
