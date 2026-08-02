@@ -573,10 +573,7 @@ if(transposeDisplay){
         );
 
         location.href =
-        service.songs[index].file.replace(
-            /^songs\//,
-            ""
-        );
+        service.songs[index].file;
 
     },
 
