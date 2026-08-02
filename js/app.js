@@ -814,7 +814,7 @@ function deleteService(id) {
     saveServices();
 
     renderServices();
-
+}
     localStorage.removeItem("currentServiceId");
     localStorage.removeItem("currentSongIndex");
     localStorage.removeItem("resumePresentation");
