@@ -752,6 +752,7 @@ renderServices();
 songPicker.classList.remove("show");
 
 selectedService = null;
+}
 	
 closeSongPicker.onclick=function(){
 
