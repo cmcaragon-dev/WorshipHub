@@ -29,7 +29,7 @@ let songs = [
         key: "G",
         category: "Praise",
         language: "English",
-        file: "mylifeisinyoulord.html"
+        file: "songs/mylifeisinyoulord.html"
     },
 
     {
@@ -48,7 +48,7 @@ id:5,
         key: "G",
         category: "Praise",
         language: "English",
-        file: "blessedbethename.html"
+        file: "songs/blessedbethename.html"
     },
 {
 id:6,
@@ -75,7 +75,7 @@ title: "Freely Forgiven",
         key: "G",
         category: "Worship",
         language: "English",
-        file: "freelyforgiven.html"
+        file: "songs/freelyforgiven.html"
     },
 {
 id:9,        
