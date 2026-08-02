@@ -8,7 +8,7 @@ let songs = [
         key: "G",
         category: "Hymn",
         language: "English",
-        file: "amazing-grace.html"
+        file: "songs/amazing-grace.html"
     },
 
     {
