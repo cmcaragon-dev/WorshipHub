@@ -571,9 +571,13 @@ if(transposeDisplay){
             "true"
 
         );
+let nextFile = service.songs[index].file;
 
-        location.href =
-        service.songs[index].file;
+if (location.pathname.includes("/songs/")) {
+    nextFile = nextFile.replace(/^songs\//, "");
+}
+
+location.href = nextFile;
 
     },
 
@@ -605,9 +609,13 @@ if(transposeDisplay){
             "true"
 
         );
+let previousFile = service.songs[index].file;
 
-        location.href =
-        service.songs[index].file;
+if (location.pathname.includes("/songs/")) {
+    previousFile = previousFile.replace(/^songs\//, "");
+}
+
+location.href = previousFile;
 
     },
 
