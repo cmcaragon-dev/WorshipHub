@@ -732,35 +732,27 @@ function selectSong(file){
 
     if(!song) return;
 
-    selectedService.songs.push({
-
+   selectedService.songs.push({
     id: song.id,
-
     title: song.title,
-
     artist: song.artist,
-
     file: song.file,
-
     category: song.category,
-
     language: song.language,
-
     key: song.key,
-
     originalKey: song.key,
-
     serviceKey: song.key,
-
     transpose: 0
-
 });
 
-    saveServices();
+saveServices();
 
-    renderServices();
+renderServices();
 
-}
+songPicker.classList.remove("show");
+
+selectedService = null;
+	
 closeSongPicker.onclick=function(){
 
     songPicker.classList.remove("show");
@@ -785,23 +777,34 @@ songPickerSearch.onkeyup=function(){
 };
 function startService(serviceId) {
 
-    console.log("Service ID:", serviceId);
-
-    const service = services.find(s => s.id === serviceId);
-
-    console.log("Service:", service);
+    const service = services.find(s => s.id == serviceId);
 
     if (!service) {
-        alert("Service not found!");
+        alert("Service not found.");
         return;
     }
 
-    console.log("Songs:", service.songs);
+    if (service.songs.length === 0) {
+        alert("This service has no songs.");
+        return;
+    }
 
-    console.log("File:", service.songs[0].file);
+    // Save the current service
+    localStorage.setItem(
+        "currentServiceId",
+        service.id
+    );
 
-    alert(service.songs[0].file);
+    // Always start with the first song
+    localStorage.setItem(
+        "currentSongIndex",
+        "0"
+    );
 
+    // Save updated services
+    saveServices();
+
+    // Open first song
     location.href = service.songs[0].file;
 }
 function deleteService(id){
@@ -999,62 +1002,6 @@ function renameService(id){
     renderServices();
 
 }
-function deleteService(id){
-
-    const service = services.find(
-        s => s.id == id
-    );
-
-
-    if(!service){
-
-        alert("Service not found");
-
-        return;
-
-    }
-
-
-    if(!confirm(
-        "Delete service: " + service.name + "?"
-    )){
-
-        return;
-
-    }
-
-
-    services.splice(
-        services.indexOf(service),
-        1
-    );
-
-
-    saveServices();
-
-
-    renderServices();
-
-
-    const currentId =
-    localStorage.getItem(
-        "currentServiceId"
-    );
-
-
-    if(currentId == id){
-
-        localStorage.removeItem(
-            "currentServiceId"
-        );
-
-        localStorage.removeItem(
-            "currentSongIndex"
-        );
-
-    }
-
-}
 function removeSongFromService(serviceId, songIndex){
 
     console.log(
@@ -1120,28 +1067,5 @@ function searchSongs(keyword = "") {
             title.includes(keyword) ? "" : "none";
 
     });
-
-}
-function openSongYoutube(file){
-
-    const song = songs.find(s => s.file === file);
-
-    if(!song){
-
-        alert("Song not found.");
-
-        return;
-
-    }
-
-    if(!song.youtube){
-
-        alert("No YouTube link assigned to this song.");
-
-        return;
-
-    }
-
-    window.open(song.youtube, "_blank");
 
 }
