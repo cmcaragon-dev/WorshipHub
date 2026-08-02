@@ -814,22 +814,10 @@ function deleteService(id) {
     saveServices();
 
     renderServices();
-}
+
     localStorage.removeItem("currentServiceId");
     localStorage.removeItem("currentSongIndex");
     localStorage.removeItem("resumePresentation");
-}
-
-    if(currentService && currentService.id === id){
-
-        localStorage.removeItem("currentService");
-        localStorage.removeItem("currentSongIndex");
-        localStorage.removeItem("resumePresentation");
-
-    }
-
-    renderServices();
-
 }
 
 function addSongsToPlaylist(playlistId){
