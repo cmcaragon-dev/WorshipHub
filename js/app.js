@@ -783,35 +783,26 @@ songPickerSearch.onkeyup=function(){
     renderSongPicker(filtered);
 
 };
-function startService(serviceId){
+function startService(serviceId) {
 
-    const service =
-    services.find(s => s.id === serviceId);
+    console.log("Service ID:", serviceId);
 
-    if(!service) return;
+    const service = services.find(s => s.id === serviceId);
 
-    if(service.songs.length===0){
+    console.log("Service:", service);
 
-        alert("This service has no songs.");
-
+    if (!service) {
+        alert("Service not found!");
         return;
-
     }
 
-    // Save ONLY the service ID
-    localStorage.setItem(
-        "currentServiceId",
-        service.id
-    );
+    console.log("Songs:", service.songs);
 
-    localStorage.setItem(
-        "currentSongIndex",
-        "0"
-    );
+    console.log("File:", service.songs[0].file);
 
-    location.href =
-    service.songs[0].file;
+    alert(service.songs[0].file);
 
+    location.href = service.songs[0].file;
 }
 function deleteService(id){
 
