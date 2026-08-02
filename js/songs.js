@@ -8,7 +8,7 @@ let songs = [
         key: "G",
         category: "Hymn",
         language: "English",
-        file: "songs/amazing-grace.html"
+        file: "amazing-grace.html"
     },
 
     {
@@ -18,7 +18,7 @@ let songs = [
         key: "A",
         category: "Worship",
         language: "English",
-        file: "songs/ilovethisfamily.html"
+        file: "ilovethisfamily.html"
 	
 	    },
 
@@ -29,7 +29,7 @@ let songs = [
         key: "G",
         category: "Praise",
         language: "English",
-        file: "songs/mylifeisinyoulord.html"
+        file: "mylifeisinyoulord.html"
     },
 
     {
@@ -39,7 +39,7 @@ let songs = [
         key: "G",
         category: "Hymn",
         language: "English",
-        file: "songs/holy-holy-holy.html"
+        file: "holy-holy-holy.html"
     },
 {
 id:5,
@@ -48,7 +48,7 @@ id:5,
         key: "G",
         category: "Praise",
         language: "English",
-        file: "songs/blessedbethename.html"
+        file: "blessedbethename.html"
     },
 {
 id:6,
@@ -57,7 +57,7 @@ id:6,
         key: "G",
         category: "Worship",
         language: "English",
-        file: "songs/beautifulsaviour.html"
+        file: "beautifulsaviour.html"
     },
 {
 	id:7,
@@ -66,7 +66,7 @@ id:6,
         key: "G",
         category: "Worship",
         language: "English",
-        file: "songs/howgreatisourgod.html"
+        file: "howgreatisourgod.html"
     },
 {
 id:8,        
@@ -75,7 +75,7 @@ title: "Freely Forgiven",
         key: "G",
         category: "Worship",
         language: "English",
-        file: "songs/freelyforgiven.html"
+        file: "freelyforgiven.html"
     },
 {
 id:9,        
@@ -84,7 +84,7 @@ title: "Tinapay ng Buhay",
         key: "D",
         category: "Worship",
         language: "Tagalog",
-        file: "songs/tinapayngbuhay.html"
+        file: "tinapayngbuhay.html"
     },
 {
 id:10,        
@@ -93,7 +93,7 @@ title: "Give Thanks",
         key: "D",
         category: "Worship",
         language: "English",
-        file: "songs/givethanks.html"
+        file: "givethanks.html"
     },
 {
 id:11,        
@@ -102,7 +102,7 @@ title: "Worthy is the Lamb",
         key: "D",
         category: "Worship",
         language: "English",
-        file: "songs/worthyisthelamb.html"
+        file: "worthyisthelamb.html"
     },
 {
 id:12,        
@@ -111,7 +111,7 @@ title: "It's Your Blood",
         key: "G",
         category: "Worship",
         language: "English",
-        file: "songs/itsyourblood.html"
+        file: "itsyourblood.html"
     },
 {
 id:13,        
@@ -120,7 +120,7 @@ title: "For the Lord is my Tower",
         key: "G",
         category: "Worship",
         language: "English",
-        file: "songs/forthelordismytower.html"
+        file: "forthelordismytower.html"
     },
 {
 id:14,        
@@ -129,7 +129,7 @@ title: "Sama Samang Nagpupuri",
         key: "A",
         category: "Praise",
         language: "Tagalog",
-        file: "songs/samasamangnagpupuri.html"
+        file: "samasamangnagpupuri.html"
     },
 {
 id:15,        
@@ -138,7 +138,7 @@ title: "Awiting May Galak",
         key: "E",
         category: "Praise",
         language: "Tagalog",
-        file: "songs/awitingmaygalak.html"
+        file: "awitingmaygalak.html"
     },
 {
 id:16,        
@@ -147,7 +147,7 @@ title: "Sumigaw sa Galak",
         key: "E",
         category: "Praise",
         language: "Tagalog",
-        file: "songs/sumigawsagalak.html"
+        file: "sumigawsagalak.html"
     },
 {id:17,        
 title: "Sukdulang Biyaya",
@@ -155,7 +155,7 @@ title: "Sukdulang Biyaya",
         key: "D",
         category: "Worship",
         language: "Tagalog",
-        file: "songs/sukdulangbiyaya.html"
+        file: "sukdulangbiyaya.html"
     },
 {id:18,        
 title: "Napakabuti Mo",
@@ -163,7 +163,7 @@ title: "Napakabuti Mo",
         key: "G",
         category: "Worship",
         language: "Tagalog",
-        file: "songs/napakabutimo.html"
+        file: "napakabutimo.html"
     },
 {id:19,        
 title: "O Kay Saya at Kay Ganda",
@@ -171,7 +171,7 @@ title: "O Kay Saya at Kay Ganda",
         key: "A",
         category: "Praise",
         language: "Tagalog",
-        file: "songs/okaysayaatkayganda.html"
+        file: "okaysayaatkayganda.html"
     }
 
 ];
