@@ -737,32 +737,32 @@ function renderSongPicker(list){
     });
 
 }
-function selectSong(file){
+async function selectSong(file){
 
-    const song = songs.find(s=>s.file===file);
+    const song = songs.find(s => s.file === file);
 
     if(!song) return;
 
-   selectedService.songs.push({
-    id: song.id,
-    title: song.title,
-    artist: song.artist,
-    file: song.file,
-    category: song.category,
-    language: song.language,
-    key: song.key,
-    originalKey: song.key,
-    serviceKey: song.key,
-    transpose: 0
-});
+    selectedService.songs.push({
+        id: song.id,
+        title: song.title,
+        artist: song.artist,
+        file: song.file,
+        category: song.category,
+        language: song.language,
+        key: song.key,
+        originalKey: song.key,
+        serviceKey: song.key,
+        transpose: 0
+    });
 
-await saveServicesCloud();
+    await saveServicesCloud();
 
-renderServices();
+    renderServices();
 
-songPicker.classList.remove("show");
+    songPicker.classList.remove("show");
 
-selectedService = null;
+    selectedService = null;
 }
 	
 closeSongPicker.onclick=function(){
@@ -787,7 +787,7 @@ songPickerSearch.onkeyup=function(){
     renderSongPicker(filtered);
 
 };
-function startService(serviceId) {
+async function startService(serviceId) {
 
     const service = services.find(s => s.id == serviceId);
 
@@ -805,7 +805,7 @@ function startService(serviceId) {
 
     location.href = service.songs[0].file;
 }
-function deleteService(id) {
+async function deleteService(id) {
 
     const index = services.findIndex(s => s.id == id);
 
@@ -820,7 +820,7 @@ function deleteService(id) {
 
     services.splice(index, 1);
 
-   await  saveServicesCloud();
+    await saveServicesCloud();
 
     renderServices();
 
@@ -960,7 +960,7 @@ function toggleService(id){
 
 }
 
-function renameService(id){
+async function renameService(id){
 
     const service = services.find(
         s => s.id == id
@@ -971,27 +971,23 @@ function renameService(id){
         return;
     }
 
-
     const newName = prompt(
         "Enter new service name:",
         service.name
     );
 
-
     if(!newName){
         return;
     }
 
-
     service.name = newName;
-
 
     await saveServicesCloud();
 
     renderServices();
 
 }
-function removeSongFromService(serviceId, songIndex){
+async function removeSongFromService(serviceId, songIndex){
 
     console.log(
         "REMOVE:",
@@ -999,12 +995,10 @@ function removeSongFromService(serviceId, songIndex){
         songIndex
     );
 
-
     const service =
     services.find(
         s => s.id == serviceId
     );
-
 
     if(!service){
 
@@ -1014,7 +1008,6 @@ function removeSongFromService(serviceId, songIndex){
 
     }
 
-
     if(!confirm(
         "Remove this song from " + service.name + "?"
     )){
@@ -1023,15 +1016,12 @@ function removeSongFromService(serviceId, songIndex){
 
     }
 
-
     service.songs.splice(
         songIndex,
         1
     );
 
-
     await saveServicesCloud();
-
 
     renderServices();
 
@@ -1058,7 +1048,7 @@ function searchSongs(keyword = "") {
     });
 
 }
-async function saveServicesCloud(){
+async function (){
 
     await saveServices(
 
