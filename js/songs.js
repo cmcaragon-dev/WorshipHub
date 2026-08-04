@@ -1,4 +1,4 @@
-let songs = [
+export const songs = [
 
 
     {
