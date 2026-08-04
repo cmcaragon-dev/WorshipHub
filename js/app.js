@@ -547,7 +547,7 @@ createService.onclick = function () {
         notes: []
     });
 
-    saveServices();
+    await saveServicesCloud();
 
     serviceName.value = "";
 
@@ -755,7 +755,7 @@ function selectSong(file){
     transpose: 0
 });
 
-saveServices();
+await saveServicesCloud();
 
 renderServices();
 
@@ -800,7 +800,7 @@ function startService(serviceId) {
     localStorage.setItem("currentServiceId", service.id);
     localStorage.setItem("currentSongIndex", "0");
 
-    saveServices();
+    await saveServicesCloud();
 
     location.href = service.songs[0].file;
 }
@@ -819,7 +819,7 @@ function deleteService(id) {
 
     services.splice(index, 1);
 
-    saveServices();
+   await  saveServicesCloud();
 
     renderServices();
 
@@ -985,7 +985,7 @@ function renameService(id){
     service.name = newName;
 
 
-    saveServices();
+    await saveServicesCloud();
 
     renderServices();
 
@@ -1029,7 +1029,7 @@ function removeSongFromService(serviceId, songIndex){
     );
 
 
-    saveServices();
+    await saveServicesCloud();
 
 
     renderServices();
@@ -1057,11 +1057,29 @@ function searchSongs(keyword = "") {
     });
 
 }
-function saveServices() {
+async function saveServicesCloud(){
 
-    localStorage.setItem(
-        "services",
-        JSON.stringify(services)
+    await saveServices(
+
+        currentUser.username,
+
+        services
+
     );
 
 }
+async function initializeServices(){
+
+    services =
+
+    await loadServices(
+
+        currentUser.username
+
+    );
+
+    renderServices();
+
+}
+
+initializeServices();
