@@ -535,7 +535,7 @@ function closeServicePlanner(){
 
 }
 
-createService.onclick = function () {
+createService.onclick = async function () {
 
     const name = serviceName.value.trim();
 
