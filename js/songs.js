@@ -1,4 +1,4 @@
-let songs = [
+export const songs = [
 
 
     {
@@ -173,7 +173,6 @@ title: "O Kay Saya at Kay Ganda",
         language: "Tagalog",
         file: "songs/okaysayaatkayganda.html"
     }
-
 ];
 songs.sort((a, b) =>
     a.title.localeCompare(b.title)
