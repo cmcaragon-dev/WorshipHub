@@ -1,44 +1,81 @@
 "use strict";
 
-import { initializeApp }
-
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { db } from "./firebase.js";
 
 import {
 
-getAuth
-
-}
-
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-import {
-
-getFirestore
+doc,
+setDoc,
+getDoc
 
 }
 
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
+/* ============================
+   SAVE SERVICES
+============================ */
 
-const firebaseConfig = {
+export async function saveServices(username, services){
 
-apiKey: "AIzaSyArrGfT8HThgvIJDzDRw_Hw8NxGJmBvOJs",
+    try{
 
-authDomain: "worship-lyrics-manager.firebaseapp.com",
+        await setDoc(
 
-projectId: "worship-lyrics-manager",
+            doc(db,"services",username),
 
-storageBucket: "worship-lyrics-manager.firebasestorage.app",
+            {
 
-messagingSenderId: "196627692729",
+                services: services
 
-appId: "1:196627692729:web:f3a4d0de671b29e9ed2f68"
+            }
 
-};
+        );
 
-const app = initializeApp(firebaseConfig);
+        console.log("Services saved.");
 
-export const auth = getAuth(app);
+    }
 
-export const db = getFirestore(app);
+    catch(err){
+
+        console.error(err);
+
+    }
+
+}
+
+/* ============================
+   LOAD SERVICES
+============================ */
+
+export async function loadServices(username){
+
+    try{
+
+        const snapshot =
+
+        await getDoc(
+
+            doc(db,"services",username)
+
+        );
+
+        if(snapshot.exists()){
+
+            return snapshot.data().services || [];
+
+        }
+
+        return [];
+
+    }
+
+    catch(err){
+
+        console.error(err);
+
+        return [];
+
+    }
+
+}
