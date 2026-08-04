@@ -13,6 +13,31 @@ getDoc
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 /* ============================
+   REALTIME SERVICE LISTENER
+============================ */
+
+export function watchServices(username, callback){
+
+    const ref = doc(db, "services", username);
+
+    return onSnapshot(ref, (snapshot)=>{
+
+        if(snapshot.exists()){
+
+            callback(snapshot.data().services || []);
+
+        }
+
+        else{
+
+            callback([]);
+
+        }
+
+    });
+
+}
+/* ============================
    SAVE SERVICES
 ============================ */
 
