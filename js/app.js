@@ -1069,18 +1069,30 @@ async function saveServicesCloud(){
     );
 
 }
-async function initializeServices(){
+watchServices(
 
-    services =
+    currentUser.username,
 
-    await loadServices(
+    function(data){
 
-        currentUser.username
+        services = data;
 
-    );
+        renderServices();
 
-    renderServices();
+        updateDashboard();
+
+    }
+
+);
+function updateDashboard(){
+
+    const totalServices =
+        document.getElementById("totalServices");
+
+    if(totalServices){
+
+        totalServices.textContent =
+            services.length;
+    }
 
 }
-
-initializeServices();
