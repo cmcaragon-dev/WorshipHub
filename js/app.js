@@ -1,3 +1,4 @@
+
 "use strict";
 
 /* =====================================
@@ -15,7 +16,17 @@ import {
 ===================================== */
 
 const FIREBASE_USER = "guest";
+const FIREBASE_USER = "guest";
 
+const STORAGE_KEYS = {
+
+    CURRENT_SERVICE : "currentServiceId",
+
+    CURRENT_INDEX : "currentSongIndex",
+
+    RESUME : "resumePresentation"
+
+};
 /* =====================================
    DATA
 ===================================== */
@@ -469,11 +480,16 @@ function getLastSong(){
     );
 
 }
-document.getElementById("continueBtn").onclick = function () {
+const continueBtn =
+document.getElementById("continueBtn");
+
+if(continueBtn){
+
+    continueBtn.onclick = function(){
 
     const service = getCurrentService();
 
-    if (!service) {
+    if(!service){
 
         alert("No active service.");
 
@@ -481,17 +497,12 @@ document.getElementById("continueBtn").onclick = function () {
 
     }
 
-    const index = getCurrentSongIndex();
+    const index = Number(
+        localStorage.getItem("currentSongIndex") || 0
+    );
 
-    if (!service.songs[index]) {
-
-        alert("Service finished.");
-
-        return;
-
-    }
-
-    location.href = service.songs[index].file;
+    location.href =
+    service.songs[index].file;
 
 };
 function nextServiceSong() {
@@ -967,8 +978,7 @@ closeSongPicker.onclick=function(){
 
 async function startService(serviceId){
 
-    const service =
-    services.find(
+    const service = services.find(
         s => s.id == serviceId
     );
 
@@ -998,53 +1008,12 @@ async function startService(serviceId){
         "0"
     );
 
-    await saveServicesCloud();
-
-    location.href =
-    service.songs[0].file;
-
-}
-window.startService = startService;
-async function deleteService(id){
-
-    const index =
-    services.findIndex(
-        s=>s.id==id
+    localStorage.setItem(
+        "resumePresentation",
+        "true"
     );
 
-    if(index===-1){
-
-        alert("Service not found.");
-
-        return;
-
-    }
-
-    if(!confirm(
-        "Delete this service?"
-    )){
-
-        return;
-
-    }
-
-    services.splice(index,1);
-
-    await saveServicesCloud();
-
-    renderServices();
-
-    localStorage.removeItem(
-        "currentServiceId"
-    );
-
-    localStorage.removeItem(
-        "currentSongIndex"
-    );
-
-    localStorage.removeItem(
-        "resumePresentation"
-    );
+    location.href = service.songs[0].file;
 
 }
 window.deleteService = deleteService;
@@ -1339,6 +1308,15 @@ function setCurrentSongIndex(index) {
     );
 
 }
+document.addEventListener("DOMContentLoaded", function(){
+
+    renderSongs(songs);
+
+    renderPlaylists();
+
+    updateDashboard();
+
+});
 document.addEventListener("keydown", function(e){
 
     switch(e.key){
@@ -1364,3 +1342,231 @@ document.addEventListener("keydown", function(e){
     }
 
 });
+
+function getCurrentService(){
+
+    const id = Number(
+        localStorage.getItem("currentServiceId")
+    );
+
+    return services.find(
+        s => s.id === id
+    );
+
+}
+
+function getCurrentSong(){
+
+    const service = getCurrentService();
+
+    if(!service){
+
+        return null;
+
+    }
+
+    const index = Number(
+        localStorage.getItem("currentSongIndex") || 0
+    );
+
+    return service.songs[index];
+
+}
+function nextSong(){
+
+    const service = getCurrentService();
+
+    if(!service){
+
+        return;
+
+    }
+
+    let index = Number(
+        localStorage.getItem("currentSongIndex") || 0
+    );
+
+    if(index >= service.songs.length - 1){
+
+        alert("End of Service.");
+
+        return;
+
+    }
+
+    index++;
+
+    localStorage.setItem(
+        "currentSongIndex",
+        index
+    );
+
+    location.href =
+    service.songs[index].file;
+
+}
+function previousSong(){
+
+    const service = getCurrentService();
+
+    if(!service){
+
+        return;
+
+    }
+
+    let index = Number(
+        localStorage.getItem("currentSongIndex") || 0
+    );
+
+    if(index===0){
+
+        return;
+
+    }
+
+    index--;
+
+    localStorage.setItem(
+        "currentSongIndex",
+        index
+    );
+
+    location.href =
+    service.songs[index].file;
+
+}
+function finishService(){
+
+    if(!confirm("Finish this service?")){
+
+        return;
+
+    }
+
+    localStorage.removeItem("currentServiceId");
+
+    localStorage.removeItem("currentSongIndex");
+
+    localStorage.removeItem("resumePresentation");
+
+    alert("Service Finished.");
+
+}
+document.addEventListener(
+
+    "keydown",
+
+    function(e){
+
+        switch(e.key){
+
+            case "ArrowRight":
+
+                nextSong();
+
+                break;
+
+            case "ArrowLeft":
+
+                previousSong();
+
+                break;
+
+            case "Escape":
+
+                finishService();
+
+                break;
+
+        }
+
+    }
+
+);
+function updateServiceProgress(){
+
+    const label =
+    document.getElementById("serviceProgress");
+
+    if(!label){
+
+        return;
+
+    }
+
+    const service = getCurrentService();
+
+    if(!service){
+
+        label.textContent = "";
+
+        return;
+
+    }
+
+    const index = Number(
+        localStorage.getItem("currentSongIndex") || 0
+    );
+
+    label.textContent =
+        "Song " +
+        (index+1) +
+        " of " +
+        service.songs.length;
+
+}
+function updateCurrentServiceName(){
+
+    const label =
+    document.getElementById(
+        "currentService"
+    );
+
+    if(!label){
+
+        return;
+
+    }
+
+    const service =
+    getCurrentService();
+
+    label.textContent =
+        service
+        ? service.name
+        : "None";
+
+}
+	function sortSongs(list){
+
+    return list.sort(function(a,b){
+
+        return a.title.localeCompare(b.title);
+
+    });
+
+}
+	sortSongs(service.songs);
+
+sortSongs(selectedPlaylist.songs);
+
+sortSongs(songs);
+	function sortServices(){
+
+    services.sort(function(a,b){
+
+        return a.name.localeCompare(b.name);
+
+    });
+
+}
+	function sortPlaylists(){
+
+    playlists.sort(function(a,b){
+
+        return a.name.localeCompare(b.name);
+
+    });
+
+}
