@@ -219,29 +219,26 @@ function renderPlaylists(){
     });
 
 }
-function openSongYoutube(file){
+function openSongYoutube(url){
 
-    const song = songs.find(s => s.file === file);
+    if(!url){
 
-    if(!song){
-
-        alert("Song not found.");
+        alert("No YouTube link.");
 
         return;
 
     }
 
-    if(!song.youtube){
+    window.open(url,"_blank");
 
-        alert("No YouTube link for this song.");
+}
 
-        return;
-
-    }
+window.openSongYoutube = openSongYoutube;
 
     window.open(song.youtube, "_blank");
 
 }
+window.openSongYoutube = openSongYoutube;
 function openYoutube(id){
 
     const playlist = playlists.find(p => p.id == id);
@@ -257,7 +254,7 @@ function openYoutube(id){
         return;
     }
 
-    window.open(playlist.youtube,"_blank");
+   window.openYoutube = openYoutube;
 
 }
 function editYoutube(id){
@@ -285,7 +282,7 @@ function editYoutube(id){
     savePlaylists();
 
 }
-
+window.editYoutube = editYoutube;
 function togglePlaylist(id){
 
     const body =
@@ -302,7 +299,7 @@ function togglePlaylist(id){
         : "▶";
 
 }
-
+window.togglePlaylist = togglePlaylist;
 function openSong(file){
 
     location.href = file;
@@ -327,6 +324,7 @@ function deletePlaylist(id){
     renderPlaylists();
 
 }
+window.deletePlaylist = deletePlaylist;
 function removeSongFromPlaylist(playlistId, songIndex){
 
     const playlist = playlists.find(
@@ -348,6 +346,7 @@ function removeSongFromPlaylist(playlistId, songIndex){
     renderPlaylists();
 
 }
+indow.removeSongFromPlaylist = removeSongFromPlaylist;
 
 function renamePlaylist(id){
 
@@ -379,6 +378,7 @@ function renamePlaylist(id){
     renderPlaylists();
 
 }
+window.renamePlaylist = renamePlaylist;
 
 function updatePlaylistCounter(){
 
@@ -507,11 +507,11 @@ document.getElementById("serviceName");
 const createService =
 document.getElementById("createService");
 
-servicePlannerBtn.onclick = function(){
+servicePlannerBtn.onclick=function(){
 
     servicePanel.classList.add("show");
 
-    renderServices();
+}
 
 };
 
@@ -683,6 +683,7 @@ function addSongsToService(serviceId){
     songPicker.classList.add("show");
 
 }
+window.addSongsToService = addSongsToService;
 const songPicker =
 document.getElementById("songPicker");
 
@@ -787,6 +788,7 @@ songPickerSearch.onkeyup=function(){
     renderSongPicker(filtered);
 
 };
+window.selectSong = selectSong;
 async function startService(serviceId) {
 
     const service = services.find(s => s.id == serviceId);
@@ -805,6 +807,7 @@ async function startService(serviceId) {
 
     location.href = service.songs[0].file;
 }
+window.startService = startService;
 async function deleteService(id) {
 
     const index = services.findIndex(s => s.id == id);
@@ -828,6 +831,7 @@ async function deleteService(id) {
     localStorage.removeItem("currentSongIndex");
     localStorage.removeItem("resumePresentation");
 }
+window.deleteService = deleteService;
 function addSongsToPlaylist(playlistId){
 
     selectedPlaylist = playlists.find(
@@ -845,6 +849,7 @@ function addSongsToPlaylist(playlistId){
     songPickerSearch.value = "";
 
 }
+window.addSongsToPlaylist = addSongsToPlaylist;
 function renderPlaylistSongPicker(list){
 
     songPickerList.innerHTML = "";
@@ -939,6 +944,7 @@ songPickerSearch.onkeyup = function(){
     }
 
 };
+window.selectSongForPlaylist = selectSongForPlaylist;
 
 function toggleService(id){
 
@@ -988,6 +994,7 @@ async function renameService(id){
     renderServices();
 
 }
+window.renameService = renameService;
 async function removeSongFromService(serviceId, songIndex){
 
     console.log(
@@ -1027,8 +1034,7 @@ async function removeSongFromService(serviceId, songIndex){
     renderServices();
 
 }
-window.removeSongFromService =
-removeSongFromService;
+window.removeSongFromService = removeSongFromService;
 function searchSongs(keyword = "") {
 
     if (!keyword) {
@@ -1049,6 +1055,7 @@ function searchSongs(keyword = "") {
     });
 
 }
+window.searchSongs = searchSongs;
 async function saveServicesCloud() {
 
     await saveServices(
