@@ -16,6 +16,9 @@ let services = [];
 let playlists =
 JSON.parse(localStorage.getItem("playlists")) || [];
 
+const currentUser =
+JSON.parse(localStorage.getItem("currentUser"));
+
 const playlistBtn =
 document.getElementById("playlistBtn");
 
