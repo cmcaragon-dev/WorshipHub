@@ -15,10 +15,7 @@ let services = [];
 
 let playlists =
 JSON.parse(localStorage.getItem("playlists")) || [];
-
-const currentUser =
-JSON.parse(localStorage.getItem("currentUser"));
-
+const FIREBASE_USER = "guest";
 const playlistBtn =
 document.getElementById("playlistBtn");
 
@@ -1054,21 +1051,18 @@ function searchSongs(keyword = "") {
 async function saveServicesCloud() {
 
     await saveServices(
-
-        currentUser.username,
-
+        FIREBASE_USER,
         services
-
     );
 
 }
 watchServices(
 
-    currentUser.username,
+    FIREBASE_USER,
 
     function(data){
 
-        services = data;
+        services = data || [];
 
         renderServices();
 
