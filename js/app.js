@@ -959,6 +959,7 @@ function toggleService(id){
     }
 
 }
+window.toggleService = toggleService;
 
 async function renameService(id){
 
