@@ -861,14 +861,20 @@ function renderServices() {
 
 function addSongsToService(serviceId){
 
-    selectedService = services.find(s=>s.id===serviceId);
+    selectedService = services.find(function(s){
+        return s.id == serviceId;
+    });
+
+    console.log(selectedService.songs);
 
     renderSongPicker(songs);
 
     songPicker.classList.add("show");
 
 }
+
 window.addSongsToService = addSongsToService;
+
 const songPicker =
 document.getElementById("songPicker");
 
