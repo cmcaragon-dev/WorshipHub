@@ -278,8 +278,6 @@ function openSongYoutube(url){
 
     window.open(url,"_blank");
 }
-window.openSongYoutube = openSongYoutube;
-
 function openYoutube(id){
 
     const playlist = playlists.find(p => p.id == id);
@@ -289,15 +287,16 @@ function openYoutube(id){
     }
 
     if(!playlist.youtube){
-
         alert("This playlist has no YouTube link.");
-
         return;
     }
 
-   window.openYoutube = openYoutube;
+    window.open(playlist.youtube, "_blank");
 
 }
+
+window.openYoutube = openYoutube;
+
 function editYoutube(id){
 
     const playlist = playlists.find(p => p.id == id);
@@ -1011,6 +1010,7 @@ async function startService(serviceId){
 
 }
 
+window.startService = startService;
 
 function addSongsToPlaylist(playlistId){
 
@@ -1030,6 +1030,43 @@ function addSongsToPlaylist(playlistId){
 
 }
 window.addSongsToPlaylist = addSongsToPlaylist;
+async function deleteService(id) {
+
+    const service = services.find(s => s.id == id);
+
+    if (!service) {
+        alert("Service not found.");
+        return;
+    }
+
+    if (!confirm(`Delete "${service.name}"?`)) {
+        return;
+    }
+
+    services = services.filter(s => s.id != id);
+
+    await saveServicesCloud();
+
+    renderServices();
+
+    updateDashboard();
+
+    // Clear current presentation if the deleted service was active
+    const currentServiceId = Number(
+        localStorage.getItem("currentServiceId")
+    );
+
+    if (currentServiceId === id) {
+
+        localStorage.removeItem("currentServiceId");
+        localStorage.removeItem("currentSongIndex");
+        localStorage.removeItem("resumePresentation");
+
+    }
+
+}
+
+window.deleteService = deleteService;
 function renderPlaylistSongPicker(list){
 
     songPickerList.innerHTML = "";
