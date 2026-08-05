@@ -277,15 +277,9 @@ function openSongYoutube(url){
     }
 
     window.open(url,"_blank");
-
-}
-
-window.openSongYoutube = openSongYoutube;
-
-    window.open(song.youtube, "_blank");
-
 }
 window.openSongYoutube = openSongYoutube;
+
 function openYoutube(id){
 
     const playlist = playlists.find(p => p.id == id);
@@ -397,7 +391,7 @@ playlist.songs.sort(function(a,b){
     renderPlaylists();
 
 }
-indow.removeSongFromPlaylist = removeSongFromPlaylist;
+window.removeSongFromPlaylist = removeSongFromPlaylist;
 
 function renamePlaylist(id){
 
@@ -501,6 +495,7 @@ if(continueBtn){
     service.songs[index].file;
 
 };
+}
 function nextServiceSong() {
 
     const service = getCurrentService();
@@ -647,6 +642,7 @@ if(totalSongs){
 
 }
 songGrid.innerHTML = html;
+}
 
 const servicePlannerBtn =
 document.getElementById("servicePlannerBtn");
