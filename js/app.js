@@ -916,11 +916,9 @@ function renderSongPicker(list){
 
             </div>
 
-            <button onclick="('${song.file}')">
-
-                Add
-
-            </button>
+           <button onclick="selectSong('${song.file}')">
+    Add
+</button>
 
         </div>
 
