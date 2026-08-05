@@ -1260,19 +1260,6 @@ window.searchSongs = searchSongs;
 
 })();
 
-function updateDashboard(){
-
-    const totalServices =
-        document.getElementById("totalServices");
-
-    if(totalServices){
-
-        totalServices.textContent =
-            services.length;
-    }
-
-}
-
 /* =====================================
    CURRENT SERVICE HELPERS
 ===================================== */
