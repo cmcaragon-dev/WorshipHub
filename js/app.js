@@ -746,9 +746,13 @@ function renderServices() {
         return a.name.localeCompare(b.name);
     });
 
-    services.forEach(function(service){
+   services.forEach(function(service){
 
-    songList += `
+    let songList = "";
+
+    service.songs.forEach(function(song,index){
+
+        songList += `
 
     <div class="service-song">
 
@@ -1008,7 +1012,8 @@ async function startService(serviceId){
     location.href = service.songs[0].file;
 
 }
-window.deleteService = deleteService;
+
+
 function addSongsToPlaylist(playlistId){
 
     selectedPlaylist = playlists.find(
@@ -1335,18 +1340,6 @@ document.addEventListener("keydown", function(e){
 
 });
 
-function getCurrentService(){
-
-    const id = Number(
-        localStorage.getItem("currentServiceId")
-    );
-
-    return services.find(
-        s => s.id === id
-    );
-
-}
-
 function getCurrentSong(){
 
     const service = getCurrentService();
@@ -1428,54 +1421,6 @@ function previousSong(){
     service.songs[index].file;
 
 }
-function finishService(){
-
-    if(!confirm("Finish this service?")){
-
-        return;
-
-    }
-
-    localStorage.removeItem("currentServiceId");
-
-    localStorage.removeItem("currentSongIndex");
-
-    localStorage.removeItem("resumePresentation");
-
-    alert("Service Finished.");
-
-}
-document.addEventListener(
-
-    "keydown",
-
-    function(e){
-
-        switch(e.key){
-
-            case "ArrowRight":
-
-                nextSong();
-
-                break;
-
-            case "ArrowLeft":
-
-                previousSong();
-
-                break;
-
-            case "Escape":
-
-                finishService();
-
-                break;
-
-        }
-
-    }
-
-);
 function updateServiceProgress(){
 
     const label =
@@ -1539,11 +1484,6 @@ function updateCurrentServiceName(){
     });
 
 }
-	sortSongs(service.songs);
-
-sortSongs(selectedPlaylist.songs);
-
-sortSongs(songs);
 	function sortServices(){
 
     services.sort(function(a,b){
