@@ -865,12 +865,11 @@ function addSongsToService(serviceId){
         return s.id == serviceId;
     });
 
-    console.log(selectedService.songs);
+    console.log("Selected Service:", selectedService);
 
     renderSongPicker(songs);
 
     songPicker.classList.add("show");
-
 }
 
 window.addSongsToService = addSongsToService;
@@ -929,26 +928,22 @@ function renderSongPicker(list){
 }
 async function selectSong(file){
 
+    console.log("Adding:", file);
+
+    console.log("Selected Service:", selectedService);
+
     const song = songs.find(function(s){
         return s.file === file;
     });
+
+    console.log("Found Song:", song);
 
     if(!song){
         alert("Song not found.");
         return;
     }
 
-    const exists = selectedService.songs.some(function(s){
-        return s.file === file;
-    });
-
-    if(exists){
-        alert("This song already exists in the service.");
-        return;
-    }
-
     selectedService.songs.push({
-
         id: song.id,
         title: song.title,
         artist: song.artist,
@@ -959,8 +954,9 @@ async function selectSong(file){
         originalKey: song.key,
         serviceKey: song.key,
         transpose: 0
-
     });
+
+    console.log(selectedService);
 
     await saveServicesCloud();
 
@@ -969,7 +965,6 @@ async function selectSong(file){
     songPicker.classList.remove("show");
 
     selectedService = null;
-
 }
 
 window.selectSong = selectSong;
