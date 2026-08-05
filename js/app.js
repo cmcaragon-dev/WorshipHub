@@ -860,65 +860,88 @@ closeSongPicker.onclick=function(){
     songPicker.classList.remove("show");
 
 };
-songPickerSearch.onkeyup=function(){
 
-    const keyword=this.value.toLowerCase();
+async function startService(serviceId){
 
-    const filtered=songs.filter(song=>
-
-        song.title.toLowerCase().includes(keyword) ||
-
-        song.artist.toLowerCase().includes(keyword) ||
-
-        song.category.toLowerCase().includes(keyword)
-
+    const service =
+    services.find(
+        s => s.id == serviceId
     );
 
-    renderSongPicker(filtered);
+    if(!service){
 
-};
-window.selectSong = selectSong;
-async function startService(serviceId) {
+        alert("Service not found.");
 
-    const service = services.find(s => s.id == serviceId);
-
-    if (!service) return;
-
-    if (service.songs.length === 0) {
-        alert("This service has no songs.");
         return;
+
     }
 
-    localStorage.setItem("currentServiceId", service.id);
-    localStorage.setItem("currentSongIndex", "0");
+    if(service.songs.length===0){
+
+        alert("This service has no songs.");
+
+        return;
+
+    }
+
+    localStorage.setItem(
+        "currentServiceId",
+        service.id
+    );
+
+    localStorage.setItem(
+        "currentSongIndex",
+        "0"
+    );
 
     await saveServicesCloud();
 
-    location.href = service.songs[0].file;
+    location.href =
+    service.songs[0].file;
+
 }
 window.startService = startService;
-async function deleteService(id) {
+async function deleteService(id){
 
-    const index = services.findIndex(s => s.id == id);
+    const index =
+    services.findIndex(
+        s=>s.id==id
+    );
 
-    if (index === -1) {
+    if(index===-1){
+
         alert("Service not found.");
+
         return;
+
     }
 
-    if (!confirm("Delete this service?")) {
+    if(!confirm(
+        "Delete this service?"
+    )){
+
         return;
+
     }
 
-    services.splice(index, 1);
+    services.splice(index,1);
 
     await saveServicesCloud();
 
     renderServices();
 
-    localStorage.removeItem("currentServiceId");
-    localStorage.removeItem("currentSongIndex");
-    localStorage.removeItem("resumePresentation");
+    localStorage.removeItem(
+        "currentServiceId"
+    );
+
+    localStorage.removeItem(
+        "currentSongIndex"
+    );
+
+    localStorage.removeItem(
+        "resumePresentation"
+    );
+
 }
 window.deleteService = deleteService;
 function addSongsToPlaylist(playlistId){
