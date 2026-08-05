@@ -21,6 +21,7 @@ const FIREBASE_USER = "guest";
 ===================================== */
 
 let services = [];
+let loadingServices = true;
 
 let playlists =
 JSON.parse(
@@ -31,10 +32,11 @@ JSON.parse(
    INITIALIZE FIREBASE
 ===================================== */
 
-(async function(){
+(async () => {
 
-    services =
-    await loadServices(FIREBASE_USER);
+    services = await loadServices(FIREBASE_USER);
+
+    loadingServices = false;
 
     renderServices();
 
@@ -47,6 +49,12 @@ watchServices(
     FIREBASE_USER,
 
     function(data){
+
+        if(loadingServices){
+
+            return;
+
+        }
 
         services = data || [];
 
@@ -652,7 +660,12 @@ function renderServices() {
 
     }
 
-        service.songs.forEach((song,index)=>{
+    // Sort services alphabetically
+    services.sort(function(a, b) {
+        return a.name.localeCompare(b.name);
+    });
+
+    services.forEach(function(service){
 
     songList += `
 
@@ -1186,21 +1199,7 @@ async function saveServicesCloud() {
     updateDashboard();
 
 })();
-watchServices(
 
-    FIREBASE_USER,
-
-    function(data){
-
-        services = data || [];
-
-        renderServices();
-
-        updateDashboard();
-
-    }
-
-);
 function updateDashboard(){
 
     const totalServices =
