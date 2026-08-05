@@ -962,6 +962,7 @@ if(exists){
 
     selectedService = null;
 }
+window.selectSong = selectSong;
 	
 closeSongPicker.onclick=function(){
 
