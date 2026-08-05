@@ -1,106 +1,56 @@
-"use strict";
+import {
+    doc,
+    setDoc,
+    getDoc,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 import { db } from "./firebase.js";
 
-import {
+export async function saveServices(userId, services) {
 
-doc,
-setDoc,
-getDoc
+    await setDoc(
+        doc(db, "services", userId),
+        {
+            services: services
+        }
+    );
 
 }
 
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+export async function loadServices(userId) {
 
-/* ============================
-   REALTIME SERVICE LISTENER
-============================ */
+    const snap = await getDoc(
+        doc(db, "services", userId)
+    );
 
-export function watchServices(username, callback){
+    if (!snap.exists()) {
+        return [];
+    }
 
-    const ref = doc(db, "services", username);
-
-    return onSnapshot(ref, (snapshot)=>{
-
-        if(snapshot.exists()){
-
-            callback(snapshot.data().services || []);
-
-        }
-
-        else{
-
-            callback([]);
-
-        }
-
-    });
+    return snap.data().services || [];
 
 }
-/* ============================
-   SAVE SERVICES
-============================ */
 
-export async function saveServices(username, services){
+export function watchServices(userId, callback) {
 
-    try{
+    return onSnapshot(
+        doc(db, "services", userId),
+        (docSnap) => {
 
-        await setDoc(
+            if (docSnap.exists()) {
 
-            doc(db,"services",username),
+                callback(
+                    docSnap.data().services || []
+                );
 
-            {
+            } else {
 
-                services: services
+                callback([]);
 
             }
 
-        );
-
-        console.log("Services saved.");
-
-    }
-
-    catch(err){
-
-        console.error(err);
-
-    }
-
-}
-
-/* ============================
-   LOAD SERVICES
-============================ */
-
-export async function loadServices(username){
-
-    try{
-
-        const snapshot =
-
-        await getDoc(
-
-            doc(db,"services",username)
-
-        );
-
-        if(snapshot.exists()){
-
-            return snapshot.data().services || [];
-
         }
-
-        return [];
-
-    }
-
-    catch(err){
-
-        console.error(err);
-
-        return [];
-
-    }
+    );
 
 }
