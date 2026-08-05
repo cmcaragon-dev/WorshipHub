@@ -21,50 +21,11 @@ const FIREBASE_USER = "guest";
 ===================================== */
 
 let services = [];
-let loadingServices = true;
 
 let playlists =
 JSON.parse(
     localStorage.getItem("playlists")
 ) || [];
-
-/* =====================================
-   INITIALIZE FIREBASE
-===================================== */
-
-(async () => {
-
-    services = await loadServices(FIREBASE_USER);
-
-    loadingServices = false;
-
-    renderServices();
-
-    updateDashboard();
-
-})();
-
-watchServices(
-
-    FIREBASE_USER,
-
-    function(data){
-
-        if(loadingServices){
-
-            return;
-
-        }
-
-        services = data || [];
-
-        renderServices();
-
-        updateDashboard();
-
-    }
-
-);
 
 /* =====================================
    FIREBASE SAVE
@@ -842,7 +803,19 @@ function renderSongPicker(list){
 
 }
 async function selectSong(file){
+const exists = selectedService.songs.some(function(s){
 
+    return s.file === song.file;
+
+});
+
+if(exists){
+
+    alert("This song already exists in the service.");
+
+    return;
+
+}
     const song = songs.find(s => s.file === file);
 
     if(!song) return;
@@ -1182,14 +1155,7 @@ function searchSongs(keyword = "") {
 
 }
 window.searchSongs = searchSongs;
-async function saveServicesCloud() {
 
-    await saveServices(
-        FIREBASE_USER,
-        services
-    );
-
-}
 (async () => {
 
     services = await loadServices(FIREBASE_USER);
