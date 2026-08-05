@@ -16,7 +16,7 @@ import {
 ===================================== */
 
 const FIREBASE_USER = "guest";
-
+let services = [];
 const STORAGE_KEYS = {
 
     CURRENT_SERVICE : "currentServiceId",
@@ -30,7 +30,7 @@ const STORAGE_KEYS = {
    DATA
 ===================================== */
 
-let services = [];
+
 
 let playlists =
 JSON.parse(
