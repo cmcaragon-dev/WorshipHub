@@ -1,13 +1,78 @@
-import {
+"use strict";
 
-saveServices,
-loadServices,
-watchServices
+/* =====================================
+   FIREBASE
+===================================== */
+
+import {
+    saveServices,
+    loadServices,
+    watchServices
+} from "./firestore.js";
+
+/* =====================================
+   CONFIG
+===================================== */
+
+const FIREBASE_USER = "guest";
+
+/* =====================================
+   DATA
+===================================== */
+
+let services = [];
+
+let playlists =
+JSON.parse(
+    localStorage.getItem("playlists")
+) || [];
+
+/* =====================================
+   INITIALIZE FIREBASE
+===================================== */
+
+(async function(){
+
+    services =
+    await loadServices(FIREBASE_USER);
+
+    renderServices();
+
+    updateDashboard();
+
+})();
+
+watchServices(
+
+    FIREBASE_USER,
+
+    function(data){
+
+        services = data || [];
+
+        renderServices();
+
+        updateDashboard();
+
+    }
+
+);
+
+/* =====================================
+   FIREBASE SAVE
+===================================== */
+
+async function saveServicesCloud(){
+
+    await saveServices(
+
+        FIREBASE_USER,
+
+        services
+
+    );
 
 }
-
-from "./firestore.js";
-const FIREBASE_USER = "guest";
 /* =====================================
    PLAYLIST MANAGER
 ===================================== */
@@ -539,13 +604,26 @@ createService.onclick = async function () {
 
     const name = serviceName.value.trim();
 
-    if (!name) return;
+    if (!name) {
+
+        alert("Please enter a service name.");
+
+        return;
+
+    }
 
     services.push({
+
         id: Date.now(),
-        name: name,
+
+        name,
+
         songs: [],
-        notes: []
+
+        notes: [],
+
+        createdDate: new Date().toLocaleString()
+
     });
 
     await saveServicesCloud();
@@ -553,14 +631,25 @@ createService.onclick = async function () {
     serviceName.value = "";
 
     renderServices();
+
 };
 function renderServices() {
 
     serviceList.innerHTML = "";
 
-    services.forEach(function(service) {
+    if (services.length === 0) {
 
-        let songList = "";
+        serviceList.innerHTML = `
+            <div class="empty-message">
+                No Service Planner created yet.
+            </div>
+        `;
+
+        updateDashboard();
+
+        return;
+
+    }
 
         service.songs.forEach((song,index)=>{
 
