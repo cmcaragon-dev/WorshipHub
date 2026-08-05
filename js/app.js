@@ -148,6 +148,7 @@ playlists.push({
     renderPlaylists();
 
 }
+playlists.sort((a,b)=>a.name.localeCompare(b.name));
 
 function savePlaylists(){
 
