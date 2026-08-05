@@ -668,8 +668,6 @@ servicePlannerBtn.onclick=function(){
 
 }
 
-};
-
 closeService.onclick=function(){
 
     servicePanel.classList.remove("show");
