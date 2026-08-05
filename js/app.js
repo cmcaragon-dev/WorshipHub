@@ -7,7 +7,7 @@ watchServices
 }
 
 from "./firestore.js";
-
+const FIREBASE_USER = "guest";
 /* =====================================
    PLAYLIST MANAGER
 ===================================== */
@@ -15,7 +15,7 @@ let services = [];
 
 let playlists =
 JSON.parse(localStorage.getItem("playlists")) || [];
-const FIREBASE_USER = "guest";
+
 const playlistBtn =
 document.getElementById("playlistBtn");
 
@@ -1056,6 +1056,15 @@ async function saveServicesCloud() {
     );
 
 }
+(async () => {
+
+    services = await loadServices(FIREBASE_USER);
+
+    renderServices();
+
+    updateDashboard();
+
+})();
 watchServices(
 
     FIREBASE_USER,
