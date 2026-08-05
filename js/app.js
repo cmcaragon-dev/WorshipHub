@@ -55,8 +55,7 @@ async function saveServicesCloud(){
 /* =====================================
    PLAYLIST MANAGER
 ===================================== */
-let playlists =
-JSON.parse(localStorage.getItem("playlists")) || [];
+
 
 const playlistBtn =
 document.getElementById("playlistBtn");
