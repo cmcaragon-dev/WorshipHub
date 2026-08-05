@@ -16,7 +16,6 @@ import {
 ===================================== */
 
 const FIREBASE_USER = "guest";
-const FIREBASE_USER = "guest";
 
 const STORAGE_KEYS = {
 
