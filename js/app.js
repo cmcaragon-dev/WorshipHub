@@ -109,6 +109,7 @@ playlists.push({
     songs: []
 
 });
+	
 
     savePlaylists();
 
@@ -132,7 +133,11 @@ function savePlaylists(){
 }
 
 function renderPlaylists(){
+playlists.sort(function(a,b){
 
+    return a.name.localeCompare(b.name);
+
+});
     playlistList.innerHTML="";
 
     playlists.forEach(function(list){
@@ -375,7 +380,11 @@ function removeSongFromPlaylist(playlistId, songIndex){
     }
 
     playlist.songs.splice(songIndex,1);
+playlist.songs.sort(function(a,b){
 
+    return a.title.localeCompare(b.title);
+
+});
     savePlaylists();
 
     renderPlaylists();
@@ -417,12 +426,15 @@ window.renamePlaylist = renamePlaylist;
 
 function updatePlaylistCounter(){
 
-    document.getElementById(
+    const total =
 
-        "totalPlaylists"
+    document.getElementById("totalPlaylists");
 
-    ).textContent =
-    playlists.length;
+    if(total){
+
+        total.textContent = playlists.length;
+
+    }
 
 }
 
@@ -497,32 +509,40 @@ function renderSongs(songList) {
 
     songGrid.innerHTML = "";
 
-    songList.forEach(song => {
+    let html = "";
 
-        songGrid.innerHTML += `
+songList.forEach(function(song){
 
-        <div class="song-card">
+    html += `
 
-            <h3>${song.title}</h3>
+    <div class="song-card">
 
-            <p><strong>Artist:</strong> ${song.artist}</p>
+        <h3>${song.title}</h3>
 
-            <p><strong>Key:</strong> ${song.key}</p>
+        <p><strong>Artist:</strong> ${song.artist}</p>
 
-            <p><strong>Category:</strong> ${song.category}</p>
+        <p><strong>Key:</strong> ${song.key}</p>
 
-            <a class="open-song" href="${song.file}">
-                🎵 Open Song
-            </a>
+        <p><strong>Category:</strong> ${song.category}</p>
 
-        </div>
+        <a class="open-song" href="${song.file}">
+            🎵 Open Song
+        </a>
 
-        `;
+    </div>
 
-    });
+    `;
+
+});
+const totalSongs =
+document.getElementById("totalSongs");
+
+if(totalSongs){
+
+    totalSongs.textContent = songList.length;
 
 }
-renderSongs(songs);
+songGrid.innerHTML = html;
 
 const servicePlannerBtn =
 document.getElementById("servicePlannerBtn");
@@ -1009,7 +1029,11 @@ function selectSongForPlaylist(file){
     }
 
     selectedPlaylist.songs.push(song);
+selectedPlaylist.songs.sort(function(a,b){
 
+    return a.title.localeCompare(b.title);
+
+});
     savePlaylists();
 
     renderPlaylists();
@@ -1134,24 +1158,33 @@ async function removeSongFromService(serviceId, songIndex){
 
 }
 window.removeSongFromService = removeSongFromService;
-function searchSongs(keyword = "") {
+function searchSongs(keyword = ""){
 
-    if (!keyword) {
+    if(!keyword){
+
         keyword = document.getElementById("searchBox").value;
+
     }
 
     keyword = keyword.toLowerCase().trim();
 
-    const songs = document.querySelectorAll(".song-card");
+    filteredSongs = songs.filter(function(song){
 
-    songs.forEach(song => {
+        return (
 
-        const title = song.textContent.toLowerCase();
+            song.title.toLowerCase().includes(keyword) ||
 
-        song.style.display =
-            title.includes(keyword) ? "" : "none";
+            song.artist.toLowerCase().includes(keyword) ||
+
+            song.category.toLowerCase().includes(keyword) ||
+
+            song.language.toLowerCase().includes(keyword)
+
+        );
 
     });
+
+    renderSongs(filteredSongs);
 
 }
 window.searchSongs = searchSongs;
