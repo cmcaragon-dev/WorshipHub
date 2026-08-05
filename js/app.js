@@ -910,7 +910,7 @@ function renderSongPicker(list){
 
             </div>
 
-            <button onclick="selectSong('${song.file}')">
+            <button onclick="('${song.file}')">
 
                 Add
 
@@ -924,24 +924,27 @@ function renderSongPicker(list){
 
 }
 async function selectSong(file){
-const exists = selectedService.songs.some(function(s){
 
-    return s.file === song.file;
+    const song = songs.find(function(s){
+        return s.file === file;
+    });
 
-});
+    if(!song){
+        alert("Song not found.");
+        return;
+    }
 
-if(exists){
+    const exists = selectedService.songs.some(function(s){
+        return s.file === file;
+    });
 
-    alert("This song already exists in the service.");
-
-    return;
-
-}
-    const song = songs.find(s => s.file === file);
-
-    if(!song) return;
+    if(exists){
+        alert("This song already exists in the service.");
+        return;
+    }
 
     selectedService.songs.push({
+
         id: song.id,
         title: song.title,
         artist: song.artist,
@@ -952,6 +955,7 @@ if(exists){
         originalKey: song.key,
         serviceKey: song.key,
         transpose: 0
+
     });
 
     await saveServicesCloud();
@@ -961,7 +965,9 @@ if(exists){
     songPicker.classList.remove("show");
 
     selectedService = null;
+
 }
+
 window.selectSong = selectSong;
 	
 closeSongPicker.onclick=function(){
