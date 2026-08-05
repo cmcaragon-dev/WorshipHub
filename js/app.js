@@ -469,21 +469,118 @@ function getLastSong(){
     );
 
 }
-document.getElementById("continueBtn").onclick=function(){
+document.getElementById("continueBtn").onclick = function () {
 
-    const last = getLastSong();
+    const service = getCurrentService();
 
-    if(!last){
+    if (!service) {
 
-        alert("No recent song.");
+        alert("No active service.");
 
         return;
 
     }
 
-    location.href = last.file;
+    const index = getCurrentSongIndex();
+
+    if (!service.songs[index]) {
+
+        alert("Service finished.");
+
+        return;
+
+    }
+
+    location.href = service.songs[index].file;
 
 };
+function nextServiceSong() {
+
+    const service = getCurrentService();
+
+    if (!service) return;
+
+    let index = getCurrentSongIndex();
+
+    index++;
+
+    if (index >= service.songs.length) {
+
+        alert("End of Service");
+
+        return;
+
+    }
+
+    setCurrentSongIndex(index);
+
+    location.href = service.songs[index].file;
+
+}
+window.nextServiceSong = nextServiceSong;
+function previousServiceSong() {
+
+    const service = getCurrentService();
+
+    if (!service) return;
+
+    let index = getCurrentSongIndex();
+
+    if (index === 0) {
+
+        return;
+
+    }
+
+    index--;
+
+    setCurrentSongIndex(index);
+
+    location.href = service.songs[index].file;
+
+}
+window.previousServiceSong = previousServiceSong;
+
+function finishService() {
+
+    localStorage.removeItem("currentServiceId");
+
+    localStorage.removeItem("currentSongIndex");
+
+    localStorage.removeItem("resumePresentation");
+
+    alert("Service Finished.");
+
+}
+window.finishService = finishService;
+function updateDashboard(){
+
+    const totalServices =
+        document.getElementById("totalServices");
+
+    if(totalServices){
+
+        totalServices.textContent =
+            services.length;
+
+    }
+
+    const current =
+        document.getElementById("currentService");
+
+    if(current){
+
+        const service =
+            getCurrentService();
+
+        current.textContent =
+            service
+            ? service.name
+            : "None";
+
+    }
+
+}
 document.getElementById("totalFavorites").textContent =
 getFavorites().length;
 
@@ -1211,3 +1308,59 @@ function updateDashboard(){
     }
 
 }
+
+/* =====================================
+   CURRENT SERVICE HELPERS
+===================================== */
+
+function getCurrentService() {
+
+    const id = Number(
+        localStorage.getItem("currentServiceId")
+    );
+
+    return services.find(s => s.id === id);
+
+}
+
+function getCurrentSongIndex() {
+
+    return Number(
+        localStorage.getItem("currentSongIndex") || 0
+    );
+
+}
+
+function setCurrentSongIndex(index) {
+
+    localStorage.setItem(
+        "currentSongIndex",
+        index
+    );
+
+}
+document.addEventListener("keydown", function(e){
+
+    switch(e.key){
+
+        case "ArrowRight":
+
+            nextServiceSong();
+
+            break;
+
+        case "ArrowLeft":
+
+            previousServiceSong();
+
+            break;
+
+        case "Escape":
+
+            finishService();
+
+            break;
+
+    }
+
+});
