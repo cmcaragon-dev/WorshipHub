@@ -1313,14 +1313,17 @@ console.log("CURRENT ID:", localStorage.getItem("currentServiceId"));
 
 function getCurrentService() {
 
-    const id = Number(
-        localStorage.getItem("currentServiceId")
-    );
+    const id = Number(localStorage.getItem("currentServiceId"));
 
-    return services.find(s => s.id === id);
+    console.log("Current ID:", id);
+    console.log("Services:", services);
 
+    const service = services.find(s => s.id === id);
+
+    console.log("Found Service:", service);
+
+    return service;
 }
-
 function getCurrentSongIndex() {
 
     return Number(
