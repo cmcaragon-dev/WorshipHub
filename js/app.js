@@ -1001,6 +1001,8 @@ async function startService(serviceId){
         "currentServiceId",
         service.id
     );
+	updateCurrentServiceName();
+updateServiceProgress();
 
     localStorage.setItem(
         "currentSongIndex",
