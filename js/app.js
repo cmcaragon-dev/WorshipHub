@@ -955,9 +955,12 @@ async function selectSong(file){
 
     console.log(selectedService);
 
-    await saveServicesCloud();
+   await saveServicesCloud();
 
-    renderServices();
+const loaded = await loadServices(FIREBASE_USER);
+console.log("Firestore returned:", loaded);
+
+renderServices();
 
     songPicker.classList.remove("show");
 
