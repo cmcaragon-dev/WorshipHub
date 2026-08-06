@@ -1298,6 +1298,8 @@ window.searchSongs = searchSongs;
 (async () => {
 
     services = await loadServices(FIREBASE_USER);
+	console.log("SERVICES:", services);
+console.log("CURRENT ID:", localStorage.getItem("currentServiceId"));
 
     renderServices();
 
