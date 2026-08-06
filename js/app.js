@@ -977,45 +977,29 @@ closeSongPicker.onclick=function(){
 
 async function startService(serviceId){
 
-    const service = services.find(
-        s => s.id == serviceId
-    );
+    const service = services.find(function(s){
+        return Number(s.id) === Number(serviceId);
+    });
 
     if(!service){
-
         alert("Service not found.");
-
         return;
-
     }
 
-    if(service.songs.length===0){
-
+    if(service.songs.length === 0){
         alert("This service has no songs.");
-
         return;
-
     }
 
-    localStorage.setItem(
-        "currentServiceId",
-        service.id
-    );
-	updateCurrentServiceName();
-updateServiceProgress();
+    localStorage.setItem("currentServiceId", service.id);
 
-    localStorage.setItem(
-        "currentSongIndex",
-        "0"
-    );
+    localStorage.setItem("currentSongIndex", 0);
 
-    localStorage.setItem(
-        "resumePresentation",
-        "true"
-    );
+    localStorage.setItem("resumePresentation", "true");
+
+    console.log("Starting Service:", service);
 
     location.href = service.songs[0].file;
-
 }
 
 window.startService = startService;
