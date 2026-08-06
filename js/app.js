@@ -1315,10 +1315,12 @@ function getCurrentService() {
 
     const id = Number(localStorage.getItem("currentServiceId"));
 
-    console.log("Current ID:", id);
+    console.log("Current Service ID:", id);
     console.log("Services:", services);
 
-    const service = services.find(s => s.id === id);
+    const service = services.find(function(s){
+        return Number(s.id) === id;
+    });
 
     console.log("Found Service:", service);
 
