@@ -44,11 +44,8 @@ JSON.parse(
 async function saveServicesCloud(){
 
     await saveServices(
-
         FIREBASE_USER,
-
         services
-
     );
 
 }
