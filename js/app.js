@@ -337,11 +337,7 @@ function togglePlaylist(id){
 
 }
 window.togglePlaylist = togglePlaylist;
-function openSong(file){
 
-    location.href = file;
-
-}
 function openSongInPresentation(song) {
 
     if (!song || !song.file) {
