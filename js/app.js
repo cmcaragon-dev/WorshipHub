@@ -948,29 +948,48 @@ async function startService(serviceId) {
     // Save active service
     localStorage.setItem(
         "currentServiceId",
-        service.id
+        String(service.id)
     );
 
-    // Start with first song
+    // Start from first song
     localStorage.setItem(
         "currentSongIndex",
         "0"
     );
 
-    // Tell song page to immediately enter presentation
     localStorage.setItem(
         "resumePresentation",
         "true"
     );
 
-    // Open first song
-    let file = service.songs[0].file;
+    const firstSong = service.songs[0];
 
-    if (file.startsWith("songs/")) {
-        file = file.substring(6);
+    if (!firstSong || !firstSong.file) {
+        alert("First song file not found.");
+        return;
     }
 
-    window.location.href = file;
+    // Get ONLY the filename
+    const filename =
+        String(firstSong.file)
+        .trim()
+        .split("/")
+        .pop();
+
+    // GitHub Pages URL
+    const url =
+        "/WorshipHub/songs/" + filename;
+
+    console.log("================================");
+    console.log("START SERVICE");
+    console.log("Service:", service.name);
+    console.log("Song:", firstSong.title);
+    console.log("Firebase file:", firstSong.file);
+    console.log("Filename:", filename);
+    console.log("Opening:", url);
+    console.log("================================");
+
+    window.location.assign(url);
 }
 
 window.startService = startService;
