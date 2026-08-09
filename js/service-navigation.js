@@ -175,46 +175,57 @@ async function nextServiceSong() {
     setCurrentSongIndex(index);
 
 
-    const nextSong =
-        service.songs[index];
+   const nextSong =
+    service.songs[index];
 
+if (
+    !nextSong ||
+    !nextSong.file
+) {
 
-    if (
-        !nextSong ||
-        !nextSong.file
-    ) {
-
-        alert(
-            "Next song file was not found."
-        );
-
-        console.error(
-            "Invalid next song:",
-            nextSong
-        );
-
-        return;
-
-    }
-
-
-    console.log(
-        "NEXT SONG:",
-        nextSong.title
+    alert(
+        "Next song file was not found."
     );
 
-    console.log(
-        "NEXT FILE:",
-        nextSong.file
-    );
+    return;
+
+}
 
 
-    /* =================================
-       OPEN NEXT SONG
-    ================================= */
+let nextFile =
+    nextSong.file;
 
-    window.location.href =
-        nextSong.file;
+
+/*
+    Firebase stores:
+
+    songs/amazing-grace.html
+
+    But we are already inside:
+
+    /songs/
+
+    Therefore remove "songs/"
+*/
+
+if (
+    nextFile.startsWith("songs/")
+) {
+
+    nextFile =
+        nextFile.substring(6);
+
+}
+
+
+console.log(
+    "Opening:",
+    nextFile
+);
+
+
+window.location.href =
+    nextFile;
 
 }
 
@@ -277,32 +288,20 @@ async function previousServiceSong() {
     setCurrentSongIndex(index);
 
 
-    const previousSong =
-        service.songs[index];
+    let previousFile =
+    previousSong.file;
 
+if (
+    previousFile.startsWith("songs/")
+) {
 
-    if (
-        !previousSong ||
-        !previousSong.file
-    ) {
+    previousFile =
+        previousFile.substring(6);
 
-        alert(
-            "Previous song file was not found."
-        );
+}
 
-        return;
-
-    }
-
-
-    console.log(
-        "PREVIOUS SONG:",
-        previousSong.title
-    );
-
-
-    window.location.href =
-        previousSong.file;
+window.location.href =
+    previousFile;
 
 }
 
