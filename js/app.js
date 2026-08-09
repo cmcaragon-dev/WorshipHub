@@ -1509,3 +1509,21 @@ function updateCurrentServiceName(){
     });
 
 }
+function getSongUrl(file) {
+
+    if (!file) {
+        return "";
+    }
+
+    file = file.trim();
+
+    if (file.startsWith("songs/")) {
+        return "../" + file;
+    }
+
+    if (file.startsWith("../")) {
+        return file;
+    }
+
+    return "./" + file;
+}
