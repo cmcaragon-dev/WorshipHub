@@ -1007,31 +1007,48 @@ closeSongPicker.onclick=function(){
 
 };
 
-async function startService(serviceId){
+async function startService(serviceId) {
 
-    const service = services.find(function(s){
+    const service = services.find(function(s) {
         return Number(s.id) === Number(serviceId);
     });
 
-    if(!service){
+    if (!service) {
         alert("Service not found.");
         return;
     }
 
-    if(service.songs.length === 0){
+    if (!service.songs || service.songs.length === 0) {
         alert("This service has no songs.");
         return;
     }
 
-    localStorage.setItem("currentServiceId", service.id);
+    // Save active service
+    localStorage.setItem(
+        "currentServiceId",
+        service.id
+    );
 
-    localStorage.setItem("currentSongIndex", 0);
+    // Start with first song
+    localStorage.setItem(
+        "currentSongIndex",
+        "0"
+    );
 
-    localStorage.setItem("resumePresentation", "true");
+    // Tell song page to immediately enter presentation
+    localStorage.setItem(
+        "resumePresentation",
+        "true"
+    );
 
-    console.log("Starting Service:", service);
+    // Open first song
+    let file = service.songs[0].file;
 
-    location.href = service.songs[0].file;
+    if (file.startsWith("songs/")) {
+        file = file.substring(6);
+    }
+
+    window.location.href = file;
 }
 
 window.startService = startService;
