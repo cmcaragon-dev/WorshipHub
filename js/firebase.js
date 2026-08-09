@@ -1,44 +1,51 @@
 "use strict";
 
-import { initializeApp }
-
+import {
+    initializeApp
+}
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
-
-getAuth
-
+    getAuth
 }
-
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
-
-getFirestore
-
+    getFirestore
 }
-
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
 const firebaseConfig = {
 
-apiKey: "AIzaSyArrGfT8HThgvIJDzDRw_Hw8NxGJmBvOJs",
+    apiKey:
+        "AIzaSyArrGfT8HThgvIJDzDRw_Hw8NxGJmBvOJs",
 
-authDomain: "worship-lyrics-manager.firebaseapp.com",
+    authDomain:
+        "worship-lyrics-manager.firebaseapp.com",
 
-projectId: "worship-lyrics-manager",
+    projectId:
+        "worship-lyrics-manager",
 
-storageBucket: "worship-lyrics-manager.firebasestorage.app",
+    storageBucket:
+        "worship-lyrics-manager.firebasestorage.app",
 
-messagingSenderId: "196627692729",
+    messagingSenderId:
+        "196627692729",
 
-appId: "1:196627692729:web:f3a4d0de671b29e9ed2f68"
+    appId:
+        "1:196627692729:web:f3a4d0de671b29e9ed2f68"
 
 };
 
-const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth(app);
+const app =
+    initializeApp(firebaseConfig);
 
-export const db = getFirestore(app);
+
+export const auth =
+    getAuth(app);
+
+
+export const db =
+    getFirestore(app);
