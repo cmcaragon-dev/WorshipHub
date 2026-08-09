@@ -496,47 +496,79 @@ function nextServiceSong() {
 
     const service = getCurrentService();
 
-    if (!service) return;
+    if (!service) {
+        alert("No active service.");
+        return;
+    }
+
+    if (!service.songs || service.songs.length === 0) {
+        alert("This service has no songs.");
+        return;
+    }
 
     let index = getCurrentSongIndex();
 
-    index++;
-
-    if (index >= service.songs.length) {
-
-        alert("End of Service");
-
+    if (index >= service.songs.length - 1) {
+        alert("End of Service.");
         return;
-
     }
+
+    index++;
 
     setCurrentSongIndex(index);
 
-    location.href = service.songs[index].file;
+    const nextSong = service.songs[index];
 
+    if (!nextSong || !nextSong.file) {
+        alert("Next song file not found.");
+        return;
+    }
+
+    console.log("NEXT SONG:", nextSong.title);
+    console.log("INDEX:", index);
+
+    location.href = nextSong.file;
 }
+
 window.nextServiceSong = nextServiceSong;
+
 function previousServiceSong() {
 
     const service = getCurrentService();
 
-    if (!service) return;
+    if (!service) {
+        alert("No active service.");
+        return;
+    }
+
+    if (!service.songs || service.songs.length === 0) {
+        return;
+    }
 
     let index = getCurrentSongIndex();
 
-    if (index === 0) {
-
+    if (index <= 0) {
+        alert("This is the first song.");
         return;
-
     }
 
     index--;
 
     setCurrentSongIndex(index);
 
-    location.href = service.songs[index].file;
+    const previousSong = service.songs[index];
 
+    if (!previousSong || !previousSong.file) {
+        alert("Previous song file not found.");
+        return;
+    }
+
+    console.log("PREVIOUS SONG:", previousSong.title);
+    console.log("INDEX:", index);
+
+    location.href = previousSong.file;
 }
+
 window.previousServiceSong = previousServiceSong;
 
 function finishService() {
@@ -1378,70 +1410,7 @@ function getCurrentSong(){
     return service.songs[index];
 
 }
-function nextSong(){
 
-    const service = getCurrentService();
-
-    if(!service){
-
-        return;
-
-    }
-
-    let index = Number(
-        localStorage.getItem("currentSongIndex") || 0
-    );
-
-    if(index >= service.songs.length - 1){
-
-        alert("End of Service.");
-
-        return;
-
-    }
-
-    index++;
-
-    localStorage.setItem(
-        "currentSongIndex",
-        index
-    );
-
-    location.href =
-    service.songs[index].file;
-
-}
-function previousSong(){
-
-    const service = getCurrentService();
-
-    if(!service){
-
-        return;
-
-    }
-
-    let index = Number(
-        localStorage.getItem("currentSongIndex") || 0
-    );
-
-    if(index===0){
-
-        return;
-
-    }
-
-    index--;
-
-    localStorage.setItem(
-        "currentSongIndex",
-        index
-    );
-
-    location.href =
-    service.songs[index].file;
-
-}
 function updateServiceProgress(){
 
     const label =
