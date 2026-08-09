@@ -54,8 +54,10 @@ function getCurrentSongIndex() {
 function openSongInPresentation(song) {
 
     if (!song || !song.file) {
+
         alert("Song file not found.");
         return;
+
     }
 
     localStorage.setItem(
@@ -65,30 +67,15 @@ function openSongInPresentation(song) {
 
     let file = song.file.trim();
 
-    if (file.startsWith("../")) {
-        file = file.substring(3);
-    }
+    // Remove any existing path
+    file = file.split("/").pop();
 
-    if (file.startsWith("./")) {
-        file = file.substring(2);
-    }
-
-    if (!file.startsWith("songs/")) {
-        file = "songs/" + file;
-    }
-
-    const basePath =
-        window.location.pathname
-            .substring(
-                0,
-                window.location.pathname.indexOf("/", 1)
-            );
-
+    // GitHub Pages path
     const url =
-        basePath + "/" + file;
+        "/WorshipHub/songs/" + file;
 
-    console.log("Original:", song.file);
-    console.log("Opening:", url);
+    console.log("SERVICE SONG:", song);
+    console.log("OPENING:", url);
 
     window.location.href = url;
 }
