@@ -4,11 +4,8 @@ import { loadServices } from "./firestore.js";
 
 const FIREBASE_USER = "guest";
 
-const CURRENT_SERVICE_KEY =
-    "currentServiceId";
-
-const CURRENT_SONG_INDEX_KEY =
-    "currentSongIndex";
+const CURRENT_SERVICE_KEY = "currentServiceId";
+const CURRENT_SONG_INDEX_KEY = "currentSongIndex";
 
 
 /* =====================================
@@ -18,17 +15,14 @@ const CURRENT_SONG_INDEX_KEY =
 async function getCurrentService() {
 
     const serviceId = Number(
-        localStorage.getItem(
-            CURRENT_SERVICE_KEY
-        )
+        localStorage.getItem(CURRENT_SERVICE_KEY)
     );
 
     if (!serviceId) {
         return null;
     }
 
-    const services =
-        await loadServices(FIREBASE_USER);
+    const services = await loadServices(FIREBASE_USER);
 
     return services.find(function(service) {
 
@@ -39,7 +33,7 @@ async function getCurrentService() {
 
 
 /* =====================================
-   GET CURRENT INDEX
+   GET CURRENT SONG INDEX
 ===================================== */
 
 function getCurrentSongIndex() {
@@ -54,7 +48,7 @@ function getCurrentSongIndex() {
 
 
 /* =====================================
-   OPEN SONG IN PRESENTATION
+   OPEN SONG
 ===================================== */
 
 function openSongInPresentation(song) {
@@ -64,11 +58,11 @@ function openSongInPresentation(song) {
         alert("Song file not found.");
 
         return;
-
     }
 
+
     /*
-        Keep service active
+       Keep the service active
     */
 
     localStorage.setItem(
@@ -78,20 +72,39 @@ function openSongInPresentation(song) {
 
 
     /*
-        Firebase stores:
+       Firebase should contain:
 
-        songs/amazing-grace.html
+       songs/samasamangnagpupuri.html
 
-        We are already inside /songs/
+       Since this JavaScript is running
+       from a song page inside:
+
+       /WorshipHub/songs/
+
+       remove "songs/".
     */
 
-    let file = song.file;
+    let file = song.file.trim();
+
 
     if (file.startsWith("songs/")) {
 
-        file = file.substring(6);
+        file = file.substring("songs/".length);
 
     }
+
+
+    /*
+       Prevent accidental ../
+    */
+
+    file = file.replace(/^\/+/, "");
+
+
+    console.log(
+        "Opening song:",
+        file
+    );
 
 
     window.location.href = file;
@@ -109,6 +122,7 @@ async function nextServiceSong() {
         "NEXT SERVICE SONG"
     );
 
+
     const service =
         await getCurrentService();
 
@@ -120,7 +134,6 @@ async function nextServiceSong() {
         );
 
         return;
-
     }
 
 
@@ -134,7 +147,6 @@ async function nextServiceSong() {
         );
 
         return;
-
     }
 
 
@@ -152,7 +164,6 @@ async function nextServiceSong() {
         );
 
         return;
-
     }
 
 
@@ -170,8 +181,13 @@ async function nextServiceSong() {
 
 
     console.log(
-        "Opening presentation:",
+        "NEXT SONG:",
         nextSong.title
+    );
+
+    console.log(
+        "NEXT FILE:",
+        nextSong.file
     );
 
 
@@ -192,6 +208,7 @@ async function previousServiceSong() {
         "PREVIOUS SERVICE SONG"
     );
 
+
     const service =
         await getCurrentService();
 
@@ -203,7 +220,19 @@ async function previousServiceSong() {
         );
 
         return;
+    }
 
+
+    if (
+        !service.songs ||
+        service.songs.length === 0
+    ) {
+
+        alert(
+            "This service has no songs."
+        );
+
+        return;
     }
 
 
@@ -218,7 +247,6 @@ async function previousServiceSong() {
         );
 
         return;
-
     }
 
 
@@ -236,8 +264,13 @@ async function previousServiceSong() {
 
 
     console.log(
-        "Opening presentation:",
+        "PREVIOUS SONG:",
         previousSong.title
+    );
+
+    console.log(
+        "PREVIOUS FILE:",
+        previousSong.file
     );
 
 
