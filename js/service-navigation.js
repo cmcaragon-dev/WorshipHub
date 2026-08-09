@@ -2,116 +2,121 @@
 
 import { loadServices } from "./firestore.js";
 
-/* =====================================
-   CONFIG
-===================================== */
-
 const FIREBASE_USER = "guest";
 
-const CURRENT_SERVICE_KEY = "currentServiceId";
-const CURRENT_SONG_INDEX_KEY = "currentSongIndex";
+const CURRENT_SERVICE_KEY =
+    "currentServiceId";
+
+const CURRENT_SONG_INDEX_KEY =
+    "currentSongIndex";
+
 
 /* =====================================
    LOAD CURRENT SERVICE
 ===================================== */
 
-async function getCurrentServiceFromFirebase() {
+async function getCurrentService() {
 
-    try {
+    const serviceId = Number(
+        localStorage.getItem(
+            CURRENT_SERVICE_KEY
+        )
+    );
 
-        const serviceId = Number(
-            localStorage.getItem(CURRENT_SERVICE_KEY)
-        );
-
-        if (!serviceId) {
-
-            console.log("No current service ID.");
-
-            return null;
-
-        }
-
-        const services =
-            await loadServices(FIREBASE_USER);
-
-        console.log("Services loaded:", services);
-
-        const service =
-            services.find(function(service) {
-
-                return Number(service.id) === serviceId;
-
-            });
-
-        console.log("Current service:", service);
-
-        return service || null;
-
-    }
-
-    catch(error) {
-
-        console.error(
-            "Unable to load service:",
-            error
-        );
-
+    if (!serviceId) {
         return null;
-
     }
 
+    const services =
+        await loadServices(FIREBASE_USER);
+
+    return services.find(function(service) {
+
+        return Number(service.id) === serviceId;
+
+    }) || null;
 }
 
 
 /* =====================================
-   CURRENT SONG INDEX
+   GET CURRENT INDEX
 ===================================== */
 
 function getCurrentSongIndex() {
 
     return Number(
-
         localStorage.getItem(
             CURRENT_SONG_INDEX_KEY
         ) || 0
-
     );
 
 }
 
 
 /* =====================================
-   SAVE SONG INDEX
+   OPEN SONG IN PRESENTATION
 ===================================== */
 
-function setCurrentSongIndex(index) {
+function openSongInPresentation(song) {
+
+    if (!song || !song.file) {
+
+        alert("Song file not found.");
+
+        return;
+
+    }
+
+    /*
+        Keep service active
+    */
 
     localStorage.setItem(
-
-        CURRENT_SONG_INDEX_KEY,
-
-        String(index)
-
+        "resumePresentation",
+        "true"
     );
+
+
+    /*
+        Firebase stores:
+
+        songs/amazing-grace.html
+
+        We are already inside /songs/
+    */
+
+    let file = song.file;
+
+    if (file.startsWith("songs/")) {
+
+        file = file.substring(6);
+
+    }
+
+
+    window.location.href = file;
 
 }
 
 
 /* =====================================
-   NEXT SONG
+   NEXT
 ===================================== */
 
 async function nextServiceSong() {
 
-    console.log("NEXT BUTTON CLICKED");
+    console.log(
+        "NEXT SERVICE SONG"
+    );
 
     const service =
-        await getCurrentServiceFromFirebase();
+        await getCurrentService();
+
 
     if (!service) {
 
         alert(
-            "No active service found."
+            "No active service."
         );
 
         return;
@@ -137,28 +142,13 @@ async function nextServiceSong() {
         getCurrentSongIndex();
 
 
-    console.log(
-        "Current index:",
-        index
-    );
-
-    console.log(
-        "Total songs:",
-        service.songs.length
-    );
-
-
-    /* =================================
-       CHECK END OF SERVICE
-    ================================= */
-
     if (
         index >=
         service.songs.length - 1
     ) {
 
         alert(
-            "You have reached the last song."
+            "End of Service."
         );
 
         return;
@@ -166,101 +156,50 @@ async function nextServiceSong() {
     }
 
 
-    /* =================================
-       MOVE TO NEXT SONG
-    ================================= */
-
     index++;
 
-    setCurrentSongIndex(index);
 
-
-   const nextSong =
-    service.songs[index];
-
-if (
-    !nextSong ||
-    !nextSong.file
-) {
-
-    alert(
-        "Next song file was not found."
+    localStorage.setItem(
+        CURRENT_SONG_INDEX_KEY,
+        String(index)
     );
 
-    return;
 
-}
-
-
-let nextFile =
-    nextSong.file;
+    const nextSong =
+        service.songs[index];
 
 
-/*
-    Firebase stores:
-
-    songs/amazing-grace.html
-
-    But we are already inside:
-
-    /songs/
-
-    Therefore remove "songs/"
-*/
-
-if (
-    nextFile.startsWith("songs/")
-) {
-
-    nextFile =
-        nextFile.substring(6);
-
-}
+    console.log(
+        "Opening presentation:",
+        nextSong.title
+    );
 
 
-console.log(
-    "Opening:",
-    nextFile
-);
-
-
-window.location.href =
-    nextFile;
+    openSongInPresentation(
+        nextSong
+    );
 
 }
 
 
 /* =====================================
-   PREVIOUS SONG
+   PREVIOUS
 ===================================== */
 
 async function previousServiceSong() {
 
     console.log(
-        "PREVIOUS BUTTON CLICKED"
+        "PREVIOUS SERVICE SONG"
     );
 
     const service =
-        await getCurrentServiceFromFirebase();
+        await getCurrentService();
+
 
     if (!service) {
 
         alert(
-            "No active service found."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        !service.songs ||
-        service.songs.length === 0
-    ) {
-
-        alert(
-            "This service has no songs."
+            "No active service."
         );
 
         return;
@@ -285,103 +224,32 @@ async function previousServiceSong() {
 
     index--;
 
-    setCurrentSongIndex(index);
+
+    localStorage.setItem(
+        CURRENT_SONG_INDEX_KEY,
+        String(index)
+    );
 
 
-    let previousFile =
-    previousSong.file;
-
-if (
-    previousFile.startsWith("songs/")
-) {
-
-    previousFile =
-        previousFile.substring(6);
-
-}
-
-window.location.href =
-    previousFile;
-
-}
+    const previousSong =
+        service.songs[index];
 
 
-/* =====================================
-   SERVICE PROGRESS
-===================================== */
-
-async function updateServiceProgress() {
-
-    const label =
-        document.getElementById(
-            "serviceProgress"
-        );
-
-    if (!label) {
-
-        return;
-
-    }
+    console.log(
+        "Opening presentation:",
+        previousSong.title
+    );
 
 
-    const service =
-        await getCurrentServiceFromFirebase();
-
-
-    if (!service) {
-
-        label.textContent = "";
-
-        return;
-
-    }
-
-
-    const index =
-        getCurrentSongIndex();
-
-
-    label.textContent =
-        "Song " +
-        (index + 1) +
-        " of " +
-        service.songs.length;
+    openSongInPresentation(
+        previousSong
+    );
 
 }
 
 
 /* =====================================
-   CURRENT SERVICE NAME
-===================================== */
-
-async function updateCurrentServiceName() {
-
-    const label =
-        document.getElementById(
-            "currentService"
-        );
-
-    if (!label) {
-
-        return;
-
-    }
-
-
-    const service =
-        await getCurrentServiceFromFirebase();
-
-
-    label.textContent =
-        service
-        ? service.name
-        : "None";
-
-}
-
-
-/* =====================================
-   MAKE FUNCTIONS AVAILABLE TO HTML
+   MAKE AVAILABLE TO HTML
 ===================================== */
 
 window.nextServiceSong =
@@ -389,25 +257,3 @@ window.nextServiceSong =
 
 window.previousServiceSong =
     previousServiceSong;
-
-window.updateServiceProgress =
-    updateServiceProgress;
-
-window.updateCurrentServiceName =
-    updateCurrentServiceName;
-
-
-/* =====================================
-   INITIALIZE
-===================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        updateServiceProgress();
-
-        updateCurrentServiceName();
-
-    }
-);
