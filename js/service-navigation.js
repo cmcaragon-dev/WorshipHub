@@ -9,7 +9,7 @@ const CURRENT_SONG_INDEX_KEY = "currentSongIndex";
 
 
 /* =====================================
-   LOAD CURRENT SERVICE
+   GET CURRENT SERVICE
 ===================================== */
 
 async function getCurrentService() {
@@ -18,22 +18,32 @@ async function getCurrentService() {
         localStorage.getItem(CURRENT_SERVICE_KEY)
     );
 
+    console.log("CURRENT SERVICE ID:", serviceId);
+
     if (!serviceId) {
+        console.log("No current service ID.");
         return null;
     }
 
-    const services = await loadServices(FIREBASE_USER);
+    const services =
+        await loadServices(FIREBASE_USER);
 
-    return services.find(function(service) {
+    console.log("SERVICES FROM FIREBASE:", services);
+
+    const service = services.find(function(service) {
 
         return Number(service.id) === serviceId;
 
-    }) || null;
+    });
+
+    console.log("CURRENT SERVICE:", service);
+
+    return service || null;
 }
 
 
 /* =====================================
-   GET CURRENT SONG INDEX
+   CURRENT SONG INDEX
 ===================================== */
 
 function getCurrentSongIndex() {
@@ -43,7 +53,6 @@ function getCurrentSongIndex() {
             CURRENT_SONG_INDEX_KEY
         ) || 0
     );
-
 }
 
 
@@ -56,8 +65,8 @@ function openSongInPresentation(song) {
     if (!song || !song.file) {
 
         alert("Song file not found.");
-        return;
 
+        return;
     }
 
     localStorage.setItem(
@@ -65,193 +74,210 @@ function openSongInPresentation(song) {
         "true"
     );
 
-    let file = song.file.trim();
+    /*
+     * Firebase example:
+     *
+     * songs/samasamangnagpupuri.html
+     *
+     * We only need:
+     *
+     * samasamangnagpupuri.html
+     */
 
-    // Remove any existing path
-    file = file.split("/").pop();
+    let filename =
+        String(song.file).trim();
 
-    // GitHub Pages path
+    filename =
+        filename.split("/").pop();
+
+    /*
+     * IMPORTANT:
+     *
+     * Always use the actual GitHub Pages
+     * project path.
+     */
+
     const url =
-        "/WorshipHub/songs/" + file;
+        "/WorshipHub/songs/" + filename;
 
-    console.log("SERVICE SONG:", song);
-    console.log("OPENING:", url);
+    console.log(
+        "================================"
+    );
 
-    window.location.href = url;
+    console.log(
+        "SERVICE NAVIGATION"
+    );
+
+    console.log(
+        "Song:",
+        song.title
+    );
+
+    console.log(
+        "Firebase file:",
+        song.file
+    );
+
+    console.log(
+        "Filename:",
+        filename
+    );
+
+    console.log(
+        "FINAL URL:",
+        url
+    );
+
+    console.log(
+        "================================"
+    );
+
+    window.location.assign(url);
 }
 
 
 /* =====================================
-   NEXT
+   NEXT SONG
 ===================================== */
 
 async function nextServiceSong() {
 
     console.log(
-        "NEXT SERVICE SONG"
+        "========== NEXT CLICK =========="
     );
-
 
     const service =
         await getCurrentService();
 
-
     if (!service) {
 
-        alert(
-            "No active service."
-        );
+        alert("No active service.");
 
         return;
     }
-
 
     if (
         !service.songs ||
         service.songs.length === 0
     ) {
 
-        alert(
-            "This service has no songs."
-        );
+        alert("This service has no songs.");
 
         return;
     }
 
-
     let index =
         getCurrentSongIndex();
 
+    console.log(
+        "CURRENT INDEX:",
+        index
+    );
+
+    console.log(
+        "TOTAL SONGS:",
+        service.songs.length
+    );
 
     if (
         index >=
         service.songs.length - 1
     ) {
 
-        alert(
-            "End of Service."
-        );
+        alert("End of Service.");
 
         return;
     }
 
-
     index++;
-
 
     localStorage.setItem(
         CURRENT_SONG_INDEX_KEY,
         String(index)
     );
 
-
     const nextSong =
         service.songs[index];
 
-
     console.log(
         "NEXT SONG:",
-        nextSong.title
+        nextSong
     );
-
-    console.log(
-        "NEXT FILE:",
-        nextSong.file
-    );
-
 
     openSongInPresentation(
         nextSong
     );
-
 }
 
 
 /* =====================================
-   PREVIOUS
+   PREVIOUS SONG
 ===================================== */
 
 async function previousServiceSong() {
 
     console.log(
-        "PREVIOUS SERVICE SONG"
+        "========== PREVIOUS CLICK =========="
     );
-
 
     const service =
         await getCurrentService();
 
-
     if (!service) {
 
-        alert(
-            "No active service."
-        );
+        alert("No active service.");
 
         return;
     }
-
 
     if (
         !service.songs ||
         service.songs.length === 0
     ) {
 
-        alert(
-            "This service has no songs."
-        );
+        alert("This service has no songs.");
 
         return;
     }
-
 
     let index =
         getCurrentSongIndex();
 
+    console.log(
+        "CURRENT INDEX:",
+        index
+    );
 
     if (index <= 0) {
 
-        alert(
-            "This is the first song."
-        );
+        alert("This is the first song.");
 
         return;
     }
 
-
     index--;
-
 
     localStorage.setItem(
         CURRENT_SONG_INDEX_KEY,
         String(index)
     );
 
-
     const previousSong =
         service.songs[index];
 
-
     console.log(
         "PREVIOUS SONG:",
-        previousSong.title
+        previousSong
     );
-
-    console.log(
-        "PREVIOUS FILE:",
-        previousSong.file
-    );
-
 
     openSongInPresentation(
         previousSong
     );
-
 }
 
 
 /* =====================================
-   MAKE AVAILABLE TO HTML
+   MAKE FUNCTIONS AVAILABLE TO HTML
 ===================================== */
 
 window.nextServiceSong =
@@ -259,3 +285,7 @@ window.nextServiceSong =
 
 window.previousServiceSong =
     previousServiceSong;
+
+console.log(
+    "SERVICE NAVIGATION LOADED"
+);
