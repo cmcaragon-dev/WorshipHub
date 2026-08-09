@@ -1,56 +1,168 @@
+"use strict";
+
+import { db } from "./firebase.js";
+
 import {
     doc,
     setDoc,
     getDoc,
     onSnapshot
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-import { db } from "./firebase.js";
-
-export async function saveServices(userId, services) {
-
-    await setDoc(
-        doc(db, "services", userId),
-        {
-            services: services
-        }
-    );
-
 }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-export async function loadServices(userId) {
 
-    const snap = await getDoc(
-        doc(db, "services", userId)
-    );
+/* =====================================
+   SAVE SERVICES
+===================================== */
 
-    if (!snap.exists()) {
-        return [];
+export async function saveServices(
+    username,
+    services
+) {
+
+    try {
+
+        await setDoc(
+
+            doc(
+                db,
+                "services",
+                username
+            ),
+
+            {
+                services: services
+            }
+
+        );
+
+        console.log(
+            "Services saved to Firebase."
+        );
+
     }
 
-    return snap.data().services || [];
+    catch(error) {
+
+        console.error(
+            "Firebase save error:",
+            error
+        );
+
+        throw error;
+
+    }
 
 }
 
-export function watchServices(userId, callback) {
+
+/* =====================================
+   LOAD SERVICES
+===================================== */
+
+export async function loadServices(
+    username
+) {
+
+    try {
+
+        const snapshot =
+            await getDoc(
+
+                doc(
+                    db,
+                    "services",
+                    username
+                )
+
+            );
+
+
+        if (snapshot.exists()) {
+
+            const data =
+                snapshot.data();
+
+            console.log(
+                "Firebase services:",
+                data.services
+            );
+
+            return data.services || [];
+
+        }
+
+
+        console.log(
+            "No services document found."
+        );
+
+        return [];
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Firebase load error:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* =====================================
+   REALTIME SERVICE LISTENER
+===================================== */
+
+export function watchServices(
+    username,
+    callback
+) {
+
+    const ref =
+        doc(
+            db,
+            "services",
+            username
+        );
+
 
     return onSnapshot(
-        doc(db, "services", userId),
-        (docSnap) => {
 
-            if (docSnap.exists()) {
+        ref,
+
+        function(snapshot) {
+
+            if (snapshot.exists()) {
 
                 callback(
-                    docSnap.data().services || []
+                    snapshot.data().services || []
                 );
 
-            } else {
+            }
+
+            else {
 
                 callback([]);
 
             }
 
+        },
+
+        function(error) {
+
+            console.error(
+                "Service listener error:",
+                error
+            );
+
         }
+
     );
 
 }
