@@ -603,6 +603,39 @@ const currentSong={
     src="../js/service-navigation.js">
 </script>
 
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const resume =
+            localStorage.getItem(
+                "resumePresentation"
+            );
+
+        if (resume === "true") {
+
+            setTimeout(function() {
+
+                if (
+                    typeof startPresentation ===
+                    "function"
+                ) {
+
+                    startPresentation();
+
+                }
+
+            }, 300);
+
+        }
+
+    }
+);
+
+</script>
+
 </body>
 
 </html>
