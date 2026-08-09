@@ -338,36 +338,9 @@ function togglePlaylist(id){
 }
 window.togglePlaylist = togglePlaylist;
 
-function openSongInPresentation(song) {
+function openSong(file){
 
-    if (!song || !song.file) {
-
-        alert("Song file not found.");
-        return;
-
-    }
-
-    localStorage.setItem(
-        "resumePresentation",
-        "true"
-    );
-
-    let file = song.file.trim();
-
-    /*
-       Firebase should store:
-       songs/samasamangnagpupuri.html
-    */
-
-    if (!file.startsWith("songs/")) {
-
-        file = "songs/" + file;
-
-    }
-
-    console.log("Opening:", file);
-
-    window.location.href = "../" + file;
+    location.href = file;
 
 }
 
