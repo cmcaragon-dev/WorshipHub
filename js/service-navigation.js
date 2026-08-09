@@ -7,7 +7,6 @@ const FIREBASE_USER = "guest";
 const CURRENT_SERVICE_KEY = "currentServiceId";
 const CURRENT_SONG_INDEX_KEY = "currentSongIndex";
 
-
 /* =====================================
    GET CURRENT SERVICE
 ===================================== */
@@ -285,7 +284,25 @@ window.nextServiceSong =
 
 window.previousServiceSong =
     previousServiceSong;
-
+displayServiceName();
 console.log(
     "SERVICE NAVIGATION LOADED"
 );
+
+async function displayServiceName() {
+
+    const service = await getCurrentService();
+
+    const serviceName =
+        document.getElementById("serviceNameDisplay");
+
+    if (!serviceName) {
+        return;
+    }
+
+    if (service) {
+        serviceName.textContent = service.name;
+    } else {
+        serviceName.textContent = "-";
+    }
+}
