@@ -1509,3 +1509,54 @@ function updateCurrentServiceName(){
     });
 
 }
+
+async function fixSongPaths() {
+
+    let changed = false;
+
+    services.forEach(service => {
+
+        service.songs.forEach(song => {
+
+            if (
+                song.file === "samasamangnagpupuri.html"
+            ) {
+
+                song.file =
+                    "songs/samasamangnagpupuri.html";
+
+                changed = true;
+
+                console.log(
+                    "Fixed:",
+                    song.title,
+                    song.file
+                );
+            }
+
+        });
+
+    });
+
+    if (changed) {
+
+        await saveServicesCloud();
+
+        console.log(
+            "Firebase service paths updated."
+        );
+
+        renderServices();
+
+        alert(
+            "Song path corrected and saved to Firebase."
+        );
+
+    } else {
+
+        console.log(
+            "No incorrect path found."
+        );
+
+    }
+}
