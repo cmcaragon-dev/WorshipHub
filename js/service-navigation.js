@@ -54,61 +54,43 @@ function getCurrentSongIndex() {
 function openSongInPresentation(song) {
 
     if (!song || !song.file) {
-
         alert("Song file not found.");
-
         return;
     }
-
-
-    /*
-       Keep the service active
-    */
 
     localStorage.setItem(
         "resumePresentation",
         "true"
     );
 
-
-    /*
-       Firebase should contain:
-
-       songs/samasamangnagpupuri.html
-
-       Since this JavaScript is running
-       from a song page inside:
-
-       /WorshipHub/songs/
-
-       remove "songs/".
-    */
-
     let file = song.file.trim();
 
-
-    if (file.startsWith("songs/")) {
-
-        file = file.substring("songs/".length);
-
+    if (file.startsWith("../")) {
+        file = file.substring(3);
     }
 
+    if (file.startsWith("./")) {
+        file = file.substring(2);
+    }
 
-    /*
-       Prevent accidental ../
-    */
+    if (!file.startsWith("songs/")) {
+        file = "songs/" + file;
+    }
 
-    file = file.replace(/^\/+/, "");
+    const basePath =
+        window.location.pathname
+            .substring(
+                0,
+                window.location.pathname.indexOf("/", 1)
+            );
 
+    const url =
+        basePath + "/" + file;
 
-    console.log(
-        "Opening song:",
-        file
-    );
+    console.log("Original:", song.file);
+    console.log("Opening:", url);
 
-
-    window.location.href = file;
-
+    window.location.href = url;
 }
 
 
