@@ -1271,6 +1271,7 @@ function fitToOnePage(){
     window.print();
 
 }
+window.fitToOnePage = fitToOnePage;
 
 function goHome(){
 
