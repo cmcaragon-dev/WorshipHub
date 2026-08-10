@@ -33,29 +33,29 @@ const App = {
     fontSize:
         parseInt(localStorage.getItem("songFontSize")) || 22,
 
-    transpose:0,
+    transpose: 0,
 
-    async init(){
+    init() {
 
-    this.cacheDOM();
+        this.cacheDOM();
 
-    this.loadDarkMode();
+        this.loadDarkMode();
 
-    this.updateLyricsFont();
+        this.updateLyricsFont();
 
-    await Service.restoreTranspose();
+        Service.restoreTranspose();
 
-    Service.updateKeyDisplay();
+        Service.updateKeyDisplay();
 
-    Service.updateGuide();
+        Service.updateGuide();
 
-    await Service.updateProgress();
+        Service.updateProgress();
 
-    this.bindEvents();
+        this.bindEvents();
 
-}
+    },   // ⭐ THIS COMMA IS IMPORTANT
 
-    cacheDOM(){
+    cacheDOM() {
 
         this.lyrics =
             document.getElementById("lyrics");
@@ -83,95 +83,72 @@ const App = {
 
     },
 
-    bindEvents(){
+    bindEvents() {
 
-        this.fontPlus?.addEventListener("click",()=>{
+        this.fontPlus?.addEventListener("click", () => {
 
-            this.fontSize +=2;
+            this.fontSize += 2;
 
-            if(this.fontSize>48){
-
-                this.fontSize=48;
-
+            if (this.fontSize > 48) {
+                this.fontSize = 48;
             }
 
             this.updateLyricsFont();
 
         });
 
+        this.fontMinus?.addEventListener("click", () => {
 
-        this.fontMinus?.addEventListener("click",()=>{
+            this.fontSize -= 2;
 
-            this.fontSize -=2;
-
-            if(this.fontSize<12){
-
-                this.fontSize=12;
-
+            if (this.fontSize < 12) {
+                this.fontSize = 12;
             }
 
             this.updateLyricsFont();
 
         });
-
 
         this.darkButton?.addEventListener(
-
             "click",
-
-            ()=>this.toggleDarkMode()
-
+            () => this.toggleDarkMode()
         );
-
 
         this.transposeUp?.addEventListener(
-
             "click",
-
-            ()=>Service.transpose(1)
-
+            () => Service.transpose(1)
         );
 
-
         this.transposeDown?.addEventListener(
-
             "click",
-
-            ()=>Service.transpose(-1)
-
+            () => Service.transpose(-1)
         );
 
     },
 
-    updateLyricsFont(){
+    updateLyricsFont() {
 
         document.querySelectorAll(
+            ".song-line, .chord"
+        ).forEach(el => {
 
-            ".song-line,.chord"
-
-        ).forEach(el=>{
-
-            el.style.fontSize=this.fontSize+"px";
+            el.style.fontSize =
+                this.fontSize + "px";
 
         });
 
         localStorage.setItem(
-
             "songFontSize",
-
             this.fontSize
-
         );
 
     },
 
-    loadDarkMode(){
+    loadDarkMode() {
 
-        if(
-
-            localStorage.getItem("darkMode")==="true"
-
-        ){
+        if (
+            localStorage.getItem("darkMode") === "true"
+        ) {
 
             document.body.classList.add("dark");
 
@@ -179,22 +156,18 @@ const App = {
 
     },
 
-    toggleDarkMode(){
+    toggleDarkMode() {
 
         document.body.classList.toggle("dark");
 
         localStorage.setItem(
-
             "darkMode",
-
             document.body.classList.contains("dark")
-
         );
 
     }
 
 };
-
 
 /* ==========================================================
    SERVICE
