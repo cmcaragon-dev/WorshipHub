@@ -204,6 +204,14 @@ title: "Forever",
         category: "Praise",
         language: "English",
         file: "songs/forever.html"
+    },
+	{id:24,        
+title: "Always",
+        artist: "Marty Nystrom",
+        key: "D",
+        category: "Praise",
+        language: "English",
+        file: "songs/always.html"
     }
 	
 ];
