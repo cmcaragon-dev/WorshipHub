@@ -1,3 +1,5 @@
+"use strict";
+
 import { db } from "./firebase.js";
 
 import {
@@ -6,157 +8,67 @@ import {
     getDocs,
     setDoc,
     deleteDoc,
-    updateDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-export async function createUserProfile(user) {
 
-    await setDoc(
-        doc(db, "users", user.uid),
-        {
-            uid: user.uid,
-            email: user.email,
-            createdAt: serverTimestamp()
-        }
-    );
-
-}
-/* ==================================================
-   USER COLLECTION REFERENCES
-================================================== */
-
-function getPlaylistsCollection(uid) {
-
-    return collection(
-        db,
-        "users",
-        uid,
-        "playlists"
-    );
-
-}
+/* =====================================
+   PLAYLISTS
+===================================== */
 
 
-function getServicesCollection(uid) {
-
-    return collection(
-        db,
-        "users",
-        uid,
-        "services"
-    );
-
-}
-
-
-/* ==================================================
-   SAVE PLAYLISTS
-================================================== */
-
-export async function savePlaylists(uid, playlists) {
-
-    if (!uid) {
-
-        console.error("Missing Firebase UID");
-
-        return;
-
-    }
-
-
-    try {
-
-        const playlistCollection =
-            getPlaylistsCollection(uid);
-
-
-        for (const playlist of playlists) {
-
-            await setDoc(
-
-                doc(
-                    playlistCollection,
-                    String(playlist.id)
-                ),
-
-                playlist
-
-            );
-
-        }
-
-        console.log(
-            "Playlists saved successfully."
-        );
-
-    }
-    catch(error) {
-
-        console.error(
-            "Firebase playlist save error:",
-            error
-        );
-
-    }
-
-}
-
-
-/* ==================================================
-   LOAD PLAYLISTS
-================================================== */
+/* LOAD USER PLAYLISTS */
 
 export async function loadPlaylists(uid) {
 
     if (!uid) {
 
         console.error(
-            "Cannot load playlists: UID missing."
+            "loadPlaylists: UID is missing."
         );
 
         return [];
 
     }
 
-
     try {
+
+        const playlistCollection =
+            collection(
+                db,
+                "users",
+                uid,
+                "playlists"
+            );
 
         const snapshot =
             await getDocs(
-                getPlaylistsCollection(uid)
+                playlistCollection
             );
 
+        const playlists =
+            snapshot.docs.map(
+                item => ({
 
-        const playlists = [];
+                    id: item.id,
 
+                    ...item.data()
 
-        snapshot.forEach(docSnapshot => {
-
-            playlists.push({
-
-                id: docSnapshot.id,
-
-                ...docSnapshot.data()
-
-            });
-
-        });
-
+                })
+            );
 
         console.log(
             "Loaded playlists:",
             playlists
         );
 
-
         return playlists;
 
     }
-    catch(error) {
+    catch (error) {
 
         console.error(
-            "Firebase load playlists error:",
+            "Firebase playlist load error:",
             error
         );
 
@@ -167,11 +79,69 @@ export async function loadPlaylists(uid) {
 }
 
 
-/* ==================================================
-   DELETE PLAYLIST
-================================================== */
+/* SAVE PLAYLIST */
 
-export async function deletePlaylistFromFirebase(
+export async function savePlaylist(
+    uid,
+    playlist
+) {
+
+    if (!uid) {
+
+        throw new Error(
+            "Firebase UID is missing."
+        );
+
+    }
+
+    if (!playlist) {
+
+        throw new Error(
+            "Playlist is missing."
+        );
+
+    }
+
+    const playlistId =
+        String(
+            playlist.id ||
+            Date.now()
+        );
+
+    const playlistRef =
+        doc(
+            db,
+            "users",
+            uid,
+            "playlists",
+            playlistId
+        );
+
+    await setDoc(
+        playlistRef,
+        {
+
+            ...playlist,
+
+            id: playlistId,
+
+            updatedAt:
+                serverTimestamp()
+
+        }
+    );
+
+    console.log(
+        "Playlist saved:",
+        playlistId
+    );
+
+}
+
+
+/* DELETE PLAYLIST */
+
+export async function deletePlaylistCloud(
     uid,
     playlistId
 ) {
@@ -182,39 +152,154 @@ export async function deletePlaylistFromFirebase(
 
     }
 
+    await deleteDoc(
+
+        doc(
+            db,
+            "users",
+            uid,
+            "playlists",
+            String(playlistId)
+        )
+
+    );
+
+    console.log(
+        "Playlist deleted:",
+        playlistId
+    );
+
+}
+
+
+/* =====================================
+   SERVICES
+===================================== */
+
+
+/* LOAD USER SERVICES */
+
+export async function loadServices(uid) {
+
+    if (!uid) {
+
+        console.error(
+            "loadServices: UID is missing."
+        );
+
+        return [];
+
+    }
 
     try {
 
-        await deleteDoc(
+        const serviceCollection =
+            collection(
+                db,
+                "users",
+                uid,
+                "services"
+            );
 
-            doc(
-                getPlaylistsCollection(uid),
-                String(playlistId)
-            )
+        const snapshot =
+            await getDocs(
+                serviceCollection
+            );
 
-        );
+        const services =
+            snapshot.docs.map(
+                item => ({
 
+                    id: item.id,
+
+                    ...item.data()
+
+                })
+            );
 
         console.log(
-            "Playlist deleted."
+            "Loaded services:",
+            services
         );
+
+        return services;
 
     }
-    catch(error) {
+    catch (error) {
 
         console.error(
-            "Delete playlist error:",
+            "Firebase service load error:",
             error
         );
+
+        return [];
 
     }
 
 }
 
 
-/* ==================================================
-   SAVE SERVICES
-================================================== */
+/* SAVE SERVICE */
+
+export async function saveService(
+    uid,
+    service
+) {
+
+    if (!uid) {
+
+        throw new Error(
+            "Firebase UID is missing."
+        );
+
+    }
+
+    if (!service) {
+
+        throw new Error(
+            "Service is missing."
+        );
+
+    }
+
+    const serviceId =
+        String(
+            service.id ||
+            Date.now()
+        );
+
+    const serviceRef =
+        doc(
+            db,
+            "users",
+            uid,
+            "services",
+            serviceId
+        );
+
+    await setDoc(
+        serviceRef,
+        {
+
+            ...service,
+
+            id: serviceId,
+
+            updatedAt:
+                serverTimestamp()
+
+        }
+    );
+
+    console.log(
+        "Service saved:",
+        serviceId
+    );
+
+}
+
+
+/* SAVE ALL SERVICES */
 
 export async function saveServices(
     uid,
@@ -223,173 +308,62 @@ export async function saveServices(
 
     if (!uid) {
 
-        console.error(
-            "Missing Firebase UID"
+        throw new Error(
+            "Firebase UID is missing."
         );
+
+    }
+
+    if (!Array.isArray(services)) {
+
+        throw new Error(
+            "Services must be an array."
+        );
+
+    }
+
+    for (
+        const service of services
+    ) {
+
+        await saveService(
+            uid,
+            service
+        );
+
+    }
+
+}
+
+
+/* DELETE SERVICE */
+
+export async function deleteServiceCloud(
+    uid,
+    serviceId
+) {
+
+    if (!uid || !serviceId) {
 
         return;
 
     }
 
-
-    try {
-
-        const serviceCollection =
-            getServicesCollection(uid);
-
-
-        for (const service of services) {
-
-            await setDoc(
-
-                doc(
-                    serviceCollection,
-                    String(service.id)
-                ),
-
-                service
-
-            );
-
-        }
-
-
-        console.log(
-            "Services saved successfully."
-        );
-
-    }
-    catch(error) {
-
-        console.error(
-            "Firebase service save error:",
-            error
-        );
-
-    }
-
-}
-
-
-/* ==================================================
-   LOAD SERVICES
-================================================== */
-
-export async function loadServices(uid) {
-
-    if (!uid) {
-
-        console.error(
-            "Cannot load services: UID missing."
-        );
-
-        return [];
-
-    }
-
-
-    try {
-
-        const snapshot =
-            await getDocs(
-                getServicesCollection(uid)
-            );
-
-
-        const services = [];
-
-
-        snapshot.forEach(docSnapshot => {
-
-            services.push({
-
-                id: docSnapshot.id,
-
-                ...docSnapshot.data()
-
-            });
-
-        });
-
-
-        console.log(
-            "Loaded services:",
-            services
-        );
-
-
-        return services;
-
-    }
-    catch(error) {
-
-        console.error(
-            "Firebase load services error:",
-            error
-        );
-
-        return [];
-
-    }
-
-}
-
-
-/* ==================================================
-   REAL-TIME SERVICE WATCHER
-================================================== */
-
-export function watchServices(
-    uid,
-    callback
-) {
-
-    if (!uid) {
-
-        console.error(
-            "Cannot watch services: UID missing."
-        );
-
-        return null;
-
-    }
-
-
-    return onSnapshot(
-
-        getServicesCollection(uid),
-
-        snapshot => {
-
-            const services = [];
-
-
-            snapshot.forEach(docSnapshot => {
-
-                services.push({
-
-                    id: docSnapshot.id,
-
-                    ...docSnapshot.data()
-
-                });
-
-            });
-
-
-            callback(services);
-
-        },
-
-        error => {
-
-            console.error(
-                "Firebase service watch error:",
-                error
-            );
-
-        }
-
+    await deleteDoc(
+
+        doc(
+            db,
+            "users",
+            uid,
+            "services",
+            String(serviceId)
+        )
+
+    );
+
+    console.log(
+        "Service deleted:",
+        serviceId
     );
 
 }
