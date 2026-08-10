@@ -616,11 +616,17 @@ function openSong(file){
 
 async function deletePlaylist(id) {
 
-    const playlist =
-        playlists.find(
-            p => p.id == id
-        );
+    if (!currentUser) {
 
+        alert("Please login first.");
+
+        return;
+
+    }
+
+    const playlist = playlists.find(
+        p => p.id == id
+    );
 
     if (!playlist) {
 
@@ -628,17 +634,13 @@ async function deletePlaylist(id) {
 
     }
 
-
-    if (
-        !confirm(
-            "Delete this playlist?"
-        )
-    ) {
+    if (!confirm(
+        `Delete "${playlist.name}"?`
+    )) {
 
         return;
 
     }
-
 
     try {
 
@@ -647,17 +649,13 @@ async function deletePlaylist(id) {
             id
         );
 
-
-        playlists =
-            playlists.filter(
-                p => p.id != id
-            );
-
+        playlists = playlists.filter(
+            p => p.id != id
+        );
 
         renderPlaylists();
 
         updatePlaylistCounter();
-
 
     }
     catch(error) {
@@ -673,6 +671,12 @@ async function deletePlaylist(id) {
 
     }
 
+}
+
+window.deletePlaylist = deletePlaylist;
+
+
+
 async function removeSongFromPlaylist(
     playlistId,
     songIndex
@@ -686,10 +690,9 @@ async function removeSongFromPlaylist(
 
     }
 
-    const playlist =
-        playlists.find(
-            p => p.id == playlistId
-        );
+    const playlist = playlists.find(
+        p => p.id == playlistId
+    );
 
     if (!playlist) {
 
@@ -697,11 +700,9 @@ async function removeSongFromPlaylist(
 
     }
 
-    if (
-        !confirm(
-            "Remove this song from the playlist?"
-        )
-    ) {
+    if (!confirm(
+        "Remove this song from the playlist?"
+    )) {
 
         return;
 
@@ -739,38 +740,6 @@ async function removeSongFromPlaylist(
 
 window.removeSongFromPlaylist =
     removeSongFromPlaylist;
-
-function renamePlaylist(id){
-
-    const playlist =
-    playlists.find(function(p){
-
-        return p.id==id;
-
-    });
-
-    const newName =
-    prompt(
-
-        "Playlist name:",
-
-        playlist.name
-
-    );
-
-    if(!newName)
-
-        return;
-
-    playlist.name =
-    newName;
-
-    savePlaylists();
-
-    renderPlaylists();
-
-}
-window.renamePlaylist = renamePlaylist;
 
 function updatePlaylistCounter(){
 
@@ -1879,29 +1848,39 @@ function updateCurrentServiceName(){
         : "None";
 
 }
-	function sortSongs(list){
+function sortSongs(list) {
 
-    return list.sort(function(a,b){
+    return list.sort(function(a, b) {
 
-        return a.title.localeCompare(b.title);
-
-    });
-
-}
-	function sortServices(){
-
-    services.sort(function(a,b){
-
-        return a.name.localeCompare(b.name);
+        return a.title.localeCompare(
+            b.title
+        );
 
     });
 
 }
-	function sortPlaylists(){
 
-    playlists.sort(function(a,b){
 
-        return a.name.localeCompare(b.name);
+function sortServices() {
+
+    services.sort(function(a, b) {
+
+        return a.name.localeCompare(
+            b.name
+        );
+
+    });
+
+}
+
+
+function sortPlaylists() {
+
+    playlists.sort(function(a, b) {
+
+        return a.name.localeCompare(
+            b.name
+        );
 
     });
 
