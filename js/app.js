@@ -1,4 +1,4 @@
-```javascript
+
 "use strict";
 
 /* =====================================
@@ -53,7 +53,6 @@ const STORAGE_KEYS = {
     RESUME: "resumePresentation"
 
 };
-```javascript
 /* =====================================
    FIREBASE AUTHENTICATION
 ===================================== */
@@ -197,11 +196,6 @@ onAuthStateChanged(auth, async function(user) {
 
 });
 
-/* =====================================
-   FIREBASE SAVE
-===================================== */
-
-```javascript
 /* =====================================
    SAVE SERVICES TO FIREBASE
 ===================================== */
@@ -535,32 +529,67 @@ function openYoutube(id){
 
 window.openYoutube = openYoutube;
 
-function editYoutube(id){
+async function editYoutube(id) {
 
-    const playlist = playlists.find(p => p.id == id);
+    if (!currentUser) {
 
-    if(!playlist){
+        alert("Please login first.");
+
         return;
+
+    }
+
+    const playlist =
+        playlists.find(
+            p => p.id == id
+        );
+
+    if (!playlist) {
+
+        return;
+
     }
 
     const link = prompt(
-
         "YouTube Link:",
-
         playlist.youtube || ""
-
     );
 
-    if(link === null){
+    if (link === null) {
+
         return;
+
     }
 
     playlist.youtube = link.trim();
 
-    savePlaylists();
+    try {
+
+        await savePlaylist(
+            currentUser.uid,
+            playlist
+        );
+
+        renderPlaylists();
+
+    }
+    catch(error) {
+
+        console.error(
+            "YouTube update error:",
+            error
+        );
+
+        alert(
+            "Unable to save YouTube link."
+        );
+
+    }
 
 }
+
 window.editYoutube = editYoutube;
+
 function togglePlaylist(id){
 
     const body =
@@ -585,24 +614,7 @@ function openSong(file){
 
 }
 
-function deletePlaylist(id){
-
-    if(!confirm("Delete this playlist?"))
-
-        return;
-
-    playlists =
-    playlists.filter(function(p){
-
-        return p.id!=id;
-
-    });
-
-    savePlaylists();
-
-    renderPlaylists();
-
-}async function deletePlaylist(id) {
+async function deletePlaylist(id) {
 
     const playlist =
         playlists.find(
@@ -660,23 +672,30 @@ function deletePlaylist(id){
         );
 
     }
+
 async function removeSongFromPlaylist(
     playlistId,
     songIndex
 ) {
+
+    if (!currentUser) {
+
+        alert("Please login first.");
+
+        return;
+
+    }
 
     const playlist =
         playlists.find(
             p => p.id == playlistId
         );
 
-
     if (!playlist) {
 
         return;
 
     }
-
 
     if (
         !confirm(
@@ -688,12 +707,10 @@ async function removeSongFromPlaylist(
 
     }
 
-
     playlist.songs.splice(
         songIndex,
         1
     );
-
 
     try {
 
@@ -701,7 +718,6 @@ async function removeSongFromPlaylist(
             currentUser.uid,
             playlist
         );
-
 
         renderPlaylists();
 
@@ -713,11 +729,16 @@ async function removeSongFromPlaylist(
             error
         );
 
+        alert(
+            "Unable to save playlist."
+        );
+
     }
 
 }
-}
-window.removeSongFromPlaylist = removeSongFromPlaylist;
+
+window.removeSongFromPlaylist =
+    removeSongFromPlaylist;
 
 function renamePlaylist(id){
 
