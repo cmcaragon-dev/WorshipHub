@@ -71,31 +71,6 @@ onAuthStateChanged(auth, async (user) => {
     // after the user has been confirmed.
 
 });
-/* =====================================
-   CONFIG
-===================================== */
-
-const FIREBASE_USER = "guest";
-let services = [];
-const STORAGE_KEYS = {
-
-    CURRENT_SERVICE : "currentServiceId",
-
-    CURRENT_INDEX : "currentSongIndex",
-
-    RESUME : "resumePresentation"
-
-};
-/* =====================================
-   DATA
-===================================== */
-
-
-
-let playlists =
-JSON.parse(
-    localStorage.getItem("playlists")
-) || [];
 
 /* =====================================
    FIREBASE SAVE
