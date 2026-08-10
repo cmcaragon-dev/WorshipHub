@@ -180,6 +180,14 @@ title: "Magpakailanman",
         category: "Praise",
         language: "Tagalog",
         file: "songs/magpakailanman.html"
+    },
+	{id:21,        
+title: "I Love to be in Your Presence",
+        artist: "Don Moen",
+        key: "E",
+        category: "Praise",
+        language: "English",
+        file: "songs/ilovetobeinyourpresence.html"
     }
 ];
 songs.sort((a, b) =>
