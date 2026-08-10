@@ -5,18 +5,10 @@
 ===================================== */
 
 import { auth } from "./firebase.js";
-
+import { songs } from "./songs.js";
 import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-
-/* =====================================
-   SONGS
-===================================== */
-
-import { songs } from "./songs.js";
-
 
 /* =====================================
    FIRESTORE
@@ -34,7 +26,14 @@ import {
 ===================================== */
 
 let firebaseUser = null;
+let currentUser = null;
+let services = [];
 
+const STORAGE_KEYS = {
+    CURRENT_SERVICE: "currentServiceId",
+    CURRENT_INDEX: "currentSongIndex",
+    RESUME: "resumePresentation"
+};
 
 /* =====================================
    CHECK LOGIN
@@ -44,31 +43,28 @@ onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
 
-        console.log("No user logged in.");
-
         window.location.href = "login.html";
 
         return;
-
     }
 
+    currentUser = user;
 
-    firebaseUser = user;
+    console.log("Logged in user:", currentUser.uid);
 
+    try {
 
-    console.log(
-        "Logged in user:",
-        user.email
-    );
+        services = await loadServices(currentUser.uid);
 
-    console.log(
-        "Firebase UID:",
-        user.uid
-    );
+        console.log("Services loaded:", services);
 
+        renderServices();
 
-    // Your Firebase data can be loaded here
-    // after the user has been confirmed.
+    } catch (error) {
+
+        console.error("Error loading services:", error);
+
+    }
 
 });
 
