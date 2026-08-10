@@ -1,10 +1,29 @@
 "use strict";
 
+
+/* =====================================
+   FIREBASE
+===================================== */
+
 import { auth } from "./firebase.js";
 
 import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+    loadPlaylists,
+    savePlaylist,
+    deletePlaylistCloud,
+
+    loadServices,
+    saveService,
+    saveServices,
+    deleteServiceCloud
+
+} from "./firestore.js";
+
 
 import { songs } from "./songs.js";
 
@@ -17,7 +36,7 @@ let currentUser = null;
 
 
 /* =====================================
-   FIREBASE USER DATA
+   USER DATA
 ===================================== */
 
 let playlists = [];
@@ -26,120 +45,212 @@ let services = [];
 
 
 /* =====================================
-   AUTHENTICATION
+   CURRENT SERVICE
 ===================================== */
 
-onAuthStateChanged(auth, function(user) {
+const STORAGE_KEYS = {
 
-    if (!user) {
+    CURRENT_SERVICE:
+        "currentServiceId",
 
-        window.location.href = "login.html";
+    CURRENT_INDEX:
+        "currentSongIndex",
 
-        return;
+    RESUME:
+        "resumePresentation"
 
-    }
-
-    currentUser = user;
-
-    console.log(
-        "Logged in:",
-        currentUser.uid
-    );
-
-});
-async function loadUserData() {
-
-    if (!currentUser) {
-        return;
-    }
+};
 
 
-    /* =====================================
-       LOAD USER PLAYLISTS
-    ===================================== */
+/* =====================================
+   FIREBASE AUTHENTICATION
+===================================== */
 
-    const playlistSnapshot =
-        await getDocs(
-            collection(
-                db,
-                "users",
-                currentUser.uid,
-                "playlists"
-            )
+onAuthStateChanged(
+    auth,
+    async function(user) {
+
+        console.log(
+            "Firebase authentication state:",
+            user
         );
 
 
-    playlists =
-        playlistSnapshot.docs.map(
-            doc => ({
-                id: doc.id,
-                ...doc.data()
-            })
+        /* NOT LOGGED IN */
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        /* LOGGED IN */
+
+        currentUser = user;
+
+
+        console.log(
+            "Logged in user:",
+            currentUser.uid
+        );
+
+        console.log(
+            "Email:",
+            currentUser.email
         );
 
 
-    /* =====================================
-       LOAD USER SERVICES
-    ===================================== */
+        /* =====================================
+           LOAD PLAYLISTS
+        ===================================== */
 
-    const serviceSnapshot =
-        await getDocs(
-            collection(
-                db,
-                "users",
-                currentUser.uid,
-                "services"
-            )
-        );
+        try {
+
+            playlists =
+                await loadPlaylists(
+                    currentUser.uid
+                );
 
 
-    services =
-        serviceSnapshot.docs.map(
-            doc => ({
-                id: doc.id,
-                ...doc.data()
-            })
-        );
+            playlists.sort(
+                (a, b) =>
+                    (a.name || "")
+                    .localeCompare(
+                        b.name || ""
+                    )
+            );
 
 
-    console.log(
-        "Playlists:",
-        playlists
-    );
-
-    console.log(
-        "Services:",
-        services
-    );
+            console.log(
+                "User playlists:",
+                playlists
+            );
 
 
-    /* =====================================
-       RENDER
-    ===================================== */
+        }
+        catch(error) {
 
-    if (
-        typeof renderPlaylists ===
-        "function"
-    ) {
+            console.error(
+                "Playlist loading error:",
+                error
+            );
 
-        renderPlaylists();
+            playlists = [];
+
+        }
+
+
+        /* =====================================
+           LOAD SERVICES
+        ===================================== */
+
+        try {
+
+            services =
+                await loadServices(
+                    currentUser.uid
+                );
+
+
+            services.sort(
+                (a, b) =>
+                    (a.name || "")
+                    .localeCompare(
+                        b.name || ""
+                    )
+            );
+
+
+            console.log(
+                "User services:",
+                services
+            );
+
+
+        }
+        catch(error) {
+
+            console.error(
+                "Service loading error:",
+                error
+            );
+
+            services = [];
+
+        }
+
+
+        /* =====================================
+           RENDER PLAYLISTS
+        ===================================== */
+
+        if (
+            typeof renderPlaylists ===
+            "function"
+        ) {
+
+            renderPlaylists();
+
+        }
+
+
+        /* =====================================
+           RENDER SERVICES
+        ===================================== */
+
+        if (
+            typeof renderServices ===
+            "function"
+        ) {
+
+            renderServices();
+
+        }
+
+
+        /* =====================================
+           UPDATE COUNTER
+        ===================================== */
+
+        if (
+            typeof updatePlaylistCounter ===
+            "function"
+        ) {
+
+            updatePlaylistCounter();
+
+        }
+
+
+        if (
+            typeof updateServiceCounter ===
+            "function"
+        ) {
+
+            updateServiceCounter();
+
+        }
+
+
+        /* =====================================
+           RENDER SONGS
+        ===================================== */
+
+        if (
+            typeof renderSongs ===
+            "function"
+        ) {
+
+            renderSongs(songs);
+
+        }
 
     }
-
-
-    if (
-        typeof renderServices ===
-        "function"
-    ) {
-
-        renderServices();
-
-    }
-
-
-    updatePlaylistCounter();
-
-}
+);
 /* =====================================
    FIREBASE SAVE
 ===================================== */
@@ -189,42 +300,102 @@ closePlaylist.onclick=function(){
 
 }
 
-createPlaylist.onclick=function(){
+createPlaylist.onclick =
+async function() {
 
-    const name =
-    playlistName.value.trim();
+    if (!currentUser) {
 
-    if(name===""){
-
-        alert("Please enter a playlist name.");
+        alert(
+            "Please login first."
+        );
 
         return;
 
     }
 
-   const youtube =
-prompt("Enter YouTube link for this playlist (optional):") || "";
 
-playlists.push({
+    const name =
+        playlistName.value.trim();
 
-    id: Date.now(),
 
-    name: name,
+    if (!name) {
 
-    youtube: youtube,
+        alert(
+            "Please enter a playlist name."
+        );
 
-    songs: []
+        return;
 
-});
-	
+    }
 
-    savePlaylists();
 
-    playlistName.value="";
+    const youtube =
+        prompt(
+            "Enter YouTube link for this playlist (optional):"
+        ) || "";
 
-    renderPlaylists();
 
-}
+    const playlist = {
+
+        id: String(Date.now()),
+
+        name: name,
+
+        youtube: youtube,
+
+        songs: [],
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    try {
+
+        await savePlaylist(
+            currentUser.uid,
+            playlist
+        );
+
+
+        playlists.push(
+            playlist
+        );
+
+
+        playlists.sort(
+            (a, b) =>
+                a.name.localeCompare(
+                    b.name
+                )
+        );
+
+
+        playlistName.value = "";
+
+
+        renderPlaylists();
+
+
+        updatePlaylistCounter();
+
+
+    }
+    catch(error) {
+
+        console.error(
+            "Create playlist error:",
+            error
+        );
+
+        alert(
+            "Unable to create playlist."
+        );
+
+    }
+
+};
 
 function renderPlaylists(){
 playlists.sort(function(a,b){
