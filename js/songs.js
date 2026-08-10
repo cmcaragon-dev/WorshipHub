@@ -220,6 +220,14 @@ title: "You Are God Alone",
         category: "Worship",
         language: "English",
         file: "songs/youaregodalone.html"
+    },
+	{id:26,        
+title: "Holy Forever",
+        artist: "Chris Tomlin",
+        key: "G",
+        category: "Worship",
+        language: "English",
+        file: "songs/holyforever.html"
     }
 	
 ];
