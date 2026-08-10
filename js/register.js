@@ -14,7 +14,6 @@ import {
 const registerForm =
     document.getElementById("registerForm");
 
-
 registerForm.addEventListener("submit", async function(e) {
 
     e.preventDefault();
@@ -29,14 +28,11 @@ registerForm.addEventListener("submit", async function(e) {
         document.getElementById("password").value;
 
 
+    console.log("Name:", name);
+    console.log("Email:", email);
+
+
     try {
-
-        console.log("Creating Firebase account...");
-
-
-        // =====================================
-        // 1. CREATE AUTH ACCOUNT
-        // =====================================
 
         const userCredential =
             await createUserWithEmailAndPassword(
@@ -45,20 +41,11 @@ registerForm.addEventListener("submit", async function(e) {
                 password
             );
 
-
         const user =
             userCredential.user;
 
+        console.log("Firebase Auth:", user.uid);
 
-        console.log(
-            "AUTH SUCCESS:",
-            user.uid
-        );
-
-
-        // =====================================
-        // 2. CREATE FIRESTORE USER PROFILE
-        // =====================================
 
         await setDoc(
             doc(db, "users", user.uid),
@@ -71,16 +58,9 @@ registerForm.addEventListener("submit", async function(e) {
         );
 
 
-        console.log(
-            "FIRESTORE PROFILE CREATED"
-        );
-
-
         alert("Account created successfully!");
 
-
-        window.location.href =
-            "index.html";
+        window.location.href = "index.html";
 
 
     } catch(error) {
@@ -90,11 +70,7 @@ registerForm.addEventListener("submit", async function(e) {
             error
         );
 
-
-        alert(
-            "Create account failed:\n\n" +
-            error.message
-        );
+        alert(error.message);
 
     }
 
