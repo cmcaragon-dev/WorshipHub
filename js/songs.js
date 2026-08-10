@@ -212,6 +212,14 @@ title: "Always",
         category: "Praise",
         language: "English",
         file: "songs/always.html"
+    },
+	{id:25,        
+title: "You Are God Alone",
+        artist: "BILLY & CINDY FOOTE",
+        key: "G",
+        category: "Worship",
+        language: "English",
+        file: "songs/youaregodalone.html"
     }
 	
 ];
