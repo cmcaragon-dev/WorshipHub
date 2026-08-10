@@ -1,3 +1,8 @@
+import {
+    loadServices,
+    saveServices
+} from "./firestore.js";
+
 "use strict";
 
 /* ==========================================================
@@ -403,54 +408,174 @@ Object.assign(Service,{
     },
 
 
-    saveTranspose(){
+    async function saveCurrentServiceKey() {
 
-        const service =
-        this.getCurrent();
+    console.log("========== SAVE SERVICE KEY ==========");
 
-        if(!service) return;
+    const serviceId = Number(
+        localStorage.getItem("currentServiceId")
+    );
 
-        const index =
-        this.getSongIndex();
+    const songIndex = Number(
+        localStorage.getItem("currentSongIndex") || 0
+    );
 
-        const song =
-        service.songs[index];
+    console.log("Service ID:", serviceId);
+    console.log("Song Index:", songIndex);
 
-        if(!song) return;
+    if (!serviceId) {
+        alert("No active Service Planner service.");
+        return;
+    }
 
-        song.transpose =
-        App.transpose;
+    /*
+     * Get the service from Firebase
+     */
+    const services = await loadServices("guest");
 
-        song.serviceKey =
-        this.getKey();
+    if (!Array.isArray(services)) {
+        alert("Unable to load services.");
+        return;
+    }
 
-        const services =
-        JSON.parse(
-            localStorage.getItem("services")
-        ) || [];
+    /*
+     * Find active service
+     */
+    const service = services.find(function (s) {
 
-        const i =
-        services.findIndex(
-            s => s.id == service.id
-        );
+        return Number(s.id) === serviceId;
 
-        if(i>=0){
+    });
 
-            services[i]=service;
+    if (!service) {
+        alert("Service Planner service not found.");
+        return;
+    }
 
-            localStorage.setItem(
+    /*
+     * Check current song
+     */
+    if (
+        !service.songs ||
+        !service.songs[songIndex]
+    ) {
 
-                "services",
+        alert("Current song was not found in the service.");
 
-                JSON.stringify(services)
+        return;
+    }
 
-            );
+    const serviceSong =
+        service.songs[songIndex];
 
-        }
+    /*
+     * Get displayed Service Key
+     */
+    const serviceKeyElement =
+        document.getElementById("serviceKey");
 
-    },
+    if (!serviceKeyElement) {
 
+        alert("Service Key element not found.");
 
+        return;
+    }
+
+    const newServiceKey =
+        serviceKeyElement.textContent.trim();
+
+    if (!newServiceKey) {
+
+        alert("Service Key is empty.");
+
+        return;
+    }
+
+    /*
+     * SAVE THE SERVICE KEY
+     */
+    serviceSong.serviceKey =
+        newServiceKey;
+
+    /*
+     * Preserve original key
+     */
+    if (!serviceSong.originalKey) {
+
+        serviceSong.originalKey =
+            serviceSong.key;
+
+    }
+
+    /*
+     * Save transpose value
+     *
+     * Change this variable name if your
+     * existing transpose code uses another name.
+     */
+    if (typeof transposeAmount !== "undefined") {
+
+        serviceSong.transpose =
+            transposeAmount;
+
+    }
+
+    console.log(
+        "Saving service:",
+        service
+    );
+
+    console.log(
+        "Saving song:",
+        serviceSong
+    );
+
+    /*
+     * SAVE ENTIRE SERVICES ARRAY
+     */
+    await saveServices(
+        "guest",
+        services
+    );
+
+    /*
+     * Verify Firebase data by loading again
+     */
+    const verify =
+        await loadServices("guest");
+
+    const verifyService =
+        verify.find(function (s) {
+
+            return Number(s.id) === serviceId;
+
+        });
+
+    console.log(
+        "VERIFIED SERVICE:",
+        verifyService
+    );
+
+    console.log(
+        "VERIFIED SONG:",
+        verifyService?.songs?.[songIndex]
+    );
+
+    alert(
+        "Service Key saved: " +
+        newServiceKey
+    );
+}
+
+const saveServiceKey =
+    document.getElementById("saveServiceKey");
+
+if (saveServiceKey) {
+
+    saveServiceKey.onclick =
+        saveCurrentServiceKey;
+
+}
     restoreTranspose(){
 
         const service =
