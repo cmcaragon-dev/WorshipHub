@@ -1,17 +1,12 @@
 "use strict";
 
-import { auth, db } from "./firebase.js";
-
-import { songs } from "./songs.js";
+import { auth } from "./firebase.js";
 
 import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-import {
-    collection,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { songs } from "./songs.js";
 
 
 /* =====================================
@@ -22,7 +17,7 @@ let currentUser = null;
 
 
 /* =====================================
-   USER DATA
+   FIREBASE USER DATA
 ===================================== */
 
 let playlists = [];
@@ -31,10 +26,10 @@ let services = [];
 
 
 /* =====================================
-   FIREBASE AUTH
+   AUTHENTICATION
 ===================================== */
 
-onAuthStateChanged(auth, async (user) => {
+onAuthStateChanged(auth, function(user) {
 
     if (!user) {
 
@@ -47,23 +42,9 @@ onAuthStateChanged(auth, async (user) => {
     currentUser = user;
 
     console.log(
-        "Logged in user:",
+        "Logged in:",
         currentUser.uid
     );
-
-
-    try {
-
-        await loadUserData();
-
-    } catch (error) {
-
-        console.error(
-            "Error loading user data:",
-            error
-        );
-
-    }
 
 });
 async function loadUserData() {
@@ -244,8 +225,6 @@ playlists.push({
     renderPlaylists();
 
 }
-playlists.sort((a,b)=>a.name.localeCompare(b.name));
-
 
 function renderPlaylists(){
 playlists.sort(function(a,b){
