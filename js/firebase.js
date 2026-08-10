@@ -16,6 +16,10 @@ import {
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
+// ==========================================
+// YOUR FIREBASE CONFIG
+// ==========================================
+
 const firebaseConfig = {
 
     apiKey:
@@ -38,14 +42,31 @@ const firebaseConfig = {
 
 };
 
+// ==========================================
+// INITIALIZE FIREBASE
+// ==========================================
 
-const app =
+const firebaseApp =
     initializeApp(firebaseConfig);
 
 
-export const auth =
-    getAuth(app);
+// ==========================================
+// SERVICES
+// ==========================================
+
+const auth =
+    getAuth(firebaseApp);
+
+const db =
+    getFirestore(firebaseApp);
 
 
-export const db =
-    getFirestore(app);
+// ==========================================
+// EXPORT
+// ==========================================
+
+export {
+    firebaseApp,
+    auth,
+    db
+};
