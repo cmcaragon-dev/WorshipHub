@@ -196,6 +196,14 @@ title: "How Good It Is",
         category: "Praise",
         language: "English",
         file: "songs/howgooditis.html"
+    },
+	{id:23,        
+title: "Forever",
+        artist: "Chris Tomlin",
+        key: "D",
+        category: "Praise",
+        language: "English",
+        file: "songs/forever.html"
     }
 	
 ];
