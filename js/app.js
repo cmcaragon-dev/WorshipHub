@@ -1,16 +1,76 @@
-
 "use strict";
 
 /* =====================================
-   FIREBASE
+   FIREBASE AUTHENTICATION
 ===================================== */
+
+import { auth } from "./firebase.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+/* =====================================
+   SONGS
+===================================== */
+
 import { songs } from "./songs.js";
+
+
+/* =====================================
+   FIRESTORE
+===================================== */
+
 import {
     saveServices,
     loadServices,
     watchServices
 } from "./firestore.js";
 
+
+/* =====================================
+   CURRENT FIREBASE USER
+===================================== */
+
+let firebaseUser = null;
+
+
+/* =====================================
+   CHECK LOGIN
+===================================== */
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        console.log("No user logged in.");
+
+        window.location.href = "login.html";
+
+        return;
+
+    }
+
+
+    firebaseUser = user;
+
+
+    console.log(
+        "Logged in user:",
+        user.email
+    );
+
+    console.log(
+        "Firebase UID:",
+        user.uid
+    );
+
+
+    // Your Firebase data can be loaded here
+    // after the user has been confirmed.
+
+});
 /* =====================================
    CONFIG
 ===================================== */
