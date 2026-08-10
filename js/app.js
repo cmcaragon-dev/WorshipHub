@@ -1,42 +1,37 @@
 "use strict";
 
-/* =====================================
-   FIREBASE AUTHENTICATION
-===================================== */
+import { auth, db } from "./firebase.js";
 
-import { auth } from "./firebase.js";
 import { songs } from "./songs.js";
+
 import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-/* =====================================
-   FIRESTORE
-===================================== */
-
 import {
-    saveServices,
-    loadServices,
-    watchServices
-} from "./firestore.js";
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 /* =====================================
-   CURRENT FIREBASE USER
+   CURRENT USER
 ===================================== */
 
-let firebaseUser = null;
 let currentUser = null;
+
+
+/* =====================================
+   USER DATA
+===================================== */
+
+let playlists = [];
+
 let services = [];
 
-const STORAGE_KEYS = {
-    CURRENT_SERVICE: "currentServiceId",
-    CURRENT_INDEX: "currentSongIndex",
-    RESUME: "resumePresentation"
-};
 
 /* =====================================
-   CHECK LOGIN
+   FIREBASE AUTH
 ===================================== */
 
 onAuthStateChanged(auth, async (user) => {
@@ -46,28 +41,124 @@ onAuthStateChanged(auth, async (user) => {
         window.location.href = "login.html";
 
         return;
+
     }
 
     currentUser = user;
 
-    console.log("Logged in user:", currentUser.uid);
+    console.log(
+        "Logged in user:",
+        currentUser.uid
+    );
+
 
     try {
 
-        services = await loadServices(currentUser.uid);
-
-        console.log("Services loaded:", services);
-
-        renderServices();
+        await loadUserData();
 
     } catch (error) {
 
-        console.error("Error loading services:", error);
+        console.error(
+            "Error loading user data:",
+            error
+        );
 
     }
 
 });
+async function loadUserData() {
 
+    if (!currentUser) {
+        return;
+    }
+
+
+    /* =====================================
+       LOAD USER PLAYLISTS
+    ===================================== */
+
+    const playlistSnapshot =
+        await getDocs(
+            collection(
+                db,
+                "users",
+                currentUser.uid,
+                "playlists"
+            )
+        );
+
+
+    playlists =
+        playlistSnapshot.docs.map(
+            doc => ({
+                id: doc.id,
+                ...doc.data()
+            })
+        );
+
+
+    /* =====================================
+       LOAD USER SERVICES
+    ===================================== */
+
+    const serviceSnapshot =
+        await getDocs(
+            collection(
+                db,
+                "users",
+                currentUser.uid,
+                "services"
+            )
+        );
+
+
+    services =
+        serviceSnapshot.docs.map(
+            doc => ({
+                id: doc.id,
+                ...doc.data()
+            })
+        );
+
+
+    console.log(
+        "Playlists:",
+        playlists
+    );
+
+    console.log(
+        "Services:",
+        services
+    );
+
+
+    /* =====================================
+       RENDER
+    ===================================== */
+
+    if (
+        typeof renderPlaylists ===
+        "function"
+    ) {
+
+        renderPlaylists();
+
+    }
+
+
+    if (
+        typeof renderServices ===
+        "function"
+    ) {
+
+        renderServices();
+
+    }
+
+
+    updatePlaylistCounter();
+
+}
 /* =====================================
    FIREBASE SAVE
 ===================================== */
@@ -155,17 +246,6 @@ playlists.push({
 }
 playlists.sort((a,b)=>a.name.localeCompare(b.name));
 
-function savePlaylists(){
-
-    localStorage.setItem(
-
-        "playlists",
-
-        JSON.stringify(playlists)
-
-    );
-
-}
 
 function renderPlaylists(){
 playlists.sort(function(a,b){
