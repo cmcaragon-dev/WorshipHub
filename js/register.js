@@ -22,10 +22,10 @@ registerForm.addEventListener("submit", async function(e) {
         document.getElementById("name").value.trim();
 
     const email =
-        document.getElementById("email").value.trim();
+        document.getElementById("registerEmail").value.trim();
 
     const password =
-        document.getElementById("password").value;
+        document.getElementById("registerPassword").value;
 
 
     console.log("Name:", name);
