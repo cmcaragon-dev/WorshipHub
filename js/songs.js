@@ -172,6 +172,14 @@ title: "O Kay Saya at Kay Ganda",
         category: "Praise",
         language: "Tagalog",
         file: "songs/okaysayaatkayganda.html"
+    },
+{id:20,        
+title: "Magpakailanman",
+        artist: "Passion Generation Worship Band",
+        key: "D",
+        category: "Praise",
+        language: "Tagalog",
+        file: "songs/magpakailanman.html"
     }
 ];
 songs.sort((a, b) =>
