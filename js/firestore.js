@@ -1,14 +1,21 @@
 "use strict";
 
-import { db } from "./firebase.js";
+import { db }
+from "./firebase.js";
 
 import {
+    collection,
     doc,
+    addDoc,
     setDoc,
-    getDoc,
-    onSnapshot
+    getDocs,
+    deleteDoc,
+    onSnapshot,
+    query,
+    where,
+    orderBy
 }
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 /* =====================================
