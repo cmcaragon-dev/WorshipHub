@@ -1,17 +1,27 @@
-import { db }
-from "./firebase.js";
+import { db } from "./firebase.js";
 
 import {
     collection,
     doc,
-    setDoc,
     getDocs,
+    setDoc,
     deleteDoc,
-    onSnapshot
+    updateDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+export async function createUserProfile(user) {
+
+    await setDoc(
+        doc(db, "users", user.uid),
+        {
+            uid: user.uid,
+            email: user.email,
+            createdAt: serverTimestamp()
+        }
+    );
+
 }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
 /* ==================================================
    USER COLLECTION REFERENCES
 ================================================== */
