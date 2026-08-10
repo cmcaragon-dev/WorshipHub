@@ -35,25 +35,25 @@ const App = {
 
     transpose:0,
 
-    init(){
+    async init(){
 
-        this.cacheDOM();
+    this.cacheDOM();
 
-        this.loadDarkMode();
+    this.loadDarkMode();
 
-        this.updateLyricsFont();
+    this.updateLyricsFont();
 
-        Service.restoreTranspose();
+    await Service.restoreTranspose();
 
-        Service.updateKeyDisplay();
+    Service.updateKeyDisplay();
 
-        Service.updateGuide();
+    Service.updateGuide();
 
-        Service.updateProgress();
+    await Service.updateProgress();
 
-        this.bindEvents();
+    this.bindEvents();
 
-    },
+}
 
     cacheDOM(){
 
@@ -361,395 +361,730 @@ function getTransposedKey(key,step){
    SERVICE PLANNER
 ========================================================== */
 
-Object.assign(Service,{
+Object.assign(Service, {
 
-    getCurrent(){
+    /* --------------------------------------
+       GET CURRENT SERVICE FROM FIREBASE
+    -------------------------------------- */
 
-        const id =
-        localStorage.getItem("currentServiceId");
+    async getCurrent() {
 
-        if(!id) return null;
+               const id = Number(
+            localStorage.getItem("currentServiceId")
+        );
+
+        if (!id) {
+            return null;
+        }
 
         const services =
-        JSON.parse(
-            localStorage.getItem("services")
-        ) || [];
+            await loadServices("guest");
 
-        return services.find(
-            s => s.id == id
-        ) || null;
+        if (!Array.isArray(services)) {
+            return null;
+        }
 
+        return services.find(function(service) {
+
+            return Number(service.id) === id;
+
+        }) || null;
     },
 
 
-    getSongIndex(){
+    /* --------------------------------------
+       SONG INDEX
+    -------------------------------------- */
 
-        return parseInt(
+    getSongIndex() {
 
+        return Number(
             localStorage.getItem(
                 "currentSongIndex"
-            )
-
-        ) || 0;
-
-    },
-
-
-    setSongIndex(index){
-
-        localStorage.setItem(
-
-            "currentSongIndex",
-
-            index
-
+            ) || 0
         );
 
     },
 
 
-    async function saveCurrentServiceKey() {
+    setSongIndex(index) {
 
-    console.log("========== SAVE SERVICE KEY ==========");
+        localStorage.setItem(
+            "currentSongIndex",
+            String(index)
+        );
 
-    const serviceId = Number(
-        localStorage.getItem("currentServiceId")
-    );
+    },
 
-    const songIndex = Number(
-        localStorage.getItem("currentSongIndex") || 0
-    );
 
-    console.log("Service ID:", serviceId);
-    console.log("Song Index:", songIndex);
+    /* --------------------------------------
+       SAVE TRANSPOSED SERVICE KEY
+    -------------------------------------- */
 
-    if (!serviceId) {
-        alert("No active Service Planner service.");
-        return;
-    }
+    async saveCurrentServiceKey() {
 
-    /*
-     * Get the service from Firebase
-     */
-    const services = await loadServices("guest");
+        console.log(
+            "========== SAVE SERVICE KEY =========="
+        );
 
-    if (!Array.isArray(services)) {
-        alert("Unable to load services.");
-        return;
-    }
+        const serviceId = Number(
+            localStorage.getItem(
+                "currentServiceId"
+            )
+        );
 
-    /*
-     * Find active service
-     */
-    const service = services.find(function (s) {
+        const songIndex = Number(
+            localStorage.getItem(
+                "currentSongIndex"
+            ) || 0
+        );
 
-        return Number(s.id) === serviceId;
+        console.log(
+            "Service ID:",
+            serviceId
+        );
 
-    });
+        console.log(
+            "Song Index:",
+            songIndex
+        );
 
-    if (!service) {
-        alert("Service Planner service not found.");
-        return;
-    }
 
-    /*
-     * Check current song
-     */
-    if (
-        !service.songs ||
-        !service.songs[songIndex]
-    ) {
+        if (!serviceId) {
 
-        alert("Current song was not found in the service.");
+            alert(
+                "No active Service Planner service."
+            );
 
-        return;
-    }
+            return;
 
-    const serviceSong =
-        service.songs[songIndex];
+        }
 
-    /*
-     * Get displayed Service Key
-     */
-    const serviceKeyElement =
-        document.getElementById("serviceKey");
 
-    if (!serviceKeyElement) {
+        /* ----------------------------------
+           LOAD SERVICES FROM FIREBASE
+        ---------------------------------- */
 
-        alert("Service Key element not found.");
+        const services =
+            await loadServices("guest");
 
-        return;
-    }
 
-    const newServiceKey =
-        serviceKeyElement.textContent.trim();
+        if (!Array.isArray(services)) {
 
-    if (!newServiceKey) {
+            alert(
+                "Unable to load services from Firebase."
+            );
 
-        alert("Service Key is empty.");
+            return;
 
-        return;
-    }
+        }
 
-    /*
-     * SAVE THE SERVICE KEY
-     */
-    serviceSong.serviceKey =
-        newServiceKey;
 
-    /*
-     * Preserve original key
-     */
-    if (!serviceSong.originalKey) {
-
-        serviceSong.originalKey =
-            serviceSong.key;
-
-    }
-
-    /*
-     * Save transpose value
-     *
-     * Change this variable name if your
-     * existing transpose code uses another name.
-     */
-    if (typeof transposeAmount !== "undefined") {
-
-        serviceSong.transpose =
-            transposeAmount;
-
-    }
-
-    console.log(
-        "Saving service:",
-        service
-    );
-
-    console.log(
-        "Saving song:",
-        serviceSong
-    );
-
-    /*
-     * SAVE ENTIRE SERVICES ARRAY
-     */
-    await saveServices(
-        "guest",
-        services
-    );
-
-    /*
-     * Verify Firebase data by loading again
-     */
-    const verify =
-        await loadServices("guest");
-
-    const verifyService =
-        verify.find(function (s) {
-
-            return Number(s.id) === serviceId;
-
-        });
-
-    console.log(
-        "VERIFIED SERVICE:",
-        verifyService
-    );
-
-    console.log(
-        "VERIFIED SONG:",
-        verifyService?.songs?.[songIndex]
-    );
-
-    alert(
-        "Service Key saved: " +
-        newServiceKey
-    );
-}
-
-const saveServiceKey =
-    document.getElementById("saveServiceKey");
-
-if (saveServiceKey) {
-
-    saveServiceKey.onclick =
-        saveCurrentServiceKey;
-
-}
-    restoreTranspose(){
+        /* ----------------------------------
+           FIND CURRENT SERVICE
+        ---------------------------------- */
 
         const service =
-        this.getCurrent();
+            services.find(function(s) {
 
-        if(!service) return;
-
-        const index =
-        this.getSongIndex();
-
-        const song =
-        service.songs[index];
-
-        if(!song) return;
-
-        App.transpose = 0;
-
-        const amount = Math.round(song.transpose * 2);
-
-        const step =
-        amount>0 ? 1 : -1;
-
-        for(
-
-            let i=0;
-
-            i<Math.abs(amount);
-
-            i++
-
-        ){
-
-            document
-            .querySelectorAll(".chord")
-
-            .forEach(chord=>{
-
-                chord.innerText =
-                chord.innerText.replace(
-
-                    /[A-G](#|b)?/g,
-
-                    note=>{
-
-                        let index =
-                        SHARP_SCALE.indexOf(note);
-
-                        if(index==-1){
-
-                            index =
-                            FLAT_SCALE.indexOf(note);
-
-                        }
-
-                        if(index==-1){
-
-                            return note;
-
-                        }
-
-                        return SHARP_SCALE[
-
-                            (index+step+12)%12
-
-                        ];
-
-                    }
-
-                );
+                return Number(s.id) === serviceId;
 
             });
 
-            App.transpose += step * 0.5;
+
+        if (!service) {
+
+            alert(
+                "Service Planner service not found."
+            );
+
+            return;
 
         }
+
+
+        /* ----------------------------------
+           FIND CURRENT SONG
+        ---------------------------------- */
+
+        if (
+            !service.songs ||
+            !service.songs[songIndex]
+        ) {
+
+            alert(
+                "Current song was not found in the service."
+            );
+
+            return;
+
+        }
+
+
+        const serviceSong =
+            service.songs[songIndex];
+
+
+        /* ----------------------------------
+           GET DISPLAYED SERVICE KEY
+        ---------------------------------- */
+
+        const serviceKeyElement =
+            document.getElementById("serviceKey");
+
+
+        if (!serviceKeyElement) {
+
+            alert(
+                "Service Key element not found."
+            );
+
+            return;
+
+        }
+
+
+        const newServiceKey =
+            serviceKeyElement.textContent.trim();
+
+
+        if (!newServiceKey) {
+
+            alert(
+                "Service Key is empty."
+            );
+
+            return;
+
+        }
+
+
+        /* ----------------------------------
+           SAVE SERVICE KEY
+        ---------------------------------- */
+
+        serviceSong.serviceKey =
+            newServiceKey;
+
+
+        /* ----------------------------------
+           SAVE TRANSPOSE VALUE
+        ---------------------------------- */
+
+        serviceSong.transpose =
+            App.transpose;
+
+
+        /* ----------------------------------
+           PRESERVE ORIGINAL KEY
+        ---------------------------------- */
+
+        if (!serviceSong.originalKey) {
+
+            serviceSong.originalKey =
+                serviceSong.key ||
+                currentSong.key;
+
+        }
+
+
+        console.log(
+            "SERVICE BEING SAVED:",
+            service
+        );
+
+        console.log(
+            "SONG BEING SAVED:",
+            serviceSong
+        );
+
+
+        /* ----------------------------------
+           SAVE TO FIREBASE
+        ---------------------------------- */
+
+        await saveServices(
+            "guest",
+            services
+        );
+
+
+        /* ----------------------------------
+           VERIFY
+        ---------------------------------- */
+
+        const verifyServices =
+            await loadServices("guest");
+
+
+        const verifyService =
+            verifyServices.find(function(s) {
+
+                return Number(s.id) === serviceId;
+
+            });
+
+
+        console.log(
+            "FIREBASE VERIFIED SERVICE:",
+            verifyService
+        );
+
+
+        console.log(
+            "FIREBASE VERIFIED SONG:",
+            verifyService?.songs?.[songIndex]
+        );
+
+
+        alert(
+            "Service Key saved successfully: " +
+            newServiceKey
+        );
+
+    },
+
+
+    /* --------------------------------------
+       TRANSPOSE
+    -------------------------------------- */
+
+    transpose(step) {
+
+        App.transpose += step * 0.5;
+
+
+        document
+            .querySelectorAll(".chord")
+            .forEach(chord => {
+
+                chord.innerText =
+                    chord.innerText.replace(
+                        /[A-G](#|b)?/g,
+                        note => {
+
+                            let index =
+                                SHARP_SCALE.indexOf(note);
+
+
+                            if (index === -1) {
+
+                                index =
+                                    FLAT_SCALE.indexOf(note);
+
+                            }
+
+
+                            if (index === -1) {
+
+                                return note;
+
+                            }
+
+
+                            return SHARP_SCALE[
+                                (index + step + 12) % 12
+                            ];
+
+                        }
+                    );
+
+            });
+
 
         this.updateKeyDisplay();
 
         this.updateGuide();
-const transposeDisplay =
-document.getElementById("transposeValue");
-
-if(transposeDisplay){
-
-    transposeDisplay.innerText =
-    (App.transpose >= 0 ? "+" : "") +
-    App.transpose.toFixed(1);
-
-}
 
     },
 
 
-    next(){
+    /* --------------------------------------
+       CURRENT KEY
+    -------------------------------------- */
+
+    getKey() {
+
+        return getTransposedKey(
+            currentSong.key,
+            Math.round(
+                App.transpose * 2
+            )
+        );
+
+    },
+
+
+    /* --------------------------------------
+       DISPLAY SERVICE KEY
+    -------------------------------------- */
+
+    updateKeyDisplay() {
+
+        if (!App.serviceKey) {
+            return;
+        }
+
+        App.serviceKey.innerText =
+            this.getKey();
+
+    },
+
+
+    /* --------------------------------------
+       UPDATE SONG GUIDE
+    -------------------------------------- */
+
+    updateGuide() {
+
+        if (!App.songEnding) {
+            return;
+        }
+
+        const key =
+            this.getKey();
+
+        const ending =
+            getTransposedKey(key, 5);
+
+
+        App.songEnding.innerHTML = `
+
+            <strong>LAST 3</strong>
+            : ${getTransposedKey(key,9)}m
+
+            <br>
+
+            <strong>RETURN TO VERSE</strong>
+            : ${getTransposedKey(key,7)}
+
+            <br>
+
+            <strong>ENDING</strong>
+            : ${ending}
+              &nbsp;
+              ${ending}m
+              &nbsp;
+              ${key}
+
+            <br>
+
+            <strong>SING IN THE SPIRIT</strong>
+            : ${key}
+              &nbsp;
+              ${ending}
+
+        `;
+
+    },
+
+
+    /* --------------------------------------
+       RESTORE SAVED TRANSPOSE
+    -------------------------------------- */
+
+    async restoreTranspose() {
 
         const service =
-        this.getCurrent();
+            await this.getCurrent();
 
-        if(!service) return;
 
-        let index =
-        this.getSongIndex();
+        if (!service) {
+            return;
+        }
 
-        if(index >= service.songs.length-1){
+
+        const index =
+            this.getSongIndex();
+
+
+        const song =
+            service.songs?.[index];
+
+
+        if (!song) {
+            return;
+        }
+
+
+        /*
+         * IMPORTANT:
+         * Firebase stores the transpose amount.
+         */
+
+        const savedTranspose =
+            Number(song.transpose || 0);
+
+
+        App.transpose =
+            savedTranspose;
+
+
+        /*
+         * Rebuild chords from ORIGINAL
+         * HTML chords.
+         *
+         * We only do this when a saved
+         * transpose exists.
+         */
+
+        const steps =
+            Math.round(
+                savedTranspose * 2
+            );
+
+
+        if (steps !== 0) {
+
+            /*
+             * Reload original chord values
+             * from the page before applying
+             * transpose.
+             */
+
+            document
+                .querySelectorAll(".chord")
+                .forEach(chord => {
+
+                    /*
+                     * We cannot reliably restore
+                     * original chord text if it has
+                     * already been modified.
+                     *
+                     * The page starts with the
+                     * original chords on each load,
+                     * so apply the saved steps here.
+                     */
+
+                });
+
+
+            /*
+             * Reapply transpose
+             */
+
+            const direction =
+                steps > 0 ? 1 : -1;
+
+
+            for (
+                let i = 0;
+                i < Math.abs(steps);
+                i++
+            ) {
+
+                document
+                    .querySelectorAll(".chord")
+                    .forEach(chord => {
+
+                        chord.innerText =
+                            chord.innerText.replace(
+                                /[A-G](#|b)?/g,
+                                note => {
+
+                                    let index =
+                                        SHARP_SCALE.indexOf(note);
+
+
+                                    if (
+                                        index === -1
+                                    ) {
+
+                                        index =
+                                            FLAT_SCALE.indexOf(note);
+
+                                    }
+
+
+                                    if (
+                                        index === -1
+                                    ) {
+
+                                        return note;
+
+                                    }
+
+
+                                    return SHARP_SCALE[
+                                        (index +
+                                            direction +
+                                            12) % 12
+                                    ];
+
+                                }
+                            );
+
+                    });
+
+            }
+
+        }
+
+
+        this.updateKeyDisplay();
+
+        this.updateGuide();
+
+
+        const transposeDisplay =
+            document.getElementById(
+                "transposeValue"
+            );
+
+
+        if (transposeDisplay) {
+
+            transposeDisplay.innerText =
+                (App.transpose >= 0 ? "+" : "") +
+                App.transpose.toFixed(1);
+
+        }
+
+    },
+
+
+    /* --------------------------------------
+       NEXT SONG
+    -------------------------------------- */
+
+    async next() {
+
+        const service =
+            await this.getCurrent();
+
+
+        if (!service) {
+
+            alert(
+                "No active service."
+            );
 
             return;
 
         }
+
+
+        let index =
+            this.getSongIndex();
+
+
+        if (
+            index >=
+            service.songs.length - 1
+        ) {
+
+            alert(
+                "End of Service."
+            );
+
+            return;
+
+        }
+
 
         index++;
 
+
         this.setSongIndex(index);
 
+
         localStorage.setItem(
-
             "resumePresentation",
-
             "true"
-
         );
-let nextFile = service.songs[index].file;
 
-if (location.pathname.includes("/songs/")) {
-    nextFile = nextFile.replace(/^songs\//, "");
-}
 
-console.log("Current page:", location.pathname);
-console.log("Stored file:", service.songs[index].file);
-console.log("Next file:", nextFile);
+        const nextFile =
+            service.songs[index].file
+                .replace(/^songs\//, "");
 
-location.href = nextFile;
+
+        console.log(
+            "NEXT:",
+            nextFile
+        );
+
+
+        /*
+         * We are already inside /songs/
+         */
+
+        location.href =
+            nextFile;
 
     },
 
 
-    previous(){
+    /* --------------------------------------
+       PREVIOUS SONG
+    -------------------------------------- */
+
+    async previous() {
 
         const service =
-        this.getCurrent();
+            await this.getCurrent();
 
-        if(!service) return;
 
-        let index =
-        this.getSongIndex();
+        if (!service) {
 
-        if(index<=0){
+            alert(
+                "No active service."
+            );
 
             return;
 
         }
 
+
+        let index =
+            this.getSongIndex();
+
+
+        if (index <= 0) {
+
+            alert(
+                "This is the first song."
+            );
+
+            return;
+
+        }
+
+
         index--;
+
 
         this.setSongIndex(index);
 
+
         localStorage.setItem(
-
             "resumePresentation",
-
             "true"
-
         );
-let prevFile = service.songs[index].file;
 
-if (location.pathname.includes("/songs/")) {
-    prevFile = prevFile.replace(/^songs\//, "");
-}
 
-location.href = prevFile;
+        const previousFile =
+            service.songs[index].file
+                .replace(/^songs\//, "");
+
+
+        console.log(
+            "PREVIOUS:",
+            previousFile
+        );
+
+
+        location.href =
+            previousFile;
 
     },
 
 
-    stop(){
+    /* --------------------------------------
+       STOP SERVICE
+    -------------------------------------- */
+
+    stop() {
 
         localStorage.removeItem(
             "currentService"
@@ -767,16 +1102,19 @@ location.href = prevFile;
             "resumePresentation"
         );
 
+
         const progress =
-        document.getElementById(
-            "serviceProgress"
-        );
+            document.getElementById(
+                "serviceProgress"
+            );
 
-        if(progress){
 
-            progress.innerHTML="";
+        if (progress) {
+
+            progress.innerHTML = "";
 
         }
+
 
         alert(
             "Service ended."
@@ -785,46 +1123,70 @@ location.href = prevFile;
     },
 
 
-    updateProgress(){
+    /* --------------------------------------
+       UPDATE PROGRESS
+    -------------------------------------- */
+
+    async updateProgress() {
 
         const progress =
-        document.getElementById(
-            "serviceProgress"
-        );
+            document.getElementById(
+                "serviceProgress"
+            );
 
-        if(!progress){
 
+        if (!progress) {
             return;
-
         }
+
 
         const service =
-        this.getCurrent();
+            await this.getCurrent();
 
-        if(!service){
 
-            progress.innerHTML="";
+        if (!service) {
+
+            progress.innerHTML = "";
 
             return;
 
         }
 
+
         const index =
-        this.getSongIndex();
+            this.getSongIndex();
 
-        progress.innerHTML=
 
-            `Service:
+        progress.innerHTML = `
+
+            Service:
             <strong>${service.name}</strong>
             |
             Song
-            ${index+1}
+            ${index + 1}
             of
-            ${service.songs.length}`;
+            ${service.songs.length}
+
+        `;
 
     }
 
 });
+const saveServiceKey =
+    document.getElementById("saveServiceKey");
+
+if (saveServiceKey) {
+
+    saveServiceKey.addEventListener(
+        "click",
+        async function () {
+
+            await Service.saveCurrentServiceKey();
+
+        }
+    );
+
+}
 /* ==========================================================
    PRESENTATION
 ========================================================== */
