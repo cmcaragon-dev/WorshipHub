@@ -39,7 +39,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     onkeyup="searchSongs(this.value)">
 
        <button onclick="searchSongs()">🔍 </button>
+<button onclick="logoutUser()">
 
+    🚪 Logout
+
+</button>
     </div>
 
 </header>
@@ -295,8 +299,30 @@ placeholder="Enter playlist name">
     </div>
 
 </div>
-<script src="js/songs.js"></script>
-<script type="module" src="js/app.js"></script>
+<script
+    type="module"
+    src="js/firebase.js">
+</script>
+
+<script
+    type="module"
+    src="js/auth.js">
+</script>
+
+<script
+    type="module"
+    src="js/playlist.js">
+</script>
+
+<script
+    type="module"
+    src="js/service.js">
+</script>
+
+<script
+    type="module"
+    src="js/app.js">
+</script>
 
 
 
