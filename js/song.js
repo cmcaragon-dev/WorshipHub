@@ -1303,7 +1303,7 @@ function showArtist(){
     );
 
 }
-
+window.goHome = goHome;
 
 /* ==========================================================
    COMPATIBILITY
