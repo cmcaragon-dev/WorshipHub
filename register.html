@@ -6,147 +6,104 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<title>Login</title>
+<title>Create Account</title>
 
 <style>
 
-* {
-    box-sizing: border-box;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eef2f7;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    min-height:100vh;
 }
 
-body {
+.register-box{
 
-    margin: 0;
+    width:380px;
 
-    min-height: 100vh;
+    background:white;
 
-    display: flex;
+    padding:35px;
 
-    justify-content: center;
+    border-radius:15px;
 
-    align-items: center;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #2c3e50,
-            #3498db
-        );
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
 
 }
 
-.login-container {
+h1{
 
-    width: 400px;
+    text-align:center;
 
-    max-width: 90%;
-
-    background: white;
-
-    padding: 35px;
-
-    border-radius: 15px;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,.25);
+    margin-bottom:25px;
 
 }
 
-.login-container h1 {
+input{
 
-    text-align: center;
+    width:100%;
 
-    margin-bottom: 10px;
+    padding:13px;
 
-}
+    margin-bottom:15px;
 
-.login-subtitle {
+    border:1px solid #ccc;
 
-    text-align: center;
+    border-radius:8px;
 
-    color: #777;
-
-    margin-bottom: 25px;
+    box-sizing:border-box;
 
 }
 
-.login-container input {
+button{
 
-    width: 100%;
+    width:100%;
 
-    padding: 13px;
+    padding:13px;
 
-    margin-bottom: 15px;
+    border:none;
 
-    border:
-        1px solid #ccc;
+    border-radius:8px;
 
-    border-radius: 8px;
+    background:#3498db;
 
-    font-size: 16px;
+    color:white;
 
-}
+    font-size:16px;
 
-.login-container button {
-
-    width: 100%;
-
-    padding: 13px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background: #3498db;
-
-    color: white;
-
-    font-size: 16px;
-
-    cursor: pointer;
+    cursor:pointer;
 
 }
 
-.login-container button:hover {
+button:hover{
 
-    background: #2980b9;
-
-}
-
-#loginMessage {
-
-    margin-top: 15px;
-
-    text-align: center;
-
-    color: #d32f2f;
+    background:#2980b9;
 
 }
 
-.register-link {
+#message{
 
-    margin-top: 20px;
+    margin-top:15px;
 
-    text-align: center;
+    text-align:center;
+
+    font-size:14px;
 
 }
 
-.register-link a {
+.login-link{
 
-    color: #3498db;
+    text-align:center;
 
-    text-decoration: none;
+    margin-top:20px;
 
 }
 
@@ -156,48 +113,56 @@ body {
 
 <body>
 
+<div class="register-box">
 
-<div class="login-container">
+    <h1>Create Account</h1>
 
-    <h1>🎵 Worship Songs</h1>
+    <form id="registerForm">
 
-    <div class="login-subtitle">
+        <input
+            type="text"
+            id="registerName"
+            placeholder="Full Name"
+            required
+        >
 
-        Sign in to your account
+        <input
+            type="email"
+            id="registerEmail"
+            placeholder="Email"
+            required
+        >
 
-    </div>
+        <input
+            type="password"
+            id="registerPassword"
+            placeholder="Password"
+            minlength="6"
+            required
+        >
 
+        <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            minlength="6"
+            required
+        >
 
-    <input
-        type="email"
-        id="email"
-        placeholder="Email address"
-    >
-
-
-    <input
-        type="password"
-        id="password"
-        placeholder="Password"
-    >
-
-
-    <button id="loginBtn">
-
-        🔐 Login
-
-    </button>
-
-
-    <div id="loginMessage"></div>
-
-
-    <div class="register-link">
-
-        Don't have an account?
-
-        <a href="register.html">
+        <button type="submit">
             Create Account
+        </button>
+
+    </form>
+
+    <div id="message"></div>
+
+    <div class="login-link">
+
+        Already have an account?
+
+        <a href="login.html">
+            Login
         </a>
 
     </div>
@@ -205,11 +170,7 @@ body {
 </div>
 
 
-<script
-    type="module"
-    src="js/auth.js">
-</script>
-
+<script type="module" src="js/register.js"></script>
 
 </body>
 
