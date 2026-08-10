@@ -39,13 +39,36 @@ const firebaseConfig = {
 };
 
 
+/* =====================================
+   INITIALIZE FIREBASE
+===================================== */
+
 const app =
     initializeApp(firebaseConfig);
 
 
-export const auth =
+/* =====================================
+   AUTHENTICATION
+===================================== */
+
+const auth =
     getAuth(app);
 
 
-export const db =
+/* =====================================
+   FIRESTORE
+===================================== */
+
+const db =
     getFirestore(app);
+
+
+/* =====================================
+   EXPORT
+===================================== */
+
+export {
+    app,
+    auth,
+    db
+};
