@@ -1,10 +1,7 @@
-"use strict";
-
 import { auth, db } from "./firebase.js";
 
 import {
-    createUserWithEmailAndPassword,
-    updateProfile
+    createUserWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
@@ -17,268 +14,88 @@ import {
 const registerForm =
     document.getElementById("registerForm");
 
-const message =
-    document.getElementById("message");
+
+registerForm.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
 
 
-registerForm.addEventListener(
-    "submit",
-    async function(event) {
+    try {
 
-        event.preventDefault();
-
-
-        const name =
-            document
-                .getElementById("registerName")
-                .value
-                .trim();
-
-
-        const email =
-            document
-                .getElementById("registerEmail")
-                .value
-                .trim();
-
-
-        const password =
-            document
-                .getElementById("registerPassword")
-                .value;
-
-
-        const confirmPassword =
-            document
-                .getElementById("confirmPassword")
-                .value;
+        console.log("Creating Firebase account...");
 
 
         // =====================================
-        // VALIDATION
+        // 1. CREATE AUTH ACCOUNT
         // =====================================
 
-        if (!name) {
-
-            message.innerText =
-                "Please enter your name.";
-
-            return;
-        }
-
-
-        if (!email) {
-
-            message.innerText =
-                "Please enter your email.";
-
-            return;
-        }
-
-
-        if (password.length < 6) {
-
-            message.innerText =
-                "Password must be at least 6 characters.";
-
-            return;
-        }
-
-
-        if (password !== confirmPassword) {
-
-            message.innerText =
-                "Passwords do not match.";
-
-            return;
-        }
-
-
-        try {
-
-            message.innerText =
-                "Creating account...";
-
-
-            // =====================================
-            // CREATE FIREBASE AUTH ACCOUNT
-            // =====================================
-
-            const userCredential =
-                await createUserWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
-
-            const user =
-                userCredential.user;
-
-
-            console.log(
-                "Firebase user created:",
-                user.uid
+        const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
             );
 
 
-            // =====================================
-            // SAVE DISPLAY NAME
-            // =====================================
-
-            await updateProfile(
-                user,
-                {
-                    displayName: name
-                }
-            );
+        const user =
+            userCredential.user;
 
 
-            // =====================================
-            // CREATE USER DOCUMENT
-            // =====================================
-
-            await setDoc(
-
-                doc(
-                    db,
-                    "users",
-                    user.uid
-                ),
-
-                {
-
-                    uid: user.uid,
-
-                    name: name,
-
-                    email: user.email,
-
-                    role: "user",
-
-                    createdAt:
-                        serverTimestamp()
-
-                }
-
-            );
+        console.log(
+            "AUTH SUCCESS:",
+            user.uid
+        );
 
 
-            // =====================================
-            // CREATE USER PROFILE
-            // =====================================
+        // =====================================
+        // 2. CREATE FIRESTORE USER PROFILE
+        // =====================================
 
-            await setDoc(
-
-                doc(
-                    db,
-                    "users",
-                    user.uid,
-                    "settings",
-                    "profile"
-                ),
-
-                {
-
-                    name: name,
-
-                    email: user.email,
-
-                    createdAt:
-                        serverTimestamp()
-
-                }
-
-            );
-
-
-            console.log(
-                "User profile saved to Firestore."
-            );
-
-
-            // =====================================
-            // SUCCESS
-            // =====================================
-
-            message.innerText =
-                "Account created successfully!";
-
-
-            setTimeout(
-                function() {
-
-                    window.location.href =
-                        "index.html";
-
-                },
-                1000
-            );
-
-
-        }
-        catch (error) {
-
-            console.error(
-                "CREATE ACCOUNT ERROR:",
-                error
-            );
-
-
-            // =====================================
-            // ERROR HANDLING
-            // =====================================
-
-            switch (error.code) {
-
-                case "auth/email-already-in-use":
-
-                    message.innerText =
-                        "This email is already registered.";
-
-                    break;
-
-
-                case "auth/invalid-email":
-
-                    message.innerText =
-                        "Invalid email address.";
-
-                    break;
-
-
-                case "auth/weak-password":
-
-                    message.innerText =
-                        "Password must be at least 6 characters.";
-
-                    break;
-
-
-                case "auth/operation-not-allowed":
-
-                    message.innerText =
-                        "Email/Password authentication is not enabled in Firebase.";
-
-                    break;
-
-
-                case "permission-denied":
-
-                    message.innerText =
-                        "Firestore permission denied. Check your Firestore rules.";
-
-                    break;
-
-
-                default:
-
-                    message.innerText =
-                        error.message;
-
+        await setDoc(
+            doc(db, "users", user.uid),
+            {
+                uid: user.uid,
+                name: name,
+                email: user.email,
+                createdAt: serverTimestamp()
             }
+        );
 
-        }
+
+        console.log(
+            "FIRESTORE PROFILE CREATED"
+        );
+
+
+        alert("Account created successfully!");
+
+
+        window.location.href =
+            "index.html";
+
+
+    } catch(error) {
+
+        console.error(
+            "CREATE ACCOUNT ERROR:",
+            error
+        );
+
+
+        alert(
+            "Create account failed:\n\n" +
+            error.message
+        );
 
     }
-);
+
+});
