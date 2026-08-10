@@ -1,5 +1,5 @@
+```javascript
 "use strict";
-
 
 /* =====================================
    FIREBASE
@@ -11,19 +11,15 @@ import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-
 import {
     loadPlaylists,
     savePlaylist,
     deletePlaylistCloud,
-
     loadServices,
     saveService,
     saveServices,
     deleteServiceCloud
-
 } from "./firestore.js";
-
 
 import { songs } from "./songs.js";
 
@@ -45,222 +41,206 @@ let services = [];
 
 
 /* =====================================
-   CURRENT SERVICE
+   CURRENT SERVICE STORAGE
 ===================================== */
 
 const STORAGE_KEYS = {
 
-    CURRENT_SERVICE:
-        "currentServiceId",
+    CURRENT_SERVICE: "currentServiceId",
 
-    CURRENT_INDEX:
-        "currentSongIndex",
+    CURRENT_INDEX: "currentSongIndex",
 
-    RESUME:
-        "resumePresentation"
+    RESUME: "resumePresentation"
 
 };
-
-
+```javascript
 /* =====================================
    FIREBASE AUTHENTICATION
 ===================================== */
 
-onAuthStateChanged(
-    auth,
-    async function(user) {
+onAuthStateChanged(auth, async function(user) {
 
-        console.log(
-            "Firebase authentication state:",
-            user
-        );
+    console.log("Firebase authentication state:", user);
 
+    /* =====================================
+       NOT LOGGED IN
+    ===================================== */
 
-        /* NOT LOGGED IN */
+    if (!user) {
 
-        if (!user) {
+        window.location.href = "login.html";
 
-            window.location.href =
-                "login.html";
+        return;
 
-            return;
-
-        }
+    }
 
 
-        /* LOGGED IN */
+    /* =====================================
+       LOGGED IN
+    ===================================== */
 
-        currentUser = user;
+    currentUser = user;
+
+    console.log("Logged in user:", currentUser.uid);
+    console.log("Email:", currentUser.email);
 
 
-        console.log(
-            "Logged in user:",
+    /* =====================================
+       LOAD USER PLAYLISTS
+    ===================================== */
+
+    try {
+
+        playlists = await loadPlaylists(
             currentUser.uid
         );
 
+        playlists.sort(function(a, b) {
+
+            return (a.name || "").localeCompare(
+                b.name || ""
+            );
+
+        });
+
         console.log(
-            "Email:",
-            currentUser.email
+            "User playlists:",
+            playlists
         );
 
+    }
+    catch(error) {
 
-        /* =====================================
-           LOAD PLAYLISTS
-        ===================================== */
+        console.error(
+            "Playlist loading error:",
+            error
+        );
 
-        try {
-
-            playlists =
-                await loadPlaylists(
-                    currentUser.uid
-                );
-
-
-            playlists.sort(
-                (a, b) =>
-                    (a.name || "")
-                    .localeCompare(
-                        b.name || ""
-                    )
-            );
-
-
-            console.log(
-                "User playlists:",
-                playlists
-            );
-
-
-        }
-        catch(error) {
-
-            console.error(
-                "Playlist loading error:",
-                error
-            );
-
-            playlists = [];
-
-        }
-
-
-        /* =====================================
-           LOAD SERVICES
-        ===================================== */
-
-        try {
-
-            services =
-                await loadServices(
-                    currentUser.uid
-                );
-
-
-            services.sort(
-                (a, b) =>
-                    (a.name || "")
-                    .localeCompare(
-                        b.name || ""
-                    )
-            );
-
-
-            console.log(
-                "User services:",
-                services
-            );
-
-
-        }
-        catch(error) {
-
-            console.error(
-                "Service loading error:",
-                error
-            );
-
-            services = [];
-
-        }
-
-
-        /* =====================================
-           RENDER PLAYLISTS
-        ===================================== */
-
-        if (
-            typeof renderPlaylists ===
-            "function"
-        ) {
-
-            renderPlaylists();
-
-        }
-
-
-        /* =====================================
-           RENDER SERVICES
-        ===================================== */
-
-        if (
-            typeof renderServices ===
-            "function"
-        ) {
-
-            renderServices();
-
-        }
-
-
-        /* =====================================
-           UPDATE COUNTER
-        ===================================== */
-
-        if (
-            typeof updatePlaylistCounter ===
-            "function"
-        ) {
-
-            updatePlaylistCounter();
-
-        }
-
-
-        if (
-            typeof updateServiceCounter ===
-            "function"
-        ) {
-
-            updateServiceCounter();
-
-        }
-
-
-        /* =====================================
-           RENDER SONGS
-        ===================================== */
-
-        if (
-            typeof renderSongs ===
-            "function"
-        ) {
-
-            renderSongs(songs);
-
-        }
+        playlists = [];
 
     }
-);
+
+
+    /* =====================================
+       LOAD USER SERVICES
+    ===================================== */
+
+    try {
+
+        services = await loadServices(
+            currentUser.uid
+        );
+
+        services.sort(function(a, b) {
+
+            return (a.name || "").localeCompare(
+                b.name || ""
+            );
+
+        });
+
+        console.log(
+            "User services:",
+            services
+        );
+
+    }
+    catch(error) {
+
+        console.error(
+            "Service loading error:",
+            error
+        );
+
+        services = [];
+
+    }
+
+
+    /* =====================================
+       RENDER
+    ===================================== */
+
+    if (typeof renderPlaylists === "function") {
+
+        renderPlaylists();
+
+    }
+
+
+    if (typeof renderServices === "function") {
+
+        renderServices();
+
+    }
+
+
+    if (typeof updatePlaylistCounter === "function") {
+
+        updatePlaylistCounter();
+
+    }
+
+
+    if (typeof updateDashboard === "function") {
+
+        updateDashboard();
+
+    }
+
+
+    if (typeof renderSongs === "function") {
+
+        renderSongs(songs);
+
+    }
+
+});
+
 /* =====================================
    FIREBASE SAVE
 ===================================== */
 
-async function saveServicesCloud(){
+```javascript
+/* =====================================
+   SAVE SERVICES TO FIREBASE
+===================================== */
 
-    await saveServices(
-        FIREBASE_USER,
-        services
-    );
+async function saveServicesCloud() {
+
+    if (!currentUser) {
+
+        console.error(
+            "No logged-in user."
+        );
+
+        return;
+
+    }
+
+    try {
+
+        await saveServices(
+            currentUser.uid,
+            services
+        );
+
+        console.log(
+            "Services saved to Firebase for:",
+            currentUser.uid
+        );
+
+    }
+    catch(error) {
+
+        console.error(
+            "Firebase service save error:",
+            error
+        );
+
+        throw error;
+
+    }
 
 }
 /* =====================================
@@ -622,32 +602,120 @@ function deletePlaylist(id){
 
     renderPlaylists();
 
-}
-window.deletePlaylist = deletePlaylist;
-function removeSongFromPlaylist(playlistId, songIndex){
+}async function deletePlaylist(id) {
 
-    const playlist = playlists.find(
-        p => p.id == playlistId
+    const playlist =
+        playlists.find(
+            p => p.id == id
+        );
+
+
+    if (!playlist) {
+
+        return;
+
+    }
+
+
+    if (
+        !confirm(
+            "Delete this playlist?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        await deletePlaylistCloud(
+            currentUser.uid,
+            id
+        );
+
+
+        playlists =
+            playlists.filter(
+                p => p.id != id
+            );
+
+
+        renderPlaylists();
+
+        updatePlaylistCounter();
+
+
+    }
+    catch(error) {
+
+        console.error(
+            "Delete playlist error:",
+            error
+        );
+
+        alert(
+            "Unable to delete playlist."
+        );
+
+    }
+async function removeSongFromPlaylist(
+    playlistId,
+    songIndex
+) {
+
+    const playlist =
+        playlists.find(
+            p => p.id == playlistId
+        );
+
+
+    if (!playlist) {
+
+        return;
+
+    }
+
+
+    if (
+        !confirm(
+            "Remove this song from the playlist?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    playlist.songs.splice(
+        songIndex,
+        1
     );
 
-    if(!playlist){
-        return;
+
+    try {
+
+        await savePlaylist(
+            currentUser.uid,
+            playlist
+        );
+
+
+        renderPlaylists();
+
+    }
+    catch(error) {
+
+        console.error(
+            "Remove song error:",
+            error
+        );
+
     }
 
-    if(!confirm("Remove this song from the playlist?")){
-        return;
-    }
-
-    playlist.songs.splice(songIndex,1);
-playlist.songs.sort(function(a,b){
-
-    return a.title.localeCompare(b.title);
-
-});
-    savePlaylists();
-
-    renderPlaylists();
-
+}
 }
 window.removeSongFromPlaylist = removeSongFromPlaylist;
 
@@ -899,37 +967,90 @@ function closeServicePlanner(){
 
 }
 
-createService.onclick = async function () {
+createService.onclick =
+async function() {
 
-    const name = serviceName.value.trim();
+    if (!currentUser) {
 
-    if (!name) {
-
-        alert("Please enter a service name.");
+        alert(
+            "Please login first."
+        );
 
         return;
 
     }
 
-    services.push({
 
-        id: Date.now(),
+    const name =
+        serviceName.value.trim();
 
-        name,
+
+    if (!name) {
+
+        alert(
+            "Please enter a service name."
+        );
+
+        return;
+
+    }
+
+
+    const service = {
+
+        id: String(Date.now()),
+
+        name: name,
 
         songs: [],
 
         notes: [],
 
-        createdDate: new Date().toLocaleString()
+        createdAt:
+            new Date().toISOString()
 
-    });
+    };
 
-    await saveServicesCloud();
 
-    serviceName.value = "";
+    try {
 
-    renderServices();
+        await saveService(
+            currentUser.uid,
+            service
+        );
+
+
+        services.push(
+            service
+        );
+
+
+        services.sort(
+            (a, b) =>
+                a.name.localeCompare(
+                    b.name
+                )
+        );
+
+
+        serviceName.value = "";
+
+
+        renderServices();
+
+    }
+    catch(error) {
+
+        console.error(
+            "Create service error:",
+            error
+        );
+
+        alert(
+            "Unable to create service."
+        );
+
+    }
 
 };
 function renderServices() {
@@ -1170,12 +1291,7 @@ async function selectSong(file){
 
     console.log(selectedService);
 
-   await saveServicesCloud();
-
-const loaded = await loadServices(FIREBASE_USER);
-console.log("Firestore returned:", loaded);
-
-renderServices();
+  saveServicesCloud
 
     songPicker.classList.remove("show");
 
@@ -1349,65 +1465,118 @@ function renderPlaylistSongPicker(list){
     });
 
 }
-function selectSongForPlaylist(file){
+async function selectSongForPlaylist(
+    file
+) {
 
-    const song = songs.find(s => s.file === file);
+    if (!currentUser) {
 
-    if(!song){
-        return;
-    }
-
-    const exists = selectedPlaylist.songs.some(
-        s => s.file === file
-    );
-
-    if(exists){
-
-        alert("This song is already in the playlist.");
+        alert(
+            "Please login first."
+        );
 
         return;
 
     }
 
-    selectedPlaylist.songs.push(song);
-selectedPlaylist.songs.sort(function(a,b){
 
-    return a.title.localeCompare(b.title);
+    if (!selectedPlaylist) {
 
-});
-    savePlaylists();
+        return;
 
-    renderPlaylists();
+    }
 
-    songPicker.classList.remove("show");
+
+    const song =
+        songs.find(
+            s => s.file === file
+        );
+
+
+    if (!song) {
+
+        alert(
+            "Song not found."
+        );
+
+        return;
+
+    }
+
+
+    const exists =
+        selectedPlaylist.songs.some(
+            s => s.file === file
+        );
+
+
+    if (exists) {
+
+        alert(
+            "This song is already in the playlist."
+        );
+
+        return;
+
+    }
+
+
+    selectedPlaylist.songs.push({
+
+        id: song.id,
+
+        title: song.title,
+
+        artist: song.artist,
+
+        file: song.file,
+
+        youtube:
+            song.youtube || "",
+
+        category:
+            song.category || "",
+
+        language:
+            song.language || "",
+
+        key:
+            song.key || ""
+
+    });
+
+
+    try {
+
+        await savePlaylist(
+            currentUser.uid,
+            selectedPlaylist
+        );
+
+
+        renderPlaylists();
+
+
+        songPicker.classList.remove(
+            "show"
+        );
+
+
+    }
+    catch(error) {
+
+        console.error(
+            "Add song error:",
+            error
+        );
+
+        alert(
+            "Unable to save song."
+        );
+
+    }
 
 }
-songPickerSearch.onkeyup = function(){
-
-    const keyword = this.value.toLowerCase();
-
-    const filtered = songs.filter(song =>
-
-        song.title.toLowerCase().includes(keyword) ||
-
-        song.artist.toLowerCase().includes(keyword) ||
-
-        song.category.toLowerCase().includes(keyword)
-
-    );
-
-    if(selectedService){
-
-        renderSongPicker(filtered);
-
-    }
-    else if(selectedPlaylist){
-
-        renderPlaylistSongPicker(filtered);
-
-    }
-
-};
 window.selectSongForPlaylist = selectSongForPlaylist;
 
 function toggleService(id){
@@ -1529,18 +1698,6 @@ function searchSongs(keyword = ""){
 
 }
 window.searchSongs = searchSongs;
-
-(async () => {
-
-    services = await loadServices(FIREBASE_USER);
-	console.log("SERVICES:", services);
-console.log("CURRENT ID:", localStorage.getItem("currentServiceId"));
-
-    renderServices();
-
-    updateDashboard();
-
-})();
 
 /* =====================================
    CURRENT SERVICE HELPERS
