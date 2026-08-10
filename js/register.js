@@ -1,22 +1,17 @@
 "use strict";
 
-import {
-    auth,
-    db
-} from "./firebase.js";
+import { auth, db } from "./firebase.js";
 
 import {
     createUserWithEmailAndPassword,
     updateProfile
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
     doc,
     setDoc,
     serverTimestamp
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 const registerForm =
@@ -28,89 +23,85 @@ const message =
 
 registerForm.addEventListener(
     "submit",
-    async function(event){
+    async function(event) {
 
         event.preventDefault();
 
 
         const name =
             document
-            .getElementById("registerName")
-            .value
-            .trim();
+                .getElementById("registerName")
+                .value
+                .trim();
 
 
         const email =
             document
-            .getElementById("registerEmail")
-            .value
-            .trim();
+                .getElementById("registerEmail")
+                .value
+                .trim();
 
 
         const password =
             document
-            .getElementById("registerPassword")
-            .value;
+                .getElementById("registerPassword")
+                .value;
 
 
         const confirmPassword =
             document
-            .getElementById("confirmPassword")
-            .value;
+                .getElementById("confirmPassword")
+                .value;
 
 
         // =====================================
         // VALIDATION
         // =====================================
 
-        if(!name){
+        if (!name) {
 
             message.innerText =
                 "Please enter your name.";
 
             return;
-
         }
 
 
-        if(!email){
+        if (!email) {
 
             message.innerText =
                 "Please enter your email.";
 
             return;
-
         }
 
 
-        if(password.length < 6){
+        if (password.length < 6) {
 
             message.innerText =
                 "Password must be at least 6 characters.";
 
             return;
-
         }
 
 
-        if(password !== confirmPassword){
+        if (password !== confirmPassword) {
 
             message.innerText =
                 "Passwords do not match.";
 
             return;
-
         }
 
 
-        try{
+        try {
 
             message.innerText =
                 "Creating account...";
 
 
             // =====================================
-            // CREATE FIREBASE AUTH USER
+            // CREATE FIREBASE AUTH ACCOUNT
             // =====================================
 
             const userCredential =
@@ -125,6 +116,12 @@ registerForm.addEventListener(
                 userCredential.user;
 
 
+            console.log(
+                "Firebase user created:",
+                user.uid
+            );
+
+
             // =====================================
             // SAVE DISPLAY NAME
             // =====================================
@@ -132,7 +129,7 @@ registerForm.addEventListener(
             await updateProfile(
                 user,
                 {
-                    displayName:name
+                    displayName: name
                 }
             );
 
@@ -151,16 +148,16 @@ registerForm.addEventListener(
 
                 {
 
-                    uid:user.uid,
+                    uid: user.uid,
 
-                    name:name,
+                    name: name,
 
-                    email:user.email,
+                    email: user.email,
+
+                    role: "user",
 
                     createdAt:
-                        serverTimestamp(),
-
-                    role:"user"
+                        serverTimestamp()
 
                 }
 
@@ -168,7 +165,7 @@ registerForm.addEventListener(
 
 
             // =====================================
-            // CREATE USER DATA CONTAINERS
+            // CREATE USER PROFILE
             // =====================================
 
             await setDoc(
@@ -183,9 +180,9 @@ registerForm.addEventListener(
 
                 {
 
-                    name:name,
+                    name: name,
 
-                    email:user.email,
+                    email: user.email,
 
                     createdAt:
                         serverTimestamp()
@@ -195,16 +192,21 @@ registerForm.addEventListener(
             );
 
 
+            console.log(
+                "User profile saved to Firestore."
+            );
+
+
+            // =====================================
+            // SUCCESS
+            // =====================================
+
             message.innerText =
                 "Account created successfully!";
 
 
-            // =====================================
-            // GO TO DASHBOARD
-            // =====================================
-
             setTimeout(
-                function(){
+                function() {
 
                     window.location.href =
                         "index.html";
@@ -215,7 +217,7 @@ registerForm.addEventListener(
 
 
         }
-        catch(error){
+        catch (error) {
 
             console.error(
                 "CREATE ACCOUNT ERROR:",
@@ -224,10 +226,10 @@ registerForm.addEventListener(
 
 
             // =====================================
-            // FIREBASE ERROR MESSAGES
+            // ERROR HANDLING
             // =====================================
 
-            switch(error.code){
+            switch (error.code) {
 
                 case "auth/email-already-in-use":
 
@@ -248,7 +250,7 @@ registerForm.addEventListener(
                 case "auth/weak-password":
 
                     message.innerText =
-                        "Password is too weak.";
+                        "Password must be at least 6 characters.";
 
                     break;
 
@@ -256,7 +258,7 @@ registerForm.addEventListener(
                 case "auth/operation-not-allowed":
 
                     message.innerText =
-                        "Email/password login is not enabled in Firebase.";
+                        "Email/Password authentication is not enabled in Firebase.";
 
                     break;
 
@@ -264,7 +266,7 @@ registerForm.addEventListener(
                 case "permission-denied":
 
                     message.innerText =
-                        "Firebase permission denied. Check Firestore rules.";
+                        "Firestore permission denied. Check your Firestore rules.";
 
                     break;
 
