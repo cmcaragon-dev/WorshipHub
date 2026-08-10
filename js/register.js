@@ -19,7 +19,7 @@ registerForm.addEventListener("submit", async function(e) {
     e.preventDefault();
 
     const name =
-        document.getElementById("name").value.trim();
+        document.getElementById("registerName").value.trim();
 
     const email =
         document.getElementById("registerEmail").value.trim();
