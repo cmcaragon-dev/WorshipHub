@@ -188,7 +188,16 @@ title: "I Love to be in Your Presence",
         category: "Praise",
         language: "English",
         file: "songs/ilovetobeinyourpresence.html"
+    },
+	{id:22,        
+title: "How Good It Is",
+        artist: "EDGAR GUNGOR- DANNY CHAMBERS",
+        key: "G",
+        category: "Praise",
+        language: "English",
+        file: "songs/howgooditis.html"
     }
+	
 ];
 songs.sort((a, b) =>
     a.title.localeCompare(b.title)
