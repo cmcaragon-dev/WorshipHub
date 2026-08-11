@@ -785,8 +785,16 @@ Object.assign(Service, {
 
    async saveCurrentServiceKey() {
 
-    const user =
+    let user =
         firebaseUser || auth.currentUser;
+
+    if (!user) {
+
+        await activeServiceReady;
+
+        user =
+            firebaseUser || auth.currentUser;
+    }
 
     if (!user) {
 
@@ -797,21 +805,12 @@ Object.assign(Service, {
         return false;
     }
 
-    const serviceId =
-        localStorage.getItem(
-            "currentServiceId"
-        );
+    console.log(
+        "SAVE SERVICE KEY USER:",
+        user.uid
+    );
 
-    if (!serviceId) {
-
-        console.warn(
-            "No currentServiceId found."
-        );
-
-        return false;
-    }
-
-    try {
+        try {
 
         const serviceRef = doc(
             db,
