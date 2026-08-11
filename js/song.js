@@ -15,7 +15,8 @@ import {
 
 import {
     doc,
-    getDoc
+    getDoc,
+    updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // ==========================================
@@ -220,58 +221,67 @@ async function loadActiveService(user) {
 
 }
 
-
 // ==========================================
 // WAIT FOR FIREBASE AUTHENTICATION
 // ==========================================
 
 const activeServiceReady =
-new Promise(function(resolve) {
+    new Promise(function (resolve) {
 
-    onAuthStateChanged(
-    auth,
-    async function (user) {
+        onAuthStateChanged(
+            auth,
+            async function (user) {
 
-        firebaseUser = user;
+                firebaseUser = user;
 
-        console.log(
-            "AUTH STATE:",
-            user ? user.uid : "NO USER"
+                console.log(
+                    "AUTH STATE:",
+                    user
+                        ? user.uid
+                        : "NO USER"
+                );
+
+                if (!user) {
+
+                    console.warn(
+                        "NO AUTHENTICATED FIREBASE USER"
+                    );
+
+                    resolve(null);
+
+                    return;
+                }
+
+                console.log(
+                    "AUTHENTICATED FIREBASE USER:",
+                    user.uid
+                );
+
+                const service =
+                    await loadActiveService(user);
+
+                if (!service) {
+
+                    console.warn(
+                        "NO ACTIVE SERVICE"
+                    );
+
+                    resolve(null);
+
+                    return;
+                }
+
+                console.log(
+                    "ACTIVE SERVICE READY:",
+                    service
+                );
+
+                resolve(service);
+
+            }
         );
 
-        if (!user) {
-
-            console.warn(
-                "NO AUTHENTICATED FIREBASE USER"
-            );
-
-            return;
-        }
-
-        console.log(
-            "AUTHENTICATED FIREBASE USER:",
-            user.uid
-        );
-
-        const service =
-            await loadActiveService(user);
-
-        if (!service) {
-
-            console.warn(
-                "NO ACTIVE SERVICE"
-            );
-
-            return;
-        }
-
-        console.log(
-            "ACTIVE SERVICE READY:",
-            service
-        );
-
-    }
-);
+    });
 
 
 // ==========================================
@@ -285,6 +295,14 @@ async function getActiveService() {
         return activeService;
 
     }
+
+    const service =
+        await activeServiceReady;
+
+    return service;
+
+}
+
 
 
     const service =
@@ -1707,53 +1725,3 @@ window.startPresentation = async function() {
 window.exitPresentation = function () {
     Presentation.close();
 };
-
-onAuthStateChanged(
-    auth,
-    async function(user) {
-
-        console.log(
-            "AUTH STATE CHANGED:",
-            user
-        );
-
-
-        if (!user) {
-
-            console.warn(
-                "NO AUTHENTICATED FIREBASE USER"
-            );
-
-            return;
-
-        }
-
-
-        console.log(
-            "AUTHENTICATED FIREBASE USER:",
-            user.uid
-        );
-
-
-        const service =
-            await loadActiveService(user);
-
-
-        if (!service) {
-
-            console.warn(
-                "NO ACTIVE SERVICE"
-            );
-
-            return;
-
-        }
-
-
-        console.log(
-            "ACTIVE SERVICE READY:",
-            service
-        );
-
-    }
-);
