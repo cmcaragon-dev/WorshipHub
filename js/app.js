@@ -2070,31 +2070,8 @@ window.searchSongs = searchSongs;
 
 function getCurrentService() {
 
-    // First use the Firebase-loaded service
-    if (presentationService) {
-
-        return presentationService;
-
-    }
-
-    // Fallback to local services array
-    const serviceId =
-        localStorage.getItem("currentServiceId");
-
-    if (!serviceId) {
-
-        return null;
-
-    }
-
-    if (typeof services !== "undefined") {
-
-        return services.find(function(s) {
-
-            return String(s.id) === String(serviceId);
-
-        }) || null;
-
+    if (activeService) {
+        return activeService;
     }
 
     return null;
