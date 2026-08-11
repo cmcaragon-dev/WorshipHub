@@ -798,149 +798,397 @@ Object.assign(Service, {
     },
 
 
-    /* --------------------------------------
-       SAVE CURRENT SERVICE KEY
-    -------------------------------------- */
+/* --------------------------------------
+   SAVE CURRENT SERVICE KEY
+-------------------------------------- */
 
-   async saveCurrentServiceKey() {
+async saveCurrentServiceKey() {
 
-    let user =
-        firebaseUser || auth.currentUser;
+    console.log(
+        "================================"
+    );
+
+    console.log(
+        "SAVE SERVICE KEY STARTED"
+    );
+
+
+    /* ----------------------------------
+       GET FIREBASE USER
+    ---------------------------------- */
+
+    const user =
+        firebaseUser ||
+        auth.currentUser;
+
 
     if (!user) {
 
-        await activeServiceReady;
+        console.error(
+            "SAVE SERVICE KEY: NO AUTHENTICATED FIREBASE USER"
+        );
 
-        user =
-            firebaseUser || auth.currentUser;
-    }
-
-    if (!user) {
-
-        console.warn(
-            "No authenticated Firebase user."
+        alert(
+            "Firebase user is not authenticated. Please wait for login to complete."
         );
 
         return false;
+
     }
 
+
     console.log(
-        "SAVE SERVICE KEY USER:",
+        "FIREBASE USER:",
         user.uid
     );
 
-        try {
 
-        const serviceRef = doc(
-            db,
-            "users",
-            user.uid,
-            "services",
-            String(serviceId)
+    /* ----------------------------------
+       GET CURRENT SERVICE ID
+    ---------------------------------- */
+
+    const serviceId =
+        localStorage.getItem(
+            "currentServiceId"
         );
 
+
+    console.log(
+        "CURRENT SERVICE ID:",
+        serviceId
+    );
+
+
+    if (!serviceId) {
+
+        console.error(
+            "SAVE SERVICE KEY: NO currentServiceId"
+        );
+
+        alert(
+            "No active Service Planner service was found."
+        );
+
+        return false;
+
+    }
+
+
+    /* ----------------------------------
+       GET CURRENT SONG INDEX
+    ---------------------------------- */
+
+    const songIndex =
+        Number(
+            localStorage.getItem(
+                "currentSongIndex"
+            ) || 0
+        );
+
+
+    console.log(
+        "CURRENT SONG INDEX:",
+        songIndex
+    );
+
+
+    try {
+
+        /* ----------------------------------
+           FIRESTORE SERVICE REFERENCE
+        ---------------------------------- */
+
+        const serviceRef =
+            doc(
+                db,
+                "users",
+                user.uid,
+                "services",
+                String(serviceId)
+            );
+
+
+        console.log(
+            "FIRESTORE SERVICE PATH:",
+            `users/${user.uid}/services/${serviceId}`
+        );
+
+
+        /* ----------------------------------
+           GET SERVICE
+        ---------------------------------- */
+
         const snapshot =
-            await getDoc(serviceRef);
+            await getDoc(
+                serviceRef
+            );
+
 
         if (!snapshot.exists()) {
 
-            console.warn(
-                "Service does not exist:",
+            console.error(
+                "SERVICE DOES NOT EXIST:",
                 serviceId
             );
 
+            alert(
+                "The current service was not found in Firebase."
+            );
+
             return false;
+
         }
+
+
+        /* ----------------------------------
+           BUILD SERVICE OBJECT
+        ---------------------------------- */
 
         const service = {
-            id: snapshot.id,
+
+            id:
+                snapshot.id,
+
             ...snapshot.data()
+
         };
 
-        if (!Array.isArray(service.songs)) {
+
+        /* ----------------------------------
+           MAKE SURE SONGS EXISTS
+        ---------------------------------- */
+
+        if (
+            !Array.isArray(
+                service.songs
+            )
+        ) {
+
             service.songs = [];
+
         }
 
-        const songIndex =
-            Service.getSongIndex();
+
+        /* ----------------------------------
+           CHECK SONG INDEX
+        ---------------------------------- */
 
         if (
             songIndex < 0 ||
             songIndex >= service.songs.length
         ) {
 
-            console.warn(
-                "Current song was not found:",
+            console.error(
+                "INVALID SONG INDEX:",
                 songIndex
             );
 
+            alert(
+                "The current song could not be found in this service."
+            );
+
             return false;
+
         }
+
+
+        /* ----------------------------------
+           GET CURRENT SONG
+        ---------------------------------- */
 
         const serviceSong =
             service.songs[songIndex];
+
+
+        if (!serviceSong) {
+
+            console.error(
+                "CURRENT SERVICE SONG DOES NOT EXIST"
+            );
+
+            alert(
+                "Current song was not found."
+            );
+
+            return false;
+
+        }
+
+
+        console.log(
+            "CURRENT SERVICE SONG:",
+            serviceSong
+        );
+
+
+        /* ----------------------------------
+           GET SERVICE KEY FROM SCREEN
+        ---------------------------------- */
 
         const serviceKeyElement =
             document.getElementById(
                 "serviceKey"
             );
 
+
         if (!serviceKeyElement) {
 
+            console.error(
+                "ELEMENT #serviceKey NOT FOUND"
+            );
+
             alert(
-                "Service Key element not found."
+                "Service Key field was not found."
             );
 
             return false;
+
         }
 
+
         const newServiceKey =
-            serviceKeyElement.textContent.trim();
+            serviceKeyElement.textContent
+                .trim();
+
+
+        console.log(
+            "SERVICE KEY FROM SCREEN:",
+            newServiceKey
+        );
+
 
         if (!newServiceKey) {
+
+            console.error(
+                "SERVICE KEY IS EMPTY"
+            );
 
             alert(
                 "Service Key is empty."
             );
 
             return false;
+
         }
+
+
+        /* ----------------------------------
+           SAVE SERVICE KEY
+        ---------------------------------- */
 
         serviceSong.serviceKey =
             newServiceKey;
 
-        serviceSong.transpose =
-            Number(App.transpose || 0);
 
-        if (!serviceSong.originalKey) {
+        /* ----------------------------------
+           SAVE TRANSPOSE
+        ---------------------------------- */
+
+        serviceSong.transpose =
+            Number(
+                App.transpose || 0
+            );
+
+
+        /* ----------------------------------
+           PRESERVE ORIGINAL KEY
+        ---------------------------------- */
+
+        if (
+            !serviceSong.originalKey
+        ) {
 
             serviceSong.originalKey =
                 serviceSong.key ||
                 currentSong?.key ||
                 "";
+
         }
+
+
+        console.log(
+            "SERVICE SONG BEFORE SAVE:",
+            serviceSong
+        );
+
+
+        /* ----------------------------------
+           UPDATE FIREBASE
+        ---------------------------------- */
 
         await updateDoc(
             serviceRef,
             {
-                songs: service.songs
+                songs:
+                    service.songs
             }
         );
 
+
         console.log(
-            "SERVICE SAVED:",
-            service
+            "================================"
         );
 
         console.log(
-            "SONG SAVED:",
-            serviceSong
+            "SERVICE KEY SAVED TO FIREBASE"
         );
+
+        console.log(
+            "SERVICE ID:",
+            serviceId
+        );
+
+        console.log(
+            "SONG INDEX:",
+            songIndex
+        );
+
+        console.log(
+            "SERVICE KEY:",
+            newServiceKey
+        );
+
+        console.log(
+            "TRANSPOSE:",
+            serviceSong.transpose
+        );
+
+        console.log(
+            "================================"
+        );
+
+
+        /* ----------------------------------
+           VERIFY FIREBASE SAVE
+        ---------------------------------- */
+
+        const verifySnapshot =
+            await getDoc(
+                serviceRef
+            );
+
+
+        if (
+            verifySnapshot.exists()
+        ) {
+
+            const verifyData =
+                verifySnapshot.data();
+
+
+            console.log(
+                "FIREBASE VERIFIED SONG:",
+                verifyData.songs?.[songIndex]
+            );
+
+        }
+
 
         alert(
             "Service Key saved successfully: " +
             newServiceKey
         );
+
 
         return true;
 
@@ -948,19 +1196,30 @@ Object.assign(Service, {
     catch (error) {
 
         console.error(
-            "ERROR SAVING SERVICE KEY:",
+            "================================"
+        );
+
+        console.error(
+            "SAVE SERVICE KEY ERROR:",
             error
         );
 
-        alert(
-            "Unable to save Service Key."
+        console.error(
+            "================================"
         );
 
+
+        alert(
+            "Unable to save Service Key.\n\n" +
+            error.message
+        );
+
+
         return false;
+
     }
+
 },
-
-
     /* --------------------------------------
        TRANSPOSE
     -------------------------------------- */
