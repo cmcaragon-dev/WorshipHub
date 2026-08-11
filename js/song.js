@@ -28,6 +28,85 @@ import {
 // CURRENT SERVICE
 // ==========================================
 
+let presentationService = null;
+
+async function loadPresentationService() {
+
+    const serviceId =
+        localStorage.getItem("currentServiceId");
+
+    if (!serviceId) {
+        console.error("No currentServiceId found.");
+        return null;
+    }
+
+    if (!auth.currentUser) {
+        console.error("No authenticated Firebase user.");
+        return null;
+    }
+
+    try {
+
+        const serviceRef = doc(
+            db,
+            "users",
+            auth.currentUser.uid,
+            "services",
+            String(serviceId)
+        );
+
+        const snapshot =
+            await getDoc(serviceRef);
+
+        if (!snapshot.exists()) {
+
+            console.error(
+                "Service Planner not found:",
+                serviceId
+            );
+
+            return null;
+        }
+
+        presentationService = {
+            id: snapshot.id,
+            ...snapshot.data()
+        };
+
+        // Make sure songs always exists
+        presentationService.songs =
+            Array.isArray(presentationService.songs)
+                ? presentationService.songs
+                : [];
+
+        console.log(
+            "Presentation Service:",
+            presentationService
+        );
+
+        console.log(
+            "Service Name:",
+            presentationService.name
+        );
+
+        console.log(
+            "Service Songs:",
+            presentationService.songs
+        );
+
+        return presentationService;
+
+    }
+    catch (error) {
+
+        console.error(
+            "Error loading presentation service:",
+            error
+        );
+
+        return null;
+    }
+}
 let currentService = null;
 
 async function loadCurrentService() {
