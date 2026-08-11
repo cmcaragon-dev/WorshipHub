@@ -662,7 +662,7 @@ Object.assign(Service, {
         if (!service) {
 
             console.error(
-                "No active Service Planner."
+                "No active Service Planner found."
             );
 
             return null;
@@ -674,12 +674,12 @@ Object.assign(Service, {
         );
 
         return service;
+
     },
 
-});
 
     /* --------------------------------------
-       SONG INDEX
+       GET CURRENT SONG INDEX
     -------------------------------------- */
 
     getSongIndex() {
