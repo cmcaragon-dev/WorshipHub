@@ -1644,101 +1644,405 @@ async saveCurrentServiceKey() {
 
 const Presentation = {
 
-    start(){
+    /* --------------------------------------
+       START PRESENTATION
+    -------------------------------------- */
 
-        const overlay =
-        document.getElementById("presentationScreen");
+    async start() {
 
-        if(!overlay) return;
-
-        overlay.classList.add("show");
-
-        const title =
-        document.getElementById("presentationTitle");
-
-        const lyrics =
-        document.getElementById("presentationLyrics");
-
-        if(title){
-
-            title.innerText =
-            currentSong.title;
-
-        }
-
-        if(lyrics && App.lyrics){
-
-            lyrics.innerHTML =
-            App.lyrics.innerHTML;
-
-        }
-
-        this.update();
-
-        if(document.documentElement.requestFullscreen){
-
-            document.documentElement.requestFullscreen();
-
-        }
-
-    },
-
-
-    close(){
-
-        document
-        .getElementById("presentationScreen")
-        ?.classList.remove("show");
-
-        if(document.fullscreenElement){
-
-            document.exitFullscreen();
-
-        }
-
-    },
-
-
-    update(){
-
-        const service =
-        Service.getCurrent();
-
-        if(!service) return;
-
-        const index =
-        Service.getSongIndex();
-
-        document
-        .getElementById("presentationCounter")
-        ?.replaceChildren(
-
-            document.createTextNode(
-
-                `Song ${index+1} / ${service.songs.length}`
-
-            )
-
+        console.log(
+            "START PRESENTATION"
         );
 
-        const preview =
-        document.getElementById("nextSongPreview");
 
-        if(preview){
+        const overlay =
+            document.getElementById(
+                "presentationScreen"
+            );
 
-            preview.innerHTML =
-            index < service.songs.length-1
 
-            ? `Next : ${service.songs[index+1].title}`
+        if (!overlay) {
 
-            : "";
+            console.warn(
+                "presentationScreen not found."
+            );
+
+            return;
 
         }
+
+
+        /* ----------------------------------
+           GET CURRENT SERVICE
+        ---------------------------------- */
+
+        const service =
+            await Service.getCurrent();
+
+
+        if (!service) {
+
+            console.warn(
+                "No active service."
+            );
+
+            alert(
+                "No active service."
+            );
+
+            return;
+
+        }
+
+
+        /* ----------------------------------
+           GET CURRENT SONG
+        ---------------------------------- */
+
+        const index =
+            Service.getSongIndex();
+
+
+        if (
+            !Array.isArray(
+                service.songs
+            )
+        ) {
+
+            console.error(
+                "Service songs is not an array:",
+                service
+            );
+
+            alert(
+                "This service has no valid songs."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            index < 0 ||
+            index >= service.songs.length
+        ) {
+
+            console.error(
+                "Invalid song index:",
+                index
+            );
+
+            alert(
+                "Current song could not be found."
+            );
+
+            return;
+
+        }
+
+
+        const song =
+            service.songs[index];
+
+
+        if (!song) {
+
+            console.error(
+                "Current service song is missing."
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "PRESENTATION SERVICE:",
+            service
+        );
+
+        console.log(
+            "PRESENTATION SONG:",
+            song
+        );
+
+
+        /* ----------------------------------
+           SHOW PRESENTATION
+        ---------------------------------- */
+
+        overlay.classList.add(
+            "show"
+        );
+
+
+        /* ----------------------------------
+           TITLE
+        ---------------------------------- */
+
+        const title =
+            document.getElementById(
+                "presentationTitle"
+            );
+
+
+        if (title) {
+
+            title.innerText =
+                song.title ||
+                currentSong?.title ||
+                "";
+
+        }
+
+
+        /* ----------------------------------
+           LYRICS
+        ---------------------------------- */
+
+        const lyrics =
+            document.getElementById(
+                "presentationLyrics"
+            );
+
+
+        if (
+            lyrics &&
+            App.lyrics
+        ) {
+
+            lyrics.innerHTML =
+                App.lyrics.innerHTML;
+
+        }
+
+
+        /* ----------------------------------
+           UPDATE PRESENTATION
+        ---------------------------------- */
+
+        await this.update();
+
+
+        /* ----------------------------------
+           FULLSCREEN
+        ---------------------------------- */
+
+        /*
+         * Fullscreen must normally be called
+         * directly from a user interaction.
+         *
+         * Therefore failure is safely ignored.
+         */
+
+        if (
+            document.documentElement
+                .requestFullscreen
+        ) {
+
+            try {
+
+                await document
+                    .documentElement
+                    .requestFullscreen();
+
+            }
+            catch (error) {
+
+                console.warn(
+                    "Fullscreen could not be started:",
+                    error
+                );
+
+            }
+
+        }
+
+    },
+
+
+    /* --------------------------------------
+       CLOSE PRESENTATION
+    -------------------------------------- */
+
+    close() {
+
+        const overlay =
+            document.getElementById(
+                "presentationScreen"
+            );
+
+
+        if (overlay) {
+
+            overlay.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        if (
+            document.fullscreenElement
+        ) {
+
+            document
+                .exitFullscreen()
+                .catch(
+                    function (error) {
+
+                        console.warn(
+                            "Unable to exit fullscreen:",
+                            error
+                        );
+
+                    }
+                );
+
+        }
+
+    },
+
+
+    /* --------------------------------------
+       UPDATE PRESENTATION
+    -------------------------------------- */
+
+    async update() {
+
+        console.log(
+            "PRESENTATION UPDATE"
+        );
+
+
+        /* ----------------------------------
+           GET CURRENT SERVICE
+        ---------------------------------- */
+
+        const service =
+            await Service.getCurrent();
+
+
+        if (!service) {
+
+            console.warn(
+                "Presentation update: no service."
+            );
+
+            return;
+
+        }
+
+
+        /* ----------------------------------
+           CHECK SONGS
+        ---------------------------------- */
+
+        if (
+            !Array.isArray(
+                service.songs
+            )
+        ) {
+
+            console.error(
+                "Presentation update: service.songs is not an array.",
+                service
+            );
+
+            return;
+
+        }
+
+
+        /* ----------------------------------
+           GET CURRENT INDEX
+        ---------------------------------- */
+
+        const index =
+            Service.getSongIndex();
+
+
+        /* ----------------------------------
+           PRESENTATION COUNTER
+        ---------------------------------- */
+
+        const counter =
+            document.getElementById(
+                "presentationCounter"
+            );
+
+
+        if (counter) {
+
+            counter.replaceChildren(
+
+                document.createTextNode(
+
+                    `Song ${index + 1} / ${service.songs.length}`
+
+                )
+
+            );
+
+        }
+
+
+        /* ----------------------------------
+           NEXT SONG PREVIEW
+        ---------------------------------- */
+
+        const preview =
+            document.getElementById(
+                "nextSongPreview"
+            );
+
+
+        if (preview) {
+
+            if (
+                index <
+                service.songs.length - 1
+            ) {
+
+                const nextSong =
+                    service.songs[index + 1];
+
+
+                preview.innerText =
+                    nextSong
+                        ? `Next : ${nextSong.title || ""}`
+                        : "";
+
+            }
+            else {
+
+                preview.innerText =
+                    "";
+
+            }
+
+        }
+
+
+        console.log(
+            "PRESENTATION UPDATED:",
+            {
+                service:
+                    service.name,
+
+                songIndex:
+                    index,
+
+                totalSongs:
+                    service.songs.length
+
+            }
+        );
 
     }
 
 };
-
 
 /* ==========================================================
    UTILITIES
