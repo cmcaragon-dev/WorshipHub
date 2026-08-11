@@ -841,7 +841,7 @@ Object.assign(Service, {
         /* ----------------------------------
            FIND CURRENT SERVICE
         ---------------------------------- */
-
+async function init() {
         const service =
             services.find(function(s) {
 
@@ -860,7 +860,7 @@ Object.assign(Service, {
 
         }
 
-
+}
         /* ----------------------------------
            FIND CURRENT SONG
         ---------------------------------- */
