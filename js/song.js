@@ -25,7 +25,7 @@ import {
 let activeService = null;
 let currentService = null;
 let presentationService = null;
-
+let firebaseUser = null;
 /* --------------------------------------
    LOAD ACTIVE SERVICE FROM FIREBASE
 -------------------------------------- */
@@ -229,47 +229,49 @@ const activeServiceReady =
 new Promise(function(resolve) {
 
     onAuthStateChanged(
-        auth,
-        async function(user) {
+    auth,
+    async function (user) {
 
-            console.log(
-                "Firebase Auth State:",
-                user
+        firebaseUser = user;
+
+        console.log(
+            "AUTH STATE:",
+            user ? user.uid : "NO USER"
+        );
+
+        if (!user) {
+
+            console.warn(
+                "NO AUTHENTICATED FIREBASE USER"
             );
 
-
-            if (!user) {
-
-                console.error(
-                    "No authenticated Firebase user."
-                );
-
-                resolve(null);
-
-                return;
-            }
-
-
-            console.log(
-                "Firebase authentication ready."
-            );
-
-            console.log(
-                "UID:",
-                user.uid
-            );
-
-
-            const service =
-                await loadActiveService(user);
-
-
-            resolve(service);
-
+            return;
         }
-    );
 
-});
+        console.log(
+            "AUTHENTICATED FIREBASE USER:",
+            user.uid
+        );
+
+        const service =
+            await loadActiveService(user);
+
+        if (!service) {
+
+            console.warn(
+                "NO ACTIVE SERVICE"
+            );
+
+            return;
+        }
+
+        console.log(
+            "ACTIVE SERVICE READY:",
+            service
+        );
+
+    }
+);
 
 
 // ==========================================
@@ -763,64 +765,80 @@ Object.assign(Service, {
 
     async saveCurrentServiceKey() {
 
-        if (!auth.currentUser) {
+    /* ----------------------------------
+       GET AUTHENTICATED USER
+    ---------------------------------- */
 
-            console.warn(
-                "No authenticated Firebase user."
-            );
+    const user =
+        firebaseUser || auth.currentUser;
 
-            return false;
+    if (!user) {
+
+        console.warn(
+            "No authenticated Firebase user."
+        );
+
+        return false;
+    }
+
+    console.log(
+        "SAVE SERVICE KEY USER:",
+        user.uid
+    );
+
+
+    /* ----------------------------------
+       GET CURRENT SERVICE ID
+    ---------------------------------- */
+
+    const serviceId =
+        localStorage.getItem(
+            "currentServiceId"
+        );
+
+    if (!serviceId) {
+
+        console.warn(
+            "No currentServiceId found."
+        );
+
+        return false;
+    }
+
+
+    /* ----------------------------------
+       FIRESTORE SERVICE REFERENCE
+    ---------------------------------- */
+
+    const serviceRef = doc(
+        db,
+        "users",
+        user.uid,
+        "services",
+        String(serviceId)
+    );
+
+/* --------------------------------------
+   SAVE SERVICE KEY BUTTON
+-------------------------------------- */
+
+const saveServiceKey =
+    document.getElementById(
+        "saveServiceKey"
+    );
+
+if (saveServiceKey) {
+
+    saveServiceKey.addEventListener(
+        "click",
+        async function () {
+
+            await Service.saveCurrentServiceKey();
+
         }
+    );
 
-        const serviceId =
-            localStorage.getItem(
-                "currentServiceId"
-            );
-
-        if (!serviceId) {
-
-            console.warn(
-                "No currentServiceId found."
-            );
-
-            return false;
-        }
-
-        const songIndex =
-            Service.getSongIndex();
-
-        try {
-
-            /* ----------------------------------
-               GET SERVICE
-            ---------------------------------- */
-
-            const serviceRef = doc(
-                db,
-                "users",
-                auth.currentUser.uid,
-                "services",
-                String(serviceId)
-            );
-
-            const snapshot =
-                await getDoc(serviceRef);
-
-            if (!snapshot.exists()) {
-
-                console.warn(
-                    "Service does not exist:",
-                    serviceId
-                );
-
-                return false;
-            }
-
-            const service = {
-                id: snapshot.id,
-                ...snapshot.data()
-            };
-
+}
             /* ----------------------------------
                MAKE SURE SONGS EXISTS
             ---------------------------------- */
@@ -1407,29 +1425,6 @@ Object.assign(Service, {
     }
 
 });
-
-
-/* --------------------------------------
-   SAVE SERVICE KEY BUTTON
--------------------------------------- */
-
-const saveServiceKey =
-    document.getElementById(
-        "saveServiceKey"
-    );
-
-if (saveServiceKey) {
-
-    saveServiceKey.addEventListener(
-        "click",
-        async function () {
-
-            await Service.saveCurrentServiceKey();
-
-        }
-    );
-
-}
 
 /* ==========================================================
    PRESENTATION
