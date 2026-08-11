@@ -26,20 +26,38 @@ let activeService = null;
 let currentService = null;
 let presentationService = null;
 
-
-// ==========================================
-// LOAD ACTIVE SERVICE
-// ==========================================
+/* --------------------------------------
+   LOAD ACTIVE SERVICE FROM FIREBASE
+-------------------------------------- */
 
 async function loadActiveService(user) {
 
+    /* ----------------------------------
+       GET FIREBASE USER
+    ---------------------------------- */
+
+    if (!user) {
+
+        user = auth.currentUser;
+
+    }
+
+
+    /* ----------------------------------
+       GET CURRENT SERVICE ID
+    ---------------------------------- */
+
     const serviceId =
-        localStorage.getItem("currentServiceId");
+        localStorage.getItem(
+            "currentServiceId"
+        );
+
 
     console.log(
         "READING currentServiceId:",
         serviceId
     );
+
 
     if (!serviceId) {
 
@@ -48,8 +66,13 @@ async function loadActiveService(user) {
         );
 
         return null;
+
     }
 
+
+    /* ----------------------------------
+       CHECK FIREBASE AUTHENTICATION
+    ---------------------------------- */
 
     if (!user) {
 
@@ -58,6 +81,7 @@ async function loadActiveService(user) {
         );
 
         return null;
+
     }
 
 
@@ -68,6 +92,10 @@ async function loadActiveService(user) {
 
 
     try {
+
+        /* ----------------------------------
+           FIRESTORE SERVICE REFERENCE
+        ---------------------------------- */
 
         const serviceRef = doc(
             db,
@@ -84,6 +112,10 @@ async function loadActiveService(user) {
         );
 
 
+        /* ----------------------------------
+           GET SERVICE
+        ---------------------------------- */
+
         const snapshot =
             await getDoc(serviceRef);
 
@@ -96,8 +128,13 @@ async function loadActiveService(user) {
             );
 
             return null;
+
         }
 
+
+        /* ----------------------------------
+           BUILD ACTIVE SERVICE
+        ---------------------------------- */
 
         activeService = {
 
@@ -108,7 +145,10 @@ async function loadActiveService(user) {
         };
 
 
-        // Make sure songs always exists
+        /* ----------------------------------
+           MAKE SURE SONGS EXISTS
+        ---------------------------------- */
+
         if (
             !Array.isArray(
                 activeService.songs
@@ -120,6 +160,10 @@ async function loadActiveService(user) {
         }
 
 
+        /* ----------------------------------
+           SET SERVICE REFERENCES
+        ---------------------------------- */
+
         currentService =
             activeService;
 
@@ -127,6 +171,10 @@ async function loadActiveService(user) {
         presentationService =
             activeService;
 
+
+        /* ----------------------------------
+           LOG RESULT
+        ---------------------------------- */
 
         console.log(
             "================================"
@@ -159,7 +207,7 @@ async function loadActiveService(user) {
         return activeService;
 
     }
-    catch(error) {
+    catch (error) {
 
         console.error(
             "LOAD ACTIVE SERVICE ERROR:",
@@ -1750,45 +1798,43 @@ window.exitPresentation = function () {
     Presentation.close();
 };
 
-onAuthStateChanged(
-    auth,
-    async function(user) {
+onAuthStateChanged(auth, async (user) => {
 
-        if (!user) {
+    console.log(
+        "FIREBASE AUTH STATE:",
+        user ? user.uid : "NO USER"
+    );
 
-            console.error(
-                "USER IS NOT LOGGED IN"
-            );
+    if (!user) {
 
-            return;
-        }
-
-        console.log(
-            "AUTH READY:",
-            user.uid
+        console.warn(
+            "NO AUTHENTICATED FIREBASE USER"
         );
 
-        const service =
-            await loadActiveService();
+        return;
+    }
 
-        if (!service) {
+    console.log(
+        "AUTHENTICATED USER:",
+        user.uid
+    );
 
-            console.error(
-                "NO ACTIVE SERVICE"
-            );
+    try {
 
-            return;
-        }
-
-        console.log(
-            "ACTIVE SERVICE READY:",
-            service.name
-        );
+        await loadActiveService();
 
         console.log(
-            "SONG COUNT:",
-            service.songs.length
+            "ACTIVE SERVICE LOADED"
         );
 
     }
-);
+    catch (error) {
+
+        console.error(
+            "ERROR LOADING ACTIVE SERVICE:",
+            error
+        );
+
+    }
+
+});
