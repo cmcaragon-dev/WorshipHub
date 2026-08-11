@@ -244,21 +244,75 @@ new Promise(function(resolve) {
 
 async function getActiveService() {
 
-    // If already loaded, use it
-    if (activeService) {
+    const serviceId =
+        localStorage.getItem("currentServiceId");
 
-        return activeService;
+    if (!serviceId) {
 
+        console.error(
+            "No currentServiceId."
+        );
+
+        return null;
     }
 
+    const user = auth.currentUser;
 
-    // Otherwise wait for Firebase
-    activeService =
-        await activeServiceReady;
+    if (!user) {
 
+        console.error(
+            "No authenticated Firebase user."
+        );
 
-    return activeService;
+        return null;
+    }
 
+    try {
+
+        const serviceRef = doc(
+            db,
+            "users",
+            user.uid,
+            "services",
+            String(serviceId)
+        );
+
+        const snapshot =
+            await getDoc(serviceRef);
+
+        if (!snapshot.exists()) {
+
+            console.error(
+                "Service not found:",
+                serviceId
+            );
+
+            return null;
+        }
+
+        const service = {
+            id: snapshot.id,
+            ...snapshot.data()
+        };
+
+        if (!Array.isArray(service.songs)) {
+            service.songs = [];
+        }
+
+        activeService = service;
+
+        return service;
+
+    }
+    catch(error) {
+
+        console.error(
+            "Error loading active service:",
+            error
+        );
+
+        return null;
+    }
 }
 
 /* ==========================================================
@@ -598,28 +652,31 @@ Object.assign(Service, {
 
     async getCurrent() {
 
-               const id = Number(
-            localStorage.getItem("currentServiceId")
+        console.log(
+            "Service.getCurrent()"
         );
 
-        if (!id) {
+        const service =
+            await getActiveService();
+
+        if (!service) {
+
+            console.error(
+                "No active Service Planner."
+            );
+
             return null;
         }
 
-        const services =
-            await loadServices("guest");
+        console.log(
+            "Current Service:",
+            service
+        );
 
-        if (!Array.isArray(services)) {
-            return null;
-        }
-
-        return services.find(function(service) {
-
-            return Number(service.id) === id;
-
-        }) || null;
+        return service;
     },
 
+});
 
     /* --------------------------------------
        SONG INDEX
