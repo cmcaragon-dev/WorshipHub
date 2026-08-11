@@ -1388,43 +1388,65 @@ document.getElementById("closeSongPicker");
 let selectedService = null;
 let selectedPlaylist = null;
 
-function renderSongPicker(list){
 
-    songPickerList.innerHTML="";
+function renderSongPicker(list) {
 
-    list.forEach(song=>{
+    if (!songPickerList) {
+        console.error("songPickerList not found.");
+        return;
+    }
 
-        songPickerList.innerHTML+=`
+    songPickerList.innerHTML = "";
 
-        <div class="song-picker-card">
+    // Songs already inside the selected Service Planner
+    const addedSongs =
+        selectedService &&
+        Array.isArray(selectedService.songs)
+            ? selectedService.songs
+            : [];
 
-            <div class="song-picker-info">
+    list.forEach(function(song) {
 
-                <div class="song-picker-title">
+        const alreadyAdded =
+            addedSongs.some(function(serviceSong) {
 
-                    ${song.title}
+                return serviceSong.file === song.file;
+
+            });
+
+        songPickerList.innerHTML += `
+
+            <div class="song-picker-card">
+
+                <div class="song-picker-info">
+
+                    <div class="song-picker-title">
+                        ${song.title || "Untitled Song"}
+                    </div>
+
+                    <div class="song-picker-artist">
+                        ${song.artist || ""}
+                    </div>
 
                 </div>
 
-                <div class="song-picker-artist">
+                <button
+                    class="song-picker-add-btn ${alreadyAdded ? "added" : ""}"
+                    ${alreadyAdded ? "disabled" : ""}
+                    onclick="selectSong('${song.file}')">
 
-                    ${song.artist}
+                    ${alreadyAdded ? "✓ Added" : "Add"}
 
-                </div>
+                </button>
 
             </div>
-
-           <button onclick="selectSong('${song.file}')">
-    Add
-</button>
-
-        </div>
 
         `;
 
     });
 
 }
+
 async function selectSong(file) {
 
     if (!currentUser) {
@@ -1438,7 +1460,9 @@ async function selectSong(file) {
     }
 
     const song = songs.find(function(s) {
+
         return s.file === file;
+
     });
 
     if (!song) {
@@ -1446,60 +1470,79 @@ async function selectSong(file) {
         return;
     }
 
-    // Make sure songs is an array
+    // Make sure songs exists
     if (!Array.isArray(selectedService.songs)) {
+
         selectedService.songs = [];
+
     }
 
-    // Prevent duplicate songs
-    const exists = selectedService.songs.some(function(s) {
-        return s.file === song.file;
-    });
+    // Check if already added
+    const exists =
+        selectedService.songs.some(function(s) {
+
+            return s.file === song.file;
+
+        });
 
     if (exists) {
-        alert("This song is already in the Service Planner.");
+
         return;
+
     }
 
-    // Create song object
+    // Create service song
     const serviceSong = {
 
-        id: song.id || String(Date.now()),
+        id:
+            song.id ||
+            String(Date.now()),
 
-        title: song.title || "",
+        title:
+            song.title || "",
 
-        artist: song.artist || "",
+        artist:
+            song.artist || "",
 
-        file: song.file || "",
+        file:
+            song.file || "",
 
-        category: song.category || "",
+        category:
+            song.category || "",
 
-        language: song.language || "",
+        language:
+            song.language || "",
 
-        key: song.key || "",
+        key:
+            song.key || "",
 
-        originalKey: song.key || "",
+        originalKey:
+            song.key || "",
 
-        serviceKey: song.key || "",
+        serviceKey:
+            song.key || "",
 
         transpose: 0,
 
-        youtube: song.youtube || ""
+        youtube:
+            song.youtube || ""
 
     };
 
-    // Add song to service
-    selectedService.songs.push(serviceSong);
+    // Add song locally
+    selectedService.songs.push(
+        serviceSong
+    );
 
     try {
 
-        // Save service to Firebase
+        // Save to Firebase
         await saveService(
             currentUser.uid,
             selectedService
         );
 
-        // Update services[] with latest service
+        // Update services array
         const serviceIndex =
             services.findIndex(function(s) {
 
@@ -1512,7 +1555,9 @@ async function selectSong(file) {
 
             services[serviceIndex] = {
                 ...selectedService,
-                songs: [...selectedService.songs]
+                songs: [
+                    ...selectedService.songs
+                ]
             };
 
         }
@@ -1523,10 +1568,11 @@ async function selectSong(file) {
         updateDashboard();
 
         // IMPORTANT:
-        // DO NOT CLOSE SONG PICKER HERE
+        // Refresh picker WITHOUT closing it
+        renderSongPicker(songs);
 
         console.log(
-            "Song added successfully:",
+            "Song added:",
             song.title
         );
 
@@ -1538,6 +1584,14 @@ async function selectSong(file) {
             error
         );
 
+        // Remove local song if Firebase save failed
+        selectedService.songs =
+            selectedService.songs.filter(function(s) {
+
+                return s.file !== song.file;
+
+            });
+
         alert(
             "Unable to save song."
         );
@@ -1547,6 +1601,7 @@ async function selectSong(file) {
 }
 
 window.selectSong = selectSong;
+
 	
 async function startService(serviceId) {
 
