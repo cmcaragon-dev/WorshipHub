@@ -1190,12 +1190,9 @@ function renderServices() {
 
             </button>
 
-            <button
-                onclick="startService('${service.id}')">
-
-                ▶ Start Service
-
-            </button>
+           <button onclick="startService('${service.id}')">
+    ▶ Start Service
+</button>
 
             <button
                 onclick="renameService('${service.id}')">
@@ -1319,10 +1316,8 @@ function renderServices() {
 
         </button>
 
-       <button onclick="startService('${service.id}')">
-
+      <button onclick="startService('${service.id}')">
     ▶ Start Service
-
 </button>
 
         <button onclick="renameService(${service.id})">
@@ -1615,16 +1610,21 @@ closeSongPicker.onclick = function(){
 
 async function startService(serviceId) {
 
-    const service = services.find(function (s) {
+    console.log("START SERVICE CLICKED");
+    console.log("Service ID:", serviceId);
+    console.log("Services:", services);
+
+    const service = services.find(function(s) {
         return String(s.id) === String(serviceId);
     });
 
     if (!service) {
         alert("Service not found.");
+        console.error("Service not found:", serviceId);
         return;
     }
 
-    if (!service.songs || service.songs.length === 0) {
+    if (!Array.isArray(service.songs) || service.songs.length === 0) {
         alert("This service has no songs.");
         return;
     }
@@ -1639,11 +1639,6 @@ async function startService(serviceId) {
     );
 
     localStorage.setItem(
-        "currentServiceName",
-        service.name || "Service Planner"
-    );
-
-    localStorage.setItem(
         "currentSongIndex",
         "0"
     );
@@ -1653,10 +1648,27 @@ async function startService(serviceId) {
         "true"
     );
 
-    console.log("STARTING SERVICE:");
-    console.log("ID:", service.id);
-    console.log("NAME:", service.name);
-    console.log("SONGS:", service.songs);
+    // IMPORTANT:
+    // Save the service name too
+    localStorage.setItem(
+        "currentServiceName",
+        service.name || ""
+    );
+
+    console.log(
+        "ACTIVE SERVICE SAVED:",
+        localStorage.getItem("currentServiceId")
+    );
+
+    console.log(
+        "ACTIVE SERVICE NAME:",
+        localStorage.getItem("currentServiceName")
+    );
+
+    console.log(
+        "ACTIVE SERVICE:",
+        service
+    );
 
     // ==========================================
     // OPEN FIRST SONG
@@ -1665,18 +1677,25 @@ async function startService(serviceId) {
     const firstSong = service.songs[0];
 
     if (!firstSong || !firstSong.file) {
+
         alert("First song file not found.");
+
         return;
     }
 
     const filename =
         String(firstSong.file)
-            .trim()
-            .split("/")
-            .pop();
+        .trim()
+        .split("/")
+        .pop();
 
     const url =
         "/WorshipHub/songs/" + filename;
+
+    console.log(
+        "Opening presentation:",
+        url
+    );
 
     window.location.assign(url);
 }
@@ -2072,29 +2091,28 @@ function getCurrentService() {
         localStorage.getItem("currentServiceId");
 
     console.log(
-        "Current Service ID:",
+        "CURRENT SERVICE ID:",
         serviceId
     );
 
-    console.log(
-        "Services:",
-        services
-    );
-
     if (!serviceId) {
+
+        console.log(
+            "No currentServiceId in localStorage."
+        );
+
         return null;
     }
 
     const service =
-        services.find(function (s) {
+        services.find(function(s) {
 
-            return String(s.id) ===
-                   String(serviceId);
+            return String(s.id) === String(serviceId);
 
         });
 
     console.log(
-        "Found Service:",
+        "CURRENT SERVICE FOUND:",
         service
     );
 
