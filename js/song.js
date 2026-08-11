@@ -576,25 +576,78 @@ function getTransposedKey(key,step){
 
 Object.assign(Service, {
 
+    /* --------------------------------------
+       GET CURRENT SERVICE FROM FIREBASE
+    -------------------------------------- */
     async getCurrent() {
 
-        const service =
-            await getActiveService();
+        const id = localStorage.getItem("currentServiceId");
 
-        if (!service) {
+        if (!id) {
+            console.warn("No currentServiceId found.");
+            return null;
+        }
+
+        if (!auth.currentUser) {
+            console.warn("No authenticated Firebase user.");
+            return null;
+        }
+
+        try {
+
+            const serviceRef = doc(
+                db,
+                "users",
+                auth.currentUser.uid,
+                "services",
+                String(id)
+            );
+
+            const snapshot = await getDoc(serviceRef);
+
+            if (!snapshot.exists()) {
+
+                console.warn(
+                    "Service not found:",
+                    id
+                );
+
+                return null;
+            }
+
+            const service = {
+                id: snapshot.id,
+                ...snapshot.data()
+            };
+
+            /* Always make sure songs exists */
+            if (!Array.isArray(service.songs)) {
+                service.songs = [];
+            }
+
+            console.log(
+                "Current Service:",
+                service
+            );
+
+            return service;
+
+        }
+        catch (error) {
 
             console.error(
-                "No active Service Planner."
+                "Error loading current service:",
+                error
             );
 
             return null;
         }
-
-        return service;
-
     },
 
 
+    /* --------------------------------------
+       GET CURRENT SONG INDEX
+    -------------------------------------- */
     getSongIndex() {
 
         return Number(
@@ -606,66 +659,164 @@ Object.assign(Service, {
     },
 
 
+    /* --------------------------------------
+       SET CURRENT SONG INDEX
+    -------------------------------------- */
+    setSongIndex(index) {
+
+        localStorage.setItem(
+            "currentSongIndex",
+            String(index)
+        );
+
+    },
+
+
+    /* --------------------------------------
+       GET CURRENT SONG
+    -------------------------------------- */
     async getCurrentSong() {
 
         const service =
-            await getActiveService();
+            await Service.getCurrent();
 
         if (!service) {
             return null;
         }
 
+        if (!Array.isArray(service.songs)) {
+            return null;
+        }
+
         const index =
-            this.getSongIndex();
+            Service.getSongIndex();
 
-        return service.songs[index] || null;
+        if (
+            index < 0 ||
+            index >= service.songs.length
+        ) {
+            return null;
+        }
 
-    }
+        return service.songs[index];
 
-},
+    },
+
 
     /* --------------------------------------
-       SAVE TRANSPOSED SERVICE KEY
+       SAVE CURRENT SERVICE KEY
     -------------------------------------- */
+    async saveCurrentServiceKey(
+        songId,
+        serviceKey
+    ) {
 
-    async saveCurrentServiceKey() {
+        if (!auth.currentUser) {
 
-        console.log(
-            "========== SAVE SERVICE KEY =========="
-        );
+            console.warn(
+                "No authenticated Firebase user."
+            );
 
-        const serviceId = Number(
+            return false;
+        }
+
+        const serviceId =
             localStorage.getItem(
                 "currentServiceId"
-            )
-        );
-
-        const songIndex = Number(
-            localStorage.getItem(
-                "currentSongIndex"
-            ) || 0
-        );
-
-        console.log(
-            "Service ID:",
-            serviceId
-        );
-
-        console.log(
-            "Song Index:",
-            songIndex
-        );
-
+            );
 
         if (!serviceId) {
 
-            alert(
-                "No active Service Planner service."
+            console.warn(
+                "No currentServiceId found."
             );
 
-            return;
+            return false;
+        }
+
+        try {
+
+            const serviceRef = doc(
+                db,
+                "users",
+                auth.currentUser.uid,
+                "services",
+                String(serviceId)
+            );
+
+            const snapshot =
+                await getDoc(serviceRef);
+
+            if (!snapshot.exists()) {
+
+                console.warn(
+                    "Service does not exist:",
+                    serviceId
+                );
+
+                return false;
+            }
+
+            const service = {
+                id: snapshot.id,
+                ...snapshot.data()
+            };
+
+            if (!Array.isArray(service.songs)) {
+                service.songs = [];
+            }
+
+            const songIndex =
+                service.songs.findIndex(
+                    function(song) {
+
+                        return String(song.id) ===
+                               String(songId);
+
+                    }
+                );
+
+            if (songIndex === -1) {
+
+                console.warn(
+                    "Song not found in service:",
+                    songId
+                );
+
+                return false;
+            }
+
+            service.songs[songIndex].serviceKey =
+                serviceKey;
+
+            await updateDoc(
+                serviceRef,
+                {
+                    songs: service.songs
+                }
+            );
+
+            console.log(
+                "Service key saved:",
+                serviceKey
+            );
+
+            return true;
 
         }
+        catch (error) {
+
+            console.error(
+                "Error saving service key:",
+                error
+            );
+
+            return false;
+        }
+
+    }
+
+});
 
 
         /* ----------------------------------
