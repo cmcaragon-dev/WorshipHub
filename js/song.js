@@ -1722,8 +1722,61 @@ window.stopService = function () {
     Service.stop();
 };
 
-window.startPresentation = function () {
-    Presentation.start();
+window.startPresentation = async function() {
+
+    console.log(
+        "START PRESENTATION"
+    );
+
+
+    const service =
+        await getActiveService();
+
+
+    if (!service) {
+
+        alert(
+            "No Active Service."
+        );
+
+        console.error(
+            "Service Planner service not found."
+        );
+
+        return;
+    }
+
+
+    console.log(
+        "STARTING SERVICE:",
+        service.name
+    );
+
+
+    console.log(
+        "SERVICE SONGS:",
+        service.songs
+    );
+
+
+    if (
+        !Array.isArray(service.songs) ||
+        service.songs.length === 0
+    ) {
+
+        alert(
+            "This Service Planner has no songs."
+        );
+
+        return;
+    }
+
+
+    // ======================================
+    // YOUR EXISTING PRESENTATION CODE
+    // GOES BELOW THIS LINE
+    // ======================================
+
 };
 
 window.exitPresentation = function () {
