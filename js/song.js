@@ -27,9 +27,113 @@ import {
 // ==========================================
 // CURRENT SERVICE
 // ==========================================
-
+let activeService = null;
 let presentationService = null;
 
+async function loadActiveService() {
+
+    const serviceId =
+        localStorage.getItem("currentServiceId");
+
+    console.log(
+        "READING currentServiceId:",
+        serviceId
+    );
+
+    if (!serviceId) {
+
+        console.error(
+            "NO currentServiceId IN LOCAL STORAGE"
+        );
+
+        return null;
+    }
+
+    const user = auth.currentUser;
+
+    if (!user) {
+
+        console.error(
+            "NO FIREBASE USER"
+        );
+
+        return null;
+    }
+
+    console.log(
+        "FIREBASE USER:",
+        user.uid
+    );
+
+    try {
+
+        const serviceRef = doc(
+            db,
+            "users",
+            user.uid,
+            "services",
+            String(serviceId)
+        );
+
+        console.log(
+            "READING FIRESTORE SERVICE:",
+            `users/${user.uid}/services/${serviceId}`
+        );
+
+        const snapshot =
+            await getDoc(serviceRef);
+
+        if (!snapshot.exists()) {
+
+            console.error(
+                "SERVICE DOES NOT EXIST:",
+                serviceId
+            );
+
+            return null;
+        }
+
+        activeService = {
+            id: snapshot.id,
+            ...snapshot.data()
+        };
+
+        if (!Array.isArray(activeService.songs)) {
+            activeService.songs = [];
+        }
+
+        console.log(
+            "========== ACTIVE SERVICE =========="
+        );
+
+        console.log(
+            "ID:",
+            activeService.id
+        );
+
+        console.log(
+            "NAME:",
+            activeService.name
+        );
+
+        console.log(
+            "SONGS:",
+            activeService.songs
+        );
+
+        return activeService;
+
+    }
+    catch(error) {
+
+        console.error(
+            "LOAD ACTIVE SERVICE ERROR:",
+            error
+        );
+
+        return null;
+    }
+}
 async function loadCurrentServiceFromFirebase() {
 
     const serviceId =
@@ -128,90 +232,7 @@ async function loadCurrentServiceFromFirebase() {
 }
 let currentService = null;
 
-async function loadCurrentService() {
 
-    const serviceId =
-        localStorage.getItem("currentServiceId");
-
-    if (!serviceId) {
-
-        console.error(
-            "No currentServiceId found."
-        );
-
-        return null;
-    }
-
-    console.log(
-        "Loading Service Planner ID:",
-        serviceId
-    );
-
-    // Get the currently stored user
-    const savedUser =
-        JSON.parse(
-            localStorage.getItem("firebaseUser") || "null"
-        );
-
-    if (!savedUser || !savedUser.uid) {
-
-        console.error(
-            "Firebase user not found."
-        );
-
-        return null;
-    }
-
-    try {
-
-        const serviceRef =
-            doc(
-                db,
-                "users",
-                savedUser.uid,
-                "services",
-                String(serviceId)
-            );
-
-        const snapshot =
-            await getDoc(serviceRef);
-
-        if (!snapshot.exists()) {
-
-            console.error(
-                "Service Planner not found:",
-                serviceId
-            );
-
-            return null;
-        }
-
-        currentService = {
-
-            id: snapshot.id,
-
-            ...snapshot.data()
-
-        };
-
-        console.log(
-            "CURRENT SERVICE:",
-            currentService
-        );
-
-        return currentService;
-
-    }
-    catch (error) {
-
-        console.error(
-            "Error loading current Service Planner:",
-            error
-        );
-
-        return null;
-    }
-}
 onAuthStateChanged(
     auth,
     async function(user) {
