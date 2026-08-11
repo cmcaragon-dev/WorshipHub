@@ -1930,8 +1930,3 @@ PLAYLIST BUTTONS
 .song-picker-add-btn:disabled {
     pointer-events: none;
 }
-.close-song-picker {
-    cursor: pointer;
-    position: relative;
-    z-index: 1000;
-}
