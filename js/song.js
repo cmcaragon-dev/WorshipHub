@@ -798,7 +798,7 @@ Object.assign(Service, {
 
     },
 
-```javascript
+
 /* --------------------------------------
    SAVE CURRENT SERVICE KEY
 -------------------------------------- */
@@ -1193,53 +1193,126 @@ async saveCurrentServiceKey() {
     }
 
 },
-```
 
-    /* --------------------------------------
-       TRANSPOSE
-    -------------------------------------- */
+/* --------------------------------------
+   TRANSPOSE
+-------------------------------------- */
 
-    transpose(step) {
+async transpose(step) {
 
-        App.transpose += step * 0.5;
+    console.log(
+        "TRANSPOSE:",
+        step
+    );
 
-        document
-            .querySelectorAll(".chord")
-            .forEach(chord => {
 
-                chord.innerText =
-                    chord.innerText.replace(
-                        /[A-G](#|b)?/g,
-                        note => {
+    /* ----------------------------------
+       CHANGE TRANSPOSE VALUE
+    ---------------------------------- */
 
-                            let index =
-                                SHARP_SCALE.indexOf(note);
+    App.transpose +=
+        step * 0.5;
 
-                            if (index === -1) {
 
-                                index =
-                                    FLAT_SCALE.indexOf(note);
-                            }
+    /* ----------------------------------
+       CHANGE DISPLAYED CHORDS
+    ---------------------------------- */
 
-                            if (index === -1) {
-                                return note;
-                            }
+    document
+        .querySelectorAll(".chord")
+        .forEach(chord => {
 
-                            return SHARP_SCALE[
-                                (index + step + 12) % 12
-                            ];
+            chord.innerText =
+                chord.innerText.replace(
+                    /[A-G](#|b)?/g,
+                    note => {
+
+                        let index =
+                            SHARP_SCALE.indexOf(
+                                note
+                            );
+
+
+                        if (index === -1) {
+
+                            index =
+                                FLAT_SCALE.indexOf(
+                                    note
+                                );
 
                         }
-                    );
-
-            });
-
-        this.updateKeyDisplay();
-        this.updateGuide();
-
-    },
 
 
+                        if (index === -1) {
+
+                            return note;
+
+                        }
+
+
+                        return SHARP_SCALE[
+                            (
+                                index +
+                                step +
+                                12
+                            ) % 12
+                        ];
+
+                    }
+                );
+
+        });
+
+
+    /* ----------------------------------
+       UPDATE KEY DISPLAY
+    ---------------------------------- */
+
+    this.updateKeyDisplay();
+
+    this.updateGuide();
+
+
+    /* ----------------------------------
+       UPDATE TRANSPOSE DISPLAY
+    ---------------------------------- */
+
+    const transposeDisplay =
+        document.getElementById(
+            "transposeValue"
+        );
+
+
+    if (transposeDisplay) {
+
+        transposeDisplay.innerText =
+            (
+                App.transpose >= 0
+                    ? "+"
+                    : ""
+            ) +
+            App.transpose.toFixed(1);
+
+    }
+
+
+    /* ----------------------------------
+       SAVE SERVICE KEY TO FIREBASE
+    ---------------------------------- */
+
+    const saved =
+        await this.saveCurrentServiceKey();
+
+
+    if (!saved) {
+
+        console.warn(
+            "Transpose changed locally, but Firebase save failed."
+        );
+
+    }
+
+},
     /* --------------------------------------
        CURRENT KEY
     -------------------------------------- */
