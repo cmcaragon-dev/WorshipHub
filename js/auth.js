@@ -13,7 +13,7 @@ import {
     onAuthStateChanged
 
 } from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 import {
@@ -27,7 +27,7 @@ import {
     serverTimestamp
 
 } from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 import {
