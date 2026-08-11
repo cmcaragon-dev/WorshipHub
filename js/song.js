@@ -574,14 +574,17 @@ function getTransposedKey(key,step){
    SERVICE PLANNER
 ========================================================== */
 
+
 Object.assign(Service, {
 
     /* --------------------------------------
        GET CURRENT SERVICE FROM FIREBASE
     -------------------------------------- */
+
     async getCurrent() {
 
-        const id = localStorage.getItem("currentServiceId");
+        const id =
+            localStorage.getItem("currentServiceId");
 
         if (!id) {
             console.warn("No currentServiceId found.");
@@ -603,7 +606,8 @@ Object.assign(Service, {
                 String(id)
             );
 
-            const snapshot = await getDoc(serviceRef);
+            const snapshot =
+                await getDoc(serviceRef);
 
             if (!snapshot.exists()) {
 
@@ -620,7 +624,6 @@ Object.assign(Service, {
                 ...snapshot.data()
             };
 
-            /* Always make sure songs exists */
             if (!Array.isArray(service.songs)) {
                 service.songs = [];
             }
@@ -648,6 +651,7 @@ Object.assign(Service, {
     /* --------------------------------------
        GET CURRENT SONG INDEX
     -------------------------------------- */
+
     getSongIndex() {
 
         return Number(
@@ -662,6 +666,7 @@ Object.assign(Service, {
     /* --------------------------------------
        SET CURRENT SONG INDEX
     -------------------------------------- */
+
     setSongIndex(index) {
 
         localStorage.setItem(
@@ -675,6 +680,7 @@ Object.assign(Service, {
     /* --------------------------------------
        GET CURRENT SONG
     -------------------------------------- */
+
     async getCurrentSong() {
 
         const service =
@@ -706,10 +712,8 @@ Object.assign(Service, {
     /* --------------------------------------
        SAVE CURRENT SERVICE KEY
     -------------------------------------- */
-    async saveCurrentServiceKey(
-        songId,
-        serviceKey
-    ) {
+
+    async saveCurrentServiceKey() {
 
         if (!auth.currentUser) {
 
@@ -734,7 +738,14 @@ Object.assign(Service, {
             return false;
         }
 
+        const songIndex =
+            Service.getSongIndex();
+
         try {
+
+            /* ----------------------------------
+               GET SERVICE
+            ---------------------------------- */
 
             const serviceRef = doc(
                 db,
@@ -762,32 +773,102 @@ Object.assign(Service, {
                 ...snapshot.data()
             };
 
+            /* ----------------------------------
+               MAKE SURE SONGS EXISTS
+            ---------------------------------- */
+
             if (!Array.isArray(service.songs)) {
                 service.songs = [];
             }
 
-            const songIndex =
-                service.songs.findIndex(
-                    function(song) {
+            /* ----------------------------------
+               FIND CURRENT SONG
+            ---------------------------------- */
 
-                        return String(song.id) ===
-                               String(songId);
-
-                    }
-                );
-
-            if (songIndex === -1) {
+            if (
+                songIndex < 0 ||
+                songIndex >= service.songs.length
+            ) {
 
                 console.warn(
-                    "Song not found in service:",
-                    songId
+                    "Current song was not found:",
+                    songIndex
                 );
 
                 return false;
             }
 
-            service.songs[songIndex].serviceKey =
-                serviceKey;
+            const serviceSong =
+                service.songs[songIndex];
+
+            if (!serviceSong) {
+
+                console.warn(
+                    "Current service song is empty."
+                );
+
+                return false;
+            }
+
+            /* ----------------------------------
+               GET DISPLAYED SERVICE KEY
+            ---------------------------------- */
+
+            const serviceKeyElement =
+                document.getElementById(
+                    "serviceKey"
+                );
+
+            if (!serviceKeyElement) {
+
+                alert(
+                    "Service Key element not found."
+                );
+
+                return false;
+            }
+
+            const newServiceKey =
+                serviceKeyElement.textContent.trim();
+
+            if (!newServiceKey) {
+
+                alert(
+                    "Service Key is empty."
+                );
+
+                return false;
+            }
+
+            /* ----------------------------------
+               SAVE SERVICE KEY
+            ---------------------------------- */
+
+            serviceSong.serviceKey =
+                newServiceKey;
+
+            /* ----------------------------------
+               SAVE TRANSPOSE VALUE
+            ---------------------------------- */
+
+            serviceSong.transpose =
+                Number(App.transpose || 0);
+
+            /* ----------------------------------
+               PRESERVE ORIGINAL KEY
+            ---------------------------------- */
+
+            if (!serviceSong.originalKey) {
+
+                serviceSong.originalKey =
+                    serviceSong.key ||
+                    currentSong?.key ||
+                    "";
+            }
+
+            /* ----------------------------------
+               UPDATE FIREBASE
+            ---------------------------------- */
 
             await updateDoc(
                 serviceRef,
@@ -797,8 +878,49 @@ Object.assign(Service, {
             );
 
             console.log(
-                "Service key saved:",
-                serviceKey
+                "SERVICE BEING SAVED:",
+                service
+            );
+
+            console.log(
+                "SONG BEING SAVED:",
+                serviceSong
+            );
+
+            /* ----------------------------------
+               VERIFY FIREBASE
+            ---------------------------------- */
+
+            const verifySnapshot =
+                await getDoc(serviceRef);
+
+            if (verifySnapshot.exists()) {
+
+                const verifyService = {
+                    id: verifySnapshot.id,
+                    ...verifySnapshot.data()
+                };
+
+                console.log(
+                    "FIREBASE VERIFIED SERVICE:",
+                    verifyService
+                );
+
+                console.log(
+                    "FIREBASE VERIFIED SONG:",
+                    verifyService
+                        ?.songs
+                        ?. [songIndex]
+                );
+            }
+
+            /* ----------------------------------
+               SUCCESS
+            ---------------------------------- */
+
+            alert(
+                "Service Key saved successfully: " +
+                newServiceKey
             );
 
             return true;
@@ -811,193 +933,12 @@ Object.assign(Service, {
                 error
             );
 
+            alert(
+                "Unable to save Service Key."
+            );
+
             return false;
         }
-
-    }
-
-});
-
-
-        /* ----------------------------------
-           LOAD SERVICES FROM FIREBASE
-        ---------------------------------- */
-async function init() {
-        const services =
-            await loadServices("guest");
-
-
-        if (!Array.isArray(services)) {
-
-            alert(
-                "Unable to load services from Firebase."
-            );
-
-            return;
-
-        }
-}
-
-        /* ----------------------------------
-           FIND CURRENT SERVICE
-        ---------------------------------- */
-
-        const service =
-            services.find(function(s) {
-
-                return Number(s.id) === serviceId;
-
-            });
-
-
-        if (!service) {
-
-            alert(
-                "Service Planner service not found."
-            );
-
-            return;
-
-        }
-        /* ----------------------------------
-           FIND CURRENT SONG
-        ---------------------------------- */
-
-        if (
-            !service.songs ||
-            !service.songs[songIndex]
-        ) {
-
-            alert(
-                "Current song was not found in the service."
-            );
-
-            return;
-
-        }
-
-
-        const serviceSong =
-            service.songs[songIndex];
-
-
-        /* ----------------------------------
-           GET DISPLAYED SERVICE KEY
-        ---------------------------------- */
-
-        const serviceKeyElement =
-            document.getElementById("serviceKey");
-
-
-        if (!serviceKeyElement) {
-
-            alert(
-                "Service Key element not found."
-            );
-
-            return;
-
-        }
-
-
-        const newServiceKey =
-            serviceKeyElement.textContent.trim();
-
-
-        if (!newServiceKey) {
-
-            alert(
-                "Service Key is empty."
-            );
-
-            return;
-
-        }
-
-
-        /* ----------------------------------
-           SAVE SERVICE KEY
-        ---------------------------------- */
-
-        serviceSong.serviceKey =
-            newServiceKey;
-
-
-        /* ----------------------------------
-           SAVE TRANSPOSE VALUE
-        ---------------------------------- */
-
-        serviceSong.transpose =
-            App.transpose;
-
-
-        /* ----------------------------------
-           PRESERVE ORIGINAL KEY
-        ---------------------------------- */
-
-        if (!serviceSong.originalKey) {
-
-            serviceSong.originalKey =
-                serviceSong.key ||
-                currentSong.key;
-
-        }
-
-
-        console.log(
-            "SERVICE BEING SAVED:",
-            service
-        );
-
-        console.log(
-            "SONG BEING SAVED:",
-            serviceSong
-        );
-
-
-        /* ----------------------------------
-           SAVE TO FIREBASE
-        ---------------------------------- */
-
-        await saveServices(
-            "guest",
-            services
-        );
-
-
-        /* ----------------------------------
-           VERIFY
-        ---------------------------------- */
-
-        const verifyServices =
-            await loadServices("guest");
-
-
-        const verifyService =
-            verifyServices.find(function(s) {
-
-                return Number(s.id) === serviceId;
-
-            });
-
-
-        console.log(
-            "FIREBASE VERIFIED SERVICE:",
-            verifyService
-        );
-
-
-        console.log(
-            "FIREBASE VERIFIED SONG:",
-            verifyService?.songs?.[songIndex]
-        );
-
-
-        alert(
-            "Service Key saved successfully: " +
-            newServiceKey
-        );
-
     },
 
 
@@ -1008,7 +949,6 @@ async function init() {
     transpose(step) {
 
         App.transpose += step * 0.5;
-
 
         document
             .querySelectorAll(".chord")
@@ -1022,21 +962,15 @@ async function init() {
                             let index =
                                 SHARP_SCALE.indexOf(note);
 
-
                             if (index === -1) {
 
                                 index =
                                     FLAT_SCALE.indexOf(note);
-
                             }
-
 
                             if (index === -1) {
-
                                 return note;
-
                             }
-
 
                             return SHARP_SCALE[
                                 (index + step + 12) % 12
@@ -1047,9 +981,7 @@ async function init() {
 
             });
 
-
         this.updateKeyDisplay();
-
         this.updateGuide();
 
     },
@@ -1103,16 +1035,15 @@ async function init() {
         const ending =
             getTransposedKey(key, 5);
 
-
         App.songEnding.innerHTML = `
 
             <strong>LAST 3</strong>
-            : ${getTransposedKey(key,9)}m
+            : ${getTransposedKey(key, 9)}m
 
             <br>
 
             <strong>RETURN TO VERSE</strong>
-            : ${getTransposedKey(key,7)}
+            : ${getTransposedKey(key, 7)}
 
             <br>
 
@@ -1144,84 +1075,35 @@ async function init() {
         const service =
             await this.getCurrent();
 
-
         if (!service) {
             return;
         }
 
-
         const index =
             this.getSongIndex();
 
-
         const song =
             service.songs?.[index];
-
 
         if (!song) {
             return;
         }
 
-
-        /*
-         * IMPORTANT:
-         * Firebase stores the transpose amount.
-         */
-
         const savedTranspose =
             Number(song.transpose || 0);
 
-
         App.transpose =
             savedTranspose;
-
-
-        /*
-         * Rebuild chords from ORIGINAL
-         * HTML chords.
-         *
-         * We only do this when a saved
-         * transpose exists.
-         */
 
         const steps =
             Math.round(
                 savedTranspose * 2
             );
 
-
         if (steps !== 0) {
-
-            /*
-             * Reload original chord values
-             * from the page before applying
-             * transpose.
-             */
-
-            document
-                .querySelectorAll(".chord")
-                .forEach(chord => {
-
-                    /*
-                     * We cannot reliably restore
-                     * original chord text if it has
-                     * already been modified.
-                     *
-                     * The page starts with the
-                     * original chords on each load,
-                     * so apply the saved steps here.
-                     */
-
-                });
-
-
-            /*
-             * Reapply transpose
-             */
 
             const direction =
                 steps > 0 ? 1 : -1;
-
 
             for (
                 let i = 0;
@@ -1241,52 +1123,38 @@ async function init() {
                                     let index =
                                         SHARP_SCALE.indexOf(note);
 
-
-                                    if (
-                                        index === -1
-                                    ) {
+                                    if (index === -1) {
 
                                         index =
                                             FLAT_SCALE.indexOf(note);
-
                                     }
 
-
-                                    if (
-                                        index === -1
-                                    ) {
-
+                                    if (index === -1) {
                                         return note;
-
                                     }
-
 
                                     return SHARP_SCALE[
-                                        (index +
+                                        (
+                                            index +
                                             direction +
-                                            12) % 12
+                                            12
+                                        ) % 12
                                     ];
 
                                 }
                             );
 
                     });
-
             }
-
         }
 
-
         this.updateKeyDisplay();
-
         this.updateGuide();
-
 
         const transposeDisplay =
             document.getElementById(
                 "transposeValue"
             );
-
 
         if (transposeDisplay) {
 
@@ -1308,7 +1176,6 @@ async function init() {
         const service =
             await this.getCurrent();
 
-
         if (!service) {
 
             alert(
@@ -1316,13 +1183,10 @@ async function init() {
             );
 
             return;
-
         }
-
 
         let index =
             this.getSongIndex();
-
 
         if (
             index >=
@@ -1334,36 +1198,25 @@ async function init() {
             );
 
             return;
-
         }
-
 
         index++;
 
-
         this.setSongIndex(index);
-
 
         localStorage.setItem(
             "resumePresentation",
             "true"
         );
 
-
         const nextFile =
             service.songs[index].file
                 .replace(/^songs\//, "");
-
 
         console.log(
             "NEXT:",
             nextFile
         );
-
-
-        /*
-         * We are already inside /songs/
-         */
 
         location.href =
             nextFile;
@@ -1380,7 +1233,6 @@ async function init() {
         const service =
             await this.getCurrent();
 
-
         if (!service) {
 
             alert(
@@ -1388,13 +1240,10 @@ async function init() {
             );
 
             return;
-
         }
-
 
         let index =
             this.getSongIndex();
-
 
         if (index <= 0) {
 
@@ -1403,32 +1252,25 @@ async function init() {
             );
 
             return;
-
         }
-
 
         index--;
 
-
         this.setSongIndex(index);
-
 
         localStorage.setItem(
             "resumePresentation",
             "true"
         );
 
-
         const previousFile =
             service.songs[index].file
                 .replace(/^songs\//, "");
-
 
         console.log(
             "PREVIOUS:",
             previousFile
         );
-
 
         location.href =
             previousFile;
@@ -1458,19 +1300,14 @@ async function init() {
             "resumePresentation"
         );
 
-
         const progress =
             document.getElementById(
                 "serviceProgress"
             );
 
-
         if (progress) {
-
             progress.innerHTML = "";
-
         }
-
 
         alert(
             "Service ended."
@@ -1490,28 +1327,22 @@ async function init() {
                 "serviceProgress"
             );
 
-
         if (!progress) {
             return;
         }
 
-
         const service =
             await this.getCurrent();
-
 
         if (!service) {
 
             progress.innerHTML = "";
 
             return;
-
         }
-
 
         const index =
             this.getSongIndex();
-
 
         progress.innerHTML = `
 
@@ -1528,8 +1359,16 @@ async function init() {
     }
 
 });
+
+
+/* --------------------------------------
+   SAVE SERVICE KEY BUTTON
+-------------------------------------- */
+
 const saveServiceKey =
-    document.getElementById("saveServiceKey");
+    document.getElementById(
+        "saveServiceKey"
+    );
 
 if (saveServiceKey) {
 
@@ -1543,6 +1382,7 @@ if (saveServiceKey) {
     );
 
 }
+
 /* ==========================================================
    PRESENTATION
 ========================================================== */
