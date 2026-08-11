@@ -2248,11 +2248,17 @@ window.stopService = function () {
     Service.stop();
 };
 
-window.startPresentation = async function() {
+window.startPresentation = async function () {
 
-    console.log(
-        "START PRESENTATION"
-    );
+    await Presentation.start();
+
+};
+
+window.exitPresentation = function () {
+
+    Presentation.close();
+
+};
 
 
     const service =
