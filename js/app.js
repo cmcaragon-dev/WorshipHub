@@ -1910,7 +1910,13 @@ async function selectSongForPlaylist(
 }
 window.selectSongForPlaylist = selectSongForPlaylist;
 
+// ==========================================
+// TOGGLE SERVICE
+// ==========================================
+
 function toggleService(id) {
+
+    console.log("toggleService called:", id);
 
     const body = document.getElementById(
         "serviceBody" + id
@@ -1923,7 +1929,7 @@ function toggleService(id) {
     if (!body) {
         console.error(
             "Service body not found:",
-            id
+            "serviceBody" + id
         );
         return;
     }
@@ -1932,16 +1938,16 @@ function toggleService(id) {
 
     if (arrow) {
 
-        arrow.textContent =
-            body.classList.contains("show")
-                ? "▼"
-                : "▶";
+        if (body.classList.contains("show")) {
+            arrow.textContent = "▼";
+        } else {
+            arrow.textContent = "▶";
+        }
 
     }
-
 }
 
-// IMPORTANT for onclick="" in HTML
+// MAKE FUNCTION AVAILABLE TO HTML onclick=""
 window.toggleService = toggleService;
 
 async function renameService(id){
