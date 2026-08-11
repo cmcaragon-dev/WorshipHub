@@ -2087,36 +2087,34 @@ window.searchSongs = searchSongs;
 
 function getCurrentService() {
 
+    // First use the Firebase-loaded service
+    if (presentationService) {
+
+        return presentationService;
+
+    }
+
+    // Fallback to local services array
     const serviceId =
         localStorage.getItem("currentServiceId");
 
-    console.log(
-        "CURRENT SERVICE ID:",
-        serviceId
-    );
-
     if (!serviceId) {
 
-        console.log(
-            "No currentServiceId in localStorage."
-        );
-
         return null;
+
     }
 
-    const service =
-        services.find(function(s) {
+    if (typeof services !== "undefined") {
+
+        return services.find(function(s) {
 
             return String(s.id) === String(serviceId);
 
-        });
+        }) || null;
 
-    console.log(
-        "CURRENT SERVICE FOUND:",
-        service
-    );
+    }
 
-    return service || null;
+    return null;
 }
 function getCurrentSongIndex() {
 
