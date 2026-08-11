@@ -26,6 +26,77 @@ let currentUser = null;
 
 
 // ==========================================
+// ADD SONG TO SERVICE
+// ==========================================
+
+async function addSongToService(serviceId, song) {
+
+    const service = services.find(
+        s => s.id === serviceId
+    );
+
+    if (!service) {
+        console.error(
+            "Service not found:",
+            serviceId
+        );
+        return;
+    }
+
+    const songs = [
+        ...(service.songs || [])
+    ];
+
+    // Prevent duplicate song
+    if (
+        songs.some(
+            s => s.id === song.id
+        )
+    ) {
+        alert(
+            "This song is already in the service."
+        );
+        return;
+    }
+
+    songs.push({
+        id: song.id,
+        title: song.title,
+        artist: song.artist || "",
+        file: song.file || "",
+        youtube: song.youtube || ""
+    });
+
+    try {
+
+        await updateDoc(
+            doc(
+                db,
+                "users",
+                currentUser.uid,
+                "services",
+                String(serviceId)
+            ),
+            {
+                songs: songs
+            }
+        );
+
+        // Update local data
+        service.songs = songs;
+
+        // Re-render Service Planner
+        renderServices();
+
+    } catch (error) {
+
+        console.error(
+            "Error adding song to service:",
+            error
+        );
+    }
+}
+// ==========================================
 // PLAYLIST 
 // ==========================================
 
