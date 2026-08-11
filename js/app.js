@@ -208,8 +208,25 @@ async function saveServicesCloud() {
             "No logged-in user."
         );
 
-        return;
+        return false;
+    }
 
+    if (!Array.isArray(services)) {
+
+        console.error(
+            "Services is not an array."
+        );
+
+        return false;
+    }
+
+    if (services.length === 0) {
+
+        console.warn(
+            "Prevented saving empty services array."
+        );
+
+        return false;
     }
 
     try {
@@ -220,9 +237,11 @@ async function saveServicesCloud() {
         );
 
         console.log(
-            "Services saved to Firebase for:",
-            currentUser.uid
+            "Services saved to Firebase:",
+            services
         );
+
+        return true;
 
     }
     catch(error) {
@@ -233,9 +252,7 @@ async function saveServicesCloud() {
         );
 
         throw error;
-
     }
-
 }
 /* =====================================
    PLAYLIST MANAGER
@@ -1045,9 +1062,14 @@ async function() {
 };
 function renderServices() {
 
+    if (!serviceList) {
+        console.error("serviceList not found.");
+        return;
+    }
+
     serviceList.innerHTML = "";
 
-    if (services.length === 0) {
+    if (!services || services.length === 0) {
 
         serviceList.innerHTML = `
             <div class="empty-message">
@@ -1056,10 +1078,153 @@ function renderServices() {
         `;
 
         updateDashboard();
-
         return;
-
     }
+
+    services.sort(function(a, b) {
+
+        return (a.name || "").localeCompare(
+            b.name || ""
+        );
+
+    });
+
+    services.forEach(function(service) {
+
+        const serviceSongs =
+            Array.isArray(service.songs)
+                ? service.songs
+                : [];
+
+        let songList = "";
+
+        serviceSongs.forEach(function(song, index) {
+
+            songList += `
+
+                <div class="service-song">
+
+                    <div>
+
+                        <div class="service-song-title">
+
+                            🎵 ${song.title || "Untitled"}
+
+                        </div>
+
+                        <small>
+                            ${song.artist || ""}
+                        </small>
+
+                        <br>
+
+                        <span class="service-song-key">
+
+                            🎼 ${song.serviceKey || song.key || ""}
+
+                        </span>
+
+                    </div>
+
+                    <button
+                        onclick="removeSongFromService('${service.id}', ${index})">
+
+                        🗑 Remove
+
+                    </button>
+
+                </div>
+
+            `;
+
+        });
+
+
+        serviceList.innerHTML += `
+
+            <div class="service-item">
+
+                <div
+                    class="service-header"
+                    onclick="toggleService('${service.id}')">
+
+                    <div>
+
+                        <div class="service-title">
+
+                            <span id="serviceArrow${service.id}">
+                                ▶
+                            </span>
+
+                            ${service.name || "Unnamed Service"}
+
+                        </div>
+
+                        <div class="service-count">
+
+                            ${serviceSongs.length} Songs
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="serviceBody${service.id}"
+                    class="service-body">
+
+                    <button
+                        onclick="addSongsToService('${service.id}')">
+
+                        ➕ Add Songs
+
+                    </button>
+
+
+                    <button
+                        onclick="startService('${service.id}')">
+
+                        ▶ Start Service
+
+                    </button>
+
+
+                    <button
+                        onclick="renameService('${service.id}')">
+
+                        ✏ Rename
+
+                    </button>
+
+
+                    <button
+                        onclick="deleteService('${service.id}')">
+
+                        🗑 Delete
+
+                    </button>
+
+
+                    <hr>
+
+                    <div class="service-song-list">
+
+                        ${songList}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+    updateDashboard();
+}
 
     // Sort services alphabetically
     services.sort(function(a, b) {
@@ -1150,11 +1315,11 @@ function renderServices() {
 
         </button>
 
-        <button onclick="startService(${service.id})">
+       <button onclick="startService('${service.id}')">
 
-            ▶ Start Service
+    ▶ Start Service
 
-        </button>
+</button>
 
         <button onclick="renameService(${service.id})">
 
@@ -1249,53 +1414,95 @@ function renderSongPicker(list){
     });
 
 }
-async function selectSong(file){
+async function selectSong(file) {
 
     console.log("Adding:", file);
-
     console.log("Selected Service:", selectedService);
 
-    const song = songs.find(function(s){
+    if (!currentUser) {
+        alert("Please login first.");
+        return;
+    }
+
+    if (!selectedService) {
+        alert("No service selected.");
+        return;
+    }
+
+    const song = songs.find(function(s) {
         return s.file === file;
     });
 
     console.log("Found Song:", song);
 
-    if(!song){
+    if (!song) {
         alert("Song not found.");
         return;
     }
 
-    selectedService.songs.push({
-        id: song.id,
-        title: song.title,
-        artist: song.artist,
-        file: song.file,
-        category: song.category,
-        language: song.language,
-        key: song.key,
-        originalKey: song.key,
-        serviceKey: song.key,
-        transpose: 0
+    // Prevent duplicate
+    const alreadyExists = selectedService.songs.some(function(s) {
+        return s.file === song.file;
     });
 
-    console.log(selectedService);
+    if (alreadyExists) {
+        alert("This song is already in the service.");
+        return;
+    }
 
-  saveServicesCloud
+    // Add song
+    selectedService.songs.push({
 
-    songPicker.classList.remove("show");
+        id: song.id,
+        title: song.title,
+        artist: song.artist || "",
+        file: song.file || "",
+        category: song.category || "",
+        language: song.language || "",
+        key: song.key || "",
+        originalKey: song.key || "",
+        serviceKey: song.key || "",
+        transpose: 0
 
-    selectedService = null;
+    });
+
+    try {
+
+        // IMPORTANT:
+        // Actually save the service to Firebase
+        await saveServicesCloud();
+
+        console.log(
+            "Service saved successfully:",
+            selectedService
+        );
+
+        // Refresh Service Planner
+        renderServices();
+
+        // Close picker
+        songPicker.classList.remove("show");
+
+        // Clear selection
+        selectedService = null;
+
+    }
+    catch(error) {
+
+        console.error(
+            "Error saving song to service:",
+            error
+        );
+
+        alert(
+            "Unable to save song to service."
+        );
+
+    }
 }
 
 window.selectSong = selectSong;
 	
-closeSongPicker.onclick=function(){
-
-    songPicker.classList.remove("show");
-
-};
-
 async function startService(serviceId) {
 
     const service = services.find(function(s) {
