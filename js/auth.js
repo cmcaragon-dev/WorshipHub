@@ -291,17 +291,22 @@ if (loginBtn) {
 
             }
 
-            catch (error) {
+          catch (error) {
 
-                console.error(error);
+    console.error(
+        "FIREBASE LOGIN ERROR CODE:",
+        error.code
+    );
 
+    console.error(
+        "FIREBASE LOGIN ERROR MESSAGE:",
+        error.message
+    );
 
-                message.textContent =
-                    "Invalid email or password.";
-
-            }
-
-        };
+    alert(
+        "Login failed:\n\n" +
+        error.code
+    );
 
 }
 
