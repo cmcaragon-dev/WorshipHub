@@ -832,7 +832,10 @@ async saveCurrentServiceKey() {
         alert(
             "Firebase user is not authenticated."
         );
-
+alert(
+    "Service Key saved successfully: " +
+    displayedKey
+);
         return false;
 
     }
