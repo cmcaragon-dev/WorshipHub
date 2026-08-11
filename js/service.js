@@ -3,23 +3,18 @@
 import { auth, db } from "./firebase.js";
 
 import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+import {
     collection,
-
     getDocs,
-
     addDoc,
-
     updateDoc,
-
     deleteDoc,
-
     doc,
-
     serverTimestamp
-
-} from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
 
@@ -48,13 +43,12 @@ function playlist() {
         return null;
     }
 
-    return (
+    return collection(
         db,
         "users",
         currentUser.uid,
         "playlists"
     );
-
 }
 
 
@@ -68,40 +62,30 @@ async function loadPlaylists() {
         return;
     }
 
-
     try {
 
-        const snapshot =
-            await getDocs(
-                playlist()
-            );
+        const playlistRef = playlist();
 
+        if (!playlistRef) {
+            console.warn(
+                "Playlist reference is null."
+            );
+            return;
+        }
+
+        const snapshot =
+            await getDocs(playlistRef);
 
         playlists =
-            snapshot.docs.map(
-                function (item) {
-
-                    return {
-
-                        id: item.id,
-
-                        ...item.data()
-
-                    };
-
-                }
-            );
-
+            snapshot.docs.map(item => ({
+                id: item.id,
+                ...item.data()
+            }));
 
         renderPlaylists();
-
-
         updatePlaylistCounter();
 
-
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(
             "Error loading playlists:",
@@ -109,7 +93,6 @@ async function loadPlaylists() {
         );
 
     }
-
 }
 
 
