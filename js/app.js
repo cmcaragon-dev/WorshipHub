@@ -1609,24 +1609,10 @@ async function selectSong(file) {
 
 window.selectSong = selectSong;
 
-function closeSongPickerPanel() {
+closeSongPicker.onclick = function(){
+    songPicker.classList.remove("show");
+};
 
-    const picker =
-        document.getElementById("songPicker");
-
-    if (picker) {
-
-        picker.classList.remove("show");
-
-    }
-
-    selectedService = null;
-    selectedPlaylist = null;
-
-}
-
-window.closeSongPickerPanel =
-    closeSongPickerPanel;
 async function startService(serviceId) {
 
     const service = services.find(function(s) {
