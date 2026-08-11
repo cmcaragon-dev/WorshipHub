@@ -7,14 +7,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
-    collection,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-// ==========================================
-// FIREBASE PLAYLIST MANAGER
-// ==========================================
-
-import {
 
     collection,
 
@@ -60,16 +52,16 @@ let currentUser = null;
 
 
 // ==========================================
-// PLAYLIST COLLECTION
+// PLAYLIST 
 // ==========================================
 
-function playlistCollection() {
+function playlist() {
 
     if (!currentUser) {
         return null;
     }
 
-    return collection(
+    return (
         db,
         "users",
         currentUser.uid,
@@ -94,7 +86,7 @@ async function loadPlaylists() {
 
         const snapshot =
             await getDocs(
-                playlistCollection()
+                playlist()
             );
 
 
@@ -168,7 +160,7 @@ async function createNewPlaylist() {
 
         await addDoc(
 
-            playlistCollection(),
+            playlist(),
 
             {
 
