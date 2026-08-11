@@ -1929,3 +1929,11 @@ PLAYLIST BUTTONS
     text-align:center;
 
 }
+.song-picker-add-btn.added {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.song-picker-add-btn:disabled {
+    pointer-events: none;
+}
