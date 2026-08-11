@@ -1358,9 +1358,6 @@ function renderServices() {
 `;
 
     });
-
-}
-
 function addSongsToService(serviceId){
 
     selectedService = services.find(function(s){
