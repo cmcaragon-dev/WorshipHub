@@ -1383,7 +1383,14 @@ const songPickerSearch =
 document.getElementById("songPickerSearch");
 
 const closeSongPicker =
-document.getElementById("closeSongPicker");
+    document.getElementById("closeSongPicker");
+
+if (closeSongPicker) {
+
+    closeSongPicker.onclick =
+        closeSongPickerPanel;
+
+}
 
 let selectedService = null;
 let selectedPlaylist = null;
@@ -1602,9 +1609,24 @@ async function selectSong(file) {
 
 window.selectSong = selectSong;
 
-	closeSongPicker.onclick = function(){
-    songPicker.classList.remove("show");
-};
+function closeSongPickerPanel() {
+
+    const picker =
+        document.getElementById("songPicker");
+
+    if (picker) {
+
+        picker.classList.remove("show");
+
+    }
+
+    selectedService = null;
+    selectedPlaylist = null;
+
+}
+
+window.closeSongPickerPanel =
+    closeSongPickerPanel;
 async function startService(serviceId) {
 
     const service = services.find(function(s) {
