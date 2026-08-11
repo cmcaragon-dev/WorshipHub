@@ -1,6 +1,9 @@
 "use strict";
 
-import { db } from "./firebase.js";
+import {
+    auth,
+    db
+} from "./firebase.js";
 
 import {
     collection,
@@ -141,40 +144,57 @@ export async function deletePlaylistCloud(
 // =====================================
 
 // LOAD USER SERVICES
-export async function loadServices(uid) {
+export async function loadServices() {
 
-    if (!uid) {
-        console.error(
-            "loadServices: UID is missing."
+    const user =
+        auth.currentUser;
+
+    if (!user) {
+
+        console.warn(
+            "loadServices: No authenticated Firebase user."
         );
 
         return [];
+
     }
 
     try {
 
-        const serviceRef = collection(
-            db,
-            "users",
-            String(uid),
-            "services"
-        );
+        const servicesRef =
+            collection(
+                db,
+                "users",
+                user.uid,
+                "services"
+            );
 
-        const snapshot = await getDocs(serviceRef);
+        const snapshot =
+            await getDocs(
+                servicesRef
+            );
 
-        const services = snapshot.docs.map(item => ({
-            id: item.id,
-            ...item.data()
-        }));
+        const services =
+            snapshot.docs.map(
+                function (doc) {
+
+                    return {
+                        id: doc.id,
+                        ...doc.data()
+                    };
+
+                }
+            );
 
         console.log(
-            "Loaded services:",
+            "FIREBASE SERVICES LOADED:",
             services
         );
 
         return services;
 
-    } catch (error) {
+    }
+    catch (error) {
 
         console.error(
             "Firebase service load error:",
@@ -182,9 +202,10 @@ export async function loadServices(uid) {
         );
 
         return [];
-    }
-}
 
+    }
+
+}
 
 // SAVE SERVICE
 export async function saveService(
