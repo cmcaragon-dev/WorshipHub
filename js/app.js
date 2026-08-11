@@ -1146,94 +1146,81 @@ function renderServices() {
 
         serviceList.innerHTML += `
 
-            <div class="service-item">
+    <div class="service-item">
 
-                <!-- SERVICE HEADER -->
+        <div
+            class="service-header"
+            onclick="toggleService('${service.id}')">
 
-                <div
-                    class="service-header"
-                    onclick="toggleService('${service.id}')">
+            <div>
 
-                    <div>
+                <div class="service-title">
 
-                        <div class="service-title">
+                    <span id="serviceArrow${service.id}">
+                        ▶
+                    </span>
 
-                            <span
-                                id="serviceArrow${service.id}">
-                                ▶
-                            </span>
-
-                            ${service.name || "Unnamed Service"}
-
-                        </div>
-
-                        <div class="service-count">
-
-                            ${serviceSongs.length}
-                            ${serviceSongs.length === 1 ? "Song" : "Songs"}
-
-                        </div>
-
-                    </div>
+                    ${service.name}
 
                 </div>
 
+                <div class="service-count">
 
-                <!-- SERVICE BODY -->
-
-                <div
-                    id="serviceBody${service.id}"
-                    class="service-body">
-
-                    <button
-                        onclick="addSongsToService('${service.id}')">
-
-                        ➕ Add Songs
-
-                    </button>
-
-                    <button
-                        onclick="startService('${service.id}')">
-
-                        ▶ Start Service
-
-                    </button>
-
-                    <button
-                        onclick="renameService('${service.id}')">
-
-                        ✏ Rename
-
-                    </button>
-
-                    <button
-                        onclick="deleteService('${service.id}')">
-
-                        🗑 Delete
-
-                    </button>
-
-                    <hr>
-
-
-                    <!-- SONG LIST -->
-
-                    <div class="service-song-list">
-
-                        ${
-                            songsHtml ||
-                            `<div class="empty-message">
-                                No songs added yet.
-                            </div>`
-                        }
-
-                    </div>
+                    ${serviceSongs.length}
+                    ${serviceSongs.length === 1 ? "Song" : "Songs"}
 
                 </div>
 
             </div>
 
-        `;
+        </div>
+
+
+        <div
+            id="serviceBody${service.id}"
+            class="service-body">
+
+            <button
+                onclick="addSongsToService('${service.id}')">
+
+                ➕ Add Songs
+
+            </button>
+
+            <button
+                onclick="startService('${service.id}')">
+
+                ▶ Start Service
+
+            </button>
+
+            <button
+                onclick="renameService('${service.id}')">
+
+                ✏ Rename
+
+            </button>
+
+            <button
+                onclick="deleteService('${service.id}')">
+
+                🗑 Delete
+
+            </button>
+
+            <hr>
+
+            <div class="service-song-list">
+
+                ${songsHtml}
+
+            </div>
+
+        </div>
+
+    </div>
+
+`;
 
     });
 
@@ -1923,25 +1910,38 @@ async function selectSongForPlaylist(
 }
 window.selectSongForPlaylist = selectSongForPlaylist;
 
-function toggleService(id){
+function toggleService(id) {
 
-    const body = document.getElementById("serviceBody"+id);
+    const body = document.getElementById(
+        "serviceBody" + id
+    );
 
-    const title = document.getElementById("serviceArrow"+id);
+    const arrow = document.getElementById(
+        "serviceArrow" + id
+    );
+
+    if (!body) {
+        console.error(
+            "Service body not found:",
+            id
+        );
+        return;
+    }
 
     body.classList.toggle("show");
 
-    if(body.classList.contains("show")){
+    if (arrow) {
 
-        title.innerHTML="▼";
-
-    }else{
-
-        title.innerHTML="▶";
+        arrow.textContent =
+            body.classList.contains("show")
+                ? "▼"
+                : "▶";
 
     }
 
 }
+
+// IMPORTANT for onclick="" in HTML
 window.toggleService = toggleService;
 
 async function renameService(id){
