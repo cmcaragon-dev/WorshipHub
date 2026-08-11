@@ -2137,23 +2137,6 @@ function showArtist(){
 window.goHome = goHome;
 
 /* ==========================================================
-   COMPATIBILITY
-========================================================== */
-
-function startPresentation(){
-
-    Presentation.start();
-
-}
-
-function exitPresentation(){
-
-    Presentation.close();
-
-}
-
-
-/* ==========================================================
    KEYBOARD
 ========================================================== */
 
@@ -2310,11 +2293,6 @@ window.stopService = function () {
 ====================================== */
 
 window.startPresentation = async function () {
-
-    console.log(
-        "START PRESENTATION"
-    );
-
 
     /* ----------------------------------
        GET ACTIVE SERVICE
