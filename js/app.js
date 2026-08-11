@@ -1602,7 +1602,9 @@ async function selectSong(file) {
 
 window.selectSong = selectSong;
 
-	
+	closeSongPicker.onclick = function(){
+    songPicker.classList.remove("show");
+};
 async function startService(serviceId) {
 
     const service = services.find(function(s) {
