@@ -232,44 +232,6 @@ async function loadCurrentServiceFromFirebase() {
 }
 let currentService = null;
 
-
-onAuthStateChanged(
-    auth,
-    async function(user) {
-
-        if (!user) {
-
-            console.error(
-                "No authenticated user."
-            );
-
-            return;
-        }
-
-        console.log(
-            "Presentation Firebase User:",
-            user.uid
-        );
-
-        const service =
-            await loadCurrentServiceFromFirebase();
-
-        if (!service) {
-
-            console.error(
-                "NO ACTIVE SERVICE"
-            );
-
-            return;
-        }
-
-        console.log(
-            "READY TO PRESENT:",
-            service.name
-        );
-
-    }
-);
 /* ==========================================================
    WORSHIP SONGS MANAGER
    PART 1A - CORE ENGINE
@@ -1738,3 +1700,46 @@ window.startPresentation = function () {
 window.exitPresentation = function () {
     Presentation.close();
 };
+
+onAuthStateChanged(
+    auth,
+    async function(user) {
+
+        if (!user) {
+
+            console.error(
+                "USER IS NOT LOGGED IN"
+            );
+
+            return;
+        }
+
+        console.log(
+            "AUTH READY:",
+            user.uid
+        );
+
+        const service =
+            await loadActiveService();
+
+        if (!service) {
+
+            console.error(
+                "NO ACTIVE SERVICE"
+            );
+
+            return;
+        }
+
+        console.log(
+            "ACTIVE SERVICE READY:",
+            service.name
+        );
+
+        console.log(
+            "SONG COUNT:",
+            service.songs.length
+        );
+
+    }
+);
