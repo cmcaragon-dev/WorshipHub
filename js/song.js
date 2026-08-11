@@ -212,7 +212,43 @@ async function loadCurrentService() {
         return null;
     }
 }
+onAuthStateChanged(
+    auth,
+    async function(user) {
 
+        if (!user) {
+
+            console.error(
+                "No authenticated user."
+            );
+
+            return;
+        }
+
+        console.log(
+            "Presentation Firebase User:",
+            user.uid
+        );
+
+        const service =
+            await loadCurrentServiceFromFirebase();
+
+        if (!service) {
+
+            console.error(
+                "NO ACTIVE SERVICE"
+            );
+
+            return;
+        }
+
+        console.log(
+            "READY TO PRESENT:",
+            service.name
+        );
+
+    }
+);
 /* ==========================================================
    WORSHIP SONGS MANAGER
    PART 1A - CORE ENGINE
