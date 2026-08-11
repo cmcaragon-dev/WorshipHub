@@ -1446,12 +1446,12 @@ async function selectSong(file) {
         return;
     }
 
-    // Make sure songs exists
+    // Make sure songs is an array
     if (!Array.isArray(selectedService.songs)) {
         selectedService.songs = [];
     }
 
-    // Prevent duplicate
+    // Prevent duplicate songs
     const exists = selectedService.songs.some(function(s) {
         return s.file === song.file;
     });
@@ -1461,7 +1461,7 @@ async function selectSong(file) {
         return;
     }
 
-    // Create service song
+    // Create song object
     const serviceSong = {
 
         id: song.id || String(Date.now()),
@@ -1488,30 +1488,25 @@ async function selectSong(file) {
 
     };
 
-    // Add song to selected service
+    // Add song to service
     selectedService.songs.push(serviceSong);
-
-    console.log(
-        "SERVICE AFTER ADDING SONG:",
-        selectedService
-    );
 
     try {
 
-        // Save THIS service
+        // Save service to Firebase
         await saveService(
             currentUser.uid,
             selectedService
         );
 
-        // IMPORTANT:
-        // Replace the service inside services[]
-        const serviceIndex = services.findIndex(function(s) {
+        // Update services[] with latest service
+        const serviceIndex =
+            services.findIndex(function(s) {
 
-            return String(s.id) ===
-                   String(selectedService.id);
+                return String(s.id) ===
+                       String(selectedService.id);
 
-        });
+            });
 
         if (serviceIndex !== -1) {
 
@@ -1522,20 +1517,18 @@ async function selectSong(file) {
 
         }
 
-        console.log(
-            "SERVICES AFTER UPDATE:",
-            services
-        );
-
-        // Rebuild sidebar
+        // Refresh Service Planner
         renderServices();
 
         updateDashboard();
 
-        // Close picker
-        songPicker.classList.remove("show");
+        // IMPORTANT:
+        // DO NOT CLOSE SONG PICKER HERE
 
-        selectedService = null;
+        console.log(
+            "Song added successfully:",
+            song.title
+        );
 
     }
     catch(error) {
@@ -1550,6 +1543,7 @@ async function selectSong(file) {
         );
 
     }
+
 }
 
 window.selectSong = selectSong;
