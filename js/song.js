@@ -644,7 +644,6 @@ function getTransposedKey(key,step){
    SERVICE PLANNER
 ========================================================== */
 
-
 Object.assign(Service, {
 
     /* --------------------------------------
@@ -653,70 +652,90 @@ Object.assign(Service, {
 
     async getCurrent() {
 
+        /* ----------------------------------
+           GET CURRENT SERVICE ID
+        ---------------------------------- */
+
         const id =
-            localStorage.getItem("currentServiceId");
+            localStorage.getItem(
+                "currentServiceId"
+            );
+
 
         if (!id) {
-            console.warn("No currentServiceId found.");
-            return null;
-        }
 
-        if (!auth.currentUser) {
-            console.warn("No authenticated Firebase user.");
-            return null;
-        }
-
-        try {
-
-            const serviceRef = doc(
-                db,
-                "users",
-                auth.currentUser.uid,
-                "services",
-                String(id)
-            );
-
-            const snapshot =
-                await getDoc(serviceRef);
-
-            if (!snapshot.exists()) {
-
-                console.warn(
-                    "Service not found:",
-                    id
-                );
-
-                return null;
-            }
-
-            const service = {
-                id: snapshot.id,
-                ...snapshot.data()
-            };
-
-            if (!Array.isArray(service.songs)) {
-                service.songs = [];
-            }
-
-            console.log(
-                "Current Service:",
-                service
-            );
-
-            return service;
-
-        }
-        catch (error) {
-
-            console.error(
-                "Error loading current service:",
-                error
+            console.warn(
+                "No currentServiceId found."
             );
 
             return null;
+
         }
+
+
+        /* ----------------------------------
+           WAIT FOR FIREBASE AUTH + SERVICE
+        ---------------------------------- */
+
+        const service =
+            await getActiveService();
+
+
+        if (!service) {
+
+            console.warn(
+                "No active Firebase service."
+            );
+
+            return null;
+
+        }
+
+
+        /* ----------------------------------
+           MAKE SURE SONGS EXISTS
+        ---------------------------------- */
+
+        if (
+            !Array.isArray(
+                service.songs
+            )
+        ) {
+
+            service.songs = [];
+
+        }
+
+
+        /* ----------------------------------
+           VERIFY SERVICE ID
+        ---------------------------------- */
+
+        if (
+            String(service.id) !==
+            String(id)
+        ) {
+
+            console.warn(
+                "Active service ID does not match currentServiceId:",
+                service.id,
+                id
+            );
+
+            return null;
+
+        }
+
+
+        console.log(
+            "Current Service:",
+            service
+        );
+
+
+        return service;
+
     },
-
 
     /* --------------------------------------
        GET CURRENT SONG INDEX
