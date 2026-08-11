@@ -30,20 +30,33 @@ import {
 
 let presentationService = null;
 
-async function loadPresentationService() {
+async function loadCurrentServiceFromFirebase() {
 
     const serviceId =
         localStorage.getItem("currentServiceId");
 
     if (!serviceId) {
-        console.error("No currentServiceId found.");
+
+        console.error(
+            "No currentServiceId found."
+        );
+
         return null;
     }
 
     if (!auth.currentUser) {
-        console.error("No authenticated Firebase user.");
+
+        console.error(
+            "No Firebase user."
+        );
+
         return null;
     }
+
+    console.log(
+        "Loading active service:",
+        serviceId
+    );
 
     try {
 
@@ -61,7 +74,7 @@ async function loadPresentationService() {
         if (!snapshot.exists()) {
 
             console.error(
-                "Service Planner not found:",
+                "Service does not exist in Firestore:",
                 serviceId
             );
 
@@ -69,38 +82,44 @@ async function loadPresentationService() {
         }
 
         presentationService = {
+
             id: snapshot.id,
+
             ...snapshot.data()
+
         };
 
-        // Make sure songs always exists
-        presentationService.songs =
-            Array.isArray(presentationService.songs)
-                ? presentationService.songs
-                : [];
+        // Always guarantee songs is an array
+        if (!Array.isArray(
+            presentationService.songs
+        )) {
+
+            presentationService.songs = [];
+
+        }
 
         console.log(
-            "Presentation Service:",
+            "ACTIVE SERVICE LOADED:",
             presentationService
         );
 
         console.log(
-            "Service Name:",
+            "SERVICE NAME:",
             presentationService.name
         );
 
         console.log(
-            "Service Songs:",
-            presentationService.songs
+            "SERVICE SONG COUNT:",
+            presentationService.songs.length
         );
 
         return presentationService;
 
     }
-    catch (error) {
+    catch(error) {
 
         console.error(
-            "Error loading presentation service:",
+            "Unable to load active service:",
             error
         );
 
