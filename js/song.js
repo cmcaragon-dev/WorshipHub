@@ -2280,34 +2280,45 @@ window.addEventListener(
     }
 
 );
-// ======================================
-// GLOBAL FUNCTIONS FOR HTML BUTTONS
-// ======================================
+/* ======================================
+   GLOBAL FUNCTIONS FOR HTML BUTTONS
+====================================== */
 
 window.nextServiceSong = function () {
+
     Service.next();
+
 };
+
 
 window.previousServiceSong = function () {
+
     Service.previous();
+
 };
 
+
 window.stopService = function () {
+
     Service.stop();
+
 };
+
+
+/* ======================================
+   START PRESENTATION
+====================================== */
 
 window.startPresentation = async function () {
 
-    await Presentation.start();
+    console.log(
+        "START PRESENTATION"
+    );
 
-};
 
-window.exitPresentation = function () {
-
-    Presentation.close();
-
-};
-
+    /* ----------------------------------
+       GET ACTIVE SERVICE
+    ---------------------------------- */
 
     const service =
         await getActiveService();
@@ -2324,6 +2335,7 @@ window.exitPresentation = function () {
         );
 
         return;
+
     }
 
 
@@ -2339,6 +2351,10 @@ window.exitPresentation = function () {
     );
 
 
+    /* ----------------------------------
+       CHECK SERVICE SONGS
+    ---------------------------------- */
+
     if (
         !Array.isArray(service.songs) ||
         service.songs.length === 0
@@ -2349,16 +2365,26 @@ window.exitPresentation = function () {
         );
 
         return;
+
     }
 
 
-    // ======================================
-    // YOUR EXISTING PRESENTATION CODE
-    // GOES BELOW THIS LINE
-    // ======================================
+    /* ----------------------------------
+       START PRESENTATION
+    ---------------------------------- */
+
+    await Presentation.start();
 
 };
+
+
+/* ======================================
+   EXIT PRESENTATION
+====================================== */
 
 window.exitPresentation = function () {
+
     Presentation.close();
+
 };
+
