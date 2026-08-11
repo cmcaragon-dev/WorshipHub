@@ -1,4 +1,3 @@
-
 "use strict";
 
 // ==========================================
@@ -19,16 +18,23 @@ import {
     getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-import {
-    loadServices,
-    saveServices
-} from "./firestore.js";
 
 // ==========================================
 // CURRENT SERVICE
 // ==========================================
+
 let activeService = null;
+
+let currentService = null;
+
 let presentationService = null;
+
+let activeServiceReady = null;
+
+
+// ==========================================
+// LOAD ACTIVE SERVICE FROM FIRESTORE
+// ==========================================
 
 async function loadActiveService() {
 
@@ -36,7 +42,15 @@ async function loadActiveService() {
         localStorage.getItem("currentServiceId");
 
     console.log(
-        "READING currentServiceId:",
+        "===================================="
+    );
+
+    console.log(
+        "LOADING ACTIVE SERVICE"
+    );
+
+    console.log(
+        "currentServiceId:",
         serviceId
     );
 
@@ -49,6 +63,7 @@ async function loadActiveService() {
         return null;
     }
 
+
     const user = auth.currentUser;
 
     if (!user) {
@@ -60,10 +75,12 @@ async function loadActiveService() {
         return null;
     }
 
+
     console.log(
-        "FIREBASE USER:",
+        "Firebase User:",
         user.uid
     );
+
 
     try {
 
@@ -75,13 +92,16 @@ async function loadActiveService() {
             String(serviceId)
         );
 
+
         console.log(
-            "READING FIRESTORE SERVICE:",
+            "Reading Firestore:",
             `users/${user.uid}/services/${serviceId}`
         );
 
+
         const snapshot =
             await getDoc(serviceRef);
+
 
         if (!snapshot.exists()) {
 
@@ -93,35 +113,68 @@ async function loadActiveService() {
             return null;
         }
 
-        activeService = {
+
+        const service = {
+
             id: snapshot.id,
+
             ...snapshot.data()
+
         };
 
-        if (!Array.isArray(activeService.songs)) {
-            activeService.songs = [];
+
+        // ==================================
+        // GUARANTEE SONGS ARRAY
+        // ==================================
+
+        if (!Array.isArray(service.songs)) {
+
+            service.songs = [];
+
         }
+
+
+        // ==================================
+        // STORE EVERY CURRENT SERVICE VARIABLE
+        // ==================================
+
+        activeService = service;
+
+        currentService = service;
+
+        presentationService = service;
+
 
         console.log(
             "========== ACTIVE SERVICE =========="
         );
 
         console.log(
-            "ID:",
-            activeService.id
+            "SERVICE ID:",
+            service.id
         );
 
         console.log(
-            "NAME:",
-            activeService.name
+            "SERVICE NAME:",
+            service.name
+        );
+
+        console.log(
+            "SONG COUNT:",
+            service.songs.length
         );
 
         console.log(
             "SONGS:",
-            activeService.songs
+            service.songs
         );
 
-        return activeService;
+        console.log(
+            "===================================="
+        );
+
+
+        return service;
 
     }
     catch(error) {
@@ -132,105 +185,81 @@ async function loadActiveService() {
         );
 
         return null;
+
     }
+
 }
-async function loadCurrentServiceFromFirebase() {
 
-    const serviceId =
-        localStorage.getItem("currentServiceId");
 
-    if (!serviceId) {
+// ==========================================
+// WAIT FOR FIREBASE AUTH + SERVICE
+// ==========================================
 
-        console.error(
-            "No currentServiceId found."
-        );
+activeServiceReady =
+new Promise(function(resolve) {
 
-        return null;
-    }
+    onAuthStateChanged(
+        auth,
+        async function(user) {
 
-    if (!auth.currentUser) {
-
-        console.error(
-            "No Firebase user."
-        );
-
-        return null;
-    }
-
-    console.log(
-        "Loading active service:",
-        serviceId
-    );
-
-    try {
-
-        const serviceRef = doc(
-            db,
-            "users",
-            auth.currentUser.uid,
-            "services",
-            String(serviceId)
-        );
-
-        const snapshot =
-            await getDoc(serviceRef);
-
-        if (!snapshot.exists()) {
-
-            console.error(
-                "Service does not exist in Firestore:",
-                serviceId
+            console.log(
+                "Firebase authentication state:",
+                user
             );
 
-            return null;
+
+            if (!user) {
+
+                console.error(
+                    "No authenticated user."
+                );
+
+                resolve(null);
+
+                return;
+            }
+
+
+            console.log(
+                "Authenticated UID:",
+                user.uid
+            );
+
+
+            const service =
+                await loadActiveService();
+
+
+            resolve(service);
+
         }
+    );
 
-        presentationService = {
+});
 
-            id: snapshot.id,
 
-            ...snapshot.data()
+// ==========================================
+// GET CURRENT SERVICE
+// ==========================================
 
-        };
+async function getActiveService() {
 
-        // Always guarantee songs is an array
-        if (!Array.isArray(
-            presentationService.songs
-        )) {
+    // If already loaded, use it
+    if (activeService) {
 
-            presentationService.songs = [];
-
-        }
-
-        console.log(
-            "ACTIVE SERVICE LOADED:",
-            presentationService
-        );
-
-        console.log(
-            "SERVICE NAME:",
-            presentationService.name
-        );
-
-        console.log(
-            "SERVICE SONG COUNT:",
-            presentationService.songs.length
-        );
-
-        return presentationService;
+        return activeService;
 
     }
-    catch(error) {
 
-        console.error(
-            "Unable to load active service:",
-            error
-        );
 
-        return null;
-    }
+    // Otherwise wait for Firebase
+    activeService =
+        await activeServiceReady;
+
+
+    return activeService;
+
 }
-let currentService = null;
 
 /* ==========================================================
    WORSHIP SONGS MANAGER
