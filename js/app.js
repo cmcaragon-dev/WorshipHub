@@ -125,7 +125,10 @@ onAuthStateChanged(auth, async function(user) {
     ===================================== */
 
     try {
-
+console.log(
+    "Loading services for UID:",
+    currentUser.uid
+);
         services = await loadServices(
             currentUser.uid
         );
