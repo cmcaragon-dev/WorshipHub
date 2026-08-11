@@ -822,7 +822,7 @@ Object.assign(Service, {
         /* ----------------------------------
            LOAD SERVICES FROM FIREBASE
         ---------------------------------- */
-
+async function init() {
         const services =
             await loadServices("guest");
 
@@ -836,12 +836,12 @@ Object.assign(Service, {
             return;
 
         }
-
+}
 
         /* ----------------------------------
            FIND CURRENT SERVICE
         ---------------------------------- */
-async function init() {
+
         const service =
             services.find(function(s) {
 
@@ -859,8 +859,6 @@ async function init() {
             return;
 
         }
-
-}
         /* ----------------------------------
            FIND CURRENT SONG
         ---------------------------------- */
