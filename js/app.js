@@ -1063,13 +1063,15 @@ async function() {
 function renderServices() {
 
     if (!serviceList) {
-        console.error("serviceList not found.");
+        console.error(
+            "serviceList element not found."
+        );
         return;
     }
 
     serviceList.innerHTML = "";
 
-    if (!services || services.length === 0) {
+    if (!Array.isArray(services) || services.length === 0) {
 
         serviceList.innerHTML = `
             <div class="empty-message">
@@ -1078,58 +1080,57 @@ function renderServices() {
         `;
 
         updateDashboard();
+
         return;
     }
 
-    services.sort(function(a, b) {
-
-        return (a.name || "").localeCompare(
-            b.name || ""
-        );
-
-    });
-
     services.forEach(function(service) {
 
+        // Make sure songs is always an array
         const serviceSongs =
             Array.isArray(service.songs)
                 ? service.songs
                 : [];
 
-        let songList = "";
+        // =====================================
+        // SONG HTML
+        // =====================================
+
+        let songsHtml = "";
 
         serviceSongs.forEach(function(song, index) {
 
-            songList += `
+            songsHtml += `
 
                 <div class="service-song">
 
-                    <div>
+                    <div class="service-song-info">
 
                         <div class="service-song-title">
 
-                            🎵 ${song.title || "Untitled"}
+                            🎵 ${song.title || "Untitled Song"}
 
                         </div>
 
-                        <small>
+                        <div class="service-song-artist">
+
                             ${song.artist || ""}
-                        </small>
 
-                        <br>
+                        </div>
 
-                        <span class="service-song-key">
+                        <div class="service-song-key">
 
                             🎼 ${song.serviceKey || song.key || ""}
 
-                        </span>
+                        </div>
 
                     </div>
 
                     <button
+                        class="remove-song-btn"
                         onclick="removeSongFromService('${service.id}', ${index})">
 
-                        🗑 Remove
+                        🗑
 
                     </button>
 
@@ -1139,10 +1140,15 @@ function renderServices() {
 
         });
 
+        // =====================================
+        // SERVICE
+        // =====================================
 
         serviceList.innerHTML += `
 
             <div class="service-item">
+
+                <!-- SERVICE HEADER -->
 
                 <div
                     class="service-header"
@@ -1152,7 +1158,8 @@ function renderServices() {
 
                         <div class="service-title">
 
-                            <span id="serviceArrow${service.id}">
+                            <span
+                                id="serviceArrow${service.id}">
                                 ▶
                             </span>
 
@@ -1162,7 +1169,8 @@ function renderServices() {
 
                         <div class="service-count">
 
-                            ${serviceSongs.length} Songs
+                            ${serviceSongs.length}
+                            ${serviceSongs.length === 1 ? "Song" : "Songs"}
 
                         </div>
 
@@ -1170,6 +1178,8 @@ function renderServices() {
 
                 </div>
 
+
+                <!-- SERVICE BODY -->
 
                 <div
                     id="serviceBody${service.id}"
@@ -1182,14 +1192,12 @@ function renderServices() {
 
                     </button>
 
-
                     <button
                         onclick="startService('${service.id}')">
 
                         ▶ Start Service
 
                     </button>
-
 
                     <button
                         onclick="renameService('${service.id}')">
@@ -1198,7 +1206,6 @@ function renderServices() {
 
                     </button>
 
-
                     <button
                         onclick="deleteService('${service.id}')">
 
@@ -1206,12 +1213,19 @@ function renderServices() {
 
                     </button>
 
-
                     <hr>
+
+
+                    <!-- SONG LIST -->
 
                     <div class="service-song-list">
 
-                        ${songList}
+                        ${
+                            songsHtml ||
+                            `<div class="empty-message">
+                                No songs added yet.
+                            </div>`
+                        }
 
                     </div>
 
@@ -1416,16 +1430,13 @@ function renderSongPicker(list){
 }
 async function selectSong(file) {
 
-    console.log("Adding:", file);
-    console.log("Selected Service:", selectedService);
-
     if (!currentUser) {
         alert("Please login first.");
         return;
     }
 
     if (!selectedService) {
-        alert("No service selected.");
+        alert("No Service Planner selected.");
         return;
     }
 
@@ -1433,69 +1444,112 @@ async function selectSong(file) {
         return s.file === file;
     });
 
-    console.log("Found Song:", song);
-
     if (!song) {
         alert("Song not found.");
         return;
     }
 
+    // Make sure songs exists
+    if (!Array.isArray(selectedService.songs)) {
+        selectedService.songs = [];
+    }
+
     // Prevent duplicate
-    const alreadyExists = selectedService.songs.some(function(s) {
+    const exists = selectedService.songs.some(function(s) {
         return s.file === song.file;
     });
 
-    if (alreadyExists) {
-        alert("This song is already in the service.");
+    if (exists) {
+        alert("This song is already in the Service Planner.");
         return;
     }
 
-    // Add song
-    selectedService.songs.push({
+    // Create service song
+    const serviceSong = {
 
-        id: song.id,
-        title: song.title,
+        id: song.id || String(Date.now()),
+
+        title: song.title || "",
+
         artist: song.artist || "",
-        file: song.file || "",
-        category: song.category || "",
-        language: song.language || "",
-        key: song.key || "",
-        originalKey: song.key || "",
-        serviceKey: song.key || "",
-        transpose: 0
 
-    });
+        file: song.file || "",
+
+        category: song.category || "",
+
+        language: song.language || "",
+
+        key: song.key || "",
+
+        originalKey: song.key || "",
+
+        serviceKey: song.key || "",
+
+        transpose: 0,
+
+        youtube: song.youtube || ""
+
+    };
+
+    // Add song to selected service
+    selectedService.songs.push(serviceSong);
+
+    console.log(
+        "SERVICE AFTER ADDING SONG:",
+        selectedService
+    );
 
     try {
 
-        // IMPORTANT:
-        // Actually save the service to Firebase
-        await saveServicesCloud();
-
-        console.log(
-            "Service saved successfully:",
+        // Save THIS service
+        await saveService(
+            currentUser.uid,
             selectedService
         );
 
-        // Refresh Service Planner
+        // IMPORTANT:
+        // Replace the service inside services[]
+        const serviceIndex = services.findIndex(function(s) {
+
+            return String(s.id) ===
+                   String(selectedService.id);
+
+        });
+
+        if (serviceIndex !== -1) {
+
+            services[serviceIndex] = {
+                ...selectedService,
+                songs: [...selectedService.songs]
+            };
+
+        }
+
+        console.log(
+            "SERVICES AFTER UPDATE:",
+            services
+        );
+
+        // Rebuild sidebar
         renderServices();
+
+        updateDashboard();
 
         // Close picker
         songPicker.classList.remove("show");
 
-        // Clear selection
         selectedService = null;
 
     }
     catch(error) {
 
         console.error(
-            "Error saving song to service:",
+            "Error saving song:",
             error
         );
 
         alert(
-            "Unable to save song to service."
+            "Unable to save song."
         );
 
     }
