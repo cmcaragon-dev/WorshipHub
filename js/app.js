@@ -1369,13 +1369,23 @@ document.getElementById("songPickerList");
 const songPickerSearch =
 document.getElementById("songPickerSearch");
 
-const closeSongPicker =
+const closeSongPickerPanel =
     document.getElementById("closeSongPicker");
 
-if (closeSongPicker) {
+if (closeSongPickerPanel) {
 
-    closeSongPicker.onclick =
-        closeSongPickerPanel;
+    closeSongPickerPanel.onclick = function () {
+
+        const songPicker =
+            document.getElementById("songPicker");
+
+        if (songPicker) {
+
+            songPicker.classList.remove("show");
+
+        }
+
+    };
 
 }
 
