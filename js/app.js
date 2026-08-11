@@ -1612,8 +1612,8 @@ closeSongPicker.onclick = function(){
 
 async function startService(serviceId) {
 
-    const service = services.find(function(s) {
-        return Number(s.id) === Number(serviceId);
+    const service = services.find(function (s) {
+        return String(s.id) === String(serviceId);
     });
 
     if (!service) {
@@ -1626,18 +1626,20 @@ async function startService(serviceId) {
         return;
     }
 
-    // Save active service
-   localStorage.setItem(
-    "currentServiceId",
-    String(service.id)
-);
+    // ==========================================
+    // SAVE ACTIVE SERVICE
+    // ==========================================
 
-localStorage.setItem(
-    "currentServiceName",
-    service.name
-);
+    localStorage.setItem(
+        "currentServiceId",
+        String(service.id)
+    );
 
-    // Start from first song
+    localStorage.setItem(
+        "currentServiceName",
+        service.name || "Service Planner"
+    );
+
     localStorage.setItem(
         "currentSongIndex",
         "0"
@@ -1648,6 +1650,15 @@ localStorage.setItem(
         "true"
     );
 
+    console.log("STARTING SERVICE:");
+    console.log("ID:", service.id);
+    console.log("NAME:", service.name);
+    console.log("SONGS:", service.songs);
+
+    // ==========================================
+    // OPEN FIRST SONG
+    // ==========================================
+
     const firstSong = service.songs[0];
 
     if (!firstSong || !firstSong.file) {
@@ -1655,25 +1666,14 @@ localStorage.setItem(
         return;
     }
 
-    // Get ONLY the filename
     const filename =
         String(firstSong.file)
-        .trim()
-        .split("/")
-        .pop();
+            .trim()
+            .split("/")
+            .pop();
 
-    // GitHub Pages URL
     const url =
         "/WorshipHub/songs/" + filename;
-
-    console.log("================================");
-    console.log("START SERVICE");
-    console.log("Service:", service.name);
-    console.log("Song:", firstSong.title);
-    console.log("Firebase file:", firstSong.file);
-    console.log("Filename:", filename);
-    console.log("Opening:", url);
-    console.log("================================");
 
     window.location.assign(url);
 }
@@ -2065,18 +2065,37 @@ window.searchSongs = searchSongs;
 
 function getCurrentService() {
 
-    const id = Number(localStorage.getItem("currentServiceId"));
+    const serviceId =
+        localStorage.getItem("currentServiceId");
 
-    console.log("Current Service ID:", id);
-    console.log("Services:", services);
+    console.log(
+        "Current Service ID:",
+        serviceId
+    );
 
-    const service = services.find(function(s){
-        return Number(s.id) === id;
-    });
+    console.log(
+        "Services:",
+        services
+    );
 
-    console.log("Found Service:", service);
+    if (!serviceId) {
+        return null;
+    }
 
-    return service;
+    const service =
+        services.find(function (s) {
+
+            return String(s.id) ===
+                   String(serviceId);
+
+        });
+
+    console.log(
+        "Found Service:",
+        service
+    );
+
+    return service || null;
 }
 function getCurrentSongIndex() {
 
