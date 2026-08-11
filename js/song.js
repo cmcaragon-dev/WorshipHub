@@ -1164,13 +1164,6 @@ async saveCurrentServiceKey() {
 
         }
 
-
-        alert(
-            "Service Key saved successfully: " +
-            displayedKey
-        );
-
-
         return true;
 
     }
