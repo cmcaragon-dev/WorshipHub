@@ -1610,17 +1610,18 @@ closeSongPicker.onclick = function(){
 
 async function startService(serviceId) {
 
-    console.log("START SERVICE CLICKED");
-    console.log("Service ID:", serviceId);
-    console.log("Services:", services);
+    console.log("========== START SERVICE ==========");
+    console.log("Requested Service ID:", serviceId);
 
     const service = services.find(function(s) {
         return String(s.id) === String(serviceId);
     });
 
     if (!service) {
+        console.error("SERVICE NOT FOUND:", serviceId);
+        console.log("AVAILABLE SERVICES:", services);
+
         alert("Service not found.");
-        console.error("Service not found:", serviceId);
         return;
     }
 
@@ -1629,10 +1630,7 @@ async function startService(serviceId) {
         return;
     }
 
-    // ==========================================
-    // SAVE ACTIVE SERVICE
-    // ==========================================
-
+    // SAVE THE EXACT SERVICE ID
     localStorage.setItem(
         "currentServiceId",
         String(service.id)
@@ -1648,54 +1646,39 @@ async function startService(serviceId) {
         "true"
     );
 
-    // IMPORTANT:
-    // Save the service name too
-    localStorage.setItem(
-        "currentServiceName",
-        service.name || ""
-    );
-
     console.log(
-        "ACTIVE SERVICE SAVED:",
+        "SAVED currentServiceId:",
         localStorage.getItem("currentServiceId")
     );
 
     console.log(
-        "ACTIVE SERVICE NAME:",
-        localStorage.getItem("currentServiceName")
+        "SERVICE NAME:",
+        service.name
     );
 
     console.log(
-        "ACTIVE SERVICE:",
-        service
+        "SONGS:",
+        service.songs
     );
 
-    // ==========================================
-    // OPEN FIRST SONG
-    // ==========================================
-
+    // Open first song
     const firstSong = service.songs[0];
 
     if (!firstSong || !firstSong.file) {
-
         alert("First song file not found.");
-
         return;
     }
 
     const filename =
         String(firstSong.file)
-        .trim()
-        .split("/")
-        .pop();
+            .trim()
+            .split("/")
+            .pop();
 
     const url =
         "/WorshipHub/songs/" + filename;
 
-    console.log(
-        "Opening presentation:",
-        url
-    );
+    console.log("OPENING:", url);
 
     window.location.assign(url);
 }
