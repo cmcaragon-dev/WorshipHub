@@ -622,7 +622,7 @@ Object.assign(Service, {
 
     }
 
-});
+},
 
     /* --------------------------------------
        SAVE TRANSPOSED SERVICE KEY
