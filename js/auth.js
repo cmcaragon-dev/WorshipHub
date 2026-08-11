@@ -3,38 +3,22 @@
 // ==========================================
 
 import {
-
     createUserWithEmailAndPassword,
-
     signInWithEmailAndPassword,
-
     signOut,
-
     onAuthStateChanged
-
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
-
     doc,
-
     setDoc,
-
     getDoc,
-
     serverTimestamp
-
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
-
     auth,
     db
-
 } from "./firebase.js";
 
 
