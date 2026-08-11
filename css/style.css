@@ -1864,31 +1864,24 @@ PLAYLIST BUTTONS
 
 }
 
-.service-song-key{
+.service-song-key {
+    display: block;
+    width: 180px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
 
-    color:#3498db;
+    margin-top: 4px;
 
-    font-weight:bold;
+    background: #4a90d9;
+    color: white;
 
-    font-size:13px;
+    border-radius: 15px;
 
-    white-space:nowrap;
+    font-size: 13px;
+    font-weight: bold;
 
-}
-.service-song-key{
-
-    background:#3498db;
-
-    color:white;
-
-    padding:3px 8px;
-
-    border-radius:20px;
-
-    font-size:12px;
-
-    font-weight:bold;
-
+    box-sizing: border-box;
 }
 .service-song{
 
