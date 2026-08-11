@@ -1,11 +1,54 @@
 "use strict";
 
-import { loadServices } from "./firestore.js";
+import {
+    auth
+} from "./firebase.js";
 
-const FIREBASE_USER = "guest";
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-const CURRENT_SERVICE_KEY = "currentServiceId";
-const CURRENT_SONG_INDEX_KEY = "currentSongIndex";
+import {
+    loadServices
+} from "./firestore.js";
+
+
+/* =====================================
+   STORAGE KEYS
+===================================== */
+
+const CURRENT_SERVICE_KEY =
+    "currentServiceId";
+
+const CURRENT_SONG_INDEX_KEY =
+    "currentSongIndex";
+
+
+/* =====================================
+   WAIT FOR FIREBASE AUTHENTICATION
+===================================== */
+
+const firebaseAuthReady =
+    new Promise(function (resolve) {
+
+        onAuthStateChanged(
+            auth,
+            function (user) {
+
+                console.log(
+                    "SERVICE NAV AUTH:",
+                    user
+                        ? user.uid
+                        : "NO USER"
+                );
+
+                resolve(user);
+
+            }
+        );
+
+    });
+
 
 /* =====================================
    GET CURRENT SERVICE
@@ -13,31 +56,112 @@ const CURRENT_SONG_INDEX_KEY = "currentSongIndex";
 
 async function getCurrentService() {
 
-    const serviceId = Number(
-        localStorage.getItem(CURRENT_SERVICE_KEY)
-    );
+    /* ---------------------------------
+       WAIT FOR FIREBASE USER
+    --------------------------------- */
 
-    console.log("CURRENT SERVICE ID:", serviceId);
+    const user =
+        await firebaseAuthReady;
 
-    if (!serviceId) {
-        console.log("No current service ID.");
+
+    if (!user) {
+
+        console.warn(
+            "SERVICE NAVIGATION: No authenticated Firebase user."
+        );
+
         return null;
+
     }
 
+
+    console.log(
+        "SERVICE NAVIGATION USER:",
+        user.uid
+    );
+
+
+    /* ---------------------------------
+       GET SERVICE ID
+    --------------------------------- */
+
+    const serviceId =
+        localStorage.getItem(
+            CURRENT_SERVICE_KEY
+        );
+
+
+    if (!serviceId) {
+
+        console.warn(
+            "No currentServiceId."
+        );
+
+        return null;
+
+    }
+
+
+    console.log(
+        "SERVICE NAVIGATION SERVICE ID:",
+        serviceId
+    );
+
+
+    /* ---------------------------------
+       LOAD SERVICES FROM FIREBASE
+    --------------------------------- */
+
     const services =
-        await loadServices(FIREBASE_USER);
+        await loadServices();
 
-    console.log("SERVICES FROM FIREBASE:", services);
 
-    const service = services.find(function(service) {
+    if (!Array.isArray(services)) {
 
-        return Number(service.id) === serviceId;
+        console.warn(
+            "Unable to load services."
+        );
 
-    });
+        return null;
 
-    console.log("CURRENT SERVICE:", service);
+    }
 
-    return service || null;
+
+    /* ---------------------------------
+       FIND CURRENT SERVICE
+    --------------------------------- */
+
+    const service =
+        services.find(
+            function (service) {
+
+                return String(service.id) ===
+                       String(serviceId);
+
+            }
+        );
+
+
+    if (!service) {
+
+        console.warn(
+            "Current service not found:",
+            serviceId
+        );
+
+        return null;
+
+    }
+
+
+    console.log(
+        "CURRENT SERVICE:",
+        service
+    );
+
+
+    return service;
+
 }
 
 
@@ -52,6 +176,7 @@ function getCurrentSongIndex() {
             CURRENT_SONG_INDEX_KEY
         ) || 0
     );
+
 }
 
 
@@ -63,41 +188,43 @@ function openSongInPresentation(song) {
 
     if (!song || !song.file) {
 
-        alert("Song file not found.");
+        alert(
+            "Song file not found."
+        );
 
         return;
+
     }
+
 
     localStorage.setItem(
         "resumePresentation",
         "true"
     );
 
-    /*
-     * Firebase example:
-     *
-     * songs/samasamangnagpupuri.html
-     *
-     * We only need:
-     *
-     * samasamangnagpupuri.html
-     */
+
+    /* ---------------------------------
+       GET FILE NAME
+    --------------------------------- */
 
     let filename =
         String(song.file).trim();
 
-    filename =
-        filename.split("/").pop();
 
-    /*
-     * IMPORTANT:
-     *
-     * Always use the actual GitHub Pages
-     * project path.
-     */
+    filename =
+        filename
+            .split("/")
+            .pop();
+
+
+    /* ---------------------------------
+       BUILD GITHUB PAGES URL
+    --------------------------------- */
 
     const url =
-        "/WorshipHub/songs/" + filename;
+        "/WorshipHub/songs/" +
+        filename;
+
 
     console.log(
         "================================"
@@ -131,7 +258,11 @@ function openSongInPresentation(song) {
         "================================"
     );
 
-    window.location.assign(url);
+
+    window.location.assign(
+        url
+    );
+
 }
 
 
@@ -145,28 +276,39 @@ async function nextServiceSong() {
         "========== NEXT CLICK =========="
     );
 
+
     const service =
         await getCurrentService();
 
+
     if (!service) {
 
-        alert("No active service.");
+        alert(
+            "No active service."
+        );
 
         return;
+
     }
 
+
     if (
-        !service.songs ||
+        !Array.isArray(service.songs) ||
         service.songs.length === 0
     ) {
 
-        alert("This service has no songs.");
+        alert(
+            "This service has no songs."
+        );
 
         return;
+
     }
+
 
     let index =
         getCurrentSongIndex();
+
 
     console.log(
         "CURRENT INDEX:",
@@ -178,34 +320,44 @@ async function nextServiceSong() {
         service.songs.length
     );
 
+
     if (
         index >=
         service.songs.length - 1
     ) {
 
-        alert("End of Service.");
+        alert(
+            "End of Service."
+        );
 
         return;
+
     }
 
+
     index++;
+
 
     localStorage.setItem(
         CURRENT_SONG_INDEX_KEY,
         String(index)
     );
 
+
     const nextSong =
         service.songs[index];
+
 
     console.log(
         "NEXT SONG:",
         nextSong
     );
 
+
     openSongInPresentation(
         nextSong
     );
+
 }
 
 
@@ -219,59 +371,123 @@ async function previousServiceSong() {
         "========== PREVIOUS CLICK =========="
     );
 
+
     const service =
         await getCurrentService();
 
+
     if (!service) {
 
-        alert("No active service.");
+        alert(
+            "No active service."
+        );
 
         return;
+
     }
 
+
     if (
-        !service.songs ||
+        !Array.isArray(service.songs) ||
         service.songs.length === 0
     ) {
 
-        alert("This service has no songs.");
+        alert(
+            "This service has no songs."
+        );
 
         return;
+
     }
+
 
     let index =
         getCurrentSongIndex();
+
 
     console.log(
         "CURRENT INDEX:",
         index
     );
 
+
     if (index <= 0) {
 
-        alert("This is the first song.");
+        alert(
+            "This is the first song."
+        );
 
         return;
+
     }
 
+
     index--;
+
 
     localStorage.setItem(
         CURRENT_SONG_INDEX_KEY,
         String(index)
     );
 
+
     const previousSong =
         service.songs[index];
+
 
     console.log(
         "PREVIOUS SONG:",
         previousSong
     );
 
+
     openSongInPresentation(
         previousSong
     );
+
+}
+
+
+/* =====================================
+   DISPLAY SERVICE NAME
+===================================== */
+
+async function displayServiceName() {
+
+    const serviceName =
+        document.getElementById(
+            "serviceNameDisplay"
+        );
+
+
+    if (!serviceName) {
+
+        return;
+
+    }
+
+
+    serviceName.textContent =
+        "Loading...";
+
+
+    const service =
+        await getCurrentService();
+
+
+    if (service) {
+
+        serviceName.textContent =
+            service.name || "-";
+
+    }
+    else {
+
+        serviceName.textContent =
+            "-";
+
+    }
+
 }
 
 
@@ -284,25 +500,15 @@ window.nextServiceSong =
 
 window.previousServiceSong =
     previousServiceSong;
+
+
+/* =====================================
+   INITIALIZE SERVICE NAVIGATION
+===================================== */
+
 displayServiceName();
+
+
 console.log(
     "SERVICE NAVIGATION LOADED"
 );
-
-async function displayServiceName() {
-
-    const service = await getCurrentService();
-
-    const serviceName =
-        document.getElementById("serviceNameDisplay");
-
-    if (!serviceName) {
-        return;
-    }
-
-    if (service) {
-        serviceName.textContent = service.name;
-    } else {
-        serviceName.textContent = "-";
-    }
-}
