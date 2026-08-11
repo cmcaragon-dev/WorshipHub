@@ -1610,80 +1610,115 @@ closeSongPicker.onclick = function(){
 
 async function startService(serviceId) {
 
-    console.log("========== START SERVICE ==========");
-    console.log("Requested Service ID:", serviceId);
-
     const service = services.find(function(s) {
+
         return String(s.id) === String(serviceId);
+
     });
 
+
     if (!service) {
-        console.error("SERVICE NOT FOUND:", serviceId);
-        console.log("AVAILABLE SERVICES:", services);
 
         alert("Service not found.");
+
         return;
+
     }
 
-    if (!Array.isArray(service.songs) || service.songs.length === 0) {
-        alert("This service has no songs.");
+
+    if (
+        !Array.isArray(service.songs) ||
+        service.songs.length === 0
+    ) {
+
+        alert(
+            "This service has no songs."
+        );
+
         return;
+
     }
 
-    // SAVE THE EXACT SERVICE ID
+
+    // ======================================
+    // SAVE ACTIVE SERVICE
+    // ======================================
+
     localStorage.setItem(
         "currentServiceId",
         String(service.id)
     );
+
 
     localStorage.setItem(
         "currentSongIndex",
         "0"
     );
 
+
     localStorage.setItem(
         "resumePresentation",
         "true"
     );
 
+
     console.log(
-        "SAVED currentServiceId:",
-        localStorage.getItem("currentServiceId")
+        "START SERVICE:"
     );
 
     console.log(
-        "SERVICE NAME:",
+        "ID:",
+        service.id
+    );
+
+    console.log(
+        "NAME:",
         service.name
     );
 
     console.log(
         "SONGS:",
-        service.songs
+        service.songs.length
     );
 
-    // Open first song
-    const firstSong = service.songs[0];
+
+    // ======================================
+    // OPEN FIRST SONG
+    // ======================================
+
+    const firstSong =
+        service.songs[0];
+
 
     if (!firstSong || !firstSong.file) {
-        alert("First song file not found.");
+
+        alert(
+            "First song file not found."
+        );
+
         return;
+
     }
+
 
     const filename =
         String(firstSong.file)
-            .trim()
-            .split("/")
-            .pop();
+        .trim()
+        .split("/")
+        .pop();
+
 
     const url =
         "/WorshipHub/songs/" + filename;
 
-    console.log("OPENING:", url);
 
     window.location.assign(url);
+
 }
 
-window.startService = startService;
+
+window.startService =
+    startService;
 
 function displayCurrentServiceName() {
 
