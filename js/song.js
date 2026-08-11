@@ -257,26 +257,39 @@ const activeServiceReady =
                     user.uid
                 );
 
-                const service =
-                    await loadActiveService(user);
+                try {
 
-                if (!service) {
+                    const service =
+                        await loadActiveService(user);
 
-                    console.warn(
-                        "NO ACTIVE SERVICE"
+                    if (!service) {
+
+                        console.warn(
+                            "NO ACTIVE SERVICE"
+                        );
+
+                        resolve(null);
+
+                        return;
+                    }
+
+                    console.log(
+                        "ACTIVE SERVICE READY:",
+                        service
+                    );
+
+                    resolve(service);
+
+                }
+                catch (error) {
+
+                    console.error(
+                        "ERROR LOADING ACTIVE SERVICE:",
+                        error
                     );
 
                     resolve(null);
-
-                    return;
                 }
-
-                console.log(
-                    "ACTIVE SERVICE READY:",
-                    service
-                );
-
-                resolve(service);
 
             }
         );
@@ -293,21 +306,10 @@ async function getActiveService() {
     if (activeService) {
 
         return activeService;
-
     }
 
     const service =
         await activeServiceReady;
-
-    return service;
-
-}
-
-
-
-    const service =
-        await activeServiceReady;
-
 
     return service;
 
