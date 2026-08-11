@@ -797,7 +797,7 @@ Object.assign(Service, {
 
     },
 
-
+```javascript
 /* --------------------------------------
    SAVE CURRENT SERVICE KEY
 -------------------------------------- */
@@ -809,12 +809,12 @@ async saveCurrentServiceKey() {
     );
 
     console.log(
-        "SAVE SERVICE KEY STARTED"
+        "SAVE SERVICE KEY"
     );
 
 
     /* ----------------------------------
-       GET FIREBASE USER
+       1. GET AUTHENTICATED USER
     ---------------------------------- */
 
     const user =
@@ -829,7 +829,7 @@ async saveCurrentServiceKey() {
         );
 
         alert(
-            "Firebase user is not authenticated. Please wait for login to complete."
+            "Firebase user is not authenticated."
         );
 
         return false;
@@ -838,13 +838,13 @@ async saveCurrentServiceKey() {
 
 
     console.log(
-        "FIREBASE USER:",
+        "USER UID:",
         user.uid
     );
 
 
     /* ----------------------------------
-       GET CURRENT SERVICE ID
+       2. GET CURRENT SERVICE ID
     ---------------------------------- */
 
     const serviceId =
@@ -853,20 +853,14 @@ async saveCurrentServiceKey() {
         );
 
 
-    console.log(
-        "CURRENT SERVICE ID:",
-        serviceId
-    );
-
-
     if (!serviceId) {
 
         console.error(
-            "SAVE SERVICE KEY: NO currentServiceId"
+            "NO currentServiceId"
         );
 
         alert(
-            "No active Service Planner service was found."
+            "No active service found."
         );
 
         return false;
@@ -874,8 +868,14 @@ async saveCurrentServiceKey() {
     }
 
 
+    console.log(
+        "SERVICE ID:",
+        serviceId
+    );
+
+
     /* ----------------------------------
-       GET CURRENT SONG INDEX
+       3. GET CURRENT SONG INDEX
     ---------------------------------- */
 
     const songIndex =
@@ -887,7 +887,7 @@ async saveCurrentServiceKey() {
 
 
     console.log(
-        "CURRENT SONG INDEX:",
+        "SONG INDEX:",
         songIndex
     );
 
@@ -895,7 +895,7 @@ async saveCurrentServiceKey() {
     try {
 
         /* ----------------------------------
-           FIRESTORE SERVICE REFERENCE
+           4. GET SERVICE FROM FIREBASE
         ---------------------------------- */
 
         const serviceRef =
@@ -907,16 +907,6 @@ async saveCurrentServiceKey() {
                 String(serviceId)
             );
 
-
-        console.log(
-            "FIRESTORE SERVICE PATH:",
-            `users/${user.uid}/services/${serviceId}`
-        );
-
-
-        /* ----------------------------------
-           GET SERVICE
-        ---------------------------------- */
 
         const snapshot =
             await getDoc(
@@ -932,7 +922,7 @@ async saveCurrentServiceKey() {
             );
 
             alert(
-                "The current service was not found in Firebase."
+                "The Service Planner record was not found."
             );
 
             return false;
@@ -940,22 +930,12 @@ async saveCurrentServiceKey() {
         }
 
 
-        /* ----------------------------------
-           BUILD SERVICE OBJECT
-        ---------------------------------- */
-
-        const service = {
-
-            id:
-                snapshot.id,
-
-            ...snapshot.data()
-
-        };
+        const service =
+            snapshot.data();
 
 
         /* ----------------------------------
-           MAKE SURE SONGS EXISTS
+           5. CHECK SONGS
         ---------------------------------- */
 
         if (
@@ -964,14 +944,18 @@ async saveCurrentServiceKey() {
             )
         ) {
 
-            service.songs = [];
+            console.error(
+                "SERVICE HAS NO SONGS ARRAY"
+            );
+
+            alert(
+                "The service does not contain any songs."
+            );
+
+            return false;
 
         }
 
-
-        /* ----------------------------------
-           CHECK SONG INDEX
-        ---------------------------------- */
 
         if (
             songIndex < 0 ||
@@ -984,7 +968,7 @@ async saveCurrentServiceKey() {
             );
 
             alert(
-                "The current song could not be found in this service."
+                "Current song was not found in the service."
             );
 
             return false;
@@ -993,36 +977,21 @@ async saveCurrentServiceKey() {
 
 
         /* ----------------------------------
-           GET CURRENT SONG
+           6. GET CURRENT SONG
         ---------------------------------- */
 
-        const serviceSong =
+        const song =
             service.songs[songIndex];
 
 
-        if (!serviceSong) {
-
-            console.error(
-                "CURRENT SERVICE SONG DOES NOT EXIST"
-            );
-
-            alert(
-                "Current song was not found."
-            );
-
-            return false;
-
-        }
-
-
         console.log(
-            "CURRENT SERVICE SONG:",
-            serviceSong
+            "CURRENT SONG BEFORE SAVE:",
+            song
         );
 
 
         /* ----------------------------------
-           GET SERVICE KEY FROM SCREEN
+           7. GET DISPLAYED SERVICE KEY
         ---------------------------------- */
 
         const serviceKeyElement =
@@ -1038,7 +1007,7 @@ async saveCurrentServiceKey() {
             );
 
             alert(
-                "Service Key field was not found."
+                "Service Key element was not found."
             );
 
             return false;
@@ -1046,21 +1015,21 @@ async saveCurrentServiceKey() {
         }
 
 
-        const newServiceKey =
+        const displayedKey =
             serviceKeyElement.textContent
                 .trim();
 
 
         console.log(
-            "SERVICE KEY FROM SCREEN:",
-            newServiceKey
+            "DISPLAYED SERVICE KEY:",
+            displayedKey
         );
 
 
-        if (!newServiceKey) {
+        if (!displayedKey) {
 
             console.error(
-                "SERVICE KEY IS EMPTY"
+                "DISPLAYED SERVICE KEY IS EMPTY"
             );
 
             alert(
@@ -1073,54 +1042,65 @@ async saveCurrentServiceKey() {
 
 
         /* ----------------------------------
-           SAVE SERVICE KEY
+           8. PRESERVE ORIGINAL KEY
         ---------------------------------- */
 
-        serviceSong.serviceKey =
-            newServiceKey;
+        if (
+            !song.originalKey
+        ) {
+
+            song.originalKey =
+                song.key ||
+                currentSong?.key ||
+                displayedKey;
+
+        }
 
 
         /* ----------------------------------
-           SAVE TRANSPOSE
+           9. SAVE KEY + TRANSPOSE
         ---------------------------------- */
 
-        serviceSong.transpose =
+        song.serviceKey =
+            displayedKey;
+
+
+        song.transpose =
             Number(
                 App.transpose || 0
             );
 
 
-        /* ----------------------------------
-           PRESERVE ORIGINAL KEY
-        ---------------------------------- */
-
-        if (
-            !serviceSong.originalKey
-        ) {
-
-            serviceSong.originalKey =
-                serviceSong.key ||
-                currentSong?.key ||
-                "";
-
-        }
-
+        console.log(
+            "ORIGINAL KEY:",
+            song.originalKey
+        );
 
         console.log(
-            "SERVICE SONG BEFORE SAVE:",
-            serviceSong
+            "NEW SERVICE KEY:",
+            song.serviceKey
+        );
+
+        console.log(
+            "TRANSPOSE:",
+            song.transpose
         );
 
 
         /* ----------------------------------
-           UPDATE FIREBASE
+           10. UPDATE SERVICE DOCUMENT
         ---------------------------------- */
 
         await updateDoc(
             serviceRef,
             {
+
                 songs:
-                    service.songs
+                    service.songs,
+
+                updatedAt:
+                    serverTimestamp()
+
             }
         );
 
@@ -1130,27 +1110,27 @@ async saveCurrentServiceKey() {
         );
 
         console.log(
-            "SERVICE KEY SAVED TO FIREBASE"
+            "SERVICE KEY SUCCESSFULLY SAVED"
         );
 
         console.log(
-            "SERVICE ID:",
+            "SERVICE:",
             serviceId
         );
 
         console.log(
-            "SONG INDEX:",
+            "SONG:",
             songIndex
         );
 
         console.log(
-            "SERVICE KEY:",
-            newServiceKey
+            "KEY:",
+            displayedKey
         );
 
         console.log(
             "TRANSPOSE:",
-            serviceSong.transpose
+            song.transpose
         );
 
         console.log(
@@ -1159,25 +1139,25 @@ async saveCurrentServiceKey() {
 
 
         /* ----------------------------------
-           VERIFY FIREBASE SAVE
+           11. VERIFY
         ---------------------------------- */
 
-        const verifySnapshot =
+        const verify =
             await getDoc(
                 serviceRef
             );
 
 
         if (
-            verifySnapshot.exists()
+            verify.exists()
         ) {
 
             const verifyData =
-                verifySnapshot.data();
+                verify.data();
 
 
             console.log(
-                "FIREBASE VERIFIED SONG:",
+                "FIREBASE VERIFIED:",
                 verifyData.songs?.[songIndex]
             );
 
@@ -1186,7 +1166,7 @@ async saveCurrentServiceKey() {
 
         alert(
             "Service Key saved successfully: " +
-            newServiceKey
+            displayedKey
         );
 
 
@@ -1196,16 +1176,8 @@ async saveCurrentServiceKey() {
     catch (error) {
 
         console.error(
-            "================================"
-        );
-
-        console.error(
             "SAVE SERVICE KEY ERROR:",
             error
-        );
-
-        console.error(
-            "================================"
         );
 
 
@@ -1220,6 +1192,8 @@ async saveCurrentServiceKey() {
     }
 
 },
+```
+
     /* --------------------------------------
        TRANSPOSE
     -------------------------------------- */
