@@ -1798,43 +1798,52 @@ window.exitPresentation = function () {
     Presentation.close();
 };
 
-onAuthStateChanged(auth, async (user) => {
-
-    console.log(
-        "FIREBASE AUTH STATE:",
-        user ? user.uid : "NO USER"
-    );
-
-    if (!user) {
-
-        console.warn(
-            "NO AUTHENTICATED FIREBASE USER"
-        );
-
-        return;
-    }
-
-    console.log(
-        "AUTHENTICATED USER:",
-        user.uid
-    );
-
-    try {
-
-        await loadActiveService();
+onAuthStateChanged(
+    auth,
+    async function(user) {
 
         console.log(
-            "ACTIVE SERVICE LOADED"
+            "AUTH STATE CHANGED:",
+            user
+        );
+
+
+        if (!user) {
+
+            console.warn(
+                "NO AUTHENTICATED FIREBASE USER"
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "AUTHENTICATED FIREBASE USER:",
+            user.uid
+        );
+
+
+        const service =
+            await loadActiveService(user);
+
+
+        if (!service) {
+
+            console.warn(
+                "NO ACTIVE SERVICE"
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "ACTIVE SERVICE READY:",
+            service
         );
 
     }
-    catch (error) {
-
-        console.error(
-            "ERROR LOADING ACTIVE SERVICE:",
-            error
-        );
-
-    }
-
-});
+);
