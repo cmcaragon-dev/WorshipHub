@@ -1630,10 +1630,15 @@ async function startService(serviceId) {
     }
 
     // Save active service
-    localStorage.setItem(
-        "currentServiceId",
-        String(service.id)
-    );
+   localStorage.setItem(
+    "currentServiceId",
+    String(service.id)
+);
+
+localStorage.setItem(
+    "currentServiceName",
+    service.name
+);
 
     // Start from first song
     localStorage.setItem(
@@ -1678,6 +1683,38 @@ async function startService(serviceId) {
 
 window.startService = startService;
 
+function displayCurrentServiceName() {
+
+    const serviceNameElement =
+        document.getElementById(
+            "currentServiceName"
+        );
+
+    if (!serviceNameElement) {
+        return;
+    }
+
+    const serviceName =
+        localStorage.getItem(
+            "currentServiceName"
+        );
+
+    if (serviceName) {
+
+        serviceNameElement.textContent =
+            serviceName;
+
+    }
+    else {
+
+        serviceNameElement.textContent =
+            "No Active Service";
+
+    }
+
+}
+
+displayCurrentServiceName();
 function addSongsToPlaylist(playlistId){
 
     selectedPlaylist = playlists.find(
