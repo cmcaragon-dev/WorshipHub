@@ -289,27 +289,30 @@ if (loginBtn) {
                     "index.html";
 
 
-            }
+                    }
 
-          catch (error) {
+        catch (error) {
 
-    console.error(
-        "FIREBASE LOGIN ERROR CODE:",
-        error.code
-    );
+            console.error(
+                "FIREBASE LOGIN ERROR CODE:",
+                error.code
+            );
 
-    console.error(
-        "FIREBASE LOGIN ERROR MESSAGE:",
-        error.message
-    );
+            console.error(
+                "FIREBASE LOGIN ERROR MESSAGE:",
+                error.message
+            );
 
-    alert(
-        "Login failed:\n\n" +
-        error.code
-    );
+            alert(
+                "Login failed:\n\n" +
+                error.code
+            );
+
+        }
+
+    };
 
 }
-
 
 // ==========================================
 // LOGOUT
