@@ -1,9 +1,112 @@
+
+"use strict";
+
+// ==========================================
+// FIREBASE
+// ==========================================
+
+import { db } from "./firebase.js";
+
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 import {
     loadServices,
     saveServices
 } from "./firestore.js";
 
-"use strict";
+// ==========================================
+// CURRENT SERVICE
+// ==========================================
+
+let currentService = null;
+
+async function loadCurrentService() {
+
+    const serviceId =
+        localStorage.getItem("currentServiceId");
+
+    if (!serviceId) {
+
+        console.error(
+            "No currentServiceId found."
+        );
+
+        return null;
+    }
+
+    console.log(
+        "Loading Service Planner ID:",
+        serviceId
+    );
+
+    // Get the currently stored user
+    const savedUser =
+        JSON.parse(
+            localStorage.getItem("firebaseUser") || "null"
+        );
+
+    if (!savedUser || !savedUser.uid) {
+
+        console.error(
+            "Firebase user not found."
+        );
+
+        return null;
+    }
+
+    try {
+
+        const serviceRef =
+            doc(
+                db,
+                "users",
+                savedUser.uid,
+                "services",
+                String(serviceId)
+            );
+
+        const snapshot =
+            await getDoc(serviceRef);
+
+        if (!snapshot.exists()) {
+
+            console.error(
+                "Service Planner not found:",
+                serviceId
+            );
+
+            return null;
+        }
+
+        currentService = {
+
+            id: snapshot.id,
+
+            ...snapshot.data()
+
+        };
+
+        console.log(
+            "CURRENT SERVICE:",
+            currentService
+        );
+
+        return currentService;
+
+    }
+    catch (error) {
+
+        console.error(
+            "Error loading current Service Planner:",
+            error
+        );
+
+        return null;
+    }
+}
 
 /* ==========================================================
    WORSHIP SONGS MANAGER
