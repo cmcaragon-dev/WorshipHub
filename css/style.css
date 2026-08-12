@@ -1214,177 +1214,278 @@ body{
 
 
 /* =========================================================
-   SERVICE PANEL
+   MODERN WORSHIP SERVICE PLANNER
+   Existing IDs/classes preserved
 ========================================================= */
+
+/* ---------- SERVICE PLANNER SIDE PANEL ---------- */
 
 #servicePanel{
 
     position:fixed;
 
     top:0;
-
     right:-460px;
 
     width:440px;
+    max-width:92vw;
+    height:100vh;
 
-    max-width:95vw;
+    background:#f8fafc;
 
-    height:100%;
+    box-shadow:-15px 0 45px rgba(15,23,42,.22);
 
-    background:#fff;
-
-    border-left:1px solid var(--border);
-
-    box-shadow:
-        -15px 0 45px rgba(15,23,42,.18);
-
-    transition:.35s ease;
+    transition:right .35s cubic-bezier(.4,0,.2,1);
 
     z-index:99999;
 
-    overflow:auto;
+    overflow-y:auto;
+
+    border-left:1px solid #e2e8f0;
+
 }
 
 #servicePanel.show{
 
     right:0;
+
 }
 
 
-/* =========================================================
-   SERVICE WINDOW
-========================================================= */
+/* ---------- PANEL SCROLLBAR ---------- */
+
+#servicePanel::-webkit-scrollbar{
+
+    width:7px;
+
+}
+
+#servicePanel::-webkit-scrollbar-track{
+
+    background:#f1f5f9;
+
+}
+
+#servicePanel::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+
+}
+
+#servicePanel::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+
+}
+
+
+/* ---------- SERVICE WINDOW ---------- */
 
 .playlist-window{
 
-    padding:24px;
+    padding:0 24px 30px;
+
 }
 
 
-/* Service header */
+/* ---------- MODERN HEADER ---------- */
 
 .playlist-window h2{
 
-    margin:
+    position:sticky;
 
-        -24px
-        -24px
-        24px;
+    top:0;
 
-    padding:21px 24px;
+    z-index:10;
 
-    background:
-        linear-gradient(
-            135deg,
-            #18243a,
-            #2c3f62
-        );
+    margin:0 -24px 25px;
 
-    color:white;
+    padding:22px 24px;
+
+    background:linear-gradient(
+        135deg,
+        #1e293b,
+        #334155
+    );
+
+    color:#fff;
 
     font-size:21px;
 
-    font-weight:800;
+    font-weight:700;
+
+    letter-spacing:.2px;
+
+    box-shadow:0 4px 15px rgba(15,23,42,.15);
+
 }
 
 
-/* Service input */
+/* Small accent under title */
+
+.playlist-window h2::after{
+
+    content:"";
+
+    display:block;
+
+    width:42px;
+
+    height:3px;
+
+    margin-top:8px;
+
+    background:#6366f1;
+
+    border-radius:10px;
+
+}
+
+
+/* ---------- SERVICE NAME INPUT ---------- */
 
 #serviceName{
 
     width:100%;
 
-    height:45px;
+    box-sizing:border-box;
 
-    padding:0 14px;
-
-    border:1px solid var(--border);
-
-    border-radius:10px;
-
-    font-size:14px;
-
-    outline:none;
+    padding:14px 16px;
 
     margin-bottom:12px;
 
-    transition:var(--transition);
+    background:#fff;
+
+    border:1px solid #dbe2ea;
+
+    border-radius:10px;
+
+    color:#1e293b;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.2s;
+
+    box-shadow:0 1px 3px rgba(15,23,42,.04);
+
+}
+
+#serviceName::placeholder{
+
+    color:#94a3b8;
+
 }
 
 #serviceName:focus{
 
-    border-color:var(--primary);
+    border-color:#6366f1;
 
     box-shadow:
-        0 0 0 3px rgba(108,92,231,.10);
+        0 0 0 3px rgba(99,102,241,.12);
+
 }
 
 
-/* Create service */
+/* ---------- CREATE SERVICE BUTTON ---------- */
 
 #createService{
 
     width:100%;
 
-    height:45px;
+    padding:13px 16px;
 
-    padding:0 15px;
+    margin-top:5px;
 
     border:none;
 
     border-radius:10px;
 
-    color:white;
+    background:linear-gradient(
+        135deg,
+        #6366f1,
+        #4f46e5
+    );
 
-    font-size:14px;
+    color:#fff;
 
-    font-weight:700;
+    font-size:15px;
+
+    font-weight:600;
 
     cursor:pointer;
 
-    margin-top:8px;
+    transition:.2s;
 
-    background:
-        linear-gradient(
-            135deg,
-            #22c55e,
-            #16a34a
-        );
+    box-shadow:0 4px 12px rgba(79,70,229,.22);
 
-    transition:var(--transition);
 }
 
 #createService:hover{
 
     transform:translateY(-1px);
 
-    box-shadow:
-        0 7px 16px rgba(34,197,94,.20);
+    box-shadow:0 7px 18px rgba(79,70,229,.28);
+
+}
+
+#createService:active{
+
+    transform:scale(.98);
+
 }
 
 
-/* Close service */
+/* ---------- CLOSE SERVICE BUTTON ---------- */
 
 #closeService{
 
-    background:#ef4444;
+    width:100%;
+
+    padding:12px 16px;
+
+    margin-top:10px;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:10px;
+
+    background:#fff;
+
+    color:#475569;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+
 }
 
 #closeService:hover{
 
-    background:#dc2626;
+    background:#f1f5f9;
+
+    color:#1e293b;
+
 }
 
 
-/* Service divider */
+/* ---------- DIVIDER ---------- */
 
 #servicePanel hr{
 
     border:none;
 
-    border-top:1px solid var(--border);
+    border-top:1px solid #e2e8f0;
 
-    margin:22px 0;
+    margin:25px 0;
+
 }
 
 
@@ -1395,12 +1496,11 @@ body{
 #serviceList{
 
     margin-top:10px;
+
 }
 
 
-/* =========================================================
-   SERVICE ITEM
-========================================================= */
+/* ---------- SERVICE ITEM ---------- */
 
 .service-item{
 
@@ -1408,22 +1508,28 @@ body{
 
     padding:0;
 
-    border-radius:14px;
-
     margin-bottom:14px;
 
-    border:1px solid var(--border);
+    border:1px solid #e2e8f0;
+
+    border-radius:14px;
 
     overflow:hidden;
 
-    box-shadow:var(--shadow-sm);
+    box-shadow:
+        0 2px 8px rgba(15,23,42,.05);
 
-    transition:var(--transition);
+    transition:.2s;
+
 }
 
 .service-item:hover{
 
-    box-shadow:var(--shadow-md);
+    border-color:#c7d2fe;
+
+    box-shadow:
+        0 6px 18px rgba(15,23,42,.09);
+
 }
 
 
@@ -1439,61 +1545,96 @@ body{
 
     align-items:center;
 
+    padding:16px 18px;
+
+    background:#fff;
+
+    color:#1e293b;
+
     cursor:pointer;
 
-    padding:15px 17px;
+    border:none;
 
-    background:
-        linear-gradient(
-            135deg,
-            #1d2a42,
-            #293b5b
-        );
+    border-radius:14px 14px 0 0;
 
-    color:#fff;
+    transition:.2s;
 
-    border-radius:0;
-
-    transition:var(--transition);
 }
 
 .service-header:hover{
 
-    background:
-        linear-gradient(
-            135deg,
-            #263753,
-            #344a70
-        );
+    background:#f8fafc;
+
 }
+
+
+/* ---------- SERVICE TITLE ---------- */
 
 .service-title{
 
-    font-size:15px;
+    font-size:16px;
 
-    font-weight:800;
+    font-weight:700;
 
-    color:#fff;
+    color:#1e293b;
+
+    line-height:1.3;
+
 }
+
+
+/* ---------- SERVICE COUNT ---------- */
 
 .service-count{
 
-    font-size:11px;
-
-    font-weight:600;
-
-    color:#cbd5e1;
-
     margin-top:4px;
+
+    color:#64748b;
+
+    font-size:12px;
+
+    font-weight:500;
+
 }
+
+
+/* ---------- ARROW ---------- */
 
 .service-header span{
 
-    font-size:17px;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:30px;
+
+    height:30px;
+
+    margin-right:0;
+
+    border-radius:50%;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    font-size:14px;
 
     font-weight:bold;
 
-    color:#fff;
+    transition:.25s;
+
+}
+
+
+/* Rotate arrow when active */
+
+.service-header.active span{
+
+    transform:rotate(90deg);
+
 }
 
 
@@ -1507,23 +1648,25 @@ body{
 
     margin:0;
 
-    padding:13px;
+    padding:14px;
 
     background:#f8fafc;
 
-    border:none;
+    border-top:1px solid #e2e8f0;
 
-    border-radius:0;
+    border-radius:0 0 14px 14px;
+
 }
 
 .service-body.show{
 
     display:block;
+
 }
 
 
 /* =========================================================
-   SERVICE SONG
+   SONG INSIDE SERVICE
 ========================================================= */
 
 .service-song{
@@ -1534,95 +1677,225 @@ body{
 
     align-items:center;
 
-    gap:10px;
-
     width:100%;
 
-    padding:11px;
+    box-sizing:border-box;
 
-    margin-top:7px;
+    padding:12px 13px;
+
+    margin-top:8px;
 
     background:#fff;
 
-    border:1px solid #e8edf4;
+    border:1px solid #e5e7eb;
 
     border-radius:10px;
 
-    border-left:3px solid #22c55e;
+    transition:.2s;
 
-    transition:var(--transition);
+}
+
+.service-song:first-child{
+
+    margin-top:0;
+
 }
 
 .service-song:hover{
 
-    border-color:#cbd5e1;
+    border-color:#c7d2fe;
 
     transform:translateX(2px);
+
+    box-shadow:
+        0 3px 10px rgba(15,23,42,.06);
+
 }
+
+
+/* ---------- SONG INFORMATION ---------- */
 
 .service-song-title{
 
-    font-weight:700;
+    font-size:14px;
 
-    font-size:13px;
+    font-weight:600;
 
     color:#334155;
+
+    line-height:1.4;
+
+    flex:1;
+
 }
+
+
+/* ---------- SONG KEY ---------- */
 
 .service-song-key{
 
     display:inline-flex;
 
-    justify-content:center;
-
     align-items:center;
+
+    justify-content:center;
 
     min-width:42px;
 
     height:25px;
 
-    padding:3px 9px;
+    padding:0 9px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #6c5ce7,
-            #4f8cff
-        );
+    margin-left:10px;
 
-    color:#fff;
+    box-sizing:border-box;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    border:1px solid #c7d2fe;
 
     border-radius:20px;
 
     font-size:11px;
 
-    font-weight:800;
+    font-weight:700;
 
-    flex-shrink:0;
 }
+
+
+/* ---------- SERVICE SONG DELETE BUTTON ---------- */
 
 .service-song button{
 
-    background:#ef4444;
+    margin-left:8px;
 
-    color:#fff;
+    padding:6px 9px;
 
     border:none;
 
-    padding:7px 10px;
-
     border-radius:7px;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+    font-size:12px;
 
     cursor:pointer;
 
-    font-size:11px;
+    transition:.2s;
 
-    font-weight:700;
 }
 
 .service-song button:hover{
 
-    background:#dc2626;
+    background:#fecaca;
+
+    transform:scale(1.05);
+
+}
+
+
+/* =========================================================
+   SERVICE ACTION BUTTONS
+========================================================= */
+
+.service-item button{
+
+    padding:8px 11px;
+
+    margin-top:10px;
+
+    margin-right:5px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.service-item button:hover{
+
+    background:#e0e7ff;
+
+    transform:translateY(-1px);
+
+}
+
+
+/* =========================================================
+   MOBILE SERVICE PLANNER
+========================================================= */
+
+@media(max-width:600px){
+
+    #servicePanel{
+
+        width:100%;
+
+        max-width:100%;
+
+        right:-100%;
+
+    }
+
+    #servicePanel.show{
+
+        right:0;
+
+    }
+
+    .playlist-window{
+
+        padding:0 18px 25px;
+
+    }
+
+    .playlist-window h2{
+
+        margin-left:-18px;
+
+        margin-right:-18px;
+
+        padding:20px 18px;
+
+    }
+
+}
+
+
+/* =========================================================
+   OPTIONAL MODERN BACKDROP
+   Only active when panel is open if your JS adds
+   a backdrop class/element.
+========================================================= */
+
+.service-panel-backdrop{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(15,23,42,.35);
+
+    backdrop-filter:blur(3px);
+
+    z-index:99998;
+
 }
 
 
