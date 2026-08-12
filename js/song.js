@@ -1736,9 +1736,17 @@ const Presentation = {
             );
 
 
+            /* ----------------------------------
+               SET CURRENT SONG
+            ---------------------------------- */
+
             window.currentSong =
                 song;
 
+
+            /* ----------------------------------
+               SHOW TITLE
+            ---------------------------------- */
 
             const title =
                 document.getElementById(
@@ -1754,17 +1762,30 @@ const Presentation = {
             }
 
 
+            /* ----------------------------------
+               SHOW PRESENTATION
+            ---------------------------------- */
+
             overlay.classList.add(
                 "show"
             );
 
 
+            /* ----------------------------------
+               BUILD 3-COLUMN PRESENTATION
+            ---------------------------------- */
+
             this.build();
+
+
+            /* ----------------------------------
+               UPDATE SERVICE INFORMATION
+            ---------------------------------- */
 
             await this.update();
 
-            return;
 
+            return;
         }
 
 
@@ -1802,6 +1823,10 @@ const Presentation = {
         );
 
 
+        /* ----------------------------------
+           SHOW TITLE
+        ---------------------------------- */
+
         const title =
             document.getElementById(
                 "presentationTitle"
@@ -1816,13 +1841,25 @@ const Presentation = {
         }
 
 
+        /* ----------------------------------
+           SHOW PRESENTATION
+        ---------------------------------- */
+
         overlay.classList.add(
             "show"
         );
 
 
+        /* ----------------------------------
+           BUILD 3-COLUMN PRESENTATION
+        ---------------------------------- */
+
         this.build();
 
+
+        /* ----------------------------------
+           DIRECT SONG COUNTER
+        ---------------------------------- */
 
         const counter =
             document.getElementById(
@@ -1836,6 +1873,10 @@ const Presentation = {
 
         }
 
+
+        /* ----------------------------------
+           NO NEXT SONG
+        ---------------------------------- */
 
         const preview =
             document.getElementById(
@@ -1917,16 +1958,16 @@ const Presentation = {
 
         if (!sections.length) {
 
-            const song =
+            const songElement =
                 source.querySelector(
                     ".song"
                 );
 
-            if (song) {
+            if (songElement) {
 
                 sections =
                     Array.from(
-                        song.children
+                        songElement.children
                     );
 
             }
@@ -1956,11 +1997,11 @@ const Presentation = {
 
 
         /* ------------------------------------------
-           CREATE SECTIONS
+           CREATE SECTION CARDS
            ------------------------------------------ */
 
         sections.forEach(
-            section => {
+            (section) => {
 
                 if (
                     !section.textContent.trim()
@@ -1982,7 +2023,7 @@ const Presentation = {
 
                 /* ----------------------------------
                    SECTION TITLE
-                   ---------------------------------- */
+                ---------------------------------- */
 
                 const sectionTitle =
                     section.querySelector(
@@ -2016,8 +2057,8 @@ const Presentation = {
 
 
                 /* ----------------------------------
-                   SECTION CONTENT
-                   ---------------------------------- */
+                   CONTENT
+                ---------------------------------- */
 
                 const content =
                     document.createElement(
@@ -2180,9 +2221,10 @@ const Presentation = {
             await Service.getCurrent();
 
 
-        /* ==========================================
-           STANDALONE SONG
-           ========================================== */
+        /*
+         * DIRECT SONG MODE
+         * Do not try to read Service Planner.
+         */
 
         if (!service) {
 
@@ -2197,7 +2239,6 @@ const Presentation = {
                     "Standalone Song";
 
             }
-
 
             const preview =
                 document.getElementById(
@@ -2215,13 +2256,12 @@ const Presentation = {
             }
 
             return;
-
         }
 
 
-        /* ==========================================
-           SERVICE PLANNER
-           ========================================== */
+        /* ----------------------------------
+           SERVICE MODE
+        ---------------------------------- */
 
         const songs =
             Array.isArray(service.songs)
@@ -2234,10 +2274,6 @@ const Presentation = {
                 Service.getSongIndex()
             ) || 0;
 
-
-        /* ------------------------------------------
-           COUNTER
-           ------------------------------------------ */
 
         const counter =
             document.getElementById(
@@ -2253,9 +2289,9 @@ const Presentation = {
         }
 
 
-        /* ------------------------------------------
+        /* ----------------------------------
            NEXT SONG
-           ------------------------------------------ */
+        ---------------------------------- */
 
         const preview =
             document.getElementById(
@@ -2263,79 +2299,47 @@ const Presentation = {
             );
 
 
-        if (preview) {
+        if (!preview) {
 
-            if (
-                songs.length > 0 &&
-                index >= 0 &&
-                index < songs.length - 1 &&
-                songs[index + 1]
-            ) {
-
-                const nextSong =
-                    songs[index + 1];
-
-
-                preview.innerHTML = `
-                    <span class="next-song-label">
-                        NEXT SONG
-                    </span>
-
-                    <span class="next-song-title">
-                        ${nextSong.title || "Untitled Song"}
-                    </span>
-                `;
-
-
-                preview.style.display =
-                    "flex";
-
-            }
-            else {
-
-                preview.innerHTML =
-                    "";
-
-                preview.style.display =
-                    "none";
-
-            }
-
-        }
-
-    },
-
-
-    /* ======================================================
-       CLOSE PRESENTATION
-       ====================================================== */
-
-    close() {
-
-        const overlay =
-            document.getElementById(
-                "presentationScreen"
-            );
-
-
-        if (overlay) {
-
-            overlay.classList.remove(
-                "show"
-            );
+            return;
 
         }
 
 
         if (
-            document.fullscreenElement
+            index >= 0 &&
+            index < songs.length - 1 &&
+            songs[index + 1]
         ) {
 
-            document
-                .exitFullscreen()
-                .catch(
-                    () => {}
-                );
+            const nextSong =
+                songs[index + 1];
+
+
+            preview.innerHTML = `
+
+                <span class="next-song-label">
+                    NEXT SONG
+                </span>
+
+                <span class="next-song-title">
+                    ${nextSong.title || "Untitled Song"}
+                </span>
+
+            `;
+
+
+            preview.style.display =
+                "flex";
+
+        }
+        else {
+
+            preview.innerHTML =
+                "";
+
+            preview.style.display =
+                "none";
 
         }
 
