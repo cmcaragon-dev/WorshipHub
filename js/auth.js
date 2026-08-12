@@ -21,7 +21,45 @@ import {
     db
 } from "./firebase.js";
 
+import {
+    getAuth,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+const auth = getAuth();
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+if (logoutBtn) {
+
+    logoutBtn.addEventListener("click", async () => {
+
+        try {
+
+            await signOut(auth);
+
+            // Clear local session data
+            localStorage.removeItem("currentService");
+            localStorage.removeItem("currentServiceId");
+            localStorage.removeItem("currentSongIndex");
+            localStorage.removeItem("resumePresentation");
+
+            // Return to login page
+            window.location.href = "login.html";
+
+        } catch (error) {
+
+            console.error("Logout failed:", error);
+
+            alert(
+                "Unable to logout. Please try again."
+            );
+
+        }
+
+    });
+
+}
 // ==========================================
 // REGISTER
 // ==========================================
