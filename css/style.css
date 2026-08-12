@@ -2835,14 +2835,7 @@ body.dark .service-body{
         padding:15px;
     }
 
-    #presentationLyrics .song{
-
-        grid-template-columns:1fr;
-
-        gap:14px;
-    }
-
-    #presentationTitle{
+        #presentationTitle{
 
         font-size:19px;
     }
