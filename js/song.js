@@ -2656,3 +2656,10 @@ window.exitPresentation = function () {
     Presentation.close();
 
 };
+window.goHome = function () {
+
+    console.log("GO HOME CLICKED");
+
+    window.location.href = "../always.html";
+
+};
