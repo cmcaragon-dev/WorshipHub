@@ -1655,7 +1655,7 @@ async transpose(step) {
 const Presentation = {
 
     /* ======================================================
-       START
+       START PRESENTATION
        ====================================================== */
 
     async start() {
@@ -1666,78 +1666,142 @@ const Presentation = {
             );
 
         if (!overlay) {
+
             console.error(
                 "presentationScreen not found."
             );
+
             return;
         }
 
-        /* ------------------------------------------
-           GET CURRENT SERVICE
-        ------------------------------------------ */
+
+        /* ==========================================
+           CHECK IF SERVICE PLANNER IS ACTIVE
+           ========================================== */
 
         const service =
             await Service.getCurrent();
 
-        if (!service) {
 
-            console.error(
-                "No current service available."
+        /* ==========================================
+           SERVICE PLANNER MODE
+           ========================================== */
+
+        if (service) {
+
+            const index =
+                Service.getSongIndex();
+
+            const songs =
+                Array.isArray(service.songs)
+                    ? service.songs
+                    : [];
+
+
+            if (!songs.length) {
+
+                console.warn(
+                    "Service Planner has no songs."
+                );
+
+                return;
+            }
+
+
+            if (
+                index < 0 ||
+                index >= songs.length
+            ) {
+
+                console.warn(
+                    "Invalid Service Planner song index:",
+                    index
+                );
+
+                return;
+            }
+
+
+            const song =
+                songs[index];
+
+
+            console.log(
+                "PRESENTATION MODE: SERVICE PLANNER"
             );
 
-            alert(
-                "No active Service Planner."
+            console.log(
+                "SONG:",
+                song
             );
+
+
+            window.currentSong =
+                song;
+
+
+            const title =
+                document.getElementById(
+                    "presentationTitle"
+                );
+
+            if (title) {
+
+                title.innerText =
+                    song?.title ||
+                    "Untitled Song";
+
+            }
+
+
+            overlay.classList.add(
+                "show"
+            );
+
+
+            this.build();
+
+
+            await this.update();
+
 
             return;
         }
 
-        /* ------------------------------------------
-           GET CURRENT SONG
-        ------------------------------------------ */
 
-        const index =
-            Service.getSongIndex();
+        /* ==========================================
+           DIRECT SONG MODE
+           ========================================== */
 
-        const songs =
-            Array.isArray(service.songs)
-                ? service.songs
-                : [];
+        console.log(
+            "PRESENTATION MODE: DIRECT SONG"
+        );
 
-        if (!songs.length) {
-
-            alert(
-                "This Service Planner has no songs."
-            );
-
-            return;
-        }
-
-        if (
-            index < 0 ||
-            index >= songs.length
-        ) {
-
-            console.error(
-                "Invalid song index:",
-                index
-            );
-
-            return;
-        }
 
         const song =
-            songs[index];
+            window.currentSong;
 
-        /* ------------------------------------------
-           SHOW PRESENTATION
-        ------------------------------------------ */
 
-        overlay.classList.add("show");
+        if (!song) {
 
-        /* ------------------------------------------
-           TITLE
-        ------------------------------------------ */
+            console.error(
+                "No current song available."
+            );
+
+            alert(
+                "Unable to start presentation. " +
+                "The current song could not be identified."
+            );
+
+            return;
+        }
+
+
+        console.log(
+            "DIRECT SONG:",
+            song
+        );
+
 
         const title =
             document.getElementById(
@@ -1747,39 +1811,57 @@ const Presentation = {
         if (title) {
 
             title.innerText =
-                song?.title ||
+                song.title ||
                 "Untitled Song";
 
         }
 
-        /* ------------------------------------------
-           BUILD PRESENTATION
-        ------------------------------------------ */
+
+        overlay.classList.add(
+            "show"
+        );
+
 
         this.build();
 
-        /* ------------------------------------------
-           UPDATE COUNTER + NEXT SONG
-        ------------------------------------------ */
 
-        await this.update();
+        const counter =
+            document.getElementById(
+                "presentationCounter"
+            );
 
-        /* ------------------------------------------
-           FULLSCREEN
-        ------------------------------------------ */
+        if (counter) {
 
-        if (
-            document.documentElement.requestFullscreen
-        ) {
+            counter.innerText =
+                "Standalone Song";
 
-            document.documentElement
-                .requestFullscreen()
-                .catch(() => {});
+        }
+
+
+        const preview =
+            document.getElementById(
+                "nextSongPreview"
+            );
+
+        if (preview) {
+
+            preview.innerHTML = "";
+
+            preview.style.display =
+                "none";
 
         }
 
     },
 
+
+    /* ======================================================
+       BUILD PRESENTATION
+       ====================================================== */
+
+    build() {
+
+        // YOUR EXISTING BUILD CODE
 
     /* ======================================================
        BUILD PRESENTATION
@@ -2412,75 +2494,11 @@ window.stopService = function () {
 
 window.startPresentation = async function () {
 
-    /* ----------------------------------
-       GET ACTIVE SERVICE
-    ---------------------------------- */
-
-    const service =
-        await getActiveService();
-
-
-    if (!service) {
-
-        alert(
-            "No Active Service."
-        );
-
-        console.error(
-            "Service Planner service not found."
-        );
-
-        return;
-
-    }
-
-
     console.log(
-        "STARTING SERVICE:",
-        service.name
+        "START PRESENTATION"
     );
-
-
-    console.log(
-        "SERVICE SONGS:",
-        service.songs
-    );
-
-
-    /* ----------------------------------
-       CHECK SERVICE SONGS
-    ---------------------------------- */
-
-    if (
-        !Array.isArray(service.songs) ||
-        service.songs.length === 0
-    ) {
-
-        alert(
-            "This Service Planner has no songs."
-        );
-
-        return;
-
-    }
-
-
-    /* ----------------------------------
-       START PRESENTATION
-    ---------------------------------- */
 
     await Presentation.start();
-
-};
-
-
-/* ======================================
-   EXIT PRESENTATION
-====================================== */
-
-window.exitPresentation = function () {
-
-    Presentation.close();
 
 };
 
