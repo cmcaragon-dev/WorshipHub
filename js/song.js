@@ -1654,47 +1654,137 @@ async transpose(step) {
 
 const Presentation = {
 
-    start(){
+    /* ======================================================
+       START
+       ====================================================== */
+
+    async start() {
 
         const overlay =
             document.getElementById(
                 "presentationScreen"
             );
 
-        if(!overlay) return;
+        if (!overlay) {
+            console.error(
+                "presentationScreen not found."
+            );
+            return;
+        }
 
+
+        /* ------------------------------------------
+           GET CURRENT SERVICE
+           ------------------------------------------ */
+
+        const service =
+            await Service.getCurrent();
+
+        if (!service) {
+
+            console.error(
+                "No current service available."
+            );
+
+            alert(
+                "No active Service Planner."
+            );
+
+            return;
+        }
+
+
+        /* ------------------------------------------
+           GET CURRENT SONG
+           ------------------------------------------ */
+
+        const index =
+            Service.getSongIndex();
+
+        const songs =
+            Array.isArray(service.songs)
+                ? service.songs
+                : [];
+
+
+        if (!songs.length) {
+
+            alert(
+                "This Service Planner has no songs."
+            );
+
+            return;
+        }
+
+
+        if (
+            index < 0 ||
+            index >= songs.length
+        ) {
+
+            console.error(
+                "Invalid song index:",
+                index
+            );
+
+            return;
+        }
+
+
+        const song =
+            songs[index];
+
+
+        /* ------------------------------------------
+           SHOW PRESENTATION
+           ------------------------------------------ */
 
         overlay.classList.add("show");
 
+
+        /* ------------------------------------------
+           TITLE
+           ------------------------------------------ */
 
         const title =
             document.getElementById(
                 "presentationTitle"
             );
 
-
-        if(title){
+        if (title) {
 
             title.innerText =
-                currentSong.title;
+                song?.title || "Untitled Song";
 
         }
 
 
+        /* ------------------------------------------
+           BUILD 3-COLUMN PRESENTATION
+           ------------------------------------------ */
+
         this.build();
 
+
+        /* ------------------------------------------
+           UPDATE COUNTER
+           ------------------------------------------ */
 
         this.update();
 
 
-        if(
+        /* ------------------------------------------
+           FULLSCREEN
+           ------------------------------------------ */
+
+        if (
             document.documentElement
-            .requestFullscreen
-        ){
+                .requestFullscreen
+        ) {
 
             document.documentElement
                 .requestFullscreen()
-                .catch(()=>{});
+                .catch(() => {});
 
         }
 
@@ -1705,24 +1795,31 @@ const Presentation = {
        BUILD PRESENTATION
        ====================================================== */
 
-    build(){
+    build() {
 
         const output =
             document.getElementById(
                 "presentationLyrics"
             );
 
-        if(!output || !App.lyrics){
-
+        if (!output) {
             return;
-
         }
 
 
-        /*
-         * Copy the existing song content
-         * into a temporary container.
-         */
+        if (!App.lyrics) {
+
+            console.error(
+                "App.lyrics element not found."
+            );
+
+            return;
+        }
+
+
+        /* ------------------------------------------
+           COPY SONG CONTENT
+           ------------------------------------------ */
 
         const source =
             document.createElement("div");
@@ -1731,9 +1828,9 @@ const Presentation = {
             App.lyrics.innerHTML;
 
 
-        /*
-         * Find every section.
-         */
+        /* ------------------------------------------
+           FIND SONG SECTIONS
+           ------------------------------------------ */
 
         let sections =
             Array.from(
@@ -1743,17 +1840,16 @@ const Presentation = {
             );
 
 
-        /*
-         * If the song uses another structure,
-         * use the direct children as fallback.
-         */
+        /* ------------------------------------------
+           FALLBACK
+           ------------------------------------------ */
 
-        if(!sections.length){
+        if (!sections.length) {
 
             const song =
                 source.querySelector(".song");
 
-            if(song){
+            if (song) {
 
                 sections =
                     Array.from(
@@ -1765,31 +1861,43 @@ const Presentation = {
         }
 
 
-        /*
-         * Clear presentation.
-         */
+        /* ------------------------------------------
+           CLEAR OUTPUT
+           ------------------------------------------ */
 
         output.innerHTML = "";
 
 
-        /*
-         * Create the presentation grid.
-         */
+        /* ------------------------------------------
+           MAIN 3-COLUMN GRID
+           ------------------------------------------ */
 
         const grid =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         grid.className =
             "presentation-grid";
 
 
-        /*
-         * Create one card for every
-         * Verse / Chorus / Passing / Bridge etc.
-         */
+        /* ------------------------------------------
+           CREATE SECTION CARDS
+           ------------------------------------------ */
 
         sections.forEach(
-            (section,index)=>{
+            (section, index) => {
+
+                /*
+                 * Ignore empty elements
+                 */
+
+                if (
+                    !section.textContent.trim()
+                ) {
+                    return;
+                }
+
 
                 const card =
                     document.createElement(
@@ -1800,17 +1908,17 @@ const Presentation = {
                     "presentation-section";
 
 
-                /*
-                 * SECTION TITLE
-                 */
+                /* ----------------------------------
+                   SECTION TITLE
+                   ---------------------------------- */
 
-                const title =
+                const sectionTitle =
                     section.querySelector(
                         ".section-title"
                     );
 
 
-                if(title){
+                if (sectionTitle) {
 
                     const newTitle =
                         document.createElement(
@@ -1820,9 +1928,20 @@ const Presentation = {
                     newTitle.className =
                         "presentation-section-title";
 
+
                     newTitle.textContent =
-                        title.textContent
+                        sectionTitle
+                            .textContent
                             .trim();
+
+
+                    /*
+                     * WHITE TITLE
+                     */
+
+                    newTitle.style.color =
+                        "#ffffff";
+
 
                     card.appendChild(
                         newTitle
@@ -1831,9 +1950,9 @@ const Presentation = {
                 }
 
 
-                /*
-                 * COPY LYRICS
-                 */
+                /* ----------------------------------
+                   CONTENT
+                   ---------------------------------- */
 
                 const content =
                     document.createElement(
@@ -1844,9 +1963,9 @@ const Presentation = {
                     "presentation-section-content";
 
 
-                /*
-                 * Find all lyric lines.
-                 */
+                /* ----------------------------------
+                   GET SONG LINES
+                   ---------------------------------- */
 
                 const lines =
                     section.querySelectorAll(
@@ -1854,64 +1973,75 @@ const Presentation = {
                     );
 
 
-                if(lines.length){
+                if (lines.length) {
 
                     lines.forEach(
-                        line=>{
+                        line => {
 
                             const newLine =
                                 line.cloneNode(
                                     true
                                 );
 
+
                             newLine.classList.add(
                                 "presentation-line"
                             );
 
 
-                            /*
-                             * FORCE LYRIC COLOR
-                             */
+                            /* ----------------------
+                               LYRIC = BLACK
+                               ---------------------- */
+
+                            newLine.style.color =
+                                "#000000";
+
 
                             newLine
                                 .querySelectorAll(
                                     "*"
                                 )
                                 .forEach(
-                                    element=>{
+                                    element => {
 
-                                        if(
-                                            !element
-                                                .classList
+                                        /*
+                                         * Do not overwrite chords
+                                         */
+
+                                        if (
+                                            element.classList
                                                 .contains(
                                                     "chord"
                                                 )
-                                        ){
-
-                                            element.style
-                                                .color =
-                                                "#000000";
-
+                                        ) {
+                                            return;
                                         }
+
+
+                                        element.style.color =
+                                            "#000000";
 
                                     }
                                 );
 
 
-                            /*
-                             * FORCE CHORD COLOR
-                             */
+                            /* ----------------------
+                               CHORD = RED
+                               ---------------------- */
 
                             newLine
                                 .querySelectorAll(
                                     ".chord"
                                 )
                                 .forEach(
-                                    chord=>{
+                                    chord => {
+
+                                        chord.style.color =
+                                            "#ff0000";
 
                                         chord.style
-                                            .color =
-                                            "#ffd54f";
+                                            .fontWeight =
+                                            "900";
 
                                     }
                                 );
@@ -1925,12 +2055,11 @@ const Presentation = {
                     );
 
                 }
-                else{
+                else {
 
-                    /*
-                     * Fallback:
-                     * copy section content.
-                     */
+                    /* --------------------------------
+                       FALLBACK CONTENT
+                       -------------------------------- */
 
                     const clone =
                         section.cloneNode(
@@ -1953,13 +2082,21 @@ const Presentation = {
                             ".chord"
                         )
                         .forEach(
-                            chord=>{
+                            chord => {
 
                                 chord.style.color =
-                                    "#ffd54f";
+                                    "#ff0000";
+
+                                chord.style
+                                    .fontWeight =
+                                    "900";
 
                             }
                         );
+
+
+                    clone.style.color =
+                        "#000000";
 
 
                     content.appendChild(
@@ -1982,6 +2119,10 @@ const Presentation = {
         );
 
 
+        /* ------------------------------------------
+           ADD GRID TO PRESENTATION
+           ------------------------------------------ */
+
         output.appendChild(
             grid
         );
@@ -1990,138 +2131,129 @@ const Presentation = {
 
 
     /* ======================================================
-       CLOSE
+       UPDATE
        ====================================================== */
 
-    close(){
+    async update() {
 
-        document
-            .getElementById(
-                "presentationScreen"
-            )
-            ?.classList.remove(
-                "show"
+        /*
+         * IMPORTANT:
+         * Service.getCurrent() is async.
+         */
+
+        const service =
+            await Service.getCurrent();
+
+
+        if (!service) {
+            return;
+        }
+
+
+        /* ------------------------------------------
+           SAFELY GET SONGS
+           ------------------------------------------ */
+
+        const songs =
+            Array.isArray(service.songs)
+                ? service.songs
+                : [];
+
+
+        const index =
+            Number(
+                Service.getSongIndex()
+            ) || 0;
+
+
+        /* ------------------------------------------
+           COUNTER
+           ------------------------------------------ */
+
+        const counter =
+            document.getElementById(
+                "presentationCounter"
             );
 
 
-        if(
-            document.fullscreenElement
-        ){
+        if (counter) {
 
-            document
-                .exitFullscreen()
-                .catch(()=>{});
+            counter.innerText =
+                `Song ${index + 1} / ${songs.length}`;
+
+        }
+
+
+        /* ------------------------------------------
+           NEXT SONG
+           ------------------------------------------ */
+
+        const preview =
+            document.getElementById(
+                "nextSongPreview"
+            );
+
+
+        if (preview) {
+
+            if (
+                songs.length > 0 &&
+                index >= 0 &&
+                index < songs.length - 1 &&
+                songs[index + 1]
+            ) {
+
+                preview.innerHTML =
+                    `Next : ${
+                        songs[index + 1].title || ""
+                    }`;
+
+            }
+            else {
+
+                preview.innerHTML = "";
+
+            }
 
         }
 
     },
 
 
-   /* ======================================================
-   UPDATE PRESENTATION
-   ====================================================== */
+    /* ======================================================
+       CLOSE
+       ====================================================== */
 
-update(){
+    close() {
 
-    const service = Service.getCurrent();
-
-    if(!service){
-        return;
-    }
-
-    /* -----------------------------------------------
-       SAFELY GET SERVICE SONGS
-       ----------------------------------------------- */
-
-    const songs = Array.isArray(service.songs)
-        ? service.songs
-        : [];
+        const overlay =
+            document.getElementById(
+                "presentationScreen"
+            );
 
 
-    /* -----------------------------------------------
-       CURRENT SONG INDEX
-       ----------------------------------------------- */
+        if (overlay) {
 
-    let index = Number(
-        Service.getSongIndex()
-    );
-
-    if(!Number.isFinite(index)){
-        index = 0;
-    }
-
-
-    /* -----------------------------------------------
-       KEEP INDEX INSIDE VALID RANGE
-       ----------------------------------------------- */
-
-    if(songs.length === 0){
-        index = 0;
-    }
-    else if(index < 0){
-        index = 0;
-    }
-    else if(index >= songs.length){
-        index = songs.length - 1;
-    }
-
-
-    /* -----------------------------------------------
-       PRESENTATION COUNTER
-       ----------------------------------------------- */
-
-    const counter =
-        document.getElementById(
-            "presentationCounter"
-        );
-
-
-    if(counter){
-
-        counter.innerText =
-            songs.length > 0
-                ? `Song ${index + 1} / ${songs.length}`
-                : "No Songs";
-
-    }
-
-
-    /* -----------------------------------------------
-       NEXT SONG PREVIEW
-       ----------------------------------------------- */
-
-    const preview =
-        document.getElementById(
-            "nextSongPreview"
-        );
-
-
-    if(preview){
-
-        if(
-            songs.length > 0 &&
-            index < songs.length - 1 &&
-            songs[index + 1]
-        ){
-
-            const nextSong =
-                songs[index + 1];
-
-            preview.innerHTML =
-                `Next : ${
-                    nextSong.title || "Untitled Song"
-                }`;
+            overlay.classList.remove(
+                "show"
+            );
 
         }
-        else{
 
-            preview.innerHTML = "";
+
+        if (
+            document.fullscreenElement
+        ) {
+
+            document
+                .exitFullscreen()
+                .catch(() => {});
 
         }
 
     }
 
-}
+};
 /* ==========================================================
    UTILITIES
 ========================================================== */
