@@ -1648,149 +1648,24 @@ async transpose(step) {
     }
 
 });
-
 /* ==========================================================
-   PRESENTATION
-========================================================== */
+   MODERN 3-COLUMN PRESENTATION
+   ========================================================== */
 
 const Presentation = {
 
-    /* --------------------------------------
-       START PRESENTATION
-    -------------------------------------- */
-
-    async start() {
-
-        console.log(
-            "START PRESENTATION"
-        );
-
+    start(){
 
         const overlay =
             document.getElementById(
                 "presentationScreen"
             );
 
-
-        if (!overlay) {
-
-            console.warn(
-                "presentationScreen not found."
-            );
-
-            return;
-
-        }
+        if(!overlay) return;
 
 
-        /* ----------------------------------
-           GET CURRENT SERVICE
-        ---------------------------------- */
+        overlay.classList.add("show");
 
-        const service =
-            await Service.getCurrent();
-
-
-        if (!service) {
-
-            console.warn(
-                "No active service."
-            );
-
-            alert(
-                "No active service."
-            );
-
-            return;
-
-        }
-
-
-        /* ----------------------------------
-           GET CURRENT SONG
-        ---------------------------------- */
-
-        const index =
-            Service.getSongIndex();
-
-
-        if (
-            !Array.isArray(
-                service.songs
-            )
-        ) {
-
-            console.error(
-                "Service songs is not an array:",
-                service
-            );
-
-            alert(
-                "This service has no valid songs."
-            );
-
-            return;
-
-        }
-
-
-        if (
-            index < 0 ||
-            index >= service.songs.length
-        ) {
-
-            console.error(
-                "Invalid song index:",
-                index
-            );
-
-            alert(
-                "Current song could not be found."
-            );
-
-            return;
-
-        }
-
-
-        const song =
-            service.songs[index];
-
-
-        if (!song) {
-
-            console.error(
-                "Current service song is missing."
-            );
-
-            return;
-
-        }
-
-
-        console.log(
-            "PRESENTATION SERVICE:",
-            service
-        );
-
-        console.log(
-            "PRESENTATION SONG:",
-            song
-        );
-
-
-        /* ----------------------------------
-           SHOW PRESENTATION
-        ---------------------------------- */
-
-        overlay.classList.add(
-            "show"
-        );
-
-
-        /* ----------------------------------
-           TITLE
-        ---------------------------------- */
 
         const title =
             document.getElementById(
@@ -1798,185 +1673,366 @@ const Presentation = {
             );
 
 
-        if (title) {
+        if(title){
 
             title.innerText =
-                song.title ||
-                currentSong?.title ||
-                "";
+                currentSong.title;
 
         }
 
 
-        /* ----------------------------------
-           LYRICS
-        ---------------------------------- */
+        this.build();
 
-        const lyrics =
+
+        this.update();
+
+
+        if(
+            document.documentElement
+            .requestFullscreen
+        ){
+
+            document.documentElement
+                .requestFullscreen()
+                .catch(()=>{});
+
+        }
+
+    },
+
+
+    /* ======================================================
+       BUILD PRESENTATION
+       ====================================================== */
+
+    build(){
+
+        const output =
             document.getElementById(
                 "presentationLyrics"
             );
 
+        if(!output || !App.lyrics){
 
-        if (
-            lyrics &&
-            App.lyrics
-        ) {
-
-            lyrics.innerHTML =
-                App.lyrics.innerHTML;
+            return;
 
         }
 
-
-        /* ----------------------------------
-           UPDATE PRESENTATION
-        ---------------------------------- */
-
-        await this.update();
-
-
-        /* ----------------------------------
-           FULLSCREEN
-        ---------------------------------- */
 
         /*
-         * Fullscreen must normally be called
-         * directly from a user interaction.
-         *
-         * Therefore failure is safely ignored.
+         * Copy the existing song content
+         * into a temporary container.
          */
 
-        if (
-            document.documentElement
-                .requestFullscreen
-        ) {
+        const source =
+            document.createElement("div");
 
-            try {
+        source.innerHTML =
+            App.lyrics.innerHTML;
 
-                await document
-                    .documentElement
-                    .requestFullscreen();
 
-            }
-            catch (error) {
+        /*
+         * Find every section.
+         */
 
-                console.warn(
-                    "Fullscreen could not be started:",
-                    error
-                );
+        let sections =
+            Array.from(
+                source.querySelectorAll(
+                    ".song-section"
+                )
+            );
+
+
+        /*
+         * If the song uses another structure,
+         * use the direct children as fallback.
+         */
+
+        if(!sections.length){
+
+            const song =
+                source.querySelector(".song");
+
+            if(song){
+
+                sections =
+                    Array.from(
+                        song.children
+                    );
 
             }
 
         }
 
-    },
+
+        /*
+         * Clear presentation.
+         */
+
+        output.innerHTML = "";
 
 
-    /* --------------------------------------
-       CLOSE PRESENTATION
-    -------------------------------------- */
+        /*
+         * Create the presentation grid.
+         */
 
-    close() {
+        const grid =
+            document.createElement("div");
 
-        const overlay =
-            document.getElementById(
-                "presentationScreen"
-            );
-
-
-        if (overlay) {
-
-            overlay.classList.remove(
-                "show"
-            );
-
-        }
+        grid.className =
+            "presentation-grid";
 
 
-        if (
-            document.fullscreenElement
-        ) {
+        /*
+         * Create one card for every
+         * Verse / Chorus / Passing / Bridge etc.
+         */
 
-            document
-                .exitFullscreen()
-                .catch(
-                    function (error) {
+        sections.forEach(
+            (section,index)=>{
 
-                        console.warn(
-                            "Unable to exit fullscreen:",
-                            error
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "presentation-section";
+
+
+                /*
+                 * SECTION TITLE
+                 */
+
+                const title =
+                    section.querySelector(
+                        ".section-title"
+                    );
+
+
+                if(title){
+
+                    const newTitle =
+                        document.createElement(
+                            "div"
                         );
 
-                    }
+                    newTitle.className =
+                        "presentation-section-title";
+
+                    newTitle.textContent =
+                        title.textContent
+                            .trim();
+
+                    card.appendChild(
+                        newTitle
+                    );
+
+                }
+
+
+                /*
+                 * COPY LYRICS
+                 */
+
+                const content =
+                    document.createElement(
+                        "div"
+                    );
+
+                content.className =
+                    "presentation-section-content";
+
+
+                /*
+                 * Find all lyric lines.
+                 */
+
+                const lines =
+                    section.querySelectorAll(
+                        ".song-line"
+                    );
+
+
+                if(lines.length){
+
+                    lines.forEach(
+                        line=>{
+
+                            const newLine =
+                                line.cloneNode(
+                                    true
+                                );
+
+                            newLine.classList.add(
+                                "presentation-line"
+                            );
+
+
+                            /*
+                             * FORCE LYRIC COLOR
+                             */
+
+                            newLine
+                                .querySelectorAll(
+                                    "*"
+                                )
+                                .forEach(
+                                    element=>{
+
+                                        if(
+                                            !element
+                                                .classList
+                                                .contains(
+                                                    "chord"
+                                                )
+                                        ){
+
+                                            element.style
+                                                .color =
+                                                "#000000";
+
+                                        }
+
+                                    }
+                                );
+
+
+                            /*
+                             * FORCE CHORD COLOR
+                             */
+
+                            newLine
+                                .querySelectorAll(
+                                    ".chord"
+                                )
+                                .forEach(
+                                    chord=>{
+
+                                        chord.style
+                                            .color =
+                                            "#ffd54f";
+
+                                    }
+                                );
+
+
+                            content.appendChild(
+                                newLine
+                            );
+
+                        }
+                    );
+
+                }
+                else{
+
+                    /*
+                     * Fallback:
+                     * copy section content.
+                     */
+
+                    const clone =
+                        section.cloneNode(
+                            true
+                        );
+
+
+                    clone
+                        .querySelectorAll(
+                            ".section-title"
+                        )
+                        .forEach(
+                            element =>
+                                element.remove()
+                        );
+
+
+                    clone
+                        .querySelectorAll(
+                            ".chord"
+                        )
+                        .forEach(
+                            chord=>{
+
+                                chord.style.color =
+                                    "#ffd54f";
+
+                            }
+                        );
+
+
+                    content.appendChild(
+                        clone
+                    );
+
+                }
+
+
+                card.appendChild(
+                    content
                 );
 
-        }
 
-    },
+                grid.appendChild(
+                    card
+                );
 
-
-    /* --------------------------------------
-       UPDATE PRESENTATION
-    -------------------------------------- */
-
-    async update() {
-
-        console.log(
-            "PRESENTATION UPDATE"
+            }
         );
 
 
-        /* ----------------------------------
-           GET CURRENT SERVICE
-        ---------------------------------- */
+        output.appendChild(
+            grid
+        );
+
+    },
+
+
+    /* ======================================================
+       CLOSE
+       ====================================================== */
+
+    close(){
+
+        document
+            .getElementById(
+                "presentationScreen"
+            )
+            ?.classList.remove(
+                "show"
+            );
+
+
+        if(
+            document.fullscreenElement
+        ){
+
+            document
+                .exitFullscreen()
+                .catch(()=>{});
+
+        }
+
+    },
+
+
+    /* ======================================================
+       UPDATE
+       ====================================================== */
+
+    update(){
 
         const service =
-            await Service.getCurrent();
+            Service.getCurrent();
 
 
-        if (!service) {
+        if(!service) return;
 
-            console.warn(
-                "Presentation update: no service."
-            );
-
-            return;
-
-        }
-
-
-        /* ----------------------------------
-           CHECK SONGS
-        ---------------------------------- */
-
-        if (
-            !Array.isArray(
-                service.songs
-            )
-        ) {
-
-            console.error(
-                "Presentation update: service.songs is not an array.",
-                service
-            );
-
-            return;
-
-        }
-
-
-        /* ----------------------------------
-           GET CURRENT INDEX
-        ---------------------------------- */
 
         const index =
             Service.getSongIndex();
 
-
-        /* ----------------------------------
-           PRESENTATION COUNTER
-        ---------------------------------- */
 
         const counter =
             document.getElementById(
@@ -1984,24 +2040,13 @@ const Presentation = {
             );
 
 
-        if (counter) {
+        if(counter){
 
-            counter.replaceChildren(
-
-                document.createTextNode(
-
-                    `Song ${index + 1} / ${service.songs.length}`
-
-                )
-
-            );
+            counter.innerText =
+                `Song ${index + 1} / ${service.songs.length}`;
 
         }
 
-
-        /* ----------------------------------
-           NEXT SONG PREVIEW
-        ---------------------------------- */
 
         const preview =
             document.getElementById(
@@ -2009,52 +2054,23 @@ const Presentation = {
             );
 
 
-        if (preview) {
+        if(preview){
 
-            if (
+            preview.innerHTML =
                 index <
                 service.songs.length - 1
-            ) {
 
-                const nextSong =
-                    service.songs[index + 1];
+                ? `Next : ${
+                    service.songs[index + 1].title
+                  }`
 
-
-                preview.innerText =
-                    nextSong
-                        ? `Next : ${nextSong.title || ""}`
-                        : "";
-
-            }
-            else {
-
-                preview.innerText =
-                    "";
-
-            }
+                : "";
 
         }
-
-
-        console.log(
-            "PRESENTATION UPDATED:",
-            {
-                service:
-                    service.name,
-
-                songIndex:
-                    index,
-
-                totalSongs:
-                    service.songs.length
-
-            }
-        );
 
     }
 
 };
-
 /* ==========================================================
    UTILITIES
 ========================================================== */
