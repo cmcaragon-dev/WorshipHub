@@ -228,6 +228,14 @@ title: "Holy Forever",
         category: "Worship",
         language: "English",
         file: "songs/holyforever.html"
+    },
+	{id:27,        
+title: "Kamusta Ka Na",
+        artist: "Misc Praise Songs",
+        key: "D",
+        category: "Praise",
+        language: "Tagalog",
+        file: "songs/kamustakana.html"
     }
 	
 ];
