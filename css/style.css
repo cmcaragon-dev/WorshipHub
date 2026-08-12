@@ -2262,7 +2262,503 @@ body{
 
 }
 
+/* ==========================================================
+PRESENTATION HEADER
+========================================================== */
 
+#presentationHeader {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 20;
+
+    width: 100%;
+
+    min-height: 72px;
+
+    padding: 14px 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #18243a,
+            #2c3f62
+        );
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    box-shadow:
+        0 4px 18px
+        rgba(15,23,42,.20);
+
+}
+
+
+/* ==========================================================
+PRESENTATION TITLE
+========================================================== */
+
+#presentationTitle {
+
+    margin: 0;
+
+    padding: 0;
+
+    color: #ffffff;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    letter-spacing: -.3px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* ==========================================================
+PRESENTATION COUNTER
+Example: SONG 1 / 6
+========================================================== */
+
+#presentationCounter {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 90px;
+
+    height: 34px;
+
+    padding: 0 13px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    color: #ffffff;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    backdrop-filter: blur(8px);
+
+}
+
+
+/* ==========================================================
+PRESENTATION NAVIGATION
+========================================================== */
+
+#presentationNavigation {
+
+    position: fixed;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    z-index: 30;
+
+    min-height: 76px;
+
+    padding: 12px 24px;
+
+    background:
+        rgba(24,36,58,.97);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.10);
+
+    box-shadow:
+        0 -5px 20px
+        rgba(15,23,42,.20);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+}
+
+
+/* ==========================================================
+PRESENTATION NAVIGATION BUTTONS
+========================================================== */
+
+#presentationNavigation button {
+
+    min-width: 110px;
+
+    height: 42px;
+
+    padding: 0 17px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        .2s ease;
+
+}
+
+
+/* Hover */
+
+#presentationNavigation button:hover {
+
+    background:
+        rgba(255,255,255,.20);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* Active / click */
+
+#presentationNavigation button:active {
+
+    transform:
+        translateY(0)
+        scale(.97);
+
+}
+
+
+/* Previous */
+
+#presentationNavigation button:first-child {
+
+    background:
+        #475569;
+
+}
+
+
+/* Next */
+
+#presentationNavigation button:nth-child(2) {
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c5ce7,
+            #4f8cff
+        );
+
+    border-color:
+        transparent;
+
+}
+
+
+/* Close */
+
+#presentationNavigation button:last-child {
+
+    background:
+        #ef4444;
+
+    border-color:
+        transparent;
+
+}
+
+
+/* ==========================================================
+NEXT SONG PREVIEW
+========================================================== */
+
+#nextSongPreview {
+
+    position: fixed;
+
+    right: 24px;
+
+    bottom: 95px;
+
+    z-index: 35;
+
+    width: 260px;
+
+    min-height: 75px;
+
+    padding: 13px 16px;
+
+    background:
+        rgba(255,255,255,.97);
+
+    color: #1e293b;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(15,23,42,.18);
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+    transition:
+        .25s ease;
+
+}
+
+
+/* Preview title */
+
+#nextSongPreview strong {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: .8px;
+
+}
+
+
+/* ==========================================================
+PRESENTATION CONTENT SPACE
+Leave room for bottom navigation
+========================================================== */
+
+#presentationLyrics {
+
+    width: 100%;
+
+    min-height:
+        calc(100vh - 72px);
+
+    padding:
+        30px 35px 120px;
+
+    background: #ffffff;
+
+}
+
+
+/* ==========================================================
+PRESENTATION SCREEN
+========================================================== */
+
+#presentationScreen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    background: #ffffff;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    display: none;
+
+}
+
+
+#presentationScreen.show {
+
+    display: block;
+
+}
+
+
+/* ==========================================================
+PRESENTATION HEADER RESPONSIVE
+========================================================== */
+
+@media (max-width: 700px) {
+
+    #presentationHeader {
+
+        min-height: 60px;
+
+        padding: 10px 14px;
+
+        gap: 10px;
+
+    }
+
+
+    #presentationTitle {
+
+        font-size: 18px;
+
+    }
+
+
+    #presentationCounter {
+
+        min-width: 70px;
+
+        height: 30px;
+
+        padding: 0 9px;
+
+        font-size: 11px;
+
+    }
+
+
+    #presentationNavigation {
+
+        min-height: 64px;
+
+        padding: 9px 10px;
+
+        gap: 6px;
+
+    }
+
+
+    #presentationNavigation button {
+
+        min-width: 90px;
+
+        height: 38px;
+
+        padding: 0 9px;
+
+        font-size: 12px;
+
+    }
+
+
+    #presentationLyrics {
+
+        padding:
+            20px 15px 100px;
+
+    }
+
+
+    #nextSongPreview {
+
+        display: none;
+
+    }
+
+}
+
+
+/* ==========================================================
+VERY SMALL MOBILE
+========================================================== */
+
+@media (max-width: 450px) {
+
+    #presentationHeader {
+
+        flex-wrap: wrap;
+
+    }
+
+
+    #presentationTitle {
+
+        max-width: 70%;
+
+        font-size: 16px;
+
+    }
+
+
+    #presentationCounter {
+
+        font-size: 10px;
+
+    }
+
+
+    #presentationNavigation {
+
+        justify-content:
+            stretch;
+
+    }
+
+
+    #presentationNavigation button {
+
+        flex: 1;
+
+        min-width: 0;
+
+        padding: 0 5px;
+
+        font-size: 11px;
+
+    }
+
+}
 /* ==========================================================
    SECTION TITLE
    ========================================================== */
