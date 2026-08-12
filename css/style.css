@@ -2211,17 +2211,12 @@ body{
    ========================================================== */
 
 #presentationLyrics {
-
     width: 100%;
+    min-height: 100vh;
 
-    min-height:
-        calc(100vh - 72px);
-
-    padding:
-        30px 35px 120px;
+    padding: 35px;
 
     background: #ffffff;
-
 }
 
 
@@ -2264,6 +2259,96 @@ body{
     box-sizing: border-box;
 
     break-inside: avoid;
+
+}
+
+
+/* ==========================================================
+   SECTION TITLE
+   ========================================================== */
+
+#presentationLyrics
+.presentation-section-title {
+
+    color: #ffffff !important;
+
+    background: #222222;
+
+    font-size: 22px;
+
+    font-weight: 900;
+
+    padding: 8px 12px;
+
+    margin-bottom: 15px;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+}
+
+
+/* ==========================================================
+   SECTION CONTENT
+   ========================================================== */
+
+#presentationLyrics
+.presentation-section-content {
+
+    width: 100%;
+
+    color: #000000 !important;
+
+}
+
+
+/* ==========================================================
+   LYRIC LINE
+   ========================================================== */
+
+#presentationLyrics
+.presentation-line {
+
+    color: #000000 !important;
+
+    font-size: 24px;
+
+    line-height: 1.65;
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+}
+
+
+/* ==========================================================
+   ALL LYRIC TEXT = BLACK
+   ========================================================== */
+
+#presentationLyrics
+.presentation-line * {
+
+    color: #000000 !important;
+
+}
+
+
+/* ==========================================================
+   CHORD = RED
+   ========================================================== */
+
+#presentationLyrics
+.presentation-line .chord {
+
+    color: #ff0000 !important;
+
+    font-weight: 900 !important;
+
+    text-shadow:
+        0 1px 2px
+        rgba(0,0,0,.25);
 
 }
 
@@ -2519,262 +2604,69 @@ PRESENTATION NAVIGATION BUTTONS
 
 }
 
+
 /* ==========================================================
-   PRESENTATION NEXT SONG PREVIEW
-   ========================================================== */
+NEXT SONG PREVIEW
+========================================================== */
 
 #nextSongPreview {
-    display: block;
 
-    width: 100%;
+    position: fixed;
 
-    margin: 18px auto 0;
+    right: 24px;
 
-    padding: 12px 18px;
+    bottom: 95px;
 
-    box-sizing: border-box;
+    z-index: 35;
 
-    background: #f1f5f9;
+    width: 260px;
 
-    border: 1px solid #dbe2ea;
+    min-height: 75px;
 
-    border-radius: 10px;
-
-    color: #475569;
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    line-height: 1.4;
-
-    text-align: center;
-
-    box-shadow: 0 3px 10px rgba(15,23,42,.06);
-
-    transition:
-        opacity .25s ease,
-        transform .25s ease,
-        background .25s ease;
-}
-
-/* When there is a next song */
-#nextSongPreview:not(:empty) {
-    opacity: 1;
-}
-
-/* Empty state */
-#nextSongPreview:empty {
-    display: none;
-}
-
-/* Hover */
-#nextSongPreview:hover {
-    background: #eef2ff;
-
-    border-color: #c7d2fe;
-
-    color: #4f46e5;
-
-    transform: translateY(-1px);
-}
-
-
-/* ==========================================================
-   PRESENTATION NAVIGATION
-   ========================================================== */
-
-#presentationNavigation {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    width: 100%;
-
-    margin-top: 18px;
-
-    padding: 10px 15px;
-
-    box-sizing: border-box;
-
-}
-
-
-/* Navigation buttons */
-
-#presentationNavigation button {
-
-    min-width: 110px;
-
-    height: 42px;
-
-    padding: 0 16px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #1e293b;
-
-    color: #ffffff;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        background .2s ease,
-        transform .2s ease,
-        box-shadow .2s ease;
-}
-
-
-/* Hover */
-
-#presentationNavigation button:hover {
-
-    background: #334155;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 5px 12px rgba(15,23,42,.15);
-}
-
-
-/* Active */
-
-#presentationNavigation button:active {
-
-    transform: scale(.97);
-}
-
-
-/* Previous */
-
-#presentationNavigation button:first-child {
-
-    background: #64748b;
-}
-
-
-/* Next */
-
-#presentationNavigation button:nth-child(2) {
+    padding: 13px 16px;
 
     background:
-        linear-gradient(
-            135deg,
-            #6c5ce7,
-            #4f8cff
-        );
-}
-
-
-/* Close */
-
-#presentationNavigation button:last-child {
-
-    background: #ef4444;
-}
-
-
-/* ==========================================================
-   PRESENTATION TITLE
-   ========================================================== */
-
-#presentationTitle {
-
-    width: 100%;
-
-    margin: 0;
-
-    padding: 15px 20px;
-
-    box-sizing: border-box;
-
-    text-align: center;
+        rgba(255,255,255,.97);
 
     color: #1e293b;
 
-    font-size: 24px;
+    border:
+        1px solid
+        #e2e8f0;
 
-    font-weight: 800;
-}
+    border-radius: 12px;
 
-
-/* ==========================================================
-   PRESENTATION COUNTER
-   ========================================================== */
-
-#presentationCounter {
-
-    display: block;
-
-    width: fit-content;
-
-    margin: 0 auto 10px;
-
-    padding: 5px 12px;
-
-    background: #eef2ff;
-
-    color: #4f46e5;
-
-    border: 1px solid #c7d2fe;
-
-    border-radius: 20px;
+    box-shadow:
+        0 10px 30px
+        rgba(15,23,42,.18);
 
     font-size: 13px;
 
-    font-weight: 700;
+    line-height: 1.4;
+
+    transition:
+        .25s ease;
+
 }
 
 
-/* ==========================================================
-   MOBILE
-   ========================================================== */
+/* Preview title */
 
-@media (max-width: 650px) {
+#nextSongPreview strong {
 
-    #nextSongPreview {
+    display: block;
 
-        font-size: 13px;
+    margin-bottom: 5px;
 
-        padding: 10px 12px;
+    color: #64748b;
 
-        margin-top: 12px;
+    font-size: 10px;
 
-    }
+    font-weight: 800;
 
-    #presentationNavigation {
+    text-transform: uppercase;
 
-        gap: 6px;
-
-        padding: 8px;
-
-    }
-
-    #presentationNavigation button {
-
-        min-width: 0;
-
-        flex: 1;
-
-        height: 40px;
-
-        padding: 0 8px;
-
-        font-size: 12px;
-
-    }
+    letter-spacing: .8px;
 
 }
 
@@ -2957,96 +2849,6 @@ VERY SMALL MOBILE
     }
 
 }
-/* ==========================================================
-   SECTION TITLE
-   ========================================================== */
-
-#presentationLyrics
-.presentation-section-title {
-
-    color: #ffffff !important;
-
-    background: #222222;
-
-    font-size: 22px;
-
-    font-weight: 900;
-
-    padding: 8px 12px;
-
-    margin-bottom: 15px;
-
-    border-radius: 8px;
-
-    text-align: center;
-
-}
-
-
-/* ==========================================================
-   SECTION CONTENT
-   ========================================================== */
-
-#presentationLyrics
-.presentation-section-content {
-
-    width: 100%;
-
-    color: #000000 !important;
-
-}
-
-
-/* ==========================================================
-   LYRIC LINE
-   ========================================================== */
-
-#presentationLyrics
-.presentation-line {
-
-    color: #000000 !important;
-
-    font-size: 24px;
-
-    line-height: 1.65;
-
-    margin-bottom: 8px;
-
-    font-weight: 600;
-
-}
-
-
-/* ==========================================================
-   ALL LYRIC TEXT = BLACK
-   ========================================================== */
-
-#presentationLyrics
-.presentation-line * {
-
-    color: #000000 !important;
-
-}
-
-
-/* ==========================================================
-   CHORD = RED
-   ========================================================== */
-
-#presentationLyrics
-.presentation-line .chord {
-
-    color: #ff0000 !important;
-
-    font-weight: 900 !important;
-
-    text-shadow:
-        0 1px 2px
-        rgba(0,0,0,.25);
-
-}
-
-
 /* ==========================================================
    SECTION TITLES MUST REMAIN WHITE
    ========================================================== */
