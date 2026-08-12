@@ -2187,34 +2187,42 @@ body{
 
 
 /* =========================================================
-   PRESENTATION SCREEN
+   WORSHIP MODE / PRESENTATION
+   3 COLUMN LAYOUT
 ========================================================= */
 
-#presentationScreen{
+.presentation{
 
     position:fixed;
 
     inset:0;
 
-    background:
-        radial-gradient(
-            circle at top right,
-            #18233c,
-            #05070c 55%
-        );
+    background:#000 !important;
 
-    color:#fff;
+    color:#fff !important;
 
-    display:none;
+    width:100%;
 
-    z-index:999999;
+    height:100%;
 
     overflow:hidden;
+
+    z-index:999999;
 }
 
-#presentationScreen.show{
 
-    display:block;
+/* =========================================================
+   HIDE NORMAL SONG ELEMENTS
+========================================================= */
+
+.presentation .song-header{
+
+    display:none !important;
+}
+
+.presentation .song-toolbar{
+
+    display:none !important;
 }
 
 
@@ -2234,15 +2242,17 @@ body{
 
     padding:0 30px;
 
-    background:
-        rgba(8,12,22,.88);
+    background:#050505;
 
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.10);
+    color:#fff;
 
-    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.12);
+
+    position:relative;
+
+    z-index:10;
 }
+
 
 #presentationTitle{
 
@@ -2250,8 +2260,9 @@ body{
 
     font-weight:800;
 
-    letter-spacing:-.5px;
+    color:#fff;
 }
+
 
 #presentationCounter{
 
@@ -2261,31 +2272,42 @@ body{
 
     color:#cbd5e1;
 
-    background:
-        rgba(255,255,255,.08);
+    background:rgba(255,255,255,.08);
 
     padding:8px 14px;
 
     border-radius:20px;
 }
 
-/* =========================================================
-   PRESENTATION - FORCE 3 COLUMN LAYOUT
-   ========================================================= */
 
-#presentationLyrics {
+/* =========================================================
+   PRESENTATION LYRICS AREA
+========================================================= */
+
+#presentationLyrics{
+
     position:absolute;
+
     top:74px;
+
     left:0;
+
     right:0;
+
     bottom:90px;
 
     width:100%;
+
     height:auto;
 
     padding:30px;
 
+    background:#000;
+
+    color:#fff;
+
     overflow-y:auto;
+
     overflow-x:hidden;
 
     box-sizing:border-box;
@@ -2293,49 +2315,50 @@ body{
 
 
 /* =========================================================
-   SONG CONTAINER
-   ========================================================= */
+   SONG = 3 COLUMNS
+   IMPORTANT:
+   THE SONG ITSELF IS THE GRID
+========================================================= */
 
-#presentationLyrics .song {
+#presentationLyrics .song{
 
     display:grid !important;
 
     grid-template-columns:
         repeat(3, minmax(0, 1fr)) !important;
 
-    grid-template-rows:auto !important;
+    grid-auto-flow:row !important;
 
     gap:24px !important;
 
     width:100% !important;
+
     max-width:none !important;
 
     margin:0 !important;
+
     padding:0 !important;
 
     box-sizing:border-box !important;
 
     align-items:start !important;
-
-    justify-items:stretch !important;
 }
 
 
 /* =========================================================
-   EVERY SECTION MUST BE A GRID ITEM
-   ========================================================= */
+   EVERY SECTION = ONE COLUMN
+========================================================= */
 
-#presentationLyrics .song > .song-section {
+#presentationLyrics .song > .song-section{
 
     display:block !important;
 
-    grid-column:auto !important;
-    grid-row:auto !important;
-
     width:100% !important;
+
     min-width:0 !important;
 
     height:auto !important;
+
     min-height:420px !important;
 
     margin:0 !important;
@@ -2344,32 +2367,32 @@ body{
 
     box-sizing:border-box !important;
 
-    background:rgba(255,255,255,.96);
+    background:#fff !important;
 
-    color:#172033;
+    color:#172033 !important;
 
-    border:1px solid rgba(148,163,184,.35);
+    border:1px solid #334155;
 
     border-radius:15px;
 
     overflow:hidden;
 
     box-shadow:
-        0 5px 18px rgba(15,23,42,.08);
+        0 5px 18px rgba(0,0,0,.35);
 }
 
 
 /* =========================================================
-SECTION TITLE
-   ========================================================= */
+   SECTION TITLE
+========================================================= */
 
-#presentationLyrics .song > .song-section .section-title {
+#presentationLyrics .song > .song-section .section-title{
 
     display:block !important;
 
     width:100% !important;
 
-    margin:0 0 45px 0 !important;
+    margin:0 0 20px 0 !important;
 
     padding:8px 10px !important;
 
@@ -2377,14 +2400,9 @@ SECTION TITLE
 
     text-align:center;
 
-    background:
-        linear-gradient(
-            135deg,
-            #2f3d53,
-            #334155
-        );
+    background:#263754 !important;
 
-    color:#fff;
+    color:#fff !important;
 
     border-radius:8px;
 
@@ -2400,9 +2418,9 @@ SECTION TITLE
 
 /* =========================================================
    LYRICS
-   ========================================================= */
+========================================================= */
 
-#presentationLyrics .song > .song-section .song-line {
+#presentationLyrics .song > .song-section .song-line{
 
     display:block !important;
 
@@ -2421,31 +2439,19 @@ SECTION TITLE
         "Courier New",
         monospace;
 
-    font-size:20px;
+    font-size:20px !important;
 
-    white-space:pre-wrap;
+    white-space:pre-wrap !important;
 
-    color:#172033;
+    color:#172033 !important;
 }
 
 
 /* =========================================================
-   CHORDS
-   ========================================================= */
+   PARAGRAPHS
+========================================================= */
 
-#presentationLyrics .song > .song-section .chord {
-
-    color:#ef302b;
-
-    font-weight:800;
-}
-
-
-/* =========================================================
-   SECTION PARAGRAPHS
-   ========================================================= */
-
-#presentationLyrics .song > .song-section p {
+#presentationLyrics .song > .song-section p{
 
     margin:0 !important;
 
@@ -2456,51 +2462,16 @@ SECTION TITLE
 
 
 /* =========================================================
-   TABLET
+   CHORDS
 ========================================================= */
 
-@media (min-width: 701px) and (max-width: 1100px) {
+#presentationLyrics .song > .song-section .chord{
 
-    #presentationLyrics .song {
+    color:#ef302b !important;
 
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr)) !important;
-
-        gap: 18px;
-
-    }
-
+    font-weight:800 !important;
 }
 
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 700px) {
-
-    #presentationLyrics {
-
-        padding: 15px;
-
-    }
-
-    #presentationLyrics .song {
-
-        grid-template-columns:
-            1fr !important;
-
-        gap: 14px;
-
-    }
-
-    #presentationLyrics .song-section {
-
-        min-height: auto;
-
-    }
-
-}
 
 /* =========================================================
    NEXT SONG
@@ -2518,8 +2489,7 @@ SECTION TITLE
 
     font-size:14px;
 
-    background:
-        rgba(255,255,255,.06);
+    background:rgba(255,255,255,.06);
 
     padding:8px 13px;
 
@@ -2551,14 +2521,11 @@ SECTION TITLE
 
     gap:8px;
 
-    background:
-        rgba(10,15,25,.85);
+    background:rgba(10,15,25,.90);
 
     padding:8px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.10);
 
     border-radius:14px;
 
@@ -2570,20 +2537,18 @@ SECTION TITLE
         0 12px 30px rgba(0,0,0,.30);
 }
 
+
 #presentationNavigation button{
 
     min-width:120px;
 
     padding:10px 17px;
 
-    background:
-        rgba(255,255,255,.08);
+    background:rgba(255,255,255,.08);
 
     color:#fff;
 
-    border:
-        1px solid
-        rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
 
     border-radius:9px;
 
@@ -2593,8 +2558,9 @@ SECTION TITLE
 
     cursor:pointer;
 
-    transition:var(--transition);
+    transition:.25s ease;
 }
+
 
 #presentationNavigation button:hover{
 
@@ -2608,9 +2574,70 @@ SECTION TITLE
     transform:translateY(-2px);
 }
 
-#presentationNavigation button:active{
 
-    transform:scale(.96);
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (min-width:701px) and (max-width:1100px){
+
+    #presentationLyrics .song{
+
+        grid-template-columns:
+            repeat(2, minmax(0,1fr)) !important;
+
+        gap:18px !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width:700px){
+
+    #presentationLyrics{
+
+        padding:15px;
+    }
+
+    #presentationLyrics .song{
+
+        grid-template-columns:
+            1fr !important;
+
+        gap:14px !important;
+    }
+
+    #presentationLyrics .song > .song-section{
+
+        min-height:auto !important;
+    }
+
+    #presentationTitle{
+
+        font-size:19px;
+    }
+
+    #presentationCounter{
+
+        font-size:12px;
+    }
+
+    #presentationNavigation button{
+
+        min-width:90px;
+
+        padding:9px;
+
+        font-size:12px;
+    }
+
+    #nextSongPreview{
+
+        display:none;
+    }
 }
 
 
