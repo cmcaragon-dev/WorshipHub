@@ -2601,7 +2601,36 @@ const Presentation = {
 };
 /* ======================================
    GLOBAL FUNCTIONS FOR HTML BUTTONS
-   ====================================== */
+====================================== */
+
+
+/* --------------------------------------
+   HOME
+-------------------------------------- */
+
+window.goHome = function () {
+
+    console.log(
+        "GO HOME BUTTON CLICKED"
+    );
+
+    /*
+     * always.html is assumed to be inside
+     * the songs folder.
+     *
+     * Change this path if your index.html
+     * is somewhere else.
+     */
+
+    window.location.href =
+        "../index.html";
+
+};
+
+
+/* --------------------------------------
+   START PRESENTATION
+-------------------------------------- */
 
 window.startPresentation = async function () {
 
@@ -2614,27 +2643,39 @@ window.startPresentation = async function () {
 };
 
 
-window.nextServiceSong = function () {
+/* --------------------------------------
+   NEXT SERVICE SONG
+-------------------------------------- */
+
+window.nextServiceSong = async function () {
 
     console.log(
         "NEXT SERVICE SONG BUTTON CLICKED"
     );
 
-    Service.next();
+    await Service.next();
 
 };
 
 
-window.previousServiceSong = function () {
+/* --------------------------------------
+   PREVIOUS SERVICE SONG
+-------------------------------------- */
+
+window.previousServiceSong = async function () {
 
     console.log(
         "PREVIOUS SERVICE SONG BUTTON CLICKED"
     );
 
-    Service.previous();
+    await Service.previous();
 
 };
 
+
+/* --------------------------------------
+   STOP SERVICE
+-------------------------------------- */
 
 window.stopService = function () {
 
@@ -2647,6 +2688,10 @@ window.stopService = function () {
 };
 
 
+/* --------------------------------------
+   EXIT PRESENTATION
+-------------------------------------- */
+
 window.exitPresentation = function () {
 
     console.log(
@@ -2656,3 +2701,45 @@ window.exitPresentation = function () {
     Presentation.close();
 
 };
+
+
+/* ======================================
+   INITIALIZE APPLICATION
+====================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+        console.log(
+            "================================"
+        );
+
+        console.log(
+            "INITIALIZING SONG APPLICATION"
+        );
+
+        console.log(
+            "================================"
+        );
+
+        try {
+
+            await App.init();
+
+            console.log(
+                "SONG APPLICATION INITIALIZED"
+            );
+
+        }
+        catch (error) {
+
+            console.error(
+                "APP INITIALIZATION ERROR:",
+                error
+            );
+
+        }
+
+    }
+);
