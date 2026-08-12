@@ -2017,60 +2017,111 @@ const Presentation = {
     },
 
 
-    /* ======================================================
-       UPDATE
-       ====================================================== */
+   /* ======================================================
+   UPDATE PRESENTATION
+   ====================================================== */
 
-    update(){
+update(){
 
-        const service =
-            Service.getCurrent();
+    const service = Service.getCurrent();
 
+    if(!service){
+        return;
+    }
 
-        if(!service) return;
+    /* -----------------------------------------------
+       SAFELY GET SERVICE SONGS
+       ----------------------------------------------- */
 
-
-        const index =
-            Service.getSongIndex();
-
-
-        const counter =
-            document.getElementById(
-                "presentationCounter"
-            );
+    const songs = Array.isArray(service.songs)
+        ? service.songs
+        : [];
 
 
-        if(counter){
+    /* -----------------------------------------------
+       CURRENT SONG INDEX
+       ----------------------------------------------- */
 
-            counter.innerText =
-                `Song ${index + 1} / ${service.songs.length}`;
+    let index = Number(
+        Service.getSongIndex()
+    );
 
-        }
-
-
-        const preview =
-            document.getElementById(
-                "nextSongPreview"
-            );
+    if(!Number.isFinite(index)){
+        index = 0;
+    }
 
 
-        if(preview){
+    /* -----------------------------------------------
+       KEEP INDEX INSIDE VALID RANGE
+       ----------------------------------------------- */
+
+    if(songs.length === 0){
+        index = 0;
+    }
+    else if(index < 0){
+        index = 0;
+    }
+    else if(index >= songs.length){
+        index = songs.length - 1;
+    }
+
+
+    /* -----------------------------------------------
+       PRESENTATION COUNTER
+       ----------------------------------------------- */
+
+    const counter =
+        document.getElementById(
+            "presentationCounter"
+        );
+
+
+    if(counter){
+
+        counter.innerText =
+            songs.length > 0
+                ? `Song ${index + 1} / ${songs.length}`
+                : "No Songs";
+
+    }
+
+
+    /* -----------------------------------------------
+       NEXT SONG PREVIEW
+       ----------------------------------------------- */
+
+    const preview =
+        document.getElementById(
+            "nextSongPreview"
+        );
+
+
+    if(preview){
+
+        if(
+            songs.length > 0 &&
+            index < songs.length - 1 &&
+            songs[index + 1]
+        ){
+
+            const nextSong =
+                songs[index + 1];
 
             preview.innerHTML =
-                index <
-                service.songs.length - 1
+                `Next : ${
+                    nextSong.title || "Untitled Song"
+                }`;
 
-                ? `Next : ${
-                    service.songs[index + 1].title
-                  }`
+        }
+        else{
 
-                : "";
+            preview.innerHTML = "";
 
         }
 
     }
 
-};
+}
 /* ==========================================================
    UTILITIES
 ========================================================== */
