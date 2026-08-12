@@ -2154,7 +2154,7 @@ const Presentation = {
 
             preview.innerHTML = `
                 <span class="next-song-label">
-                    NEXT SONG
+                    NEXT SONG: 
                 </span>
 
                 <span class="next-song-title">
