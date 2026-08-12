@@ -236,6 +236,14 @@ title: "Kamusta Ka Na",
         category: "Praise",
         language: "Tagalog",
         file: "songs/kamustakana.html"
+    },
+		{id:27,        
+title: "Sa Biyaya",
+        artist: "Spring Worship",
+        key: "C",
+        category: "Praise",
+        language: "Tagalog",
+        file: "songs/sabiyaya.html"
     }
 	
 ];
