@@ -1658,183 +1658,88 @@ const Presentation = {
        START PRESENTATION
        ====================================================== */
 
-    async start() {
+   async start() {
 
-        const overlay =
-            document.getElementById(
-                "presentationScreen"
-            );
+    const overlay =
+        document.getElementById("presentationScreen");
 
-        if (!overlay) {
-
-            console.error(
-                "presentationScreen not found."
-            );
-
-            return;
-        }
-
-
-        /* ==========================================
-           CHECK SERVICE PLANNER
-           ========================================== */
-
-        const service =
-            await Service.getCurrent();
-
-
-        /* ==========================================
-           SERVICE PLANNER MODE
-           ========================================== */
-
-        if (service) {
-
-            const index =
-                Service.getSongIndex();
-
-            const songs =
-                Array.isArray(service.songs)
-                    ? service.songs
-                    : [];
-
-
-            if (!songs.length) {
-
-                console.warn(
-                    "Service Planner has no songs."
-                );
-
-                return;
-            }
-
-
-            if (
-                index < 0 ||
-                index >= songs.length
-            ) {
-
-                console.warn(
-                    "Invalid Service Planner song index:",
-                    index
-                );
-
-                return;
-            }
-
-
-            const song =
-                songs[index];
-
-
-            console.log(
-                "PRESENTATION MODE: SERVICE PLANNER"
-            );
-
-            console.log(
-                "SONG:",
-                song
-            );
-
-
-            /* ----------------------------------
-               SET CURRENT SONG
-            ---------------------------------- */
-
-           if (song) {
-
-    window.currentSong =
-        song;
-
-    console.log(
-        "CURRENT SONG REGISTERED:",
-        window.currentSong
-    );
-
-}
-
-
-            /* ----------------------------------
-               SHOW TITLE
-            ---------------------------------- */
-
-            const title =
-                document.getElementById(
-                    "presentationTitle"
-                );
-
-            if (title) {
-
-                title.innerText =
-                    song?.title ||
-                    "Untitled Song";
-
-            }
-
-
-            /* ----------------------------------
-               SHOW PRESENTATION
-            ---------------------------------- */
-
-            overlay.classList.add(
-                "show"
-            );
-
-
-            /* ----------------------------------
-               BUILD 3-COLUMN PRESENTATION
-            ---------------------------------- */
-
-            this.build();
-
-
-            /* ----------------------------------
-               UPDATE SERVICE INFORMATION
-            ---------------------------------- */
-
-            await this.update();
-
-
-            return;
-        }
-
-
-        /* ==========================================
-           DIRECT SONG MODE
-           ========================================== */
-
-        console.log(
-            "PRESENTATION MODE: DIRECT SONG"
+    if (!overlay) {
+        console.error(
+            "presentationScreen not found."
         );
+        return;
+    }
 
+    /* ==================================================
+       FIRST: CHECK IF SERVICE PLANNER IS ACTIVE
+       ================================================== */
+
+    const service =
+        await Service.getCurrent();
+
+    /* ==================================================
+       SERVICE PLANNER MODE
+       ================================================== */
+
+    if (service) {
+
+        const index =
+            Service.getSongIndex();
+
+        const songs =
+            Array.isArray(service.songs)
+                ? service.songs
+                : [];
+
+        if (!songs.length) {
+            console.warn(
+                "Service Planner has no songs."
+            );
+            return;
+        }
+
+        if (
+            index < 0 ||
+            index >= songs.length
+        ) {
+            console.warn(
+                "Invalid Service Planner song index:",
+                index
+            );
+            return;
+        }
 
         const song =
-            window.currentSong;
-
-
-        if (!song) {
-
-            console.error(
-                "No current song available."
-            );
-
-            alert(
-                "Unable to start presentation. " +
-                "The current song could not be identified."
-            );
-
-            return;
-        }
-
+            songs[index];
 
         console.log(
-            "DIRECT SONG:",
+            "PRESENTATION MODE: SERVICE PLANNER"
+        );
+
+        console.log(
+            "SERVICE SONG:",
             song
         );
 
+        /*
+         * IMPORTANT:
+         * Make the Service Planner song
+         * available globally.
+         */
 
-        /* ----------------------------------
-           SHOW TITLE
-        ---------------------------------- */
+        window.currentSong =
+            song;
+
+        /*
+         * Store it locally as well.
+         */
+
+        window.currentSongIndex =
+            index;
+
+        /* ------------------------------------------
+           TITLE
+           ------------------------------------------ */
 
         const title =
             document.getElementById(
@@ -1849,62 +1754,191 @@ const Presentation = {
 
         }
 
-
-        /* ----------------------------------
+        /* ------------------------------------------
            SHOW PRESENTATION
-        ---------------------------------- */
+           ------------------------------------------ */
 
-        overlay.classList.add(
-            "show"
-        );
+        overlay.classList.add("show");
 
-
-        /* ----------------------------------
+        /* ------------------------------------------
            BUILD 3-COLUMN PRESENTATION
-        ---------------------------------- */
+           ------------------------------------------ */
 
         this.build();
 
+        /* ------------------------------------------
+           UPDATE SERVICE INFORMATION
+           ------------------------------------------ */
 
-        /* ----------------------------------
-           DIRECT SONG COUNTER
-        ---------------------------------- */
+        await this.update();
 
-        const counter =
-            document.getElementById(
-                "presentationCounter"
-            );
+        return;
+    }
 
-        if (counter) {
 
-            counter.innerText =
-                "Standalone Song";
+    /* ==================================================
+       DIRECT / STANDALONE SONG MODE
+       ================================================== */
+
+    console.log(
+        "PRESENTATION MODE: DIRECT SONG"
+    );
+
+
+    /*
+     * IMPORTANT:
+     * Try several possible sources for the
+     * currently opened song.
+     */
+
+    let song =
+        window.currentSong;
+
+
+    /*
+     * If window.currentSong does not exist,
+     * try the global currentSong variable.
+     */
+
+    if (
+        !song &&
+        typeof currentSong !== "undefined"
+    ) {
+
+        song =
+            currentSong;
+
+    }
+
+
+    /*
+     * If still unavailable, try to obtain
+     * the song from the HTML page.
+     */
+
+    if (!song && App.lyrics) {
+
+        const songElement =
+            App.lyrics.closest(".song");
+
+        if (songElement) {
+
+            song = {
+
+                title:
+                    songElement.dataset.title ||
+                    document.title ||
+                    "Untitled Song"
+
+            };
 
         }
 
-
-        /* ----------------------------------
-           NO NEXT SONG
-        ---------------------------------- */
-
-        const preview =
-            document.getElementById(
-                "nextSongPreview"
-            );
-
-        if (preview) {
-
-            preview.innerHTML =
-                "";
-
-            preview.style.display =
-                "none";
-
-        }
-
-    },
+    }
 
 
+    /*
+     * FINAL CHECK
+     */
+
+    if (!song) {
+
+        console.error(
+            "No current song available."
+        );
+
+        alert(
+            "Unable to start presentation.\n\n" +
+            "The current song could not be identified."
+        );
+
+        return;
+    }
+
+
+    console.log(
+        "DIRECT SONG:",
+        song
+    );
+
+
+    /*
+     * Make sure it is globally available.
+     */
+
+    window.currentSong =
+        song;
+
+
+    /* ------------------------------------------
+       TITLE
+       ------------------------------------------ */
+
+    const title =
+        document.getElementById(
+            "presentationTitle"
+        );
+
+    if (title) {
+
+        title.innerText =
+            song.title ||
+            "Untitled Song";
+
+    }
+
+
+    /* ------------------------------------------
+       SHOW PRESENTATION
+       ------------------------------------------ */
+
+    overlay.classList.add("show");
+
+
+    /* ------------------------------------------
+       BUILD PRESENTATION
+       ------------------------------------------ */
+
+    this.build();
+
+
+    /* ------------------------------------------
+       STANDALONE COUNTER
+       ------------------------------------------ */
+
+    const counter =
+        document.getElementById(
+            "presentationCounter"
+        );
+
+    if (counter) {
+
+        counter.innerText =
+            "Standalone Song";
+
+    }
+
+
+    /* ------------------------------------------
+       NO NEXT SONG
+       ------------------------------------------ */
+
+    const preview =
+        document.getElementById(
+            "nextSongPreview"
+        );
+
+    if (preview) {
+
+        preview.innerHTML =
+            "";
+
+        preview.style.display =
+            "none";
+
+    }
+
+},
     /* ======================================================
        BUILD PRESENTATION
        ====================================================== */
