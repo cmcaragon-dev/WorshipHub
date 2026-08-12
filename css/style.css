@@ -2270,102 +2270,112 @@ body{
 }
 
 /* =========================================================
-   PRESENTATION LYRICS
-   3-COLUMN SONG LAYOUT
-========================================================= */
+   PRESENTATION - FORCE 3 COLUMN LAYOUT
+   ========================================================= */
 
 #presentationLyrics {
-    position: absolute;
+    position:absolute;
+    top:74px;
+    left:0;
+    right:0;
+    bottom:90px;
 
-    top: 74px;
-    left: 0;
-    right: 0;
-    bottom: 90px;
+    width:100%;
+    height:auto;
 
-    display: block;
+    padding:30px;
 
-    overflow-y: auto;
+    overflow-y:auto;
+    overflow-x:hidden;
 
-    padding: 30px;
-
-    box-sizing: border-box;
-
-    scrollbar-width: thin;
+    box-sizing:border-box;
 }
 
 
 /* =========================================================
-   SONG - 3 COLUMNS
-========================================================= */
+   SONG CONTAINER
+   ========================================================= */
 
 #presentationLyrics .song {
-    display: grid !important;
+
+    display:grid !important;
 
     grid-template-columns:
         repeat(3, minmax(0, 1fr)) !important;
 
-    grid-auto-flow: row;
+    grid-template-rows:auto !important;
 
-    gap: 24px;
+    gap:24px !important;
 
-    width: 100%;
+    width:100% !important;
+    max-width:none !important;
 
-    max-width: 100%;
+    margin:0 !important;
+    padding:0 !important;
 
-    align-items: stretch;
+    box-sizing:border-box !important;
+
+    align-items:start !important;
+
+    justify-items:stretch !important;
 }
 
 
 /* =========================================================
-   SONG SECTION / CARD
-========================================================= */
+   EVERY SECTION MUST BE A GRID ITEM
+   ========================================================= */
 
-#presentationLyrics .song-section {
+#presentationLyrics .song > .song-section {
 
-    display: block !important;
+    display:block !important;
 
-    width: 100%;
+    grid-column:auto !important;
+    grid-row:auto !important;
 
-    min-width: 0;
+    width:100% !important;
+    min-width:0 !important;
 
-    min-height: 420px;
+    height:auto !important;
+    min-height:420px !important;
 
-    height: auto;
+    margin:0 !important;
 
-    box-sizing: border-box;
+    padding:18px !important;
 
-    background: rgba(255,255,255,.96);
+    box-sizing:border-box !important;
 
-    color: #172033;
+    background:rgba(255,255,255,.96);
 
-    border:
-        1px solid
-        rgba(148,163,184,.35);
+    color:#172033;
 
-    border-radius: 15px;
+    border:1px solid rgba(148,163,184,.35);
 
-    padding: 18px;
+    border-radius:15px;
 
-    backdrop-filter: blur(10px);
+    overflow:hidden;
 
     box-shadow:
         0 5px 18px rgba(15,23,42,.08);
-
-    overflow: hidden;
 }
 
 
 /* =========================================================
-   SECTION TITLE
-========================================================= */
+SECTION TITLE
+   ========================================================= */
 
-#presentationLyrics .section-title {
+#presentationLyrics .song > .song-section .section-title {
 
-    display: block;
+    display:block !important;
 
-    width: 100%;
+    width:100% !important;
 
-    box-sizing: border-box;
+    margin:0 0 45px 0 !important;
+
+    padding:8px 10px !important;
+
+    box-sizing:border-box;
+
+    text-align:center;
 
     background:
         linear-gradient(
@@ -2374,78 +2384,74 @@ body{
             #334155
         );
 
-    color: #ffffff;
+    color:#fff;
 
-    text-align: center;
+    border-radius:8px;
 
-    font-size: 16px;
+    font-size:16px;
 
-    font-weight: 800;
+    font-weight:800;
 
-    letter-spacing: .8px;
+    letter-spacing:.8px;
 
-    text-transform: uppercase;
-
-    padding: 8px 10px;
-
-    border-radius: 8px;
-
-    margin: 0 0 45px 0;
+    text-transform:uppercase;
 }
 
 
 /* =========================================================
    LYRICS
-========================================================= */
+   ========================================================= */
 
-#presentationLyrics .song-line {
+#presentationLyrics .song > .song-section .song-line {
 
-    line-height: 1.08 !important;
+    display:block !important;
 
-    margin: 1px 0 !important;
+    width:100% !important;
 
-    padding: 0 !important;
+    max-width:100% !important;
+
+    margin:1px 0 !important;
+
+    padding:0 !important;
+
+    line-height:1.08 !important;
 
     font-family:
         Consolas,
         "Courier New",
         monospace;
 
-    font-size: 20px;
+    font-size:20px;
 
-    color: #172033;
+    white-space:pre-wrap;
 
-    white-space: pre-wrap;
-
-    width: 100%;
-
-    max-width: 100%;
+    color:#172033;
 }
 
 
 /* =========================================================
    CHORDS
-========================================================= */
+   ========================================================= */
 
-#presentationLyrics .chord {
+#presentationLyrics .song > .song-section .chord {
 
-    color: #ef302b;
+    color:#ef302b;
 
-    font-weight: 800;
+    font-weight:800;
 }
 
 
 /* =========================================================
-   SONG SECTION PARAGRAPHS
-========================================================= */
+   SECTION PARAGRAPHS
+   ========================================================= */
 
-#presentationLyrics .song-section p {
+#presentationLyrics .song > .song-section p {
 
-    margin: 0;
+    margin:0 !important;
 
-    padding: 0;
+    padding:0 !important;
 
-    line-height: 1.08;
+    line-height:1.08 !important;
 }
 
 
