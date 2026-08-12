@@ -2346,3 +2346,44 @@ const Presentation = {
     }
 
 };
+/* ======================================
+   GLOBAL FUNCTIONS FOR HTML BUTTONS
+====================================== */
+
+window.startPresentation = async function () {
+
+    console.log(
+        "START PRESENTATION BUTTON CLICKED"
+    );
+
+    await Presentation.start();
+
+};
+
+
+window.nextServiceSong = function () {
+
+    Service.next();
+
+};
+
+
+window.previousServiceSong = function () {
+
+    Service.previous();
+
+};
+
+
+window.stopService = function () {
+
+    Service.stop();
+
+};
+
+
+window.exitPresentation = function () {
+
+    Presentation.close();
+
+};
