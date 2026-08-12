@@ -2183,42 +2183,53 @@ const Presentation = {
 
         }
 
+/* ------------------------------------------
+   NEXT SONG
+------------------------------------------ */
 
-        /* ------------------------------------------
-           NEXT SONG
-           ------------------------------------------ */
+const preview =
+    document.getElementById(
+        "nextSongPreview"
+    );
 
-        const preview =
-            document.getElementById(
-                "nextSongPreview"
-            );
+if (preview) {
 
+    if (
+        songs.length > 0 &&
+        index >= 0 &&
+        index < songs.length - 1 &&
+        songs[index + 1]
+    ) {
 
-        if (preview) {
+        const nextSong =
+            songs[index + 1];
 
-            if (
-                songs.length > 0 &&
-                index >= 0 &&
-                index < songs.length - 1 &&
-                songs[index + 1]
-            ) {
+        preview.innerHTML = `
 
-                preview.innerHTML =
-                    `Next : ${
-                        songs[index + 1].title || ""
-                    }`;
+            <span class="next-song-label">
+                NEXT SONG
+            </span>
 
-            }
-            else {
+            <span class="next-song-title">
+                ${nextSong.title || "Untitled Song"}
+            </span>
 
-                preview.innerHTML = "";
+        `;
 
-            }
+        /* Make sure it is visible */
+        preview.style.display = "flex";
 
-        }
+    }
+    else {
 
-    },
+        preview.innerHTML = "";
 
+        /* Hide when there is no next song */
+        preview.style.display = "none";
+
+    }
+
+}
 
     /* ======================================================
        CLOSE
