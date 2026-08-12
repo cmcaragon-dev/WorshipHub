@@ -1740,8 +1740,17 @@ const Presentation = {
                SET CURRENT SONG
             ---------------------------------- */
 
-            window.currentSong =
-                song;
+           if (song) {
+
+    window.currentSong =
+        song;
+
+    console.log(
+        "CURRENT SONG REGISTERED:",
+        window.currentSong
+    );
+
+}
 
 
             /* ----------------------------------
