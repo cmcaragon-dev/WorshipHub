@@ -1,26 +1,94 @@
-/* ==============================
-   DASHBOARD
-============================== */
+/* =========================================================
+   JFCM SONGS ORGANIZER
+   MODERN UI DESIGN
+   Existing IDs / Classes preserved
+========================================================= */
+
+:root{
+
+    --primary:#6c5ce7;
+    --primary-dark:#5546d6;
+    --secondary:#4f8cff;
+
+    --success:#22c55e;
+    --warning:#f59e0b;
+    --danger:#ef4444;
+
+    --dark:#172033;
+    --dark-2:#243047;
+
+    --text:#1e293b;
+    --muted:#64748b;
+
+    --background:#f4f7fb;
+    --surface:#ffffff;
+    --surface-2:#f8fafc;
+
+    --border:#e5eaf1;
+
+    --radius-sm:8px;
+    --radius-md:12px;
+    --radius-lg:18px;
+
+    --shadow-sm:0 2px 8px rgba(15,23,42,.05);
+    --shadow-md:0 8px 25px rgba(15,23,42,.08);
+    --shadow-lg:0 18px 45px rgba(15,23,42,.15);
+
+    --transition:.25s ease;
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
 
 body{
 
     margin:0;
 
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    background:#eef2f7;
+    background:var(--background);
 
+    color:var(--text);
+
+    min-height:100vh;
+
+    -webkit-font-smoothing:antialiased;
 }
 
-/* Top Bar */
+
+/* =========================================================
+   TOP BAR
+========================================================= */
 
 .topbar{
 
-    background:#2c3e50;
+    height:72px;
 
-    color:white;
+    background:
+        linear-gradient(
+            135deg,
+            #18243a 0%,
+            #263754 100%
+        );
 
-    padding:15px 25px;
+    color:#fff;
+
+    padding:0 24px;
 
     display:flex;
 
@@ -28,105 +96,286 @@ body{
 
     align-items:center;
 
+    position:sticky;
+
+    top:0;
+
+    z-index:5000;
+
+    box-shadow:
+        0 4px 18px rgba(15,23,42,.18);
 }
+
+
+/* =========================================================
+   LOGO
+========================================================= */
 
 .logo{
 
-    font-size:24px;
+    display:flex;
 
-    font-weight:bold;
+    align-items:center;
 
+    gap:10px;
+
+    font-size:23px;
+
+    font-weight:800;
+
+    letter-spacing:-.4px;
+
+    white-space:nowrap;
 }
+
+.logo::first-letter{
+    color:#a78bfa;
+}
+
+
+/* =========================================================
+   TOP ACTIONS
+========================================================= */
 
 .top-actions{
 
     display:flex;
 
-    gap:10px;
+    align-items:center;
 
+    gap:10px;
 }
+
+
+/* Search */
 
 .top-actions input{
 
-    width:320px;
+    width:340px;
 
-    padding:10px;
+    height:42px;
 
-    border-radius:8px;
+    padding:0 16px;
 
     border:none;
 
+    outline:none;
+
+    border-radius:11px;
+
+    background:rgba(255,255,255,.96);
+
+    color:#1e293b;
+
+    font-size:14px;
+
+    transition:var(--transition);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.08);
 }
+
+.top-actions input::placeholder{
+
+    color:#94a3b8;
+}
+
+.top-actions input:focus{
+
+    box-shadow:
+        0 0 0 3px rgba(167,139,250,.35);
+}
+
+
+/* Header Buttons */
 
 .top-actions button{
 
-    width:45px;
+    height:42px;
 
+    min-width:42px;
+
+    padding:0 13px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.10);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+    backdrop-filter:blur(10px);
 }
 
-/* Layout */
+.top-actions button:hover{
+
+    background:rgba(255,255,255,.20);
+
+    transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
 
 .layout{
 
     display:flex;
 
-    min-height:calc(100vh - 70px);
-
+    min-height:
+        calc(100vh - 72px);
 }
 
-/* Sidebar */
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
 .sidebar{
 
-    width:240px;
+    width:250px;
 
-    background:white;
+    min-width:250px;
 
-    padding:20px;
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f9fbff 100%
+        );
 
-    box-shadow:2px 0 10px rgba(0,0,0,.1);
+    padding:24px 16px;
 
+    border-right:1px solid var(--border);
+
+    box-shadow:
+        4px 0 20px rgba(15,23,42,.04);
+
+    position:sticky;
+
+    top:72px;
+
+    height:
+        calc(100vh - 72px);
+
+    overflow-y:auto;
 }
+
+
+/* Sidebar headings */
 
 .sidebar h3{
 
-    margin-top:0;
+    margin:
 
-    color:#888;
+        4px 10px
+        12px;
 
-    font-size:14px;
+    color:#94a3b8;
 
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
 }
+
+
+/* Sidebar divider */
+
+.sidebar hr{
+
+    border:0;
+
+    height:1px;
+
+    background:var(--border);
+
+    margin:20px 8px;
+}
+
+
+/* Sidebar buttons */
 
 .sidebar button{
 
     width:100%;
 
-    padding:12px;
+    min-height:44px;
 
-    margin-bottom:10px;
+    padding:11px 14px;
 
-    border:none;
+    margin-bottom:6px;
 
-    background:#3498db;
+    border:1px solid transparent;
 
-    color:white;
+    background:transparent;
 
-    border-radius:8px;
+    color:#475569;
+
+    border-radius:11px;
 
     cursor:pointer;
 
     text-align:left;
 
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
 }
+
+
+/* Hover */
 
 .sidebar button:hover{
 
-    background:#2980b9;
+    background:#f0edff;
 
+    color:var(--primary);
+
+    border-color:#e6e0ff;
+
+    transform:translateX(3px);
 }
 
-/* Content */
+
+/* Active */
+
+.sidebar button.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c5ce7,
+            #4f8cff
+        );
+
+    color:white;
+
+    box-shadow:
+        0 6px 16px rgba(108,92,231,.25);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
 
 .content{
 
@@ -134,68 +383,222 @@ body{
 
     padding:30px;
 
+    min-width:0;
 }
 
-/* Dashboard Cards */
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
 
 .dashboard{
 
     display:grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
 
-    gap:20px;
+    gap:18px;
 
     margin-bottom:30px;
-
 }
+
+
+/* =========================================================
+   DASHBOARD CARD
+========================================================= */
 
 .card{
 
-    background:white;
+    position:relative;
 
-    border-radius:12px;
+    background:var(--surface);
 
-    padding:25px;
+    border:1px solid var(--border);
 
-    text-align:center;
+    border-radius:var(--radius-lg);
 
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
+    padding:23px;
 
+    text-align:left;
+
+    box-shadow:var(--shadow-sm);
+
+    overflow:hidden;
+
+    transition:var(--transition);
 }
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--secondary)
+        );
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow-md);
+}
+
+
+/* Number */
 
 .number{
 
-    font-size:38px;
+    font-size:36px;
 
-    color:#3498db;
+    line-height:1;
 
-    font-weight:bold;
+    color:var(--primary);
 
+    font-weight:800;
+
+    letter-spacing:-1px;
 }
+
+
+/* Label */
 
 .label{
 
-    color:#666;
+    color:var(--muted);
 
     margin-top:10px;
 
+    font-size:13px;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:.4px;
 }
 
-/* Songs */
+
+/* =========================================================
+   SONG GRID
+========================================================= */
 
 #songGrid{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(280px,1fr)
+        );
 
-    gap:20px;
-
+    gap:18px;
 }
-/* ======================================
+
+
+/* =========================================================
+   SONG CARD
+========================================================= */
+
+.song-card{
+
+    background:var(--surface);
+
+    border:
+
+        1px solid
+        var(--border);
+
+    border-radius:var(--radius-lg);
+
+    padding:20px;
+
+    margin-bottom:18px;
+
+    box-shadow:var(--shadow-sm);
+
+    transition:var(--transition);
+
+    position:relative;
+}
+
+.song-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:var(--shadow-md);
+
+    border-color:#d8d0ff;
+}
+
+
+/* =========================================================
+   OPEN SONG
+========================================================= */
+
+.open-song{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    margin-top:14px;
+
+    padding:10px 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    box-shadow:
+        0 5px 12px rgba(108,92,231,.20);
+
+    transition:var(--transition);
+}
+
+.open-song:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(108,92,231,.28);
+}
+
+
+/* =========================================================
    PLAYLIST PANEL
-====================================== */
+========================================================= */
 
 .playlist-panel{
 
@@ -203,29 +606,37 @@ body{
 
     top:0;
 
-    right:-420px;
+    right:-440px;
 
-    width:400px;
+    width:420px;
+
+    max-width:95vw;
 
     height:100%;
 
     background:#fff;
 
-    box-shadow:-8px 0 20px rgba(0,0,0,.25);
+    border-left:1px solid var(--border);
 
-    transition:.35s;
+    box-shadow:
+        -15px 0 45px rgba(15,23,42,.18);
+
+    transition:.35s ease;
 
     z-index:9999;
 
     overflow:auto;
-
 }
 
 .playlist-panel.show{
 
     right:0;
-
 }
+
+
+/* =========================================================
+   PLAYLIST TOP
+========================================================= */
 
 .playlist-top{
 
@@ -235,114 +646,476 @@ body{
 
     align-items:center;
 
-    padding:20px;
+    padding:20px 22px;
 
-    background:#2c3e50;
+    background:
+        linear-gradient(
+            135deg,
+            #18243a,
+            #2c3f62
+        );
 
     color:white;
 
+    position:sticky;
+
+    top:0;
+
+    z-index:5;
 }
 
+.playlist-top h2{
+
+    margin:0;
+
+    font-size:20px;
+}
 
 .playlist-top button{
 
-    background:red;
+    width:36px;
+
+    height:36px;
+
+    padding:0;
+
+    background:rgba(255,255,255,.12);
 
     color:white;
 
-    border:none;
+    border:1px solid rgba(255,255,255,.15);
 
-    padding:8px 12px;
-
-    border-radius:6px;
+    border-radius:10px;
 
     cursor:pointer;
 
+    transition:var(--transition);
 }
+
+.playlist-top button:hover{
+
+    background:#ef4444;
+
+    transform:rotate(4deg);
+}
+
+
+/* =========================================================
+   PLAYLIST CREATE
+========================================================= */
 
 .playlist-create{
 
     padding:20px;
-
 }
 
 .playlist-create input{
 
     width:100%;
 
-    padding:12px;
+    height:44px;
+
+    padding:0 14px;
 
     margin-bottom:10px;
 
-    border:1px solid #ccc;
+    border:1px solid var(--border);
 
-    border-radius:8px;
+    border-radius:10px;
 
+    outline:none;
+
+    font-size:14px;
+
+    transition:var(--transition);
+}
+
+.playlist-create input:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(108,92,231,.10);
 }
 
 .playlist-create button{
 
     width:100%;
 
-    padding:12px;
+    height:44px;
 
-    background:#27ae60;
+    padding:0 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #16a34a
+        );
 
     color:white;
 
     border:none;
 
-    border-radius:8px;
+    border-radius:10px;
 
     cursor:pointer;
 
+    font-weight:700;
+
+    transition:var(--transition);
 }
+
+.playlist-create button:hover{
+
+    transform:translateY(-1px);
+
+    box-shadow:
+        0 6px 14px rgba(34,197,94,.20);
+}
+
+
+/* =========================================================
+   PLAYLIST ITEM
+========================================================= */
 
 .playlist-item{
 
-    margin:15px;
+    background:#fff;
 
-    padding:15px;
+    border-radius:15px;
 
-    border-radius:10px;
+    margin:0 16px 16px;
 
-    background:#f5f5f5;
+    overflow:hidden;
 
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow-sm);
+
+    transition:var(--transition);
 }
 
-.playlist-name{
+.playlist-item:hover{
 
-    font-weight:bold;
+    transform:translateY(-2px);
 
-    font-size:18px;
+    box-shadow:var(--shadow-md);
+}
 
+
+/* =========================================================
+   PLAYLIST HEADER
+========================================================= */
+
+.playlist-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d2a42,
+            #293b5b
+        );
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:700;
+}
+
+.playlist-header:hover{
+
+    background:
+        linear-gradient(
+            135deg,
+            #243553,
+            #344a70
+        );
+}
+
+.playlist-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:16px;
+
+    font-weight:700;
+}
+
+.playlist-arrow{
+
+    width:28px;
+
+    height:28px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:50%;
+
+    font-size:13px;
+
+    transition:.25s;
+}
+
+.playlist-header.active .playlist-arrow{
+
+    transform:rotate(90deg);
 }
 
 .playlist-count{
 
-    color:#888;
+    background:
+        linear-gradient(
+            135deg,
+            #6c5ce7,
+            #4f8cff
+        );
 
-    margin-top:5px;
+    padding:5px 11px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+
+/* =========================================================
+   PLAYLIST BODY
+========================================================= */
+
+.playlist-body{
+
+    display:none;
+
+    padding:12px;
 
 }
 
+.playlist-body.show{
+
+    display:block;
+}
+
+
+/* =========================================================
+   PLAYLIST SONG
+========================================================= */
+
+.playlist-song{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:13px;
+
+    margin-bottom:9px;
+
+    background:#f8fafc;
+
+    border:1px solid #e8edf4;
+
+    border-radius:11px;
+
+    transition:var(--transition);
+}
+
+.playlist-song:hover{
+
+    background:#f2f5ff;
+
+    border-color:#dcd6ff;
+
+    transform:translateX(3px);
+}
+
+.song-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-width:0;
+}
+
+.song-title{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#1e293b;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.song-artist{
+
+    margin-top:4px;
+
+    color:#94a3b8;
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+   PLAYLIST BUTTONS
+========================================================= */
+
+.playlist-buttons{
+
+    display:flex;
+
+    gap:6px;
+
+    flex-shrink:0;
+}
+
+.playlist-buttons button{
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:8px 11px;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    transition:var(--transition);
+}
+
+.playlist-buttons button:hover{
+
+    transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   PLAYLIST ACTIONS
+========================================================= */
+
 .playlist-actions{
 
-    margin-top:15px;
+    display:grid;
 
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:8px;
+
+    margin:15px 0;
 }
 
 .playlist-actions button{
 
-    margin-right:10px;
+    width:100%;
 
-    padding:8px 12px;
+    padding:11px;
 
+    border:none;
+
+    border-radius:9px;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:var(--transition);
 }
 
-/* ===================================
+.playlist-actions button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(15,23,42,.12);
+}
+
+.add-song-btn{
+    background:#22c55e;
+}
+
+.open-btn{
+    background:#4f8cff;
+}
+
+.rename-btn{
+    background:#f59e0b;
+}
+
+.delete-btn{
+    background:#ef4444;
+}
+
+
+/* Song action buttons */
+
+.open-song-btn{
+
+    background:#4f8cff;
+
+    color:white;
+}
+
+.remove-song-btn{
+
+    background:#ef4444;
+
+    color:white;
+}
+
+.open-song-btn:hover{
+
+    background:#3b82f6;
+}
+
+.remove-song-btn:hover{
+
+    background:#dc2626;
+}
+
+
+/* =========================================================
    PLAYLIST POPUP
-=================================== */
+========================================================= */
 
 .playlist-popup{
 
@@ -350,7 +1123,10 @@ body{
 
     inset:0;
 
-    background:rgba(0,0,0,.6);
+    background:
+        rgba(15,23,42,.65);
+
+    backdrop-filter:blur(6px);
 
     display:none;
 
@@ -360,138 +1136,86 @@ body{
 
     z-index:99999;
 
+    padding:20px;
 }
 
 .playlist-popup.show{
 
     display:flex;
-
 }
 
 .popup-content{
 
-    width:420px;
+    width:440px;
+
+    max-width:100%;
 
     background:white;
 
     padding:25px;
 
-    border-radius:12px;
+    border-radius:18px;
 
+    box-shadow:var(--shadow-lg);
+
+    animation:popupIn .25s ease;
+}
+
+@keyframes popupIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px) scale(.97);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
 }
 
 .popup-playlist{
 
-    background:#3498db;
+    background:#f5f7fb;
 
-    color:white;
+    color:#334155;
 
-    padding:12px;
+    padding:13px;
 
-    margin:10px 0;
+    margin:9px 0;
 
     cursor:pointer;
 
-    border-radius:8px;
+    border:1px solid var(--border);
 
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:var(--transition);
 }
 
 .popup-playlist:hover{
 
-    background:#2980b9;
+    background:#f0edff;
 
-}
-/* ==========================
-   WORSHIP MODE
-========================== */
+    color:var(--primary);
 
-.presentation{
+    border-color:#dcd6ff;
 
-    background:black !important;
-
-    color:white !important;
-
+    transform:translateX(3px);
 }
 
-.presentation .song-header{
 
-    display:none;
-
-}
-
-.presentation .song-toolbar{
-
-    display:none;
-
-}
-
-.presentation .song-container{
-
-    background:black;
-
-    box-shadow:none;
-
-    max-width:100%;
-
-    margin:0;
-
-    padding:50px;
-
-}
-
-.presentation .song{
-
-    font-size:42px !important;
-
-    line-height:2;
-
-}
-
-.presentation .chord{
-
-    color:#ffd54f;
-
-}
-.song-card{
-
-    background:white;
-
-    border-radius:10px;
-
-    padding:20px;
-
-    margin-bottom:20px;
-
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
-
-}
-
-.open-song{
-
-    display:inline-block;
-
-    margin-top:10px;
-
-    padding:10px 15px;
-
-    background:#3498db;
-
-    color:white;
-
-    text-decoration:none;
-
-    border-radius:6px;
-
-}
-
-.open-song:hover{
-
-    background:#2980b9;
-
-}
-/*=========================================
- WORSHIP SERVICE PLANNER
-=========================================*/
+/* =========================================================
+   SERVICE PANEL
+========================================================= */
 
 #servicePanel{
 
@@ -499,247 +1223,423 @@ body{
 
     top:0;
 
-    right:-450px;
+    right:-460px;
 
-    width:420px;
+    width:440px;
+
+    max-width:95vw;
 
     height:100%;
 
     background:#fff;
 
-    box-shadow:-8px 0 20px rgba(0,0,0,.25);
+    border-left:1px solid var(--border);
+
+    box-shadow:
+        -15px 0 45px rgba(15,23,42,.18);
 
     transition:.35s ease;
 
     z-index:99999;
 
     overflow:auto;
-
 }
-
-
-/* Open Panel */
 
 #servicePanel.show{
 
     right:0;
-
 }
 
 
-/* Window */
+/* =========================================================
+   SERVICE WINDOW
+========================================================= */
 
 .playlist-window{
 
-    padding:25px;
-
+    padding:24px;
 }
 
 
-/* Header */
+/* Service header */
 
 .playlist-window h2{
 
-    margin:0 -25px 25px -25px;
+    margin:
 
-    padding:20px;
+        -24px
+        -24px
+        24px;
 
-    background:#2c3e50;
+    padding:21px 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #18243a,
+            #2c3f62
+        );
 
     color:white;
 
-    font-size:24px;
+    font-size:21px;
 
+    font-weight:800;
 }
 
 
-/* Input */
+/* Service input */
 
 #serviceName{
 
     width:100%;
 
-    padding:12px;
+    height:45px;
 
-    border:1px solid #ccc;
+    padding:0 14px;
 
-    border-radius:8px;
+    border:1px solid var(--border);
 
-    font-size:16px;
+    border-radius:10px;
+
+    font-size:14px;
+
+    outline:none;
 
     margin-bottom:12px;
 
-    box-sizing:border-box;
+    transition:var(--transition);
+}
 
+#serviceName:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(108,92,231,.10);
 }
 
 
-/* Buttons */
+/* Create service */
 
 #createService{
 
     width:100%;
 
-    padding:12px;
+    height:45px;
+
+    padding:0 15px;
 
     border:none;
 
-    border-radius:8px;
+    border-radius:10px;
 
     color:white;
 
-    font-size:16px;
+    font-size:14px;
+
+    font-weight:700;
 
     cursor:pointer;
 
-    margin-top:10px;
+    margin-top:8px;
 
+    background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #16a34a
+        );
+
+    transition:var(--transition);
 }
-
-
-/* Create Button */
-
-#createService{
-
-    background:#27ae60;
-
-}
-
 
 #createService:hover{
 
-    background:#219150;
+    transform:translateY(-1px);
 
+    box-shadow:
+        0 7px 16px rgba(34,197,94,.20);
 }
 
 
-/* Close Button */
+/* Close service */
 
 #closeService{
 
-    background:#e74c3c;
-
+    background:#ef4444;
 }
-
 
 #closeService:hover{
 
-    background:#c0392b;
-
+    background:#dc2626;
 }
 
 
-/* Divider */
+/* Service divider */
 
 #servicePanel hr{
 
     border:none;
 
-    border-top:1px solid #ddd;
+    border-top:1px solid var(--border);
 
-    margin:20px 0;
-
+    margin:22px 0;
 }
 
 
-/* Service List */
+/* =========================================================
+   SERVICE LIST
+========================================================= */
 
 #serviceList{
 
     margin-top:10px;
-
 }
 
 
-/* Individual Service */
+/* =========================================================
+   SERVICE ITEM
+========================================================= */
 
 .service-item{
 
-    background:#f5f5f5;
+    background:#fff;
 
-    padding:15px;
+    padding:0;
 
-    border-radius:10px;
+    border-radius:14px;
 
-    margin-bottom:12px;
+    margin-bottom:14px;
 
-    border-left:5px solid #3498db;
+    border:1px solid var(--border);
 
+    overflow:hidden;
+
+    box-shadow:var(--shadow-sm);
+
+    transition:var(--transition);
+}
+
+.service-item:hover{
+
+    box-shadow:var(--shadow-md);
 }
 
 
-/* Service Name */
+/* =========================================================
+   SERVICE HEADER
+========================================================= */
 
-.service-title{
+.service-header{
 
-    font-size:18px;
+    display:flex;
 
-    font-weight:bold;
+    justify-content:space-between;
 
-    color:#2c3e50;
-
-}
-
-
-/* Song inside service */
-
-.service-song{
-
-    background:white;
-
-    padding:8px;
-
-    margin-top:8px;
-
-    border-radius:6px;
-
-    border-left:3px solid #27ae60;
-
-}
-
-
-/* Action Buttons */
-
-.service-item button{
-
-    margin-top:10px;
-
-    margin-right:5px;
-
-    padding:8px 12px;
-
-    border:none;
-
-    border-radius:6px;
+    align-items:center;
 
     cursor:pointer;
 
-    color:white;
+    padding:15px 17px;
 
-    background:#3498db;
+    background:
+        linear-gradient(
+            135deg,
+            #1d2a42,
+            #293b5b
+        );
 
+    color:#fff;
+
+    border-radius:0;
+
+    transition:var(--transition);
+}
+
+.service-header:hover{
+
+    background:
+        linear-gradient(
+            135deg,
+            #263753,
+            #344a70
+        );
+}
+
+.service-title{
+
+    font-size:15px;
+
+    font-weight:800;
+
+    color:#fff;
+}
+
+.service-count{
+
+    font-size:11px;
+
+    font-weight:600;
+
+    color:#cbd5e1;
+
+    margin-top:4px;
+}
+
+.service-header span{
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    color:#fff;
 }
 
 
-.service-item button:hover{
+/* =========================================================
+   SERVICE BODY
+========================================================= */
 
-    opacity:.85;
+.service-body{
 
-}/*=============================
-SONG PICKER
-=============================*/
+    display:none;
+
+    margin:0;
+
+    padding:13px;
+
+    background:#f8fafc;
+
+    border:none;
+
+    border-radius:0;
+}
+
+.service-body.show{
+
+    display:block;
+}
+
+
+/* =========================================================
+   SERVICE SONG
+========================================================= */
+
+.service-song{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    width:100%;
+
+    padding:11px;
+
+    margin-top:7px;
+
+    background:#fff;
+
+    border:1px solid #e8edf4;
+
+    border-radius:10px;
+
+    border-left:3px solid #22c55e;
+
+    transition:var(--transition);
+}
+
+.service-song:hover{
+
+    border-color:#cbd5e1;
+
+    transform:translateX(2px);
+}
+
+.service-song-title{
+
+    font-weight:700;
+
+    font-size:13px;
+
+    color:#334155;
+}
+
+.service-song-key{
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-width:42px;
+
+    height:25px;
+
+    padding:3px 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c5ce7,
+            #4f8cff
+        );
+
+    color:#fff;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    flex-shrink:0;
+}
+
+.service-song button{
+
+    background:#ef4444;
+
+    color:#fff;
+
+    border:none;
+
+    padding:7px 10px;
+
+    border-radius:7px;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    font-weight:700;
+}
+
+.service-song button:hover{
+
+    background:#dc2626;
+}
+
+
+/* =========================================================
+   SONG PICKER
+========================================================= */
 
 .popup{
 
     position:fixed;
 
-    top:0;
-    left:0;
+    inset:0;
 
-    width:100%;
-    height:100%;
+    background:
+        rgba(15,23,42,.65);
 
-    background:rgba(0,0,0,.6);
+    backdrop-filter:blur(6px);
 
     display:none;
 
@@ -749,25 +1649,25 @@ SONG PICKER
 
     z-index:9999;
 
+    padding:20px;
 }
 
 .popup.show{
 
     display:flex;
-
 }
 
 .popup-box{
 
-    width:800px;
+    width:850px;
 
     max-width:95%;
 
     max-height:85vh;
 
-    background:white;
+    background:#fff;
 
-    border-radius:12px;
+    border-radius:18px;
 
     overflow:hidden;
 
@@ -775,33 +1675,71 @@ SONG PICKER
 
     flex-direction:column;
 
+    box-shadow:var(--shadow-lg);
 }
+
+
+/* Picker header */
 
 .popup-header{
 
-    background:#2c3e50;
+    background:
+        linear-gradient(
+            135deg,
+            #18243a,
+            #2c3f62
+        );
 
     color:white;
 
-    padding:15px;
+    padding:18px 20px;
 
     display:flex;
 
     justify-content:space-between;
 
     align-items:center;
-
 }
+
+.popup-header h2{
+
+    margin:0;
+
+    font-size:19px;
+}
+
+
+/* Picker search */
 
 #songPickerSearch{
 
     margin:15px;
 
-    padding:12px;
+    height:44px;
 
-    font-size:16px;
+    padding:0 14px;
 
+    font-size:14px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    outline:none;
+
+    transition:var(--transition);
 }
+
+#songPickerSearch:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(108,92,231,.10);
+}
+
+
+/* Picker list */
 
 #songPickerList{
 
@@ -810,8 +1748,11 @@ SONG PICKER
     padding:15px;
 
     flex:1;
-
 }
+
+
+/* Picker card */
+
 .song-picker-card{
 
     display:flex;
@@ -820,14 +1761,28 @@ SONG PICKER
 
     align-items:center;
 
-    padding:12px;
+    gap:15px;
 
-    margin-bottom:10px;
+    padding:13px 15px;
 
-    border:1px solid #ddd;
+    margin-bottom:9px;
 
-    border-radius:8px;
+    border:1px solid var(--border);
 
+    border-radius:11px;
+
+    background:#fff;
+
+    transition:var(--transition);
+}
+
+.song-picker-card:hover{
+
+    background:#f8f7ff;
+
+    border-color:#dcd6ff;
+
+    transform:translateX(3px);
 }
 
 .song-picker-info{
@@ -836,25 +1791,35 @@ SONG PICKER
 
     flex-direction:column;
 
+    min-width:0;
 }
 
 .song-picker-title{
 
-    font-weight:bold;
+    font-weight:700;
 
-    font-size:18px;
+    font-size:14px;
 
+    color:#1e293b;
 }
 
 .song-picker-artist{
 
-    color:#666;
+    color:#94a3b8;
 
+    font-size:12px;
+
+    margin-top:3px;
 }
 
 .song-picker-card button{
 
-    background:#27ae60;
+    background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #16a34a
+        );
 
     color:white;
 
@@ -862,26 +1827,108 @@ SONG PICKER
 
     padding:8px 14px;
 
-    border-radius:6px;
+    border-radius:8px;
 
     cursor:pointer;
 
+    font-size:12px;
+
+    font-weight:700;
+
+    transition:var(--transition);
+
+    flex-shrink:0;
 }
-/*========================================
-PRESENTATION SCREEN
-========================================*/
+
+.song-picker-card button:hover{
+
+    transform:translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(34,197,94,.20);
+}
+
+.song-picker-add-btn.added{
+
+    cursor:default;
+
+    opacity:.55;
+}
+
+.song-picker-add-btn:disabled{
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   WORSHIP / SONG DISPLAY
+========================================================= */
+
+.song-container{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow-md);
+
+    border:1px solid var(--border);
+}
+
+
+/* Compact lyrics */
+
+.song-line{
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+    line-height:.88 !important;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size:20px;
+
+    white-space:pre-wrap;
+}
+
+.song-line p,
+.song-section p{
+
+    margin:0;
+
+    padding:0;
+
+    line-height:.88;
+}
+
+.song-line + .song-line{
+
+    margin-top:-5px;
+}
+
+
+/* =========================================================
+   PRESENTATION SCREEN
+========================================================= */
 
 #presentationScreen{
 
     position:fixed;
 
-    top:0;
-    left:0;
+    inset:0;
 
-    width:100%;
-    height:100%;
-
-    background:#000;
+    background:
+        radial-gradient(
+            circle at top right,
+            #18233c,
+            #05070c 55%
+        );
 
     color:#fff;
 
@@ -890,169 +1937,223 @@ PRESENTATION SCREEN
     z-index:999999;
 
     overflow:hidden;
-
 }
 
 #presentationScreen.show{
 
     display:block;
-
 }
+
+
+/* =========================================================
+   PRESENTATION HEADER
+========================================================= */
 
 #presentationHeader{
 
+    height:74px;
+
     display:flex;
 
     justify-content:space-between;
 
     align-items:center;
 
-    padding:20px 40px;
+    padding:0 30px;
 
-    background:#111;
+    background:
+        rgba(8,12,22,.88);
 
-    border-bottom:2px solid #333;
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.10);
 
+    backdrop-filter:blur(15px);
 }
 
 #presentationTitle{
 
-    font-size:34px;
+    font-size:28px;
 
-    font-weight:bold;
+    font-weight:800;
 
+    letter-spacing:-.5px;
 }
 
 #presentationCounter{
 
-    font-size:22px;
+    font-size:15px;
 
+    font-weight:700;
+
+    color:#cbd5e1;
+
+    background:
+        rgba(255,255,255,.08);
+
+    padding:8px 14px;
+
+    border-radius:20px;
 }
 
-/*========================================
-3 COLUMN PRESENTATION
-========================================*/
 
-/*========================================
-PRESENTATION LYRICS
-========================================*/
+/* =========================================================
+   PRESENTATION LYRICS
+========================================================= */
 
 #presentationLyrics{
 
-    display:grid;
+    position:absolute;
 
-    grid-template-columns:repeat(3,1fr);
+    top:74px;
 
-    gap:25px;
+    left:0;
 
-    padding:30px;
+    right:0;
+
+    bottom:90px;
+
+    display:block;
 
     overflow-y:auto;
 
-    height:calc(100vh - 180px);
+    padding:30px;
 
     box-sizing:border-box;
 
+    scrollbar-width:thin;
 }
 
-/*========================================
-PRESENTATION SONG CARD
-========================================*/
+
+/* Presentation song */
+
+#presentationLyrics .song{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(400px,1fr)
+        );
+
+    gap:25px;
+
+    align-items:start;
+}
+
+
+/* Presentation section */
 
 #presentationLyrics .song-section{
-    background:#111;
-    border:2px solid #333;
-    border-radius:10px;
-    padding:10px;      /* was 20px */
+
+    min-height:auto;
+
+    height:auto;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    border-radius:15px;
+
+    padding:12px;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.15);
 }
 
-/*========================================
-PRESENTATION SECTION TITLE
-========================================*/
+
+/* Section title */
 
 #presentationLyrics .section-title{
 
-    background:#FFD700;
+    background:
+        linear-gradient(
+            135deg,
+            #ffd54f,
+            #fbbf24
+        );
 
-    color:#000;
+    color:#111827;
 
     text-align:center;
 
-    font-size:22px;
+    font-size:18px;
 
-    font-weight:bold;
+    font-weight:800;
 
-    padding:6px;
+    padding:7px 10px;
 
-    border-radius:6px;
+    border-radius:8px;
 
-    margin-bottom:8px;
-
+    margin-bottom:9px;
 }
 
-/*========================================
-PRESENTATION CHORDS
-========================================*/
+
+/* Presentation chords */
 
 #presentationLyrics .chord{
 
-    color:#FFD700;
+    color:#ffd54f;
 
-    font-weight:bold;
-
-}#presentationHeader{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    background:#111;
-
-    color:white;
-
-    padding:15px 30px;
-
-    border-bottom:2px solid #333;
-
+    font-weight:800;
 }
 
-#presentationTitle{
 
-    font-size:30px;
+/* Presentation lines */
 
-    font-weight:bold;
+#presentationLyrics .song-line{
 
+    line-height:1.08 !important;
+
+    margin:1px 0 !important;
+
+    font-size:20px;
 }
 
-#presentationCounter{
 
-    font-size:22px;
+/* =========================================================
+   NEXT SONG
+========================================================= */
 
-}
 #nextSongPreview{
 
     position:absolute;
 
     bottom:25px;
 
-    right:35px;
+    right:30px;
 
-    color:#999;
+    color:#94a3b8;
 
-    font-size:20px;
+    font-size:14px;
 
+    background:
+        rgba(255,255,255,.06);
+
+    padding:8px 13px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(255,255,255,.08);
 }
-/*==========================================
-PRESENTATION NAVIGATION
-==========================================*/
+
+
+/* =========================================================
+   PRESENTATION NAVIGATION
+========================================================= */
 
 #presentationNavigation{
 
     position:fixed;
 
-    bottom:20px;
+    bottom:18px;
 
     left:50%;
 
@@ -1064,63 +2165,506 @@ PRESENTATION NAVIGATION
 
     align-items:center;
 
-    gap:15px;
+    gap:8px;
 
-    background:rgba(0,0,0,.75);
+    background:
+        rgba(10,15,25,.85);
 
-    padding:15px 20px;
+    padding:8px;
 
-    border-radius:12px;
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    border-radius:14px;
 
     z-index:999999;
 
+    backdrop-filter:blur(14px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.30);
 }
 
 #presentationNavigation button{
 
-    min-width:140px;
+    min-width:120px;
 
-    padding:12px 20px;
+    padding:10px 17px;
 
-    background:#3498db;
+    background:
+        rgba(255,255,255,.08);
 
     color:#fff;
 
-    border:none;
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
-    border-radius:8px;
+    border-radius:9px;
 
-    font-size:18px;
+    font-size:14px;
 
-    font-weight:bold;
+    font-weight:700;
 
     cursor:pointer;
 
-    transition:.25s;
-
+    transition:var(--transition);
 }
 
 #presentationNavigation button:hover{
 
-    background:#2980b9;
+    background:
+        linear-gradient(
+            135deg,
+            #6c5ce7,
+            #4f8cff
+        );
 
+    transform:translateY(-2px);
 }
 
 #presentationNavigation button:active{
 
     transform:scale(.96);
-
 }
-/*=========================================
-PRINT
-=========================================*/
+
+
+/* =========================================================
+   SERVICE PROGRESS
+========================================================= */
+
+#serviceProgress{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:8px 13px;
+
+    border-radius:20px;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    border:1px solid #e0e7ff;
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark{
+
+    --background:#0b1120;
+
+    --surface:#111827;
+
+    --surface-2:#172033;
+
+    --text:#e5e7eb;
+
+    --muted:#94a3b8;
+
+    --border:#263247;
+
+    background:#0b1120;
+
+    color:#e5e7eb;
+}
+
+
+/* Dark sidebar */
+
+body.dark .sidebar{
+
+    background:#111827;
+
+    border-right-color:#263247;
+}
+
+body.dark .sidebar button{
+
+    color:#cbd5e1;
+}
+
+body.dark .sidebar button:hover{
+
+    background:#1d2540;
+
+    color:#a78bfa;
+
+    border-color:#302b5b;
+}
+
+
+/* Dark cards */
+
+body.dark .card,
+body.dark .song-card,
+body.dark .playlist-item,
+body.dark .popup-content,
+body.dark .popup-box,
+body.dark .song-picker-card{
+
+    background:#111827;
+
+    border-color:#263247;
+
+    color:#e5e7eb;
+}
+
+
+/* Dark inputs */
+
+body.dark input{
+
+    background:#172033;
+
+    color:#e5e7eb;
+
+    border-color:#334155;
+}
+
+body.dark input::placeholder{
+
+    color:#64748b;
+}
+
+
+/* Dark playlist */
+
+body.dark .playlist-panel,
+body.dark #servicePanel{
+
+    background:#0f172a;
+
+    border-color:#263247;
+}
+
+body.dark .playlist-song,
+body.dark .service-song{
+
+    background:#172033;
+
+    border-color:#263247;
+}
+
+body.dark .playlist-song:hover{
+
+    background:#1d2540;
+}
+
+body.dark .song-title,
+body.dark .song-picker-title,
+body.dark .service-song-title{
+
+    color:#e5e7eb;
+}
+
+body.dark .service-body{
+
+    background:#0f172a;
+}
+
+
+/* =========================================================
+   SCROLLBARS
+========================================================= */
+
+*{
+
+    scrollbar-width:thin;
+
+    scrollbar-color:
+        #cbd5e1
+        transparent;
+}
+
+*::-webkit-scrollbar{
+
+    width:7px;
+
+    height:7px;
+}
+
+*::-webkit-scrollbar-track{
+
+    background:transparent;
+}
+
+*::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+}
+
+*::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media(max-width:1000px){
+
+    .dashboard{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .sidebar{
+
+        width:220px;
+
+        min-width:220px;
+    }
+
+    .content{
+
+        padding:22px;
+    }
+
+    .top-actions input{
+
+        width:240px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .topbar{
+
+        height:auto;
+
+        min-height:65px;
+
+        padding:10px 14px;
+
+        gap:10px;
+    }
+
+    .logo{
+
+        font-size:18px;
+    }
+
+    .top-actions input{
+
+        width:150px;
+
+        height:38px;
+    }
+
+    .top-actions button{
+
+        height:38px;
+
+        min-width:38px;
+    }
+
+    .layout{
+
+        display:block;
+    }
+
+    .sidebar{
+
+        position:relative;
+
+        top:0;
+
+        width:100%;
+
+        min-width:0;
+
+        height:auto;
+
+        padding:12px;
+
+        border-right:0;
+
+        border-bottom:1px solid var(--border);
+
+        display:grid;
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:5px;
+    }
+
+    .sidebar h3{
+
+        grid-column:1/-1;
+
+        margin:8px;
+    }
+
+    .sidebar hr{
+
+        display:none;
+    }
+
+    .sidebar button{
+
+        margin:0;
+
+        min-height:42px;
+
+        font-size:12px;
+    }
+
+    .content{
+
+        padding:16px;
+    }
+
+    .dashboard{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:10px;
+    }
+
+    .card{
+
+        padding:17px;
+    }
+
+    .number{
+
+        font-size:28px;
+    }
+
+    .playlist-panel,
+    #servicePanel{
+
+        width:100%;
+
+        max-width:100%;
+    }
+
+    #presentationLyrics{
+
+        padding:15px;
+    }
+
+    #presentationLyrics .song{
+
+        grid-template-columns:1fr;
+
+        gap:14px;
+    }
+
+    #presentationTitle{
+
+        font-size:19px;
+    }
+
+    #presentationCounter{
+
+        font-size:12px;
+    }
+
+    #presentationNavigation button{
+
+        min-width:90px;
+
+        padding:9px;
+
+        font-size:12px;
+    }
+
+    #nextSongPreview{
+
+        display:none;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media(max-width:450px){
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+    .top-actions{
+
+        width:100%;
+    }
+
+    .top-actions input{
+
+        flex:1;
+
+        width:auto;
+    }
+
+    .sidebar{
+
+        grid-template-columns:1fr;
+    }
+
+    .dashboard{
+
+        grid-template-columns:1fr;
+    }
+
+    .playlist-actions{
+
+        grid-template-columns:1fr;
+    }
+
+    .song-picker-card{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .song-picker-card button{
+
+        width:100%;
+    }
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
 
 @page{
 
-    size: landscape;
+    size:landscape;
 
     margin:8mm;
-
 }
 
 @media print{
@@ -1138,34 +2682,48 @@ PRINT
 
         background:white !important;
 
+        color:#000 !important;
     }
 
- .song-toolbar,
-#serviceProgress,
-#playlistPopup,
-#presentationScreen{
-    display:none !important;
-}
-/* Show song information when printing */
+    .topbar,
+    .sidebar,
+    .song-toolbar,
+    #serviceProgress,
+    #playlistPopup,
+    #presentationScreen,
+    #presentationNavigation{
 
-.song-header{
-    text-align:center;
-    margin-bottom:20px;
-    border-bottom:3px solid #333;
-    padding-bottom:12px;
-}
+        display:none !important;
+    }
 
-.song-header h1{
-    font-size:28px;
-    font-weight:bold;
-}
+    .song-header{
 
-.song-meta{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    font-size:15px;
-}
+        text-align:center;
+
+        margin-bottom:20px;
+
+        border-bottom:3px solid #333;
+
+        padding-bottom:12px;
+    }
+
+    .song-header h1{
+
+        font-size:28px;
+
+        font-weight:bold;
+    }
+
+    .song-meta{
+
+        display:flex;
+
+        justify-content:center;
+
+        gap:30px;
+
+        font-size:15px;
+    }
 
     .song-container{
 
@@ -1178,17 +2736,16 @@ PRINT
         border:none !important;
 
         width:100%;
-
     }
 
     .song{
 
         display:grid;
 
-        grid-template-columns:repeat(3,1fr);
+        grid-template-columns:
+            repeat(3,1fr);
 
         gap:10px;
-
     }
 
     .song-section{
@@ -1198,735 +2755,43 @@ PRINT
         page-break-inside:avoid;
 
         padding:10px;
- 	margin-bottom:10px;
 
+        margin-bottom:10px;
     }
 
     .song-line{
-    font-family: Consolas, "Courier New", monospace !important;
-    font-size:15px !important;
-    line-height:1.2 !important;
-    white-space:pre !important;
-}
 
-.chord{
-    color:#d32f2f !important;
-    font-weight:bold;
-    font-size:inherit !important;
-    display:inline;
-    transform:none;
-}
+        font-family:
+            Consolas,
+            "Courier New",
+            monospace !important;
+
+        font-size:15px !important;
+
+        line-height:1.2 !important;
+
+        white-space:pre !important;
+    }
+
+    .chord{
+
+        color:#d32f2f !important;
+
+        font-weight:bold;
+
+        font-size:inherit !important;
+
+        display:inline;
+
+        transform:none;
+    }
 
     .section-title{
 
         font-size:14px;
 
         padding:5px;
-margin-bottom:8px;
+
+        margin-bottom:8px;
     }
-
-}
-#presentationLyrics .song-line{
-    line-height:1.15;
-    margin:1px 0;
-}
-
-#presentationLyrics{
-
-    position:absolute;
-
-    top:80px;          /* below header */
-    left:0;
-    right:0;
-    bottom:90px;       /* leave space for navigation buttons */
-
-    overflow-y:auto;
-
-    padding:30px;
-
-    box-sizing:border-box;
-
-}
-
-#presentationLyrics .song{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(450px,1fr));
-
-    gap:40px;
-
-    align-items:start;
-
-}
-
-#presentationLyrics .song-section{
-
-    min-height:auto;
-
-    height:auto;
-
-}
-/* Compact lyrics */
-.song-line{
-
-    margin:0 !important;
-
-    padding:0 !important;
-
-    line-height:0.82 !important;
-
-    font-family:Consolas, monospace;
-
-    font-size:20px;
-
-    white-space:pre-wrap;
-
-}
-
-
-/* If lyrics are inside paragraphs */
-.song-line p,
-.song-section p{
-
-    margin:0;
-
-    padding:0;
-
-    line-height:0.82;
-
-}
-.song-line + .song-line{
-
-    margin-top:-7px;
-
-}
-
-.service-song{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    background:white;
-
-    padding:10px;
-
-    margin-top:8px;
-
-    border-radius:6px;
-
-    border-left:3px solid #27ae60;
-
-}
-
-
-.service-song button{
-
-    background:#e74c3c;
-
-    color:white;
-
-    border:none;
-
-    padding:6px 10px;
-
-    border-radius:6px;
-
-    cursor:pointer;
-
-    font-size:13px;
-
-}
-
-
-.service-song button:hover{
-
-    background:#c0392b;
-
-}
-
-.playlist-song{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:10px;
-
-    margin-bottom:8px;
-
-    background:#f7f7f7;
-
-    border-radius:8px;
-
-}
-
-.playlist-song-actions{
-
-    display:flex;
-
-    gap:8px;
-
-}
-
-.playlist-song-actions button{
-
-    padding:6px 10px;
-
-    border:none;
-
-    border-radius:6px;
-
-    cursor:pointer;
-
-}
-
-.service-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    cursor:pointer;
-
-    padding:15px 20px;
-
-    background:#2c3e50;
-
-    color:#ffffff;
-
-    border-radius:10px;
-
-}
-
-.service-header:hover{
-
-    background:#34495e;
-
-}
-
-.service-title{
-
-    font-size:18px;
-
-    font-weight:700;
-
-    color:#ffffff;
-
-}
-
-.service-count{
-
-    font-size:14px;
-
-    font-weight:500;
-
-    color:#ecf0f1;
-
-    margin-top:5px;
-
-}
-
-.service-header span{
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    color:#ffffff;
-
-    margin-right:8px;
-
-}
-
-.service-body{
-
-    display:none;
-
-    margin-top:15px;
-
-    padding:15px;
-
-    background:#ffffff;
-
-    border:1px solid #dcdcdc;
-
-    border-radius:0 0 10px 10px;
-
-}
-
-.service-body.show{
-
-    display:block;
-
-}
-
-/*==========================================
-PLAYLIST ITEM
-==========================================*/
-
-.playlist-item{
-
-    background:#ffffff;
-
-    border-radius:14px;
-
-    margin-bottom:18px;
-
-    overflow:hidden;
-
-    box-shadow:0 5px 18px rgba(0,0,0,.08);
-
-    border:1px solid #dfe6ee;
-
-    transition:.25s;
-
-}
-
-.playlist-item:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:0 8px 22px rgba(0,0,0,.12);
-
-}
-
-/*==========================================
-PLAYLIST HEADER
-==========================================*/
-
-.playlist-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    cursor:pointer;
-
-    padding:15px;
-
-    background:#2c3e50;
-
-    color:#fff;
-
-    border-radius:10px;
-
-    font-weight:bold;
-
-    font-size:16px;
-
-}
-.playlist-header:hover{
-
-    background:#34495e;
-
-}
-
-.playlist-title{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    font-size:18px;
-
-    font-weight:700;
-
-}
-
-.playlist-arrow{
-
-    width:28px;
-
-    height:28px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:rgba(255,255,255,.15);
-
-    border-radius:50%;
-
-    font-size:14px;
-
-    transition:.25s;
-
-}
-
-.playlist-count{
-
-    background:#3498db;
-
-    padding:6px 14px;
-
-    border-radius:25px;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-}
-
-/*==========================================
-PLAYLIST BODY
-==========================================*/
-
-.playlist-body{
-
-    display:none;
-
-    margin-top:15px;
-
-}
-
-.playlist-body.show{
-
-    display:block;
-
-}
-/*==========================================
-SONG CARD
-==========================================*/
-
-.playlist-song{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:14px 18px;
-
-    margin-bottom:12px;
-
-    background:white;
-
-    border-radius:12px;
-
-    border:1px solid #e6edf5;
-
-    transition:.20s;
-
-}
-
-.playlist-song:hover{
-
-    background:#f3f8fd;
-
-    transform:translateX(4px);
-
-}
-
-.song-info{
-
-    display:flex;
-
-    flex-direction:column;
-
-}
-
-.song-title{
-
-    font-size:17px;
-
-    font-weight:700;
-
-    color:#2c3e50;
-
-}
-
-.song-artist{
-
-    margin-top:4px;
-
-    color:#777;
-
-    font-size:13px;
-
-}
-
-/*==========================================
-BUTTONS
-==========================================*/
-
-.playlist-buttons{
-
-    display:flex;
-
-    gap:8px;
-
-}
-
-.playlist-buttons button{
-
-    border:none;
-
-    border-radius:8px;
-
-    padding:9px 15px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-    transition:.25s;
-
-}
-.open-song-btn {
-
-}
-
-.open-song-btn:hover{
-
-    background:#d68910;
-
-}
-.remove-song-btn {
-
-}
-
-.remove-song-btn:hover{
-
-    background:#d68910;
-
-}
-
-/*==========================================
-PLAYLIST BUTTONS
-==========================================*/
-
-.playlist-actions{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-    margin:18px 0;
-}
-
-.playlist-actions button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    color:#fff;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.25s;
-    box-shadow:0 2px 6px rgba(0,0,0,.15);
-}
-
-.playlist-actions button:hover{
-    transform:translateY(-2px);
-    box-shadow:0 5px 12px rgba(0,0,0,.20);
-}
-
-.playlist-actions button:active{
-    transform:scale(.97);
-}
-.add-song-btn{
-    background:#27ae60;
-}
-
-.add-song-btn:hover{
-    background:#219150;
-}
-
-.open-btn{
-    background:#3498db;
-}
-
-.open-btn:hover{
-    background:#2980b9;
-}
-
-.rename-btn{
-    background:#f39c12;
-}
-
-.rename-btn:hover{
-    background:#d68910;
-}
-
-.delete-btn{
-    background:#e74c3c;
-}
-
-.delete-btn:hover{
-    background:#c0392b;
-}
-.playlist-song-actions{
-    display:flex;
-    gap:8px;
-}
-
-.playlist-song-actions button{
-    border:none;
-    border-radius:6px;
-    padding:8px 12px;
-    color:#fff;
-    cursor:pointer;
-    font-size:13px;
-    font-weight:bold;
-    transition:.25s;
-}
-
-.open-song-btn{
-    background:#3498db;
-}
-
-.open-song-btn:hover{
-    background:#2980b9;
-}
-
-.remove-song-btn{
-    background:#e74c3c;
-}
-
-.remove-song-btn:hover{
-    background:#c0392b;
-}
-.playlist-item{
-    background:#fff;
-    border-radius:14px;
-    overflow:hidden;
-    margin-bottom:18px;
-    border:1px solid #dde5ec;
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
-    transition:.25s;
-}
-
-.playlist-item:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 18px rgba(0,0,0,.12);
-}
-.playlist-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:16px 20px;
-    background:#2c3e50;
-    color:#fff;
-    cursor:pointer;
-    font-size:18px;
-    font-weight:bold;
-}
-
-.playlist-header:hover{
-    background:#34495e;
-}
-
-.playlist-arrow{
-    transition:.25s;
-}
-
-.playlist-header.active .playlist-arrow{
-    transform:rotate(90deg);
-}
-
-.playlist-count{
-    background:#3498db;
-    padding:5px 12px;
-    border-radius:30px;
-    font-size:13px;
-}
-.service-song{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    width:100%;
-
-}
-
-.service-song-title{
-
-    font-weight:bold;
-
-    font-size:15px;
-
-}
-
-.service-song-key {
-    display: block;
-    width: 50px;
-    height: 24px;
-    line-height: 24px;
-    text-align: center;
-
-    margin-top: 4px;
-
-    background: #4a90d9;
-    color: white;
-
-    border-radius: 15px;
-
-    font-size: 13px;
-    font-weight: bold;
-
-    box-sizing: border-box;
-}
-.service-song{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    width:100%;
-
-}
-
-.service-song-title{
-
-    font-weight:bold;
-
-    font-size:15px;
-
-}
-
-.service-song-key{
-
-    background:#3498db;
-
-    color:#fff;
-
-    padding:4px 10px;
-
-    border-radius:20px;
-
-    font-size:12px;
-
-    font-weight:bold;
-
-    min-width:40px;
-
-    text-align:center;
-
-}
-.song-picker-add-btn.added {
-    cursor: default;
-    opacity: 0.7;
-}
-
-.song-picker-add-btn:disabled {
-    pointer-events: none;
 }
