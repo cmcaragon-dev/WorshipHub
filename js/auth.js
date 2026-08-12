@@ -21,54 +21,72 @@ import {
     db
 } from "./firebase.js";
 
-import {
-    getAuth,
-    signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-const auth = getAuth();
+// ==========================================
+// LOGOUT BUTTON
+// ==========================================
 
-const logoutBtn = document.getElementById("logoutBtn");
+const logoutBtn =
+    document.getElementById("logoutBtn");
 
 if (logoutBtn) {
 
-    logoutBtn.addEventListener("click", async () => {
+    logoutBtn.addEventListener(
+        "click",
+        async function () {
 
-        try {
+            try {
 
-            await signOut(auth);
+                await signOut(auth);
 
-            // Clear local session data
-            localStorage.removeItem("currentService");
-            localStorage.removeItem("currentServiceId");
-            localStorage.removeItem("currentSongIndex");
-            localStorage.removeItem("resumePresentation");
+                // Clear local session data
+                localStorage.removeItem(
+                    "currentService"
+                );
 
-            // Return to login page
-            window.location.href = "login.html";
+                localStorage.removeItem(
+                    "currentServiceId"
+                );
 
-        } catch (error) {
+                localStorage.removeItem(
+                    "currentSongIndex"
+                );
 
-            console.error("Logout failed:", error);
+                localStorage.removeItem(
+                    "resumePresentation"
+                );
 
-            alert(
-                "Unable to logout. Please try again."
-            );
+                // Return to login page
+                window.location.href =
+                    "login.html";
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Logout failed:",
+                    error
+                );
+
+                alert(
+                    "Unable to logout. Please try again."
+                );
+
+            }
 
         }
-
-    });
+    );
 
 }
+
+
 // ==========================================
 // REGISTER
 // ==========================================
 
 const registerBtn =
-    document.getElementById(
-        "registerBtn"
-    );
-
+    document.getElementById("registerBtn");
 
 if (registerBtn) {
 
@@ -77,31 +95,25 @@ if (registerBtn) {
 
             const name =
                 document
-                .getElementById("name")
-                .value
-                .trim();
-
+                    .getElementById("name")
+                    .value
+                    .trim();
 
             const email =
                 document
-                .getElementById("email")
-                .value
-                .trim();
-
+                    .getElementById("email")
+                    .value
+                    .trim();
 
             const password =
                 document
-                .getElementById("password")
-                .value;
-
+                    .getElementById("password")
+                    .value;
 
             const confirmPassword =
                 document
-                .getElementById(
-                    "confirmPassword"
-                )
-                .value;
-
+                    .getElementById("confirmPassword")
+                    .value;
 
             const message =
                 document.getElementById(
@@ -109,9 +121,11 @@ if (registerBtn) {
                 );
 
 
-            if (!name ||
+            if (
+                !name ||
                 !email ||
-                !password) {
+                !password
+            ) {
 
                 message.textContent =
                     "Please complete all fields.";
@@ -204,7 +218,6 @@ if (registerBtn) {
                     1000
                 );
 
-
             }
 
             catch (error) {
@@ -255,10 +268,7 @@ if (registerBtn) {
 // ==========================================
 
 const loginBtn =
-    document.getElementById(
-        "loginBtn"
-    );
-
+    document.getElementById("loginBtn");
 
 if (loginBtn) {
 
@@ -267,16 +277,14 @@ if (loginBtn) {
 
             const email =
                 document
-                .getElementById("email")
-                .value
-                .trim();
-
+                    .getElementById("email")
+                    .value
+                    .trim();
 
             const password =
                 document
-                .getElementById("password")
-                .value;
-
+                    .getElementById("password")
+                    .value;
 
             const message =
                 document.getElementById(
@@ -297,47 +305,43 @@ if (loginBtn) {
             try {
 
                 await signInWithEmailAndPassword(
-
                     auth,
-
                     email,
-
                     password
-
                 );
 
 
                 window.location.href =
                     "index.html";
 
+            }
 
-                    }
+            catch (error) {
 
-        catch (error) {
+                console.error(
+                    "FIREBASE LOGIN ERROR CODE:",
+                    error.code
+                );
 
-            console.error(
-                "FIREBASE LOGIN ERROR CODE:",
-                error.code
-            );
+                console.error(
+                    "FIREBASE LOGIN ERROR MESSAGE:",
+                    error.message
+                );
 
-            console.error(
-                "FIREBASE LOGIN ERROR MESSAGE:",
-                error.message
-            );
+                alert(
+                    "Login failed:\n\n" +
+                    error.code
+                );
 
-            alert(
-                "Login failed:\n\n" +
-                error.code
-            );
+            }
 
-        }
-
-    };
+        };
 
 }
 
+
 // ==========================================
-// LOGOUT
+// LOGOUT FUNCTION
 // ==========================================
 
 window.logoutUser =
@@ -347,6 +351,22 @@ window.logoutUser =
 
             await signOut(auth);
 
+            localStorage.removeItem(
+                "currentService"
+            );
+
+            localStorage.removeItem(
+                "currentServiceId"
+            );
+
+            localStorage.removeItem(
+                "currentSongIndex"
+            );
+
+            localStorage.removeItem(
+                "resumePresentation"
+            );
+
             window.location.href =
                 "login.html";
 
@@ -354,7 +374,10 @@ window.logoutUser =
 
         catch (error) {
 
-            console.error(error);
+            console.error(
+                "Logout failed:",
+                error
+            );
 
         }
 
@@ -370,7 +393,9 @@ export async function getUserProfile(
 ) {
 
     if (!user) {
+
         return null;
+
     }
 
 
@@ -455,11 +480,8 @@ export function watchAuth(
 ) {
 
     return onAuthStateChanged(
-
         auth,
-
         callback
-
     );
 
 }
