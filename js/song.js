@@ -805,23 +805,16 @@ Object.assign(Service, {
 
 async saveCurrentServiceKey() {
 
-    console.log(
-        "================================"
-    );
+    console.log("================================");
+    console.log("SAVE SERVICE KEY");
 
-    console.log(
-        "SAVE SERVICE KEY"
-    );
-
-
-    /* ----------------------------------
-       1. GET AUTHENTICATED USER
-    ---------------------------------- */
+    // ======================================
+    // 1. GET AUTHENTICATED USER
+    // ======================================
 
     const user =
         firebaseUser ||
         auth.currentUser;
-
 
     if (!user) {
 
@@ -832,30 +825,23 @@ async saveCurrentServiceKey() {
         alert(
             "Firebase user is not authenticated."
         );
-alert(
-    "Service Key saved successfully: " +
-    displayedKey
-);
+
         return false;
-
     }
-
 
     console.log(
         "USER UID:",
         user.uid
     );
 
-
-    /* ----------------------------------
-       2. GET CURRENT SERVICE ID
-    ---------------------------------- */
+    // ======================================
+    // 2. GET CURRENT SERVICE ID
+    // ======================================
 
     const serviceId =
         localStorage.getItem(
             "currentServiceId"
         );
-
 
     if (!serviceId) {
 
@@ -864,23 +850,20 @@ alert(
         );
 
         alert(
-            "No active service found."
+            "No active Service Planner found."
         );
 
         return false;
-
     }
-
 
     console.log(
         "SERVICE ID:",
         serviceId
     );
 
-
-    /* ----------------------------------
-       3. GET CURRENT SONG INDEX
-    ---------------------------------- */
+    // ======================================
+    // 3. GET CURRENT SONG INDEX
+    // ======================================
 
     const songIndex =
         Number(
@@ -889,18 +872,16 @@ alert(
             ) || 0
         );
 
-
     console.log(
         "SONG INDEX:",
         songIndex
     );
 
-
     try {
 
-        /* ----------------------------------
-           4. GET SERVICE FROM FIREBASE
-        ---------------------------------- */
+        // ======================================
+        // 4. GET SERVICE FROM FIRESTORE
+        // ======================================
 
         const serviceRef =
             doc(
@@ -911,12 +892,8 @@ alert(
                 String(serviceId)
             );
 
-
         const snapshot =
-            await getDoc(
-                serviceRef
-            );
-
+            await getDoc(serviceRef);
 
         if (!snapshot.exists()) {
 
@@ -930,22 +907,17 @@ alert(
             );
 
             return false;
-
         }
-
 
         const service =
             snapshot.data();
 
-
-        /* ----------------------------------
-           5. CHECK SONGS
-        ---------------------------------- */
+        // ======================================
+        // 5. CHECK SONGS
+        // ======================================
 
         if (
-            !Array.isArray(
-                service.songs
-            )
+            !Array.isArray(service.songs)
         ) {
 
             console.error(
@@ -953,13 +925,11 @@ alert(
             );
 
             alert(
-                "The service does not contain any songs."
+                "The Service Planner has no songs."
             );
 
             return false;
-
         }
-
 
         if (
             songIndex < 0 ||
@@ -972,37 +942,32 @@ alert(
             );
 
             alert(
-                "Current song was not found in the service."
+                "Current song was not found in the Service Planner."
             );
 
             return false;
-
         }
 
-
-        /* ----------------------------------
-           6. GET CURRENT SONG
-        ---------------------------------- */
+        // ======================================
+        // 6. GET CURRENT SONG
+        // ======================================
 
         const song =
             service.songs[songIndex];
-
 
         console.log(
             "CURRENT SONG BEFORE SAVE:",
             song
         );
 
-
-        /* ----------------------------------
-           7. GET DISPLAYED SERVICE KEY
-        ---------------------------------- */
+        // ======================================
+        // 7. GET DISPLAYED SERVICE KEY
+        // ======================================
 
         const serviceKeyElement =
             document.getElementById(
                 "serviceKey"
             );
-
 
         if (!serviceKeyElement) {
 
@@ -1015,20 +980,15 @@ alert(
             );
 
             return false;
-
         }
 
-
         const displayedKey =
-            serviceKeyElement.textContent
-                .trim();
-
+            serviceKeyElement.textContent.trim();
 
         console.log(
             "DISPLAYED SERVICE KEY:",
             displayedKey
         );
-
 
         if (!displayedKey) {
 
@@ -1041,39 +1001,30 @@ alert(
             );
 
             return false;
-
         }
 
+        // ======================================
+        // 8. PRESERVE ORIGINAL KEY
+        // ======================================
 
-        /* ----------------------------------
-           8. PRESERVE ORIGINAL KEY
-        ---------------------------------- */
-
-        if (
-            !song.originalKey
-        ) {
+        if (!song.originalKey) {
 
             song.originalKey =
                 song.key ||
-                currentSong?.key ||
                 displayedKey;
-
         }
 
-
-        /* ----------------------------------
-           9. SAVE KEY + TRANSPOSE
-        ---------------------------------- */
+        // ======================================
+        // 9. SAVE SERVICE KEY + TRANSPOSE
+        // ======================================
 
         song.serviceKey =
             displayedKey;
-
 
         song.transpose =
             Number(
                 App.transpose || 0
             );
-
 
         console.log(
             "ORIGINAL KEY:",
@@ -1090,24 +1041,70 @@ alert(
             song.transpose
         );
 
-
-        /* ----------------------------------
-           10. UPDATE SERVICE DOCUMENT
-        ---------------------------------- */
+        // ======================================
+        // 10. UPDATE FIRESTORE
+        // ======================================
 
         await updateDoc(
             serviceRef,
             {
-
-                songs:
-                    service.songs,
+                songs: service.songs,
 
                 updatedAt:
                     serverTimestamp()
-
             }
         );
 
+        // ======================================
+        // 11. VERIFY FIRESTORE SAVE
+        // ======================================
+
+        const verify =
+            await getDoc(serviceRef);
+
+        if (!verify.exists()) {
+
+            console.error(
+                "SAVE VERIFICATION FAILED"
+            );
+
+            alert(
+                "Service Key could not be verified."
+            );
+
+            return false;
+        }
+
+        const verifyData =
+            verify.data();
+
+        const savedSong =
+            verifyData.songs?.[songIndex];
+
+        console.log(
+            "FIREBASE VERIFIED:",
+            savedSong
+        );
+
+        // ======================================
+        // 12. SUCCESS NOTIFICATION
+        // ======================================
+
+        alert(
+            "Service Key saved successfully!\n\n" +
+            "Service: " +
+            (service.name || "Unknown") +
+            "\n" +
+            "Song: " +
+            (song.title || "Unknown") +
+            "\n" +
+            "Service Key: " +
+            displayedKey +
+            "\n" +
+            "Transpose: " +
+            (song.transpose >= 0 ? "+" : "") +
+            song.transpose
+        );
 
         console.log(
             "================================"
@@ -1141,32 +1138,6 @@ alert(
             "================================"
         );
 
-
-        /* ----------------------------------
-           11. VERIFY
-        ---------------------------------- */
-
-        const verify =
-            await getDoc(
-                serviceRef
-            );
-
-
-        if (
-            verify.exists()
-        ) {
-
-            const verifyData =
-                verify.data();
-
-
-            console.log(
-                "FIREBASE VERIFIED:",
-                verifyData.songs?.[songIndex]
-            );
-
-        }
-
         return true;
 
     }
@@ -1177,17 +1148,13 @@ alert(
             error
         );
 
-
         alert(
             "Unable to save Service Key.\n\n" +
             error.message
         );
 
-
         return false;
-
     }
-
 },
 
 /* --------------------------------------
