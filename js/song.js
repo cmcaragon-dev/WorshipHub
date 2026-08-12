@@ -346,25 +346,25 @@ const App = {
 
     transpose: 0,
 
-    init() {
+   async init() {
 
-        this.cacheDOM();
+    this.cacheDOM();
 
-        this.loadDarkMode();
+    this.loadDarkMode();
 
-        this.updateLyricsFont();
+    this.updateLyricsFont();
 
-        Service.restoreTranspose();
+    this.bindEvents();
 
-        Service.updateKeyDisplay();
+    await Service.restoreTranspose();
 
-        Service.updateGuide();
+    Service.updateKeyDisplay();
 
-        Service.updateProgress();
+    Service.updateGuide();
 
-        this.bindEvents();
+    Service.updateProgress();
 
-    },   // ⭐ THIS COMMA IS IMPORTANT
+},
 
     cacheDOM() {
 
@@ -1658,84 +1658,259 @@ const Presentation = {
        START PRESENTATION
        ====================================================== */
 
-   async start() {
+    async start() {
 
-    const overlay =
-        document.getElementById("presentationScreen");
-
-    if (!overlay) {
-        console.error(
-            "presentationScreen not found."
+        console.log(
+            "========================================"
         );
-        return;
-    }
 
-    /* ==================================================
-       FIRST: CHECK IF SERVICE PLANNER IS ACTIVE
-       ================================================== */
+        console.log(
+            "STARTING PRESENTATION"
+        );
 
-    const service =
-        await Service.getCurrent();
+        console.log(
+            "========================================"
+        );
 
-    /* ==================================================
-       SERVICE PLANNER MODE
-       ================================================== */
 
-    if (service) {
-
-        const index =
-            Service.getSongIndex();
-
-        const songs =
-            Array.isArray(service.songs)
-                ? service.songs
-                : [];
-
-        if (!songs.length) {
-            console.warn(
-                "Service Planner has no songs."
+        const overlay =
+            document.getElementById(
+                "presentationScreen"
             );
+
+
+        if (!overlay) {
+
+            console.error(
+                "presentationScreen not found."
+            );
+
             return;
         }
+
+
+        /* ==================================================
+           IMPORTANT:
+           Determine whether the presentation was launched
+           from Service Planner or directly from a song.
+           ================================================== */
+
+        const service =
+            await Service.getCurrent();
+
+
+        /*
+         * Check whether the current song index actually
+         * points to a song in the Service Planner.
+         */
+
+        let serviceSong = null;
+
+        let serviceIndex = -1;
+
+
+        if (service) {
+
+            serviceIndex =
+                Service.getSongIndex();
+
+
+            if (
+                Array.isArray(service.songs) &&
+                serviceIndex >= 0 &&
+                serviceIndex < service.songs.length
+            ) {
+
+                serviceSong =
+                    service.songs[serviceIndex];
+
+            }
+
+        }
+
+
+        /* ==================================================
+           SERVICE PLANNER MODE
+           ================================================== */
+
+        if (serviceSong) {
+
+            console.log(
+                "PRESENTATION MODE: SERVICE PLANNER"
+            );
+
+
+            console.log(
+                "SERVICE:",
+                service.name
+            );
+
+
+            console.log(
+                "SERVICE SONG INDEX:",
+                serviceIndex
+            );
+
+
+            console.log(
+                "SERVICE SONG:",
+                serviceSong
+            );
+
+
+            /*
+             * IMPORTANT
+             *
+             * The Service Planner song becomes the
+             * presentation song.
+             */
+
+            window.currentSong =
+                serviceSong;
+
+
+            window.currentSongIndex =
+                serviceIndex;
+
+
+            /*
+             * Remember that presentation is currently
+             * being used from Service Planner.
+             */
+
+            localStorage.setItem(
+                "presentationMode",
+                "service"
+            );
+
+
+            /* ------------------------------------------
+               TITLE
+               ------------------------------------------ */
+
+            const title =
+                document.getElementById(
+                    "presentationTitle"
+                );
+
+
+            if (title) {
+
+                title.innerText =
+                    serviceSong.title ||
+                    "Untitled Song";
+
+            }
+
+
+            /* ------------------------------------------
+               SHOW PRESENTATION
+               ------------------------------------------ */
+
+            overlay.classList.add(
+                "show"
+            );
+
+
+            /* ------------------------------------------
+               BUILD
+               ------------------------------------------ */
+
+            this.build();
+
+
+            /* ------------------------------------------
+               UPDATE SERVICE INFORMATION
+               ------------------------------------------ */
+
+            await this.update();
+
+
+            return;
+        }
+
+
+        /* ==================================================
+           STANDALONE SONG MODE
+           ================================================== */
+
+        console.log(
+            "PRESENTATION MODE: STANDALONE SONG"
+        );
+
+
+        /*
+         * DO NOT call Service.getCurrentSong()
+         * here.
+         *
+         * A standalone song does not belong to the
+         * Service Planner.
+         */
+
+
+        let song =
+            window.currentSong;
+
+
+        /*
+         * Try the normal global variable if available.
+         */
 
         if (
-            index < 0 ||
-            index >= songs.length
+            !song &&
+            typeof currentSong !== "undefined"
         ) {
-            console.warn(
-                "Invalid Service Planner song index:",
-                index
+
+            song =
+                currentSong;
+
+        }
+
+
+        /*
+         * Final check.
+         */
+
+        if (!song) {
+
+            console.error(
+                "No current song available."
             );
+
+
+            alert(
+                "Unable to start presentation.\n\n" +
+                "The current song could not be identified."
+            );
+
+
             return;
         }
 
-        const song =
-            songs[index];
 
         console.log(
-            "PRESENTATION MODE: SERVICE PLANNER"
-        );
-
-        console.log(
-            "SERVICE SONG:",
+            "STANDALONE SONG:",
             song
         );
 
+
         /*
-         * IMPORTANT:
-         * Make the Service Planner song
-         * available globally.
+         * Keep the song globally available.
          */
 
         window.currentSong =
             song;
 
+
         /*
-         * Store it locally as well.
+         * Mark presentation as standalone.
          */
 
-        window.currentSongIndex =
-            index;
+        localStorage.setItem(
+            "presentationMode",
+            "standalone"
+        );
+
 
         /* ------------------------------------------
            TITLE
@@ -1746,6 +1921,7 @@ const Presentation = {
                 "presentationTitle"
             );
 
+
         if (title) {
 
             title.innerText =
@@ -1754,191 +1930,64 @@ const Presentation = {
 
         }
 
+
         /* ------------------------------------------
            SHOW PRESENTATION
            ------------------------------------------ */
 
-        overlay.classList.add("show");
+        overlay.classList.add(
+            "show"
+        );
+
 
         /* ------------------------------------------
-           BUILD 3-COLUMN PRESENTATION
+           BUILD
            ------------------------------------------ */
 
         this.build();
 
+
         /* ------------------------------------------
-           UPDATE SERVICE INFORMATION
+           STANDALONE COUNTER
            ------------------------------------------ */
 
-        await this.update();
-
-        return;
-    }
-
-
-    /* ==================================================
-       DIRECT / STANDALONE SONG MODE
-       ================================================== */
-
-    console.log(
-        "PRESENTATION MODE: DIRECT SONG"
-    );
+        const counter =
+            document.getElementById(
+                "presentationCounter"
+            );
 
 
-    /*
-     * IMPORTANT:
-     * Try several possible sources for the
-     * currently opened song.
-     */
+        if (counter) {
 
-    let song =
-        window.currentSong;
-
-
-    /*
-     * If window.currentSong does not exist,
-     * try the global currentSong variable.
-     */
-
-    if (
-        !song &&
-        typeof currentSong !== "undefined"
-    ) {
-
-        song =
-            currentSong;
-
-    }
-
-
-    /*
-     * If still unavailable, try to obtain
-     * the song from the HTML page.
-     */
-
-    if (!song && App.lyrics) {
-
-        const songElement =
-            App.lyrics.closest(".song");
-
-        if (songElement) {
-
-            song = {
-
-                title:
-                    songElement.dataset.title ||
-                    document.title ||
-                    "Untitled Song"
-
-            };
+            counter.innerText =
+                "Standalone Song";
 
         }
 
-    }
+
+        /* ------------------------------------------
+           REMOVE NEXT SONG
+           ------------------------------------------ */
+
+        const preview =
+            document.getElementById(
+                "nextSongPreview"
+            );
 
 
-    /*
-     * FINAL CHECK
-     */
+        if (preview) {
 
-    if (!song) {
+            preview.innerHTML =
+                "";
 
-        console.error(
-            "No current song available."
-        );
+            preview.style.display =
+                "none";
 
-        alert(
-            "Unable to start presentation.\n\n" +
-            "The current song could not be identified."
-        );
+        }
 
-        return;
-    }
+    },
 
 
-    console.log(
-        "DIRECT SONG:",
-        song
-    );
-
-
-    /*
-     * Make sure it is globally available.
-     */
-
-    window.currentSong =
-        song;
-
-
-    /* ------------------------------------------
-       TITLE
-       ------------------------------------------ */
-
-    const title =
-        document.getElementById(
-            "presentationTitle"
-        );
-
-    if (title) {
-
-        title.innerText =
-            song.title ||
-            "Untitled Song";
-
-    }
-
-
-    /* ------------------------------------------
-       SHOW PRESENTATION
-       ------------------------------------------ */
-
-    overlay.classList.add("show");
-
-
-    /* ------------------------------------------
-       BUILD PRESENTATION
-       ------------------------------------------ */
-
-    this.build();
-
-
-    /* ------------------------------------------
-       STANDALONE COUNTER
-       ------------------------------------------ */
-
-    const counter =
-        document.getElementById(
-            "presentationCounter"
-        );
-
-    if (counter) {
-
-        counter.innerText =
-            "Standalone Song";
-
-    }
-
-
-    /* ------------------------------------------
-       NO NEXT SONG
-       ------------------------------------------ */
-
-    const preview =
-        document.getElementById(
-            "nextSongPreview"
-        );
-
-    if (preview) {
-
-        preview.innerHTML =
-            "";
-
-        preview.style.display =
-            "none";
-
-    }
-
-},
     /* ======================================================
        BUILD PRESENTATION
        ====================================================== */
@@ -1950,6 +1999,7 @@ const Presentation = {
                 "presentationLyrics"
             );
 
+
         if (!output) {
 
             console.error(
@@ -1960,18 +2010,38 @@ const Presentation = {
         }
 
 
-        if (!App.lyrics) {
+        /*
+         * IMPORTANT:
+         *
+         * Do not depend only on App.lyrics.
+         *
+         * The current song page may use a different
+         * lyrics container.
+         */
+
+        const lyricsSource =
+            document.getElementById(
+                "lyrics"
+            );
+
+
+        if (!lyricsSource) {
 
             console.error(
-                "App.lyrics element not found."
+                "Lyrics source #lyrics not found."
             );
+
+            output.innerHTML =
+                "<div style='color:white;text-align:center;padding:40px'>" +
+                "Lyrics could not be loaded." +
+                "</div>";
 
             return;
         }
 
 
         /* ------------------------------------------
-           COPY SONG CONTENT
+           COPY SOURCE
            ------------------------------------------ */
 
         const source =
@@ -1979,8 +2049,9 @@ const Presentation = {
                 "div"
             );
 
+
         source.innerHTML =
-            App.lyrics.innerHTML;
+            lyricsSource.innerHTML;
 
 
         /* ------------------------------------------
@@ -1995,9 +2066,10 @@ const Presentation = {
             );
 
 
-        /* ------------------------------------------
-           FALLBACK
-           ------------------------------------------ */
+        /*
+         * If the page does not use .song-section,
+         * use the complete song content.
+         */
 
         if (!sections.length) {
 
@@ -2005,6 +2077,7 @@ const Presentation = {
                 source.querySelector(
                     ".song"
                 );
+
 
             if (songElement) {
 
@@ -2018,8 +2091,22 @@ const Presentation = {
         }
 
 
+        /*
+         * If still no sections, use the entire
+         * lyrics container.
+         */
+
+        if (!sections.length) {
+
+            sections = [
+                source
+            ];
+
+        }
+
+
         /* ------------------------------------------
-           CLEAR OUTPUT
+           CLEAR OLD PRESENTATION
            ------------------------------------------ */
 
         output.innerHTML =
@@ -2027,7 +2114,7 @@ const Presentation = {
 
 
         /* ------------------------------------------
-           CREATE 3-COLUMN GRID
+           CREATE 3 COLUMN GRID
            ------------------------------------------ */
 
         const grid =
@@ -2035,23 +2122,23 @@ const Presentation = {
                 "div"
             );
 
+
         grid.className =
             "presentation-grid";
 
 
         /* ------------------------------------------
-           CREATE SECTION CARDS
+           CREATE SECTIONS
            ------------------------------------------ */
 
         sections.forEach(
-            (section) => {
+            section => {
 
                 if (
                     !section.textContent.trim()
                 ) {
 
                     return;
-
                 }
 
 
@@ -2060,13 +2147,14 @@ const Presentation = {
                         "div"
                     );
 
+
                 card.className =
                     "presentation-section";
 
 
                 /* ----------------------------------
                    SECTION TITLE
-                ---------------------------------- */
+                   ---------------------------------- */
 
                 const sectionTitle =
                     section.querySelector(
@@ -2081,16 +2169,16 @@ const Presentation = {
                             "div"
                         );
 
+
                     newTitle.className =
                         "presentation-section-title";
+
 
                     newTitle.textContent =
                         sectionTitle
                             .textContent
                             .trim();
 
-                    newTitle.style.color =
-                        "#ffffff";
 
                     card.appendChild(
                         newTitle
@@ -2101,12 +2189,13 @@ const Presentation = {
 
                 /* ----------------------------------
                    CONTENT
-                ---------------------------------- */
+                   ---------------------------------- */
 
                 const content =
                     document.createElement(
                         "div"
                     );
+
 
                 content.className =
                     "presentation-section-content";
@@ -2128,19 +2217,42 @@ const Presentation = {
                                     true
                                 );
 
+
                             newLine.classList.add(
                                 "presentation-line"
                             );
 
 
-                            /* LYRIC */
+                            /*
+                             * Remove unwanted source
+                             * styling that may make the
+                             * presentation invisible.
+                             */
+
+                            newLine.style.display =
+                                "block";
+
+
+                            newLine.style.visibility =
+                                "visible";
+
+
+                            newLine.style.opacity =
+                                "1";
+
+
+                            /* ----------------------
+                               LYRIC COLOR
+                               ---------------------- */
 
                             newLine.style.color =
-                                "#000000";
+                                "#ffffff";
 
 
                             newLine
-                                .querySelectorAll("*")
+                                .querySelectorAll(
+                                    "*"
+                                )
                                 .forEach(
                                     element => {
 
@@ -2151,17 +2263,19 @@ const Presentation = {
                                         ) {
 
                                             return;
-
                                         }
 
+
                                         element.style.color =
-                                            "#000000";
+                                            "#ffffff";
 
                                     }
                                 );
 
 
-                            /* CHORD */
+                            /* ----------------------
+                               CHORD COLOR
+                               ---------------------- */
 
                             newLine
                                 .querySelectorAll(
@@ -2171,7 +2285,8 @@ const Presentation = {
                                     chord => {
 
                                         chord.style.color =
-                                            "#ff0000";
+                                            "#ff4444";
+
 
                                         chord.style.fontWeight =
                                             "900";
@@ -2214,7 +2329,8 @@ const Presentation = {
                             chord => {
 
                                 chord.style.color =
-                                    "#ff0000";
+                                    "#ff4444";
+
 
                                 chord.style.fontWeight =
                                     "900";
@@ -2224,7 +2340,7 @@ const Presentation = {
 
 
                     clone.style.color =
-                        "#000000";
+                        "#ffffff";
 
 
                     content.appendChild(
@@ -2251,6 +2367,17 @@ const Presentation = {
             grid
         );
 
+
+        console.log(
+            "PRESENTATION BUILD COMPLETE"
+        );
+
+
+        console.log(
+            "SECTIONS:",
+            sections.length
+        );
+
     },
 
 
@@ -2260,21 +2387,34 @@ const Presentation = {
 
     async update() {
 
-        const service =
-            await Service.getCurrent();
-
-
         /*
-         * DIRECT SONG MODE
-         * Do not try to read Service Planner.
+         * FIRST determine presentation mode.
          */
 
-        if (!service) {
+        const mode =
+            localStorage.getItem(
+                "presentationMode"
+            );
+
+
+        /* ==================================================
+           STANDALONE
+           ================================================== */
+
+        if (
+            mode === "standalone"
+        ) {
+
+            console.log(
+                "UPDATE: STANDALONE MODE"
+            );
+
 
             const counter =
                 document.getElementById(
                     "presentationCounter"
                 );
+
 
             if (counter) {
 
@@ -2283,28 +2423,46 @@ const Presentation = {
 
             }
 
+
             const preview =
                 document.getElementById(
                     "nextSongPreview"
                 );
+
 
             if (preview) {
 
                 preview.innerHTML =
                     "";
 
+
                 preview.style.display =
                     "none";
 
             }
 
+
             return;
         }
 
 
-        /* ----------------------------------
-           SERVICE MODE
-        ---------------------------------- */
+        /* ==================================================
+           SERVICE PLANNER
+           ================================================== */
+
+        const service =
+            await Service.getCurrent();
+
+
+        if (!service) {
+
+            console.warn(
+                "UPDATE: No Service Planner"
+            );
+
+            return;
+        }
+
 
         const songs =
             Array.isArray(service.songs)
@@ -2317,6 +2475,10 @@ const Presentation = {
                 Service.getSongIndex()
             ) || 0;
 
+
+        /* ------------------------------------------
+           COUNTER
+           ------------------------------------------ */
 
         const counter =
             document.getElementById(
@@ -2332,9 +2494,9 @@ const Presentation = {
         }
 
 
-        /* ----------------------------------
+        /* ------------------------------------------
            NEXT SONG
-        ---------------------------------- */
+           ------------------------------------------ */
 
         const preview =
             document.getElementById(
@@ -2345,7 +2507,6 @@ const Presentation = {
         if (!preview) {
 
             return;
-
         }
 
 
@@ -2366,7 +2527,10 @@ const Presentation = {
                 </span>
 
                 <span class="next-song-title">
-                    ${nextSong.title || "Untitled Song"}
+                    ${
+                        nextSong.title ||
+                        "Untitled Song"
+                    }
                 </span>
 
             `;
@@ -2381,17 +2545,63 @@ const Presentation = {
             preview.innerHTML =
                 "";
 
+
             preview.style.display =
                 "none";
 
         }
+
+    },
+
+
+    /* ======================================================
+       CLOSE PRESENTATION
+       ====================================================== */
+
+    close() {
+
+        console.log(
+            "CLOSING PRESENTATION"
+        );
+
+
+        const overlay =
+            document.getElementById(
+                "presentationScreen"
+            );
+
+
+        if (overlay) {
+
+            overlay.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        /*
+         * Do NOT remove currentServiceId.
+         *
+         * The Service Planner must remain active.
+         */
+
+
+        localStorage.removeItem(
+            "presentationMode"
+        );
+
+
+        console.log(
+            "PRESENTATION CLOSED"
+        );
 
     }
 
 };
 /* ======================================
    GLOBAL FUNCTIONS FOR HTML BUTTONS
-====================================== */
+   ====================================== */
 
 window.startPresentation = async function () {
 
@@ -2406,12 +2616,20 @@ window.startPresentation = async function () {
 
 window.nextServiceSong = function () {
 
+    console.log(
+        "NEXT SERVICE SONG BUTTON CLICKED"
+    );
+
     Service.next();
 
 };
 
 
 window.previousServiceSong = function () {
+
+    console.log(
+        "PREVIOUS SERVICE SONG BUTTON CLICKED"
+    );
 
     Service.previous();
 
@@ -2420,12 +2638,20 @@ window.previousServiceSong = function () {
 
 window.stopService = function () {
 
+    console.log(
+        "STOP SERVICE BUTTON CLICKED"
+    );
+
     Service.stop();
 
 };
 
 
 window.exitPresentation = function () {
+
+    console.log(
+        "EXIT PRESENTATION BUTTON CLICKED"
+    );
 
     Presentation.close();
 
