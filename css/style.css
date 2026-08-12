@@ -2184,45 +2184,42 @@ body{
 
     margin-top:-5px;
 }
-
 /* =========================================================
-   MODERN WORSHIP PRESENTATION MODE
-   3 COLUMNS • WHITE LYRICS • YELLOW CHORDS
+   JFCM MODERN PRESENTATION MODE
+   FORCE 3 COLUMNS
+   LYRICS = BLACK
+   CHORDS = YELLOW
    ========================================================= */
+
 
 /* =========================================================
    PRESENTATION SCREEN
    ========================================================= */
 
-#presentationScreen{
+#presentationScreen {
 
-    position:fixed;
+    position: fixed;
 
-    inset:0;
+    inset: 0;
 
-    width:100%;
-    height:100%;
+    width: 100vw;
+    height: 100vh;
 
-    background:
-        radial-gradient(
-            circle at top right,
-            #18233c 0%,
-            #080b12 45%,
-            #020304 100%
-        );
+    background: #f1f5f9 !important;
 
-    color:#ffffff;
+    color: #000 !important;
 
-    display:none;
+    display: none;
 
-    z-index:999999;
+    z-index: 999999;
 
-    overflow:hidden;
+    overflow: hidden;
 }
 
-#presentationScreen.show{
 
-    display:block;
+#presentationScreen.show {
+
+    display: block !important;
 }
 
 
@@ -2230,179 +2227,205 @@ body{
    PRESENTATION HEADER
    ========================================================= */
 
-#presentationHeader{
+#presentationHeader {
 
-    height:74px;
+    position: absolute;
 
-    display:flex;
+    top: 0;
+    left: 0;
+    right: 0;
 
-    justify-content:space-between;
+    height: 70px;
 
-    align-items:center;
+    display: flex;
 
-    padding:0 30px;
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 28px;
 
     background:
-        rgba(8,12,22,.94);
+        linear-gradient(
+            135deg,
+            #172033,
+            #263754
+        );
 
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.10);
+    color: white;
 
-    backdrop-filter:blur(15px);
+    z-index: 100;
 
-    position:relative;
-
-    z-index:20;
+    box-shadow:
+        0 4px 15px
+        rgba(0,0,0,.20);
 }
 
 
-#presentationTitle{
+#presentationTitle {
 
-    color:#ffffff;
+    color: white !important;
 
-    font-size:26px;
+    font-size: 25px;
 
-    font-weight:800;
+    font-weight: 800;
 
-    letter-spacing:-.4px;
+    margin: 0;
 
-    white-space:nowrap;
+    white-space: nowrap;
 
-    overflow:hidden;
+    overflow: hidden;
 
-    text-overflow:ellipsis;
+    text-overflow: ellipsis;
 }
 
 
-#presentationCounter{
+#presentationCounter {
 
-    color:#cbd5e1;
+    color: white !important;
 
     background:
-        rgba(255,255,255,.08);
+        rgba(255,255,255,.12);
 
-    border:
-        1px solid
-        rgba(255,255,255,.10);
+    padding: 8px 14px;
 
-    padding:8px 14px;
+    border-radius: 20px;
 
-    border-radius:20px;
+    font-size: 13px;
 
-    font-size:14px;
-
-    font-weight:700;
-
-    white-space:nowrap;
+    font-weight: 700;
 }
 
 
 /* =========================================================
-   PRESENTATION LYRICS AREA
+   PRESENTATION CONTENT AREA
    ========================================================= */
 
-#presentationLyrics{
+#presentationLyrics {
 
-    position:absolute;
+    position: absolute !important;
 
-    top:74px;
+    top: 70px !important;
 
-    left:0;
+    left: 0 !important;
 
-    right:0;
+    right: 0 !important;
 
-    bottom:82px;
+    bottom: 75px !important;
 
-    width:100%;
+    width: 100% !important;
 
-    height:auto;
+    height: auto !important;
 
-    padding:28px;
+    padding: 25px !important;
 
-    overflow-y:auto;
+    margin: 0 !important;
 
-    overflow-x:hidden;
+    overflow-y: auto !important;
 
-    box-sizing:border-box;
+    overflow-x: hidden !important;
+
+    box-sizing: border-box !important;
 }
 
 
 /* =========================================================
-   FORCE SONG INTO 3 COLUMNS
+   FORCE THE SONG CONTAINER
    ========================================================= */
 
-#presentationLyrics .song{
+#presentationLyrics .song {
 
-    display:grid !important;
+    display: grid !important;
 
     grid-template-columns:
         repeat(3, minmax(0, 1fr)) !important;
 
-    grid-auto-flow:row;
+    grid-auto-columns: minmax(0, 1fr) !important;
 
-    gap:20px !important;
+    grid-auto-flow: row !important;
 
-    width:100% !important;
+    align-items: stretch !important;
 
-    max-width:none !important;
+    justify-items: stretch !important;
 
-    margin:0 !important;
+    gap: 20px !important;
 
-    padding:0 !important;
+    width: 100% !important;
 
-    box-sizing:border-box !important;
+    max-width: none !important;
 
-    align-items:stretch !important;
+    margin: 0 !important;
 
-    justify-items:stretch !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
 }
 
 
 /* =========================================================
-   EVERY SONG SECTION = ONE COLUMN CARD
+   IMPORTANT:
+   REMOVE ANY OLD FLEX / BLOCK BEHAVIOR
    ========================================================= */
 
-#presentationLyrics .song > .song-section{
+#presentationLyrics .song * {
 
-    display:block !important;
+    box-sizing: border-box;
+}
 
-    width:100% !important;
 
-    min-width:0 !important;
+/* =========================================================
+   FORCE EACH SECTION INTO A GRID COLUMN
+   ========================================================= */
 
-    height:auto !important;
+#presentationLyrics .song-section {
 
-    min-height:430px;
+    display: block !important;
 
-    margin:0 !important;
+    float: none !important;
 
-    padding:18px 18px 22px !important;
+    position: relative !important;
 
-    box-sizing:border-box !important;
+    width: auto !important;
 
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.075),
-            rgba(255,255,255,.035)
-        );
+    max-width: none !important;
 
-    color:#ffffff !important;
+    min-width: 0 !important;
 
-    border:
-        1px solid
-        rgba(255,255,255,.12);
+    height: auto !important;
 
-    border-radius:16px;
+    min-height: 400px !important;
 
-    overflow:hidden;
+    margin: 0 !important;
+
+    padding: 18px !important;
+
+    background: #ffffff !important;
+
+    color: #000000 !important;
+
+    border: 1px solid #dbe2ea !important;
+
+    border-radius: 14px !important;
 
     box-shadow:
-        0 8px 25px
-        rgba(0,0,0,.30);
+        0 5px 18px
+        rgba(15,23,42,.10) !important;
 
-    backdrop-filter:blur(8px);
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   FORCE ALL SECTION CONTENT BLACK
+   ========================================================= */
+
+#presentationLyrics .song-section,
+#presentationLyrics .song-section p,
+#presentationLyrics .song-section div,
+#presentationLyrics .song-section span,
+#presentationLyrics .song-section pre {
+
+    color: #000000 !important;
 }
 
 
@@ -2410,180 +2433,144 @@ body{
    SECTION TITLE
    ========================================================= */
 
-#presentationLyrics
-.song > .song-section
-.section-title{
+#presentationLyrics .section-title {
 
-    display:block !important;
+    display: block !important;
 
-    width:100% !important;
+    width: 100% !important;
 
-    margin:0 0 20px 0 !important;
+    margin: 0 0 18px 0 !important;
 
-    padding:9px 12px !important;
+    padding: 9px 10px !important;
 
-    box-sizing:border-box;
-
-    text-align:center;
+    text-align: center !important;
 
     background:
         linear-gradient(
             135deg,
-            #334155,
-            #1e293b
-        );
+            #263754,
+            #172033
+        ) !important;
 
-    color:#ffffff !important;
+    color: #ffffff !important;
 
-    border:
-        1px solid
-        rgba(255,255,255,.12);
+    border-radius: 8px !important;
 
-    border-radius:9px;
+    font-size: 14px !important;
 
-    font-size:14px;
+    font-weight: 800 !important;
 
-    font-weight:800;
+    letter-spacing: .8px;
 
-    letter-spacing:1px;
-
-    text-transform:uppercase;
-
-    box-shadow:
-        0 4px 12px
-        rgba(0,0,0,.20);
+    text-transform: uppercase;
 }
 
 
 /* =========================================================
-   LYRICS
-   WHITE
+   LYRICS = BLACK
    ========================================================= */
 
-#presentationLyrics
-.song > .song-section
-.song-line{
+#presentationLyrics .song-line {
 
-    display:block !important;
+    display: block !important;
 
-    width:100% !important;
+    width: 100% !important;
 
-    max-width:100% !important;
+    max-width: 100% !important;
 
-    margin:0 0 7px 0 !important;
+    color: #000000 !important;
 
-    padding:0 !important;
-
-    color:#ffffff !important;
+    background: transparent !important;
 
     font-family:
         Consolas,
         "Courier New",
-        monospace;
+        monospace !important;
 
-    font-size:20px !important;
+    font-size: 19px !important;
 
-    font-weight:500;
+    font-weight: 500 !important;
 
-    line-height:1.35 !important;
+    line-height: 1.35 !important;
 
-    white-space:pre-wrap;
+    margin: 0 0 5px 0 !important;
 
-    overflow-wrap:break-word;
+    padding: 0 !important;
+
+    white-space: pre-wrap !important;
+
+    overflow-wrap: break-word !important;
 }
 
 
 /* =========================================================
-   PARAGRAPHS
+   PARAGRAPH LYRICS = BLACK
    ========================================================= */
 
-#presentationLyrics
-.song > .song-section
-p{
+#presentationLyrics .song-section p {
 
-    margin:0 0 7px 0 !important;
+    color: #000000 !important;
 
-    padding:0 !important;
+    font-size: 19px !important;
 
-    color:#ffffff !important;
+    line-height: 1.35 !important;
 
-    line-height:1.35 !important;
+    margin: 0 0 5px 0 !important;
+
+    padding: 0 !important;
 }
 
 
 /* =========================================================
-   CHORDS
-   YELLOW
+   CHORDS = YELLOW
    ========================================================= */
 
-#presentationLyrics
-.song > .song-section
-.chord{
+#presentationLyrics .chord {
 
-    color:#ffd54f !important;
+    color: #ffd54f !important;
 
-    font-weight:800 !important;
+    background: transparent !important;
+
+    font-weight: 900 !important;
 
     font-family:
         Consolas,
         "Courier New",
-        monospace;
+        monospace !important;
 
     text-shadow:
-        0 0 5px
-        rgba(255,213,79,.20);
+        0 1px 2px
+        rgba(0,0,0,.35);
 }
 
 
 /* =========================================================
-   MAKE ALL POSSIBLE LYRIC ELEMENTS WHITE
+   IF CHORD IS INSIDE A SPAN
    ========================================================= */
 
-#presentationLyrics .song,
-#presentationLyrics .song-section,
-#presentationLyrics .song-section span,
-#presentationLyrics .song-section div{
+#presentationLyrics span.chord {
 
-    color:#ffffff;
-}
-
-
-/* Chord must always override white */
-
-#presentationLyrics .song-section .chord{
-
-    color:#ffd54f !important;
+    color: #ffd54f !important;
 }
 
 
 /* =========================================================
-   NEXT SONG
+   SONG HEADER INSIDE PRESENTATION
    ========================================================= */
 
-#nextSongPreview{
+#presentationLyrics .song-header {
 
-    position:absolute;
+    display: none !important;
+}
 
-    bottom:22px;
 
-    right:28px;
+/* =========================================================
+   SONG TOOLBAR INSIDE PRESENTATION
+   ========================================================= */
 
-    color:#94a3b8;
+#presentationLyrics .song-toolbar {
 
-    font-size:13px;
-
-    background:
-        rgba(255,255,255,.06);
-
-    padding:8px 13px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-
-    border-radius:20px;
-
-    backdrop-filter:blur(8px);
+    display: none !important;
 }
 
 
@@ -2591,73 +2578,63 @@ p{
    PRESENTATION NAVIGATION
    ========================================================= */
 
-#presentationNavigation{
+#presentationNavigation {
 
-    position:fixed;
+    position: fixed !important;
 
-    bottom:16px;
+    bottom: 12px !important;
 
-    left:50%;
+    left: 50% !important;
 
-    transform:translateX(-50%);
+    transform: translateX(-50%) !important;
 
-    display:flex;
+    display: flex !important;
 
-    justify-content:center;
+    align-items: center;
 
-    align-items:center;
+    justify-content: center;
 
-    gap:8px;
+    gap: 8px;
+
+    padding: 7px;
 
     background:
-        rgba(8,12,22,.92);
+        rgba(23,32,51,.96);
 
-    padding:8px;
+    border-radius: 12px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.10);
-
-    border-radius:14px;
-
-    z-index:1000000;
-
-    backdrop-filter:blur(14px);
+    z-index: 1000000;
 
     box-shadow:
-        0 12px 30px
-        rgba(0,0,0,.40);
+        0 8px 25px
+        rgba(0,0,0,.25);
 }
 
 
-#presentationNavigation button{
+#presentationNavigation button {
 
-    min-width:120px;
+    min-width: 110px;
 
-    padding:10px 17px;
+    padding: 10px 16px;
+
+    border: none;
+
+    border-radius: 8px;
 
     background:
-        rgba(255,255,255,.08);
-
-    color:#ffffff;
-
-    border:
-        1px solid
         rgba(255,255,255,.10);
 
-    border-radius:9px;
+    color: white;
 
-    font-size:13px;
+    font-size: 13px;
 
-    font-weight:700;
+    font-weight: 700;
 
-    cursor:pointer;
-
-    transition:.25s ease;
+    cursor: pointer;
 }
 
 
-#presentationNavigation button:hover{
+#presentationNavigation button:hover {
 
     background:
         linear-gradient(
@@ -2665,40 +2642,44 @@ p{
             #6c5ce7,
             #4f8cff
         );
-
-    transform:translateY(-2px);
 }
 
 
-#presentationNavigation button:active{
+/* =========================================================
+   DESKTOP
+   ALWAYS 3 COLUMNS
+   ========================================================= */
 
-    transform:scale(.96);
+@media (min-width: 1101px) {
+
+    #presentationLyrics .song {
+
+        display: grid !important;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr)) !important;
+
+        gap: 20px !important;
+    }
+
 }
 
 
 /* =========================================================
    TABLET
-   2 COLUMNS
    ========================================================= */
 
-@media
-(min-width:701px)
-and
-(max-width:1100px){
+@media (min-width: 701px)
+and (max-width: 1100px) {
 
-    #presentationLyrics .song{
+    #presentationLyrics .song {
+
+        display: grid !important;
 
         grid-template-columns:
-            repeat(2, minmax(0,1fr))
-            !important;
+            repeat(2, minmax(0, 1fr)) !important;
 
-        gap:16px !important;
-    }
-
-    #presentationLyrics
-    .song > .song-section{
-
-        min-height:380px;
+        gap: 16px !important;
     }
 
 }
@@ -2706,108 +2687,77 @@ and
 
 /* =========================================================
    MOBILE
-   1 COLUMN
    ========================================================= */
 
-@media(max-width:700px){
+@media (max-width: 700px) {
 
-    #presentationHeader{
+    #presentationLyrics {
 
-        height:64px;
-
-        padding:0 15px;
+        padding: 12px !important;
     }
 
-    #presentationTitle{
 
-        font-size:18px;
-    }
+    #presentationLyrics .song {
 
-    #presentationCounter{
-
-        font-size:11px;
-
-        padding:6px 9px;
-    }
-
-    #presentationLyrics{
-
-        top:64px;
-
-        bottom:75px;
-
-        padding:15px;
-    }
-
-    #presentationLyrics .song{
+        display: grid !important;
 
         grid-template-columns:
             1fr !important;
 
-        gap:14px !important;
+        gap: 12px !important;
     }
 
-    #presentationLyrics
-    .song > .song-section{
 
-        min-height:auto;
+    #presentationLyrics .song-section {
 
-        padding:15px !important;
+        min-height: auto !important;
+
+        padding: 15px !important;
     }
 
-    #presentationLyrics
-    .song > .song-section
-    .song-line{
 
-        font-size:17px !important;
+    #presentationLyrics .song-line {
 
-        line-height:1.35 !important;
+        font-size: 16px !important;
+
+        line-height: 1.3 !important;
     }
 
-    #presentationNavigation button{
 
-        min-width:85px;
+    #presentationNavigation button {
 
-        padding:9px 10px;
+        min-width: 80px;
 
-        font-size:11px;
+        padding: 9px;
+
+        font-size: 11px;
     }
 
-    #nextSongPreview{
-
-        display:none;
-    }
 }
 
 
 /* =========================================================
-   VERY SMALL MOBILE
+   VERY SMALL SCREEN
    ========================================================= */
 
-@media(max-width:450px){
+@media (max-width: 450px) {
 
-    #presentationNavigation{
+    #presentationTitle {
 
-        width:calc(100% - 20px);
-
-        bottom:8px;
+        font-size: 17px;
     }
 
-    #presentationNavigation button{
+    #presentationCounter {
 
-        flex:1;
-
-        min-width:0;
+        font-size: 11px;
     }
 
-    #presentationLyrics
-    .song > .song-section
-    .song-line{
+    #presentationLyrics .song-line {
 
-        font-size:15px !important;
+        font-size: 15px !important;
     }
+
 }
-
 
 /* =========================================================
    SERVICE PROGRESS
