@@ -2129,142 +2129,95 @@ const Presentation = {
 
     },
 
+async update() {
 
-    /* ======================================================
-       UPDATE
-       ====================================================== */
+    /*
+     * IMPORTANT:
+     * Service.getCurrent() is async.
+     */
 
-    async update() {
+    const service =
+        await Service.getCurrent();
 
-        /*
-         * IMPORTANT:
-         * Service.getCurrent() is async.
-         */
-
-        const service =
-            await Service.getCurrent();
-
-
-        if (!service) {
-            return;
-        }
-
-
-        /* ------------------------------------------
-           SAFELY GET SONGS
-           ------------------------------------------ */
-
-        const songs =
-            Array.isArray(service.songs)
-                ? service.songs
-                : [];
-
-
-        const index =
-            Number(
-                Service.getSongIndex()
-            ) || 0;
-
-
-        /* ------------------------------------------
-           COUNTER
-           ------------------------------------------ */
-
-        const counter =
-            document.getElementById(
-                "presentationCounter"
-            );
-
-
-        if (counter) {
-
-            counter.innerText =
-                `Song ${index + 1} / ${songs.length}`;
-
-        }
-
-/* ------------------------------------------
-   NEXT SONG
------------------------------------------- */
-
-const preview =
-    document.getElementById(
-        "nextSongPreview"
-    );
-
-if (preview) {
-
-    if (
-        songs.length > 0 &&
-        index >= 0 &&
-        index < songs.length - 1 &&
-        songs[index + 1]
-    ) {
-
-        const nextSong =
-            songs[index + 1];
-
-        preview.innerHTML = `
-
-            <span class="next-song-label">
-                NEXT SONG
-            </span>
-
-            <span class="next-song-title">
-                ${nextSong.title || "Untitled Song"}
-            </span>
-
-        `;
-
-        /* Make sure it is visible */
-        preview.style.display = "flex";
-
+    if (!service) {
+        return;
     }
-    else {
 
-        preview.innerHTML = "";
+    /* ------------------------------------------
+       SAFELY GET SONGS
+    ------------------------------------------ */
 
-        /* Hide when there is no next song */
-        preview.style.display = "none";
+    const songs =
+        Array.isArray(service.songs)
+            ? service.songs
+            : [];
+
+    const index =
+        Number(
+            Service.getSongIndex()
+        ) || 0;
+
+    /* ------------------------------------------
+       COUNTER
+    ------------------------------------------ */
+
+    const counter =
+        document.getElementById(
+            "presentationCounter"
+        );
+
+    if (counter) {
+
+        counter.innerText =
+            `Song ${index + 1} / ${songs.length}`;
 
     }
 
-}
+    /* ------------------------------------------
+       NEXT SONG
+    ------------------------------------------ */
 
-    /* ======================================================
-       CLOSE
-       ====================================================== */
+    const preview =
+        document.getElementById(
+            "nextSongPreview"
+        );
 
-    close() {
-
-        const overlay =
-            document.getElementById(
-                "presentationScreen"
-            );
-
-
-        if (overlay) {
-
-            overlay.classList.remove(
-                "show"
-            );
-
-        }
-
+    if (preview) {
 
         if (
-            document.fullscreenElement
+            songs.length > 0 &&
+            index >= 0 &&
+            index < songs.length - 1 &&
+            songs[index + 1]
         ) {
 
-            document
-                .exitFullscreen()
-                .catch(() => {});
+            const nextSong =
+                songs[index + 1];
+
+            preview.innerHTML = `
+                <span class="next-song-label">
+                    NEXT SONG
+                </span>
+
+                <span class="next-song-title">
+                    ${nextSong.title || "Untitled Song"}
+                </span>
+            `;
+
+            preview.style.display = "flex";
+
+        }
+        else {
+
+            preview.innerHTML = "";
+
+            preview.style.display = "none";
 
         }
 
     }
 
-};
+},
 /* ==========================================================
    UTILITIES
 ========================================================== */
