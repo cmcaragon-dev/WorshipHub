@@ -2211,12 +2211,17 @@ body{
    ========================================================== */
 
 #presentationLyrics {
-    width: 100%;
-    min-height: 100vh;
 
-    padding: 35px;
+    width: 100%;
+
+    min-height:
+        calc(100vh - 72px);
+
+    padding:
+        30px 35px 120px;
 
     background: #ffffff;
+
 }
 
 
