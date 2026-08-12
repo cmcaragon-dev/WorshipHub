@@ -22,28 +22,122 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
      HEADER
 =========================== -->
 
-<header class="topbar">
+<!-- ==========================================
+     MODERN TOP NAVIGATION
+========================================== -->
 
-    <div class="logo">
+<header class="modern-topbar">
 
-        🎵 JFCM Songs Organizer
+    <!-- BRAND -->
+    <div class="brand-area">
+
+        <div class="brand-icon">
+            <i class="fa-solid fa-music"></i>
+        </div>
+
+        <div class="brand-text">
+            <div class="brand-title">
+                JFCM
+            </div>
+
+            <div class="brand-subtitle">
+                Songs Organizer
+            </div>
+        </div>
 
     </div>
 
-    <div class="top-actions">
 
-        <input
-    type="text"
-    id="searchBox"
-    placeholder="Search songs..."
-    onkeyup="searchSongs(this.value)">
+    <!-- NAVIGATION -->
+    <nav class="main-navigation">
 
-       <button onclick="searchSongs()">🔍 </button>
-<button onclick="logoutUser()">
+        <button
+            class="nav-item active"
+            id="homeNavBtn"
+            onclick="window.location.href='index.html'">
 
-    🚪 Logout
+            <i class="fa-solid fa-house"></i>
 
-</button>
+            <span>Home</span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            id="songsNavBtn"
+            onclick="document.getElementById('songGrid')?.scrollIntoView({behavior:'smooth'})">
+
+            <i class="fa-solid fa-music"></i>
+
+            <span>Songs</span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            id="servicesNavBtn"
+            onclick="document.getElementById('servicePlannerBtn')?.click()">
+
+            <i class="fa-solid fa-folder"></i>
+
+            <span>Services</span>
+
+        </button>
+
+    </nav>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="header-actions">
+
+        <!-- SEARCH -->
+        <div class="modern-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchBox"
+                placeholder="Search songs..."
+                autocomplete="off"
+                onkeyup="searchSongs(this.value)"
+            >
+
+        </div>
+
+
+        <!-- SETTINGS -->
+        <button
+            class="icon-action"
+            id="settingsTopBtn"
+            title="Settings"
+            onclick="document.getElementById('settingsBtn')?.click()">
+
+            <i class="fa-solid fa-sliders"></i>
+
+        </button>
+
+
+        <!-- USER -->
+        <button
+            class="user-action"
+            id="logoutBtn"
+            title="Logout">
+
+            <span class="user-avatar">
+                <i class="fa-solid fa-user"></i>
+            </span>
+
+            <span class="user-label">
+                Logout
+            </span>
+
+            <i class="fa-solid fa-chevron-down user-arrow"></i>
+
+        </button>
+
     </div>
 
 </header>
