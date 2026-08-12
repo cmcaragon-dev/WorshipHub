@@ -2271,115 +2271,227 @@ body{
 
 /* =========================================================
    PRESENTATION LYRICS
-   EXACTLY 3 COLUMNS ON DESKTOP
+   3-COLUMN SONG LAYOUT
+========================================================= */
+
+#presentationLyrics {
+    position: absolute;
+
+    top: 74px;
+    left: 0;
+    right: 0;
+    bottom: 90px;
+
+    display: block;
+
+    overflow-y: auto;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    scrollbar-width: thin;
+}
+
+
+/* =========================================================
+   SONG - 3 COLUMNS
 ========================================================= */
 
 #presentationLyrics .song {
     display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    grid-auto-flow: row !important;
-    gap: 20px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    align-items: start !important;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr)) !important;
+
+    grid-auto-flow: row;
+
+    gap: 24px;
+
+    width: 100%;
+
+    max-width: 100%;
+
+    align-items: stretch;
 }
 
+
 /* =========================================================
-   PRESENTATION SECTION
+   SONG SECTION / CARD
 ========================================================= */
 
 #presentationLyrics .song-section {
+
     display: block !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    min-height: auto !important;
-    height: auto !important;
-    box-sizing: border-box !important;
 
-    background: rgba(255,255,255,.045);
+    width: 100%;
 
-    border: 1px solid rgba(255,255,255,.10);
+    min-width: 0;
+
+    min-height: 420px;
+
+    height: auto;
+
+    box-sizing: border-box;
+
+    background: rgba(255,255,255,.96);
+
+    color: #172033;
+
+    border:
+        1px solid
+        rgba(148,163,184,.35);
 
     border-radius: 15px;
 
-    padding: 12px;
+    padding: 18px;
 
     backdrop-filter: blur(10px);
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.15);
+        0 5px 18px rgba(15,23,42,.08);
+
+    overflow: hidden;
 }
+
 
 /* =========================================================
    SECTION TITLE
 ========================================================= */
 
 #presentationLyrics .section-title {
+
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
     background:
         linear-gradient(
             135deg,
-            #ffd54f,
-            #fbbf24
+            #2f3d53,
+            #334155
         );
 
-    color: #111827;
+    color: #ffffff;
 
     text-align: center;
 
-    font-size: 18px;
+    font-size: 16px;
 
     font-weight: 800;
 
-    padding: 7px 10px;
+    letter-spacing: .8px;
+
+    text-transform: uppercase;
+
+    padding: 8px 10px;
 
     border-radius: 8px;
 
-    margin-bottom: 9px;
+    margin: 0 0 45px 0;
 }
 
-/* =========================================================
-   CHORDS
-========================================================= */
-
-#presentationLyrics .chord {
-    color: #ffd54f;
-    font-weight: 800;
-}
 
 /* =========================================================
    LYRICS
 ========================================================= */
 
 #presentationLyrics .song-line {
+
     line-height: 1.08 !important;
+
     margin: 1px 0 !important;
+
+    padding: 0 !important;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
     font-size: 20px;
+
+    color: #172033;
+
+    white-space: pre-wrap;
+
     width: 100%;
+
     max-width: 100%;
 }
 
+
 /* =========================================================
-   TABLET - 2 COLUMNS
+   CHORDS
+========================================================= */
+
+#presentationLyrics .chord {
+
+    color: #ef302b;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   SONG SECTION PARAGRAPHS
+========================================================= */
+
+#presentationLyrics .song-section p {
+
+    margin: 0;
+
+    padding: 0;
+
+    line-height: 1.08;
+}
+
+
+/* =========================================================
+   TABLET
 ========================================================= */
 
 @media (min-width: 701px) and (max-width: 1100px) {
 
     #presentationLyrics .song {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 18px;
+
     }
 
 }
 
+
 /* =========================================================
-   MOBILE - 1 COLUMN
+   MOBILE
 ========================================================= */
 
 @media (max-width: 700px) {
 
+    #presentationLyrics {
+
+        padding: 15px;
+
+    }
+
     #presentationLyrics .song {
-        grid-template-columns: 1fr !important;
-        gap: 14px !important;
+
+        grid-template-columns:
+            1fr !important;
+
+        gap: 14px;
+
+    }
+
+    #presentationLyrics .song-section {
+
+        min-height: auto;
+
     }
 
 }
