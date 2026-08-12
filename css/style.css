@@ -2184,517 +2184,215 @@ body{
 
     margin-top:-5px;
 }
-/* =========================================================
-   MODERN 3-COLUMN WORSHIP PRESENTATION
-   ========================================================= */
+/* ==========================================================
+   PRESENTATION SCREEN
+   ========================================================== */
 
-#presentationScreen{
+#presentationScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
 
-    position:fixed;
+    background: #ffffff;
 
-    inset:0;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-    width:100vw;
+    display: none;
+}
 
-    height:100vh;
-
-    background:#080b12;
-
-    display:none;
-
-    z-index:999999;
-
-    overflow:hidden;
-
-    color:#ffffff;
+#presentationScreen.show {
+    display: block;
 }
 
 
-#presentationScreen.show{
+/* ==========================================================
+   PRESENTATION LYRICS
+   ========================================================== */
 
-    display:block !important;
+#presentationLyrics {
+    width: 100%;
+    min-height: 100vh;
 
+    padding: 35px;
+
+    background: #ffffff;
 }
 
 
-/* =========================================================
-   HEADER
-   ========================================================= */
+/* ==========================================================
+   FORCE 3 COLUMNS
+   ========================================================== */
 
-#presentationHeader{
+#presentationLyrics .presentation-grid {
 
-    position:absolute;
-
-    top:0;
-
-    left:0;
-
-    right:0;
-
-    height:72px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:0 28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #172033,
-            #263754
-        );
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.12);
-
-    z-index:100;
-
-}
-
-
-#presentationTitle{
-
-    color:#ffffff !important;
-
-    font-size:26px;
-
-    font-weight:800;
-
-    margin:0;
-
-}
-
-
-#presentationCounter{
-
-    color:#ffffff !important;
-
-    background:
-        rgba(255,255,255,.12);
-
-    padding:8px 14px;
-
-    border-radius:20px;
-
-    font-size:13px;
-
-    font-weight:700;
-
-}
-
-
-/* =========================================================
-   PRESENTATION CONTENT
-   ========================================================= */
-
-#presentationLyrics{
-
-    position:absolute;
-
-    top:72px;
-
-    left:0;
-
-    right:0;
-
-    bottom:72px;
-
-    padding:24px;
-
-    overflow-y:auto;
-
-    overflow-x:hidden;
-
-    background:#080b12;
-
-}
-
-
-/* =========================================================
-   THE ACTUAL 3-COLUMN GRID
-   ========================================================= */
-
-#presentationLyrics
-.presentation-grid{
-
-    display:grid;
+    display: grid;
 
     grid-template-columns:
-        repeat(3, minmax(0,1fr));
+        repeat(3, minmax(0, 1fr));
 
-    gap:18px;
+    gap: 25px;
 
-    width:100%;
+    width: 100%;
 
-    margin:0;
-
-    padding:0;
-
-    align-items:start;
-
+    align-items: start;
 }
 
 
-/* =========================================================
-   EACH VERSE / CHORUS / PASSING = CARD
-   ========================================================= */
+/* ==========================================================
+   SECTION CARD
+   ========================================================== */
 
 #presentationLyrics
-.presentation-section{
+.presentation-section {
 
-    display:flex;
+    width: 100%;
 
-    flex-direction:column;
+    padding: 20px;
 
-    width:100%;
+    background: #ffffff;
 
-    min-width:0;
+    border-radius: 14px;
 
-    min-height:330px;
+    border: 1px solid #e5e5e5;
 
-    padding:14px;
+    box-sizing: border-box;
 
-    background:#ffffff;
-
-    border:
-        1px solid
-        #dbe2ea;
-
-    border-radius:14px;
-
-    box-shadow:
-        0 8px 22px
-        rgba(0,0,0,.25);
-
-    overflow:hidden;
+    break-inside: avoid;
 
 }
 
 
-/* =========================================================
+/* ==========================================================
    SECTION TITLE
-   VERSE / CHORUS / PASSING / BRIDGE
-   = WHITE
-   ========================================================= */
+   ========================================================== */
 
 #presentationLyrics
-.presentation-section-title{
+.presentation-section-title {
 
-    width:100%;
+    color: #ffffff !important;
 
-    padding:9px 10px;
+    background: #222222;
 
-    margin-bottom:15px;
+    font-size: 22px;
 
-    text-align:center;
+    font-weight: 900;
 
-    background:
-        linear-gradient(
-            135deg,
-            #263754,
-            #172033
-        );
+    padding: 8px 12px;
 
-    color:#ffffff !important;
+    margin-bottom: 15px;
 
-    border-radius:8px;
+    border-radius: 8px;
 
-    font-size:14px;
-
-    font-weight:800;
-
-    letter-spacing:1px;
-
-    text-transform:uppercase;
+    text-align: center;
 
 }
 
 
-/* =========================================================
-   LYRIC CONTENT
-   ========================================================= */
+/* ==========================================================
+   SECTION CONTENT
+   ========================================================== */
 
 #presentationLyrics
-.presentation-section-content{
+.presentation-section-content {
 
-    width:100%;
+    width: 100%;
 
-    color:#000000;
+    color: #000000 !important;
 
 }
 
 
-/* =========================================================
-   LYRICS
-   BLACK
-   ========================================================= */
+/* ==========================================================
+   LYRIC LINE
+   ========================================================== */
 
 #presentationLyrics
-.presentation-line{
+.presentation-line {
 
-    display:block;
+    color: #000000 !important;
 
-    width:100%;
+    font-size: 24px;
 
-    color:#000000 !important;
+    line-height: 1.65;
 
-    font-family:
-        Consolas,
-        "Courier New",
-        monospace;
+    margin-bottom: 8px;
 
-    font-size:19px;
-
-    font-weight:500;
-
-    line-height:1.35;
-
-    margin:0 0 5px 0;
-
-    padding:0;
-
-    white-space:pre-wrap;
-
-    overflow-wrap:break-word;
+    font-weight: 600;
 
 }
 
 
-/* =========================================================
-   FORCE ALL NORMAL TEXT BLACK
-   ========================================================= */
+/* ==========================================================
+   ALL LYRIC TEXT = BLACK
+   ========================================================== */
 
 #presentationLyrics
-.presentation-line span{
+.presentation-line * {
 
-    color:#000000 !important;
+    color: #000000 !important;
 
 }
 
 
-/* =========================================================
-   CHORDS
-   YELLOW
-   ========================================================= */
+/* ==========================================================
+   CHORD = RED
+   ========================================================== */
 
-#presentationLyrics .presentation-line .chord {
+#presentationLyrics
+.presentation-line .chord {
+
     color: #ff0000 !important;
+
     font-weight: 900 !important;
 
     text-shadow:
         0 1px 2px
-        rgba(0,0,0,.35);
+        rgba(0,0,0,.25);
+
 }
 
 
-/* =========================================================
-   CHORD MUST OVERRIDE THE BLACK SPAN RULE
-   ========================================================= */
+/* ==========================================================
+   SECTION TITLES MUST REMAIN WHITE
+   ========================================================== */
 
 #presentationLyrics
-.presentation-line
-span.chord{
+.presentation-section-title {
 
-    color:#ffd54f !important;
-
-}
-
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
-#presentationNavigation{
-
-    position:fixed;
-
-    left:50%;
-
-    bottom:12px;
-
-    transform:translateX(-50%);
-
-    display:flex;
-
-    gap:8px;
-
-    padding:7px;
-
-    background:
-        rgba(23,32,51,.96);
-
-    border-radius:12px;
-
-    z-index:1000000;
-
-    box-shadow:
-        0 8px 25px
-        rgba(0,0,0,.35);
+    color: #ffffff !important;
 
 }
 
 
-#presentationNavigation button{
-
-    min-width:110px;
-
-    padding:10px 16px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:
-        rgba(255,255,255,.10);
-
-    color:#ffffff;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-}
-
-
-#presentationNavigation button:hover{
-
-    background:
-        linear-gradient(
-            135deg,
-            #6c5ce7,
-            #4f8cff
-        );
-
-}
-
-
-/* =========================================================
-   NEXT SONG
-   ========================================================= */
-
-#nextSongPreview{
-
-    position:fixed;
-
-    right:22px;
-
-    bottom:18px;
-
-    color:#cbd5e1;
-
-    background:
-        rgba(255,255,255,.08);
-
-    padding:7px 12px;
-
-    border-radius:20px;
-
-    font-size:12px;
-
-    z-index:1000001;
-
-}
-
-
-/* =========================================================
+/* ==========================================================
    TABLET
-   ========================================================= */
+   ========================================================== */
 
-@media(
-    min-width:701px
-)
-and
-(
-    max-width:1100px
-){
+@media (max-width: 1000px) {
 
     #presentationLyrics
-    .presentation-grid{
+    .presentation-grid {
 
         grid-template-columns:
-            repeat(2,minmax(0,1fr));
+            repeat(2, minmax(0, 1fr));
 
     }
 
 }
 
 
-/* =========================================================
+/* ==========================================================
    MOBILE
-   ========================================================= */
+   ========================================================== */
 
-@media(max-width:700px){
-
-    #presentationLyrics{
-
-        padding:12px;
-
-    }
-
+@media (max-width: 650px) {
 
     #presentationLyrics
-    .presentation-grid{
+    .presentation-grid {
 
-        grid-template-columns:1fr;
-
-        gap:12px;
-
-    }
-
-
-    #presentationLyrics
-    .presentation-section{
-
-        min-height:auto;
-
-    }
-
-
-    #presentationLyrics
-    .presentation-line{
-
-        font-size:16px;
-
-    }
-
-
-    #presentationTitle{
-
-        font-size:18px;
-
-    }
-
-}
-
-
-/* =========================================================
-   VERY SMALL MOBILE
-   ========================================================= */
-
-@media(max-width:450px){
-
-    #presentationLyrics
-    .presentation-line{
-
-        font-size:15px;
-
-    }
-
-
-    #presentationNavigation button{
-
-        min-width:80px;
-
-        padding:8px;
-
-        font-size:11px;
+        grid-template-columns:
+            1fr;
 
     }
 
