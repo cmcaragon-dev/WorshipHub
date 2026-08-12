@@ -1676,7 +1676,7 @@ const Presentation = {
 
 
         /* ==========================================
-           CHECK IF SERVICE PLANNER IS ACTIVE
+           CHECK SERVICE PLANNER
            ========================================== */
 
         const service =
@@ -1761,11 +1761,10 @@ const Presentation = {
 
             this.build();
 
-
             await this.update();
 
-
             return;
+
         }
 
 
@@ -1845,7 +1844,8 @@ const Presentation = {
 
         if (preview) {
 
-            preview.innerHTML = "";
+            preview.innerHTML =
+                "";
 
             preview.style.display =
                 "none";
@@ -1854,14 +1854,6 @@ const Presentation = {
 
     },
 
-
-    /* ======================================================
-       BUILD PRESENTATION
-       ====================================================== */
-
-    build() {
-
-        // YOUR EXISTING BUILD CODE
 
     /* ======================================================
        BUILD PRESENTATION
@@ -1883,6 +1875,7 @@ const Presentation = {
             return;
         }
 
+
         if (!App.lyrics) {
 
             console.error(
@@ -1892,19 +1885,23 @@ const Presentation = {
             return;
         }
 
+
         /* ------------------------------------------
            COPY SONG CONTENT
-        ------------------------------------------ */
+           ------------------------------------------ */
 
         const source =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         source.innerHTML =
             App.lyrics.innerHTML;
 
+
         /* ------------------------------------------
            FIND SONG SECTIONS
-        ------------------------------------------ */
+           ------------------------------------------ */
 
         let sections =
             Array.from(
@@ -1913,14 +1910,17 @@ const Presentation = {
                 )
             );
 
+
         /* ------------------------------------------
            FALLBACK
-        ------------------------------------------ */
+           ------------------------------------------ */
 
         if (!sections.length) {
 
             const song =
-                source.querySelector(".song");
+                source.querySelector(
+                    ".song"
+                );
 
             if (song) {
 
@@ -1933,15 +1933,18 @@ const Presentation = {
 
         }
 
+
         /* ------------------------------------------
            CLEAR OUTPUT
-        ------------------------------------------ */
+           ------------------------------------------ */
 
-        output.innerHTML = "";
+        output.innerHTML =
+            "";
+
 
         /* ------------------------------------------
-           MAIN GRID
-        ------------------------------------------ */
+           CREATE 3-COLUMN GRID
+           ------------------------------------------ */
 
         const grid =
             document.createElement(
@@ -1951,18 +1954,22 @@ const Presentation = {
         grid.className =
             "presentation-grid";
 
+
         /* ------------------------------------------
            CREATE SECTIONS
-        ------------------------------------------ */
+           ------------------------------------------ */
 
         sections.forEach(
-            (section) => {
+            section => {
 
                 if (
                     !section.textContent.trim()
                 ) {
+
                     return;
+
                 }
+
 
                 const card =
                     document.createElement(
@@ -1972,14 +1979,16 @@ const Presentation = {
                 card.className =
                     "presentation-section";
 
+
                 /* ----------------------------------
                    SECTION TITLE
-                ---------------------------------- */
+                   ---------------------------------- */
 
                 const sectionTitle =
                     section.querySelector(
                         ".section-title"
                     );
+
 
                 if (sectionTitle) {
 
@@ -2005,9 +2014,10 @@ const Presentation = {
 
                 }
 
+
                 /* ----------------------------------
-                   CONTENT
-                ---------------------------------- */
+                   SECTION CONTENT
+                   ---------------------------------- */
 
                 const content =
                     document.createElement(
@@ -2017,19 +2027,17 @@ const Presentation = {
                 content.className =
                     "presentation-section-content";
 
-                /* ----------------------------------
-                   SONG LINES
-                ---------------------------------- */
 
                 const lines =
                     section.querySelectorAll(
                         ".song-line"
                     );
 
+
                 if (lines.length) {
 
                     lines.forEach(
-                        (line) => {
+                        line => {
 
                             const newLine =
                                 line.cloneNode(
@@ -2040,24 +2048,26 @@ const Presentation = {
                                 "presentation-line"
                             );
 
-                            /* LYRIC BLACK */
+
+                            /* LYRIC */
 
                             newLine.style.color =
                                 "#000000";
 
+
                             newLine
-                                .querySelectorAll(
-                                    "*"
-                                )
+                                .querySelectorAll("*")
                                 .forEach(
-                                    (element) => {
+                                    element => {
 
                                         if (
                                             element.classList.contains(
                                                 "chord"
                                             )
                                         ) {
+
                                             return;
+
                                         }
 
                                         element.style.color =
@@ -2066,14 +2076,15 @@ const Presentation = {
                                     }
                                 );
 
-                            /* CHORD RED */
+
+                            /* CHORD */
 
                             newLine
                                 .querySelectorAll(
                                     ".chord"
                                 )
                                 .forEach(
-                                    (chord) => {
+                                    chord => {
 
                                         chord.style.color =
                                             "#ff0000";
@@ -2083,6 +2094,7 @@ const Presentation = {
 
                                     }
                                 );
+
 
                             content.appendChild(
                                 newLine
@@ -2094,31 +2106,28 @@ const Presentation = {
                 }
                 else {
 
-                    /* --------------------------------
-                       FALLBACK CONTENT
-                    -------------------------------- */
-
                     const clone =
                         section.cloneNode(
                             true
                         );
+
 
                     clone
                         .querySelectorAll(
                             ".section-title"
                         )
                         .forEach(
-                            (element) => {
-                                element.remove();
-                            }
+                            element =>
+                                element.remove()
                         );
+
 
                     clone
                         .querySelectorAll(
                             ".chord"
                         )
                         .forEach(
-                            (chord) => {
+                            chord => {
 
                                 chord.style.color =
                                     "#ff0000";
@@ -2129,8 +2138,10 @@ const Presentation = {
                             }
                         );
 
+
                     clone.style.color =
                         "#000000";
+
 
                     content.appendChild(
                         clone
@@ -2138,9 +2149,11 @@ const Presentation = {
 
                 }
 
+
                 card.appendChild(
                     content
                 );
+
 
                 grid.appendChild(
                     card
@@ -2149,9 +2162,6 @@ const Presentation = {
             }
         );
 
-        /* ------------------------------------------
-           ADD GRID
-        ------------------------------------------ */
 
         output.appendChild(
             grid
@@ -2161,7 +2171,7 @@ const Presentation = {
 
 
     /* ======================================================
-       UPDATE COUNTER + NEXT SONG
+       UPDATE PRESENTATION
        ====================================================== */
 
     async update() {
@@ -2169,32 +2179,71 @@ const Presentation = {
         const service =
             await Service.getCurrent();
 
+
+        /* ==========================================
+           STANDALONE SONG
+           ========================================== */
+
         if (!service) {
+
+            const counter =
+                document.getElementById(
+                    "presentationCounter"
+                );
+
+            if (counter) {
+
+                counter.innerText =
+                    "Standalone Song";
+
+            }
+
+
+            const preview =
+                document.getElementById(
+                    "nextSongPreview"
+                );
+
+            if (preview) {
+
+                preview.innerHTML =
+                    "";
+
+                preview.style.display =
+                    "none";
+
+            }
+
             return;
+
         }
 
-        /* ------------------------------------------
-           GET SONGS
-        ------------------------------------------ */
+
+        /* ==========================================
+           SERVICE PLANNER
+           ========================================== */
 
         const songs =
             Array.isArray(service.songs)
                 ? service.songs
                 : [];
 
+
         const index =
             Number(
                 Service.getSongIndex()
             ) || 0;
 
+
         /* ------------------------------------------
            COUNTER
-        ------------------------------------------ */
+           ------------------------------------------ */
 
         const counter =
             document.getElementById(
                 "presentationCounter"
             );
+
 
         if (counter) {
 
@@ -2203,57 +2252,54 @@ const Presentation = {
 
         }
 
+
         /* ------------------------------------------
-           NEXT SONG PREVIEW
-        ------------------------------------------ */
+           NEXT SONG
+           ------------------------------------------ */
 
         const preview =
             document.getElementById(
                 "nextSongPreview"
             );
 
-        if (!preview) {
 
-            console.warn(
-                "#nextSongPreview was not found."
-            );
+        if (preview) {
 
-            return;
-        }
+            if (
+                songs.length > 0 &&
+                index >= 0 &&
+                index < songs.length - 1 &&
+                songs[index + 1]
+            ) {
 
-        /* ------------------------------------------
-           CHECK NEXT SONG
-        ------------------------------------------ */
+                const nextSong =
+                    songs[index + 1];
 
-        if (
-            index >= 0 &&
-            index < songs.length - 1 &&
-            songs[index + 1]
-        ) {
 
-            const nextSong =
-                songs[index + 1];
+                preview.innerHTML = `
+                    <span class="next-song-label">
+                        NEXT SONG
+                    </span>
 
-            preview.innerHTML = `
-                <span class="next-song-label">
-                    NEXT SONG: 
-                </span>
+                    <span class="next-song-title">
+                        ${nextSong.title || "Untitled Song"}
+                    </span>
+                `;
 
-                <span class="next-song-title">
-                    ${nextSong.title || "Untitled Song"}
-                </span>
-            `;
 
-            preview.style.display =
-                "flex";
+                preview.style.display =
+                    "flex";
 
-        }
-        else {
+            }
+            else {
 
-            preview.innerHTML = "";
+                preview.innerHTML =
+                    "";
 
-            preview.style.display =
-                "none";
+                preview.style.display =
+                    "none";
+
+            }
 
         }
 
@@ -2261,7 +2307,7 @@ const Presentation = {
 
 
     /* ======================================================
-       CLOSE
+       CLOSE PRESENTATION
        ====================================================== */
 
     close() {
@@ -2271,6 +2317,7 @@ const Presentation = {
                 "presentationScreen"
             );
 
+
         if (overlay) {
 
             overlay.classList.remove(
@@ -2279,226 +2326,19 @@ const Presentation = {
 
         }
 
+
         if (
             document.fullscreenElement
         ) {
 
             document
                 .exitFullscreen()
-                .catch(() => {});
+                .catch(
+                    () => {}
+                );
 
         }
 
     }
 
 };
-/* ==========================================================
-   UTILITIES
-========================================================== */
-
-function fitToOnePage(){
-
-    window.print();
-
-}
-window.fitToOnePage = fitToOnePage;
-
-function goHome(){
-
-    localStorage.removeItem("currentService");
-
-    localStorage.removeItem("currentServiceId");
-
-    localStorage.removeItem("currentSongIndex");
-
-    localStorage.removeItem("resumePresentation");
-
-    if(document.fullscreenElement){
-
-        document.exitFullscreen();
-
-    }
-
-    location.href="../index.html";
-
-}
-
-function showArtist(){
-
-    alert(
-
-        "Artist : " +
-
-        currentSong.artist
-
-    );
-
-}
-window.goHome = goHome;
-
-/* ==========================================================
-   KEYBOARD
-========================================================== */
-
-document.addEventListener(
-
-    "keydown",
-
-    function(e){
-
-        switch(e.key){
-
-            case "+":
-            case "=":
-
-                App.fontPlus?.click();
-
-            break;
-
-
-            case "-":
-
-                App.fontMinus?.click();
-
-            break;
-
-
-            case "ArrowRight":
-
-                Service.next();
-
-            break;
-
-
-            case "ArrowLeft":
-
-                Service.previous();
-
-            break;
-
-
-            case "p":
-            case "P":
-
-                Presentation.start();
-
-            break;
-
-
-            case "Escape":
-
-                Presentation.close();
-
-            break;
-
-
-            case "d":
-            case "D":
-
-                App.darkButton?.click();
-
-            break;
-
-
-            case "h":
-            case "H":
-
-                goHome();
-
-            break;
-
-
-            case "a":
-            case "A":
-
-                showArtist();
-
-            break;
-
-        }
-
-    }
-
-);
-
-
-/* ==========================================================
-   INITIALIZATION
-========================================================== */
-
-window.addEventListener(
-
-    "load",
-
-    function(){
-
-        App.init();
-
-        if(
-
-            localStorage.getItem(
-
-                "resumePresentation"
-
-            )==="true"
-
-        ){
-
-            localStorage.removeItem(
-
-                "resumePresentation"
-
-            );
-
-            setTimeout(
-
-                ()=>Presentation.start(),
-
-                300
-
-            );
-
-        }
-
-    }
-
-);
-/* ======================================
-   GLOBAL FUNCTIONS FOR HTML BUTTONS
-====================================== */
-
-window.nextServiceSong = function () {
-
-    Service.next();
-
-};
-
-
-window.previousServiceSong = function () {
-
-    Service.previous();
-
-};
-
-
-window.stopService = function () {
-
-    Service.stop();
-
-};
-
-
-/* ======================================
-   START PRESENTATION
-====================================== */
-
-window.startPresentation = async function () {
-
-    console.log(
-        "START PRESENTATION"
-    );
-
-    await Presentation.start();
-
-};
-
