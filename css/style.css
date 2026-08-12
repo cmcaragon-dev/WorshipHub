@@ -2604,72 +2604,84 @@ PRESENTATION NAVIGATION BUTTONS
 
 }
 
-
-/* ==========================================================
-NEXT SONG PREVIEW
-========================================================== */
+/* ==========================================
+   NEXT SONG PREVIEW
+   ========================================== */
 
 #nextSongPreview {
 
-    position: fixed;
+    display: flex;
 
-    right: 24px;
+    align-items: center;
 
-    bottom: 95px;
+    justify-content: center;
 
-    z-index: 35;
+    gap: 14px;
 
-    width: 260px;
+    min-height: 42px;
 
-    min-height: 75px;
+    padding: 8px 22px;
 
-    padding: 13px 16px;
+    margin: 8px auto;
 
-    background:
-        rgba(255,255,255,.97);
+    background: rgba(20, 20, 20, 0.92);
 
-    color: #1e293b;
+    border-radius: 8px;
 
-    border:
-        1px solid
-        #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
 
-    border-radius: 12px;
+    color: #ffffff;
 
-    box-shadow:
-        0 10px 30px
-        rgba(15,23,42,.18);
+    box-sizing: border-box;
+
+}
+
+
+/* LABEL */
+
+#nextSongPreview .next-song-label {
 
     font-size: 13px;
 
-    line-height: 1.4;
+    font-weight: 900;
 
-    transition:
-        .25s ease;
-
-}
-
-
-/* Preview title */
-
-#nextSongPreview strong {
-
-    display: block;
-
-    margin-bottom: 5px;
-
-    color: #64748b;
-
-    font-size: 10px;
-
-    font-weight: 800;
+    letter-spacing: 1.5px;
 
     text-transform: uppercase;
 
-    letter-spacing: .8px;
+    color: #ffcc00;
+
+    flex-shrink: 0;
 
 }
 
+
+/* TITLE */
+
+#nextSongPreview .next-song-title {
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: #ffffff;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* WHEN THERE IS NO NEXT SONG */
+
+#nextSongPreview:empty {
+
+    display: none;
+
+}
 
 /* ==========================================================
 PRESENTATION CONTENT SPACE
