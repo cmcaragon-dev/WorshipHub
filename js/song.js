@@ -1154,6 +1154,22 @@ else {
     console.log(
         "STANDALONE SONG - NO FIRESTORE SERVICE SAVE REQUIRED"
     );
+}
+
+
+// ==================================================
+// FINISH TRANSPOSE FUNCTION
+// ==================================================
+
+console.log(
+    "FINAL SERVICE KEY:",
+    this.getKey()
+);
+
+console.log(
+    "================================"
+);
+
 },
 
 
@@ -1163,18 +1179,22 @@ else {
 
 getKey() {
 
+    let song = null;
+
     // --------------------------------------------------
     // GET CURRENT SONG
     // --------------------------------------------------
 
-    let song = null;
-
-    // First try window.currentSong
     if (window.currentSong) {
-        song = window.currentSong;
+
+        song =
+            window.currentSong;
     }
 
-    // Then try normal global currentSong
+    // --------------------------------------------------
+    // FALLBACK TO GLOBAL currentSong
+    // --------------------------------------------------
+
     if (!song) {
 
         try {
@@ -1182,7 +1202,9 @@ getKey() {
             if (
                 typeof currentSong !== "undefined"
             ) {
-                song = currentSong;
+
+                song =
+                    currentSong;
             }
 
         }
@@ -1214,7 +1236,6 @@ getKey() {
     const originalKey =
         song.originalKey ||
         song.key ||
-        song.serviceKey ||
         "";
 
     if (!originalKey) {
