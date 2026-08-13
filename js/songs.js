@@ -244,6 +244,14 @@ title: "Sa Biyaya",
         category: "Praise",
         language: "Tagalog",
         file: "songs/sabiyaya.html"
+    },
+		{id:28,        
+title: "Ikaw Lamang",
+        artist: "Rommel Guevara",
+        key: "G",
+        category: "Worship",
+        language: "Tagalog",
+        file: "songs/ikawlamang.html"
     }
 	
 ];
