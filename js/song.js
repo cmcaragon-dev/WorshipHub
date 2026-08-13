@@ -2390,15 +2390,31 @@ window.stopService =
 // EXIT PRESENTATION
 // ==========================================================
 
-window.exitPresentation =
-    function () {
+window.exitPresentation = function () {
 
-        console.log(
-            "EXIT PRESENTATION BUTTON CLICKED"
+    console.log("EXIT PRESENTATION");
+
+    const overlay =
+        document.getElementById(
+            "presentationScreen"
         );
 
-        Presentation.close();
-    };
+    if (overlay) {
+        overlay.classList.remove("show");
+    }
+
+    localStorage.removeItem(
+        "presentationMode"
+    );
+
+    localStorage.removeItem(
+        "resumePresentation"
+    );
+
+    console.log(
+        "PRESENTATION CLOSED"
+    );
+};
 
 
 // ==========================================================
