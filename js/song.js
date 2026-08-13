@@ -2062,175 +2062,248 @@ const Presentation = {
     // UPDATE PRESENTATION
     // ======================================================
 
-    async update() {
+   async update() {
 
-        const mode =
-            localStorage.getItem(
-                "presentationMode"
-            );
+    console.log("================================");
+    console.log("UPDATING PRESENTATION");
+    console.log("================================");
 
-        // --------------------------------------------------
-        // STANDALONE
-        // --------------------------------------------------
+    const mode =
+        localStorage.getItem("presentationMode");
 
-        if (mode === "standalone") {
+    const counter =
+        document.getElementById(
+            "presentationCounter"
+        );
 
-            console.log(
-                "UPDATE: STANDALONE MODE"
-            );
+    const preview =
+        document.getElementById(
+            "nextSongPreview"
+        );
 
-            const counter =
-                document.getElementById(
-                    "presentationCounter"
-                );
+    console.log("PRESENTATION MODE:", mode);
+    console.log("PREVIEW ELEMENT:", preview);
 
-            if (counter) {
+    // ======================================================
+    // STANDALONE SONG
+    // ======================================================
 
-                counter.innerText =
-                    "Standalone Song";
-            }
+    if (mode === "standalone") {
 
-            const preview =
-                document.getElementById(
-                    "nextSongPreview"
-                );
-
-            if (preview) {
-
-                preview.innerHTML =
-                    "";
-
-                preview.style.display =
-                    "none";
-            }
-
-            return;
-        }
-
-        // --------------------------------------------------
-        // SERVICE PLANNER
-        // --------------------------------------------------
-
-        const service =
-            await Service.getCurrent();
-
-        if (!service) {
-
-            console.warn(
-                "UPDATE: No Service Planner"
-            );
-
-            return;
-        }
-
-        const songs =
-            Array.isArray(service.songs)
-                ? service.songs
-                : [];
-
-        const index =
-            Number(
-                Service.getSongIndex()
-            ) || 0;
-
-        // --------------------------------------------------
-        // COUNTER
-        // --------------------------------------------------
-
-        const counter =
-            document.getElementById(
-                "presentationCounter"
-            );
+        console.log(
+            "UPDATE: STANDALONE MODE"
+        );
 
         if (counter) {
-
             counter.innerText =
-                `Song ${index + 1} / ${songs.length}`;
+                "Standalone Song";
         }
 
-        // --------------------------------------------------
-        // NEXT SONG
-        // --------------------------------------------------
+        if (preview) {
 
-        const preview =
-            document.getElementById(
-                "nextSongPreview"
-            );
-
-        if (!preview) {
-            return;
-        }
-
-        if (
-            index >= 0 &&
-            index < songs.length - 1 &&
-            songs[index + 1]
-        ) {
-
-            const nextSong =
-                songs[index + 1];
-
-            preview.innerHTML = `
-
-                <span class="next-song-label">
-                    NEXT SONG
-                </span>
-
-                <span class="next-song-title">
-                    ${
-                        nextSong.title ||
-                        "Untitled Song"
-                    }
-                </span>
-
-            `;
-
-            preview.style.display =
-                "flex";
-
-        }
-        else {
-
-            preview.innerHTML =
-                "";
+            preview.innerHTML = "";
 
             preview.style.display =
                 "none";
         }
-    },
+
+        return;
+    }
 
 
     // ======================================================
-    // CLOSE PRESENTATION
+    // GET ACTIVE SERVICE
     // ======================================================
 
-    close() {
+    const service =
+        await Service.getCurrent();
 
-        console.log(
-            "CLOSING PRESENTATION"
+    if (!service) {
+
+        console.warn(
+            "UPDATE: NO ACTIVE SERVICE"
         );
 
-        const overlay =
-            document.getElementById(
-                "presentationScreen"
-            );
+        if (preview) {
 
-        if (overlay) {
+            preview.innerHTML = "";
 
-            overlay.classList.remove(
-                "show"
-            );
+            preview.style.display =
+                "none";
         }
 
-        localStorage.removeItem(
-            "presentationMode"
+        return;
+    }
+
+
+    // ======================================================
+    // SONGS
+    // ======================================================
+
+    const songs =
+        Array.isArray(service.songs)
+            ? service.songs
+            : [];
+
+
+    const index =
+        Number(
+            Service.getSongIndex()
+        ) || 0;
+
+
+    console.log(
+        "SERVICE SONG COUNT:",
+        songs.length
+    );
+
+    console.log(
+        "CURRENT SONG INDEX:",
+        index
+    );
+
+
+    // ======================================================
+    // CURRENT SONG
+    // ======================================================
+
+    const currentSong =
+        songs[index];
+
+    console.log(
+        "CURRENT SONG:",
+        currentSong
+    );
+
+
+    // ======================================================
+    // COUNTER
+    // ======================================================
+
+    if (counter) {
+
+        counter.innerText =
+            `Song ${index + 1} / ${songs.length}`;
+    }
+
+
+    // ======================================================
+    // PREVIEW ELEMENT CHECK
+    // ======================================================
+
+    if (!preview) {
+
+        console.error(
+            "NEXT SONG PREVIEW ELEMENT #nextSongPreview NOT FOUND"
         );
 
-        console.log(
-            "PRESENTATION CLOSED"
-        );
+        return;
     }
-};
+
+
+    // ======================================================
+    // NO NEXT SONG
+    // ======================================================
+
+    if (
+        index < 0 ||
+        index >= songs.length - 1
+    ) {
+
+        console.log(
+            "NO NEXT SONG"
+        );
+
+        preview.innerHTML = `
+            <span class="next-song-label">
+                NEXT SONG
+            </span>
+
+            <span class="next-song-title">
+                End of Service
+            </span>
+        `;
+
+        preview.style.display =
+            "flex";
+
+        return;
+    }
+
+
+    // ======================================================
+    // GET NEXT SONG
+    // ======================================================
+
+    const nextSong =
+        songs[index + 1];
+
+
+    if (!nextSong) {
+
+        console.warn(
+            "NEXT SONG DOES NOT EXIST"
+        );
+
+        preview.innerHTML = "";
+
+        preview.style.display =
+            "none";
+
+        return;
+    }
+
+
+    // ======================================================
+    // NEXT SONG TITLE
+    // ======================================================
+
+    const nextTitle =
+        nextSong.title ||
+        nextSong.name ||
+        "Untitled Song";
+
+
+    console.log(
+        "NEXT SONG:",
+        nextTitle
+    );
+
+
+    // ======================================================
+    // DISPLAY NEXT SONG
+    // ======================================================
+
+    preview.innerHTML = `
+
+        <span class="next-song-label">
+            NEXT SONG
+        </span>
+
+        <span class="next-song-title">
+            ${nextTitle}
+        </span>
+
+    `;
+
+
+    preview.style.display =
+        "flex";
+
+
+    preview.style.visibility =
+        "visible";
+
+
+    preview.style.opacity =
+        "1";
+
+
+    console.log(
+        "NEXT SONG PREVIEW DISPLAYED:",
+        nextTitle
+    );
+}
 
 
 // ==========================================================
