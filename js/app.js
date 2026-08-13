@@ -1022,9 +1022,6 @@ function updateDashboard(){
     }
 
 }
-document.getElementById("totalFavorites").textContent =
-getFavorites().length;
-
 document.getElementById("totalSongs").textContent =
 songs.length;
 
