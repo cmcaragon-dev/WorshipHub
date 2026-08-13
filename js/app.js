@@ -2289,152 +2289,99 @@ function sortPlaylists() {
 
 }
 // ==========================================
-// PRINT CURRENT SERVICE
+// PRINT - FIT TO ONE A4 PAGE
 // ==========================================
 
-function printService() {
+function fitToOnePage() {
 
-    const service = getCurrentService();
+    const printArea =
+        document.querySelector(".presentation") ||
+        document.getElementById("presentation") ||
+        document.body;
 
-    if (!service) {
-        alert("No active service selected.");
+    if (!printArea) {
+
+        console.error("Print area not found.");
+
         return;
+
     }
 
-    const serviceSongs = Array.isArray(service.songs)
-        ? service.songs
-        : [];
+    // Save original styles
+    const originalTransform =
+        printArea.style.transform;
 
-    if (serviceSongs.length === 0) {
-        alert("This service has no songs.");
-        return;
-    }
+    const originalTransformOrigin =
+        printArea.style.transformOrigin;
 
-    let songsHtml = "";
+    // Remove previous scaling
+    printArea.style.transform = "none";
 
-    serviceSongs.forEach(function(song, index) {
+    printArea.style.transformOrigin =
+        "top left";
 
-        songsHtml += `
-            <div class="print-song">
-
-                <h2>
-                    ${index + 1}. ${song.title || "Untitled Song"}
-                </h2>
-
-                <p>
-                    <strong>Artist:</strong>
-                    ${song.artist || ""}
-                </p>
-
-                <p>
-                    <strong>Service Key:</strong>
-                    ${song.serviceKey || song.key || ""}
-                </p>
-
-            </div>
-        `;
-
-    });
-
-    const printWindow = window.open(
-        "",
-        "_blank",
-        "width=900,height=700"
-    );
-
-    if (!printWindow) {
-        alert("Please allow pop-ups for this website.");
-        return;
-    }
-
-    printWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-
-        <head>
-
-            <title>${service.name} - Service Plan</title>
-
-            <style>
-
-                body {
-                    font-family: Arial, sans-serif;
-                    margin: 40px;
-                    color: #000;
-                }
-
-                h1 {
-                    text-align: center;
-                    margin-bottom: 5px;
-                }
-
-                .service-info {
-                    text-align: center;
-                    margin-bottom: 30px;
-                }
-
-                .print-song {
-                    border-bottom: 1px solid #ccc;
-                    padding: 15px 0;
-                    page-break-inside: avoid;
-                }
-
-                .print-song h2 {
-                    margin: 0 0 8px 0;
-                }
-
-                .print-song p {
-                    margin: 4px 0;
-                }
-
-                @media print {
-
-                    body {
-                        margin: 20mm;
-                    }
-
-                }
-
-            </style>
-
-        </head>
-
-        <body>
-
-            <h1>
-                ${service.name}
-            </h1>
-
-            <div class="service-info">
-
-                <strong>Service Plan</strong>
-
-                <br>
-
-                ${serviceSongs.length}
-                ${serviceSongs.length === 1 ? "Song" : "Songs"}
-
-            </div>
-
-            ${songsHtml}
-
-        </body>
-
-        </html>
-    `);
-
-    printWindow.document.close();
-
-    printWindow.focus();
-
+    // Give browser time to calculate the actual size
     setTimeout(function() {
 
-        printWindow.print();
+        const pageWidth = 794;   // A4 width at ~96 DPI
+        const pageHeight = 1123; // A4 height at ~96 DPI
 
-    }, 500);
+        const contentWidth =
+            printArea.scrollWidth;
+
+        const contentHeight =
+            printArea.scrollHeight;
+
+        if (
+            !contentWidth ||
+            !contentHeight
+        ) {
+
+            console.error(
+                "Unable to determine print area size."
+            );
+
+            return;
+
+        }
+
+        // Calculate required scale
+        const scaleX =
+            pageWidth / contentWidth;
+
+        const scaleY =
+            pageHeight / contentHeight;
+
+        const scale =
+            Math.min(
+                scaleX,
+                scaleY,
+                1
+            );
+
+        console.log(
+            "Print scale:",
+            scale
+        );
+
+        // Apply scale
+        printArea.style.transform =
+            "scale(" + scale + ")";
+
+        printArea.style.transformOrigin =
+            "top left";
+
+        // Print after scaling has been applied
+        setTimeout(function() {
+
+            window.print();
+
+        }, 300);
+
+    }, 100);
 
 }
 
-// IMPORTANT:
-// Makes onclick="printService()" work
-window.printService = printService;
+
+// Make available to HTML onclick=""
+window.fitToOnePage = fitToOnePage;
