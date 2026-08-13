@@ -1154,7 +1154,7 @@ else {
     console.log(
         "STANDALONE SONG - NO FIRESTORE SERVICE SAVE REQUIRED"
     );
-}
+},
 
 
 // ======================================================
