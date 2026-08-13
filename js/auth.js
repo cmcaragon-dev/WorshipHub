@@ -485,3 +485,139 @@ export function watchAuth(
     );
 
 }
+
+// ==========================================
+// DISPLAY LOGGED-IN USER NAME
+// ==========================================
+
+onAuthStateChanged(
+    auth,
+    async function (user) {
+
+        // --------------------------------------
+        // USER NOT LOGGED IN
+        // --------------------------------------
+
+        if (!user) {
+
+            return;
+        }
+
+
+        console.log(
+            "LOGGED-IN USER:",
+            user.email
+        );
+
+
+        // --------------------------------------
+        // GET USER NAME ELEMENT
+        // --------------------------------------
+
+        const userNameElement =
+            document.getElementById("userName");
+
+
+        if (!userNameElement) {
+
+            console.warn(
+                "#userName element not found."
+            );
+
+            return;
+        }
+
+
+        // --------------------------------------
+        // GET FIRESTORE PROFILE
+        // --------------------------------------
+
+        try {
+
+            const profile =
+                await getUserProfile(user);
+
+
+            // ----------------------------------
+            // GET NAME
+            // ----------------------------------
+
+            let displayName = "";
+
+
+            if (
+                profile &&
+                profile.name
+            ) {
+
+                displayName =
+                    profile.name.trim();
+
+            }
+
+
+            // ----------------------------------
+            // FALLBACK TO FIREBASE DISPLAY NAME
+            // ----------------------------------
+
+            if (
+                !displayName &&
+                user.displayName
+            ) {
+
+                displayName =
+                    user.displayName.trim();
+
+            }
+
+
+            // ----------------------------------
+            // FALLBACK TO EMAIL
+            // ----------------------------------
+
+            if (!displayName) {
+
+                displayName =
+                    user.email
+                        ? user.email.split("@")[0]
+                        : "User";
+
+            }
+
+
+            // ----------------------------------
+            // DISPLAY NAME
+            // ----------------------------------
+
+            userNameElement.textContent =
+                displayName;
+
+
+            console.log(
+                "WELCOME USER NAME:",
+                displayName
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "ERROR LOADING USER PROFILE:",
+                error
+            );
+
+
+            // ----------------------------------
+            // FINAL FALLBACK
+            // ----------------------------------
+
+            userNameElement.textContent =
+                user.email
+                    ? user.email.split("@")[0]
+                    : "User";
+
+        }
+
+    }
+);
