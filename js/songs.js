@@ -252,6 +252,14 @@ title: "Ikaw Lamang",
         category: "Worship",
         language: "Tagalog",
         file: "songs/ikawlamang.html"
+    },
+		{id:28,        
+title: "Alay Sa Pagsamba",
+        artist: "Rommel Guevara",
+        key: "A",
+        category: "Worship",
+        language: "Tagalog",
+        file: "songs/alaysapagsamba.html"
     }
 	
 ];
