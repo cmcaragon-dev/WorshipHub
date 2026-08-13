@@ -260,6 +260,14 @@ title: "Alay Sa Pagsamba",
         category: "Worship",
         language: "Tagalog",
         file: "songs/alaysapagsamba.html"
+    },
+	{id:28,        
+title: "Mahal na Mahal Kita Panginoon",
+        artist: "Rommel Guevara",
+        key: "G",
+        category: "Praise",
+        language: "Tagalog",
+        file: "songs/mahalnamahalkita.html"
     }
 	
 ];
