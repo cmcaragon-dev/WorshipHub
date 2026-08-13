@@ -2304,19 +2304,7 @@ const Presentation = {
         nextTitle
     );
 }
-
-
-// ==========================================================
-// GLOBAL FUNCTIONS FOR HTML BUTTONS
-// ==========================================================
-//
-// IMPORTANT:
-// Your always.html contains:
-// onclick="goHome()"
-//
-// Therefore goHome MUST be attached to window.
-// ==========================================================
-
+};
 
 // ==========================================================
 // HOME
