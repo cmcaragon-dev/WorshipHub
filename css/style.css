@@ -2599,74 +2599,80 @@ PRESENTATION NAVIGATION BUTTONS
 }
 
 /* ======================================================
-   NEXT SONG PREVIEW
+   SMALL NEXT SONG - LOWER RIGHT
    ====================================================== */
 
 #presentationScreen #nextSongPreview {
     position: fixed !important;
 
-    left: 50% !important;
-    bottom: 20px !important;
+    right: 15px !important;
+    bottom: 15px !important;
 
-    transform: translateX(-50%) !important;
+    left: auto !important;
+    top: auto !important;
+
+    transform: none !important;
 
     display: flex !important;
-
     flex-direction: column !important;
 
     align-items: center !important;
     justify-content: center !important;
 
-    width: auto !important;
-    min-width: 300px !important;
-    max-width: 80vw !important;
+    width: 170px !important;
+    min-width: 170px !important;
+    max-width: 170px !important;
 
-    padding: 12px 30px !important;
+    padding: 7px 10px !important;
 
-    background: rgba(0, 0, 0, 0.90) !important;
+    background: rgba(0, 0, 0, 0.75) !important;
 
-    border: 1px solid rgba(255,255,255,0.35) !important;
+    border-radius: 6px !important;
 
-    border-radius: 12px !important;
+    border: 1px solid rgba(255,255,255,0.20) !important;
 
-    color: #ffffff !important;
+    color: white !important;
+
+    text-align: center !important;
 
     z-index: 2147483647 !important;
 
     visibility: visible !important;
     opacity: 1 !important;
 
-    pointer-events: none !important;
-
     box-sizing: border-box !important;
+
+    pointer-events: none !important;
 }
+
+
+/* NEXT SONG */
 
 #presentationScreen #nextSongPreview .next-song-label {
-    display: block !important;
+    font-size: 8px !important;
 
-    color: #ffffff !important;
+    font-weight: 700 !important;
 
-    font-size: 12px !important;
+    letter-spacing: 1.5px !important;
 
-    font-weight: 800 !important;
+    margin-bottom: 2px !important;
 
-    letter-spacing: 2px !important;
-
-    margin-bottom: 5px !important;
+    opacity: 0.65 !important;
 }
 
+
+/* SONG TITLE */
+
 #presentationScreen #nextSongPreview .next-song-title {
-    display: block !important;
+    font-size: 12px !important;
 
-    color: #ffffff !important;
-
-    font-size: 22px !important;
-
-    font-weight: 800 !important;
+    font-weight: 700 !important;
 
     line-height: 1.2 !important;
 
     text-align: center !important;
+
+    word-break: break-word !important;
 }
 
 /* ==========================================================
