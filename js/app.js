@@ -387,7 +387,7 @@ function searchAllSongs() {
         const language =
             String(song.language || "")
                 .toLowerCase();
-       const language =
+       const key =
             String(song.key || "")
                 .toLowerCase();
 
