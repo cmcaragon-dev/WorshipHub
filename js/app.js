@@ -338,7 +338,256 @@ function closeAllSongs() {
 
 }
 
+// ==========================================
+// ALL SONGS SEARCH
+// ==========================================
 
+function searchAllSongs() {
+
+    const searchInput =
+        document.getElementById("allSongsSearch");
+
+    const tableBody =
+        document.getElementById("allSongsTableBody");
+
+    if (!searchInput || !tableBody) {
+
+        console.error(
+            "All Songs search elements not found."
+        );
+
+        return;
+
+    }
+
+    const keyword =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+    // Filter songs
+    const filteredSongs = songs.filter(function(song) {
+
+        const title =
+            String(song.title || "")
+                .toLowerCase();
+
+        const artist =
+            String(song.artist || "")
+                .toLowerCase();
+
+        const category =
+            String(song.category || "")
+                .toLowerCase();
+
+        const language =
+            String(song.language || "")
+                .toLowerCase();
+
+
+        return (
+
+            title.includes(keyword) ||
+
+            artist.includes(keyword) ||
+
+            category.includes(keyword) ||
+
+            language.includes(keyword)
+
+        );
+
+    });
+
+
+    renderAllSongsTable(filteredSongs);
+
+}
+
+
+// ==========================================
+// CLEAR ALL SONGS SEARCH
+// ==========================================
+
+function clearAllSongsSearch() {
+
+    const searchInput =
+        document.getElementById("allSongsSearch");
+
+    if (searchInput) {
+
+        searchInput.value = "";
+
+    }
+
+    renderAllSongsTable(songs);
+
+}
+
+
+// ==========================================
+// RENDER ALL SONGS TABLE
+// ==========================================
+
+function renderAllSongsTable(songList) {
+
+    const tableBody =
+        document.getElementById("allSongsTableBody");
+
+    if (!tableBody) {
+
+        console.error(
+            "allSongsTableBody not found."
+        );
+
+        return;
+
+    }
+
+
+    tableBody.innerHTML = "";
+
+
+    if (!songList || songList.length === 0) {
+
+        tableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    style="
+                        text-align:center;
+                        padding:40px;
+                        color:#98a2b3;
+                    ">
+
+                    🔍 No songs found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    songList.forEach(function(song, index) {
+
+        const row =
+            document.createElement("tr");
+
+
+        // ----------------------------------
+        // SONG TITLE
+        // ----------------------------------
+
+        const titleCell =
+            document.createElement("td");
+
+        titleCell.innerHTML = `
+
+            <a
+                href="${song.file || "#"}"
+                class="all-song-title">
+
+                ${song.title || "Untitled Song"}
+
+            </a>
+
+        `;
+
+
+        // ----------------------------------
+        // ARTIST
+        // ----------------------------------
+
+        const artistCell =
+            document.createElement("td");
+
+        artistCell.textContent =
+            song.artist || "—";
+
+
+        // ----------------------------------
+        // CATEGORY
+        // ----------------------------------
+
+        const categoryCell =
+            document.createElement("td");
+
+        categoryCell.textContent =
+            song.category || "—";
+
+
+        // ----------------------------------
+        // LANGUAGE
+        // ----------------------------------
+
+        const languageCell =
+            document.createElement("td");
+
+        languageCell.textContent =
+            song.language || "—";
+
+
+        // ----------------------------------
+        // NUMBER
+        // ----------------------------------
+
+        const numberCell =
+            document.createElement("td");
+
+        numberCell.textContent =
+            index + 1;
+
+
+        row.appendChild(numberCell);
+
+        row.appendChild(titleCell);
+
+        row.appendChild(artistCell);
+
+        row.appendChild(categoryCell);
+
+        row.appendChild(languageCell);
+
+
+        tableBody.appendChild(row);
+
+    });
+
+}
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const searchInput =
+            document.getElementById("allSongsSearch");
+
+        if (!searchInput) {
+            return;
+        }
+
+        searchInput.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    searchAllSongs();
+
+                }
+
+            }
+        );
+
+    }
+);
 // ==========================================
 // MAKE AVAILABLE TO HTML onclick=""
 // ==========================================
