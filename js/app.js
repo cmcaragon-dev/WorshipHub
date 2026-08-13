@@ -421,10 +421,13 @@ function clearAllSongsSearch() {
 
     }
 
+    // Show all songs again
     renderAllSongsTable(songs);
 
 }
 
+// Make available to HTML onclick=""
+window.clearAllSongsSearch = clearAllSongsSearch;
 
 // ==========================================
 // RENDER ALL SONGS TABLE
