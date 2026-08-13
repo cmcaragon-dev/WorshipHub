@@ -2058,65 +2058,203 @@ const Presentation = {
     },
 
 
-    // ======================================================
-    // UPDATE PRESENTATION
-    // ======================================================
+   // ======================================================
+// UPDATE PRESENTATION
+// ======================================================
 
-   async update() {
+async update() {
 
-    console.log("================================");
-    console.log("UPDATING PRESENTATION");
-    console.log("================================");
+    console.log(
+        "========================================"
+    );
+
+    console.log(
+        "UPDATING PRESENTATION"
+    );
+
+    console.log(
+        "========================================"
+    );
+
+
+    // ==================================================
+    // PRESENTATION MODE
+    // ==================================================
 
     const mode =
-        localStorage.getItem("presentationMode");
+        localStorage.getItem(
+            "presentationMode"
+        );
+
+    console.log(
+        "PRESENTATION MODE:",
+        mode
+    );
+
+
+    // ==================================================
+    // COUNTER
+    // ==================================================
 
     const counter =
         document.getElementById(
             "presentationCounter"
         );
 
-    const preview =
+
+    // ==================================================
+    // GET / CREATE NEXT SONG PREVIEW
+    // ==================================================
+
+    let preview =
         document.getElementById(
             "nextSongPreview"
         );
 
-    console.log("PRESENTATION MODE:", mode);
-    console.log("PREVIEW ELEMENT:", preview);
 
-    // ======================================================
-    // STANDALONE SONG
-    // ======================================================
+    /*
+     * If nextSongPreview does not exist in the HTML,
+     * create it automatically.
+     */
 
-    if (mode === "standalone") {
+    if (!preview) {
 
         console.log(
-            "UPDATE: STANDALONE MODE"
+            "nextSongPreview not found - creating it"
+        );
+
+        const presentationScreen =
+            document.getElementById(
+                "presentationScreen"
+            );
+
+        if (!presentationScreen) {
+
+            console.error(
+                "presentationScreen not found"
+            );
+
+            return;
+        }
+
+
+        preview =
+            document.createElement(
+                "div"
+            );
+
+        preview.id =
+            "nextSongPreview";
+
+
+        // ------------------------------------------------
+        // PREVIEW STYLE
+        // ------------------------------------------------
+
+        preview.style.position =
+            "absolute";
+
+        preview.style.left =
+            "50%";
+
+        preview.style.bottom =
+            "25px";
+
+        preview.style.transform =
+            "translateX(-50%)";
+
+        preview.style.zIndex =
+            "999999";
+
+        preview.style.display =
+            "flex";
+
+        preview.style.flexDirection =
+            "column";
+
+        preview.style.alignItems =
+            "center";
+
+        preview.style.justifyContent =
+            "center";
+
+        preview.style.textAlign =
+            "center";
+
+        preview.style.padding =
+            "10px 30px";
+
+        preview.style.minWidth =
+            "280px";
+
+        preview.style.maxWidth =
+            "80%";
+
+        preview.style.background =
+            "rgba(0, 0, 0, 0.85)";
+
+        preview.style.borderRadius =
+            "12px";
+
+        preview.style.border =
+            "1px solid rgba(255,255,255,0.3)";
+
+        preview.style.boxShadow =
+            "0 5px 25px rgba(0,0,0,0.6)";
+
+        preview.style.color =
+            "#ffffff";
+
+        preview.style.pointerEvents =
+            "none";
+
+
+        presentationScreen.appendChild(
+            preview
+        );
+
+
+        console.log(
+            "nextSongPreview CREATED"
+        );
+    }
+
+
+    // ==================================================
+    // STANDALONE SONG
+    // ==================================================
+
+    if (
+        mode === "standalone"
+    ) {
+
+        console.log(
+            "UPDATE: STANDALONE SONG"
         );
 
         if (counter) {
+
             counter.innerText =
                 "Standalone Song";
         }
 
-        if (preview) {
+        preview.innerHTML =
+            "";
 
-            preview.innerHTML = "";
-
-            preview.style.display =
-                "none";
-        }
+        preview.style.display =
+            "none";
 
         return;
     }
 
 
-    // ======================================================
+    // ==================================================
     // GET ACTIVE SERVICE
-    // ======================================================
+    // ==================================================
 
     const service =
         await Service.getCurrent();
+
 
     if (!service) {
 
@@ -2126,7 +2264,8 @@ const Presentation = {
 
         if (preview) {
 
-            preview.innerHTML = "";
+            preview.innerHTML =
+                "";
 
             preview.style.display =
                 "none";
@@ -2136,12 +2275,14 @@ const Presentation = {
     }
 
 
-    // ======================================================
-    // SONGS
-    // ======================================================
+    // ==================================================
+    // GET SONGS
+    // ==================================================
 
     const songs =
-        Array.isArray(service.songs)
+        Array.isArray(
+            service.songs
+        )
             ? service.songs
             : [];
 
@@ -2153,8 +2294,8 @@ const Presentation = {
 
 
     console.log(
-        "SERVICE SONG COUNT:",
-        songs.length
+        "SERVICE:",
+        service.name
     );
 
     console.log(
@@ -2162,23 +2303,15 @@ const Presentation = {
         index
     );
 
-
-    // ======================================================
-    // CURRENT SONG
-    // ======================================================
-
-    const currentSong =
-        songs[index];
-
     console.log(
-        "CURRENT SONG:",
-        currentSong
+        "TOTAL SONGS:",
+        songs.length
     );
 
 
-    // ======================================================
+    // ==================================================
     // COUNTER
-    // ======================================================
+    // ==================================================
 
     if (counter) {
 
@@ -2187,102 +2320,114 @@ const Presentation = {
     }
 
 
-    // ======================================================
-    // PREVIEW ELEMENT CHECK
-    // ======================================================
-
-    if (!preview) {
-
-        console.error(
-            "NEXT SONG PREVIEW ELEMENT #nextSongPreview NOT FOUND"
-        );
-
-        return;
-    }
-
-
-    // ======================================================
-    // NO NEXT SONG
-    // ======================================================
+    // ==================================================
+    // CHECK NEXT SONG
+    // ==================================================
 
     if (
-        index < 0 ||
-        index >= songs.length - 1
+        index >= 0 &&
+        index < songs.length - 1
     ) {
 
-        console.log(
-            "NO NEXT SONG"
-        );
+        const nextSong =
+            songs[index + 1];
 
-        preview.innerHTML = `
-            <span class="next-song-label">
-                NEXT SONG
-            </span>
 
-            <span class="next-song-title">
-                End of Service
-            </span>
-        `;
+        if (nextSong) {
 
-        preview.style.display =
-            "flex";
+            const nextTitle =
+                nextSong.title ||
+                nextSong.name ||
+                "Untitled Song";
 
-        return;
+
+            console.log(
+                "NEXT SONG:",
+                nextTitle
+            );
+
+
+            // ==========================================
+            // DISPLAY
+            // ==========================================
+
+            preview.innerHTML = `
+
+                <div
+                    style="
+                        font-size:12px;
+                        font-weight:800;
+                        letter-spacing:2px;
+                        margin-bottom:5px;
+                        opacity:0.75;
+                    "
+                >
+                    NEXT SONG
+                </div>
+
+                <div
+                    style="
+                        font-size:22px;
+                        font-weight:800;
+                        line-height:1.2;
+                    "
+                >
+                    ${nextTitle}
+                </div>
+
+            `;
+
+
+            preview.style.display =
+                "flex";
+
+            preview.style.visibility =
+                "visible";
+
+            preview.style.opacity =
+                "1";
+
+
+            console.log(
+                "NEXT SONG PREVIEW DISPLAYED:",
+                nextTitle
+            );
+
+            return;
+        }
     }
 
 
-    // ======================================================
-    // GET NEXT SONG
-    // ======================================================
-
-    const nextSong =
-        songs[index + 1];
-
-
-    if (!nextSong) {
-
-        console.warn(
-            "NEXT SONG DOES NOT EXIST"
-        );
-
-        preview.innerHTML = "";
-
-        preview.style.display =
-            "none";
-
-        return;
-    }
-
-
-    // ======================================================
-    // NEXT SONG TITLE
-    // ======================================================
-
-    const nextTitle =
-        nextSong.title ||
-        nextSong.name ||
-        "Untitled Song";
-
+    // ==================================================
+    // END OF SERVICE
+    // ==================================================
 
     console.log(
-        "NEXT SONG:",
-        nextTitle
+        "NO NEXT SONG - END OF SERVICE"
     );
 
 
-    // ======================================================
-    // DISPLAY NEXT SONG
-    // ======================================================
-
     preview.innerHTML = `
 
-        <span class="next-song-label">
+        <div
+            style="
+                font-size:12px;
+                font-weight:800;
+                letter-spacing:2px;
+                opacity:0.75;
+            "
+        >
             NEXT SONG
-        </span>
+        </div>
 
-        <span class="next-song-title">
-            ${nextTitle}
-        </span>
+        <div
+            style="
+                font-size:20px;
+                font-weight:700;
+            "
+        >
+            End of Service
+        </div>
 
     `;
 
@@ -2290,19 +2435,11 @@ const Presentation = {
     preview.style.display =
         "flex";
 
-
     preview.style.visibility =
         "visible";
 
-
     preview.style.opacity =
         "1";
-
-
-    console.log(
-        "NEXT SONG PREVIEW DISPLAYED:",
-        nextTitle
-    );
 }
 };
 
