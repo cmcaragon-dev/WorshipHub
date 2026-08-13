@@ -1120,22 +1120,30 @@ const Service = {
 
     getKey() {
 
-        const song =
-            window.currentSong;
+    const song =
+        window.currentSong;
 
-        if (!song) {
-            return "";
-        }
+    if (!song) {
+        return "";
+    }
 
-        return getTransposedKey(
-            song.key ||
-            song.originalKey ||
-            song.serviceKey,
-            Math.round(
-                App.transpose * 2
-            )
-        );
-    },
+    // Service Key should have priority
+    const baseKey =
+        song.serviceKey ||
+        song.key ||
+        song.originalKey;
+
+    if (!baseKey) {
+        return "";
+    }
+
+    return getTransposedKey(
+        baseKey,
+        Math.round(
+            App.transpose * 2
+        )
+    );
+},
 
 
     // ======================================================
@@ -1705,7 +1713,34 @@ const Presentation = {
 
         window.currentSong =
             song;
+// ==================================================
+// UPDATE SERVICE KEY FOR STANDALONE SONG
+// ==================================================
 
+App.transpose =
+    Number(
+        song.transpose || 0
+    );
+
+this.updateKeyDisplay();
+
+this.updateGuide();
+
+const transposeDisplay =
+    document.getElementById(
+        "transposeValue"
+    );
+
+if (transposeDisplay) {
+
+    transposeDisplay.innerText =
+        (
+            App.transpose >= 0
+                ? "+"
+                : ""
+        ) +
+        App.transpose.toFixed(1);
+}
         localStorage.setItem(
             "presentationMode",
             "standalone"
