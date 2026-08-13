@@ -198,6 +198,175 @@ console.log(
     }
 
 });
+// ==========================================
+// ALL SONGS
+// ==========================================
+
+function showAllSongs() {
+
+    const panel =
+        document.getElementById("allSongsPanel");
+
+    const tableBody =
+        document.getElementById("allSongsTableBody");
+
+    const count =
+        document.getElementById("allSongsCount");
+
+    if (!panel || !tableBody) {
+
+        console.error(
+            "All Songs elements not found."
+        );
+
+        return;
+    }
+
+    // Clear existing rows
+    tableBody.innerHTML = "";
+
+    // Make sure songs exists
+    if (!Array.isArray(songs)) {
+
+        console.error(
+            "Songs array not found."
+        );
+
+        return;
+    }
+
+    // Sort songs alphabetically
+    const allSongs =
+        [...songs].sort(function(a, b) {
+
+            return (a.title || "").localeCompare(
+                b.title || ""
+            );
+
+        });
+
+    // Update count
+    if (count) {
+
+        count.textContent =
+            allSongs.length +
+            (allSongs.length === 1
+                ? " Song"
+                : " Songs");
+
+    }
+
+    // Create table rows
+    allSongs.forEach(function(song, index) {
+
+        const row =
+            document.createElement("tr");
+
+        // ----------------------------------
+        // SONG TITLE
+        // ----------------------------------
+
+        const titleCell =
+            document.createElement("td");
+
+        const songLink =
+            document.createElement("a");
+
+        songLink.href =
+            song.file || "#";
+
+        songLink.textContent =
+            song.title || "Untitled Song";
+
+        songLink.className =
+            "all-song-title";
+
+        // ----------------------------------
+        // ARTIST
+        // ----------------------------------
+
+        const artistCell =
+            document.createElement("td");
+
+        artistCell.textContent =
+            song.artist || "-";
+
+        // ----------------------------------
+        // CATEGORY
+        // ----------------------------------
+
+        const categoryCell =
+            document.createElement("td");
+
+        categoryCell.textContent =
+            song.category || "-";
+
+        // ----------------------------------
+        // KEY
+        // ----------------------------------
+
+        const keyCell =
+            document.createElement("td");
+
+        keyCell.textContent =
+            song.key || "-";
+
+        // ----------------------------------
+        // NUMBER
+        // ----------------------------------
+
+        const numberCell =
+            document.createElement("td");
+
+        numberCell.textContent =
+            index + 1;
+
+        // ----------------------------------
+        // BUILD ROW
+        // ----------------------------------
+
+        titleCell.appendChild(songLink);
+
+        row.appendChild(numberCell);
+        row.appendChild(titleCell);
+        row.appendChild(artistCell);
+        row.appendChild(categoryCell);
+        row.appendChild(keyCell);
+
+        tableBody.appendChild(row);
+
+    });
+
+    // Show panel
+    panel.classList.add("show");
+
+}
+
+
+// ==========================================
+// CLOSE ALL SONGS
+// ==========================================
+
+function closeAllSongs() {
+
+    const panel =
+        document.getElementById("allSongsPanel");
+
+    if (panel) {
+
+        panel.classList.remove("show");
+
+    }
+
+}
+
+
+// Make available to HTML onclick=""
+window.showAllSongs =
+    showAllSongs;
+
+window.closeAllSongs =
+    closeAllSongs;
 
 /* =====================================
    SAVE SERVICES TO FIREBASE
