@@ -213,26 +213,43 @@ All Songs
      ALL SONGS PANEL
 ====================================== -->
 
-<div id="allSongsPanel" class="all-songs-panel">
+<div class="all-songs-panel" id="allSongsPanel">
 
     <div class="all-songs-header">
 
         <div>
-
             <h2>🎵 All Songs</h2>
-
-            <p>
-                Complete WorshipHub song library
-            </p>
-
+            <p>Complete song library</p>
         </div>
 
         <button
             class="close-all-songs"
             onclick="closeAllSongs()">
-
             ✖
+        </button>
 
+    </div>
+
+
+    <!-- SEARCH -->
+    <div class="all-songs-search">
+
+        <input
+            type="text"
+            id="allSongsSearch"
+            placeholder="Search by song title, artist, category or language..."
+            autocomplete="off">
+
+        <button
+            type="button"
+            onclick="searchAllSongs()">
+            🔍 Search
+        </button>
+
+        <button
+            type="button"
+            onclick="clearAllSongsSearch()">
+            ✖ Clear
         </button>
 
     </div>
@@ -243,25 +260,16 @@ All Songs
         <table class="all-songs-table">
 
             <thead>
-
                 <tr>
-
                     <th>#</th>
-
                     <th>Song Title</th>
-
                     <th>Artist</th>
-
                     <th>Category</th>
-
-                    <th>Key</th>
-
+                    <th>Language</th>
                 </tr>
-
             </thead>
 
             <tbody id="allSongsTableBody">
-
             </tbody>
 
         </table>
