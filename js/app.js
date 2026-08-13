@@ -2288,3 +2288,153 @@ function sortPlaylists() {
     });
 
 }
+// ==========================================
+// PRINT CURRENT SERVICE
+// ==========================================
+
+function printService() {
+
+    const service = getCurrentService();
+
+    if (!service) {
+        alert("No active service selected.");
+        return;
+    }
+
+    const serviceSongs = Array.isArray(service.songs)
+        ? service.songs
+        : [];
+
+    if (serviceSongs.length === 0) {
+        alert("This service has no songs.");
+        return;
+    }
+
+    let songsHtml = "";
+
+    serviceSongs.forEach(function(song, index) {
+
+        songsHtml += `
+            <div class="print-song">
+
+                <h2>
+                    ${index + 1}. ${song.title || "Untitled Song"}
+                </h2>
+
+                <p>
+                    <strong>Artist:</strong>
+                    ${song.artist || ""}
+                </p>
+
+                <p>
+                    <strong>Service Key:</strong>
+                    ${song.serviceKey || song.key || ""}
+                </p>
+
+            </div>
+        `;
+
+    });
+
+    const printWindow = window.open(
+        "",
+        "_blank",
+        "width=900,height=700"
+    );
+
+    if (!printWindow) {
+        alert("Please allow pop-ups for this website.");
+        return;
+    }
+
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+
+        <head>
+
+            <title>${service.name} - Service Plan</title>
+
+            <style>
+
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 40px;
+                    color: #000;
+                }
+
+                h1 {
+                    text-align: center;
+                    margin-bottom: 5px;
+                }
+
+                .service-info {
+                    text-align: center;
+                    margin-bottom: 30px;
+                }
+
+                .print-song {
+                    border-bottom: 1px solid #ccc;
+                    padding: 15px 0;
+                    page-break-inside: avoid;
+                }
+
+                .print-song h2 {
+                    margin: 0 0 8px 0;
+                }
+
+                .print-song p {
+                    margin: 4px 0;
+                }
+
+                @media print {
+
+                    body {
+                        margin: 20mm;
+                    }
+
+                }
+
+            </style>
+
+        </head>
+
+        <body>
+
+            <h1>
+                ${service.name}
+            </h1>
+
+            <div class="service-info">
+
+                <strong>Service Plan</strong>
+
+                <br>
+
+                ${serviceSongs.length}
+                ${serviceSongs.length === 1 ? "Song" : "Songs"}
+
+            </div>
+
+            ${songsHtml}
+
+        </body>
+
+        </html>
+    `);
+
+    printWindow.document.close();
+
+    printWindow.focus();
+
+    setTimeout(function() {
+
+        printWindow.print();
+
+    }, 500);
+
+}
+
+// IMPORTANT:
+// Makes onclick="printService()" work
+window.printService = printService;
