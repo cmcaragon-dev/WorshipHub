@@ -261,6 +261,8 @@ function showAllSongs() {
             song.category || "";
 
         const key =
+            song.language || "";
+         const key =
             song.key || "";
 
 
@@ -291,7 +293,9 @@ function showAllSongs() {
             </td>
 
             <td>
-                ${key}
+                ${language}
+            </td>
+              ${key}
             </td>
 
         `;
@@ -384,6 +388,9 @@ function searchAllSongs() {
         const language =
             String(song.language || "")
                 .toLowerCase();
+       const language =
+            String(song.key || "")
+                .toLowerCase();
 
 
         return (
@@ -393,8 +400,10 @@ function searchAllSongs() {
             artist.includes(keyword) ||
 
             category.includes(keyword) ||
+           
+             language.includes(keyword) ||
 
-            language.includes(keyword)
+            key.includes(keyword)
 
         );
 
@@ -537,6 +546,16 @@ function renderAllSongsTable(songList) {
         languageCell.textContent =
             song.language || "—";
 
+       // ----------------------------------
+        // LANGUAGE
+        // ----------------------------------
+
+        const keyCell =
+            document.createElement("td");
+
+        keyCell.textContent =
+            song.key || "—";
+
 
         // ----------------------------------
         // NUMBER
@@ -558,6 +577,8 @@ function renderAllSongsTable(songList) {
         row.appendChild(categoryCell);
 
         row.appendChild(languageCell);
+
+         row.appendChild(keyCell);
 
 
         tableBody.appendChild(row);
