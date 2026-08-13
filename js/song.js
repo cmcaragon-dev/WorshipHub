@@ -2380,131 +2380,24 @@ document.addEventListener(
 );
 
 // ==========================================
-// PRINT - FIT EXACTLY ONE A4 PAGE
+// PRINT - ONE A4 LANDSCAPE PAGE
 // ==========================================
 
 function fitToOnePage() {
 
-    const printArea =
-        document.querySelector(".presentation") ||
-        document.getElementById("presentation");
+    document.body.classList.add("print-one-page");
 
-    if (!printArea) {
-
-        alert("Presentation area not found.");
-
-        console.error(
-            "No .presentation or #presentation element found."
-        );
-
-        return;
-    }
-
-    // Remove previous print class
-    document.body.classList.remove(
-        "printing-one-page"
-    );
-
-    // Reset previous print scaling
-    printArea.style.transform = "";
-    printArea.style.transformOrigin = "";
-    printArea.style.width = "";
-    printArea.style.height = "";
-
-    // Allow browser to calculate the real dimensions
-    setTimeout(function () {
-
-        const A4_WIDTH = 794;
-        const A4_HEIGHT = 1123;
-
-        const availableWidth = A4_WIDTH - 60;
-        const availableHeight = A4_HEIGHT - 60;
-
-        const contentWidth =
-            printArea.scrollWidth;
-
-        const contentHeight =
-            printArea.scrollHeight;
-
-        console.log(
-            "Content width:",
-            contentWidth
-        );
-
-        console.log(
-            "Content height:",
-            contentHeight
-        );
-
-        // Calculate required scale
-        const widthScale =
-            availableWidth / contentWidth;
-
-        const heightScale =
-            availableHeight / contentHeight;
-
-        let scale =
-            Math.min(
-                widthScale,
-                heightScale
-            );
-
-        // Never enlarge content
-        scale = Math.min(scale, 1);
-
-        console.log(
-            "Calculated print scale:",
-            scale
-        );
-
-        // Apply scaling ONLY to presentation
-        printArea.style.transform =
-            `scale(${scale})`;
-
-        printArea.style.transformOrigin =
-            "top left";
-
-        // Tell CSS we are printing
-        document.body.classList.add(
-            "printing-one-page"
-        );
-
-        // Give browser time to apply styles
-        setTimeout(function () {
-
-            window.print();
-
-        }, 300);
-
-    }, 100);
+    window.print();
 
 }
 
-
-// Make available to HTML onclick
-window.fitToOnePage =
-    fitToOnePage;
+// Make available to HTML onclick=""
+window.fitToOnePage = fitToOnePage;
 
 
-// Restore screen after printing
-window.addEventListener(
-    "afterprint",
-    function () {
+// Remove print class after printing
+window.addEventListener("afterprint", function () {
 
-        const printArea =
-            document.querySelector(".presentation") ||
-            document.getElementById("presentation");
+    document.body.classList.remove("print-one-page");
 
-        if (printArea) {
-
-            printArea.style.transform = "";
-            printArea.style.transformOrigin = "";
-
-        }
-
-        document.body.classList.remove(
-            "printing-one-page"
-        );
-
-    }
-);
+});
