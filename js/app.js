@@ -204,97 +204,17 @@ console.log(
 
 function showAllSongs() {
 
-    const songGrid = document.getElementById("songGrid");
+    const panel =
+        document.getElementById("allSongsPanel");
 
-    if (!songGrid) {
-
-        console.error("songGrid not found.");
-
-        return;
-
-    }
-
-    // Clear current song cards
-    songGrid.innerHTML = "";
-
-    // ==========================================
-    // CREATE MODERN TABLE
-    // ==========================================
-
-    const tableWrapper = document.createElement("div");
-
-    tableWrapper.className = "all-songs-table-wrapper";
-
-    tableWrapper.innerHTML = `
-
-        <div class="all-songs-header">
-
-            <div>
-
-                <h2>🎵 All Songs</h2>
-
-                <p>
-                    Complete song library
-                </p>
-
-            </div>
-
-            <div class="all-songs-total">
-
-                ${songs.length} Songs
-
-            </div>
-
-        </div>
-
-
-        <div class="table-responsive">
-
-            <table class="all-songs-table">
-
-                <thead>
-
-                    <tr>
-
-                        <th>#</th>
-
-                        <th>Song Title</th>
-
-                        <th>Artist</th>
-
-                        <th>Category</th>
-
-                        <th>Key</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="allSongsTableBody">
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    `;
-
-    songGrid.appendChild(tableWrapper);
-
-
-    // ==========================================
-    // TABLE BODY
-    // ==========================================
-
-    const tbody =
+    const tableBody =
         document.getElementById("allSongsTableBody");
 
 
-    if (!tbody) {
+    if (!panel || !tableBody) {
 
         console.error(
-            "allSongsTableBody not found."
+            "All Songs panel elements not found."
         );
 
         return;
@@ -302,21 +222,27 @@ function showAllSongs() {
     }
 
 
-    // ==========================================
-    // SORT SONGS
-    // ==========================================
+    // Clear previous rows
 
-    const allSongs = [...songs].sort(function(a, b) {
-
-        return (a.title || "").localeCompare(
-            b.title || ""
-        );
-
-    });
+    tableBody.innerHTML = "";
 
 
     // ==========================================
-    // CREATE ROWS
+    // SORT SONGS ALPHABETICALLY
+    // ==========================================
+
+    const allSongs =
+        [...songs].sort(function(a, b) {
+
+            return (a.title || "").localeCompare(
+                b.title || ""
+            );
+
+        });
+
+
+    // ==========================================
+    // CREATE TABLE ROWS
     // ==========================================
 
     allSongs.forEach(function(song, index) {
@@ -340,19 +266,15 @@ function showAllSongs() {
 
         row.innerHTML = `
 
-            <td class="song-number">
-
+            <td>
                 ${index + 1}
-
             </td>
 
-
-            <td class="song-title-cell">
+            <td>
 
                 <a
                     href="${song.file}"
-                    class="all-song-title"
-                >
+                    class="all-song-title">
 
                     🎵 ${title}
 
@@ -360,41 +282,31 @@ function showAllSongs() {
 
             </td>
 
-
             <td>
-
                 ${artist}
-
             </td>
 
-
             <td>
-
-                <span class="song-category">
-
-                    ${category}
-
-                </span>
-
+                ${category}
             </td>
 
-
             <td>
-
-                <span class="song-key">
-
-                    ${key}
-
-                </span>
-
+                ${key}
             </td>
 
         `;
 
 
-        tbody.appendChild(row);
+        tableBody.appendChild(row);
 
     });
+
+
+    // ==========================================
+    // SHOW PANEL
+    // ==========================================
+
+    panel.classList.add("show");
 
 
     console.log(
@@ -405,8 +317,37 @@ function showAllSongs() {
 }
 
 
-// Make available to HTML onclick=""
-window.showAllSongs = showAllSongs;
+// ==========================================
+// CLOSE ALL SONGS
+// ==========================================
+
+function closeAllSongs() {
+
+    const panel =
+        document.getElementById("allSongsPanel");
+
+
+    if (!panel) {
+
+        return;
+
+    }
+
+
+    panel.classList.remove("show");
+
+}
+
+
+// ==========================================
+// MAKE AVAILABLE TO HTML onclick=""
+// ==========================================
+
+window.showAllSongs =
+    showAllSongs;
+
+window.closeAllSongs =
+    closeAllSongs;
 
 /* =====================================
    SAVE SERVICES TO FIREBASE
