@@ -3715,3 +3715,98 @@ body.dark .service-body{
     }
 
 }
+/* ==========================================
+   ALL SONGS SEARCH
+   ========================================== */
+
+.all-songs-search {
+
+    max-width: 1200px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+}
+
+.all-songs-search input {
+
+    flex: 1;
+
+    height: 46px;
+
+    padding: 0 16px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    background: white;
+
+}
+
+.all-songs-search input:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+
+}
+
+.all-songs-search button {
+
+    height: 46px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+.all-songs-search button:hover {
+
+    opacity: 0.9;
+
+}
+
+.all-songs-search button:last-child {
+
+    background: #e9edf3;
+
+    color: #344054;
+
+}
+
+
+@media (max-width: 700px) {
+
+    .all-songs-search {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+}
