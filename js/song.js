@@ -2378,3 +2378,101 @@ document.addEventListener(
         }
     }
 );
+
+// ==========================================
+// PRINT - FIT TO ONE A4 PAGE
+// ==========================================
+
+function fitToOnePage() {
+
+    const printArea =
+        document.querySelector(".presentation") ||
+        document.getElementById("presentation") ||
+        document.body;
+
+    if (!printArea) {
+
+        console.error("Print area not found.");
+
+        return;
+
+    }
+
+    // Save original styles
+    const originalTransform =
+        printArea.style.transform;
+
+    const originalTransformOrigin =
+        printArea.style.transformOrigin;
+
+    // Remove previous scaling
+    printArea.style.transform = "none";
+
+    printArea.style.transformOrigin =
+        "top left";
+
+    // Give browser time to calculate the actual size
+    setTimeout(function() {
+
+        const pageWidth = 794;   // A4 width at ~96 DPI
+        const pageHeight = 1123; // A4 height at ~96 DPI
+
+        const contentWidth =
+            printArea.scrollWidth;
+
+        const contentHeight =
+            printArea.scrollHeight;
+
+        if (
+            !contentWidth ||
+            !contentHeight
+        ) {
+
+            console.error(
+                "Unable to determine print area size."
+            );
+
+            return;
+
+        }
+
+        // Calculate required scale
+        const scaleX =
+            pageWidth / contentWidth;
+
+        const scaleY =
+            pageHeight / contentHeight;
+
+        const scale =
+            Math.min(
+                scaleX,
+                scaleY,
+                1
+            );
+
+        console.log(
+            "Print scale:",
+            scale
+        );
+
+        // Apply scale
+        printArea.style.transform =
+            "scale(" + scale + ")";
+
+        printArea.style.transformOrigin =
+            "top left";
+
+        // Print after scaling has been applied
+        setTimeout(function() {
+
+            window.print();
+
+        }, 300);
+
+    }, 100);
+
+}
+
+
+// Make available to HTML onclick=""
+window.fitToOnePage = fitToOnePage;
