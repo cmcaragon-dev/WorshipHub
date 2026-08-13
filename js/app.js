@@ -204,169 +204,209 @@ console.log(
 
 function showAllSongs() {
 
-    const panel =
-        document.getElementById("allSongsPanel");
+    const songGrid = document.getElementById("songGrid");
 
-    const tableBody =
+    if (!songGrid) {
+
+        console.error("songGrid not found.");
+
+        return;
+
+    }
+
+    // Clear current song cards
+    songGrid.innerHTML = "";
+
+    // ==========================================
+    // CREATE MODERN TABLE
+    // ==========================================
+
+    const tableWrapper = document.createElement("div");
+
+    tableWrapper.className = "all-songs-table-wrapper";
+
+    tableWrapper.innerHTML = `
+
+        <div class="all-songs-header">
+
+            <div>
+
+                <h2>🎵 All Songs</h2>
+
+                <p>
+                    Complete song library
+                </p>
+
+            </div>
+
+            <div class="all-songs-total">
+
+                ${songs.length} Songs
+
+            </div>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table class="all-songs-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>Song Title</th>
+
+                        <th>Artist</th>
+
+                        <th>Category</th>
+
+                        <th>Key</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="allSongsTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+
+    songGrid.appendChild(tableWrapper);
+
+
+    // ==========================================
+    // TABLE BODY
+    // ==========================================
+
+    const tbody =
         document.getElementById("allSongsTableBody");
 
-    const count =
-        document.getElementById("allSongsCount");
 
-    if (!panel || !tableBody) {
+    if (!tbody) {
 
         console.error(
-            "All Songs elements not found."
+            "allSongsTableBody not found."
         );
 
         return;
+
     }
 
-    // Clear existing rows
-    tableBody.innerHTML = "";
 
-    // Make sure songs exists
-    if (!Array.isArray(songs)) {
+    // ==========================================
+    // SORT SONGS
+    // ==========================================
 
-        console.error(
-            "Songs array not found."
+    const allSongs = [...songs].sort(function(a, b) {
+
+        return (a.title || "").localeCompare(
+            b.title || ""
         );
 
-        return;
-    }
+    });
 
-    // Sort songs alphabetically
-    const allSongs =
-        [...songs].sort(function(a, b) {
 
-            return (a.title || "").localeCompare(
-                b.title || ""
-            );
+    // ==========================================
+    // CREATE ROWS
+    // ==========================================
 
-        });
-
-    // Update count
-    if (count) {
-
-        count.textContent =
-            allSongs.length +
-            (allSongs.length === 1
-                ? " Song"
-                : " Songs");
-
-    }
-
-    // Create table rows
     allSongs.forEach(function(song, index) {
 
         const row =
             document.createElement("tr");
 
-        // ----------------------------------
-        // SONG TITLE
-        // ----------------------------------
 
-        const titleCell =
-            document.createElement("td");
-
-        const songLink =
-            document.createElement("a");
-
-        songLink.href =
-            song.file || "#";
-
-        songLink.textContent =
+        const title =
             song.title || "Untitled Song";
 
-        songLink.className =
-            "all-song-title";
+        const artist =
+            song.artist || "";
 
-        // ----------------------------------
-        // ARTIST
-        // ----------------------------------
+        const category =
+            song.category || "";
 
-        const artistCell =
-            document.createElement("td");
+        const key =
+            song.key || "";
 
-        artistCell.textContent =
-            song.artist || "-";
 
-        // ----------------------------------
-        // CATEGORY
-        // ----------------------------------
+        row.innerHTML = `
 
-        const categoryCell =
-            document.createElement("td");
+            <td class="song-number">
 
-        categoryCell.textContent =
-            song.category || "-";
+                ${index + 1}
 
-        // ----------------------------------
-        // KEY
-        // ----------------------------------
+            </td>
 
-        const keyCell =
-            document.createElement("td");
 
-        keyCell.textContent =
-            song.key || "-";
+            <td class="song-title-cell">
 
-        // ----------------------------------
-        // NUMBER
-        // ----------------------------------
+                <a
+                    href="${song.file}"
+                    class="all-song-title"
+                >
 
-        const numberCell =
-            document.createElement("td");
+                    🎵 ${title}
 
-        numberCell.textContent =
-            index + 1;
+                </a>
 
-        // ----------------------------------
-        // BUILD ROW
-        // ----------------------------------
+            </td>
 
-        titleCell.appendChild(songLink);
 
-        row.appendChild(numberCell);
-        row.appendChild(titleCell);
-        row.appendChild(artistCell);
-        row.appendChild(categoryCell);
-        row.appendChild(keyCell);
+            <td>
 
-        tableBody.appendChild(row);
+                ${artist}
+
+            </td>
+
+
+            <td>
+
+                <span class="song-category">
+
+                    ${category}
+
+                </span>
+
+            </td>
+
+
+            <td>
+
+                <span class="song-key">
+
+                    ${key}
+
+                </span>
+
+            </td>
+
+        `;
+
+
+        tbody.appendChild(row);
 
     });
 
-    // Show panel
-    panel.classList.add("show");
 
-}
-
-
-// ==========================================
-// CLOSE ALL SONGS
-// ==========================================
-
-function closeAllSongs() {
-
-    const panel =
-        document.getElementById("allSongsPanel");
-
-    if (panel) {
-
-        panel.classList.remove("show");
-
-    }
+    console.log(
+        "All Songs displayed:",
+        allSongs.length
+    );
 
 }
 
 
 // Make available to HTML onclick=""
-window.showAllSongs =
-    showAllSongs;
-
-window.closeAllSongs =
-    closeAllSongs;
+window.showAllSongs = showAllSongs;
 
 /* =====================================
    SAVE SERVICES TO FIREBASE
