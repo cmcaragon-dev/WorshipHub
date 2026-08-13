@@ -1010,115 +1010,133 @@ const Service = {
         }
     },
 
+// ======================================================
+// TRANSPOSE
+// ======================================================
 
-    // ======================================================
-    // TRANSPOSE
-    // ======================================================
+async transpose(step) {
 
-    async transpose(step) {
+    console.log(
+        "TRANSPOSE BUTTON:",
+        step
+    );
 
-        console.log(
-            "TRANSPOSE:",
-            step
-        );
 
-        // --------------------------------------------------
-        // CHANGE TRANSPOSE VALUE
-        // --------------------------------------------------
+    // ==================================================
+    // UPDATE TRANSPOSE
+    // ==================================================
 
-        App.transpose +=
-            step * 0.5;
+    App.transpose =
+        Number(
+            App.transpose || 0
+        ) + Number(step);
 
-        // --------------------------------------------------
-        // CHANGE DISPLAYED CHORDS
-        // --------------------------------------------------
 
-        document
-            .querySelectorAll(".chord")
-            .forEach(chord => {
+    console.log(
+        "NEW TRANSPOSE:",
+        App.transpose
+    );
 
-                chord.innerText =
-                    chord.innerText.replace(
-                        /[A-G](#|b)?/g,
-                        note => {
 
-                            let index =
-                                SHARP_SCALE.indexOf(
+    // ==================================================
+    // CHANGE DISPLAYED CHORDS
+    // ==================================================
+
+    document
+        .querySelectorAll(".chord")
+        .forEach(chord => {
+
+            chord.innerText =
+                chord.innerText.replace(
+                    /[A-G](#|b)?/g,
+                    note => {
+
+                        let index =
+                            SHARP_SCALE.indexOf(
+                                note
+                            );
+
+
+                        if (index === -1) {
+
+                            index =
+                                FLAT_SCALE.indexOf(
                                     note
                                 );
-
-                            if (index === -1) {
-
-                                index =
-                                    FLAT_SCALE.indexOf(
-                                        note
-                                    );
-                            }
-
-                            if (index === -1) {
-                                return note;
-                            }
-
-                            return SHARP_SCALE[
-                                (
-                                    index +
-                                    step +
-                                    12
-                                ) % 12
-                            ];
                         }
-                    );
-            });
 
-        // --------------------------------------------------
-        // UPDATE KEY
-        // --------------------------------------------------
 
-        this.updateKeyDisplay();
+                        if (index === -1) {
 
-        this.updateGuide();
+                            return note;
+                        }
 
-        // --------------------------------------------------
-        // UPDATE TRANSPOSE DISPLAY
-        // --------------------------------------------------
 
-        const transposeDisplay =
-            document.getElementById(
-                "transposeValue"
-            );
+                        return SHARP_SCALE[
+                            (
+                                index +
+                                Number(step) +
+                                12
+                            ) % 12
+                        ];
+                    }
+                );
+        });
 
-        if (transposeDisplay) {
 
-            transposeDisplay.innerText =
-                (
-                    App.transpose >= 0
-                        ? "+"
-                        : ""
-                ) +
-                App.transpose.toFixed(1);
-        }
+    // ==================================================
+    // UPDATE SERVICE KEY
+    // ==================================================
 
-        // --------------------------------------------------
-        // SAVE TO FIREBASE
-        // --------------------------------------------------
+    this.updateKeyDisplay();
 
-        const saved =
-            await this.saveCurrentServiceKey();
+    this.updateGuide();
 
-        if (!saved) {
 
-            console.warn(
-                "Transpose changed locally, but Firebase save failed."
-            );
-        }
-    },
+    // ==================================================
+    // UPDATE TRANSPOSE DISPLAY
+    // ==================================================
+
+    const transposeDisplay =
+        document.getElementById(
+            "transposeValue"
+        );
+
+
+    if (transposeDisplay) {
+
+        transposeDisplay.innerText =
+            (
+                App.transpose >= 0
+                    ? "+"
+                    : ""
+            ) +
+            App.transpose;
+    }
+
+
+    // ==================================================
+    // SAVE
+    // ==================================================
+
+    const saved =
+        await this.saveCurrentServiceKey();
+
+
+    if (!saved) {
+
+        console.warn(
+            "Transpose changed locally, but Firebase save failed."
+        );
+    }
+},
 
 
     // ======================================================
-    // CURRENT KEY
-    // ======================================================
+// CURRENT / SERVICE KEY
+// ======================================================
 
-    getKey() {
+getKey() {
 
     const song =
         window.currentSong;
@@ -1127,21 +1145,38 @@ const Service = {
         return "";
     }
 
-    // Service Key should have priority
-    const baseKey =
-        song.serviceKey ||
-        song.key ||
-        song.originalKey;
 
-    if (!baseKey) {
+    // --------------------------------------------------
+    // ORIGINAL KEY IS ALWAYS THE BASE
+    // --------------------------------------------------
+
+    const originalKey =
+        song.originalKey ||
+        song.key ||
+        "";
+
+    if (!originalKey) {
         return "";
     }
 
+
+    // --------------------------------------------------
+    // TRANSPOSE = SEMITONES
+    // --------------------------------------------------
+
+    const transpose =
+        Number(
+            App.transpose || 0
+        );
+
+
+    // --------------------------------------------------
+    // CALCULATE SERVICE KEY
+    // --------------------------------------------------
+
     return getTransposedKey(
-        baseKey,
-        Math.round(
-            App.transpose * 2
-        )
+        originalKey,
+        transpose
     );
 },
 
@@ -1217,114 +1252,148 @@ const Service = {
     },
 
 
-    // ======================================================
-    // RESTORE SAVED TRANSPOSE
-    // ======================================================
+   // ======================================================
+// RESTORE SAVED TRANSPOSE
+// ======================================================
 
-    async restoreTranspose() {
+async restoreTranspose() {
 
-        const service =
-            await this.getCurrent();
+    const service =
+        await this.getCurrent();
 
-        if (!service) {
-            return;
-        }
 
-        const index =
-            this.getSongIndex();
+    if (!service) {
+        return;
+    }
 
-        const song =
-            service.songs?.[index];
 
-        if (!song) {
-            return;
-        }
+    const index =
+        this.getSongIndex();
 
-        const savedTranspose =
-            Number(
-                song.transpose || 0
-            );
 
-        App.transpose =
-            savedTranspose;
+    const song =
+        service.songs?.[index];
 
-        const steps =
-            Math.round(
-                savedTranspose * 2
-            );
 
-        if (steps !== 0) {
+    if (!song) {
+        return;
+    }
 
-            const direction =
-                steps > 0
-                    ? 1
-                    : -1;
 
-            for (
-                let i = 0;
-                i < Math.abs(steps);
-                i++
-            ) {
+    // ==================================================
+    // RESTORE TRANSPOSE
+    // ==================================================
 
-                document
-                    .querySelectorAll(".chord")
-                    .forEach(chord => {
+    const savedTranspose =
+        Number(
+            song.transpose || 0
+        );
 
-                        chord.innerText =
-                            chord.innerText.replace(
-                                /[A-G](#|b)?/g,
-                                note => {
 
-                                    let index =
-                                        SHARP_SCALE.indexOf(
+    App.transpose =
+        savedTranspose;
+
+
+    console.log(
+        "RESTORED TRANSPOSE:",
+        App.transpose
+    );
+
+
+    // ==================================================
+    // APPLY TRANSPOSE TO CHORDS
+    // ==================================================
+
+    if (
+        savedTranspose !== 0
+    ) {
+
+        const direction =
+            savedTranspose > 0
+                ? 1
+                : -1;
+
+
+        for (
+            let i = 0;
+            i < Math.abs(savedTranspose);
+            i++
+        ) {
+
+            document
+                .querySelectorAll(".chord")
+                .forEach(chord => {
+
+                    chord.innerText =
+                        chord.innerText.replace(
+                            /[A-G](#|b)?/g,
+                            note => {
+
+                                let index =
+                                    SHARP_SCALE.indexOf(
+                                        note
+                                    );
+
+
+                                if (index === -1) {
+
+                                    index =
+                                        FLAT_SCALE.indexOf(
                                             note
                                         );
-
-                                    if (index === -1) {
-
-                                        index =
-                                            FLAT_SCALE.indexOf(
-                                                note
-                                            );
-                                    }
-
-                                    if (index === -1) {
-                                        return note;
-                                    }
-
-                                    return SHARP_SCALE[
-                                        (
-                                            index +
-                                            direction +
-                                            12
-                                        ) % 12
-                                    ];
                                 }
-                            );
-                    });
-            }
+
+
+                                if (index === -1) {
+
+                                    return note;
+                                }
+
+
+                                return SHARP_SCALE[
+                                    (
+                                        index +
+                                        direction +
+                                        12
+                                    ) % 12
+                                ];
+                            }
+                        );
+                });
         }
+    }
 
-        this.updateKeyDisplay();
 
-        this.updateGuide();
+    // ==================================================
+    // UPDATE KEY
+    // ==================================================
 
-        const transposeDisplay =
-            document.getElementById(
-                "transposeValue"
-            );
+    this.updateKeyDisplay();
 
-        if (transposeDisplay) {
+    this.updateGuide();
 
-            transposeDisplay.innerText =
-                (
-                    App.transpose >= 0
-                        ? "+"
-                        : ""
-                ) +
-                App.transpose.toFixed(1);
-        }
-    },
+
+    // ==================================================
+    // UPDATE TRANSPOSE DISPLAY
+    // ==================================================
+
+    const transposeDisplay =
+        document.getElementById(
+            "transposeValue"
+        );
+
+
+    if (transposeDisplay) {
+
+        transposeDisplay.innerText =
+            (
+                App.transpose >= 0
+                    ? "+"
+                    : ""
+            ) +
+            App.transpose;
+    }
+},
 
 
     // ======================================================
@@ -1712,9 +1781,22 @@ const Presentation = {
         );
 
         window.currentSong =
-            song;
+    song;
+
+
 // ==================================================
-// UPDATE SERVICE KEY FOR STANDALONE SONG
+// RESTORE ORIGINAL KEY
+// ==================================================
+
+if (!song.originalKey) {
+
+    song.originalKey =
+        song.key || "";
+}
+
+
+// ==================================================
+// RESTORE SAVED TRANSPOSE
 // ==================================================
 
 App.transpose =
@@ -1722,9 +1804,19 @@ App.transpose =
         song.transpose || 0
     );
 
-this.updateKeyDisplay();
 
-this.updateGuide();
+// ==================================================
+// UPDATE SERVICE KEY DISPLAY
+// ==================================================
+
+Service.updateKeyDisplay();
+
+Service.updateGuide();
+
+
+// ==================================================
+// UPDATE TRANSPOSE DISPLAY
+// ==================================================
 
 const transposeDisplay =
     document.getElementById(
@@ -1739,7 +1831,7 @@ if (transposeDisplay) {
                 ? "+"
                 : ""
         ) +
-        App.transpose.toFixed(1);
+        App.transpose;
 }
         localStorage.setItem(
             "presentationMode",
