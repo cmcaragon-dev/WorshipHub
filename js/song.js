@@ -1123,32 +1123,38 @@ async transpose(step) {
                 );
         });
 
+// ==================================================
+// SAVE SERVICE KEY IF THIS IS A SERVICE SONG
+// ==================================================
 
-    // ==================================================
-    // SAVE SERVICE KEY
-    // ==================================================
+const serviceId =
+    localStorage.getItem(
+        "currentServiceId"
+    );
+
+if (serviceId) {
+
+    console.log(
+        "SERVICE MODE - SAVING SERVICE KEY"
+    );
 
     const saved =
         await this.saveCurrentServiceKey();
 
-
     if (!saved) {
 
         console.warn(
-            "TRANSPOSE CHANGED BUT SAVE FAILED"
+            "TRANSPOSE CHANGED BUT FIRESTORE SAVE FAILED"
         );
     }
 
+}
+else {
 
     console.log(
-        "FINAL SERVICE KEY:",
-        this.getKey()
+        "STANDALONE SONG - NO FIRESTORE SERVICE SAVE REQUIRED"
     );
-
-    console.log(
-        "================================"
-    );
-},
+}
 
 
 // ======================================================
@@ -1157,8 +1163,40 @@ async transpose(step) {
 
 getKey() {
 
-    const song =
-        window.currentSong;
+    // --------------------------------------------------
+    // GET CURRENT SONG
+    // --------------------------------------------------
+
+    let song = null;
+
+    // First try window.currentSong
+    if (window.currentSong) {
+        song = window.currentSong;
+    }
+
+    // Then try normal global currentSong
+    if (!song) {
+
+        try {
+
+            if (
+                typeof currentSong !== "undefined"
+            ) {
+                song = currentSong;
+            }
+
+        }
+        catch (error) {
+
+            console.warn(
+                "Unable to access global currentSong"
+            );
+        }
+    }
+
+    // --------------------------------------------------
+    // NO SONG
+    // --------------------------------------------------
 
     if (!song) {
 
@@ -1169,36 +1207,34 @@ getKey() {
         return "";
     }
 
-
-    // ==================================================
+    // --------------------------------------------------
     // ORIGINAL KEY
-    // ==================================================
+    // --------------------------------------------------
 
     const originalKey =
         song.originalKey ||
         song.key ||
+        song.serviceKey ||
         "";
-
 
     if (!originalKey) {
 
         console.warn(
-            "GET KEY: Original key not found"
+            "GET KEY: Original key not found",
+            song
         );
 
         return "";
     }
 
-
-    // ==================================================
+    // --------------------------------------------------
     // CURRENT TRANSPOSE
-    // ==================================================
+    // --------------------------------------------------
 
     const transpose =
         Number(
             App.transpose || 0
         );
-
 
     console.log(
         "GET KEY:",
@@ -1208,10 +1244,9 @@ getKey() {
         }
     );
 
-
-    // ==================================================
+    // --------------------------------------------------
     // CALCULATE SERVICE KEY
-    // ==================================================
+    // --------------------------------------------------
 
     return getTransposedKey(
         originalKey,
@@ -1219,8 +1254,7 @@ getKey() {
     );
 },
 
-
-   // ======================================================
+// ======================================================
 // UPDATE SERVICE KEY DISPLAY
 // ======================================================
 
@@ -1231,7 +1265,6 @@ updateKeyDisplay() {
             "serviceKey"
         );
 
-
     if (!serviceKeyElement) {
 
         console.error(
@@ -1241,31 +1274,36 @@ updateKeyDisplay() {
         return;
     }
 
-
     const key =
         this.getKey();
 
+    console.log(
+        "UPDATING SERVICE KEY DISPLAY:",
+        key
+    );
 
     if (!key) {
 
         console.warn(
-            "SERVICE KEY IS EMPTY"
+            "SERVICE KEY COULD NOT BE CALCULATED"
         );
 
         return;
     }
 
+    // IMPORTANT:
+    // Update both textContent and innerText
+    serviceKeyElement.textContent =
+        key;
 
     serviceKeyElement.innerText =
         key;
 
-
     console.log(
-        "SERVICE KEY DISPLAY UPDATED:",
-        key
+        "SERVICE KEY NOW:",
+        serviceKeyElement.textContent
     );
 },
-
 
     // ======================================================
     // UPDATE SONG GUIDE
