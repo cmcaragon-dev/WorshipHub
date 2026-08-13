@@ -1017,19 +1017,28 @@ const Service = {
 async transpose(step) {
 
     console.log(
-        "TRANSPOSE BUTTON:",
+        "================================"
+    );
+
+    console.log(
+        "TRANSPOSE"
+    );
+
+    console.log(
+        "STEP:",
         step
     );
 
 
     // ==================================================
-    // UPDATE TRANSPOSE
+    // UPDATE TRANSPOSE VALUE
     // ==================================================
 
     App.transpose =
         Number(
             App.transpose || 0
-        ) + Number(step);
+        ) +
+        Number(step);
 
 
     console.log(
@@ -1039,7 +1048,38 @@ async transpose(step) {
 
 
     // ==================================================
-    // CHANGE DISPLAYED CHORDS
+    // UPDATE SERVICE KEY FIRST
+    // ==================================================
+
+    this.updateKeyDisplay();
+
+    this.updateGuide();
+
+
+    // ==================================================
+    // UPDATE TRANSPOSE DISPLAY
+    // ==================================================
+
+    const transposeDisplay =
+        document.getElementById(
+            "transposeValue"
+        );
+
+
+    if (transposeDisplay) {
+
+        transposeDisplay.innerText =
+            (
+                App.transpose >= 0
+                    ? "+"
+                    : ""
+            ) +
+            App.transpose;
+    }
+
+
+    // ==================================================
+    // UPDATE CHORDS
     // ==================================================
 
     document
@@ -1085,38 +1125,7 @@ async transpose(step) {
 
 
     // ==================================================
-    // UPDATE SERVICE KEY
-    // ==================================================
-
-    this.updateKeyDisplay();
-
-    this.updateGuide();
-
-
-    // ==================================================
-    // UPDATE TRANSPOSE DISPLAY
-    // ==================================================
-
-    const transposeDisplay =
-        document.getElementById(
-            "transposeValue"
-        );
-
-
-    if (transposeDisplay) {
-
-        transposeDisplay.innerText =
-            (
-                App.transpose >= 0
-                    ? "+"
-                    : ""
-            ) +
-            App.transpose;
-    }
-
-
-    // ==================================================
-    // SAVE
+    // SAVE SERVICE KEY
     // ==================================================
 
     const saved =
@@ -1126,14 +1135,24 @@ async transpose(step) {
     if (!saved) {
 
         console.warn(
-            "Transpose changed locally, but Firebase save failed."
+            "TRANSPOSE CHANGED BUT SAVE FAILED"
         );
     }
+
+
+    console.log(
+        "FINAL SERVICE KEY:",
+        this.getKey()
+    );
+
+    console.log(
+        "================================"
+    );
 },
 
 
-    // ======================================================
-// CURRENT / SERVICE KEY
+// ======================================================
+// GET CURRENT SERVICE KEY
 // ======================================================
 
 getKey() {
@@ -1142,27 +1161,38 @@ getKey() {
         window.currentSong;
 
     if (!song) {
+
+        console.warn(
+            "GET KEY: No current song"
+        );
+
         return "";
     }
 
 
-    // --------------------------------------------------
-    // ORIGINAL KEY IS ALWAYS THE BASE
-    // --------------------------------------------------
+    // ==================================================
+    // ORIGINAL KEY
+    // ==================================================
 
     const originalKey =
         song.originalKey ||
         song.key ||
         "";
 
+
     if (!originalKey) {
+
+        console.warn(
+            "GET KEY: Original key not found"
+        );
+
         return "";
     }
 
 
-    // --------------------------------------------------
-    // TRANSPOSE = SEMITONES
-    // --------------------------------------------------
+    // ==================================================
+    // CURRENT TRANSPOSE
+    // ==================================================
 
     const transpose =
         Number(
@@ -1170,9 +1200,18 @@ getKey() {
         );
 
 
-    // --------------------------------------------------
+    console.log(
+        "GET KEY:",
+        {
+            originalKey,
+            transpose
+        }
+    );
+
+
+    // ==================================================
     // CALCULATE SERVICE KEY
-    // --------------------------------------------------
+    // ==================================================
 
     return getTransposedKey(
         originalKey,
@@ -1181,25 +1220,51 @@ getKey() {
 },
 
 
-    // ======================================================
-    // DISPLAY SERVICE KEY
-    // ======================================================
+   // ======================================================
+// UPDATE SERVICE KEY DISPLAY
+// ======================================================
 
-    updateKeyDisplay() {
+updateKeyDisplay() {
 
-        if (!App.serviceKey) {
-            return;
-        }
+    const serviceKeyElement =
+        document.getElementById(
+            "serviceKey"
+        );
 
-        const key =
-            this.getKey();
 
-        if (key) {
+    if (!serviceKeyElement) {
 
-            App.serviceKey.innerText =
-                key;
-        }
-    },
+        console.error(
+            "SERVICE KEY ELEMENT #serviceKey NOT FOUND"
+        );
+
+        return;
+    }
+
+
+    const key =
+        this.getKey();
+
+
+    if (!key) {
+
+        console.warn(
+            "SERVICE KEY IS EMPTY"
+        );
+
+        return;
+    }
+
+
+    serviceKeyElement.innerText =
+        key;
+
+
+    console.log(
+        "SERVICE KEY DISPLAY UPDATED:",
+        key
+    );
+},
 
 
     // ======================================================
