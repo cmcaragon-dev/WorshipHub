@@ -253,7 +253,7 @@ title: "Ikaw Lamang",
         language: "Tagalog",
         file: "songs/ikawlamang.html"
     },
-		{id:28,        
+		{id:29,        
 title: "Alay Sa Pagsamba",
         artist: "Rommel Guevara",
         key: "A",
@@ -261,7 +261,7 @@ title: "Alay Sa Pagsamba",
         language: "Tagalog",
         file: "songs/alaysapagsamba.html"
     },
-	{id:28,        
+	{id:30,        
 title: "Mahal na Mahal Kita Panginoon",
         artist: "Rommel Guevara",
         key: "G",
@@ -269,13 +269,21 @@ title: "Mahal na Mahal Kita Panginoon",
         language: "Tagalog",
         file: "songs/mahalnamahalkita.html"
     },
-	{id:28,        
+	{id:31,        
 title: "Tayo Na Sama Sama",
-        artist: "Meha Harvest",
+        artist: "Mega Harvest",
         key: "C",
         category: "Praise",
         language: "Tagalog",
         file: "songs/tayonasamasama.html"
+	},
+	{id:32,        
+title: "Sabik sa Presensya",
+        artist: "Faith Music Manila",
+        key: "A",
+        category: "Praise",
+        language: "Tagalog",
+        file: "songs/sabiksapresensya.html"
 	}
 ];
 songs.sort((a, b) =>
