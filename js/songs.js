@@ -276,7 +276,7 @@ title: "Tayo Na Sama Sama",
         category: "Praise",
         language: "Tagalog",
         file: "songs/tayonasamasama.html"
-	
+	}
 ];
 songs.sort((a, b) =>
     a.title.localeCompare(b.title)
