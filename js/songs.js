@@ -268,7 +268,7 @@ title: "Mahal na Mahal Kita Panginoon",
         category: "Praise",
         language: "Tagalog",
         file: "songs/mahalnamahalkita.html"
-    }
+    },
 	{id:28,        
 title: "Tayo Na Sama Sama",
         artist: "Meha Harvest",
