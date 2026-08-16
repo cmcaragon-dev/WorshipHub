@@ -645,15 +645,6 @@ async function saveServicesCloud() {
         return false;
     }
 
-    if (services.length === 0) {
-
-        console.warn(
-            "Prevented saving empty services array."
-        );
-
-        return false;
-    }
-
     try {
 
         await saveServices(
@@ -669,7 +660,7 @@ async function saveServicesCloud() {
         return true;
 
     }
-    catch(error) {
+    catch (error) {
 
         console.error(
             "Firebase service save error:",
@@ -2191,7 +2182,7 @@ function addSongsToPlaylist(playlistId){
 window.addSongsToPlaylist = addSongsToPlaylist;
 async function deleteService(id) {
 
-    const service = services.find(s => s.id == id);
+    const service = services.find(s => String(s.id) === String(id));
 
     if (!service) {
         alert("Service not found.");
@@ -2202,27 +2193,44 @@ async function deleteService(id) {
         return;
     }
 
-    services = services.filter(s => s.id != id);
+    try {
 
-    await saveServicesCloud();
+        // Remove from local array
+        services = services.filter(
+            s => String(s.id) !== String(id)
+        );
 
-    renderServices();
+        // Save the UPDATED array to Firestore
+        await saveServicesCloud();
 
-    updateDashboard();
+        // Refresh UI
+        renderServices();
+        updateDashboard();
 
-    // Clear current presentation if the deleted service was active
-    const currentServiceId = Number(
-        localStorage.getItem("currentServiceId")
-    );
+        // Clear current presentation if this was the active service
+        const currentServiceId =
+            localStorage.getItem("currentServiceId");
 
-    if (currentServiceId === id) {
+        if (String(currentServiceId) === String(id)) {
 
-        localStorage.removeItem("currentServiceId");
-        localStorage.removeItem("currentSongIndex");
-        localStorage.removeItem("resumePresentation");
+            localStorage.removeItem("currentServiceId");
+            localStorage.removeItem("currentSongIndex");
+            localStorage.removeItem("resumePresentation");
+
+        }
+
+        console.log("SERVICE DELETED:", service.name);
+        console.log("REMAINING SERVICES:", services);
+
+    } catch (error) {
+
+        console.error("ERROR DELETING SERVICE:", error);
+
+        alert(
+            "The service could not be deleted from the database."
+        );
 
     }
-
 }
 
 window.deleteService = deleteService;
