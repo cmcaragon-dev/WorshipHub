@@ -1,858 +1,2377 @@
 /* =========================================================
-   WORSHIPHUB
-   JESUS FIRST CHRISTIAN MINISTRIES
-   VISUAL THEME ONLY
-   ---------------------------------------------------------
-   IMPORTANT:
-   - Existing HTML structure is preserved
-   - Existing IDs are preserved
-   - Existing JavaScript functionality is preserved
-   - Existing buttons/panels/features are preserved
-   - This file changes ONLY visual appearance
+   JFCM SONGS ORGANIZER
+   MODERN UI DESIGN
+   Existing IDs / Classes preserved
 ========================================================= */
 
+:root{
 
-/* =========================================================
-   1. COLOR VARIABLES
-========================================================= */
+    --primary:#6c5ce7;
+    --primary-dark:#5546d6;
+    --secondary:#4f8cff;
 
-:root {
+    --success:#22c55e;
+    --warning:#f59e0b;
+    --danger:#ef4444;
 
-    /* JFCM BRAND COLORS */
-    --primary: #075441;
-    --primary-dark: #043d30;
-    --primary-light: #0b6b53;
+    --dark:#172033;
+    --dark-2:#243047;
 
-    --primary-hover: #0a624c;
+    --text:#1e293b;
+    --muted:#64748b;
 
-    /* LIGHT GREEN */
-    --green-soft: #e8f3ef;
-    --green-light: #f1f8f5;
-    --green-border: #d4e6df;
+    --background:#f4f7fb;
+    --surface:#ffffff;
+    --surface-2:#f8fafc;
 
-    /* GENERAL */
-    --white: #ffffff;
-    --background: #f4f8f6;
+    --border:#e5eaf1;
 
-    --text: #17352d;
-    --text-dark: #102a23;
-    --text-muted: #71817b;
+    --radius-sm:8px;
+    --radius-md:12px;
+    --radius-lg:18px;
 
-    --border: #dce8e3;
+    --shadow-sm:0 2px 8px rgba(15,23,42,.05);
+    --shadow-md:0 8px 25px rgba(15,23,42,.08);
+    --shadow-lg:0 18px 45px rgba(15,23,42,.15);
 
-    /* SHADOWS */
-    --shadow-small:
-        0 2px 8px rgba(7, 84, 65, 0.08);
-
-    --shadow:
-        0 5px 18px rgba(7, 84, 65, 0.10);
-
-    --shadow-large:
-        0 12px 35px rgba(7, 84, 65, 0.15);
-
-    /* RADIUS */
-    --radius-small: 8px;
-    --radius: 12px;
-    --radius-large: 16px;
+    --transition:.25s ease;
 }
 
 
 /* =========================================================
-   2. RESET
+   GLOBAL
 ========================================================= */
 
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
+body{
 
-    margin: 0;
-    padding: 0;
-
-    width: 100%;
-    min-height: 100vh;
+    margin:0;
 
     font-family:
+        Inter,
         "Segoe UI",
         Arial,
         Helvetica,
         sans-serif;
 
-    background: var(--background);
+    background:var(--background);
 
-    color: var(--text);
+    color:var(--text);
 
-    overflow-x: hidden;
-}
+    min-height:100vh;
 
-button,
-input,
-select,
-textarea {
-
-    font-family: inherit;
-}
-
-button {
-
-    cursor: pointer;
-}
-
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
-
-    outline: none;
+    -webkit-font-smoothing:antialiased;
 }
 
 
 /* =========================================================
-   3. TOP HEADER
+   TOP BAR
 ========================================================= */
 
-.topbar {
+.topbar{
 
-    height: 76px;
-
-    width: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 28px;
+    height:72px;
 
     background:
         linear-gradient(
             135deg,
-            var(--primary-dark),
-            var(--primary)
+            #18243a 0%,
+            #263754 100%
         );
 
-    color: var(--white);
+    color:#fff;
 
-    border-bottom: 3px solid rgba(255,255,255,0.08);
+    padding:0 24px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:5000;
 
     box-shadow:
-        0 3px 15px rgba(0,0,0,0.15);
-
-    position: relative;
-
-    z-index: 1000;
+        0 4px 18px rgba(15,23,42,.18);
 }
 
 
 /* =========================================================
-   4. LOGO
+   LOGO
 ========================================================= */
 
-.logo {
+.logo{
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
+    align-items:center;
 
-    gap: 12px;
+    gap:10px;
 
-    color: var(--white);
+    font-size:23px;
 
-    font-size: 22px;
+    font-weight:800;
 
-    font-weight: 700;
+    letter-spacing:-.4px;
 
-    letter-spacing: 0.2px;
-
-    white-space: nowrap;
+    white-space:nowrap;
 }
 
-
-/*
-   If you use:
-
-   <img src="images/jfcm-logo.png">
-
-   this styling will automatically apply.
-*/
-
-.logo img {
-
-    width: 48px;
-
-    height: 48px;
-
-    object-fit: contain;
-
-    display: block;
-}
-
-
-/*
-   Main WorshipHub title
-*/
-
-.logo-title {
-
-    display: block;
-
-    font-size: 21px;
-
-    line-height: 1.1;
-
-    font-weight: 700;
-}
-
-
-/*
-   Ministry subtitle
-*/
-
-.logo-subtitle {
-
-    display: block;
-
-    margin-top: 3px;
-
-    font-size: 10px;
-
-    font-weight: 400;
-
-    letter-spacing: 0.4px;
-
-    opacity: 0.82;
-}
-
-
-/*
-   If your current HTML is simply:
-
-   <div class="logo">
-       🎵 WorshipHub
-   </div>
-
-   it will still work.
-*/
-
-.logo span {
-
-    line-height: 1.2;
+.logo::first-letter{
+    color:#a78bfa;
 }
 
 
 /* =========================================================
-   5. TOP ACTIONS
+   TOP ACTIONS
 ========================================================= */
 
-.top-actions {
+.top-actions{
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
+    align-items:center;
 
-    gap: 8px;
+    gap:10px;
 }
 
 
-/* SEARCH */
+/* Search */
 
-.top-actions input {
+.top-actions input{
 
-    width: 270px;
+    width:340px;
 
-    height: 40px;
+    height:42px;
 
-    padding: 0 14px;
+    padding:0 16px;
 
-    border: 1px solid rgba(255,255,255,0.15);
+    border:none;
 
-    border-radius: var(--radius-small);
+    outline:none;
 
-    background: var(--white);
+    border-radius:11px;
 
-    color: var(--text);
+    background:rgba(255,255,255,.96);
 
-    font-size: 14px;
+    color:#1e293b;
 
-    transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
-}
+    font-size:14px;
 
-.top-actions input::placeholder {
-
-    color: #8a9893;
-}
-
-.top-actions input:focus {
-
-    border-color: var(--white);
+    transition:var(--transition);
 
     box-shadow:
-        0 0 0 3px rgba(255,255,255,0.15);
+        0 2px 8px rgba(0,0,0,.08);
+}
+
+.top-actions input::placeholder{
+
+    color:#94a3b8;
+}
+
+.top-actions input:focus{
+
+    box-shadow:
+        0 0 0 3px rgba(167,139,250,.35);
 }
 
 
-/* TOP BUTTONS */
+/* Header Buttons */
 
-.top-actions button {
+.top-actions button{
 
-    height: 40px;
+    height:42px;
 
-    border: 1px solid rgba(255,255,255,0.14);
+    min-width:42px;
 
-    border-radius: var(--radius-small);
+    padding:0 13px;
 
-    padding: 0 13px;
+    border:1px solid rgba(255,255,255,.15);
 
-    background:
-        rgba(255,255,255,0.10);
+    border-radius:10px;
 
-    color: var(--white);
+    background:rgba(255,255,255,.10);
 
-    font-size: 14px;
+    color:#fff;
 
-    transition:
-        background 0.2s,
-        transform 0.2s;
+    cursor:pointer;
+
+    transition:var(--transition);
+
+    backdrop-filter:blur(10px);
 }
 
-.top-actions button:hover {
+.top-actions button:hover{
 
-    background:
-        rgba(255,255,255,0.20);
+    background:rgba(255,255,255,.20);
 
-    transform: translateY(-1px);
-}
-
-
-/* LOGOUT */
-
-#logoutBtn {
-
-    background: var(--white);
-
-    color: var(--primary);
-
-    border-color: var(--white);
-
-    font-weight: 600;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
-}
-
-#logoutBtn:hover {
-
-    background: var(--green-soft);
-
-    color: var(--primary-dark);
+    transform:translateY(-1px);
 }
 
 
 /* =========================================================
-   6. MAIN LAYOUT
+   MAIN LAYOUT
 ========================================================= */
 
-.layout {
+.layout{
 
-    display: flex;
-
-    width: 100%;
+    display:flex;
 
     min-height:
-        calc(100vh - 76px);
+        calc(100vh - 72px);
 }
 
 
 /* =========================================================
-   7. SIDEBAR
+   SIDEBAR
 ========================================================= */
 
-.sidebar {
+.sidebar{
 
-    width: 250px;
+    width:250px;
 
-    flex-shrink: 0;
+    min-width:250px;
 
-    padding: 20px 14px;
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f9fbff 100%
+        );
 
-    background: var(--white);
+    padding:24px 16px;
 
-    border-right:
-        1px solid var(--border);
+    border-right:1px solid var(--border);
 
     box-shadow:
-        2px 0 12px rgba(7,84,65,0.04);
+        4px 0 20px rgba(15,23,42,.04);
+
+    position:sticky;
+
+    top:72px;
+
+    height:
+        calc(100vh - 72px);
+
+    overflow-y:auto;
 }
 
 
-/* =========================================================
-   8. USER WELCOME
-========================================================= */
+/* Sidebar headings */
 
-.user-welcome {
+.sidebar h3{
 
-    display: flex;
+    margin:
 
-    align-items: center;
+        4px 10px
+        12px;
 
-    gap: 12px;
+    color:#94a3b8;
 
-    padding: 14px;
+    font-size:11px;
 
-    margin-bottom: 25px;
+    font-weight:800;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
+}
+
+
+/* Sidebar divider */
+
+.sidebar hr{
+
+    border:0;
+
+    height:1px;
+
+    background:var(--border);
+
+    margin:20px 8px;
+}
+
+
+/* Sidebar buttons */
+
+.sidebar button{
+
+    width:100%;
+
+    min-height:44px;
+
+    padding:11px 14px;
+
+    margin-bottom:6px;
+
+    border:1px solid transparent;
+
+    background:transparent;
+
+    color:#475569;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+
+/* Hover */
+
+.sidebar button:hover{
+
+    background:#f0edff;
+
+    color:var(--primary);
+
+    border-color:#e6e0ff;
+
+    transform:translateX(3px);
+}
+
+
+/* Active */
+
+.sidebar button.active{
 
     background:
         linear-gradient(
             135deg,
-            var(--green-light),
-            var(--green-soft)
+            #6c5ce7,
+            #4f8cff
         );
 
-    border:
-        1px solid var(--green-border);
-
-    border-radius: var(--radius);
+    color:white;
 
     box-shadow:
-        var(--shadow-small);
-}
-
-
-/* WELCOME ICON */
-
-.welcome-icon {
-
-    width: 42px;
-
-    height: 42px;
-
-    flex-shrink: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: var(--primary);
-
-    color: var(--white);
-
-    font-size: 20px;
-
-    box-shadow:
-        0 3px 8px rgba(7,84,65,0.20);
-}
-
-
-/* WELCOME TEXT */
-
-.welcome-text {
-
-    min-width: 0;
-}
-
-.welcome-label {
-
-    font-size: 11px;
-
-    color: var(--text-muted);
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.7px;
-}
-
-.welcome-name {
-
-    margin-top: 2px;
-
-    font-size: 16px;
-
-    font-weight: 700;
-
-    color: var(--primary);
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
+        0 6px 16px rgba(108,92,231,.25);
 }
 
 
 /* =========================================================
-   9. SIDEBAR SECTION HEADINGS
+   CONTENT
 ========================================================= */
 
-.sidebar h3 {
+.content{
 
-    margin:
-        21px 10px 8px;
+    flex:1;
 
-    color: var(--text-muted);
+    padding:30px;
 
-    font-size: 10px;
-
-    font-weight: 700;
-
-    letter-spacing: 1.4px;
+    min-width:0;
 }
 
 
 /* =========================================================
-   10. SIDEBAR BUTTONS
+   DASHBOARD
 ========================================================= */
 
-.sidebar button {
+.dashboard{
 
-    width: 100%;
-
-    min-height: 42px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 9px;
-
-    padding:
-        10px 13px;
-
-    margin-bottom: 3px;
-
-    border: none;
-
-    border-radius:
-        var(--radius-small);
-
-    background: transparent;
-
-    color: var(--text);
-
-    text-align: left;
-
-    font-size: 14px;
-
-    font-weight: 500;
-
-    transition:
-        background 0.2s,
-        color 0.2s,
-        transform 0.2s;
-}
-
-
-.sidebar button:hover {
-
-    background: var(--green-soft);
-
-    color: var(--primary);
-
-    transform:
-        translateX(2px);
-}
-
-
-.sidebar button:active {
-
-    background:
-        var(--green-border);
-
-    transform:
-        translateX(1px);
-}
-
-
-/* SIDEBAR DIVIDER */
-
-.sidebar hr {
-
-    margin:
-        17px 6px;
-
-    border: none;
-
-    border-top:
-        1px solid var(--border);
-}
-
-
-/* =========================================================
-   11. MAIN CONTENT
-========================================================= */
-
-.content {
-
-    flex: 1;
-
-    min-width: 0;
-
-    padding: 30px;
-
-    background:
-        var(--background);
-}
-
-
-/* =========================================================
-   12. DASHBOARD CARDS
-========================================================= */
-
-.dashboard {
-
-    display: grid;
+    display:grid;
 
     grid-template-columns:
-        repeat(4, minmax(150px, 1fr));
+        repeat(4,minmax(0,1fr));
 
-    gap: 18px;
+    gap:18px;
 
-    margin-bottom: 30px;
-}
-
-
-/* CARD */
-
-.card {
-
-    position: relative;
-
-    overflow: hidden;
-
-    padding: 21px;
-
-    min-height: 110px;
-
-    background: var(--white);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius);
-
-    box-shadow:
-        var(--shadow);
-
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s;
-}
-
-
-/* GREEN SIDE ACCENT */
-
-.card::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-
-    left: 0;
-
-    width: 4px;
-
-    height: 100%;
-
-    background:
-        var(--primary);
-}
-
-
-/* TOP DECORATION */
-
-.card::after {
-
-    content: "";
-
-    position: absolute;
-
-    right: -25px;
-
-    top: -25px;
-
-    width: 80px;
-
-    height: 80px;
-
-    border-radius: 50%;
-
-    background:
-        var(--green-light);
-
-    opacity: 0.8;
-}
-
-
-.card:hover {
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        var(--shadow-large);
-}
-
-
-/* NUMBER */
-
-.card .number {
-
-    position: relative;
-
-    z-index: 2;
-
-    margin-bottom: 5px;
-
-    color: var(--primary);
-
-    font-size: 30px;
-
-    font-weight: 700;
-
-    line-height: 1;
-}
-
-
-/* LABEL */
-
-.card .label {
-
-    position: relative;
-
-    z-index: 2;
-
-    color: var(--text-muted);
-
-    font-size: 13px;
-
-    font-weight: 500;
+    margin-bottom:30px;
 }
 
 
 /* =========================================================
-   13. MAIN CONTENT TITLE
+   DASHBOARD CARD
 ========================================================= */
 
-.content h2 {
+.card{
 
-    margin:
-        0 0 18px;
+    position:relative;
 
-    color: var(--primary);
+    background:var(--surface);
 
-    font-size: 24px;
+    border:1px solid var(--border);
 
-    font-weight: 700;
+    border-radius:var(--radius-lg);
+
+    padding:23px;
+
+    text-align:left;
+
+    box-shadow:var(--shadow-sm);
+
+    overflow:hidden;
+
+    transition:var(--transition);
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--secondary)
+        );
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow-md);
+}
+
+
+/* Number */
+
+.number{
+
+    font-size:36px;
+
+    line-height:1;
+
+    color:var(--primary);
+
+    font-weight:800;
+
+    letter-spacing:-1px;
+}
+
+
+/* Label */
+
+.label{
+
+    color:var(--muted);
+
+    margin-top:10px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:.4px;
 }
 
 
 /* =========================================================
-   14. SONG GRID
+   SONG GRID
 ========================================================= */
 
-#songGrid {
+#songGrid{
 
-    display: grid;
+    display:grid;
 
     grid-template-columns:
         repeat(
             auto-fill,
-            minmax(240px, 1fr)
+            minmax(280px,1fr)
         );
 
-    gap: 18px;
-}
-
-
-/*
-   These styles also support common song cards
-   if generated by your JavaScript.
-*/
-
-#songGrid > div {
-
-    background: var(--white);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius);
-
-    box-shadow:
-        var(--shadow-small);
-
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s;
-}
-
-#songGrid > div:hover {
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        var(--shadow);
+    gap:18px;
 }
 
 
 /* =========================================================
-   15. ALL SONGS PANEL
+   SONG CARD
 ========================================================= */
 
-.all-songs-panel {
+.song-card{
 
-    position: fixed;
+    background:var(--surface);
 
-    top: 76px;
+    border:
 
-    left: 0;
+        1px solid
+        var(--border);
 
-    right: 0;
+    border-radius:var(--radius-lg);
 
-    bottom: 0;
+    padding:20px;
 
-    padding: 30px;
+    margin-bottom:18px;
 
-    background:
-        var(--background);
+    box-shadow:var(--shadow-sm);
 
-    z-index: 900;
+    transition:var(--transition);
 
-    overflow-y: auto;
+    position:relative;
+}
 
-    /*
-       IMPORTANT:
-       We are NOT forcing display:none here.
-       Your existing JavaScript controls visibility.
-    */
+.song-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:var(--shadow-md);
+
+    border-color:#d8d0ff;
 }
 
 
-/* HEADER */
+/* =========================================================
+   OPEN SONG
+========================================================= */
 
-.all-songs-header {
+.open-song{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    margin-top:14px;
+
+    padding:10px 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    box-shadow:
+        0 5px 12px rgba(108,92,231,.20);
+
+    transition:var(--transition);
+}
+
+.open-song:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(108,92,231,.28);
+}
+
+
+/* =========================================================
+   PLAYLIST PANEL
+========================================================= */
+
+.playlist-panel{
+
+    position:fixed;
+
+    top:0;
+
+    right:-440px;
+
+    width:420px;
+
+    max-width:95vw;
+
+    height:100%;
+
+    background:#fff;
+
+    border-left:1px solid var(--border);
+
+    box-shadow:
+        -15px 0 45px rgba(15,23,42,.18);
+
+    transition:.35s ease;
+
+    z-index:9999;
+
+    overflow:auto;
+}
+
+.playlist-panel.show{
+
+    right:0;
+}
+
+
+/* =========================================================
+   PLAYLIST TOP
+========================================================= */
+
+.playlist-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #18243a,
+            #2c3f62
+        );
+
+    color:white;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:5;
+}
+
+.playlist-top h2{
+
+    margin:0;
+
+    font-size:20px;
+}
+
+.playlist-top button{
+
+    width:36px;
+
+    height:36px;
+
+    padding:0;
+
+    background:rgba(255,255,255,.12);
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+}
+
+.playlist-top button:hover{
+
+    background:#ef4444;
+
+    transform:rotate(4deg);
+}
+
+
+/* =========================================================
+   PLAYLIST CREATE
+========================================================= */
+
+.playlist-create{
+
+    padding:20px;
+}
+
+.playlist-create input{
+
+    width:100%;
+
+    height:44px;
+
+    padding:0 14px;
+
+    margin-bottom:10px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:14px;
+
+    transition:var(--transition);
+}
+
+.playlist-create input:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(108,92,231,.10);
+}
+
+.playlist-create button{
+
+    width:100%;
+
+    height:44px;
+
+    padding:0 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #16a34a
+        );
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    transition:var(--transition);
+}
+
+.playlist-create button:hover{
+
+    transform:translateY(-1px);
+
+    box-shadow:
+        0 6px 14px rgba(34,197,94,.20);
+}
+
+
+/* =========================================================
+   PLAYLIST ITEM
+========================================================= */
+
+.playlist-item{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    margin:0 16px 16px;
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow-sm);
+
+    transition:var(--transition);
+}
+
+.playlist-item:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:var(--shadow-md);
+}
+
+
+/* =========================================================
+   PLAYLIST HEADER
+========================================================= */
+
+.playlist-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d2a42,
+            #293b5b
+        );
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:700;
+}
+
+.playlist-header:hover{
+
+    background:
+        linear-gradient(
+            135deg,
+            #243553,
+            #344a70
+        );
+}
+
+.playlist-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:16px;
+
+    font-weight:700;
+}
+
+.playlist-arrow{
+
+    width:28px;
+
+    height:28px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:50%;
+
+    font-size:13px;
+
+    transition:.25s;
+}
+
+.playlist-header.active .playlist-arrow{
+
+    transform:rotate(90deg);
+}
+
+.playlist-count{
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c5ce7,
+            #4f8cff
+        );
+
+    padding:5px 11px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+
+/* =========================================================
+   PLAYLIST BODY
+========================================================= */
+
+.playlist-body{
+
+    display:none;
+
+    padding:12px;
+
+}
+
+.playlist-body.show{
+
+    display:block;
+}
+
+
+/* =========================================================
+   PLAYLIST SONG
+========================================================= */
+
+.playlist-song{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:13px;
+
+    margin-bottom:9px;
+
+    background:#f8fafc;
+
+    border:1px solid #e8edf4;
+
+    border-radius:11px;
+
+    transition:var(--transition);
+}
+
+.playlist-song:hover{
+
+    background:#f2f5ff;
+
+    border-color:#dcd6ff;
+
+    transform:translateX(3px);
+}
+
+.song-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-width:0;
+}
+
+.song-title{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#1e293b;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.song-artist{
+
+    margin-top:4px;
+
+    color:#94a3b8;
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+   PLAYLIST BUTTONS
+========================================================= */
+
+.playlist-buttons{
+
+    display:flex;
+
+    gap:6px;
+
+    flex-shrink:0;
+}
+
+.playlist-buttons button{
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:8px 11px;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    transition:var(--transition);
+}
+
+.playlist-buttons button:hover{
+
+    transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   PLAYLIST ACTIONS
+========================================================= */
+
+.playlist-actions{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:8px;
+
+    margin:15px 0;
+}
+
+.playlist-actions button{
+
+    width:100%;
+
+    padding:11px;
+
+    border:none;
+
+    border-radius:9px;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+}
+
+.playlist-actions button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(15,23,42,.12);
+}
+
+.add-song-btn{
+    background:#22c55e;
+}
+
+.open-btn{
+    background:#4f8cff;
+}
+
+.rename-btn{
+    background:#f59e0b;
+}
+
+.delete-btn{
+    background:#ef4444;
+}
+
+
+/* Song action buttons */
+
+.open-song-btn{
+
+    background:#4f8cff;
+
+    color:white;
+}
+
+.remove-song-btn{
+
+    background:#ef4444;
+
+    color:white;
+}
+
+.open-song-btn:hover{
+
+    background:#3b82f6;
+}
+
+.remove-song-btn:hover{
+
+    background:#dc2626;
+}
+
+
+/* =========================================================
+   PLAYLIST POPUP
+========================================================= */
+
+.playlist-popup{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(15,23,42,.65);
+
+    backdrop-filter:blur(6px);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+
+    padding:20px;
+}
+
+.playlist-popup.show{
+
+    display:flex;
+}
+
+.popup-content{
+
+    width:440px;
+
+    max-width:100%;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow-lg);
+
+    animation:popupIn .25s ease;
+}
+
+@keyframes popupIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px) scale(.97);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+}
+
+.popup-playlist{
+
+    background:#f5f7fb;
+
+    color:#334155;
+
+    padding:13px;
+
+    margin:9px 0;
+
+    cursor:pointer;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+}
+
+.popup-playlist:hover{
+
+    background:#f0edff;
+
+    color:var(--primary);
+
+    border-color:#dcd6ff;
+
+    transform:translateX(3px);
+}
+
+
+/* =========================================================
+   MODERN WORSHIP SERVICE PLANNER
+   Existing IDs/classes preserved
+========================================================= */
+
+/* ---------- SERVICE PLANNER SIDE PANEL ---------- */
+
+#servicePanel{
+
+    position:fixed;
+
+    top:0;
+    right:-460px;
+
+    width:440px;
+    max-width:92vw;
+    height:100vh;
+
+    background:#f8fafc;
+
+    box-shadow:-15px 0 45px rgba(15,23,42,.22);
+
+    transition:right .35s cubic-bezier(.4,0,.2,1);
+
+    z-index:99999;
+
+    overflow-y:auto;
+
+    border-left:1px solid #e2e8f0;
+
+}
+
+#servicePanel.show{
+
+    right:0;
+
+}
+
+
+/* ---------- PANEL SCROLLBAR ---------- */
+
+#servicePanel::-webkit-scrollbar{
+
+    width:7px;
+
+}
+
+#servicePanel::-webkit-scrollbar-track{
+
+    background:#f1f5f9;
+
+}
+
+#servicePanel::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+
+}
+
+#servicePanel::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+
+}
+
+
+/* ---------- SERVICE WINDOW ---------- */
+
+.playlist-window{
+
+    padding:0 24px 30px;
+
+}
+
+
+/* ---------- MODERN HEADER ---------- */
+
+.playlist-window h2{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:10;
+
+    margin:0 -24px 25px;
+
+    padding:22px 24px;
+
+    background:linear-gradient(
+        135deg,
+        #1e293b,
+        #334155
+    );
+
+    color:#fff;
+
+    font-size:21px;
+
+    font-weight:700;
+
+    letter-spacing:.2px;
+
+    box-shadow:0 4px 15px rgba(15,23,42,.15);
+
+}
+
+
+/* Small accent under title */
+
+.playlist-window h2::after{
+
+    content:"";
+
+    display:block;
+
+    width:42px;
+
+    height:3px;
+
+    margin-top:8px;
+
+    background:#6366f1;
+
+    border-radius:10px;
+
+}
+
+
+/* ---------- SERVICE NAME INPUT ---------- */
+
+#serviceName{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:14px 16px;
+
+    margin-bottom:12px;
+
+    background:#fff;
+
+    border:1px solid #dbe2ea;
+
+    border-radius:10px;
+
+    color:#1e293b;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.2s;
+
+    box-shadow:0 1px 3px rgba(15,23,42,.04);
+
+}
+
+#serviceName::placeholder{
+
+    color:#94a3b8;
+
+}
+
+#serviceName:focus{
+
+    border-color:#6366f1;
+
+    box-shadow:
+        0 0 0 3px rgba(99,102,241,.12);
+
+}
+
+
+/* ---------- CREATE SERVICE BUTTON ---------- */
+
+#createService{
+
+    width:100%;
+
+    padding:13px 16px;
+
+    margin-top:5px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+        135deg,
+        #6366f1,
+        #4f46e5
+    );
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    box-shadow:0 4px 12px rgba(79,70,229,.22);
+
+}
+
+#createService:hover{
+
+    transform:translateY(-1px);
+
+    box-shadow:0 7px 18px rgba(79,70,229,.28);
+
+}
+
+#createService:active{
+
+    transform:scale(.98);
+
+}
+
+
+/* ---------- CLOSE SERVICE BUTTON ---------- */
+
+#closeService{
+
+    width:36px;
+
+    height:36px;
+
+    padding:0;
+
+    background:rgba(255,255,255,.12);
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+}
+
+
+#closeService:hover{
+
+    background:#ef4444;
+
+    transform:rotate(4deg);
+}
+
+/* ---------- DIVIDER ---------- */
+
+#servicePanel hr{
+
+    border:none;
+
+    border-top:1px solid #e2e8f0;
+
+    margin:25px 0;
+
+}
+
+
+/* =========================================================
+   SERVICE LIST
+========================================================= */
+
+#serviceList{
+
+    margin-top:10px;
+
+}
+
+
+/* ---------- SERVICE ITEM ---------- */
+
+.service-item{
+
+    background:#fff;
+
+    padding:0;
+
+    margin-bottom:14px;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 2px 8px rgba(15,23,42,.05);
+
+    transition:.2s;
+
+}
+
+.service-item:hover{
+
+    border-color:#c7d2fe;
+
+    box-shadow:
+        0 6px 18px rgba(15,23,42,.09);
+
+}
+
+
+/* =========================================================
+   SERVICE HEADER
+========================================================= */
+
+.service-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 18px;
+
+    background:#fff;
+
+    color:#1e293b;
+
+    cursor:pointer;
+
+    border:none;
+
+    border-radius:14px 14px 0 0;
+
+    transition:.2s;
+
+}
+
+.service-header:hover{
+
+    background:#f8fafc;
+
+}
+
+
+/* ---------- SERVICE TITLE ---------- */
+
+.service-title{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#1e293b;
+
+    line-height:1.3;
+
+}
+
+
+/* ---------- SERVICE COUNT ---------- */
+
+.service-count{
+
+    margin-top:4px;
+
+    color:#64748b;
+
+    font-size:12px;
+
+    font-weight:500;
+
+}
+
+
+/* ---------- ARROW ---------- */
+
+.service-header span{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:30px;
+
+    height:30px;
+
+    margin-right:0;
+
+    border-radius:50%;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+}
+
+
+/* Rotate arrow when active */
+
+.service-header.active span{
+
+    transform:rotate(90deg);
+
+}
+
+
+/* =========================================================
+   SERVICE BODY
+========================================================= */
+
+.service-body{
+
+    display:none;
+
+    margin:0;
+
+    padding:14px;
+
+    background:#f8fafc;
+
+    border-top:1px solid #e2e8f0;
+
+    border-radius:0 0 14px 14px;
+
+}
+
+.service-body.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   SONG INSIDE SERVICE
+========================================================= */
+
+.service-song{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:12px 13px;
+
+    margin-top:8px;
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:10px;
+
+    transition:.2s;
+
+}
+
+.service-song:first-child{
+
+    margin-top:0;
+
+}
+
+.service-song:hover{
+
+    border-color:#c7d2fe;
+
+    transform:translateX(2px);
+
+    box-shadow:
+        0 3px 10px rgba(15,23,42,.06);
+
+}
+
+
+/* ---------- SONG INFORMATION ---------- */
+
+.service-song-title{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#334155;
+
+    line-height:1.4;
+
+    flex:1;
+
+}
+
+
+/* ---------- SONG KEY ---------- */
+
+.service-song-key{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:42px;
+
+    height:25px;
+
+    padding:0 9px;
+
+    margin-left:10px;
+
+    box-sizing:border-box;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    border:1px solid #c7d2fe;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+/* ---------- SERVICE SONG DELETE BUTTON ---------- */
+
+.service-song button{
+
+    margin-left:8px;
+
+    padding:6px 9px;
+
+    border:none;
+
+    border-radius:7px;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+    font-size:12px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.service-song button:hover{
+
+    background:#fecaca;
+
+    transform:scale(1.05);
+
+}
+
+
+/* =========================================================
+   SERVICE ACTION BUTTONS
+========================================================= */
+
+.service-item button{
+
+    padding:8px 11px;
+
+    margin-top:10px;
+
+    margin-right:5px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.service-item button:hover{
+
+    background:#e0e7ff;
+
+    transform:translateY(-1px);
+
+}
+
+
+/* =========================================================
+   MOBILE SERVICE PLANNER
+========================================================= */
+
+@media(max-width:600px){
+
+    #servicePanel{
+
+        width:100%;
+
+        max-width:100%;
+
+        right:-100%;
+
+    }
+
+    #servicePanel.show{
+
+        right:0;
+
+    }
+
+    .playlist-window{
+
+        padding:0 18px 25px;
+
+    }
+
+    .playlist-window h2{
+
+        margin-left:-18px;
+
+        margin-right:-18px;
+
+        padding:20px 18px;
+
+    }
+
+}
+
+
+/* =========================================================
+   OPTIONAL MODERN BACKDROP
+   Only active when panel is open if your JS adds
+   a backdrop class/element.
+========================================================= */
+
+.service-panel-backdrop{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(15,23,42,.35);
+
+    backdrop-filter:blur(3px);
+
+    z-index:99998;
+
+}
+
+
+/* =========================================================
+   SONG PICKER
+========================================================= */
+
+.popup{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(15,23,42,.65);
+
+    backdrop-filter:blur(6px);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+    padding:20px;
+}
+
+.popup.show{
+
+    display:flex;
+}
+
+.popup-box{
+
+    width:850px;
+
+    max-width:95%;
+
+    max-height:85vh;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    box-shadow:var(--shadow-lg);
+}
+
+
+/* Picker header */
+
+.popup-header{
+
+    background:
+        linear-gradient(
+            135deg,
+            #18243a,
+            #2c3f62
+        );
+
+    color:white;
+
+    padding:18px 20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.popup-header h2{
+
+    margin:0;
+
+    font-size:19px;
+}
+
+
+/* Picker search */
+
+#songPickerSearch{
+
+    margin:15px;
+
+    height:44px;
+
+    padding:0 14px;
+
+    font-size:14px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    outline:none;
+
+    transition:var(--transition);
+}
+
+#songPickerSearch:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(108,92,231,.10);
+}
+
+
+/* Picker list */
+
+#songPickerList{
+
+    overflow:auto;
+
+    padding:15px;
+
+    flex:1;
+}
+
+
+/* Picker card */
+
+.song-picker-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:13px 15px;
+
+    margin-bottom:9px;
+
+    border:1px solid var(--border);
+
+    border-radius:11px;
+
+    background:#fff;
+
+    transition:var(--transition);
+}
+
+.song-picker-card:hover{
+
+    background:#f8f7ff;
+
+    border-color:#dcd6ff;
+
+    transform:translateX(3px);
+}
+
+.song-picker-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-width:0;
+}
+
+.song-picker-title{
+
+    font-weight:700;
+
+    font-size:14px;
+
+    color:#1e293b;
+}
+
+.song-picker-artist{
+
+    color:#94a3b8;
+
+    font-size:12px;
+
+    margin-top:3px;
+}
+
+.song-picker-card button{
+
+    background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #16a34a
+        );
+
+    color:white;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    transition:var(--transition);
+
+    flex-shrink:0;
+}
+
+.song-picker-card button:hover{
+
+    transform:translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(34,197,94,.20);
+}
+
+.song-picker-add-btn.added{
+
+    cursor:default;
+
+    opacity:.55;
+}
+
+.song-picker-add-btn:disabled{
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   WORSHIP / SONG DISPLAY
+========================================================= */
+
+.song-container{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow-md);
+
+    border:1px solid var(--border);
+}
+
+
+/* Compact lyrics */
+
+.song-line{
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+    line-height:.88 !important;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size:20px;
+
+    white-space:pre-wrap;
+}
+
+.song-line p,
+.song-section p{
+
+    margin:0;
+
+    padding:0;
+
+    line-height:.88;
+}
+
+.song-line + .song-line{
+
+    margin-top:-5px;
+}
+/* ==========================================================
+   PRESENTATION SCREEN
+   ========================================================== */
+
+#presentationScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    background: #ffffff;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    display: none;
+}
+
+#presentationScreen.show {
+    display: block;
+}
+
+
+/* ==========================================================
+   PRESENTATION LYRICS
+   ========================================================== */
+
+#presentationLyrics {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 35px;
+
+    background: #ffffff;
+}
+
+
+/* ==========================================================
+   FORCE 3 COLUMNS
+   ========================================================== */
+
+#presentationLyrics .presentation-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 25px;
+
+    width: 100%;
+
+    align-items: start;
+}
+
+
+/* ==========================================================
+   SECTION CARD
+   ========================================================== */
+
+#presentationLyrics
+.presentation-section {
+
+    width: 100%;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    border: 1px solid #e5e5e5;
+
+    box-sizing: border-box;
+
+    break-inside: avoid;
+
+}
+
+
+/* ==========================================================
+   SECTION TITLE
+   ========================================================== */
+
+#presentationLyrics
+.presentation-section-title {
+
+    color: #ffffff !important;
+
+    background: #222222;
+
+    font-size: 22px;
+
+    font-weight: 900;
+
+    padding: 8px 12px;
+
+    margin-bottom: 15px;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+}
+
+
+/* ==========================================================
+   SECTION CONTENT
+   ========================================================== */
+
+#presentationLyrics
+.presentation-section-content {
+
+    width: 100%;
+
+    color: #000000 !important;
+
+}
+
+
+/* ==========================================================
+   LYRIC LINE
+   ========================================================== */
+
+#presentationLyrics
+.presentation-line {
+
+    color: #000000 !important;
+
+    font-size: 24px;
+
+    line-height: 1.65;
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+}
+
+
+/* ==========================================================
+   ALL LYRIC TEXT = BLACK
+   ========================================================== */
+
+#presentationLyrics
+.presentation-line * {
+
+    color: #000000 !important;
+
+}
+
+
+/* ==========================================================
+   CHORD = RED
+   ========================================================== */
+
+#presentationLyrics
+.presentation-line .chord {
+
+    color: #ff0000 !important;
+
+    font-weight: 900 !important;
+
+    text-shadow:
+        0 1px 2px
+        rgba(0,0,0,.25);
+
+}
+
+/* ==========================================================
+PRESENTATION HEADER
+========================================================== */
+
+#presentationHeader {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 20;
+
+    width: 100%;
+
+    min-height: 72px;
+
+    padding: 14px 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #18243a,
+            #2c3f62
+        );
+
+    color: #ffffff;
 
     display: flex;
 
@@ -862,1120 +2381,1482 @@ textarea:focus {
 
     gap: 20px;
 
-    margin-bottom: 20px;
+    box-shadow:
+        0 4px 18px
+        rgba(15,23,42,.20);
+
+}
+
+
+/* ==========================================================
+PRESENTATION TITLE
+========================================================== */
+
+#presentationTitle {
+
+    margin: 0;
+
+    padding: 0;
+
+    color: #ffffff;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    letter-spacing: -.3px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* ==========================================================
+PRESENTATION COUNTER
+Example: SONG 1 / 6
+========================================================== */
+
+#presentationCounter {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 90px;
+
+    height: 34px;
+
+    padding: 0 13px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    color: #ffffff;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    backdrop-filter: blur(8px);
+
+}
+
+
+/* ==========================================================
+PRESENTATION NAVIGATION
+========================================================== */
+
+#presentationNavigation {
+
+    position: fixed;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    z-index: 30;
+
+    min-height: 76px;
+
+    padding: 12px 24px;
+
+    background:
+        rgba(24,36,58,.97);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.10);
+
+    box-shadow:
+        0 -5px 20px
+        rgba(15,23,42,.20);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+}
+
+
+/* ==========================================================
+PRESENTATION NAVIGATION BUTTONS
+========================================================== */
+
+#presentationNavigation button {
+
+    min-width: 110px;
+
+    height: 42px;
+
+    padding: 0 17px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        .2s ease;
+
+}
+
+
+/* Hover */
+
+#presentationNavigation button:hover {
+
+    background:
+        rgba(255,255,255,.20);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* Active / click */
+
+#presentationNavigation button:active {
+
+    transform:
+        translateY(0)
+        scale(.97);
+
+}
+
+
+/* Previous */
+
+#presentationNavigation button:first-child {
+
+    background:
+        #475569;
+
+}
+
+
+/* Next */
+
+#presentationNavigation button:nth-child(2) {
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c5ce7,
+            #4f8cff
+        );
+
+    border-color:
+        transparent;
+
+}
+
+
+/* Close */
+
+#presentationNavigation button:last-child {
+
+    background:
+        #ef4444;
+
+    border-color:
+        transparent;
+
+}
+
+/* ======================================================
+   SMALL NEXT SONG - LOWER RIGHT
+   ====================================================== */
+
+#presentationScreen #nextSongPreview {
+    position: fixed !important;
+
+    right: 15px !important;
+    bottom: 15px !important;
+
+    left: auto !important;
+    top: auto !important;
+
+    transform: none !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 170px !important;
+    min-width: 170px !important;
+    max-width: 170px !important;
+
+    padding: 7px 10px !important;
+
+    background: rgba(0, 0, 0, 0.75) !important;
+
+    border-radius: 6px !important;
+
+    border: 1px solid rgba(255,255,255,0.20) !important;
+
+    color: white !important;
+
+    text-align: center !important;
+
+    z-index: 2147483647 !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    box-sizing: border-box !important;
+
+    pointer-events: none !important;
+}
+
+
+/* NEXT SONG */
+
+#presentationScreen #nextSongPreview .next-song-label {
+    font-size: 8px !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 1.5px !important;
+
+    margin-bottom: 2px !important;
+
+    opacity: 0.65 !important;
+}
+
+
+/* SONG TITLE */
+
+#presentationScreen #nextSongPreview .next-song-title {
+    font-size: 12px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.2 !important;
+
+    text-align: center !important;
+
+    word-break: break-word !important;
+}
+
+/* ==========================================================
+PRESENTATION CONTENT SPACE
+Leave room for bottom navigation
+========================================================== */
+
+#presentationLyrics {
+
+    width: 100%;
+
+    min-height:
+        calc(100vh - 72px);
+
+    padding:
+        30px 35px 120px;
+
+    background: #ffffff;
+
+}
+
+
+/* ==========================================================
+PRESENTATION SCREEN
+========================================================== */
+
+#presentationScreen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    background: #ffffff;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    display: none;
+
+}
+
+
+#presentationScreen.show {
+
+    display: block;
+
+}
+
+
+/* ==========================================================
+PRESENTATION HEADER RESPONSIVE
+========================================================== */
+
+@media (max-width: 700px) {
+
+    #presentationHeader {
+
+        min-height: 60px;
+
+        padding: 10px 14px;
+
+        gap: 10px;
+
+    }
+
+
+    #presentationTitle {
+
+        font-size: 18px;
+
+    }
+
+
+    #presentationCounter {
+
+        min-width: 70px;
+
+        height: 30px;
+
+        padding: 0 9px;
+
+        font-size: 11px;
+
+    }
+
+
+    #presentationNavigation {
+
+        min-height: 64px;
+
+        padding: 9px 10px;
+
+        gap: 6px;
+
+    }
+
+
+    #presentationNavigation button {
+
+        min-width: 90px;
+
+        height: 38px;
+
+        padding: 0 9px;
+
+        font-size: 12px;
+
+    }
+
+
+    #presentationLyrics {
+
+        padding:
+            20px 15px 100px;
+
+    }
+
+
+    #nextSongPreview {
+
+        display: none;
+
+    }
+
+}
+
+
+/* ==========================================================
+VERY SMALL MOBILE
+========================================================== */
+
+@media (max-width: 450px) {
+
+    #presentationHeader {
+
+        flex-wrap: wrap;
+
+    }
+
+
+    #presentationTitle {
+
+        max-width: 70%;
+
+        font-size: 16px;
+
+    }
+
+
+    #presentationCounter {
+
+        font-size: 10px;
+
+    }
+
+
+    #presentationNavigation {
+
+        justify-content:
+            stretch;
+
+    }
+
+
+    #presentationNavigation button {
+
+        flex: 1;
+
+        min-width: 0;
+
+        padding: 0 5px;
+
+        font-size: 11px;
+
+    }
+
+}
+/* ==========================================================
+   SECTION TITLES MUST REMAIN WHITE
+   ========================================================== */
+
+#presentationLyrics
+.presentation-section-title {
+
+    color: #ffffff !important;
+
+}
+
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (max-width: 1000px) {
+
+    #presentationLyrics
+    .presentation-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 650px) {
+
+    #presentationLyrics
+    .presentation-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+/* =========================================================
+   SERVICE PROGRESS
+========================================================= */
+
+#serviceProgress{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:8px 13px;
+
+    border-radius:20px;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    border:1px solid #e0e7ff;
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark{
+
+    --background:#0b1120;
+
+    --surface:#111827;
+
+    --surface-2:#172033;
+
+    --text:#e5e7eb;
+
+    --muted:#94a3b8;
+
+    --border:#263247;
+
+    background:#0b1120;
+
+    color:#e5e7eb;
+}
+
+
+/* Dark sidebar */
+
+body.dark .sidebar{
+
+    background:#111827;
+
+    border-right-color:#263247;
+}
+
+body.dark .sidebar button{
+
+    color:#cbd5e1;
+}
+
+body.dark .sidebar button:hover{
+
+    background:#1d2540;
+
+    color:#a78bfa;
+
+    border-color:#302b5b;
+}
+
+
+/* Dark cards */
+
+body.dark .card,
+body.dark .song-card,
+body.dark .playlist-item,
+body.dark .popup-content,
+body.dark .popup-box,
+body.dark .song-picker-card{
+
+    background:#111827;
+
+    border-color:#263247;
+
+    color:#e5e7eb;
+}
+
+
+/* Dark inputs */
+
+body.dark input{
+
+    background:#172033;
+
+    color:#e5e7eb;
+
+    border-color:#334155;
+}
+
+body.dark input::placeholder{
+
+    color:#64748b;
+}
+
+
+/* Dark playlist */
+
+body.dark .playlist-panel,
+body.dark #servicePanel{
+
+    background:#0f172a;
+
+    border-color:#263247;
+}
+
+body.dark .playlist-song,
+body.dark .service-song{
+
+    background:#172033;
+
+    border-color:#263247;
+}
+
+body.dark .playlist-song:hover{
+
+    background:#1d2540;
+}
+
+body.dark .song-title,
+body.dark .song-picker-title,
+body.dark .service-song-title{
+
+    color:#e5e7eb;
+}
+
+body.dark .service-body{
+
+    background:#0f172a;
+}
+
+
+/* =========================================================
+   SCROLLBARS
+========================================================= */
+
+*{
+
+    scrollbar-width:thin;
+
+    scrollbar-color:
+        #cbd5e1
+        transparent;
+}
+
+*::-webkit-scrollbar{
+
+    width:7px;
+
+    height:7px;
+}
+
+*::-webkit-scrollbar-track{
+
+    background:transparent;
+}
+
+*::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+}
+
+*::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media(max-width:1000px){
+
+    .dashboard{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .sidebar{
+
+        width:220px;
+
+        min-width:220px;
+    }
+
+    .content{
+
+        padding:22px;
+    }
+
+    .top-actions input{
+
+        width:240px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .topbar{
+
+        height:auto;
+
+        min-height:65px;
+
+        padding:10px 14px;
+
+        gap:10px;
+    }
+
+    .logo{
+
+        font-size:18px;
+    }
+
+    .top-actions input{
+
+        width:150px;
+
+        height:38px;
+    }
+
+    .top-actions button{
+
+        height:38px;
+
+        min-width:38px;
+    }
+
+    .layout{
+
+        display:block;
+    }
+
+    .sidebar{
+
+        position:relative;
+
+        top:0;
+
+        width:100%;
+
+        min-width:0;
+
+        height:auto;
+
+        padding:12px;
+
+        border-right:0;
+
+        border-bottom:1px solid var(--border);
+
+        display:grid;
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:5px;
+    }
+
+    .sidebar h3{
+
+        grid-column:1/-1;
+
+        margin:8px;
+    }
+
+    .sidebar hr{
+
+        display:none;
+    }
+
+    .sidebar button{
+
+        margin:0;
+
+        min-height:42px;
+
+        font-size:12px;
+    }
+
+    .content{
+
+        padding:16px;
+    }
+
+    .dashboard{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:10px;
+    }
+
+    .card{
+
+        padding:17px;
+    }
+
+    .number{
+
+        font-size:28px;
+    }
+
+    .playlist-panel,
+    #servicePanel{
+
+        width:100%;
+
+        max-width:100%;
+    }
+
+    #presentationLyrics{
+
+        padding:15px;
+    }
+
+        #presentationTitle{
+
+        font-size:19px;
+    }
+
+    #presentationCounter{
+
+        font-size:12px;
+    }
+
+    #presentationNavigation button{
+
+        min-width:90px;
+
+        padding:9px;
+
+        font-size:12px;
+    }
+
+    #nextSongPreview{
+
+        display:none;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media(max-width:450px){
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+    .top-actions{
+
+        width:100%;
+    }
+
+    .top-actions input{
+
+        flex:1;
+
+        width:auto;
+    }
+
+    .sidebar{
+
+        grid-template-columns:1fr;
+    }
+
+    .dashboard{
+
+        grid-template-columns:1fr;
+    }
+
+    .playlist-actions{
+
+        grid-template-columns:1fr;
+    }
+
+    .song-picker-card{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .song-picker-card button{
+
+        width:100%;
+    }
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@page{
+
+    size:landscape;
+
+    margin:8mm;
+}
+
+@media print{
+
+    html,
+    body{
+
+        width:100%;
+
+        height:100%;
+
+        margin:0;
+
+        padding:0;
+
+        background:white !important;
+
+        color:#000 !important;
+    }
+
+    .topbar,
+    .sidebar,
+    .song-toolbar,
+    #serviceProgress,
+    #playlistPopup,
+    #presentationScreen,
+    #presentationNavigation{
+
+        display:none !important;
+    }
+
+    .song-header{
+
+        text-align:center;
+
+        margin-bottom:20px;
+
+        border-bottom:3px solid #333;
+
+        padding-bottom:12px;
+    }
+
+    .song-header h1{
+
+        font-size:28px;
+
+        font-weight:bold;
+    }
+
+    .song-meta{
+
+        display:flex;
+
+        justify-content:center;
+
+        gap:30px;
+
+        font-size:15px;
+    }
+
+    .song-container{
+
+        margin:0 !important;
+
+        padding:8px !important;
+
+        box-shadow:none !important;
+
+        border:none !important;
+
+        width:100%;
+    }
+
+    .song{
+
+        display:grid;
+
+        grid-template-columns:
+            repeat(3,1fr);
+
+        gap:10px;
+    }
+
+    .song-section{
+
+        break-inside:avoid;
+
+        page-break-inside:avoid;
+
+        padding:10px;
+
+        margin-bottom:10px;
+    }
+
+    .song-line{
+
+        font-family:
+            Consolas,
+            "Courier New",
+            monospace !important;
+
+        font-size:15px !important;
+
+        line-height:1.2 !important;
+
+        white-space:pre !important;
+    }
+
+    .chord{
+
+        color:#d32f2f !important;
+
+        font-weight:bold;
+
+        font-size:inherit !important;
+
+        display:inline;
+
+        transform:none;
+    }
+
+    .section-title{
+
+        font-size:14px;
+
+        padding:5px;
+
+        margin-bottom:8px;
+    }
+}
+
+/* ==========================================
+   ALL SONGS PANEL
+   ========================================== */
+
+.all-songs-panel {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    background: #f5f7fb;
+
+    padding: 35px;
+
+    overflow-y: auto;
+
+}
+
+.all-songs-panel.show {
+
+    display: block;
+
+}
+
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+.all-songs-header {
+
+    max-width: 1200px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
 }
 
 .all-songs-header h2 {
 
     margin: 0;
 
-    color: var(--primary);
+    font-size: 28px;
 
-    font-size: 25px;
+    font-weight: 700;
+
 }
 
 .all-songs-header p {
 
-    margin:
-        5px 0 0;
+    margin: 5px 0 0;
 
-    color: var(--text-muted);
+    color: #777;
 
-    font-size: 13px;
 }
 
 
-/* CLOSE */
+/* ==========================================
+   CLOSE BUTTON
+   ========================================== */
 
 .close-all-songs {
 
-    width: 40px;
+    width: 42px;
 
-    height: 40px;
-
-    flex-shrink: 0;
+    height: 42px;
 
     border: none;
 
     border-radius: 50%;
 
-    background: var(--white);
+    background: #e9edf3;
 
-    color: var(--primary);
+    font-size: 18px;
 
-    font-size: 16px;
+    cursor: pointer;
 
-    box-shadow:
-        var(--shadow-small);
-
-    transition:
-        background 0.2s,
-        color 0.2s,
-        transform 0.2s;
 }
 
 .close-all-songs:hover {
 
-    background:
-        var(--primary);
+    background: #dce2ea;
 
-    color:
-        var(--white);
-
-    transform:
-        rotate(90deg);
 }
 
 
-/* =========================================================
-   16. ALL SONG SEARCH
-========================================================= */
-
-.all-songs-search {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    margin-bottom: 20px;
-
-    padding: 4px;
-}
-
-
-/* SEARCH INPUT */
-
-.all-songs-search input {
-
-    flex: 1;
-
-    min-width: 150px;
-
-    height: 44px;
-
-    padding:
-        0 14px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius-small);
-
-    background:
-        var(--white);
-
-    color:
-        var(--text);
-
-    font-size:
-        14px;
-
-    transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
-}
-
-.all-songs-search input::placeholder {
-
-    color:
-        #8b9994;
-}
-
-.all-songs-search input:focus {
-
-    border-color:
-        var(--primary);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(7,84,65,0.08);
-}
-
-
-/* SEARCH BUTTONS */
-
-.all-songs-search button {
-
-    height: 44px;
-
-    padding:
-        0 16px;
-
-    border: none;
-
-    border-radius:
-        var(--radius-small);
-
-    background:
-        var(--primary);
-
-    color:
-        var(--white);
-
-    font-size:
-        13px;
-
-    font-weight:
-        600;
-
-    transition:
-        background 0.2s,
-        transform 0.2s;
-}
-
-.all-songs-search button:hover {
-
-    background:
-        var(--primary-light);
-
-    transform:
-        translateY(-1px);
-}
-
-
-/* =========================================================
-   17. ALL SONGS TABLE
-========================================================= */
+/* ==========================================
+   TABLE CONTAINER
+   ========================================== */
 
 .all-songs-table-wrapper {
 
-    width: 100%;
+    max-width: 1200px;
 
-    overflow-x: auto;
+    margin: auto;
 
-    background:
-        var(--white);
+    background: white;
 
-    border:
-        1px solid var(--border);
+    border-radius: 16px;
 
-    border-radius:
-        var(--radius);
+    overflow: hidden;
 
     box-shadow:
-        var(--shadow);
+        0 8px 30px rgba(0,0,0,0.08);
 
-    -webkit-overflow-scrolling:
-        touch;
 }
 
+
+/* ==========================================
+   TABLE
+   ========================================== */
 
 .all-songs-table {
 
     width: 100%;
 
-    min-width: 700px;
+    border-collapse: collapse;
 
-    border-collapse:
-        collapse;
+    font-size: 14px;
 
-    background:
-        var(--white);
 }
 
 
-/* TABLE HEADER */
+/* ==========================================
+   HEADER
+   ========================================== */
 
-.all-songs-table thead th {
+.all-songs-table thead {
 
-    padding:
-        14px 13px;
+    background: #f1f4f8;
 
-    background:
-        var(--primary);
-
-    color:
-        var(--white);
-
-    text-align:
-        left;
-
-    font-size:
-        12px;
-
-    font-weight:
-        600;
-
-    letter-spacing:
-        0.2px;
-
-    border:
-        none;
 }
 
+.all-songs-table th {
 
-/* ROUNDED TOP CORNERS */
+    text-align: left;
 
-.all-songs-table thead th:first-child {
+    padding: 16px 18px;
 
-    border-top-left-radius:
-        var(--radius);
-}
+    font-size: 12px;
 
-.all-songs-table thead th:last-child {
+    text-transform: uppercase;
 
-    border-top-right-radius:
-        var(--radius);
-}
+    letter-spacing: 0.5px;
 
-
-/* TABLE BODY */
-
-.all-songs-table tbody td {
-
-    padding:
-        13px;
+    color: #667085;
 
     border-bottom:
-        1px solid var(--border);
+        1px solid #e5e7eb;
 
-    color:
-        var(--text);
-
-    font-size:
-        13px;
-
-    background:
-        var(--white);
 }
 
 
-/* TABLE HOVER */
+/* ==========================================
+   CELLS
+   ========================================== */
 
-.all-songs-table tbody tr:hover td {
+.all-songs-table td {
 
-    background:
-        var(--green-light);
-
-    color:
-        var(--primary);
-}
-
-
-/* LAST ROW */
-
-.all-songs-table tbody tr:last-child td {
+    padding: 15px 18px;
 
     border-bottom:
-        none;
+        1px solid #eef0f3;
+
+    color: #344054;
+
 }
 
 
-/* =========================================================
-   18. PLAYLIST PANEL
-========================================================= */
+/* ==========================================
+   ROW HOVER
+   ========================================== */
 
-.playlist-panel {
-
-    position: fixed;
-
-    top: 76px;
-
-    right: 0;
-
-    bottom: 0;
-
-    width: 520px;
-
-    max-width: 95vw;
-
-    padding: 24px;
-
-    background:
-        var(--white);
-
-    border-left:
-        1px solid var(--border);
-
-    box-shadow:
-        -8px 0 30px
-        rgba(7,84,65,0.14);
-
-    z-index: 1100;
-
-    overflow-y: auto;
-
-    /*
-       Do not set display here.
-       Existing JavaScript controls visibility.
-    */
-}
-
-
-/* =========================================================
-   19. PLAYLIST HEADER
-========================================================= */
-
-.playlist-top {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    margin-bottom: 22px;
-
-    padding-bottom: 15px;
-
-    border-bottom:
-        1px solid var(--border);
-}
-
-.playlist-top h2 {
-
-    margin: 0;
-
-    color:
-        var(--primary);
-
-    font-size:
-        21px;
-}
-
-
-/* CLOSE BUTTON */
-
-.playlist-top button {
-
-    width: 36px;
-
-    height: 36px;
-
-    flex-shrink: 0;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background:
-        var(--green-soft);
-
-    color:
-        var(--primary);
-
-    font-size:
-        15px;
+.all-songs-table tbody tr {
 
     transition:
-        background 0.2s,
-        color 0.2s;
+        background 0.15s ease;
+
 }
 
-.playlist-top button:hover {
+.all-songs-table tbody tr:hover {
 
-    background:
-        var(--primary);
+    background: #f8fafc;
 
-    color:
-        var(--white);
 }
 
 
-/* =========================================================
-   20. PLAYLIST CREATE AREA
-========================================================= */
+/* ==========================================
+   NUMBER
+   ========================================== */
 
-.playlist-create {
+.all-songs-table td:first-child {
 
-    display: flex;
+    width: 50px;
 
-    align-items: center;
+    color: #98a2b3;
 
-    gap: 8px;
+    text-align: center;
 
-    width: 100%;
-}
-
-.playlist-create input {
-
-    flex: 1;
-
-    min-width: 0;
 }
 
 
-/* =========================================================
-   21. GENERAL PLAYLIST PANEL INPUTS
-========================================================= */
+/* ==========================================
+   CLICKABLE SONG TITLE
+   ========================================== */
 
-.playlist-panel input {
+.all-song-title {
 
-    height: 43px;
+    color: #2563eb;
 
-    padding:
-        0 13px;
+    font-weight: 600;
 
-    border:
-        1px solid var(--border);
+    text-decoration: none;
 
-    border-radius:
-        var(--radius-small);
-
-    background:
-        var(--white);
-
-    color:
-        var(--text);
-
-    font-size:
-        14px;
-
-    transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
 }
 
-.playlist-panel input:focus {
+.all-song-title:hover {
 
-    border-color:
-        var(--primary);
+    text-decoration: underline;
 
-    box-shadow:
-        0 0 0 3px
-        rgba(7,84,65,0.08);
 }
 
 
-/* =========================================================
-   22. PLAYLIST / SERVICE BUTTONS
-========================================================= */
-
-.playlist-panel button:not(.playlist-top button) {
-
-    min-height:
-        40px;
-
-    padding:
-        9px 15px;
-
-    border:
-        none;
-
-    border-radius:
-        var(--radius-small);
-
-    background:
-        var(--primary);
-
-    color:
-        var(--white);
-
-    font-size:
-        13px;
-
-    font-weight:
-        600;
-
-    transition:
-        background 0.2s,
-        transform 0.2s;
-}
-
-.playlist-panel button:not(.playlist-top button):hover {
-
-    background:
-        var(--primary-light);
-
-    transform:
-        translateY(-1px);
-}
-
-
-/* =========================================================
-   23. SERVICE PANEL
-========================================================= */
-
-#servicePanel {
-
-    background:
-        var(--white);
-}
-
-
-/* SERVICE NAME INPUT */
-
-#serviceName {
-
-    width: 100%;
-
-    margin-bottom: 10px;
-}
-
-
-/* SERVICE CREATE BUTTON */
-
-#createService {
-
-    background:
-        var(--primary);
-}
-
-
-/* =========================================================
-   24. SONG PICKER OVERLAY
-========================================================= */
-
-.popup {
-
-    position: fixed;
-
-    inset: 0;
-
-    background:
-        rgba(4,61,48,0.62);
-
-    z-index: 2000;
-
-    /*
-       Existing JavaScript controls
-       whether the popup is displayed.
-    */
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 20px;
-}
-
-
-/* =========================================================
-   25. SONG PICKER BOX
-========================================================= */
-
-.popup-box {
-
-    width: 550px;
-
-    max-width: 95vw;
-
-    max-height: 85vh;
-
-    overflow-y: auto;
-
-    padding: 24px;
-
-    background:
-        var(--white);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius-large);
-
-    box-shadow:
-        0 20px 60px
-        rgba(0,0,0,0.25);
-}
-
-
-/* =========================================================
-   26. POPUP HEADER
-========================================================= */
-
-.popup-header {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    margin-bottom: 18px;
-
-    padding-bottom: 14px;
-
-    border-bottom:
-        1px solid var(--border);
-}
-
-.popup-header h2 {
-
-    margin: 0;
-
-    color:
-        var(--primary);
-
-    font-size:
-        21px;
-}
-
-
-/* POPUP CLOSE */
-
-.popup-header button {
-
-    width: 36px;
-
-    height: 36px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background:
-        var(--green-soft);
-
-    color:
-        var(--primary);
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s,
-        color 0.2s;
-}
-
-.popup-header button:hover {
-
-    background:
-        var(--primary);
-
-    color:
-        var(--white);
-}
-
-
-/* =========================================================
-   27. SONG PICKER SEARCH
-========================================================= */
-
-#songPickerSearch {
-
-    width: 100%;
-
-    height: 43px;
-
-    padding:
-        0 13px;
-
-    margin-bottom: 15px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius-small);
-
-    background:
-        var(--white);
-
-    color:
-        var(--text);
-
-    font-size:
-        14px;
-}
-
-#songPickerSearch:focus {
-
-    border-color:
-        var(--primary);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(7,84,65,0.08);
-}
-
-
-/* =========================================================
-   28. GENERIC LINKS / ACTIONS
-========================================================= */
-
-a {
-
-    color:
-        var(--primary);
-
-    text-decoration:
-        none;
-}
-
-a:hover {
-
-    color:
-        var(--primary-light);
-}
-
-
-/* =========================================================
-   29. SCROLLBARS
-========================================================= */
-
-* {
-
-    scrollbar-width:
-        thin;
-
-    scrollbar-color:
-        var(--primary)
-        var(--green-light);
-}
-
-
-*::-webkit-scrollbar {
-
-    width:
-        8px;
-
-    height:
-        8px;
-}
-
-*::-webkit-scrollbar-track {
-
-    background:
-        var(--green-light);
-}
-
-*::-webkit-scrollbar-thumb {
-
-    background:
-        var(--primary);
-
-    border-radius:
-        10px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-
-    background:
-        var(--primary-light);
-}
-
-
-/* =========================================================
-   30. HORIZONTAL RULES
-========================================================= */
-
-hr {
-
-    border: none;
-
-    border-top:
-        1px solid var(--border);
-}
-
-
-/* =========================================================
-   31. MOBILE / TABLET
-========================================================= */
-
-@media (max-width: 1100px) {
-
-    .dashboard {
-
-        grid-template-columns:
-            repeat(2, minmax(150px, 1fr));
-    }
-
-    .top-actions input {
-
-        width:
-            210px;
-    }
-}
-
-
-/* =========================================================
-   32. MOBILE
-========================================================= */
-
-@media (max-width: 750px) {
-
-    .topbar {
-
-        min-height:
-            70px;
-
-        height:
-            auto;
-
-        padding:
-            12px 15px;
-
-        flex-wrap:
-            wrap;
-
-        gap:
-            10px;
-    }
-
-
-    .logo {
-
-        font-size:
-            19px;
-    }
-
-
-    .logo img {
-
-        width:
-            40px;
-
-        height:
-            40px;
-    }
-
-
-    .top-actions {
-
-        width:
-            100%;
-    }
-
-
-    .top-actions input {
-
-        flex:
-            1;
-
-        width:
-            auto;
-
-        min-width:
-            0;
-    }
-
-
-    .layout {
-
-        display:
-            block;
-
-        min-height:
-            auto;
-    }
-
-
-    .sidebar {
-
-        width:
-            100%;
-
-        padding:
-            14px;
-
-        border-right:
-            none;
-
-        border-bottom:
-            1px solid var(--border);
-    }
-
-
-    .user-welcome {
-
-        margin-bottom:
-            15px;
-    }
-
-
-    .sidebar h3 {
-
-        margin-top:
-            14px;
-    }
-
-
-    .content {
-
-        padding:
-            20px 15px;
-    }
-
-
-    .dashboard {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        gap:
-            10px;
-    }
-
-
-    .card {
-
-        padding:
-            16px;
-
-        min-height:
-            95px;
-    }
-
-
-    .card .number {
-
-        font-size:
-            25px;
-    }
-
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 700px) {
 
     .all-songs-panel {
 
-        top:
-            70px;
+        padding: 15px;
 
-        padding:
-            20px 15px;
     }
 
+    .all-songs-table-wrapper {
 
-    .playlist-panel {
+        overflow-x: auto;
 
-        top:
-            70px;
-
-        width:
-            100%;
-
-        max-width:
-            100%;
-
-        padding:
-            20px 15px;
     }
 
+    .all-songs-table {
 
-    .popup-box {
+        min-width: 700px;
 
-        width:
-            100%;
-
-        max-width:
-            100%;
     }
+
+}
+/* ==========================================
+   ALL SONGS SEARCH
+   ========================================== */
+
+.all-songs-search {
+
+    max-width: 1200px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+}
+
+.all-songs-search input {
+
+    flex: 1;
+
+    height: 46px;
+
+    padding: 0 16px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    background: white;
+
+}
+
+.all-songs-search input:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+
+}
+
+.all-songs-search button {
+
+    height: 46px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+.all-songs-search button:hover {
+
+    opacity: 0.9;
+
+}
+
+.all-songs-search button:last-child {
+
+    background: #e9edf3;
+
+    color: #344054;
+
 }
 
 
-/* =========================================================
-   33. SMALL MOBILE
-========================================================= */
-
-@media (max-width: 480px) {
-
-    .dashboard {
-
-        grid-template-columns:
-            1fr;
-    }
-
-
-    .logo-subtitle {
-
-        display:
-            none;
-    }
-
-
-    .top-actions button {
-
-        padding:
-            0 10px;
-    }
-
-
-    .content h2 {
-
-        font-size:
-            21px;
-    }
-
-
-    .all-songs-header h2 {
-
-        font-size:
-            21px;
-    }
-
+@media (max-width: 700px) {
 
     .all-songs-search {
 
-        flex-wrap:
-            wrap;
+        flex-direction: column;
+
+        align-items: stretch;
+
     }
 
-
-    .all-songs-search input {
-
-        flex:
-            100%;
-
-        width:
-            100%;
-    }
-
-
-    .all-songs-search button {
-
-        flex:
-            1;
-    }
-
-
-    .playlist-create {
-
-        flex-direction:
-            column;
-
-        align-items:
-            stretch;
-    }
-
-
-    .playlist-create input {
-
-        width:
-            100%;
-    }
 }
 
+/* ==========================================
+   USER WELCOME
+========================================== */
 
-/* =========================================================
-   34. PRINT
-========================================================= */
+.user-welcome {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 
-@media print {
+    padding: 14px 12px;
+    margin-bottom: 18px;
 
-    .topbar,
-    .sidebar,
-    .top-actions,
-    .close-all-songs,
-    .playlist-panel,
-    .popup {
+    border-radius: 12px;
 
-        display:
-            none !important;
-    }
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
 
+.welcome-icon {
+    width: 38px;
+    height: 38px;
 
-    .layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        display:
-            block;
-    }
+    border-radius: 50%;
 
+    background: rgba(255, 255, 255, 0.12);
 
-    .content {
+    font-size: 20px;
+}
 
-        width:
-            100%;
+.welcome-text {
+    min-width: 0;
+}
 
-        padding:
-            0;
+.welcome-label {
+    font-size: 12px;
+    opacity: 0.65;
+    margin-bottom: 2px;
+}
 
-        background:
-            white;
-    }
+.welcome-name {
+    font-size: 16px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
