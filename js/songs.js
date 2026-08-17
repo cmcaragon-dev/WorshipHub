@@ -300,6 +300,14 @@ title: "Awit Ng Pasasalamat",
         category: "Praise",
         language: "Tagalog",
         file: "songs/awitngpasasalamat.html"
+	},
+	{id:36,        
+title: "Ako'y Magtitiwala Sayo",
+        artist: "Musikatha",
+        key: "D",
+        category: "Worship",
+        language: "Tagalog",
+        file: "songs/akoymagtitiwalasayo.html"
 	}
 ];
 songs.sort((a, b) =>
