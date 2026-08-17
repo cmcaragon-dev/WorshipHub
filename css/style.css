@@ -2195,10 +2195,23 @@ body{
 #presentationLyrics .presentation-section-title { color:#FFFFFF !important; background:#1D2A42 !important; border:1px solid #334968 !important; font-size:21px; font-weight:900; letter-spacing:.4px; padding:9px 13px; margin:0 0 18px; border-radius:8px; text-align:center; }
 #presentationLyrics .presentation-section-content { width:100%; color:#FFFFFF !important; }
 
-#presentationLyrics .presentation-line { color:#FFFFFF !important; font-size:30px !important; line-height:1.55 !important; margin:0 0 12px; font-weight:600; letter-spacing:.1px; }
-#presentationLyrics .presentation-line * { color:#FFFFFF !important; }
+#presentationLyrics .presentation-line {
+    color: #FFFFFF !important;
+    font-size: 30px !important;
+    line-height: 1.18 !important;
+    margin: 0 0 2px !important;
+    font-weight: 600;
+    letter-spacing: .1px;
+}
 
-#presentationLyrics .presentation-line .chord,
+#presentationLyrics .presentation-line * {
+    color: #FFFFFF !important;
+}
+
+#presentationLyrics .presentation-line .chord {
+    color: #FFD54A !important;
+    font-weight: 900 !important;
+}
 #presentationLyrics .chord { color:#FFD54A !important; font-weight:900 !important; text-shadow:0 1px 3px rgba(0,0,0,.65); }
 
 #presentationHeader { position:sticky; top:0; z-index:40; width:100%; min-height:78px; padding:14px 28px; background:linear-gradient(135deg,#111C30 0%,#1D2D49 100%) !important; color:#FFFFFF !important; display:flex; align-items:center; justify-content:space-between; gap:20px; border-bottom:1px solid #334968; box-shadow:0 5px 20px rgba(0,0,0,.30); }
@@ -3301,3 +3314,27 @@ body.dark .service-body{
 #presentationScreen #presentationLyrics .presentation-line .chord,#presentationScreen #presentationLyrics .chord { color:#FFD54A !important; font-weight:900 !important; }
 #presentationScreen #presentationLyrics .presentation-section { background:#0E1626 !important; border-color:#25324A !important; }
 #presentationScreen #presentationLyrics .presentation-section-title { color:#FFFFFF !important; background:#1D2A42 !important; }
+/* ==========================================================
+   PRESENTATION - COMPACT LYRIC SPACING
+   ========================================================== */
+
+#presentationScreen #presentationLyrics .presentation-line {
+    line-height: 1.28 !important;
+    margin-top: 0 !important;
+    margin-bottom: 2px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+#presentationScreen #presentationLyrics .presentation-line + .presentation-line {
+    margin-top: 0 !important;
+}
+
+#presentationScreen #presentationLyrics .presentation-section-content {
+    gap: 0 !important;
+}
+
+#presentationScreen #presentationLyrics .presentation-section {
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+}
