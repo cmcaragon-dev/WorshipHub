@@ -2309,32 +2309,35 @@ body{
 
 
 /* ==========================================================
-   LYRIC LINE
+   PRESENTATION - LYRICS & CHORD SIZE
    ========================================================== */
 
+/* Lyrics */
 #presentationLyrics .presentation-line {
-
     color: #FFFFFF !important;
-
     font-size: 30px !important;
-
-    /*
-       IMPORTANT:
-       Keeps chord + lyric rows close together.
-    */
     line-height: 1.10 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-weight: 600;
+    letter-spacing: .1px;
+}
+
+/* Chords - larger than lyrics */
+#presentationLyrics .presentation-line .chord,
+#presentationLyrics .chord {
+    color: #FFD54A !important;
+
+    font-size: 36px !important;
+    line-height: 1 !important;
+
+    font-weight: 900 !important;
 
     margin: 0 !important;
-
     padding: 0 !important;
 
-    font-weight: 600;
-
-    letter-spacing: .1px;
-
-    height: auto !important;
-
-    min-height: 0 !important;
+    text-shadow:
+        0 1px 3px rgba(0,0,0,.65);
 }
 
 
