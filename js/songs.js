@@ -292,6 +292,14 @@ title: "Kahanga Hanga",
         category: "Praise",
         language: "Tagalog",
         file: "songs/kahangahanga.html"
+	},
+	{id:34,        
+title: "Awit Ng Pasasalamat",
+        artist: "Shekinah Glory",
+        key: "B",
+        category: "Praise",
+        language: "Tagalog",
+        file: "songs/awitngpasasalamat.html"
 	}
 ];
 songs.sort((a, b) =>
