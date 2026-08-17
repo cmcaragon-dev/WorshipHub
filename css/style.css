@@ -2179,724 +2179,73 @@ body{
     margin-top:-5px;
 }
 /* ==========================================================
-   PRESENTATION SCREEN
+   PRESENTATION MODE - HIGH VISIBILITY / WORSHIP SCREEN
+   Existing IDs/classes preserved - JavaScript unchanged
    ========================================================== */
 
-#presentationScreen {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
+#presentationScreen { position:fixed; inset:0; z-index:99999; display:none; overflow-y:auto; overflow-x:hidden; background:#070B14 !important; color:#FFFFFF !important; }
+#presentationScreen.show { display:block; }
 
-    background: #ffffff;
+#presentationLyrics { width:100%; min-height:calc(100vh - 150px); padding:34px 42px 150px; background:#070B14 !important; color:#FFFFFF !important; }
 
-    overflow-y: auto;
-    overflow-x: hidden;
+#presentationLyrics .presentation-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:30px; width:100%; align-items:start; }
 
-    display: none;
+#presentationLyrics .presentation-section { width:100%; padding:20px 22px 24px; background:#0E1626 !important; border:1px solid #25324A !important; border-radius:14px; box-sizing:border-box; break-inside:avoid; box-shadow:0 8px 25px rgba(0,0,0,.22); }
+
+#presentationLyrics .presentation-section-title { color:#FFFFFF !important; background:#1D2A42 !important; border:1px solid #334968 !important; font-size:21px; font-weight:900; letter-spacing:.4px; padding:9px 13px; margin:0 0 18px; border-radius:8px; text-align:center; }
+#presentationLyrics .presentation-section-content { width:100%; color:#FFFFFF !important; }
+
+#presentationLyrics .presentation-line { color:#FFFFFF !important; font-size:30px !important; line-height:1.55 !important; margin:0 0 12px; font-weight:600; letter-spacing:.1px; }
+#presentationLyrics .presentation-line * { color:#FFFFFF !important; }
+
+#presentationLyrics .presentation-line .chord,
+#presentationLyrics .chord { color:#FFD54A !important; font-weight:900 !important; text-shadow:0 1px 3px rgba(0,0,0,.65); }
+
+#presentationHeader { position:sticky; top:0; z-index:40; width:100%; min-height:78px; padding:14px 28px; background:linear-gradient(135deg,#111C30 0%,#1D2D49 100%) !important; color:#FFFFFF !important; display:flex; align-items:center; justify-content:space-between; gap:20px; border-bottom:1px solid #334968; box-shadow:0 5px 20px rgba(0,0,0,.30); }
+#presentationTitle { margin:0; padding:0; color:#FFFFFF !important; font-size:26px; font-weight:850; line-height:1.2; letter-spacing:-.3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#presentationCounter { display:inline-flex; align-items:center; justify-content:center; min-width:100px; height:36px; padding:0 15px; background:#263B5D !important; border:1px solid #496487 !important; color:#FFFFFF !important; border-radius:20px; font-size:13px; font-weight:850; white-space:nowrap; }
+
+#presentationNavigation { position:fixed; left:0; right:0; bottom:0; z-index:50; min-height:82px; padding:14px 28px; background:#0B1220 !important; border-top:1px solid #263A58; box-shadow:0 -8px 25px rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; gap:12px; }
+#presentationNavigation button { min-width:120px; height:46px; padding:0 18px; border:1px solid #40516D; border-radius:10px; background:#1A263A; color:#FFFFFF !important; font-size:14px; font-weight:800; cursor:pointer; transition:.2s ease; }
+#presentationNavigation button:hover { background:#2A3B57; border-color:#61799E; transform:translateY(-2px); }
+#presentationNavigation button:active { transform:translateY(0) scale(.97); }
+#presentationNavigation button:first-child { background:#34445D !important; color:#FFFFFF !important; }
+#presentationNavigation button:nth-child(2) { background:linear-gradient(135deg,#6C5CE7,#4F8CFF) !important; border-color:transparent !important; color:#FFFFFF !important; min-width:135px; }
+#presentationNavigation button:last-child { background:#B42318 !important; border-color:#D92D20 !important; color:#FFFFFF !important; }
+
+#presentationScreen #nextSongPreview { position:fixed !important; right:24px !important; bottom:94px !important; left:auto !important; top:auto !important; transform:none !important; display:flex !important; flex-direction:column !important; align-items:center !important; justify-content:center !important; width:230px !important; min-width:230px !important; max-width:230px !important; padding:12px 15px !important; background:#F8FAFC !important; border:1px solid #CBD5E1 !important; border-left:5px solid #FFD54A !important; border-radius:12px !important; color:#0F172A !important; text-align:center !important; z-index:2147483647 !important; visibility:visible !important; opacity:1 !important; box-sizing:border-box !important; pointer-events:none !important; box-shadow:0 10px 30px rgba(0,0,0,.35) !important; }
+#presentationScreen #nextSongPreview .next-song-label { color:#475569 !important; font-size:10px !important; font-weight:900 !important; letter-spacing:1.5px !important; margin-bottom:4px !important; opacity:1 !important; }
+#presentationScreen #nextSongPreview .next-song-title { color:#0F172A !important; font-size:15px !important; font-weight:850 !important; line-height:1.3 !important; text-align:center !important; word-break:break-word !important; }
+
+@media (max-width:1000px) {
+  #presentationLyrics .presentation-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+  #presentationLyrics .presentation-line { font-size:27px !important; }
+  #presentationScreen #nextSongPreview { width:210px !important; min-width:210px !important; max-width:210px !important; }
 }
 
-#presentationScreen.show {
-    display: block;
+@media (max-width:700px) {
+  #presentationHeader { min-height:64px; padding:10px 14px; gap:10px; }
+  #presentationTitle { font-size:19px; }
+  #presentationCounter { min-width:76px; height:30px; padding:0 9px; font-size:11px; }
+  #presentationLyrics { min-height:calc(100vh - 125px); padding:22px 15px 115px; }
+  #presentationLyrics .presentation-grid { grid-template-columns:1fr; gap:15px; }
+  #presentationLyrics .presentation-section { padding:16px; }
+  #presentationLyrics .presentation-section-title { font-size:18px; padding:8px 10px; }
+  #presentationLyrics .presentation-line { font-size:23px !important; line-height:1.5 !important; }
+  #presentationNavigation { min-height:64px; padding:8px 10px; gap:6px; }
+  #presentationNavigation button { min-width:0; flex:1; height:42px; padding:0 8px; font-size:12px; }
+  #presentationScreen #nextSongPreview { right:12px !important; bottom:75px !important; width:185px !important; min-width:185px !important; max-width:185px !important; padding:9px 10px !important; }
+  #presentationScreen #nextSongPreview .next-song-title { font-size:13px !important; }
 }
 
-
-/* ==========================================================
-   PRESENTATION LYRICS
-   ========================================================== */
-
-#presentationLyrics {
-    width: 100%;
-    min-height: 100vh;
-
-    padding: 35px;
-
-    background: #ffffff;
+@media (max-width:450px) {
+  #presentationHeader { flex-wrap:wrap; }
+  #presentationTitle { max-width:70%; font-size:17px; }
+  #presentationCounter { font-size:10px; }
+  #presentationLyrics .presentation-line { font-size:21px !important; }
+  #presentationScreen #nextSongPreview { width:160px !important; min-width:160px !important; max-width:160px !important; right:8px !important; }
 }
 
-
-/* ==========================================================
-   FORCE 3 COLUMNS
-   ========================================================== */
-
-#presentationLyrics .presentation-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 25px;
-
-    width: 100%;
-
-    align-items: start;
-}
-
-
-/* ==========================================================
-   SECTION CARD
-   ========================================================== */
-
-#presentationLyrics
-.presentation-section {
-
-    width: 100%;
-
-    padding: 20px;
-
-    background: #ffffff;
-
-    border-radius: 14px;
-
-    border: 1px solid #e5e5e5;
-
-    box-sizing: border-box;
-
-    break-inside: avoid;
-
-}
-
-
-/* ==========================================================
-   SECTION TITLE
-   ========================================================== */
-
-#presentationLyrics
-.presentation-section-title {
-
-    color: #ffffff !important;
-
-    background: #222222;
-
-    font-size: 22px;
-
-    font-weight: 900;
-
-    padding: 8px 12px;
-
-    margin-bottom: 15px;
-
-    border-radius: 8px;
-
-    text-align: center;
-
-}
-
-
-/* ==========================================================
-   SECTION CONTENT
-   ========================================================== */
-
-#presentationLyrics
-.presentation-section-content {
-
-    width: 100%;
-
-    color: #000000 !important;
-
-}
-
-
-/* ==========================================================
-   LYRIC LINE
-   ========================================================== */
-
-#presentationLyrics
-.presentation-line {
-
-    color: #000000 !important;
-
-    font-size: 24px;
-
-    line-height: 1.65;
-
-    margin-bottom: 8px;
-
-    font-weight: 600;
-
-}
-
-
-/* ==========================================================
-   ALL LYRIC TEXT = BLACK
-   ========================================================== */
-
-#presentationLyrics
-.presentation-line * {
-
-    color: #000000 !important;
-
-}
-
-
-/* ==========================================================
-   CHORD = RED
-   ========================================================== */
-
-#presentationLyrics
-.presentation-line .chord {
-
-    color: #ff0000 !important;
-
-    font-weight: 900 !important;
-
-    text-shadow:
-        0 1px 2px
-        rgba(0,0,0,.25);
-
-}
-
-/* ==========================================================
-PRESENTATION HEADER
-========================================================== */
-
-#presentationHeader {
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 20;
-
-    width: 100%;
-
-    min-height: 72px;
-
-    padding: 14px 24px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #18243a,
-            #2c3f62
-        );
-
-    color: #ffffff;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-    box-shadow:
-        0 4px 18px
-        rgba(15,23,42,.20);
-
-}
-
-
-/* ==========================================================
-PRESENTATION TITLE
-========================================================== */
-
-#presentationTitle {
-
-    margin: 0;
-
-    padding: 0;
-
-    color: #ffffff;
-
-    font-size: 24px;
-
-    font-weight: 800;
-
-    line-height: 1.2;
-
-    letter-spacing: -.3px;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-}
-
-
-/* ==========================================================
-PRESENTATION COUNTER
-Example: SONG 1 / 6
-========================================================== */
-
-#presentationCounter {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-width: 90px;
-
-    height: 34px;
-
-    padding: 0 13px;
-
-    background:
-        rgba(255,255,255,.12);
-
-    border:
-        1px solid
-        rgba(255,255,255,.18);
-
-    color: #ffffff;
-
-    border-radius: 20px;
-
-    font-size: 13px;
-
-    font-weight: 800;
-
-    white-space: nowrap;
-
-    backdrop-filter: blur(8px);
-
-}
-
-
-/* ==========================================================
-PRESENTATION NAVIGATION
-========================================================== */
-
-#presentationNavigation {
-
-    position: fixed;
-
-    left: 0;
-
-    right: 0;
-
-    bottom: 0;
-
-    z-index: 30;
-
-    min-height: 76px;
-
-    padding: 12px 24px;
-
-    background:
-        rgba(24,36,58,.97);
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.10);
-
-    box-shadow:
-        0 -5px 20px
-        rgba(15,23,42,.20);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 10px;
-
-}
-
-
-/* ==========================================================
-PRESENTATION NAVIGATION BUTTONS
-========================================================== */
-
-#presentationNavigation button {
-
-    min-width: 110px;
-
-    height: 42px;
-
-    padding: 0 17px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.15);
-
-    border-radius: 10px;
-
-    background:
-        rgba(255,255,255,.10);
-
-    color: #ffffff;
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        .2s ease;
-
-}
-
-
-/* Hover */
-
-#presentationNavigation button:hover {
-
-    background:
-        rgba(255,255,255,.20);
-
-    transform:
-        translateY(-2px);
-
-}
-
-
-/* Active / click */
-
-#presentationNavigation button:active {
-
-    transform:
-        translateY(0)
-        scale(.97);
-
-}
-
-
-/* Previous */
-
-#presentationNavigation button:first-child {
-
-    background:
-        #475569;
-
-}
-
-
-/* Next */
-
-#presentationNavigation button:nth-child(2) {
-
-    background:
-        linear-gradient(
-            135deg,
-            #6c5ce7,
-            #4f8cff
-        );
-
-    border-color:
-        transparent;
-
-}
-
-
-/* Close */
-
-#presentationNavigation button:last-child {
-
-    background:
-        #ef4444;
-
-    border-color:
-        transparent;
-
-}
-
-/* ======================================================
-   SMALL NEXT SONG - LOWER RIGHT
-   ====================================================== */
-
-#presentationScreen #nextSongPreview {
-    position: fixed !important;
-
-    right: 15px !important;
-    bottom: 15px !important;
-
-    left: auto !important;
-    top: auto !important;
-
-    transform: none !important;
-
-    display: flex !important;
-    flex-direction: column !important;
-
-    align-items: center !important;
-    justify-content: center !important;
-
-    width: 170px !important;
-    min-width: 170px !important;
-    max-width: 170px !important;
-
-    padding: 7px 10px !important;
-
-    background: rgba(0, 0, 0, 0.75) !important;
-
-    border-radius: 6px !important;
-
-    border: 1px solid rgba(255,255,255,0.20) !important;
-
-    color: white !important;
-
-    text-align: center !important;
-
-    z-index: 2147483647 !important;
-
-    visibility: visible !important;
-    opacity: 1 !important;
-
-    box-sizing: border-box !important;
-
-    pointer-events: none !important;
-}
-
-
-/* NEXT SONG */
-
-#presentationScreen #nextSongPreview .next-song-label {
-    font-size: 8px !important;
-
-    font-weight: 700 !important;
-
-    letter-spacing: 1.5px !important;
-
-    margin-bottom: 2px !important;
-
-    opacity: 0.65 !important;
-}
-
-
-/* SONG TITLE */
-
-#presentationScreen #nextSongPreview .next-song-title {
-    font-size: 12px !important;
-
-    font-weight: 700 !important;
-
-    line-height: 1.2 !important;
-
-    text-align: center !important;
-
-    word-break: break-word !important;
-}
-
-/* ==========================================================
-PRESENTATION CONTENT SPACE
-Leave room for bottom navigation
-========================================================== */
-
-#presentationLyrics {
-
-    width: 100%;
-
-    min-height:
-        calc(100vh - 72px);
-
-    padding:
-        30px 35px 120px;
-
-    background: #ffffff;
-
-}
-
-
-/* ==========================================================
-PRESENTATION SCREEN
-========================================================== */
-
-#presentationScreen {
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 99999;
-
-    background: #ffffff;
-
-    overflow-y: auto;
-
-    overflow-x: hidden;
-
-    display: none;
-
-}
-
-
-#presentationScreen.show {
-
-    display: block;
-
-}
-
-
-/* ==========================================================
-PRESENTATION HEADER RESPONSIVE
-========================================================== */
-
-@media (max-width: 700px) {
-
-    #presentationHeader {
-
-        min-height: 60px;
-
-        padding: 10px 14px;
-
-        gap: 10px;
-
-    }
-
-
-    #presentationTitle {
-
-        font-size: 18px;
-
-    }
-
-
-    #presentationCounter {
-
-        min-width: 70px;
-
-        height: 30px;
-
-        padding: 0 9px;
-
-        font-size: 11px;
-
-    }
-
-
-    #presentationNavigation {
-
-        min-height: 64px;
-
-        padding: 9px 10px;
-
-        gap: 6px;
-
-    }
-
-
-    #presentationNavigation button {
-
-        min-width: 90px;
-
-        height: 38px;
-
-        padding: 0 9px;
-
-        font-size: 12px;
-
-    }
-
-
-    #presentationLyrics {
-
-        padding:
-            20px 15px 100px;
-
-    }
-
-
-    #nextSongPreview {
-
-        display: none;
-
-    }
-
-}
-
-
-/* ==========================================================
-VERY SMALL MOBILE
-========================================================== */
-
-@media (max-width: 450px) {
-
-    #presentationHeader {
-
-        flex-wrap: wrap;
-
-    }
-
-
-    #presentationTitle {
-
-        max-width: 70%;
-
-        font-size: 16px;
-
-    }
-
-
-    #presentationCounter {
-
-        font-size: 10px;
-
-    }
-
-
-    #presentationNavigation {
-
-        justify-content:
-            stretch;
-
-    }
-
-
-    #presentationNavigation button {
-
-        flex: 1;
-
-        min-width: 0;
-
-        padding: 0 5px;
-
-        font-size: 11px;
-
-    }
-
-}
-/* ==========================================================
-   SECTION TITLES MUST REMAIN WHITE
-   ========================================================== */
-
-#presentationLyrics
-.presentation-section-title {
-
-    color: #ffffff !important;
-
-}
-
-
-/* ==========================================================
-   TABLET
-   ========================================================== */
-
-@media (max-width: 1000px) {
-
-    #presentationLyrics
-    .presentation-grid {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-    }
-
-}
-
-
-/* ==========================================================
-   MOBILE
-   ========================================================== */
-
-@media (max-width: 650px) {
-
-    #presentationLyrics
-    .presentation-grid {
-
-        grid-template-columns:
-            1fr;
-
-    }
-
-}
 /* =========================================================
    SERVICE PROGRESS
 ========================================================= */
@@ -3946,3 +3295,9 @@ body.dark .service-body{
         max-height: 48px;
     }
 }
+/* FINAL PRESENTATION VISIBILITY OVERRIDES */
+#presentationScreen,#presentationScreen #presentationLyrics { background:#070B14 !important; color:#FFFFFF !important; }
+#presentationScreen #presentationLyrics .presentation-line,#presentationScreen #presentationLyrics .presentation-line * { color:#FFFFFF !important; }
+#presentationScreen #presentationLyrics .presentation-line .chord,#presentationScreen #presentationLyrics .chord { color:#FFD54A !important; font-weight:900 !important; }
+#presentationScreen #presentationLyrics .presentation-section { background:#0E1626 !important; border-color:#25324A !important; }
+#presentationScreen #presentationLyrics .presentation-section-title { color:#FFFFFF !important; background:#1D2A42 !important; }
