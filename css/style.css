@@ -2222,15 +2222,17 @@ body{
 
 #presentationLyrics .presentation-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 30px;
-
     width: 100%;
 
-    align-items: start;
+    /* Make all columns equal height */
+    align-items: stretch;
+}
+
+#presentationLyrics .presentation-section {
+    height: 100%;
+    box-sizing: border-box;
 }
 
 
