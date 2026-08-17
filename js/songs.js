@@ -284,6 +284,14 @@ title: "Sabik sa Presensya",
         category: "Praise",
         language: "Tagalog",
         file: "songs/sabiksapresensya.html"
+	},
+	{id:33,        
+title: "Kahanga Hanga",
+        artist: "Faith Music Manila",
+        key: "A",
+        category: "Praise",
+        language: "Tagalog",
+        file: "songs/kahangahanga.html"
 	}
 ];
 songs.sort((a, b) =>
