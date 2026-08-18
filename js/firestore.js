@@ -593,15 +593,11 @@ export async function saveServices(
 // DELETE SERVICE
 // =====================================
 
-export async function deleteServiceCloud(
-    uid,
-    serviceId
-) {
+export async function deleteServiceCloud(uid, serviceId) {
 
-    /*
-     * Get authenticated user if UID
-     * was not supplied.
-     */
+    // =====================================
+    // GET AUTHENTICATED USER
+    // =====================================
 
     if (!uid) {
 
@@ -610,11 +606,9 @@ export async function deleteServiceCloud(
 
         if (!user) {
 
-            console.warn(
+            throw new Error(
                 "deleteServiceCloud: No authenticated Firebase user."
             );
-
-            return;
 
         }
 
@@ -624,12 +618,30 @@ export async function deleteServiceCloud(
     }
 
 
-    if (!serviceId) {
+    // =====================================
+    // VALIDATE SERVICE ID
+    // =====================================
 
-        return;
+    if (
+        serviceId === undefined ||
+        serviceId === null ||
+        String(serviceId).trim() === ""
+    ) {
+
+        throw new Error(
+            "deleteServiceCloud: Service ID is missing."
+        );
 
     }
 
+
+    const serviceIdString =
+        String(serviceId);
+
+
+    // =====================================
+    // FIRESTORE REFERENCE
+    // =====================================
 
     const serviceRef =
         doc(
@@ -637,9 +649,19 @@ export async function deleteServiceCloud(
             "users",
             String(uid),
             "services",
-            String(serviceId)
+            serviceIdString
         );
 
+
+    console.log(
+        "DELETING SERVICE FROM FIRESTORE:",
+        `users/${uid}/services/${serviceIdString}`
+    );
+
+
+    // =====================================
+    // DELETE
+    // =====================================
 
     await deleteDoc(
         serviceRef
@@ -647,8 +669,11 @@ export async function deleteServiceCloud(
 
 
     console.log(
-        "Service deleted:",
-        serviceId
+        "FIREBASE SERVICE DELETE SUCCESS:",
+        serviceIdString
     );
+
+
+    return true;
 
 }
