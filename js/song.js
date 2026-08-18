@@ -1750,94 +1750,81 @@ const Presentation = {
     // BUILD PRESENTATION
     // ======================================================
 
-    build() {
+    // ======================================================
+// BUILD PRESENTATION
+// ======================================================
 
-        const output =
-            document.getElementById(
-                "presentationLyrics"
-            );
+build() {
 
-        if (!output) {
+    const output =
+        document.getElementById(
+            "presentationLyrics"
+        );
 
-            console.error(
-                "presentationLyrics not found."
-            );
+    if (!output) {
 
-            return;
-        }
+        console.error(
+            "presentationLyrics not found."
+        );
 
-        const lyricsSource =
-            document.getElementById(
-                "lyrics"
-            );
+        return;
+    }
 
-        if (!lyricsSource) {
+    const lyricsSource =
+        document.getElementById(
+            "lyrics"
+        );
 
-            console.error(
-                "Lyrics source #lyrics not found."
-            );
+    if (!lyricsSource) {
 
-            output.innerHTML =
-                `
-                <div class="presentation-error">
-                    Lyrics could not be loaded.
-                </div>
-                `;
+        console.error(
+            "Lyrics source #lyrics not found."
+        );
 
-            return;
-        }
+        output.innerHTML = `
+            <div class="presentation-error">
+                Lyrics could not be loaded.
+            </div>
+        `;
 
-        // --------------------------------------------------
-        // COPY ORIGINAL LYRICS
-        // --------------------------------------------------
+        return;
+    }
 
-        const source =
-            document.createElement("div");
 
-        source.innerHTML =
-            lyricsSource.innerHTML;
+    // ==================================================
+    // CLEAR PRESENTATION
+    // ==================================================
 
-        // --------------------------------------------------
-        // FIND SONG SECTIONS
-        // --------------------------------------------------
+    output.innerHTML = "";
 
-        let sections =
-            Array.from(
-                source.querySelectorAll(
-                    ".song-section"
-                )
-            );
 
-        if (!sections.length) {
+    // ==================================================
+    // CREATE COPY OF SONG
+    // ==================================================
 
-            const songElement =
-                source.querySelector(".song");
+    const source =
+        document.createElement("div");
 
-            if (songElement) {
+    source.innerHTML =
+        lyricsSource.innerHTML;
 
-                sections =
-                    Array.from(
-                        songElement.children
-                    );
-            }
-        }
 
-        if (!sections.length) {
+    // ==================================================
+    // PASSING CHORDS
+    // ==================================================
 
-            sections = [
-                source
-            ];
-        }
+    const passingSource =
+        source.querySelector(
+            ".presentation-passing-bar"
+        );
 
-        // --------------------------------------------------
-        // CLEAR PRESENTATION
-        // --------------------------------------------------
 
-        output.innerHTML = "";
+    if (passingSource) {
 
-        // ==================================================
-        // PASSING CHORD BAR
-        // ==================================================
+        console.log(
+            "PASSING CHORDS FOUND"
+        );
+
 
         const passingBar =
             document.createElement("div");
@@ -1845,219 +1832,350 @@ const Presentation = {
         passingBar.className =
             "presentation-passing-bar";
 
-        const currentSong =
-            window.currentSong;
 
-        let passingContent = "";
+        // --------------------------------------------------
+        // LABEL
+        // --------------------------------------------------
 
-        if (
-            currentSong &&
-            currentSong.passingChords
-        ) {
-
-            passingContent =
-                currentSong.passingChords;
-
-        }
-        else {
-
-            const songEnding =
-                document.getElementById(
-                    "songEnding"
-                );
-
-            if (songEnding) {
-
-                passingContent =
-                    songEnding.innerHTML;
-            }
-        }
-
-        if (passingContent) {
-
-            passingBar.innerHTML = `
-                <div class="passing-label">
-                    PASSING CHORDS
-                </div>
-
-                <div class="passing-content">
-                    ${passingContent}
-                </div>
-            `;
-
-            output.appendChild(
-                passingBar
-            );
-        }
-
-        // ==================================================
-        // 3 COLUMN GRID
-        // ==================================================
-
-        const grid =
+        const label =
             document.createElement("div");
 
-        grid.className =
-            "presentation-grid";
+        label.className =
+            "presentation-passing-label";
 
-        sections.forEach(
-            section => {
+        label.textContent =
+            "PASSING CHORDS";
 
-                if (
-                    !section.textContent.trim()
-                ) {
 
-                    return;
-                }
+        // --------------------------------------------------
+        // CONTENT
+        // --------------------------------------------------
 
-                const card =
+        const content =
+            document.createElement("div");
+
+        content.className =
+            "presentation-passing-content";
+
+
+        const items =
+            passingSource.querySelectorAll(
+                ".passing-item"
+            );
+
+
+        items.forEach(
+            item => {
+
+                const newItem =
                     document.createElement("div");
 
-                card.className =
-                    "presentation-section";
+                newItem.className =
+                    "passing-item";
 
-                // --------------------------------------------------
-                // SECTION TITLE
-                // --------------------------------------------------
 
-                const sectionTitle =
-                    section.querySelector(
-                        ".section-title"
-                    );
+                // LABEL
 
-                if (sectionTitle) {
+                const strong =
+                    item.querySelector("strong");
 
-                    const newTitle =
-                        document.createElement("div");
+                if (strong) {
 
-                    newTitle.className =
-                        "presentation-section-title";
+                    const newStrong =
+                        document.createElement("strong");
 
-                    newTitle.textContent =
-                        sectionTitle
-                            .textContent
-                            .trim();
+                    newStrong.textContent =
+                        strong.textContent.trim();
 
-                    card.appendChild(
-                        newTitle
+                    newItem.appendChild(
+                        newStrong
                     );
                 }
 
-                // --------------------------------------------------
-                // SECTION CONTENT
-                // --------------------------------------------------
 
-                const content =
+                // CHORD
+
+                const chord =
+                    item.querySelector(".chord");
+
+                if (chord) {
+
+                    const newChord =
+                        document.createElement("span");
+
+                    newChord.className =
+                        "chord";
+
+                    newChord.textContent =
+                        chord.textContent.trim();
+
+
+                    newChord.style.fontWeight =
+                        "900";
+
+                    newChord.style.color =
+                        "#FFD54A";
+
+
+                    newItem.appendChild(
+                        newChord
+                    );
+                }
+
+
+                content.appendChild(
+                    newItem
+                );
+
+            }
+        );
+
+
+        passingBar.appendChild(
+            label
+        );
+
+        passingBar.appendChild(
+            content
+        );
+
+
+        output.appendChild(
+            passingBar
+        );
+
+    }
+    else {
+
+        console.warn(
+            "NO PASSING CHORDS FOUND"
+        );
+
+    }
+
+
+    // ==================================================
+    // FIND SONG SECTIONS
+    // ==================================================
+
+    const sections =
+        Array.from(
+            source.querySelectorAll(
+                ".song-section"
+            )
+        );
+
+
+    // ==================================================
+    // 3 COLUMN GRID
+    // ==================================================
+
+    const grid =
+        document.createElement("div");
+
+    grid.className =
+        "presentation-grid";
+
+
+    sections.forEach(
+        section => {
+
+            if (
+                !section.textContent.trim()
+            ) {
+                return;
+            }
+
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "presentation-section";
+
+
+            // --------------------------------------------------
+            // SECTION TITLE
+            // --------------------------------------------------
+
+            const sectionTitle =
+                section.querySelector(
+                    ".section-title"
+                );
+
+
+            if (sectionTitle) {
+
+                const newTitle =
                     document.createElement("div");
 
-                content.className =
-                    "presentation-section-content";
+                newTitle.className =
+                    "presentation-section-title";
 
-                const lines =
-                    section.querySelectorAll(
-                        ".song-line"
-                    );
+                newTitle.textContent =
+                    sectionTitle
+                        .textContent
+                        .trim();
 
-                if (lines.length) {
 
-                    lines.forEach(
-                        line => {
+                card.appendChild(
+                    newTitle
+                );
+            }
 
-                            const newLine =
-                                line.cloneNode(true);
 
-                            newLine.classList.add(
-                                "presentation-line"
+            // --------------------------------------------------
+            // SECTION CONTENT
+            // --------------------------------------------------
+
+            const content =
+                document.createElement("div");
+
+            content.className =
+                "presentation-section-content";
+
+
+            const lines =
+                section.querySelectorAll(
+                    ".song-line"
+                );
+
+
+            if (lines.length) {
+
+                lines.forEach(
+                    line => {
+
+                        const newLine =
+                            line.cloneNode(true);
+
+
+                        newLine.classList.add(
+                            "presentation-line"
+                        );
+
+
+                        newLine.style.display =
+                            "block";
+
+                        newLine.style.visibility =
+                            "visible";
+
+                        newLine.style.opacity =
+                            "1";
+
+
+                        newLine
+                            .querySelectorAll(".chord")
+                            .forEach(
+                                chord => {
+
+                                    chord.style.fontWeight =
+                                        "900";
+
+                                    chord.style.color =
+                                        "#FFD54A";
+
+                                }
                             );
 
-                            newLine.style.display =
-                                "block";
 
-                            newLine.style.visibility =
-                                "visible";
-
-                            newLine.style.opacity =
-                                "1";
-
+                        content.appendChild(
                             newLine
-                                .querySelectorAll(".chord")
-                                .forEach(
-                                    chord => {
+                        );
 
-                                        chord.style.fontWeight =
-                                            "900";
+                    }
+                );
 
-                                        chord.style.color =
-                                            "#FFD54A";
-                                    }
-                                );
+            }
+            else {
 
-                            content.appendChild(
-                                newLine
-                            );
+                const clone =
+                    section.cloneNode(true);
+
+
+                clone
+                    .querySelectorAll(
+                        ".section-title"
+                    )
+                    .forEach(
+                        element => {
+                            element.remove();
                         }
                     );
 
-                }
-                else {
 
-                    const clone =
-                        section.cloneNode(true);
+                clone
+                    .querySelectorAll(
+                        ".chord"
+                    )
+                    .forEach(
+                        chord => {
 
-                    clone
-                        .querySelectorAll(
-                            ".section-title"
-                        )
-                        .forEach(
-                            element => {
-                                element.remove();
-                            }
-                        );
+                            chord.style.fontWeight =
+                                "900";
 
-                    clone
-                        .querySelectorAll(
-                            ".chord"
-                        )
-                        .forEach(
-                            chord => {
+                            chord.style.color =
+                                "#FFD54A";
 
-                                chord.style.fontWeight =
-                                    "900";
-
-                                chord.style.color =
-                                    "#FFD54A";
-                            }
-                        );
-
-                    content.appendChild(
-                        clone
+                        }
                     );
-                }
 
-                card.appendChild(
-                    content
+
+                content.appendChild(
+                    clone
                 );
 
-                grid.appendChild(
-                    card
-                );
             }
-        );
 
-        output.appendChild(
-            grid
-        );
 
-        console.log(
-            "PRESENTATION BUILD COMPLETE"
-        );
+            card.appendChild(
+                content
+            );
 
-        console.log(
-            "SECTIONS:",
-            sections.length
-        );
-    },
 
+            grid.appendChild(
+                card
+            );
+
+        }
+    );
+
+
+    // ==================================================
+    // ADD SONG GRID
+    // ==================================================
+
+    output.appendChild(
+        grid
+    );
+
+
+    console.log(
+        "========================================"
+    );
+
+    console.log(
+        "PRESENTATION BUILD COMPLETE"
+    );
+
+    console.log(
+        "PASSING CHORDS:",
+        passingSource
+            ? "VISIBLE"
+            : "NOT FOUND"
+    );
+
+    console.log(
+        "SECTIONS:",
+        sections.length
+    );
+
+    console.log(
+        "========================================"
+    );
+
+}
 
     // ======================================================
     // UPDATE PRESENTATION
