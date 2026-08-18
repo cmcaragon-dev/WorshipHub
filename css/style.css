@@ -4419,14 +4419,144 @@ body.dark .service-body{
     color: #ffffff;
 }
 
-#presentationPassingBar {
-    position: relative !important;
+/* =========================================================
+   SIMPLE PASSING CHORDS
+   FINAL OVERRIDE
+========================================================= */
+
+#presentationPassingBar,
+.presentation-passing-bar {
+
     width: 100% !important;
+
     display: flex !important;
-    justify-content: center !important;
+
     align-items: center !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    transform: none !important;
-    margin: 0 auto 10px auto;
+    justify-content: center !important;
+
+    margin: 2px auto 10px !important;
+    padding: 3px 8px !important;
+
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    color: #aeb6c2 !important;
+
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+}
+
+
+/* Hide the large "PASSING CHORDS" block-style label */
+
+.presentation-passing-label {
+
+    min-width: auto !important;
+
+    padding: 0 !important;
+    margin: 0 12px 0 0 !important;
+
+    background: transparent !important;
+
+    color: #7f8a98 !important;
+
+    font-size: 10px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: .8px !important;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+
+/* Passing chord items */
+
+.presentation-passing-content {
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 14px !important;
+
+    width: auto !important;
+
+    background: transparent !important;
+}
+
+
+/* Individual passing chord */
+
+.presentation-passing-content .passing-item,
+.passing-item {
+
+    display: inline-flex !important;
+
+    flex-direction: row !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 5px !important;
+
+    min-height: auto !important;
+
+    padding: 0 !important;
+
+    margin: 0 !important;
+
+    background: transparent !important;
+
+    border: none !important;
+
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    font-size: 11px !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* Passing chord description */
+
+.presentation-passing-content .passing-item strong,
+.passing-item strong {
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    color: #7f8a98 !important;
+
+    font-size: 10px !important;
+
+    font-weight: 500 !important;
+
+    letter-spacing: 0 !important;
+}
+
+
+/* Actual chord */
+
+.presentation-passing-content .passing-item .chord,
+.passing-item .chord {
+
+    color: #d9a93a !important;
+
+    font-size: 12px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1 !important;
+
+    white-space: nowrap !important;
 }
