@@ -1792,7 +1792,6 @@ localStorage.setItem(
     }
 },
 
-
 // ======================================================
 // BUILD PRESENTATION
 // ======================================================
@@ -1832,9 +1831,10 @@ build() {
         return;
     }
 
-    // --------------------------------------------------
-    // COPY SOURCE
-    // --------------------------------------------------
+
+    // ==================================================
+    // COPY ORIGINAL LYRICS
+    // ==================================================
 
     const source =
         document.createElement(
@@ -1844,9 +1844,10 @@ build() {
     source.innerHTML =
         lyricsSource.innerHTML;
 
-    // --------------------------------------------------
+
+    // ==================================================
     // FIND SONG SECTIONS
-    // --------------------------------------------------
+    // ==================================================
 
     let sections =
         Array.from(
@@ -1854,6 +1855,11 @@ build() {
                 ".song-section"
             )
         );
+
+
+    // --------------------------------------------------
+    // FALLBACK
+    // --------------------------------------------------
 
     if (!sections.length) {
 
@@ -1871,6 +1877,11 @@ build() {
         }
     }
 
+
+    // --------------------------------------------------
+    // FINAL FALLBACK
+    // --------------------------------------------------
+
     if (!sections.length) {
 
         sections = [
@@ -1878,16 +1889,18 @@ build() {
         ];
     }
 
-    // --------------------------------------------------
+
+    // ==================================================
     // CLEAR PRESENTATION
-    // --------------------------------------------------
+    // ==================================================
 
     output.innerHTML =
         "";
 
-    // --------------------------------------------------
-    // CREATE 3-COLUMN GRID
-    // --------------------------------------------------
+
+    // ==================================================
+    // CREATE 3 COLUMN GRID
+    // ==================================================
 
     const grid =
         document.createElement(
@@ -1897,9 +1910,10 @@ build() {
     grid.className =
         "presentation-grid";
 
-    // --------------------------------------------------
-    // CREATE SECTIONS
-    // --------------------------------------------------
+
+    // ==================================================
+    // BUILD EACH SECTION
+    // ==================================================
 
     sections.forEach(
         section => {
@@ -1907,9 +1921,13 @@ build() {
             if (
                 !section.textContent.trim()
             ) {
-
                 return;
             }
+
+
+            // ==========================================
+            // SECTION CARD
+            // ==========================================
 
             const card =
                 document.createElement(
@@ -1919,9 +1937,10 @@ build() {
             card.className =
                 "presentation-section";
 
-            // ------------------------------------------
+
+            // ==========================================
             // SECTION TITLE
-            // ------------------------------------------
+            // ==========================================
 
             const sectionTitle =
                 section.querySelector(
@@ -1948,9 +1967,10 @@ build() {
                 );
             }
 
-            // ------------------------------------------
-            // CONTENT
-            // ------------------------------------------
+
+            // ==========================================
+            // SECTION CONTENT
+            // ==========================================
 
             const content =
                 document.createElement(
@@ -1960,15 +1980,25 @@ build() {
             content.className =
                 "presentation-section-content";
 
+
+            // ==========================================
+            // GET ALL LYRIC LINES
+            // ==========================================
+
             const lines =
                 section.querySelectorAll(
                     ".song-line"
                 );
 
+
             if (lines.length) {
 
                 lines.forEach(
                     line => {
+
+                        // ==================================
+                        // CLONE COMPLETE LINE
+                        // ==================================
 
                         const newLine =
                             line.cloneNode(
@@ -1978,6 +2008,11 @@ build() {
                         newLine.classList.add(
                             "presentation-line"
                         );
+
+
+                        // ==================================
+                        // FORCE VISIBILITY
+                        // ==================================
 
                         newLine.style.display =
                             "block";
@@ -1991,6 +2026,72 @@ build() {
                         newLine.style.color =
                             "#ffffff";
 
+
+                        // ==================================
+                        // PRESERVE ALL CHORDS
+                        // INCLUDING PASSING CHORDS
+                        // ==================================
+
+                        const chords =
+                            newLine.querySelectorAll(
+                                ".chord"
+                            );
+
+
+                        chords.forEach(
+                            chord => {
+
+                                chord.style.display =
+                                    "inline-block";
+
+                                chord.style.visibility =
+                                    "visible";
+
+                                chord.style.opacity =
+                                    "1";
+
+                                chord.style.color =
+                                    "#ff4444";
+
+                                chord.style.fontWeight =
+                                    "900";
+
+                                chord.style.position =
+                                    "relative";
+
+                                chord.style.zIndex =
+                                    "5";
+
+
+                                // --------------------------------
+                                // DO NOT HIDE PASSING CHORDS
+                                // --------------------------------
+
+                                chord.removeAttribute(
+                                    "hidden"
+                                );
+
+
+                                // --------------------------------
+                                // PRESERVE CHORD TEXT
+                                // --------------------------------
+
+                                if (
+                                    chord.textContent
+                                        .trim()
+                                        .length === 0
+                                ) {
+
+                                    return;
+                                }
+                            }
+                        );
+
+
+                        // ==================================
+                        // FORCE LYRIC TEXT VISIBILITY
+                        // ==================================
+
                         newLine
                             .querySelectorAll("*")
                             .forEach(
@@ -2001,28 +2102,25 @@ build() {
                                             "chord"
                                         )
                                     ) {
+
                                         return;
                                     }
+
+                                    element.style.visibility =
+                                        "visible";
+
+                                    element.style.opacity =
+                                        "1";
 
                                     element.style.color =
                                         "#ffffff";
                                 }
                             );
 
-                        newLine
-                            .querySelectorAll(
-                                ".chord"
-                            )
-                            .forEach(
-                                chord => {
 
-                                    chord.style.color =
-                                        "#ff4444";
-
-                                    chord.style.fontWeight =
-                                        "900";
-                                }
-                            );
+                        // ==================================
+                        // APPEND COMPLETE LINE
+                        // ==================================
 
                         content.appendChild(
                             newLine
@@ -2031,12 +2129,18 @@ build() {
                 );
 
             }
+
+            // ==========================================
+            // FALLBACK WHEN NO .song-line EXISTS
+            // ==========================================
+
             else {
 
                 const clone =
                     section.cloneNode(
                         true
                     );
+
 
                 clone
                     .querySelectorAll(
@@ -2047,6 +2151,11 @@ build() {
                             element.remove()
                     );
 
+
+                // --------------------------------------
+                // PRESERVE ALL CHORDS
+                // --------------------------------------
+
                 clone
                     .querySelectorAll(
                         ".chord"
@@ -2054,25 +2163,56 @@ build() {
                     .forEach(
                         chord => {
 
+                            chord.style.display =
+                                "inline-block";
+
+                            chord.style.visibility =
+                                "visible";
+
+                            chord.style.opacity =
+                                "1";
+
                             chord.style.color =
                                 "#ff4444";
 
                             chord.style.fontWeight =
                                 "900";
+
+                            chord.style.position =
+                                "relative";
+
+                            chord.style.zIndex =
+                                "5";
+
+                            chord.removeAttribute(
+                                "hidden"
+                            );
                         }
                     );
 
+
                 clone.style.color =
                     "#ffffff";
+
 
                 content.appendChild(
                     clone
                 );
             }
 
+
+            // ==========================================
+            // ADD CONTENT TO CARD
+            // ==========================================
+
             card.appendChild(
                 content
             );
+
+
+            // ==========================================
+            // ADD CARD TO GRID
+            // ==========================================
 
             grid.appendChild(
                 card
@@ -2080,8 +2220,28 @@ build() {
         }
     );
 
+
+    // ==================================================
+    // ADD GRID TO PRESENTATION
+    // ==================================================
+
     output.appendChild(
         grid
+    );
+
+
+    // ==================================================
+    // DEBUG INFORMATION
+    // ==================================================
+
+    const presentationChords =
+        output.querySelectorAll(
+            ".chord"
+        );
+
+
+    console.log(
+        "========================================"
     );
 
     console.log(
@@ -2091,6 +2251,15 @@ build() {
     console.log(
         "SECTIONS:",
         sections.length
+    );
+
+    console.log(
+        "PRESENTATION CHORDS:",
+        presentationChords.length
+    );
+
+    console.log(
+        "========================================"
     );
 },
 
