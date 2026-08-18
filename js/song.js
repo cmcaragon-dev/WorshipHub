@@ -1111,31 +1111,33 @@ async transpose(step) {
 // ======================================================
 // CURRENT KEY
 // ======================================================
+// ======================================================
+// CURRENT KEY
+// ======================================================
 
 getKey() {
 
-const song =
-    window.currentSong;
+    const song =
+        window.currentSong;
 
-if (!song) {
-    return "";
-}
+    if (!song) {
+        return "";
+    }
 
-// Service Key should have priority
-const baseKey =
-    song.serviceKey ||
-    song.key ||
-    song.originalKey;
+    // Service Key should have priority
+    const baseKey =
+        song.serviceKey ||
+        song.key ||
+        song.originalKey;
 
-if (!baseKey) {
-    return "";
-}
+    if (!baseKey) {
+        return "";
+    }
 
-return getTransposedKey(
-    baseKey,
-   Math.round(App.transpose)
-    )
-);
+    return getTransposedKey(
+        baseKey,
+        Math.round(App.transpose)
+    );
 
 },
 
