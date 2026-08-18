@@ -2330,163 +2330,160 @@ body{
         0;
 }
 
-
 /* ==========================================================
-   PASSING CHORD BAR
-   ========================================================== */
+   PRESENTATION PASSING CHORDS
+   COMPACT HORIZONTAL CHORD STRIP
+========================================================== */
 
 .presentation-passing-bar {
+    flex: 0 0 auto;
 
-    flex:
-        0 0 auto;
+    width: calc(100% - 28px);
 
-    min-height:
-        48px;
+    min-height: 54px;
 
-    width:
-        100%;
+    margin: 0 14px 8px;
 
-    display:
-        flex;
+    padding: 8px 16px;
 
-    align-items:
-        center;
+    display: flex;
+    align-items: center;
 
-    gap:
-        18px;
+    gap: 16px;
 
-    padding:
-        7px 18px;
-
-    margin-bottom:
-        7px;
-
-    box-sizing:
-        border-box;
-
-    border:
-        1px solid rgba(255,255,255,0.15);
-
-    border-radius:
-        8px;
+    box-sizing: border-box;
 
     background:
-        rgba(255,255,255,0.045);
+        linear-gradient(
+            135deg,
+            rgba(255,213,74,.08),
+            rgba(255,255,255,.035)
+        );
 
-    overflow:
-        hidden;
+    border: 1px solid rgba(255,213,74,.25);
+
+    border-left: 4px solid #FFD54A;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.18);
 }
 
 
 /* ==========================================================
-   PASSING LABEL
-   ========================================================== */
+   PASSING CHORD LABEL
+========================================================== */
 
 .presentation-passing-label {
 
-    flex:
-        0 0 auto;
+    flex: 0 0 auto;
 
-    font-size:
-        11px;
+    padding: 6px 10px;
 
-    font-weight:
-        900;
+    border-radius: 6px;
 
-    letter-spacing:
-        1.5px;
+    background: rgba(255,213,74,.12);
 
-    color:
-        rgba(255,255,255,0.60);
+    color: #FFD54A;
 
-    white-space:
-        nowrap;
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.2px;
+
+    white-space: nowrap;
 }
 
 
 /* ==========================================================
-   PASSING CONTENT
-   ========================================================== */
+   PASSING CHORD CONTENT
+========================================================== */
 
 .presentation-passing-content {
 
-    display:
-        flex;
+    flex: 1;
 
-    align-items:
-        center;
+    min-width: 0;
 
-    flex-wrap:
-        nowrap;
+    display: flex;
 
-    gap:
-        0;
+    align-items: center;
 
-    min-width:
-        0;
+    gap: 0;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
-    white-space:
-        nowrap;
+    white-space: nowrap;
 }
 
 
 /* ==========================================================
-   PASSING ITEM
-   ========================================================== */
+   PASSING CHORD ITEM
+========================================================== */
 
 .passing-item {
 
-    display:
-        inline-flex;
+    display: inline-flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    padding:
-        0 14px;
+    padding: 0 16px;
 
-    font-size:
-        14px;
+    min-height: 28px;
 
-    font-weight:
-        700;
+    color: #ffffff;
 
-    color:
-        #ffffff;
+    font-size: 15px;
+
+    font-weight: 700;
 
     border-right:
-        1px solid rgba(255,255,255,0.16);
+        1px solid rgba(255,255,255,.15);
+
+    white-space: nowrap;
 }
 
 
 .passing-item:first-child {
-    padding-left:
-        0;
+    padding-left: 0;
 }
 
 
 .passing-item:last-child {
-    border-right:
-        none;
+    border-right: none;
 }
 
 
+/* Label such as INTRO / LAST / OUTRO */
+
 .passing-item strong {
 
-    margin-right:
-        5px;
+    margin-right: 7px;
 
-    font-size:
-        10px;
+    color: #FFD54A;
 
-    letter-spacing:
-        1px;
+    font-size: 10px;
 
-    color:
-        #FFD54A;
+    font-weight: 900;
+
+    letter-spacing: .8px;
+
+}
+
+
+/* Chord itself */
+
+.passing-item .chord {
+
+    color: #FFD54A !important;
+
+    font-size: 17px;
+
+    font-weight: 900;
 }
 
 
