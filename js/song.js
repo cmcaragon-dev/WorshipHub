@@ -1713,34 +1713,39 @@ async start() {
 // UPDATE SERVICE KEY FOR STANDALONE SONG
 // ==================================================
 
+// ==================================================
+// UPDATE SERVICE KEY FOR STANDALONE SONG
+// ==================================================
+
 App.transpose =
-Number(
-song.transpose || 0
-);
+    Number(
+        song.transpose || 0
+    );
 
-this.updateKeyDisplay();
+// Service methods belong to Service
+Service.updateKeyDisplay();
 
-this.updateGuide();
+Service.updateGuide();
 
 const transposeDisplay =
-document.getElementById(
-"transposeValue"
-);
+    document.getElementById(
+        "transposeValue"
+    );
 
 if (transposeDisplay) {
 
-transposeDisplay.innerText =
-    (
-        App.transpose >= 0
-            ? "+"
-            : ""
-    ) +
-    App.transpose.toFixed(1);
-
+    transposeDisplay.innerText =
+        (
+            App.transpose >= 0
+                ? "+"
+                : ""
+        ) +
+        App.transpose.toFixed(1);
 }
+
 localStorage.setItem(
-"presentationMode",
-"standalone"
+    "presentationMode",
+    "standalone"
 );
 
     const title =
