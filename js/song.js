@@ -2817,3 +2817,26 @@ window.addEventListener("afterprint", function () {
 document.body.classList.remove("print-one-page");
 
 });
+
+async function startPresentation() {
+
+    presentationScreen.style.display = "flex";
+
+
+    // ==========================================
+    // SHOW PASSING CHORDS IN PRESENTATION
+    // ==========================================
+
+    const passingChords =
+        document.querySelector(".presentation-passing-bar");
+
+    const presentationPassingChords =
+        document.getElementById("presentationPassingChords");
+
+    if (passingChords && presentationPassingChords) {
+
+        presentationPassingChords.innerHTML =
+            passingChords.outerHTML;
+
+    }
+
