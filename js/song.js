@@ -1,2801 +1,3954 @@
-"use strict";
+/* =========================================================
+   JFCM SONGS ORGANIZER
+   MODERN UI DESIGN
+   Existing IDs / Classes preserved
+========================================================= */
 
-// ==========================================================
-// FIREBASE
-// ==========================================================
+:root{
 
-import {
-    auth,
-    db
-} from "./firebase.js";
+    --primary:#6c5ce7;
+    --primary-dark:#5546d6;
+    --secondary:#4f8cff;
 
-import {
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    --success:#22c55e;
+    --warning:#f59e0b;
+    --danger:#ef4444;
 
-import {
-    doc,
-    getDoc,
-    updateDoc,
-    serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    --dark:#172033;
+    --dark-2:#243047;
+
+    --text:#1e293b;
+    --muted:#64748b;
+
+    --background:#f4f7fb;
+    --surface:#ffffff;
+    --surface-2:#f8fafc;
+
+    --border:#e5eaf1;
+
+    --radius-sm:8px;
+    --radius-md:12px;
+    --radius-lg:18px;
+
+    --shadow-sm:0 2px 8px rgba(15,23,42,.05);
+    --shadow-md:0 8px 25px rgba(15,23,42,.08);
+    --shadow-lg:0 18px 45px rgba(15,23,42,.15);
+
+    --transition:.25s ease;
+}
 
 
-// ==========================================================
-// CURRENT SERVICE
-// ==========================================================
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-let activeService = null;
-let currentService = null;
-let presentationService = null;
-let firebaseUser = null;
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    -webkit-font-smoothing:antialiased;
+}
 
 
-// ==========================================================
-// LOAD ACTIVE SERVICE FROM FIREBASE
-// ==========================================================
+/* =========================================================
+   TOP BAR
+========================================================= */
 
-async function loadActiveService(user) {
+.topbar{
 
-    // ------------------------------------------------------
-    // GET FIREBASE USER
-    // ------------------------------------------------------
+    height:72px;
 
-    if (!user) {
-        user = auth.currentUser;
+    background:
+        linear-gradient(
+            135deg,
+            #18243a 0%,
+            #263754 100%
+        );
+
+    color:#fff;
+
+    padding:0 24px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:5000;
+
+    box-shadow:
+        0 4px 18px rgba(15,23,42,.18);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:23px;
+
+    font-weight:800;
+
+    letter-spacing:-.4px;
+
+    white-space:nowrap;
+}
+
+.logo::first-letter{
+    color:#a78bfa;
+}
+
+
+/* =========================================================
+   TOP ACTIONS
+========================================================= */
+
+.top-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+
+/* Search */
+
+.top-actions input{
+
+    width:340px;
+
+    height:42px;
+
+    padding:0 16px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:11px;
+
+    background:rgba(255,255,255,.96);
+
+    color:#1e293b;
+
+    font-size:14px;
+
+    transition:var(--transition);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.08);
+}
+
+.top-actions input::placeholder{
+
+    color:#94a3b8;
+}
+
+.top-actions input:focus{
+
+    box-shadow:
+        0 0 0 3px rgba(167,139,250,.35);
+}
+
+
+/* Header Buttons */
+
+.top-actions button{
+
+    height:42px;
+
+    min-width:42px;
+
+    padding:0 13px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.10);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+    backdrop-filter:blur(10px);
+}
+
+.top-actions button:hover{
+
+    background:rgba(255,255,255,.20);
+
+    transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.layout{
+
+    display:flex;
+
+    min-height:
+        calc(100vh - 72px);
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+
+    width:250px;
+
+    min-width:250px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f9fbff 100%
+        );
+
+    padding:24px 16px;
+
+    border-right:1px solid var(--border);
+
+    box-shadow:
+        4px 0 20px rgba(15,23,42,.04);
+
+    position:sticky;
+
+    top:72px;
+
+    height:
+        calc(100vh - 72px);
+
+    overflow-y:auto;
+}
+
+
+/* Sidebar headings */
+
+.sidebar h3{
+
+    margin:
+
+        4px 10px
+        12px;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
+}
+
+
+/* Sidebar divider */
+
+.sidebar hr{
+
+    border:0;
+
+    height:1px;
+
+    background:var(--border);
+
+    margin:20px 8px;
+}
+
+
+/* Sidebar buttons */
+
+.sidebar button{
+
+    width:100%;
+
+    min-height:44px;
+
+    padding:11px 14px;
+
+    margin-bottom:6px;
+
+    border:1px solid transparent;
+
+    background:transparent;
+
+    color:#475569;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+
+/* Hover */
+
+.sidebar button:hover{
+
+    background:#f0edff;
+
+    color:var(--primary);
+
+    border-color:#e6e0ff;
+
+    transform:translateX(3px);
+}
+
+
+/* Active */
+
+.sidebar button.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c5ce7,
+            #4f8cff
+        );
+
+    color:white;
+
+    box-shadow:
+        0 6px 16px rgba(108,92,231,.25);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content{
+
+    flex:1;
+
+    padding:30px;
+
+    min-width:0;
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dashboard{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:18px;
+
+    margin-bottom:30px;
+}
+
+
+/* =========================================================
+   DASHBOARD CARD
+========================================================= */
+
+.card{
+
+    position:relative;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius-lg);
+
+    padding:23px;
+
+    text-align:left;
+
+    box-shadow:var(--shadow-sm);
+
+    overflow:hidden;
+
+    transition:var(--transition);
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--secondary)
+        );
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow-md);
+}
+
+
+/* Number */
+
+.number{
+
+    font-size:36px;
+
+    line-height:1;
+
+    color:var(--primary);
+
+    font-weight:800;
+
+    letter-spacing:-1px;
+}
+
+
+/* Label */
+
+.label{
+
+    color:var(--muted);
+
+    margin-top:10px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:.4px;
+}
+
+
+/* =========================================================
+   SONG GRID
+========================================================= */
+
+#songGrid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(280px,1fr)
+        );
+
+    gap:18px;
+}
+
+
+/* =========================================================
+   SONG CARD
+========================================================= */
+
+.song-card{
+
+    background:var(--surface);
+
+    border:
+
+        1px solid
+        var(--border);
+
+    border-radius:var(--radius-lg);
+
+    padding:20px;
+
+    margin-bottom:18px;
+
+    box-shadow:var(--shadow-sm);
+
+    transition:var(--transition);
+
+    position:relative;
+}
+
+.song-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:var(--shadow-md);
+
+    border-color:#d8d0ff;
+}
+
+
+/* =========================================================
+   OPEN SONG
+========================================================= */
+
+.open-song{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    margin-top:14px;
+
+    padding:10px 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    box-shadow:
+        0 5px 12px rgba(108,92,231,.20);
+
+    transition:var(--transition);
+}
+
+.open-song:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(108,92,231,.28);
+}
+
+
+/* =========================================================
+   PLAYLIST PANEL
+========================================================= */
+
+.playlist-panel{
+
+    position:fixed;
+
+    top:0;
+
+    right:-440px;
+
+    width:420px;
+
+    max-width:95vw;
+
+    height:100%;
+
+    background:#fff;
+
+    border-left:1px solid var(--border);
+
+    box-shadow:
+        -15px 0 45px rgba(15,23,42,.18);
+
+    transition:.35s ease;
+
+    z-index:9999;
+
+    overflow:auto;
+}
+
+.playlist-panel.show{
+
+    right:0;
+}
+
+
+/* =========================================================
+   PLAYLIST TOP
+========================================================= */
+
+.playlist-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #18243a,
+            #2c3f62
+        );
+
+    color:white;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:5;
+}
+
+.playlist-top h2{
+
+    margin:0;
+
+    font-size:20px;
+}
+
+.playlist-top button{
+
+    width:36px;
+
+    height:36px;
+
+    padding:0;
+
+    background:rgba(255,255,255,.12);
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+}
+
+.playlist-top button:hover{
+
+    background:#ef4444;
+
+    transform:rotate(4deg);
+}
+
+
+/* =========================================================
+   PLAYLIST CREATE
+========================================================= */
+
+.playlist-create{
+
+    padding:20px;
+}
+
+.playlist-create input{
+
+    width:100%;
+
+    height:44px;
+
+    padding:0 14px;
+
+    margin-bottom:10px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:14px;
+
+    transition:var(--transition);
+}
+
+.playlist-create input:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(108,92,231,.10);
+}
+
+.playlist-create button{
+
+    width:100%;
+
+    height:44px;
+
+    padding:0 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #16a34a
+        );
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    transition:var(--transition);
+}
+
+.playlist-create button:hover{
+
+    transform:translateY(-1px);
+
+    box-shadow:
+        0 6px 14px rgba(34,197,94,.20);
+}
+
+
+/* =========================================================
+   PLAYLIST ITEM
+========================================================= */
+
+.playlist-item{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    margin:0 16px 16px;
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow-sm);
+
+    transition:var(--transition);
+}
+
+.playlist-item:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:var(--shadow-md);
+}
+
+
+/* =========================================================
+   PLAYLIST HEADER
+========================================================= */
+
+.playlist-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d2a42,
+            #293b5b
+        );
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:700;
+}
+
+.playlist-header:hover{
+
+    background:
+        linear-gradient(
+            135deg,
+            #243553,
+            #344a70
+        );
+}
+
+.playlist-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:16px;
+
+    font-weight:700;
+}
+
+.playlist-arrow{
+
+    width:28px;
+
+    height:28px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:50%;
+
+    font-size:13px;
+
+    transition:.25s;
+}
+
+.playlist-header.active .playlist-arrow{
+
+    transform:rotate(90deg);
+}
+
+.playlist-count{
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c5ce7,
+            #4f8cff
+        );
+
+    padding:5px 11px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+
+/* =========================================================
+   PLAYLIST BODY
+========================================================= */
+
+.playlist-body{
+
+    display:none;
+
+    padding:12px;
+
+}
+
+.playlist-body.show{
+
+    display:block;
+}
+
+
+/* =========================================================
+   PLAYLIST SONG
+========================================================= */
+
+.playlist-song{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:13px;
+
+    margin-bottom:9px;
+
+    background:#f8fafc;
+
+    border:1px solid #e8edf4;
+
+    border-radius:11px;
+
+    transition:var(--transition);
+}
+
+.playlist-song:hover{
+
+    background:#f2f5ff;
+
+    border-color:#dcd6ff;
+
+    transform:translateX(3px);
+}
+
+.song-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-width:0;
+}
+
+.song-title{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#1e293b;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.song-artist{
+
+    margin-top:4px;
+
+    color:#94a3b8;
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+   PLAYLIST BUTTONS
+========================================================= */
+
+.playlist-buttons{
+
+    display:flex;
+
+    gap:6px;
+
+    flex-shrink:0;
+}
+
+.playlist-buttons button{
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:8px 11px;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    transition:var(--transition);
+}
+
+.playlist-buttons button:hover{
+
+    transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   PLAYLIST ACTIONS
+========================================================= */
+
+.playlist-actions{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:8px;
+
+    margin:15px 0;
+}
+
+.playlist-actions button{
+
+    width:100%;
+
+    padding:11px;
+
+    border:none;
+
+    border-radius:9px;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+}
+
+.playlist-actions button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(15,23,42,.12);
+}
+
+.add-song-btn{
+    background:#22c55e;
+}
+
+.open-btn{
+    background:#4f8cff;
+}
+
+.rename-btn{
+    background:#f59e0b;
+}
+
+.delete-btn{
+    background:#ef4444;
+}
+
+
+/* Song action buttons */
+
+.open-song-btn{
+
+    background:#4f8cff;
+
+    color:white;
+}
+
+.remove-song-btn{
+
+    background:#ef4444;
+
+    color:white;
+}
+
+.open-song-btn:hover{
+
+    background:#3b82f6;
+}
+
+.remove-song-btn:hover{
+
+    background:#dc2626;
+}
+
+
+/* =========================================================
+   PLAYLIST POPUP
+========================================================= */
+
+.playlist-popup{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(15,23,42,.65);
+
+    backdrop-filter:blur(6px);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+
+    padding:20px;
+}
+
+.playlist-popup.show{
+
+    display:flex;
+}
+
+.popup-content{
+
+    width:440px;
+
+    max-width:100%;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow-lg);
+
+    animation:popupIn .25s ease;
+}
+
+@keyframes popupIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px) scale(.97);
+
     }
 
-    // ------------------------------------------------------
-    // GET CURRENT SERVICE ID
-    // ------------------------------------------------------
+    to{
 
-    const serviceId =
-        localStorage.getItem("currentServiceId");
+        opacity:1;
 
-    console.log(
-        "READING currentServiceId:",
-        serviceId
+        transform:translateY(0) scale(1);
+
+    }
+}
+
+.popup-playlist{
+
+    background:#f5f7fb;
+
+    color:#334155;
+
+    padding:13px;
+
+    margin:9px 0;
+
+    cursor:pointer;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+}
+
+.popup-playlist:hover{
+
+    background:#f0edff;
+
+    color:var(--primary);
+
+    border-color:#dcd6ff;
+
+    transform:translateX(3px);
+}
+
+
+/* =========================================================
+   MODERN WORSHIP SERVICE PLANNER
+   Existing IDs/classes preserved
+========================================================= */
+
+/* ---------- SERVICE PLANNER SIDE PANEL ---------- */
+
+#servicePanel{
+
+    position:fixed;
+
+    top:0;
+    right:-460px;
+
+    width:440px;
+    max-width:92vw;
+    height:100vh;
+
+    background:#f8fafc;
+
+    box-shadow:-15px 0 45px rgba(15,23,42,.22);
+
+    transition:right .35s cubic-bezier(.4,0,.2,1);
+
+    z-index:99999;
+
+    overflow-y:auto;
+
+    border-left:1px solid #e2e8f0;
+
+}
+
+#servicePanel.show{
+
+    right:0;
+
+}
+
+
+/* ---------- PANEL SCROLLBAR ---------- */
+
+#servicePanel::-webkit-scrollbar{
+
+    width:7px;
+
+}
+
+#servicePanel::-webkit-scrollbar-track{
+
+    background:#f1f5f9;
+
+}
+
+#servicePanel::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+
+}
+
+#servicePanel::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+
+}
+
+
+/* ---------- SERVICE WINDOW ---------- */
+
+.playlist-window{
+
+    padding:0 24px 30px;
+
+}
+
+
+/* ---------- MODERN HEADER ---------- */
+
+.playlist-window h2{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:10;
+
+    margin:0 -24px 25px;
+
+    padding:22px 24px;
+
+    background:linear-gradient(
+        135deg,
+        #1e293b,
+        #334155
     );
 
-    if (!serviceId) {
+    color:#fff;
 
-        console.error(
-            "NO currentServiceId IN LOCAL STORAGE"
-        );
+    font-size:21px;
 
-        return null;
-    }
+    font-weight:700;
 
-    // ------------------------------------------------------
-    // CHECK FIREBASE AUTHENTICATION
-    // ------------------------------------------------------
+    letter-spacing:.2px;
 
-    if (!user) {
+    box-shadow:0 4px 15px rgba(15,23,42,.15);
 
-        console.error(
-            "NO AUTHENTICATED FIREBASE USER"
-        );
+}
 
-        return null;
-    }
 
-    console.log(
-        "FIREBASE USER:",
-        user.uid
+/* Small accent under title */
+
+.playlist-window h2::after{
+
+    content:"";
+
+    display:block;
+
+    width:42px;
+
+    height:3px;
+
+    margin-top:8px;
+
+    background:#6366f1;
+
+    border-radius:10px;
+
+}
+
+
+/* ---------- SERVICE NAME INPUT ---------- */
+
+#serviceName{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:14px 16px;
+
+    margin-bottom:12px;
+
+    background:#fff;
+
+    border:1px solid #dbe2ea;
+
+    border-radius:10px;
+
+    color:#1e293b;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.2s;
+
+    box-shadow:0 1px 3px rgba(15,23,42,.04);
+
+}
+
+#serviceName::placeholder{
+
+    color:#94a3b8;
+
+}
+
+#serviceName:focus{
+
+    border-color:#6366f1;
+
+    box-shadow:
+        0 0 0 3px rgba(99,102,241,.12);
+
+}
+
+
+/* ---------- CREATE SERVICE BUTTON ---------- */
+
+#createService{
+
+    width:100%;
+
+    padding:13px 16px;
+
+    margin-top:5px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+        135deg,
+        #6366f1,
+        #4f46e5
     );
 
-    try {
+    color:#fff;
 
-        // --------------------------------------------------
-        // FIRESTORE SERVICE REFERENCE
-        // --------------------------------------------------
+    font-size:15px;
 
-        const serviceRef = doc(
-            db,
-            "users",
-            user.uid,
-            "services",
-            String(serviceId)
-        );
+    font-weight:600;
 
-        console.log(
-            "READING FIRESTORE SERVICE:",
-            `users/${user.uid}/services/${serviceId}`
-        );
+    cursor:pointer;
 
-        // --------------------------------------------------
-        // GET SERVICE
-        // --------------------------------------------------
+    transition:.2s;
 
-        const snapshot =
-            await getDoc(serviceRef);
+    box-shadow:0 4px 12px rgba(79,70,229,.22);
 
-        if (!snapshot.exists()) {
+}
 
-            console.error(
-                "SERVICE DOES NOT EXIST:",
-                serviceId
-            );
+#createService:hover{
 
-            return null;
-        }
+    transform:translateY(-1px);
 
-        // --------------------------------------------------
-        // BUILD ACTIVE SERVICE
-        // --------------------------------------------------
+    box-shadow:0 7px 18px rgba(79,70,229,.28);
 
-        activeService = {
-            id: snapshot.id,
-            ...snapshot.data()
-        };
+}
 
-        // --------------------------------------------------
-        // MAKE SURE SONGS EXISTS
-        // --------------------------------------------------
+#createService:active{
 
-        if (!Array.isArray(activeService.songs)) {
-            activeService.songs = [];
-        }
+    transform:scale(.98);
 
-        // --------------------------------------------------
-        // SET SERVICE REFERENCES
-        // --------------------------------------------------
+}
 
-        currentService = activeService;
-        presentationService = activeService;
 
-        // --------------------------------------------------
-        // LOG RESULT
-        // --------------------------------------------------
+/* ---------- CLOSE SERVICE BUTTON ---------- */
 
-        console.log(
-            "================================"
-        );
+#closeService{
 
-        console.log(
-            "ACTIVE SERVICE LOADED"
-        );
+    width:36px;
 
-        console.log(
-            "ID:",
-            activeService.id
-        );
+    height:36px;
 
-        console.log(
-            "NAME:",
-            activeService.name
-        );
+    padding:0;
 
-        console.log(
-            "SONGS:",
-            activeService.songs.length
-        );
+    background:rgba(255,255,255,.12);
 
-        console.log(
-            "================================"
-        );
+    color:white;
 
-        return activeService;
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+}
+
+
+#closeService:hover{
+
+    background:#ef4444;
+
+    transform:rotate(4deg);
+}
+
+/* ---------- DIVIDER ---------- */
+
+#servicePanel hr{
+
+    border:none;
+
+    border-top:1px solid #e2e8f0;
+
+    margin:25px 0;
+
+}
+
+
+/* =========================================================
+   SERVICE LIST
+========================================================= */
+
+#serviceList{
+
+    margin-top:10px;
+
+}
+
+
+/* ---------- SERVICE ITEM ---------- */
+
+.service-item{
+
+    background:#fff;
+
+    padding:0;
+
+    margin-bottom:14px;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 2px 8px rgba(15,23,42,.05);
+
+    transition:.2s;
+
+}
+
+.service-item:hover{
+
+    border-color:#c7d2fe;
+
+    box-shadow:
+        0 6px 18px rgba(15,23,42,.09);
+
+}
+
+
+/* =========================================================
+   SERVICE HEADER
+========================================================= */
+
+.service-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 18px;
+
+    background:#fff;
+
+    color:#1e293b;
+
+    cursor:pointer;
+
+    border:none;
+
+    border-radius:14px 14px 0 0;
+
+    transition:.2s;
+
+}
+
+.service-header:hover{
+
+    background:#f8fafc;
+
+}
+
+
+/* ---------- SERVICE TITLE ---------- */
+
+.service-title{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#1e293b;
+
+    line-height:1.3;
+
+}
+
+
+/* ---------- SERVICE COUNT ---------- */
+
+.service-count{
+
+    margin-top:4px;
+
+    color:#64748b;
+
+    font-size:12px;
+
+    font-weight:500;
+
+}
+
+
+/* ---------- ARROW ---------- */
+
+.service-header span{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:30px;
+
+    height:30px;
+
+    margin-right:0;
+
+    border-radius:50%;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+}
+
+
+/* Rotate arrow when active */
+
+.service-header.active span{
+
+    transform:rotate(90deg);
+
+}
+
+
+/* =========================================================
+   SERVICE BODY
+========================================================= */
+
+.service-body{
+
+    display:none;
+
+    margin:0;
+
+    padding:14px;
+
+    background:#f8fafc;
+
+    border-top:1px solid #e2e8f0;
+
+    border-radius:0 0 14px 14px;
+
+}
+
+.service-body.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   SONG INSIDE SERVICE
+========================================================= */
+
+.service-song{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:12px 13px;
+
+    margin-top:8px;
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:10px;
+
+    transition:.2s;
+
+}
+
+.service-song:first-child{
+
+    margin-top:0;
+
+}
+
+.service-song:hover{
+
+    border-color:#c7d2fe;
+
+    transform:translateX(2px);
+
+    box-shadow:
+        0 3px 10px rgba(15,23,42,.06);
+
+}
+
+
+/* ---------- SONG INFORMATION ---------- */
+
+.service-song-title{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#334155;
+
+    line-height:1.4;
+
+    flex:1;
+
+}
+
+
+/* ---------- SONG KEY ---------- */
+
+.service-song-key{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:42px;
+
+    height:25px;
+
+    padding:0 9px;
+
+    margin-left:10px;
+
+    box-sizing:border-box;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    border:1px solid #c7d2fe;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+/* ---------- SERVICE SONG DELETE BUTTON ---------- */
+
+.service-song button{
+
+    margin-left:8px;
+
+    padding:6px 9px;
+
+    border:none;
+
+    border-radius:7px;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+    font-size:12px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.service-song button:hover{
+
+    background:#fecaca;
+
+    transform:scale(1.05);
+
+}
+
+
+/* =========================================================
+   SERVICE ACTION BUTTONS
+========================================================= */
+
+.service-item button{
+
+    padding:8px 11px;
+
+    margin-top:10px;
+
+    margin-right:5px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.service-item button:hover{
+
+    background:#e0e7ff;
+
+    transform:translateY(-1px);
+
+}
+
+
+/* =========================================================
+   MOBILE SERVICE PLANNER
+========================================================= */
+
+@media(max-width:600px){
+
+    #servicePanel{
+
+        width:100%;
+
+        max-width:100%;
+
+        right:-100%;
 
     }
-    catch (error) {
 
-        console.error(
-            "LOAD ACTIVE SERVICE ERROR:",
-            error
+    #servicePanel.show{
+
+        right:0;
+
+    }
+
+    .playlist-window{
+
+        padding:0 18px 25px;
+
+    }
+
+    .playlist-window h2{
+
+        margin-left:-18px;
+
+        margin-right:-18px;
+
+        padding:20px 18px;
+
+    }
+
+}
+
+
+/* =========================================================
+   OPTIONAL MODERN BACKDROP
+   Only active when panel is open if your JS adds
+   a backdrop class/element.
+========================================================= */
+
+.service-panel-backdrop{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(15,23,42,.35);
+
+    backdrop-filter:blur(3px);
+
+    z-index:99998;
+
+}
+
+
+/* =========================================================
+   SONG PICKER
+========================================================= */
+
+.popup{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(15,23,42,.65);
+
+    backdrop-filter:blur(6px);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+    padding:20px;
+}
+
+.popup.show{
+
+    display:flex;
+}
+
+.popup-box{
+
+    width:850px;
+
+    max-width:95%;
+
+    max-height:85vh;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    box-shadow:var(--shadow-lg);
+}
+
+
+/* Picker header */
+
+.popup-header{
+
+    background:
+        linear-gradient(
+            135deg,
+            #18243a,
+            #2c3f62
         );
 
-        return null;
+    color:white;
+
+    padding:18px 20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.popup-header h2{
+
+    margin:0;
+
+    font-size:19px;
+}
+
+
+/* Picker search */
+
+#songPickerSearch{
+
+    margin:15px;
+
+    height:44px;
+
+    padding:0 14px;
+
+    font-size:14px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    outline:none;
+
+    transition:var(--transition);
+}
+
+#songPickerSearch:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(108,92,231,.10);
+}
+
+
+/* Picker list */
+
+#songPickerList{
+
+    overflow:auto;
+
+    padding:15px;
+
+    flex:1;
+}
+
+
+/* Picker card */
+
+.song-picker-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:13px 15px;
+
+    margin-bottom:9px;
+
+    border:1px solid var(--border);
+
+    border-radius:11px;
+
+    background:#fff;
+
+    transition:var(--transition);
+}
+
+.song-picker-card:hover{
+
+    background:#f8f7ff;
+
+    border-color:#dcd6ff;
+
+    transform:translateX(3px);
+}
+
+.song-picker-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-width:0;
+}
+
+.song-picker-title{
+
+    font-weight:700;
+
+    font-size:14px;
+
+    color:#1e293b;
+}
+
+.song-picker-artist{
+
+    color:#94a3b8;
+
+    font-size:12px;
+
+    margin-top:3px;
+}
+
+.song-picker-card button{
+
+    background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #16a34a
+        );
+
+    color:white;
+
+    border:none;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    transition:var(--transition);
+
+    flex-shrink:0;
+}
+
+.song-picker-card button:hover{
+
+    transform:translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(34,197,94,.20);
+}
+
+.song-picker-add-btn.added{
+
+    cursor:default;
+
+    opacity:.55;
+}
+
+.song-picker-add-btn:disabled{
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   WORSHIP / SONG DISPLAY
+========================================================= */
+
+.song-container{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow-md);
+
+    border:1px solid var(--border);
+}
+
+
+/* Compact lyrics */
+
+.song-line{
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+    line-height:.88 !important;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size:20px;
+
+    white-space:pre-wrap;
+}
+
+.song-line p,
+.song-section p{
+
+    margin:0;
+
+    padding:0;
+
+    line-height:.88;
+}
+
+.song-line + .song-line{
+
+    margin-top:-5px;
+}
+/* ==========================================================
+   PRESENTATION MODE - HIGH VISIBILITY / WORSHIP SCREEN
+   Clear lyrics + compact chord spacing
+   JavaScript unchanged
+   ========================================================== */
+
+#presentationScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background: #070B14 !important;
+    color: #FFFFFF !important;
+}
+
+#presentationScreen.show {
+    display: block;
+}
+
+
+/* ==========================================================
+   PRESENTATION LYRICS CONTAINER
+   ========================================================== */
+
+#presentationLyrics {
+    width: 100%;
+    min-height: calc(100vh - 150px);
+
+    padding: 34px 42px 150px;
+
+    background: #070B14 !important;
+    color: #FFFFFF !important;
+}
+
+
+/* ==========================================================
+   3-COLUMN PRESENTATION
+   ========================================================== */
+
+#presentationLyrics .presentation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+    width: 100%;
+
+    /* Make all columns equal height */
+    align-items: stretch;
+}
+
+#presentationLyrics .presentation-section {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   SECTION CARD
+   ========================================================== */
+
+#presentationLyrics .presentation-section {
+    width: 100%;
+
+    padding: 20px 22px 24px;
+
+    background: #0E1626 !important;
+
+    border:
+        1px solid #25324A !important;
+
+    border-radius: 14px;
+
+    box-sizing: border-box;
+
+    break-inside: avoid;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.22);
+}
+
+
+/* ==========================================================
+   SECTION TITLE
+   ========================================================== */
+
+#presentationLyrics .presentation-section-title {
+
+    color: #FFFFFF !important;
+
+    background: #1D2A42 !important;
+
+    border:
+        1px solid #334968 !important;
+
+    font-size: 21px;
+
+    font-weight: 900;
+
+    letter-spacing: .4px;
+
+    padding: 9px 13px;
+
+    margin: 0 0 18px;
+
+    border-radius: 8px;
+
+    text-align: center;
+}
+
+
+/* ==========================================================
+   SECTION CONTENT
+   ========================================================== */
+
+#presentationLyrics .presentation-section-content {
+
+    width: 100%;
+
+    color: #FFFFFF !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    gap: 0 !important;
+}
+
+
+/* ==========================================================
+   PRESENTATION - LYRICS & CHORD SIZE
+   ========================================================== */
+
+/* Lyrics */
+#presentationLyrics .presentation-line {
+    color: #FFFFFF !important;
+    font-size: 30px !important;
+    line-height: 1.10 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-weight: 600;
+    letter-spacing: .1px;
+}
+
+/* Chords - larger than lyrics */
+#presentationLyrics .presentation-line .chord,
+#presentationLyrics .chord {
+    color: #FFD54A !important;
+
+    font-size: 30px !important;
+    line-height: 1 !important;
+
+    font-weight: 900 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    text-shadow:
+        0 1px 3px rgba(0,0,0,.65);
+}
+
+
+/* ==========================================================
+   LYRIC CHILD ELEMENTS
+   Remove unwanted margins from p/div/span
+   ========================================================== */
+
+#presentationLyrics .presentation-line p,
+#presentationLyrics .presentation-line div,
+#presentationLyrics .presentation-line span {
+
+    margin-top: 0 !important;
+
+    margin-bottom: 0 !important;
+
+    padding-top: 0 !important;
+
+    padding-bottom: 0 !important;
+}
+
+
+/* ==========================================================
+   ALL LYRIC TEXT
+   ========================================================== */
+
+#presentationLyrics .presentation-line * {
+
+    color: #FFFFFF !important;
+}
+
+
+/* ==========================================================
+   CHORDS
+   ========================================================== */
+
+#presentationLyrics .presentation-line .chord,
+#presentationLyrics .chord {
+
+    color: #FFD54A !important;
+
+    font-weight: 900 !important;
+
+    line-height: 1 !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    text-shadow:
+        0 1px 3px rgba(0,0,0,.65);
+}
+
+
+/* ==========================================================
+   PREVIOUS / NEXT LYRIC LINE
+   Remove extra gap
+   ========================================================== */
+
+#presentationLyrics .presentation-line + .presentation-line {
+
+    margin-top: 0 !important;
+
+    padding-top: 0 !important;
+}
+
+
+/* ==========================================================
+   PRESENTATION HEADER
+   ========================================================== */
+
+#presentationHeader {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 40;
+
+    width: 100%;
+
+    min-height: 78px;
+
+    padding: 14px 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111C30 0%,
+            #1D2D49 100%
+        ) !important;
+
+    color: #FFFFFF !important;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-bottom:
+        1px solid #334968;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.30);
+}
+
+
+/* ==========================================================
+   SONG TITLE
+   ========================================================== */
+
+#presentationTitle {
+
+    margin: 0;
+
+    padding: 0;
+
+    color: #FFFFFF !important;
+
+    font-size: 26px;
+
+    font-weight: 850;
+
+    line-height: 1.2;
+
+    letter-spacing: -.3px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* ==========================================================
+   SONG COUNTER
+   ========================================================== */
+
+#presentationCounter {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 100px;
+
+    height: 36px;
+
+    padding: 0 15px;
+
+    background: #263B5D !important;
+
+    border:
+        1px solid #496487 !important;
+
+    color: #FFFFFF !important;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 850;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================================
+   PRESENTATION NAVIGATION
+   ========================================================== */
+
+#presentationNavigation {
+
+    position: fixed;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    z-index: 50;
+
+    min-height: 82px;
+
+    padding: 14px 28px;
+
+    background: #0B1220 !important;
+
+    border-top:
+        1px solid #263A58;
+
+    box-shadow:
+        0 -8px 25px rgba(0,0,0,.35);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+#presentationNavigation button {
+
+    min-width: 120px;
+
+    height: 46px;
+
+    padding: 0 18px;
+
+    border:
+        1px solid #40516D;
+
+    border-radius: 10px;
+
+    background: #1A263A;
+
+    color: #FFFFFF !important;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+
+#presentationNavigation button:hover {
+
+    background: #2A3B57;
+
+    border-color: #61799E;
+
+    transform: translateY(-2px);
+}
+
+
+#presentationNavigation button:active {
+
+    transform:
+        translateY(0)
+        scale(.97);
+}
+
+
+#presentationNavigation button:first-child {
+
+    background: #34445D !important;
+
+    color: #FFFFFF !important;
+}
+
+
+#presentationNavigation button:nth-child(2) {
+
+    background:
+        linear-gradient(
+            135deg,
+            #6C5CE7,
+            #4F8CFF
+        ) !important;
+
+    border-color: transparent !important;
+
+    color: #FFFFFF !important;
+
+    min-width: 135px;
+}
+
+
+#presentationNavigation button:last-child {
+
+    background: #B42318 !important;
+
+    border-color: #D92D20 !important;
+
+    color: #FFFFFF !important;
+}
+
+
+/* ======================================================
+   SMALL NEXT SONG - LOWER RIGHT
+   ====================================================== */
+
+#presentationScreen #nextSongPreview {
+    position: fixed !important;
+
+    right: 15px !important;
+    bottom: 15px !important;
+
+    left: auto !important;
+    top: auto !important;
+
+    transform: none !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 170px !important;
+    min-width: 170px !important;
+    max-width: 170px !important;
+
+    padding: 7px 10px !important;
+
+    background: rgba(0, 0, 0, 0.75) !important;
+
+    border-radius: 6px !important;
+
+    border: 1px solid rgba(255,255,255,0.20) !important;
+
+    color: white !important;
+
+    text-align: center !important;
+
+    z-index: 2147483647 !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    box-sizing: border-box !important;
+
+    pointer-events: none !important;
+}
+
+
+/* NEXT SONG */
+
+#presentationScreen #nextSongPreview .next-song-label {
+    font-size: 8px !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 1.5px !important;
+
+    margin-bottom: 2px !important;
+
+    opacity: 0.65 !important;
+}
+
+
+/* SONG TITLE */
+
+#presentationScreen #nextSongPreview .next-song-title {
+    font-size: 12px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.2 !important;
+
+    text-align: center !important;
+
+    word-break: break-word !important;
+}
+
+
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (max-width: 1000px) {
+
+    #presentationLyrics .presentation-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0,1fr));
+
+        gap: 20px;
+    }
+
+    #presentationLyrics .presentation-line {
+
+        font-size: 27px !important;
+
+        line-height: 1.10 !important;
+    }
+
+    #presentationScreen #nextSongPreview {
+
+        width: 210px !important;
+
+        min-width: 210px !important;
+
+        max-width: 210px !important;
     }
 }
 
 
-// ==========================================================
-// WAIT FOR FIREBASE AUTHENTICATION
-// ==========================================================
+/* ==========================================================
+   MOBILE
+   ========================================================== */
 
-const activeServiceReady =
-    new Promise(function (resolve) {
+@media (max-width: 700px) {
 
-        onAuthStateChanged(
-            auth,
-            async function (user) {
+    #presentationHeader {
 
-                firebaseUser = user;
+        min-height: 64px;
 
-                console.log(
-                    "AUTH STATE:",
-                    user
-                        ? user.uid
-                        : "NO USER"
-                );
+        padding: 10px 14px;
 
-                if (!user) {
-
-                    console.warn(
-                        "NO AUTHENTICATED FIREBASE USER"
-                    );
-
-                    resolve(null);
-
-                    return;
-                }
-
-                console.log(
-                    "AUTHENTICATED FIREBASE USER:",
-                    user.uid
-                );
-
-                try {
-
-                    const service =
-                        await loadActiveService(user);
-
-                    if (!service) {
-
-                        console.warn(
-                            "NO ACTIVE SERVICE"
-                        );
-
-                        resolve(null);
-
-                        return;
-                    }
-
-                    console.log(
-                        "ACTIVE SERVICE READY:",
-                        service
-                    );
-
-                    resolve(service);
-
-                }
-                catch (error) {
-
-                    console.error(
-                        "ERROR LOADING ACTIVE SERVICE:",
-                        error
-                    );
-
-                    resolve(null);
-                }
-            }
-        );
-
-    });
-
-
-// ==========================================================
-// GET ACTIVE SERVICE
-// ==========================================================
-
-async function getActiveService() {
-
-    if (activeService) {
-        return activeService;
+        gap: 10px;
     }
 
-    const service =
-        await activeServiceReady;
+    #presentationTitle {
 
-    return service;
-}
-
-
-// ==========================================================
-// WORSHIP SONGS MANAGER
-// CORE ENGINE
-// ==========================================================
-
-
-// ==========================================================
-// CHORD SCALES
-// ==========================================================
-
-const SHARP_SCALE = [
-    "C",
-    "C#",
-    "D",
-    "D#",
-    "E",
-    "F",
-    "F#",
-    "G",
-    "G#",
-    "A",
-    "A#",
-    "B"
-];
-
-const FLAT_SCALE = [
-    "C",
-    "Db",
-    "D",
-    "Eb",
-    "E",
-    "F",
-    "Gb",
-    "G",
-    "Ab",
-    "A",
-    "Bb",
-    "B"
-];
-
-
-// ==========================================================
-// APP
-// ==========================================================
-
-const App = {
-
-    fontSize:
-        parseInt(
-            localStorage.getItem("songFontSize")
-        ) || 22,
-
-    transpose: 0,
-
-    // ------------------------------------------------------
-    // INITIALIZE
-    // ------------------------------------------------------
-
-    async init() {
-
-        this.cacheDOM();
-
-        this.loadDarkMode();
-
-        this.updateLyricsFont();
-
-        this.bindEvents();
-
-        await Service.restoreTranspose();
-
-        Service.updateKeyDisplay();
-
-        Service.updateGuide();
-
-        Service.updateProgress();
-    },
-
-    // ------------------------------------------------------
-    // CACHE DOM
-    // ------------------------------------------------------
-
-    cacheDOM() {
-
-        this.lyrics =
-            document.getElementById("lyrics");
-
-        this.fontPlus =
-            document.getElementById("fontPlus");
-
-        this.fontMinus =
-            document.getElementById("fontMinus");
-
-        this.darkButton =
-            document.getElementById("darkMode");
-
-        this.transposeUp =
-            document.getElementById("transposeUp");
-
-        this.transposeDown =
-            document.getElementById("transposeDown");
-
-        this.serviceKey =
-            document.getElementById("serviceKey");
-
-        this.songEnding =
-            document.getElementById("songEnding");
-    },
-
-    // ------------------------------------------------------
-    // BIND EVENTS
-    // ------------------------------------------------------
-
-    bindEvents() {
-
-        this.fontPlus?.addEventListener(
-            "click",
-            () => {
-
-                this.fontSize += 2;
-
-                if (this.fontSize > 48) {
-                    this.fontSize = 48;
-                }
-
-                this.updateLyricsFont();
-            }
-        );
-
-        this.fontMinus?.addEventListener(
-            "click",
-            () => {
-
-                this.fontSize -= 2;
-
-                if (this.fontSize < 12) {
-                    this.fontSize = 12;
-                }
-
-                this.updateLyricsFont();
-            }
-        );
-
-        this.darkButton?.addEventListener(
-            "click",
-            () => this.toggleDarkMode()
-        );
-
-        this.transposeUp?.addEventListener(
-            "click",
-            () => Service.transpose(1)
-        );
-
-        this.transposeDown?.addEventListener(
-            "click",
-            () => Service.transpose(-1)
-        );
-    },
-
-    // ------------------------------------------------------
-    // UPDATE LYRICS FONT
-    // ------------------------------------------------------
-
-    updateLyricsFont() {
-
-        document
-            .querySelectorAll(
-                ".song-line, .chord"
-            )
-            .forEach(el => {
-
-                el.style.fontSize =
-                    this.fontSize + "px";
-            });
-
-        localStorage.setItem(
-            "songFontSize",
-            this.fontSize
-        );
-    },
-
-    // ------------------------------------------------------
-    // LOAD DARK MODE
-    // ------------------------------------------------------
-
-    loadDarkMode() {
-
-        if (
-            localStorage.getItem("darkMode") === "true"
-        ) {
-
-            document.body.classList.add("dark");
-        }
-    },
-
-    // ------------------------------------------------------
-    // TOGGLE DARK MODE
-    // ------------------------------------------------------
-
-    toggleDarkMode() {
-
-        document.body.classList.toggle("dark");
-
-        localStorage.setItem(
-            "darkMode",
-            document.body.classList.contains("dark")
-        );
-    }
-};
-
-
-// ==========================================================
-// HELPERS
-// ==========================================================
-
-function getTransposedKey(key, step) {
-
-    if (!key) {
-        return "";
+        font-size: 19px;
     }
 
-    let index =
-        SHARP_SCALE.indexOf(key);
+    #presentationCounter {
 
-    if (index === -1) {
+        min-width: 76px;
 
-        index =
-            FLAT_SCALE.indexOf(key);
+        height: 30px;
+
+        padding: 0 9px;
+
+        font-size: 11px;
     }
 
-    if (index === -1) {
-        return key;
+    #presentationLyrics {
+
+        min-height:
+            calc(100vh - 125px);
+
+        padding:
+            22px 15px 115px;
     }
 
-    return SHARP_SCALE[
-        (index + step + 12) % 12
-    ];
-}
+    #presentationLyrics .presentation-grid {
 
+        grid-template-columns: 1fr;
 
-// ==========================================================
-// SERVICE
-// ==========================================================
-
-const Service = {
-
-    // ======================================================
-    // GET CURRENT SERVICE
-    // ======================================================
-
-    async getCurrent() {
-
-        const id =
-            localStorage.getItem(
-                "currentServiceId"
-            );
-
-        if (!id) {
-
-            console.warn(
-                "No currentServiceId found."
-            );
-
-            return null;
-        }
-
-        const service =
-            await getActiveService();
-
-        if (!service) {
-
-            console.warn(
-                "No active Firebase service."
-            );
-
-            return null;
-        }
-
-        if (!Array.isArray(service.songs)) {
-            service.songs = [];
-        }
-
-        if (
-            String(service.id) !==
-            String(id)
-        ) {
-
-            console.warn(
-                "Active service ID does not match currentServiceId:",
-                service.id,
-                id
-            );
-
-            return null;
-        }
-
-        console.log(
-            "Current Service:",
-            service
-        );
-
-        return service;
-    },
-
-
-    // ======================================================
-    // GET SONG INDEX
-    // ======================================================
-
-    getSongIndex() {
-
-        return Number(
-            localStorage.getItem(
-                "currentSongIndex"
-            ) || 0
-        );
-    },
-
-
-    // ======================================================
-    // SET SONG INDEX
-    // ======================================================
-
-    setSongIndex(index) {
-
-        localStorage.setItem(
-            "currentSongIndex",
-            String(index)
-        );
-    },
-
-
-    // ======================================================
-    // GET CURRENT SONG
-    // ======================================================
-
-    async getCurrentSong() {
-
-        const service =
-            await this.getCurrent();
-
-        if (!service) {
-            return null;
-        }
-
-        if (!Array.isArray(service.songs)) {
-            return null;
-        }
-
-        const index =
-            this.getSongIndex();
-
-        if (
-            index < 0 ||
-            index >= service.songs.length
-        ) {
-
-            return null;
-        }
-
-        return service.songs[index];
-    },
-
-
-    // ======================================================
-    // SAVE CURRENT SERVICE KEY
-    // ======================================================
-
-    async saveCurrentServiceKey() {
-
-        console.log(
-            "================================"
-        );
-
-        console.log(
-            "SAVE SERVICE KEY"
-        );
-
-        // --------------------------------------------------
-        // GET AUTHENTICATED USER
-        // --------------------------------------------------
-
-        const user =
-            firebaseUser ||
-            auth.currentUser;
-
-        if (!user) {
-
-            console.error(
-                "SAVE SERVICE KEY: NO AUTHENTICATED FIREBASE USER"
-            );
-
-            alert(
-                "Firebase user is not authenticated."
-            );
-
-            return false;
-        }
-
-        console.log(
-            "USER UID:",
-            user.uid
-        );
-
-        // --------------------------------------------------
-        // GET CURRENT SERVICE ID
-        // --------------------------------------------------
-
-        const serviceId =
-            localStorage.getItem(
-                "currentServiceId"
-            );
-
-        if (!serviceId) {
-
-            console.error(
-                "NO currentServiceId"
-            );
-
-            alert(
-                "No active Service Planner found."
-            );
-
-            return false;
-        }
-
-        console.log(
-            "SERVICE ID:",
-            serviceId
-        );
-
-        // --------------------------------------------------
-        // GET CURRENT SONG INDEX
-        // --------------------------------------------------
-
-        const songIndex =
-            Number(
-                localStorage.getItem(
-                    "currentSongIndex"
-                ) || 0
-            );
-
-        console.log(
-            "SONG INDEX:",
-            songIndex
-        );
-
-        try {
-
-            // ----------------------------------------------
-            // FIRESTORE SERVICE REFERENCE
-            // ----------------------------------------------
-
-            const serviceRef =
-                doc(
-                    db,
-                    "users",
-                    user.uid,
-                    "services",
-                    String(serviceId)
-                );
-
-            // ----------------------------------------------
-            // GET SERVICE
-            // ----------------------------------------------
-
-            const snapshot =
-                await getDoc(serviceRef);
-
-            if (!snapshot.exists()) {
-
-                console.error(
-                    "SERVICE DOES NOT EXIST:",
-                    serviceId
-                );
-
-                alert(
-                    "The Service Planner record was not found."
-                );
-
-                return false;
-            }
-
-            const service =
-                snapshot.data();
-
-            // ----------------------------------------------
-            // CHECK SONGS
-            // ----------------------------------------------
-
-            if (!Array.isArray(service.songs)) {
-
-                console.error(
-                    "SERVICE HAS NO SONGS ARRAY"
-                );
-
-                alert(
-                    "The Service Planner has no songs."
-                );
-
-                return false;
-            }
-
-            if (
-                songIndex < 0 ||
-                songIndex >= service.songs.length
-            ) {
-
-                console.error(
-                    "INVALID SONG INDEX:",
-                    songIndex
-                );
-
-                alert(
-                    "Current song was not found in the Service Planner."
-                );
-
-                return false;
-            }
-
-            // ----------------------------------------------
-            // GET CURRENT SONG
-            // ----------------------------------------------
-
-            const song =
-                service.songs[songIndex];
-
-            console.log(
-                "CURRENT SONG BEFORE SAVE:",
-                song
-            );
-
-            // ----------------------------------------------
-            // GET DISPLAYED SERVICE KEY
-            // ----------------------------------------------
-
-            const serviceKeyElement =
-                document.getElementById(
-                    "serviceKey"
-                );
-
-            if (!serviceKeyElement) {
-
-                console.error(
-                    "ELEMENT #serviceKey NOT FOUND"
-                );
-
-                alert(
-                    "Service Key element was not found."
-                );
-
-                return false;
-            }
-
-            const displayedKey =
-                serviceKeyElement.textContent.trim();
-
-            console.log(
-                "DISPLAYED SERVICE KEY:",
-                displayedKey
-            );
-
-            if (!displayedKey) {
-
-                console.error(
-                    "DISPLAYED SERVICE KEY IS EMPTY"
-                );
-
-                alert(
-                    "Service Key is empty."
-                );
-
-                return false;
-            }
-
-            // ----------------------------------------------
-            // PRESERVE ORIGINAL KEY
-            // ----------------------------------------------
-
-            if (!song.originalKey) {
-
-                song.originalKey =
-                    song.key ||
-                    displayedKey;
-            }
-
-            // ----------------------------------------------
-            // SAVE KEY + TRANSPOSE
-            // ----------------------------------------------
-
-            song.serviceKey =
-                displayedKey;
-
-            song.transpose =
-                Number(
-                    App.transpose || 0
-                );
-
-            console.log(
-                "ORIGINAL KEY:",
-                song.originalKey
-            );
-
-            console.log(
-                "NEW SERVICE KEY:",
-                song.serviceKey
-            );
-
-            console.log(
-                "TRANSPOSE:",
-                song.transpose
-            );
-
-            // ----------------------------------------------
-            // UPDATE FIRESTORE
-            // ----------------------------------------------
-
-            await updateDoc(
-                serviceRef,
-                {
-                    songs: service.songs,
-
-                    updatedAt:
-                        serverTimestamp()
-                }
-            );
-
-            // ----------------------------------------------
-            // VERIFY FIRESTORE SAVE
-            // ----------------------------------------------
-
-            const verify =
-                await getDoc(serviceRef);
-
-            if (!verify.exists()) {
-
-                console.error(
-                    "SAVE VERIFICATION FAILED"
-                );
-
-                alert(
-                    "Service Key could not be verified."
-                );
-
-                return false;
-            }
-
-            const verifyData =
-                verify.data();
-
-            const savedSong =
-                verifyData.songs?.[songIndex];
-
-            console.log(
-                "FIREBASE VERIFIED:",
-                savedSong
-            );
-
-            // ----------------------------------------------
-            // SUCCESS
-            // ----------------------------------------------
-
-            alert(
-                "Service Key saved successfully!\n\n" +
-                "Service: " +
-                (service.name || "Unknown") +
-                "\n" +
-                "Song: " +
-                (song.title || "Unknown") +
-                "\n" +
-                "Service Key: " +
-                displayedKey +
-                "\n" +
-                "Transpose: " +
-                (song.transpose >= 0 ? "+" : "") +
-                song.transpose
-            );
-
-            console.log(
-                "================================"
-            );
-
-            console.log(
-                "SERVICE KEY SUCCESSFULLY SAVED"
-            );
-
-            console.log(
-                "SERVICE:",
-                serviceId
-            );
-
-            console.log(
-                "SONG:",
-                songIndex
-            );
-
-            console.log(
-                "KEY:",
-                displayedKey
-            );
-
-            console.log(
-                "TRANSPOSE:",
-                song.transpose
-            );
-
-            console.log(
-                "================================"
-            );
-
-            return true;
-
-        }
-        catch (error) {
-
-            console.error(
-                "SAVE SERVICE KEY ERROR:",
-                error
-            );
-
-            alert(
-                "Unable to save Service Key.\n\n" +
-                error.message
-            );
-
-            return false;
-        }
-    },
-
-// ======================================================
-// TRANSPOSE
-// ======================================================
-
-async transpose(step) {
-
-    console.log(
-        "================================"
-    );
-
-    console.log(
-        "TRANSPOSE"
-    );
-
-    console.log(
-        "STEP:",
-        step
-    );
-
-
-    // ==================================================
-    // UPDATE TRANSPOSE VALUE
-    // ==================================================
-
-    App.transpose =
-        Number(
-            App.transpose || 0
-        ) +
-        Number(step);
-
-
-    console.log(
-        "NEW TRANSPOSE:",
-        App.transpose
-    );
-
-
-    // ==================================================
-    // UPDATE SERVICE KEY FIRST
-    // ==================================================
-
-    this.updateKeyDisplay();
-
-    this.updateGuide();
-
-
-    // ==================================================
-    // UPDATE TRANSPOSE DISPLAY
-    // ==================================================
-
-    const transposeDisplay =
-        document.getElementById(
-            "transposeValue"
-        );
-
-
-    if (transposeDisplay) {
-
-        transposeDisplay.innerText =
-            (
-                App.transpose >= 0
-                    ? "+"
-                    : ""
-            ) +
-            App.transpose;
+        gap: 15px;
     }
 
+    #presentationLyrics .presentation-section {
 
-    // ==================================================
-    // UPDATE CHORDS
-    // ==================================================
-
-    document
-        .querySelectorAll(".chord")
-        .forEach(chord => {
-
-            chord.innerText =
-                chord.innerText.replace(
-                    /[A-G](#|b)?/g,
-                    note => {
-
-                        let index =
-                            SHARP_SCALE.indexOf(
-                                note
-                            );
-
-
-                        if (index === -1) {
-
-                            index =
-                                FLAT_SCALE.indexOf(
-                                    note
-                                );
-                        }
-
-
-                        if (index === -1) {
-
-                            return note;
-                        }
-
-
-                        return SHARP_SCALE[
-                            (
-                                index +
-                                Number(step) +
-                                12
-                            ) % 12
-                        ];
-                    }
-                );
-        });
-
-// ==================================================
-// SAVE SERVICE KEY IF THIS IS A SERVICE SONG
-// ==================================================
-
-const serviceId =
-    localStorage.getItem(
-        "currentServiceId"
-    );
-
-if (serviceId) {
-
-    console.log(
-        "SERVICE MODE - SAVING SERVICE KEY"
-    );
-
-    const saved =
-        await this.saveCurrentServiceKey();
-
-    if (!saved) {
-
-        console.warn(
-            "TRANSPOSE CHANGED BUT FIRESTORE SAVE FAILED"
-        );
+        padding: 16px;
     }
 
-}
-else {
+    #presentationLyrics .presentation-section-title {
 
-    console.log(
-        "STANDALONE SONG - NO FIRESTORE SERVICE SAVE REQUIRED"
-    );
-}
+        font-size: 18px;
 
-
-// ==================================================
-// FINISH TRANSPOSE FUNCTION
-// ==================================================
-
-console.log(
-    "FINAL SERVICE KEY:",
-    this.getKey()
-);
-
-console.log(
-    "================================"
-);
-
-},
-
-
-// ======================================================
-// GET CURRENT SERVICE KEY
-// ======================================================
-
-getKey() {
-
-    let song = null;
-
-    // --------------------------------------------------
-    // GET CURRENT SONG
-    // --------------------------------------------------
-
-    if (window.currentSong) {
-
-        song =
-            window.currentSong;
+        padding: 8px 10px;
     }
-
-    // --------------------------------------------------
-    // FALLBACK TO GLOBAL currentSong
-    // --------------------------------------------------
-
-    if (!song) {
-
-        try {
-
-            if (
-                typeof currentSong !== "undefined"
-            ) {
-
-                song =
-                    currentSong;
-            }
-
-        }
-        catch (error) {
-
-            console.warn(
-                "Unable to access global currentSong"
-            );
-        }
-    }
-
-    // --------------------------------------------------
-    // NO SONG
-    // --------------------------------------------------
-
-    if (!song) {
-
-        console.warn(
-            "GET KEY: No current song"
-        );
-
-        return "";
-    }
-
-    // --------------------------------------------------
-    // ORIGINAL KEY
-    // --------------------------------------------------
-
-    const originalKey =
-        song.originalKey ||
-        song.key ||
-        "";
-
-    if (!originalKey) {
-
-        console.warn(
-            "GET KEY: Original key not found",
-            song
-        );
-
-        return "";
-    }
-
-    // --------------------------------------------------
-    // CURRENT TRANSPOSE
-    // --------------------------------------------------
-
-    const transpose =
-        Number(
-            App.transpose || 0
-        );
-
-    console.log(
-        "GET KEY:",
-        {
-            originalKey,
-            transpose
-        }
-    );
-
-    // --------------------------------------------------
-    // CALCULATE SERVICE KEY
-    // --------------------------------------------------
-
-    return getTransposedKey(
-        originalKey,
-        transpose
-    );
-},
-
-// ======================================================
-// UPDATE SERVICE KEY DISPLAY
-// ======================================================
-
-updateKeyDisplay() {
-
-    const serviceKeyElement =
-        document.getElementById(
-            "serviceKey"
-        );
-
-    if (!serviceKeyElement) {
-
-        console.error(
-            "SERVICE KEY ELEMENT #serviceKey NOT FOUND"
-        );
-
-        return;
-    }
-
-    const key =
-        this.getKey();
-
-    console.log(
-        "UPDATING SERVICE KEY DISPLAY:",
-        key
-    );
-
-    if (!key) {
-
-        console.warn(
-            "SERVICE KEY COULD NOT BE CALCULATED"
-        );
-
-        return;
-    }
-
-    // IMPORTANT:
-    // Update both textContent and innerText
-    serviceKeyElement.textContent =
-        key;
-
-    serviceKeyElement.innerText =
-        key;
-
-    console.log(
-        "SERVICE KEY NOW:",
-        serviceKeyElement.textContent
-    );
-},
-
-    // ======================================================
-    // UPDATE SONG GUIDE
-    // ======================================================
-
-    updateGuide() {
-
-        if (!App.songEnding) {
-            return;
-        }
-
-        const key =
-            this.getKey();
-
-        if (!key) {
-            return;
-        }
-
-        const ending =
-            getTransposedKey(key, 5);
-
-        App.songEnding.innerHTML = `
-
-            <strong>LAST 3</strong>
-            : ${getTransposedKey(key, 9)}m
-
-            <br>
-
-            <strong>RETURN TO VERSE</strong>
-            : ${getTransposedKey(key, 7)}
-
-            <br>
-
-            <strong>ENDING</strong>
-            : ${ending}
-            &nbsp;
-            ${ending}m
-            &nbsp;
-            ${key}
-
-            <br>
-
-            <strong>SING IN THE SPIRIT</strong>
-            : ${key}
-            &nbsp;
-            ${ending}
-
-        `;
-    },
-
-
-   // ======================================================
-// RESTORE SAVED TRANSPOSE
-// ======================================================
-
-async restoreTranspose() {
-
-    const service =
-        await this.getCurrent();
-
-
-    if (!service) {
-        return;
-    }
-
-
-    const index =
-        this.getSongIndex();
-
-
-    const song =
-        service.songs?.[index];
-
-
-    if (!song) {
-        return;
-    }
-
-
-    // ==================================================
-    // RESTORE TRANSPOSE
-    // ==================================================
-
-    const savedTranspose =
-        Number(
-            song.transpose || 0
-        );
-
-
-    App.transpose =
-        savedTranspose;
-
-
-    console.log(
-        "RESTORED TRANSPOSE:",
-        App.transpose
-    );
-
-
-    // ==================================================
-    // APPLY TRANSPOSE TO CHORDS
-    // ==================================================
-
-    if (
-        savedTranspose !== 0
-    ) {
-
-        const direction =
-            savedTranspose > 0
-                ? 1
-                : -1;
-
-
-        for (
-            let i = 0;
-            i < Math.abs(savedTranspose);
-            i++
-        ) {
-
-            document
-                .querySelectorAll(".chord")
-                .forEach(chord => {
-
-                    chord.innerText =
-                        chord.innerText.replace(
-                            /[A-G](#|b)?/g,
-                            note => {
-
-                                let index =
-                                    SHARP_SCALE.indexOf(
-                                        note
-                                    );
-
-
-                                if (index === -1) {
-
-                                    index =
-                                        FLAT_SCALE.indexOf(
-                                            note
-                                        );
-                                }
-
-
-                                if (index === -1) {
-
-                                    return note;
-                                }
-
-
-                                return SHARP_SCALE[
-                                    (
-                                        index +
-                                        direction +
-                                        12
-                                    ) % 12
-                                ];
-                            }
-                        );
-                });
-        }
-    }
-
-
-    // ==================================================
-    // UPDATE KEY
-    // ==================================================
-
-    this.updateKeyDisplay();
-
-    this.updateGuide();
-
-
-    // ==================================================
-    // UPDATE TRANSPOSE DISPLAY
-    // ==================================================
-
-    const transposeDisplay =
-        document.getElementById(
-            "transposeValue"
-        );
-
-
-    if (transposeDisplay) {
-
-        transposeDisplay.innerText =
-            (
-                App.transpose >= 0
-                    ? "+"
-                    : ""
-            ) +
-            App.transpose;
-    }
-},
-
-
-    // ======================================================
-    // NEXT SONG
-    // ======================================================
-
-    async next() {
-
-        const service =
-            await this.getCurrent();
-
-        if (!service) {
-
-            alert(
-                "No active service."
-            );
-
-            return;
-        }
-
-        let index =
-            this.getSongIndex();
-
-        if (
-            index >=
-            service.songs.length - 1
-        ) {
-
-            alert(
-                "End of Service."
-            );
-
-            return;
-        }
-
-        index++;
-
-        this.setSongIndex(index);
-
-        localStorage.setItem(
-            "resumePresentation",
-            "true"
-        );
-
-        const song =
-            service.songs[index];
-
-        if (!song || !song.file) {
-
-            console.error(
-                "NEXT SONG FILE NOT FOUND"
-            );
-
-            return;
-        }
-
-        const nextFile =
-            song.file.replace(
-                /^songs\//,
-                ""
-            );
-
-        console.log(
-            "NEXT:",
-            nextFile
-        );
-
-        location.href =
-            nextFile;
-    },
-
-
-    // ======================================================
-    // PREVIOUS SONG
-    // ======================================================
-
-    async previous() {
-
-        const service =
-            await this.getCurrent();
-
-        if (!service) {
-
-            alert(
-                "No active service."
-            );
-
-            return;
-        }
-
-        let index =
-            this.getSongIndex();
-
-        if (index <= 0) {
-
-            alert(
-                "This is the first song."
-            );
-
-            return;
-        }
-
-        index--;
-
-        this.setSongIndex(index);
-
-        localStorage.setItem(
-            "resumePresentation",
-            "true"
-        );
-
-        const song =
-            service.songs[index];
-
-        if (!song || !song.file) {
-
-            console.error(
-                "PREVIOUS SONG FILE NOT FOUND"
-            );
-
-            return;
-        }
-
-        const previousFile =
-            song.file.replace(
-                /^songs\//,
-                ""
-            );
-
-        console.log(
-            "PREVIOUS:",
-            previousFile
-        );
-
-        location.href =
-            previousFile;
-    },
-
-
-    // ======================================================
-    // STOP SERVICE
-    // ======================================================
-
-    stop() {
-
-        localStorage.removeItem(
-            "currentService"
-        );
-
-        localStorage.removeItem(
-            "currentServiceId"
-        );
-
-        localStorage.removeItem(
-            "currentSongIndex"
-        );
-
-        localStorage.removeItem(
-            "resumePresentation"
-        );
-
-        localStorage.removeItem(
-            "presentationMode"
-        );
-
-        const progress =
-            document.getElementById(
-                "serviceProgress"
-            );
-
-        if (progress) {
-            progress.innerHTML = "";
-        }
-
-        alert(
-            "Service ended."
-        );
-    },
-
-
-    // ======================================================
-    // UPDATE PROGRESS
-    // ======================================================
-
-    async updateProgress() {
-
-        const progress =
-            document.getElementById(
-                "serviceProgress"
-            );
-
-        if (!progress) {
-            return;
-        }
-
-        const service =
-            await this.getCurrent();
-
-        if (!service) {
-
-            progress.innerHTML =
-                "";
-
-            return;
-        }
-
-        const index =
-            this.getSongIndex();
-
-        progress.innerHTML = `
-
-            Service:
-            <strong>${service.name || ""}</strong>
-            |
-            Song
-            ${index + 1}
-            of
-            ${service.songs.length}
-
-        `;
-    }
-};
-
-
-// ==========================================================
-// MODERN 3-COLUMN PRESENTATION
-// ==========================================================
-
-const Presentation = {
-
-    // ======================================================
-    // START PRESENTATION
-    // ======================================================
-
-    async start() {
-
-        console.log(
-            "========================================"
-        );
-
-        console.log(
-            "STARTING PRESENTATION"
-        );
-
-        console.log(
-            "========================================"
-        );
-
-        const overlay =
-            document.getElementById(
-                "presentationScreen"
-            );
-
-        if (!overlay) {
-
-            console.error(
-                "presentationScreen not found."
-            );
-
-            return;
-        }
-
-        // --------------------------------------------------
-        // CHECK SERVICE
-        // --------------------------------------------------
-
-        const service =
-            await Service.getCurrent();
-
-        let serviceSong = null;
-        let serviceIndex = -1;
-
-        if (service) {
-
-            serviceIndex =
-                Service.getSongIndex();
-
-            if (
-                Array.isArray(service.songs) &&
-                serviceIndex >= 0 &&
-                serviceIndex < service.songs.length
-            ) {
-
-                serviceSong =
-                    service.songs[serviceIndex];
-            }
-        }
-
-        // ==================================================
-        // SERVICE PLANNER MODE
-        // ==================================================
-
-        if (serviceSong) {
-
-            console.log(
-                "PRESENTATION MODE: SERVICE PLANNER"
-            );
-
-            console.log(
-                "SERVICE:",
-                service.name
-            );
-
-            console.log(
-                "SERVICE SONG INDEX:",
-                serviceIndex
-            );
-
-            console.log(
-                "SERVICE SONG:",
-                serviceSong
-            );
-
-            window.currentSong =
-                serviceSong;
-
-            window.currentSongIndex =
-                serviceIndex;
-
-            localStorage.setItem(
-                "presentationMode",
-                "service"
-            );
-
-            const title =
-                document.getElementById(
-                    "presentationTitle"
-                );
-
-            if (title) {
-
-                title.innerText =
-                    serviceSong.title ||
-                    "Untitled Song";
-            }
-
-            overlay.classList.add(
-                "show"
-            );
-
-            this.build();
-
-            await this.update();
-
-            return;
-        }
-
-        // ==================================================
-        // STANDALONE SONG MODE
-        // ==================================================
-
-        console.log(
-            "PRESENTATION MODE: STANDALONE SONG"
-        );
-
-        let song =
-            window.currentSong;
-
-        if (
-            !song &&
-            typeof currentSong !== "undefined"
-        ) {
-
-            song =
-                currentSong;
-        }
-
-        if (!song) {
-
-            console.error(
-                "No current song available."
-            );
-
-            alert(
-                "Unable to start presentation.\n\n" +
-                "The current song could not be identified."
-            );
-
-            return;
-        }
-
-        console.log(
-            "STANDALONE SONG:",
-            song
-        );
-
-        window.currentSong =
-    song;
-
-
-// ==================================================
-// RESTORE ORIGINAL KEY
-// ==================================================
-
-if (!song.originalKey) {
-
-    song.originalKey =
-        song.key || "";
-}
-
-
-// ==================================================
-// RESTORE SAVED TRANSPOSE
-// ==================================================
-
-App.transpose =
-    Number(
-        song.transpose || 0
-    );
-
-
-// ==================================================
-// UPDATE SERVICE KEY DISPLAY
-// ==================================================
-
-Service.updateKeyDisplay();
-
-Service.updateGuide();
-
-
-// ==================================================
-// UPDATE TRANSPOSE DISPLAY
-// ==================================================
-
-const transposeDisplay =
-    document.getElementById(
-        "transposeValue"
-    );
-
-if (transposeDisplay) {
-
-    transposeDisplay.innerText =
-        (
-            App.transpose >= 0
-                ? "+"
-                : ""
-        ) +
-        App.transpose;
-}
-        localStorage.setItem(
-            "presentationMode",
-            "standalone"
-        );
-
-        const title =
-            document.getElementById(
-                "presentationTitle"
-            );
-
-        if (title) {
-
-            title.innerText =
-                song.title ||
-                "Untitled Song";
-        }
-
-        overlay.classList.add(
-            "show"
-        );
-
-        this.build();
-
-        const counter =
-            document.getElementById(
-                "presentationCounter"
-            );
-
-        if (counter) {
-
-            counter.innerText =
-                "Standalone Song";
-        }
-
-        const preview =
-            document.getElementById(
-                "nextSongPreview"
-            );
-
-        if (preview) {
-
-            preview.innerHTML =
-                "";
-
-            preview.style.display =
-                "none";
-        }
-    },
-
-
-    // ======================================================
-    // BUILD PRESENTATION
-    // ======================================================
-
-    build() {
-
-        const output =
-            document.getElementById(
-                "presentationLyrics"
-            );
-
-        if (!output) {
-
-            console.error(
-                "presentationLyrics not found."
-            );
-
-            return;
-        }
-
-        const lyricsSource =
-            document.getElementById(
-                "lyrics"
-            );
-
-        if (!lyricsSource) {
-
-            console.error(
-                "Lyrics source #lyrics not found."
-            );
-
-            output.innerHTML =
-                "<div style='color:white;text-align:center;padding:40px'>" +
-                "Lyrics could not be loaded." +
-                "</div>";
-
-            return;
-        }
-
-        // --------------------------------------------------
-        // COPY SOURCE
-        // --------------------------------------------------
-
-        const source =
-            document.createElement(
-                "div"
-            );
-
-        source.innerHTML =
-            lyricsSource.innerHTML;
-
-        // --------------------------------------------------
-        // FIND SONG SECTIONS
-        // --------------------------------------------------
-
-        let sections =
-            Array.from(
-                source.querySelectorAll(
-                    ".song-section"
-                )
-            );
-
-        if (!sections.length) {
-
-            const songElement =
-                source.querySelector(
-                    ".song"
-                );
-
-            if (songElement) {
-
-                sections =
-                    Array.from(
-                        songElement.children
-                    );
-            }
-        }
-
-        if (!sections.length) {
-
-            sections = [
-                source
-            ];
-        }
-
-        // --------------------------------------------------
-        // CLEAR PRESENTATION
-        // --------------------------------------------------
-
-        output.innerHTML =
-            "";
-
-        // --------------------------------------------------
-        // CREATE 3-COLUMN GRID
-        // --------------------------------------------------
-
-        const grid =
-            document.createElement(
-                "div"
-            );
-
-        grid.className =
-            "presentation-grid";
-
-        // --------------------------------------------------
-        // CREATE SECTIONS
-        // --------------------------------------------------
-
-        sections.forEach(
-            section => {
-
-                if (
-                    !section.textContent.trim()
-                ) {
-
-                    return;
-                }
-
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-                card.className =
-                    "presentation-section";
-
-                // ------------------------------------------
-                // SECTION TITLE
-                // ------------------------------------------
-
-                const sectionTitle =
-                    section.querySelector(
-                        ".section-title"
-                    );
-
-                if (sectionTitle) {
-
-                    const newTitle =
-                        document.createElement(
-                            "div"
-                        );
-
-                    newTitle.className =
-                        "presentation-section-title";
-
-                    newTitle.textContent =
-                        sectionTitle
-                            .textContent
-                            .trim();
-
-                    card.appendChild(
-                        newTitle
-                    );
-                }
-
-                // ------------------------------------------
-                // CONTENT
-                // ------------------------------------------
-
-                // ------------------------------------------
-// CONTENT
-// ------------------------------------------
-
-const content =
-    document.createElement(
-        "div"
-    );
-
-content.className =
-    "presentation-section-content";
-
-const lines =
-    section.querySelectorAll(
-        ".song-line"
-    );
-
-if (lines.length) {
-
-    lines.forEach(
-        line => {
-
-            const newLine =
-                line.cloneNode(
-                    true
-                );
-
-            newLine.classList.add(
-                "presentation-line"
-            );
-
-            newLine.style.display =
-                "block";
-
-            newLine.style.visibility =
-                "visible";
-
-            newLine.style.opacity =
-                "1";
-
-            content.appendChild(
-                newLine
-            );
-        }
-    );
-
-}
-else {
-
-    const clone =
-        section.cloneNode(
-            true
-        );
-
-    clone
-        .querySelectorAll(
-            ".section-title"
-        )
-        .forEach(
-            element =>
-                element.remove()
-        );
-
-    content.appendChild(
-        clone
-    );
-}
-
-card.appendChild(
-    content
-);
-
-grid.appendChild(
-    card
-);
-
-   // ======================================================
-// UPDATE PRESENTATION
-// ======================================================
-
-async update() {
-
-    console.log(
-        "========================================"
-    );
-
-    console.log(
-        "UPDATING PRESENTATION"
-    );
-
-    console.log(
-        "========================================"
-    );
-
-
-    // ==================================================
-    // PRESENTATION MODE
-    // ==================================================
-
-    const mode =
-        localStorage.getItem(
-            "presentationMode"
-        );
-
-    console.log(
-        "PRESENTATION MODE:",
-        mode
-    );
-
-
-    // ==================================================
-    // COUNTER
-    // ==================================================
-
-    const counter =
-        document.getElementById(
-            "presentationCounter"
-        );
-
-
-    // ==================================================
-    // GET / CREATE NEXT SONG PREVIEW
-    // ==================================================
-
-    let preview =
-        document.getElementById(
-            "nextSongPreview"
-        );
-
 
     /*
-     * If nextSongPreview does not exist in the HTML,
-     * create it automatically.
-     */
+       IMPORTANT:
+       Do NOT use 1.5 here.
+       It creates the large spaces you showed
+       in your screenshot.
+    */
 
-    if (!preview) {
+    #presentationLyrics .presentation-line {
 
-        console.log(
-            "nextSongPreview not found - creating it"
-        );
+        font-size: 23px !important;
 
-        const presentationScreen =
-            document.getElementById(
-                "presentationScreen"
-            );
+        line-height: 1.10 !important;
 
-        if (!presentationScreen) {
+        margin: 0 !important;
 
-            console.error(
-                "presentationScreen not found"
-            );
-
-            return;
-        }
-
-
-        preview =
-            document.createElement(
-                "div"
-            );
-
-        preview.id =
-            "nextSongPreview";
-
-
-        // ------------------------------------------------
-        // PREVIEW STYLE
-        // ------------------------------------------------
-
-        preview.style.position =
-            "absolute";
-
-        preview.style.left =
-            "50%";
-
-        preview.style.bottom =
-            "25px";
-
-        preview.style.transform =
-            "translateX(-50%)";
-
-        preview.style.zIndex =
-            "999999";
-
-        preview.style.display =
-            "flex";
-
-        preview.style.flexDirection =
-            "column";
-
-        preview.style.alignItems =
-            "center";
-
-        preview.style.justifyContent =
-            "center";
-
-        preview.style.textAlign =
-            "center";
-
-        preview.style.padding =
-            "10px 30px";
-
-        preview.style.minWidth =
-            "280px";
-
-        preview.style.maxWidth =
-            "80%";
-
-        preview.style.background =
-            "rgba(0, 0, 0, 0.85)";
-
-        preview.style.borderRadius =
-            "12px";
-
-        preview.style.border =
-            "1px solid rgba(255,255,255,0.3)";
-
-        preview.style.boxShadow =
-            "0 5px 25px rgba(0,0,0,0.6)";
-
-        preview.style.color =
-            "#ffffff";
-
-        preview.style.pointerEvents =
-            "none";
-
-
-        presentationScreen.appendChild(
-            preview
-        );
-
-
-        console.log(
-            "nextSongPreview CREATED"
-        );
+        padding: 0 !important;
     }
 
+    #presentationNavigation {
 
-    // ==================================================
-    // STANDALONE SONG
-    // ==================================================
+        min-height: 64px;
 
-    if (
-        mode === "standalone"
-    ) {
+        padding: 8px 10px;
 
-        console.log(
-            "UPDATE: STANDALONE SONG"
-        );
-
-        if (counter) {
-
-            counter.innerText =
-                "Standalone Song";
-        }
-
-        preview.innerHTML =
-            "";
-
-        preview.style.display =
-            "none";
-
-        return;
+        gap: 6px;
     }
 
+    #presentationNavigation button {
 
-    // ==================================================
-    // GET ACTIVE SERVICE
-    // ==================================================
+        min-width: 0;
 
-    const service =
-        await Service.getCurrent();
+        flex: 1;
 
+        height: 42px;
 
-    if (!service) {
+        padding: 0 8px;
 
-        console.warn(
-            "UPDATE: NO ACTIVE SERVICE"
-        );
-
-        if (preview) {
-
-            preview.innerHTML =
-                "";
-
-            preview.style.display =
-                "none";
-        }
-
-        return;
+        font-size: 12px;
     }
 
+    #presentationScreen #nextSongPreview {
 
-    // ==================================================
-    // GET SONGS
-    // ==================================================
+        right: 12px !important;
 
-    const songs =
-        Array.isArray(
-            service.songs
-        )
-            ? service.songs
-            : [];
+        bottom: 75px !important;
 
+        width: 185px !important;
 
-    const index =
-        Number(
-            Service.getSongIndex()
-        ) || 0;
+        min-width: 185px !important;
 
+        max-width: 185px !important;
 
-    console.log(
-        "SERVICE:",
-        service.name
-    );
-
-    console.log(
-        "CURRENT SONG INDEX:",
-        index
-    );
-
-    console.log(
-        "TOTAL SONGS:",
-        songs.length
-    );
-
-
-    // ==================================================
-    // COUNTER
-    // ==================================================
-
-    if (counter) {
-
-        counter.innerText =
-            `Song ${index + 1} / ${songs.length}`;
+        padding: 9px 10px !important;
     }
 
+    #presentationScreen #nextSongPreview .next-song-title {
 
-    // ==================================================
-    // CHECK NEXT SONG
-    // ==================================================
-
-    if (
-        index >= 0 &&
-        index < songs.length - 1
-    ) {
-
-        const nextSong =
-            songs[index + 1];
-
-
-        if (nextSong) {
-
-            const nextTitle =
-                nextSong.title ||
-                nextSong.name ||
-                "Untitled Song";
-
-
-            console.log(
-                "NEXT SONG:",
-                nextTitle
-            );
-
-
-            // ==========================================
-            // DISPLAY
-            // ==========================================
-
-            preview.innerHTML = `
-
-                <div
-                    style="
-                        font-size:12px;
-                        font-weight:800;
-                        letter-spacing:2px;
-                        margin-bottom:5px;
-                        opacity:0.75;
-                    "
-                >
-                    NEXT SONG
-                </div>
-
-                <div
-                    style="
-                        font-size:22px;
-                        font-weight:800;
-                        line-height:1.2;
-                    "
-                >
-                    ${nextTitle}
-                </div>
-
-            `;
-
-
-            preview.style.display =
-                "flex";
-
-            preview.style.visibility =
-                "visible";
-
-            preview.style.opacity =
-                "1";
-
-
-            console.log(
-                "NEXT SONG PREVIEW DISPLAYED:",
-                nextTitle
-            );
-
-            return;
-        }
+        font-size: 13px !important;
     }
-
-
-    // ==================================================
-    // END OF SERVICE
-    // ==================================================
-
-    console.log(
-        "NO NEXT SONG - END OF SERVICE"
-    );
-
-
-    preview.innerHTML = `
-
-        <div
-            style="
-                font-size:12px;
-                font-weight:800;
-                letter-spacing:2px;
-                opacity:0.75;
-            "
-        >
-            NEXT SONG
-        </div>
-
-        <div
-            style="
-                font-size:20px;
-                font-weight:700;
-            "
-        >
-            End of Service
-        </div>
-
-    `;
-
-
-    preview.style.display =
-        "flex";
-
-    preview.style.visibility =
-        "visible";
-
-    preview.style.opacity =
-        "1";
-}
-};
-
-// ==========================================================
-// HOME
-// ==========================================================
-
-window.goHome = function () {
-
-    console.log(
-        "GO HOME BUTTON CLICKED"
-    );
-
-    /*
-     * always.html is assumed to be
-     * inside the songs folder.
-     */
-
-    window.location.href =
-        "../index.html";
-};
-
-
-// ==========================================================
-// START PRESENTATION
-// ==========================================================
-
-window.startPresentation =
-    async function () {
-
-        console.log(
-            "START PRESENTATION BUTTON CLICKED"
-        );
-
-        await Presentation.start();
-    };
-
-
-// ==========================================================
-// NEXT SERVICE SONG
-// ==========================================================
-
-window.nextServiceSong =
-    async function () {
-
-        console.log(
-            "NEXT SERVICE SONG BUTTON CLICKED"
-        );
-
-        await Service.next();
-    };
-
-
-// ==========================================================
-// PREVIOUS SERVICE SONG
-// ==========================================================
-
-window.previousServiceSong =
-    async function () {
-
-        console.log(
-            "PREVIOUS SERVICE SONG BUTTON CLICKED"
-        );
-
-        await Service.previous();
-    };
-
-
-// ==========================================================
-// STOP SERVICE
-// ==========================================================
-
-window.stopService =
-    function () {
-
-        console.log(
-            "STOP SERVICE BUTTON CLICKED"
-        );
-
-        Service.stop();
-    };
-
-
-// ==========================================================
-// EXIT PRESENTATION
-// ==========================================================
-
-window.exitPresentation = function () {
-
-    console.log("EXIT PRESENTATION");
-
-    const overlay =
-        document.getElementById(
-            "presentationScreen"
-        );
-
-    if (overlay) {
-        overlay.classList.remove("show");
-    }
-
-    localStorage.removeItem(
-        "presentationMode"
-    );
-
-    localStorage.removeItem(
-        "resumePresentation"
-    );
-
-    console.log(
-        "PRESENTATION CLOSED"
-    );
-};
-
-
-// ==========================================================
-// INITIALIZE APPLICATION
-// ==========================================================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    async function () {
-
-        console.log(
-            "================================"
-        );
-
-        console.log(
-            "INITIALIZING SONG APPLICATION"
-        );
-
-        console.log(
-            "================================"
-        );
-
-        try {
-
-            await App.init();
-
-            console.log(
-                "SONG APPLICATION INITIALIZED"
-            );
-
-        }
-        catch (error) {
-
-            console.error(
-                "APP INITIALIZATION ERROR:",
-                error
-            );
-        }
-    }
-);
-
-// ==========================================
-// PRINT - ONE A4 LANDSCAPE PAGE
-// ==========================================
-
-function fitToOnePage() {
-
-    document.body.classList.add("print-one-page");
-
-    window.print();
-
 }
 
-// Make available to HTML onclick=""
-window.fitToOnePage = fitToOnePage;
+
+/* ==========================================================
+   VERY SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 450px) {
+
+    #presentationHeader {
+
+        flex-wrap: wrap;
+    }
+
+    #presentationTitle {
+
+        max-width: 70%;
+
+        font-size: 17px;
+    }
+
+    #presentationCounter {
+
+        font-size: 10px;
+    }
+
+    #presentationLyrics .presentation-line {
+
+        font-size: 21px !important;
+
+        line-height: 1.10 !important;
+    }
+
+    #presentationScreen #nextSongPreview {
+
+        width: 160px !important;
+
+        min-width: 160px !important;
+
+        max-width: 160px !important;
+
+        right: 8px !important;
+    }
+}
+
+/* =========================================================
+   SERVICE PROGRESS
+========================================================= */
+
+#serviceProgress{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:8px 13px;
+
+    border-radius:20px;
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    border:1px solid #e0e7ff;
+}
 
 
-// Remove print class after printing
-window.addEventListener("afterprint", function () {
+/* =========================================================
+   DARK MODE
+========================================================= */
 
-    document.body.classList.remove("print-one-page");
+body.dark{
 
-});
+    --background:#0b1120;
+
+    --surface:#111827;
+
+    --surface-2:#172033;
+
+    --text:#e5e7eb;
+
+    --muted:#94a3b8;
+
+    --border:#263247;
+
+    background:#0b1120;
+
+    color:#e5e7eb;
+}
+
+
+/* Dark sidebar */
+
+body.dark .sidebar{
+
+    background:#111827;
+
+    border-right-color:#263247;
+}
+
+body.dark .sidebar button{
+
+    color:#cbd5e1;
+}
+
+body.dark .sidebar button:hover{
+
+    background:#1d2540;
+
+    color:#a78bfa;
+
+    border-color:#302b5b;
+}
+
+
+/* Dark cards */
+
+body.dark .card,
+body.dark .song-card,
+body.dark .playlist-item,
+body.dark .popup-content,
+body.dark .popup-box,
+body.dark .song-picker-card{
+
+    background:#111827;
+
+    border-color:#263247;
+
+    color:#e5e7eb;
+}
+
+
+/* Dark inputs */
+
+body.dark input{
+
+    background:#172033;
+
+    color:#e5e7eb;
+
+    border-color:#334155;
+}
+
+body.dark input::placeholder{
+
+    color:#64748b;
+}
+
+
+/* Dark playlist */
+
+body.dark .playlist-panel,
+body.dark #servicePanel{
+
+    background:#0f172a;
+
+    border-color:#263247;
+}
+
+body.dark .playlist-song,
+body.dark .service-song{
+
+    background:#172033;
+
+    border-color:#263247;
+}
+
+body.dark .playlist-song:hover{
+
+    background:#1d2540;
+}
+
+body.dark .song-title,
+body.dark .song-picker-title,
+body.dark .service-song-title{
+
+    color:#e5e7eb;
+}
+
+body.dark .service-body{
+
+    background:#0f172a;
+}
+
+
+/* =========================================================
+   SCROLLBARS
+========================================================= */
+
+*{
+
+    scrollbar-width:thin;
+
+    scrollbar-color:
+        #cbd5e1
+        transparent;
+}
+
+*::-webkit-scrollbar{
+
+    width:7px;
+
+    height:7px;
+}
+
+*::-webkit-scrollbar-track{
+
+    background:transparent;
+}
+
+*::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+}
+
+*::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media(max-width:1000px){
+
+    .dashboard{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .sidebar{
+
+        width:220px;
+
+        min-width:220px;
+    }
+
+    .content{
+
+        padding:22px;
+    }
+
+    .top-actions input{
+
+        width:240px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .topbar{
+
+        height:auto;
+
+        min-height:65px;
+
+        padding:10px 14px;
+
+        gap:10px;
+    }
+
+    .logo{
+
+        font-size:18px;
+    }
+
+    .top-actions input{
+
+        width:150px;
+
+        height:38px;
+    }
+
+    .top-actions button{
+
+        height:38px;
+
+        min-width:38px;
+    }
+
+    .layout{
+
+        display:block;
+    }
+
+    .sidebar{
+
+        position:relative;
+
+        top:0;
+
+        width:100%;
+
+        min-width:0;
+
+        height:auto;
+
+        padding:12px;
+
+        border-right:0;
+
+        border-bottom:1px solid var(--border);
+
+        display:grid;
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:5px;
+    }
+
+    .sidebar h3{
+
+        grid-column:1/-1;
+
+        margin:8px;
+    }
+
+    .sidebar hr{
+
+        display:none;
+    }
+
+    .sidebar button{
+
+        margin:0;
+
+        min-height:42px;
+
+        font-size:12px;
+    }
+
+    .content{
+
+        padding:16px;
+    }
+
+    .dashboard{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:10px;
+    }
+
+    .card{
+
+        padding:17px;
+    }
+
+    .number{
+
+        font-size:28px;
+    }
+
+    .playlist-panel,
+    #servicePanel{
+
+        width:100%;
+
+        max-width:100%;
+    }
+
+    #presentationLyrics{
+
+        padding:15px;
+    }
+
+        #presentationTitle{
+
+        font-size:19px;
+    }
+
+    #presentationCounter{
+
+        font-size:12px;
+    }
+
+    #presentationNavigation button{
+
+        min-width:90px;
+
+        padding:9px;
+
+        font-size:12px;
+    }
+
+    #nextSongPreview{
+
+        display:none;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media(max-width:450px){
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+    .top-actions{
+
+        width:100%;
+    }
+
+    .top-actions input{
+
+        flex:1;
+
+        width:auto;
+    }
+
+    .sidebar{
+
+        grid-template-columns:1fr;
+    }
+
+    .dashboard{
+
+        grid-template-columns:1fr;
+    }
+
+    .playlist-actions{
+
+        grid-template-columns:1fr;
+    }
+
+    .song-picker-card{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .song-picker-card button{
+
+        width:100%;
+    }
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@page{
+
+    size:landscape;
+
+    margin:8mm;
+}
+
+@media print{
+
+    html,
+    body{
+
+        width:100%;
+
+        height:100%;
+
+        margin:0;
+
+        padding:0;
+
+        background:white !important;
+
+        color:#000 !important;
+    }
+
+    .topbar,
+    .sidebar,
+    .song-toolbar,
+    #serviceProgress,
+    #playlistPopup,
+    #presentationScreen,
+    #presentationNavigation{
+
+        display:none !important;
+    }
+
+    .song-header{
+
+        text-align:center;
+
+        margin-bottom:20px;
+
+        border-bottom:3px solid #333;
+
+        padding-bottom:12px;
+    }
+
+    .song-header h1{
+
+        font-size:28px;
+
+        font-weight:bold;
+    }
+
+    .song-meta{
+
+        display:flex;
+
+        justify-content:center;
+
+        gap:30px;
+
+        font-size:15px;
+    }
+
+    .song-container{
+
+        margin:0 !important;
+
+        padding:8px !important;
+
+        box-shadow:none !important;
+
+        border:none !important;
+
+        width:100%;
+    }
+
+    .song{
+
+        display:grid;
+
+        grid-template-columns:
+            repeat(3,1fr);
+
+        gap:10px;
+    }
+
+    .song-section{
+
+        break-inside:avoid;
+
+        page-break-inside:avoid;
+
+        padding:10px;
+
+        margin-bottom:10px;
+    }
+
+    .song-line{
+
+        font-family:
+            Consolas,
+            "Courier New",
+            monospace !important;
+
+        font-size:15px !important;
+
+        line-height:1.2 !important;
+
+        white-space:pre !important;
+    }
+
+    .chord{
+
+        color:#d32f2f !important;
+
+        font-weight:bold;
+
+        font-size:inherit !important;
+
+        display:inline;
+
+        transform:none;
+    }
+
+    .section-title{
+
+        font-size:14px;
+
+        padding:5px;
+
+        margin-bottom:8px;
+    }
+}
+
+/* ==========================================
+   ALL SONGS PANEL
+   ========================================== */
+
+.all-songs-panel {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    background: #f5f7fb;
+
+    padding: 35px;
+
+    overflow-y: auto;
+
+}
+
+.all-songs-panel.show {
+
+    display: block;
+
+}
+
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+.all-songs-header {
+
+    max-width: 1200px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+.all-songs-header h2 {
+
+    margin: 0;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+}
+
+.all-songs-header p {
+
+    margin: 5px 0 0;
+
+    color: #777;
+
+}
+
+
+/* ==========================================
+   CLOSE BUTTON
+   ========================================== */
+
+.close-all-songs {
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #e9edf3;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+}
+
+.close-all-songs:hover {
+
+    background: #dce2ea;
+
+}
+
+
+/* ==========================================
+   TABLE CONTAINER
+   ========================================== */
+
+.all-songs-table-wrapper {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    background: white;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.08);
+
+}
+
+
+/* ==========================================
+   TABLE
+   ========================================== */
+
+.all-songs-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 14px;
+
+}
+
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+.all-songs-table thead {
+
+    background: #f1f4f8;
+
+}
+
+.all-songs-table th {
+
+    text-align: left;
+
+    padding: 16px 18px;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    color: #667085;
+
+    border-bottom:
+        1px solid #e5e7eb;
+
+}
+
+
+/* ==========================================
+   CELLS
+   ========================================== */
+
+.all-songs-table td {
+
+    padding: 15px 18px;
+
+    border-bottom:
+        1px solid #eef0f3;
+
+    color: #344054;
+
+}
+
+
+/* ==========================================
+   ROW HOVER
+   ========================================== */
+
+.all-songs-table tbody tr {
+
+    transition:
+        background 0.15s ease;
+
+}
+
+.all-songs-table tbody tr:hover {
+
+    background: #f8fafc;
+
+}
+
+
+/* ==========================================
+   NUMBER
+   ========================================== */
+
+.all-songs-table td:first-child {
+
+    width: 50px;
+
+    color: #98a2b3;
+
+    text-align: center;
+
+}
+
+
+/* ==========================================
+   CLICKABLE SONG TITLE
+   ========================================== */
+
+.all-song-title {
+
+    color: #2563eb;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+}
+
+.all-song-title:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 700px) {
+
+    .all-songs-panel {
+
+        padding: 15px;
+
+    }
+
+    .all-songs-table-wrapper {
+
+        overflow-x: auto;
+
+    }
+
+    .all-songs-table {
+
+        min-width: 700px;
+
+    }
+
+}
+/* ==========================================
+   ALL SONGS SEARCH
+   ========================================== */
+
+.all-songs-search {
+
+    max-width: 1200px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+}
+
+.all-songs-search input {
+
+    flex: 1;
+
+    height: 46px;
+
+    padding: 0 16px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    background: white;
+
+}
+
+.all-songs-search input:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+
+}
+
+.all-songs-search button {
+
+    height: 46px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+.all-songs-search button:hover {
+
+    opacity: 0.9;
+
+}
+
+.all-songs-search button:last-child {
+
+    background: #e9edf3;
+
+    color: #344054;
+
+}
+
+
+@media (max-width: 700px) {
+
+    .all-songs-search {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+}
+
+/* ==========================================
+   USER WELCOME
+========================================== */
+
+.user-welcome {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 12px;
+    margin-bottom: 18px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.welcome-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    font-size: 20px;
+}
+
+.welcome-text {
+    min-width: 0;
+}
+
+.welcome-label {
+    font-size: 12px;
+    opacity: 0.65;
+    margin-bottom: 2px;
+}
+
+.welcome-name {
+    font-size: 16px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.topbar {
+    height: 78px;
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 24px;
+
+    background: #064e3b;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.15);
+
+    position: relative;
+
+    z-index: 1000;
+}
+
+
+/* =========================================================
+   JFCM HEADER LOGO
+========================================================= */
+
+.logo {
+    height: 68px;
+
+    display: flex;
+    align-items: center;
+
+    flex-shrink: 0;
+}
+
+.logo img {
+    display: block;
+
+    width: 285px;
+
+    height: auto;
+
+    max-height: 68px;
+
+    object-fit: contain;
+}
+@media (max-width: 750px) {
+
+    .topbar {
+        height: auto;
+        min-height: 70px;
+
+        padding: 8px 12px;
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+    }
+
+    .logo {
+        height: 52px;
+    }
+
+    .logo img {
+        width: 230px;
+        max-height: 52px;
+    }
+
+    .top-actions {
+        width: 100%;
+    }
+}
+@media (max-width: 450px) {
+
+    .logo img {
+        width: 200px;
+        max-height: 48px;
+    }
+}
