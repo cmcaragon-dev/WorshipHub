@@ -519,103 +519,119 @@ return SHARP_SCALE[
 // GENERATE PASSING CHORDS
 // ==========================================================
 
-function generatePassingChords(
-    key,
-    category = ""
-) {
+function generatePassingChords() {
 
-    if (!key) {
-        return "";
+    const container =
+        document.getElementById("passingChords");
+
+    if (!container) {
+        return;
     }
+
+    const song =
+        window.currentSong;
+
+    if (!song) {
+        return;
+    }
+
+    // ------------------------------------------
+    // ORIGINAL KEY
+    // ------------------------------------------
+
+    const originalKey =
+        song.originalKey ||
+        song.key ||
+        "C";
+
+    // ------------------------------------------
+    // CALCULATE PASSING CHORDS
+    // ------------------------------------------
 
     const last3 =
         getTransposedKey(
-            key,
+            originalKey,
             9
         ) + "m";
 
-
-    const returnToVerse =
+    const returnVerse =
         getTransposedKey(
-            key,
+            originalKey,
             7
         );
 
-
-    const outroKey =
+    const outroBase =
         getTransposedKey(
-            key,
+            originalKey,
             5
         );
 
+    const spiritBase =
+        getTransposedKey(
+            originalKey,
+            5
+        );
+
+    // ------------------------------------------
+    // BUILD HTML
+    // ------------------------------------------
 
     let html = "";
 
-
     html += `
         <div class="passing-item">
-
             <strong>LAST 3</strong>
-
             <span class="chord">
                 ${last3}
             </span>
-
         </div>
     `;
-
 
     html += `
         <div class="passing-item">
-
-            <strong>RETURN TO VERSE 1</strong>
-
+            <strong>RETURN</strong>
             <span class="chord">
-                ${returnToVerse}
+                ${returnVerse}
             </span>
-
         </div>
     `;
 
+    // ------------------------------------------
+    // OUTRO
+    // Only for Worship songs
+    // ------------------------------------------
 
     if (
-        category.toLowerCase() === "worship"
+        String(song.category || "")
+            .toLowerCase() === "worship"
     ) {
 
         html += `
             <div class="passing-item">
-
                 <strong>OUTRO</strong>
-
                 <span class="chord">
-                    ${outroKey}
+                    ${outroBase}
                     -
-                    ${outroKey}m
+                    ${outroBase}m
                     -
-                    ${key}
+                    ${originalKey}
                 </span>
+            </div>
+        `;
 
+        html += `
+            <div class="passing-item">
+                <strong>SPIRIT</strong>
+                <span class="chord">
+                    ${originalKey}
+                    -
+                    ${spiritBase}
+                </span>
             </div>
         `;
     }
 
-
-    html += `
-        <div class="passing-item">
-
-            <strong>SPIRIT</strong>
-
-            <span class="chord">
-                ${key}
-                -
-                ${outroKey}
-            </span>
-
-        </div>
-    `;
-
-
-    return html;
+    container.innerHTML = html;
 }
 // ==========================================================
 // GENERATE AUTOMATIC PASSING CHORDS
@@ -2784,7 +2800,7 @@ async function () {
     try {
 
         await App.init();
-updatePassingChords();
+generatePassingChords();
         console.log(
             "SONG APPLICATION INITIALIZED"
         );
