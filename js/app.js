@@ -914,7 +914,7 @@ playlists.sort(function(a,b){
 
         <button onclick="deletePlaylist(${list.id})">
 
-            🗑 Delete
+           
 
         </button>
 
@@ -1611,12 +1611,12 @@ function renderServices() {
 
             </button>
 
-            <button
-                onclick="('${service.id}')">
+           <button
+    onclick="deleteService('${service.id}')">
 
-                🗑 Delete
+    🗑 Delete
 
-            </button>
+</button>
 
             <hr>
 
