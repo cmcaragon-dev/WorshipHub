@@ -1021,8 +1021,7 @@ async transpose(step) {
     // CHANGE TRANSPOSE VALUE
     // --------------------------------------------------
 
-    App.transpose +=
-        step * 0.5;
+    App.transpose += step;
 
     // --------------------------------------------------
     // CHANGE DISPLAYED CHORDS
@@ -1134,8 +1133,7 @@ if (!baseKey) {
 
 return getTransposedKey(
     baseKey,
-    Math.round(
-        App.transpose * 2
+   Math.round(App.transpose)
     )
 );
 
