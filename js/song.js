@@ -523,73 +523,106 @@ return SHARP_SCALE[
 // GENERATE AUTOMATIC PASSING CHORDS
 // ==========================================================
 
+// ==========================================================
+// GENERATE AUTOMATIC PASSING CHORDS
+// ==========================================================
+
 function generatePassingChords() {
 
     const container =
         document.getElementById("passingChords");
 
     if (!container) {
-        console.warn("passingChords element not found");
-        return;
+        console.warn(
+            "passingChords element not found"
+        );
+        return "";
     }
 
-    // Get song information
+    // ------------------------------------------------------
+    // GET CURRENT SONG
+    // ------------------------------------------------------
+
     const song =
         window.currentSong ||
-        (typeof currentSong !== "undefined"
-            ? currentSong
-            : null);
+        window.currentSongData ||
+        null;
 
     if (!song) {
-        console.warn("Current song not found");
-        return;
+        console.warn(
+            "Current song not found"
+        );
+        return "";
     }
+
+    // ------------------------------------------------------
+    // ORIGINAL KEY
+    // ------------------------------------------------------
 
     const originalKey =
         song.originalKey ||
-        song.key;
+        song.key ||
+        "";
 
     if (!originalKey) {
-        console.warn("Original key not found");
-        return;
+        console.warn(
+            "Original key not found"
+        );
+        return "";
     }
 
-    // ==================================================
-    // AUTOMATIC CHORD CALCULATIONS
-    // ==================================================
+    // ------------------------------------------------------
+    // CATEGORY
+    // ------------------------------------------------------
 
+    const category =
+        String(
+            song.category || ""
+        ).toLowerCase();
+
+    // ======================================================
+    // AUTOMATIC CHORD CALCULATIONS
+    // ======================================================
+
+    // LAST 3 = ORIGINAL KEY + 9 semitones + m
     const last3 =
         getTransposedKey(
             originalKey,
             9
         ) + "m";
 
+    // RETURN TO VERSE 1
+    // ORIGINAL KEY + 7 semitones
     const returnVerse =
         getTransposedKey(
             originalKey,
             7
         );
 
+    // OUTRO
+    // ORIGINAL KEY + 5
     const outroBase =
         getTransposedKey(
             originalKey,
             5
         );
 
+    // SPIRIT
+    // ORIGINAL KEY + 5
     const spiritBase =
         getTransposedKey(
             originalKey,
             5
         );
 
-    // ==================================================
-    // BUILD
-    // ==================================================
+    // ======================================================
+    // BUILD AUTOMATIC HTML
+    // ======================================================
 
     let html = "";
 
     html += `
-        <div class="passing-item">
+        <div class="passing-item automatic-passing-item">
 
             <strong>LAST 3</strong>
 
@@ -601,7 +634,7 @@ function generatePassingChords() {
     `;
 
     html += `
-        <div class="passing-item">
+        <div class="passing-item automatic-passing-item">
 
             <strong>RETURN</strong>
 
@@ -612,23 +645,22 @@ function generatePassingChords() {
         </div>
     `;
 
-    // ==================================================
+    // ------------------------------------------------------
     // WORSHIP ONLY
-    // ==================================================
+    // ------------------------------------------------------
 
-    if (
-        String(song.category || "")
-            .toLowerCase() === "worship"
-    ) {
+    if (category === "worship") {
 
         html += `
-            <div class="passing-item">
+            <div class="passing-item automatic-passing-item">
 
                 <strong>OUTRO</strong>
 
                 <span class="chord">
-                    ${outroBase} -
-                    ${outroBase}m -
+                    ${outroBase}
+                    -
+                    ${outroBase}m
+                    -
                     ${originalKey}
                 </span>
 
@@ -636,12 +668,13 @@ function generatePassingChords() {
         `;
 
         html += `
-            <div class="passing-item">
+            <div class="passing-item automatic-passing-item">
 
                 <strong>SPIRIT</strong>
 
                 <span class="chord">
-                    ${originalKey} -
+                    ${originalKey}
+                    -
                     ${spiritBase}
                 </span>
 
@@ -649,21 +682,56 @@ function generatePassingChords() {
         `;
     }
 
-    container.innerHTML = html;
+    // ======================================================
+    // REMOVE ONLY OLD AUTOMATIC ITEMS
+    // KEEP INTRO
+    // ======================================================
+
+    container
+        .querySelectorAll(
+            ".automatic-passing-item"
+        )
+        .forEach(
+            item => item.remove()
+        );
+
+    // ======================================================
+    // ADD AUTOMATIC ITEMS
+    // ======================================================
+
+    container.insertAdjacentHTML(
+        "beforeend",
+        html
+    );
+
+    // ======================================================
+    // LOG
+    // ======================================================
 
     console.log(
         "AUTOMATIC PASSING CHORDS GENERATED:",
         {
             originalKey,
+            category,
             last3,
             returnVerse,
             outroBase,
             spiritBase
         }
     );
+
+    // RETURN HTML
+    // Needed by Presentation
+    return html;
 }
+
+
+// ==========================================================
+// MAKE AVAILABLE TO HTML / PRESENTATION
+// ==========================================================
+
 window.updatePassingChords =
-    updatePassingChords;
+    generatePassingChords;
 // ==========================================================
 // SERVICE
 // ==========================================================
@@ -1893,12 +1961,7 @@ const Presentation = {
         }
     },
 
-
-    // ======================================================
-    // BUILD PRESENTATION
-    // ======================================================
-
-    // ======================================================
+// ======================================================
 // BUILD PRESENTATION
 // ======================================================
 
@@ -1957,14 +2020,10 @@ build() {
         lyricsSource.innerHTML;
 
 
-    // ==================================================
-    // PASSING CHORDS
-    // ==================================================
+   // ==================================================
+// AUTOMATIC PASSING CHORDS
+// ==================================================
 
-    const passingSource =
-        source.querySelector(
-            ".presentation-passing-bar"
-        );
 const currentSong =
     window.currentSong ||
     window.currentSongData ||
@@ -1975,181 +2034,38 @@ const originalKey =
     currentSong?.key ||
     "";
 
-const category =
-    currentSong?.category ||
-    "";
 const passingContent =
     generatePassingChords(
-        originalKey,
-        category
+        originalKey
     );
-    if (passingSource) {
 
-        console.log(
-            "PASSING CHORDS FOUND"
-        );
+// --------------------------------------------------
+// CREATE PRESENTATION PASSING BAR
+// --------------------------------------------------
 
+if (passingContent) {
 
-        const passingBar =
-            document.createElement("div");
+    const passingBar =
+        document.createElement("div");
 
-        passingBar.className =
-            "presentation-passing-bar";
+    passingBar.className =
+        "presentation-passing-bar";
 
+    passingBar.innerHTML = `
 
-        // --------------------------------------------------
-        // LABEL
-        // --------------------------------------------------
+        <div class="presentation-passing-content">
 
-        const label =
-            document.createElement("div");
+            ${passingContent}
 
-        label.className =
-            "presentation-passing-label";
+        </div>
 
-        label.textContent =
-            "PASSING CHORDS";
+    `;
 
+    output.appendChild(
+        passingBar
+    );
 
-        // --------------------------------------------------
-        // CONTENT
-        // --------------------------------------------------
-
-        const content =
-            document.createElement("div");
-
-        content.className =
-            "presentation-passing-content";
-
-
-        const items =
-            passingSource.querySelectorAll(
-                ".passing-item"
-            );
-
-
-        items.forEach(
-            item => {
-
-                const newItem =
-                    document.createElement("div");
-
-                newItem.className =
-                    "passing-item";
-
-
-                // LABEL
-
-                const strong =
-                    item.querySelector("strong");
-
-                if (strong) {
-
-                    const newStrong =
-                        document.createElement("strong");
-
-                    newStrong.textContent =
-                        strong.textContent.trim();
-
-                    newItem.appendChild(
-                        newStrong
-                    );
-                }
-
-
-                // CHORD
-
-                const chord =
-                    item.querySelector(".chord");
-
-                if (chord) {
-
-                    const newChord =
-                        document.createElement("span");
-
-                    newChord.className =
-                        "chord";
-
-                    newChord.textContent =
-                        chord.textContent.trim();
-
-
-                    newChord.style.fontWeight =
-                        "900";
-
-                    newChord.style.color =
-                        "#FFD54A";
-
-
-                    newItem.appendChild(
-                        newChord
-                    );
-                }
-
-
-                content.appendChild(
-                    newItem
-                );
-
-            }
-        );
-
-
-        passingBar.appendChild(
-            label
-        );
-
-        passingBar.appendChild(
-            content
-        );
-
-
-        output.appendChild(
-            passingBar
-        );
-
-    }
-    else {
-
-        console.warn(
-            "NO PASSING CHORDS FOUND"
-        );
-
-    }
-
-
-    // ==================================================
-    // FIND SONG SECTIONS
-    // ==================================================
-
-    const sections =
-        Array.from(
-            source.querySelectorAll(
-                ".song-section"
-            )
-        );
-
-// ==================================================
-// CREATE PASSING CHORD BAR
-// ==================================================
-
-const passingBar =
-    document.createElement("div");
-
-passingBar.className =
-    "presentation-passing-bar";
-
-passingBar.innerHTML = `
-    <div class="presentation-passing-content">
-
-        ${passingContent}
-
-    </div>
-`;
-
-output.appendChild(
-    passingBar
-);
+}
 
     // ==================================================
     // 3 COLUMN GRID
@@ -2341,24 +2257,21 @@ output.appendChild(
     );
 
     console.log(
-        "PRESENTATION BUILD COMPLETE"
-    );
+    "PRESENTATION BUILD COMPLETE"
+);
 
-    console.log(
-        "PASSING CHORDS:",
-        passingSource
-            ? "VISIBLE"
-            : "NOT FOUND"
-    );
+console.log(
+    "AUTOMATIC PASSING CHORDS GENERATED"
+);
 
-    console.log(
-        "SECTIONS:",
-        sections.length
-    );
+console.log(
+    "SECTIONS:",
+    sections.length
+);
 
-    console.log(
-        "========================================"
-    );
+console.log(
+    "========================================"
+);
 
 },
 
