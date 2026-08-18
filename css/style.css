@@ -3228,3 +3228,142 @@ body.dark .service-body{
         max-height: 48px;
     }
 }
+/* =========================================================
+   PRESENTATION SCREEN - FORCE VISIBLE
+========================================================= */
+
+#presentationScreen {
+
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    width: 100vw !important;
+
+    height: 100vh !important;
+
+    z-index: 999999 !important;
+
+    display: block !important;
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+
+    overflow-y: auto !important;
+
+    overflow-x: hidden !important;
+
+    background: #07111f !important;
+
+    color: #ffffff !important;
+}
+
+
+/* Presentation grid */
+
+#presentationScreen .presentation-grid {
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 18px !important;
+
+    width: 100% !important;
+
+    max-width: 1800px !important;
+
+    margin: 0 auto !important;
+
+    padding: 25px !important;
+
+    align-items: stretch !important;
+
+}
+
+
+/* Presentation cards */
+
+#presentationScreen .presentation-section {
+
+    background: #101c2d !important;
+
+    border: 1px solid #334155 !important;
+
+    border-radius: 12px !important;
+
+    padding: 18px !important;
+
+    min-width: 0 !important;
+
+    height: 100% !important;
+
+}
+
+
+/* Lyrics */
+
+#presentationScreen .presentation-line {
+
+    display: block !important;
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+
+    color: #ffffff !important;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace !important;
+
+    font-size: 22px !important;
+
+    line-height: 1.15 !important;
+
+    white-space: pre-wrap !important;
+
+}
+
+
+/* Chords */
+
+#presentationScreen .presentation-line .chord,
+#presentationScreen .chord {
+
+    color: #ff5555 !important;
+
+    font-weight: 900 !important;
+
+}
+
+
+/* Section title */
+
+#presentationScreen .section-title {
+
+    color: #a78bfa !important;
+
+    font-size: 18px !important;
+
+    font-weight: 800 !important;
+
+    margin-bottom: 14px !important;
+
+}
+
+
+/* Mobile */
+
+@media(max-width:900px){
+
+    #presentationScreen .presentation-grid {
+
+        grid-template-columns: 1fr !important;
+
+    }
+
+}
