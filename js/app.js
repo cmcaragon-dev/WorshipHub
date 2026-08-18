@@ -2241,37 +2241,48 @@ async function deleteService(id) {
 
     try {
 
-        // ==========================================
-        // DELETE FROM FIREBASE
-        // ==========================================
+     // ==========================================
+// DELETE FROM FIREBASE
+// ==========================================
 
-        console.log(
-            "Deleting from Firebase:",
-            service.id
-        );
+console.log(
+    "Deleting from Firebase:",
+    service.id
+);
 
+await deleteServiceCloud(
+    currentUser.uid,
+    String(service.id)
+);
 
-        await deleteServiceCloud(
-            currentUser.uid,
-            String(service.id)
-        );
-
-
-        console.log(
-            "Firebase delete successful"
-        );
+console.log(
+    "Firebase delete successful"
+);
 
 
-        // ==========================================
-        // REMOVE FROM LOCAL ARRAY
-        // ==========================================
+// ==========================================
+// REMOVE FROM LOCAL ARRAY
+// ==========================================
 
-        services = services.filter(function(service) {
+services = services.filter(function(service) {
 
-            return String(service.id) !== String(id);
+    return String(service.id) !== String(id);
 
-        });
+});
 
+
+// ==========================================
+// REFRESH SERVICE PLANNER
+// ==========================================
+
+renderServices();
+
+updateDashboard();
+
+console.log(
+    "SERVICE DELETED:",
+    service.name
+);
 
         // ==========================================
         // CLEAR ACTIVE SERVICE
