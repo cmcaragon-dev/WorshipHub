@@ -2080,77 +2080,59 @@ build() {
         }
     );
 
-  // ======================================================
-// PRESENTATION CONTENT
+// ======================================================
+// PRESENTATION LYRICS
 // ======================================================
 
 // ------------------------------------------------------
-// SONG TITLE
+// ADD 3-COLUMN LYRICS
 // ------------------------------------------------------
 
-const presentationTitle =
-    document.getElementById(
-        "presentationTitle"
-    );
+output.appendChild(
+    grid
+);
 
 
-// ------------------------------------------------------
+// ======================================================
 // PASSING CHORDS
-// ------------------------------------------------------
+// PLACE DIRECTLY AFTER SONG TITLE
+// ======================================================
 
 const existingPassingBar =
     document.querySelector(
         ".presentation-passing-bar"
     );
 
+if (existingPassingBar) {
 
-// ------------------------------------------------------
-// CREATE PRESENTATION HEADER
-// ------------------------------------------------------
+    // ------------------------------------------
+    // REMOVE PREVIOUS PRESENTATION COPY
+    // ------------------------------------------
 
-const presentationHeader =
-    document.createElement(
-        "div"
-    );
-
-presentationHeader.className =
-    "presentation-song-header";
-
-
-// ------------------------------------------------------
-// SONG TITLE
-// ------------------------------------------------------
-
-if (presentationTitle) {
-
-    const title =
-        document.createElement(
-            "div"
+    const oldPassingBar =
+        document.getElementById(
+            "presentationPassingBar"
         );
 
-    title.className =
-        "presentation-title-display";
-
-    title.textContent =
-        presentationTitle.textContent.trim();
-
-    presentationHeader.appendChild(
-        title
-    );
-}
+    if (oldPassingBar) {
+        oldPassingBar.remove();
+    }
 
 
-// ------------------------------------------------------
-// PASSING CHORDS
-// ------------------------------------------------------
-
-if (existingPassingBar) {
+    // ------------------------------------------
+    // CLONE PASSING CHORD BAR
+    // ------------------------------------------
 
     const passingBar =
         existingPassingBar.cloneNode(true);
 
     passingBar.id =
         "presentationPassingBar";
+
+
+    // ------------------------------------------
+    // FORCE VISIBILITY
+    // ------------------------------------------
 
     passingBar.style.display =
         "flex";
@@ -2161,11 +2143,13 @@ if (existingPassingBar) {
     passingBar.style.opacity =
         "1";
 
+
+    // ------------------------------------------
+    // NORMAL DOCUMENT FLOW
+    // ------------------------------------------
+
     passingBar.style.position =
         "relative";
-
-    passingBar.style.left =
-        "auto";
 
     passingBar.style.top =
         "auto";
@@ -2173,11 +2157,22 @@ if (existingPassingBar) {
     passingBar.style.bottom =
         "auto";
 
+    passingBar.style.left =
+        "auto";
+
+    passingBar.style.right =
+        "auto";
+
     passingBar.style.transform =
         "none";
 
     passingBar.style.width =
         "100%";
+
+
+    // ------------------------------------------
+    // CENTER CONTENT
+    // ------------------------------------------
 
     passingBar.style.justifyContent =
         "center";
@@ -2188,13 +2183,34 @@ if (existingPassingBar) {
     passingBar.style.textAlign =
         "center";
 
-    presentationHeader.appendChild(
-        passingBar
-    );
 
-    console.log(
-        "PASSING CHORDS ADDED BELOW SONG TITLE"
-    );
+    // ------------------------------------------
+    // INSERT AFTER EXISTING SONG TITLE
+    // ------------------------------------------
+
+    const title =
+        document.getElementById(
+            "presentationTitle"
+        );
+
+    if (title) {
+
+        title.insertAdjacentElement(
+            "afterend",
+            passingBar
+        );
+
+        console.log(
+            "PASSING CHORDS INSERTED AFTER SONG TITLE"
+        );
+
+    }
+    else {
+
+        console.warn(
+            "#presentationTitle NOT FOUND"
+        );
+    }
 
 }
 else {
@@ -2203,24 +2219,6 @@ else {
         "NO .presentation-passing-bar FOUND"
     );
 }
-
-
-// ------------------------------------------------------
-// ADD HEADER BEFORE LYRICS
-// ------------------------------------------------------
-
-output.appendChild(
-    presentationHeader
-);
-
-
-// ------------------------------------------------------
-// ADD 3-COLUMN LYRICS
-// ------------------------------------------------------
-
-output.appendChild(
-    grid
-);
 
     console.log(
         "PRESENTATION BUILD COMPLETE"
