@@ -2307,183 +2307,112 @@ body{
         4px 14px 8px;
 }
 
+/*==================================================
+PASSING CHORDS
+==================================================*/
 
-/* ==========================================================
-   PRESENTATION CONTENT
-   ========================================================== */
-
-.presentation-content {
-
-    width:
-        100%;
-
-    height:
-        100%;
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    min-height:
-        0;
+.presentation-content{
+    grid-column:1 / -1;
+    width:100%;
 }
 
-/* ==========================================================
-   PRESENTATION PASSING CHORDS
-   COMPACT HORIZONTAL CHORD STRIP
-========================================================== */
+.presentation-passing-bar{
 
-.presentation-passing-bar {
-    flex: 0 0 auto;
+    width:100%;
 
-    width: calc(100% - 28px);
+    display:flex;
 
-    min-height: 54px;
+    align-items:stretch;
 
-    margin: 0 14px 8px;
+    background:#1f2937;
 
-    padding: 8px 16px;
+    border-radius:12px;
 
-    display: flex;
-    align-items: center;
+    overflow:hidden;
 
-    gap: 16px;
+    margin-bottom:25px;
 
-    box-sizing: border-box;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,213,74,.08),
-            rgba(255,255,255,.035)
-        );
-
-    border: 1px solid rgba(255,213,74,.25);
-
-    border-left: 4px solid #FFD54A;
-
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.18);
-}
-
-
-/* ==========================================================
-   PASSING CHORD LABEL
-========================================================== */
-
-.presentation-passing-label {
-
-    flex: 0 0 auto;
-
-    padding: 6px 10px;
-
-    border-radius: 6px;
-
-    background: rgba(255,213,74,.12);
-
-    color: #FFD54A;
-
-    font-size: 11px;
-
-    font-weight: 900;
-
-    letter-spacing: 1.2px;
-
-    white-space: nowrap;
-}
-
-
-/* ==========================================================
-   PASSING CHORD CONTENT
-========================================================== */
-
-.presentation-passing-content {
-
-    flex: 1;
-
-    min-width: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 0;
-
-    overflow: hidden;
-
-    white-space: nowrap;
-}
-
-
-/* ==========================================================
-   PASSING CHORD ITEM
-========================================================== */
-
-.passing-item {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    padding: 0 16px;
-
-    min-height: 28px;
-
-    color: #ffffff;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
-    border-right:
-        1px solid rgba(255,255,255,.15);
-
-    white-space: nowrap;
-}
-
-
-.passing-item:first-child {
-    padding-left: 0;
-}
-
-
-.passing-item:last-child {
-    border-right: none;
-}
-
-
-/* Label such as INTRO / LAST / OUTRO */
-
-.passing-item strong {
-
-    margin-right: 7px;
-
-    color: #FFD54A;
-
-    font-size: 10px;
-
-    font-weight: 900;
-
-    letter-spacing: .8px;
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
 
 }
 
+.presentation-passing-label{
 
-/* Chord itself */
+    min-width:180px;
 
-.passing-item .chord {
+    display:flex;
 
-    color: #FFD54A !important;
+    align-items:center;
 
-    font-size: 17px;
+    justify-content:center;
 
-    font-weight: 900;
+    padding:14px 20px;
+
+    background:#2c3e50;
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+}
+
+.presentation-passing-content{
+
+    flex:1;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0,1fr));
+
+    align-items:stretch;
+
+}
+
+.passing-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:12px 10px;
+
+    border-left:1px solid rgba(255,255,255,.15);
+
+    text-align:center;
+
+}
+
+.passing-item strong{
+
+    color:#d9e2ec;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
+    margin-bottom:5px;
+
+}
+
+.passing-item .chord{
+
+    color:#ff6b6b;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    white-space:nowrap;
+
 }
 
 
