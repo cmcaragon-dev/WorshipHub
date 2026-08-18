@@ -2166,148 +2166,81 @@ if (transposeDisplay) {
                 // CONTENT
                 // ------------------------------------------
 
-                const content =
-                    document.createElement(
-                        "div"
-                    );
+                // ------------------------------------------
+// CONTENT
+// ------------------------------------------
 
-                content.className =
-                    "presentation-section-content";
+const content =
+    document.createElement(
+        "div"
+    );
 
-                const lines =
-                    section.querySelectorAll(
-                        ".song-line"
-                    );
+content.className =
+    "presentation-section-content";
 
-                if (lines.length) {
+const lines =
+    section.querySelectorAll(
+        ".song-line"
+    );
 
-                    lines.forEach(
-                        line => {
+if (lines.length) {
 
-                            const newLine =
-                                line.cloneNode(
-                                    true
-                                );
+    lines.forEach(
+        line => {
 
-                            newLine.classList.add(
-                                "presentation-line"
-                            );
-
-                            newLine.style.display =
-                                "block";
-
-                            newLine.style.visibility =
-                                "visible";
-
-                            newLine.style.opacity =
-                                "1";
-
-                            newLine.style.color =
-                                "#ffffff";
-
-                            newLine
-                                .querySelectorAll("*")
-                                .forEach(
-                                    element => {
-
-                                        if (
-                                            element.classList.contains(
-                                                "chord"
-                                            )
-                                        ) {
-                                            return;
-                                        }
-
-                                        element.style.color =
-                                            "#ffffff";
-                                    }
-                                );
-
-                            newLine
-                                .querySelectorAll(
-                                    ".chord"
-                                )
-                                .forEach(
-                                    chord => {
-
-                                        chord.style.color =
-                                            "#ff4444";
-
-                                        chord.style.fontWeight =
-                                            "900";
-                                    }
-                                );
-
-                            content.appendChild(
-                                newLine
-                            );
-                        }
-                    );
-
-                }
-                else {
-
-                    const clone =
-                        section.cloneNode(
-                            true
-                        );
-
-                    clone
-                        .querySelectorAll(
-                            ".section-title"
-                        )
-                        .forEach(
-                            element =>
-                                element.remove()
-                        );
-
-                    clone
-                        .querySelectorAll(
-                            ".chord"
-                        )
-                        .forEach(
-                            chord => {
-
-                                chord.style.color =
-                                    "#ff4444";
-
-                                chord.style.fontWeight =
-                                    "900";
-                            }
-                        );
-
-                    clone.style.color =
-                        "#ffffff";
-
-                    content.appendChild(
-                        clone
-                    );
-                }
-
-                card.appendChild(
-                    content
+            const newLine =
+                line.cloneNode(
+                    true
                 );
 
-                grid.appendChild(
-                    card
-                );
-            }
+            newLine.classList.add(
+                "presentation-line"
+            );
+
+            newLine.style.display =
+                "block";
+
+            newLine.style.visibility =
+                "visible";
+
+            newLine.style.opacity =
+                "1";
+
+            content.appendChild(
+                newLine
+            );
+        }
+    );
+
+}
+else {
+
+    const clone =
+        section.cloneNode(
+            true
         );
 
-        output.appendChild(
-            grid
+    clone
+        .querySelectorAll(
+            ".section-title"
+        )
+        .forEach(
+            element =>
+                element.remove()
         );
 
-        console.log(
-            "PRESENTATION BUILD COMPLETE"
-        );
+    content.appendChild(
+        clone
+    );
+}
 
-        console.log(
-            "SECTIONS:",
-            sections.length
-        );
-    },
+card.appendChild(
+    content
+);
 
+grid.appendChild(
+    card
+);
 
    // ======================================================
 // UPDATE PRESENTATION
