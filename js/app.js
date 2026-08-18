@@ -1637,56 +1637,7 @@ function renderServices() {
     updateDashboard();
 }
 
-    // Sort services alphabetically
-    services.sort(function(a, b) {
-        return a.name.localeCompare(b.name);
-    });
-
-   services.forEach(function(service){
-
-    let songList = "";
-
-    service.songs.forEach(function(song,index){
-
-        songList += `
-
-    <div class="service-song">
-
-       <div>
-
-    <div class="service-song-title">
-
-        🎵 ${song.title}
-
-    </div>
-
-    <small>
-
-        ${song.artist}
-
-    </small>
-
-    <br>
-
-    <span class="service-song-key">
-
-    🎼 ${song.serviceKey}
-
-</span>
-
-</div>
-
-        <button onclick="removeSongFromService(${service.id},${index})">
-            🗑 Remove
-        </button>
-
-    </div>
-
-    `;
-
-});
-
-        serviceList.innerHTML += `
+         serviceList.innerHTML += `
 
 <div class="service-item">
 
