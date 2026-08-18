@@ -515,7 +515,110 @@ return SHARP_SCALE[
 ];
 
 }
+// ==========================================================
+// GENERATE PASSING CHORDS
+// ==========================================================
 
+function generatePassingChords(originalKey, category = "") {
+
+    if (!originalKey) {
+        return "";
+    }
+
+    // Remove accidental formatting if necessary
+    originalKey =
+        originalKey.trim();
+
+    // ------------------------------------------
+    // CALCULATE REQUIRED KEYS
+    // ------------------------------------------
+
+    const last3 =
+        getTransposedKey(
+            originalKey,
+            9
+        ) + "m";
+
+    const returnToVerse =
+        getTransposedKey(
+            originalKey,
+            7
+        );
+
+    const outroKey =
+        getTransposedKey(
+            originalKey,
+            5
+        );
+
+    const spiritKey =
+        getTransposedKey(
+            originalKey,
+            5
+        );
+
+    // ------------------------------------------
+    // BUILD OUTPUT
+    // ------------------------------------------
+
+    let html = "";
+
+    html += `
+        <div class="passing-item">
+            <strong>LAST 3</strong>
+            <span class="chord">
+                ${last3}
+            </span>
+        </div>
+    `;
+
+    html += `
+        <div class="passing-item">
+            <strong>RETURN</strong>
+            <span class="chord">
+                ${returnToVerse}
+            </span>
+        </div>
+    `;
+
+    // ------------------------------------------
+    // OUTRO
+    // ONLY FOR WORSHIP
+    // ------------------------------------------
+
+    if (
+        category &&
+        category.toLowerCase() === "worship"
+    ) {
+
+        html += `
+            <div class="passing-item">
+                <strong>OUTRO</strong>
+                <span class="chord">
+                    ${outroKey} -
+                    ${outroKey}m -
+                    ${originalKey}
+                </span>
+            </div>
+        `;
+    }
+
+    // ------------------------------------------
+    // SINGING IN THE SPIRIT
+    // ------------------------------------------
+
+    html += `
+        <div class="passing-item">
+            <strong>SPIRIT</strong>
+            <span class="chord">
+                ${originalKey} -
+                ${spiritKey}
+            </span>
+        </div>
+    `;
+
+    return html;
+}
 // ==========================================================
 // SERVICE
 // ==========================================================
@@ -1817,8 +1920,24 @@ build() {
         source.querySelector(
             ".presentation-passing-bar"
         );
+const currentSong =
+    window.currentSong ||
+    window.currentSongData ||
+    null;
 
+const originalKey =
+    currentSong?.originalKey ||
+    currentSong?.key ||
+    "";
 
+const category =
+    currentSong?.category ||
+    "";
+const passingContent =
+    generatePassingChords(
+        originalKey,
+        category
+    );
     if (passingSource) {
 
         console.log(
@@ -1965,7 +2084,38 @@ build() {
             )
         );
 
+// ==================================================
+// CREATE PASSING CHORD BAR
+// ==================================================
 
+const passingBar =
+    document.createElement("div");
+
+passingBar.className =
+    "presentation-passing-bar";
+
+passingBar.innerHTML = `
+    <div class="presentation-passing-content">
+
+        ${passingContent}
+
+    </div>
+`;
+
+output.appendChild(
+    passingBar
+);
+
+
+// ==================================================
+// 3 COLUMN GRID
+// ==================================================
+
+const grid =
+    document.createElement("div");
+
+grid.className =
+    "presentation-grid";
     // ==================================================
     // 3 COLUMN GRID
     // ==================================================
