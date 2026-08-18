@@ -529,32 +529,34 @@ function generatePassingChords() {
         document.getElementById("passingChords");
 
     if (!container) {
+        console.warn("passingChords element not found");
         return;
     }
 
+    // Get song information
     const song =
-        window.currentSong;
+        window.currentSong ||
+        (typeof currentSong !== "undefined"
+            ? currentSong
+            : null);
 
     if (!song) {
+        console.warn("Current song not found");
         return;
     }
-
-    // ------------------------------------------
-    // ORIGINAL KEY
-    // ------------------------------------------
 
     const originalKey =
         song.originalKey ||
         song.key;
 
     if (!originalKey) {
+        console.warn("Original key not found");
         return;
     }
 
-    // ------------------------------------------
-    // LAST 3
-    // ORIGINAL KEY + 9
-    // ------------------------------------------
+    // ==================================================
+    // AUTOMATIC CHORD CALCULATIONS
+    // ==================================================
 
     const last3 =
         getTransposedKey(
@@ -562,21 +564,11 @@ function generatePassingChords() {
             9
         ) + "m";
 
-    // ------------------------------------------
-    // RETURN TO VERSE
-    // ORIGINAL KEY + 7
-    // ------------------------------------------
-
     const returnVerse =
         getTransposedKey(
             originalKey,
             7
         );
-
-    // ------------------------------------------
-    // OUTRO
-    // ORIGINAL KEY + 5
-    // ------------------------------------------
 
     const outroBase =
         getTransposedKey(
@@ -584,25 +576,18 @@ function generatePassingChords() {
             5
         );
 
-    // ------------------------------------------
-    // SPIRIT
-    // ORIGINAL KEY
-    // ORIGINAL KEY + 5
-    // ------------------------------------------
-
     const spiritBase =
         getTransposedKey(
             originalKey,
             5
         );
 
-    // ------------------------------------------
-    // BUILD HTML
-    // ------------------------------------------
+    // ==================================================
+    // BUILD
+    // ==================================================
 
     let html = "";
 
-    // LAST 3
     html += `
         <div class="passing-item">
 
@@ -615,7 +600,6 @@ function generatePassingChords() {
         </div>
     `;
 
-    // RETURN
     html += `
         <div class="passing-item">
 
@@ -628,41 +612,36 @@ function generatePassingChords() {
         </div>
     `;
 
-    // ------------------------------------------
+    // ==================================================
     // WORSHIP ONLY
-    // ------------------------------------------
+    // ==================================================
 
     if (
         String(song.category || "")
             .toLowerCase() === "worship"
     ) {
 
-        // OUTRO
         html += `
             <div class="passing-item">
 
                 <strong>OUTRO</strong>
 
                 <span class="chord">
-                    ${outroBase}
-                    -
-                    ${outroBase}m
-                    -
+                    ${outroBase} -
+                    ${outroBase}m -
                     ${originalKey}
                 </span>
 
             </div>
         `;
 
-        // SPIRIT
         html += `
             <div class="passing-item">
 
                 <strong>SPIRIT</strong>
 
                 <span class="chord">
-                    ${originalKey}
-                    -
+                    ${originalKey} -
                     ${spiritBase}
                 </span>
 
@@ -670,47 +649,18 @@ function generatePassingChords() {
         `;
     }
 
-    // ------------------------------------------
-    // DISPLAY
-    // ------------------------------------------
+    container.innerHTML = html;
 
-    container.innerHTML =
-        html;
-}
-// ==========================================================
-// UPDATE PASSING CHORDS
-// ==========================================================
-
-function updatePassingChords() {
-
-    const container =
-        document.getElementById(
-            "passingChords"
-        );
-
-    if (!container) {
-        return;
-    }
-
-
-    const song =
-        window.currentSong ||
-        {};
-
-    const key =
-        Service.getKey();
-
-
-    const category =
-        song.category ||
-        "";
-
-
-    container.innerHTML =
-        generatePassingChords(
-            key,
-            category
-        );
+    console.log(
+        "AUTOMATIC PASSING CHORDS GENERATED:",
+        {
+            originalKey,
+            last3,
+            returnVerse,
+            outroBase,
+            spiritBase
+        }
+    );
 }
 window.updatePassingChords =
     updatePassingChords;
