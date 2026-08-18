@@ -1736,11 +1736,12 @@ function renderServices() {
 
         </button>
 
-        <button onclick="(${service.id})">
+       <button
+    onclick="deleteService('${service.id}')">
 
-            🗑 Delete
+    🗑 Delete
 
-        </button>
+</button>
 
         <hr>
 
