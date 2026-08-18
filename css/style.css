@@ -4157,105 +4157,75 @@ body.dark .service-body{
     }
 
 }
+/* ==========================================================
+   PRESENTATION PASSING CHORDS
+   ========================================================== */
 
-/*==================================================
-PRESENTATION - PASSING CHORDS
-==================================================*/
-
-#presentationScreen .presentation-content{
-
-    width:100%;
-
-    grid-column:1 / -1;
-
-    margin-bottom:18px;
-
+#presentationScreen .presentation-content {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-#presentationScreen .presentation-passing-bar{
+#presentationScreen .presentation-passing-bar {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
 
-    width:100%;
+    background: #151b24;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 10px;
 
-    display:flex;
-
-    background:#111827;
-
-    border:1px solid rgba(255,255,255,.15);
-
-    border-radius:10px;
-
-    overflow:hidden;
-
+    overflow: hidden;
 }
 
-#presentationScreen .presentation-passing-label{
+#presentationScreen .presentation-passing-label {
+    width: 180px;
+    flex-shrink: 0;
 
-    min-width:190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    background:#1f2937;
+    background: #2c3e50;
+    color: white;
 
-    color:#fff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:18px;
-
-    font-weight:800;
-
-    letter-spacing:1px;
-
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-#presentationScreen .presentation-passing-content{
+#presentationScreen .presentation-passing-content {
+    flex: 1;
 
-    flex:1;
-
-    display:grid;
-
-    grid-template-columns:repeat(5,1fr);
-
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }
 
-#presentationScreen .passing-item{
+#presentationScreen .passing-item {
+    display: flex;
+    flex-direction: column;
 
-    min-height:70px;
+    align-items: center;
+    justify-content: center;
 
-    padding:8px;
+    min-height: 65px;
+    padding: 8px;
 
-    display:flex;
+    text-align: center;
 
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    border-left:1px solid rgba(255,255,255,.12);
-
+    border-left: 1px solid rgba(255,255,255,.12);
 }
 
-#presentationScreen .passing-item strong{
-
-    color:#cbd5e1;
-
-    font-size:12px;
-
-    margin-bottom:4px;
-
+#presentationScreen .passing-item strong {
+    color: #d5dbe3;
+    font-size: 12px;
+    margin-bottom: 5px;
 }
 
-#presentationScreen .passing-item .chord{
-
-    color:#ff6b6b;
-
-    font-size:20px;
-
-    font-weight:bold;
-
+#presentationScreen .passing-item .chord {
+    color: #ff6b6b;
+    font-size: 19px;
+    font-weight: bold;
+    white-space: nowrap;
 }
