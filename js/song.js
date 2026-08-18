@@ -1795,6 +1795,10 @@ localStorage.setItem(
 // BUILD PRESENTATION
 // ======================================================
 
+// ======================================================
+// BUILD PRESENTATION
+// ======================================================
+
 build() {
 
     const output =
@@ -1830,9 +1834,10 @@ build() {
         return;
     }
 
-    // --------------------------------------------------
-    // COPY SOURCE
-    // --------------------------------------------------
+
+    // ==================================================
+    // COPY ORIGINAL LYRICS
+    // ==================================================
 
     const source =
         document.createElement(
@@ -1842,9 +1847,10 @@ build() {
     source.innerHTML =
         lyricsSource.innerHTML;
 
-    // --------------------------------------------------
+
+    // ==================================================
     // FIND SONG SECTIONS
-    // --------------------------------------------------
+    // ==================================================
 
     let sections =
         Array.from(
@@ -1852,6 +1858,7 @@ build() {
                 ".song-section"
             )
         );
+
 
     if (!sections.length) {
 
@@ -1869,6 +1876,7 @@ build() {
         }
     }
 
+
     if (!sections.length) {
 
         sections = [
@@ -1876,16 +1884,230 @@ build() {
         ];
     }
 
-    // --------------------------------------------------
+
+    // ==================================================
     // CLEAR PRESENTATION
+    // ==================================================
+
+    output.innerHTML = "";
+
+
+    // ==================================================
+    // PRESENTATION WRAPPER
+    // ==================================================
+
+    const presentationContent =
+        document.createElement(
+            "div"
+        );
+
+    presentationContent.className =
+        "presentation-content";
+
+
+    // ==================================================
+    // PASSING CHORDS BAR
+    // ==================================================
+
+    const passingBar =
+        document.createElement(
+            "div"
+        );
+
+    passingBar.className =
+        "presentation-passing-bar";
+
+
+    // --------------------------------------------------
+    // PASSING CHORD TITLE
     // --------------------------------------------------
 
-    output.innerHTML =
-        "";
+    const passingLabel =
+        document.createElement(
+            "span"
+        );
+
+    passingLabel.className =
+        "presentation-passing-label";
+
+    passingLabel.textContent =
+        "PASSING CHORDS";
+
+
+    passingBar.appendChild(
+        passingLabel
+    );
+
+
+    // ==================================================
+    // BUILD PASSING CHORD INFORMATION
+    // ==================================================
+
+    const passingContent =
+        document.createElement(
+            "div"
+        );
+
+    passingContent.className =
+        "presentation-passing-content";
+
 
     // --------------------------------------------------
-    // CREATE 3-COLUMN GRID
+    // GET CURRENT KEY
     // --------------------------------------------------
+
+    const currentKey =
+        this.getPresentationKey();
+
+
+    if (currentKey) {
+
+        const keyItem =
+            document.createElement(
+                "span"
+            );
+
+        keyItem.className =
+            "passing-item";
+
+        keyItem.innerHTML =
+            `<strong>KEY</strong> ${currentKey}`;
+
+        passingContent.appendChild(
+            keyItem
+        );
+    }
+
+
+    // --------------------------------------------------
+    // LAST 3
+    // --------------------------------------------------
+
+    if (currentKey) {
+
+        const lastKey =
+            getTransposedKey(
+                currentKey,
+                9
+            ) + "m";
+
+        const item =
+            document.createElement(
+                "span"
+            );
+
+        item.className =
+            "passing-item";
+
+        item.innerHTML =
+            `<strong>LAST</strong> ${lastKey}`;
+
+        passingContent.appendChild(
+            item
+        );
+    }
+
+
+    // --------------------------------------------------
+    // RETURN
+    // --------------------------------------------------
+
+    if (currentKey) {
+
+        const returnKey =
+            getTransposedKey(
+                currentKey,
+                7
+            );
+
+        const item =
+            document.createElement(
+                "span"
+            );
+
+        item.className =
+            "passing-item";
+
+        item.innerHTML =
+            `<strong>RETURN</strong> ${returnKey}`;
+
+        passingContent.appendChild(
+            item
+        );
+    }
+
+
+    // --------------------------------------------------
+    // ENDING
+    // --------------------------------------------------
+
+    if (currentKey) {
+
+        const ending =
+            getTransposedKey(
+                currentKey,
+                5
+            );
+
+        const item =
+            document.createElement(
+                "span"
+            );
+
+        item.className =
+            "passing-item";
+
+        item.innerHTML =
+            `<strong>OUTRO</strong> ${ending} - ${ending}m - ${currentKey}`;
+
+        passingContent.appendChild(
+            item
+        );
+    }
+
+
+    // --------------------------------------------------
+    // SPIRIT
+    // --------------------------------------------------
+
+    if (currentKey) {
+
+        const ending =
+            getTransposedKey(
+                currentKey,
+                5
+            );
+
+        const item =
+            document.createElement(
+                "span"
+            );
+
+        item.className =
+            "passing-item";
+
+        item.innerHTML =
+            `<strong>SPIRIT</strong> ${currentKey} - ${ending}`;
+
+        passingContent.appendChild(
+            item
+        );
+    }
+
+
+    passingBar.appendChild(
+        passingContent
+    );
+
+
+    presentationContent.appendChild(
+        passingBar
+    );
+
+
+    // ==================================================
+    // CREATE 3 COLUMN GRID
+    // ==================================================
 
     const grid =
         document.createElement(
@@ -1895,9 +2117,10 @@ build() {
     grid.className =
         "presentation-grid";
 
-    // --------------------------------------------------
-    // CREATE SECTIONS
-    // --------------------------------------------------
+
+    // ==================================================
+    // CREATE LYRIC SECTIONS
+    // ==================================================
 
     sections.forEach(
         section => {
@@ -1905,9 +2128,39 @@ build() {
             if (
                 !section.textContent.trim()
             ) {
+                return;
+            }
+
+
+            // ------------------------------------------
+            // DETECT PASSING CHORD SECTION
+            // ------------------------------------------
+
+            const sectionText =
+                section.textContent
+                    .trim()
+                    .toLowerCase();
+
+
+            if (
+                sectionText.includes(
+                    "passing chord"
+                ) ||
+                sectionText.includes(
+                    "last 3"
+                ) ||
+                sectionText.includes(
+                    "return to verse"
+                )
+            ) {
 
                 return;
             }
+
+
+            // ------------------------------------------
+            // CREATE CARD
+            // ------------------------------------------
 
             const card =
                 document.createElement(
@@ -1917,6 +2170,7 @@ build() {
             card.className =
                 "presentation-section";
 
+
             // ------------------------------------------
             // SECTION TITLE
             // ------------------------------------------
@@ -1925,6 +2179,7 @@ build() {
                 section.querySelector(
                     ".section-title"
                 );
+
 
             if (sectionTitle) {
 
@@ -1946,6 +2201,7 @@ build() {
                 );
             }
 
+
             // ------------------------------------------
             // CONTENT
             // ------------------------------------------
@@ -1958,10 +2214,16 @@ build() {
             content.className =
                 "presentation-section-content";
 
+
             const lines =
                 section.querySelectorAll(
                     ".song-line"
                 );
+
+
+            // ==================================================
+            // SONG LINES
+            // ==================================================
 
             if (lines.length) {
 
@@ -1986,8 +2248,10 @@ build() {
                         newLine.style.opacity =
                             "1";
 
-                        newLine.style.color =
-                            "#ffffff";
+
+                        // ----------------------------------
+                        // LYRICS
+                        // ----------------------------------
 
                         newLine
                             .querySelectorAll("*")
@@ -2007,6 +2271,11 @@ build() {
                                 }
                             );
 
+
+                        // ----------------------------------
+                        // CHORDS
+                        // ----------------------------------
+
                         newLine
                             .querySelectorAll(
                                 ".chord"
@@ -2015,26 +2284,33 @@ build() {
                                 chord => {
 
                                     chord.style.color =
-                                        "#ff4444";
+                                        "#FFD54A";
 
                                     chord.style.fontWeight =
                                         "900";
                                 }
                             );
 
+
                         content.appendChild(
                             newLine
                         );
                     }
                 );
-
             }
+
+
+            // ==================================================
+            // FALLBACK
+            // ==================================================
+
             else {
 
                 const clone =
                     section.cloneNode(
                         true
                     );
+
 
                 clone
                     .querySelectorAll(
@@ -2045,6 +2321,7 @@ build() {
                             element.remove()
                     );
 
+
                 clone
                     .querySelectorAll(
                         ".chord"
@@ -2053,42 +2330,97 @@ build() {
                         chord => {
 
                             chord.style.color =
-                                "#ff4444";
+                                "#FFD54A";
 
                             chord.style.fontWeight =
                                 "900";
                         }
                     );
 
+
                 clone.style.color =
                     "#ffffff";
+
 
                 content.appendChild(
                     clone
                 );
             }
 
+
             card.appendChild(
                 content
             );
 
+
             grid.appendChild(
                 card
             );
+
         }
     );
 
-    output.appendChild(
+
+    // ==================================================
+    // ADD GRID
+    // ==================================================
+
+    presentationContent.appendChild(
         grid
     );
+
+
+    // ==================================================
+    // ADD TO PRESENTATION
+    // ==================================================
+
+    output.appendChild(
+        presentationContent
+    );
+
 
     console.log(
         "PRESENTATION BUILD COMPLETE"
     );
 
     console.log(
-        "SECTIONS:",
-        sections.length
+        "LYRIC SECTIONS:",
+        grid.children.length
+    );
+
+},
+
+
+// ======================================================
+// GET PRESENTATION KEY
+// ======================================================
+
+getPresentationKey() {
+
+    const song =
+        window.currentSong;
+
+    if (!song) {
+        return "";
+    }
+
+
+    const baseKey =
+        song.serviceKey ||
+        song.key ||
+        song.originalKey;
+
+
+    if (!baseKey) {
+        return "";
+    }
+
+
+    return getTransposedKey(
+        baseKey,
+        Math.round(
+            App.transpose
+        )
     );
 },
 
