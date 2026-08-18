@@ -1612,7 +1612,7 @@ function renderServices() {
             </button>
 
             <button
-                onclick="deleteService('${service.id}')">
+                onclick="('${service.id}')">
 
                 🗑 Delete
 
@@ -1736,7 +1736,7 @@ function renderServices() {
 
         </button>
 
-        <button onclick="deleteService(${service.id})">
+        <button onclick="(${service.id})">
 
             🗑 Delete
 
@@ -2182,55 +2182,137 @@ function addSongsToPlaylist(playlistId){
 window.addSongsToPlaylist = addSongsToPlaylist;
 async function deleteService(id) {
 
-    const service = services.find(s => String(s.id) === String(id));
+    if (!currentUser) {
+
+        alert("Please login first.");
+
+        return;
+
+    }
+
+    const service = services.find(function(s) {
+
+        return String(s.id) === String(id);
+
+    });
 
     if (!service) {
+
         alert("Service not found.");
+
         return;
+
     }
 
     if (!confirm(`Delete "${service.name}"?`)) {
+
         return;
+
     }
 
     try {
 
-        // Remove from local array
-        services = services.filter(
-            s => String(s.id) !== String(id)
+        console.log(
+            "Deleting Service:",
+            service.name,
+            "ID:",
+            service.id
         );
 
-        // Save the UPDATED array to Firestore
-        await saveServicesCloud();
+        // ==========================================
+        // DELETE DIRECTLY FROM FIRESTORE
+        // ==========================================
 
-        // Refresh UI
-        renderServices();
-        updateDashboard();
+        await deleteServiceCloud(
+            currentUser.uid,
+            service.id
+        );
 
-        // Clear current presentation if this was the active service
+        console.log(
+            "Service successfully deleted from Firebase:",
+            service.id
+        );
+
+
+        // ==========================================
+        // REMOVE FROM LOCAL ARRAY
+        // ==========================================
+
+        services = services.filter(function(s) {
+
+            return String(s.id) !== String(id);
+
+        });
+
+
+        // ==========================================
+        // CLEAR ACTIVE SERVICE IF NECESSARY
+        // ==========================================
+
         const currentServiceId =
             localStorage.getItem("currentServiceId");
 
-        if (String(currentServiceId) === String(id)) {
+        if (
+            currentServiceId &&
+            String(currentServiceId) === String(id)
+        ) {
 
-            localStorage.removeItem("currentServiceId");
-            localStorage.removeItem("currentSongIndex");
-            localStorage.removeItem("resumePresentation");
+            localStorage.removeItem(
+                "currentServiceId"
+            );
+
+            localStorage.removeItem(
+                "currentSongIndex"
+            );
+
+            localStorage.removeItem(
+                "resumePresentation"
+            );
+
+            localStorage.removeItem(
+                "currentService"
+            );
+
+            localStorage.removeItem(
+                "currentServiceName"
+            );
 
         }
 
-        console.log("SERVICE DELETED:", service.name);
-        console.log("REMAINING SERVICES:", services);
 
-    } catch (error) {
+        // ==========================================
+        // REFRESH UI
+        // ==========================================
 
-        console.error("ERROR DELETING SERVICE:", error);
+        renderServices();
+
+        updateDashboard();
+
+
+        console.log(
+            "SERVICE DELETED:",
+            service.name
+        );
+
+        console.log(
+            "REMAINING SERVICES:",
+            services
+        );
+
+    }
+    catch(error) {
+
+        console.error(
+            "ERROR DELETING SERVICE:",
+            error
+        );
 
         alert(
             "The service could not be deleted from the database."
         );
 
     }
+
 }
 
 window.deleteService = deleteService;
