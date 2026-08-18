@@ -519,18 +519,120 @@ return SHARP_SCALE[
 // GENERATE PASSING CHORDS
 // ==========================================================
 
-function generatePassingChords(originalKey, category = "") {
+function generatePassingChords(
+    key,
+    category = ""
+) {
+
+    if (!key) {
+        return "";
+    }
+
+    const last3 =
+        getTransposedKey(
+            key,
+            9
+        ) + "m";
+
+
+    const returnToVerse =
+        getTransposedKey(
+            key,
+            7
+        );
+
+
+    const outroKey =
+        getTransposedKey(
+            key,
+            5
+        );
+
+
+    let html = "";
+
+
+    html += `
+        <div class="passing-item">
+
+            <strong>LAST 3</strong>
+
+            <span class="chord">
+                ${last3}
+            </span>
+
+        </div>
+    `;
+
+
+    html += `
+        <div class="passing-item">
+
+            <strong>RETURN TO VERSE 1</strong>
+
+            <span class="chord">
+                ${returnToVerse}
+            </span>
+
+        </div>
+    `;
+
+
+    if (
+        category.toLowerCase() === "worship"
+    ) {
+
+        html += `
+            <div class="passing-item">
+
+                <strong>OUTRO</strong>
+
+                <span class="chord">
+                    ${outroKey}
+                    -
+                    ${outroKey}m
+                    -
+                    ${key}
+                </span>
+
+            </div>
+        `;
+    }
+
+
+    html += `
+        <div class="passing-item">
+
+            <strong>SPIRIT</strong>
+
+            <span class="chord">
+                ${key}
+                -
+                ${outroKey}
+            </span>
+
+        </div>
+    `;
+
+
+    return html;
+}
+// ==========================================================
+// GENERATE AUTOMATIC PASSING CHORDS
+// ==========================================================
+
+function generatePassingChords(
+    originalKey,
+    category = ""
+) {
 
     if (!originalKey) {
         return "";
     }
 
-    // Remove accidental formatting if necessary
-    originalKey =
-        originalKey.trim();
-
     // ------------------------------------------
-    // CALCULATE REQUIRED KEYS
+    // LAST 3
+    // ORIGINAL KEY + 9
     // ------------------------------------------
 
     const last3 =
@@ -539,11 +641,23 @@ function generatePassingChords(originalKey, category = "") {
             9
         ) + "m";
 
+
+    // ------------------------------------------
+    // RETURN TO VERSE
+    // ORIGINAL KEY + 7
+    // ------------------------------------------
+
     const returnToVerse =
         getTransposedKey(
             originalKey,
             7
         );
+
+
+    // ------------------------------------------
+    // OUTRO
+    // ORIGINAL KEY + 5
+    // ------------------------------------------
 
     const outroKey =
         getTransposedKey(
@@ -551,39 +665,42 @@ function generatePassingChords(originalKey, category = "") {
             5
         );
 
-    const spiritKey =
-        getTransposedKey(
-            originalKey,
-            5
-        );
 
     // ------------------------------------------
-    // BUILD OUTPUT
+    // BUILD
     // ------------------------------------------
 
     let html = "";
 
+
     html += `
         <div class="passing-item">
+
             <strong>LAST 3</strong>
+
             <span class="chord">
                 ${last3}
             </span>
+
         </div>
     `;
+
 
     html += `
         <div class="passing-item">
-            <strong>RETURN</strong>
+
+            <strong>RETURN TO VERSE 1</strong>
+
             <span class="chord">
                 ${returnToVerse}
             </span>
+
         </div>
     `;
 
+
     // ------------------------------------------
-    // OUTRO
-    // ONLY FOR WORSHIP
+    // OUTRO ONLY FOR WORSHIP
     // ------------------------------------------
 
     if (
@@ -593,32 +710,81 @@ function generatePassingChords(originalKey, category = "") {
 
         html += `
             <div class="passing-item">
+
                 <strong>OUTRO</strong>
+
                 <span class="chord">
-                    ${outroKey} -
-                    ${outroKey}m -
+                    ${outroKey}
+                    -
+                    ${outroKey}m
+                    -
                     ${originalKey}
                 </span>
+
             </div>
         `;
     }
 
+
     // ------------------------------------------
-    // SINGING IN THE SPIRIT
+    // SPIRIT
+    // ORIGINAL KEY + ORIGINAL KEY + 5
     // ------------------------------------------
 
     html += `
         <div class="passing-item">
+
             <strong>SPIRIT</strong>
+
             <span class="chord">
-                ${originalKey} -
-                ${spiritKey}
+                ${originalKey}
+                -
+                ${outroKey}
             </span>
+
         </div>
     `;
 
+
     return html;
 }
+// ==========================================================
+// UPDATE PASSING CHORDS
+// ==========================================================
+
+function updatePassingChords() {
+
+    const container =
+        document.getElementById(
+            "passingChords"
+        );
+
+    if (!container) {
+        return;
+    }
+
+
+    const song =
+        window.currentSong ||
+        {};
+
+    const key =
+        Service.getKey();
+
+
+    const category =
+        song.category ||
+        "";
+
+
+    container.innerHTML =
+        generatePassingChords(
+            key,
+            category
+        );
+}
+window.updatePassingChords =
+    updatePassingChords;
 // ==========================================================
 // SERVICE
 // ==========================================================
@@ -1174,7 +1340,7 @@ async transpose(step) {
     this.updateKeyDisplay();
 
     this.updateGuide();
-
+updatePassingChords();
     // --------------------------------------------------
     // UPDATE TRANSPOSE DISPLAY
     // --------------------------------------------------
@@ -2618,7 +2784,7 @@ async function () {
     try {
 
         await App.init();
-
+updatePassingChords();
         console.log(
             "SONG APPLICATION INITIALIZED"
         );
