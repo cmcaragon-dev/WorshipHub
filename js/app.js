@@ -2182,6 +2182,13 @@ function addSongsToPlaylist(playlistId){
 window.addSongsToPlaylist = addSongsToPlaylist;
 async function deleteService(id) {
 
+    console.log("DELETE BUTTON CLICKED");
+    console.log("Service ID:", id);
+
+    // ==========================================
+    // CHECK LOGIN
+    // ==========================================
+
     if (!currentUser) {
 
         alert("Please login first.");
@@ -2190,13 +2197,24 @@ async function deleteService(id) {
 
     }
 
-    const service = services.find(function(s) {
 
-        return String(s.id) === String(id);
+    // ==========================================
+    // FIND SERVICE
+    // ==========================================
+
+    const service = services.find(function(service) {
+
+        return String(service.id) === String(id);
 
     });
 
+
     if (!service) {
+
+        console.error(
+            "Service not found:",
+            id
+        );
 
         alert("Service not found.");
 
@@ -2204,33 +2222,43 @@ async function deleteService(id) {
 
     }
 
-    if (!confirm(`Delete "${service.name}"?`)) {
+
+    // ==========================================
+    // CONFIRM DELETE
+    // ==========================================
+
+    const confirmed = confirm(
+        `Delete "${service.name}"?`
+    );
+
+
+    if (!confirmed) {
 
         return;
 
     }
 
+
     try {
 
+        // ==========================================
+        // DELETE FROM FIREBASE
+        // ==========================================
+
         console.log(
-            "Deleting Service:",
-            service.name,
-            "ID:",
+            "Deleting from Firebase:",
             service.id
         );
 
-        // ==========================================
-        // DELETE DIRECTLY FROM FIRESTORE
-        // ==========================================
 
         await deleteServiceCloud(
             currentUser.uid,
-            service.id
+            String(service.id)
         );
 
+
         console.log(
-            "Service successfully deleted from Firebase:",
-            service.id
+            "Firebase delete successful"
         );
 
 
@@ -2238,19 +2266,22 @@ async function deleteService(id) {
         // REMOVE FROM LOCAL ARRAY
         // ==========================================
 
-        services = services.filter(function(s) {
+        services = services.filter(function(service) {
 
-            return String(s.id) !== String(id);
+            return String(service.id) !== String(id);
 
         });
 
 
         // ==========================================
-        // CLEAR ACTIVE SERVICE IF NECESSARY
+        // CLEAR ACTIVE SERVICE
         // ==========================================
 
         const currentServiceId =
-            localStorage.getItem("currentServiceId");
+            localStorage.getItem(
+                "currentServiceId"
+            );
+
 
         if (
             currentServiceId &&
@@ -2281,7 +2312,7 @@ async function deleteService(id) {
 
 
         // ==========================================
-        // REFRESH UI
+        // REFRESH SERVICE PLANNER
         // ==========================================
 
         renderServices();
@@ -2295,7 +2326,7 @@ async function deleteService(id) {
         );
 
         console.log(
-            "REMAINING SERVICES:",
+            "Remaining services:",
             services
         );
 
@@ -2303,17 +2334,18 @@ async function deleteService(id) {
     catch(error) {
 
         console.error(
-            "ERROR DELETING SERVICE:",
+            "DELETE SERVICE ERROR:",
             error
         );
 
         alert(
-            "The service could not be deleted from the database."
+            "Unable to delete the service. Please try again."
         );
 
     }
 
 }
+
 
 window.deleteService = deleteService;
 function renderPlaylistSongPicker(list){
