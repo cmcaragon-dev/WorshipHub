@@ -4419,98 +4419,103 @@ body.dark .service-body{
     color: #ffffff;
 }
 
-/* =========================================================
+/* ==========================================================
    SIMPLE PASSING CHORDS
-   FINAL OVERRIDE
-========================================================= */
+   Quiet • Clean • Readable
+========================================================== */
 
-#presentationPassingBar,
-.presentation-passing-bar {
+#presentationPassingBar {
 
     width: 100% !important;
 
     display: flex !important;
 
     align-items: center !important;
+
     justify-content: center !important;
 
-    margin: 2px auto 10px !important;
-    padding: 3px 8px !important;
+    gap: 22px;
+
+    margin: 4px auto 10px !important;
+
+    padding: 6px 12px !important;
 
     background: transparent !important;
+
     border: none !important;
-    border-radius: 0 !important;
 
     box-shadow: none !important;
 
-    color: #aeb6c2 !important;
+    color: rgba(255,255,255,.65) !important;
 
-    font-size: 11px !important;
+    font-size: 15px !important;
+
     line-height: 1.2 !important;
+
 }
 
 
-/* Hide the large "PASSING CHORDS" block-style label */
+/* Passing Chords Label */
 
-.presentation-passing-label {
+#presentationPassingBar .presentation-passing-label {
 
     min-width: auto !important;
 
     padding: 0 !important;
-    margin: 0 12px 0 0 !important;
+
+    margin: 0 !important;
 
     background: transparent !important;
 
-    color: #7f8a98 !important;
+    color: rgba(255,255,255,.45) !important;
 
-    font-size: 10px !important;
-    font-weight: 700 !important;
+    font-size: 13px !important;
 
-    letter-spacing: .8px !important;
+    font-weight: 600 !important;
+
+    letter-spacing: .8px;
 
     text-transform: uppercase;
 
-    white-space: nowrap;
 }
 
 
-/* Passing chord items */
+/* Passing Chord List */
 
-.presentation-passing-content {
+#presentationPassingBar .presentation-passing-content {
 
     display: flex !important;
 
-    align-items: center !important;
-    justify-content: center !important;
+    align-items: center;
 
-    gap: 14px !important;
+    justify-content: center;
+
+    gap: 24px;
 
     width: auto !important;
 
-    background: transparent !important;
 }
 
 
-/* Individual passing chord */
+/* Individual Passing Chord */
 
-.presentation-passing-content .passing-item,
-.passing-item {
+#presentationPassingBar .passing-item {
 
-    display: inline-flex !important;
+    display: flex !important;
 
     flex-direction: row !important;
 
-    align-items: center !important;
+    align-items: center;
 
-    justify-content: center !important;
+    justify-content: center;
 
-    gap: 5px !important;
-
-    min-height: auto !important;
+    gap: 7px;
 
     padding: 0 !important;
 
     margin: 0 !important;
+
+    min-height: auto !important;
 
     background: transparent !important;
 
@@ -4520,43 +4525,71 @@ body.dark .service-body{
 
     box-shadow: none !important;
 
-    font-size: 11px !important;
-
-    white-space: nowrap !important;
 }
 
 
-/* Passing chord description */
+/* Song / Section Name */
 
-.presentation-passing-content .passing-item strong,
-.passing-item strong {
+#presentationPassingBar .passing-item strong {
 
-    margin: 0 !important;
+    color: rgba(255,255,255,.48) !important;
 
-    padding: 0 !important;
-
-    color: #7f8a98 !important;
-
-    font-size: 10px !important;
+    font-size: 13px !important;
 
     font-weight: 500 !important;
 
-    letter-spacing: 0 !important;
+    letter-spacing: .2px;
+
+    margin: 0 !important;
+
 }
 
 
-/* Actual chord */
+/* Chord */
 
-.presentation-passing-content .passing-item .chord,
-.passing-item .chord {
+#presentationPassingBar .passing-item .chord {
 
-    color: #d9a93a !important;
+    color: #FFD95A !important;
 
-    font-size: 12px !important;
+    font-size: 19px !important;
 
-    font-weight: 700 !important;
+    font-weight: 800 !important;
 
     line-height: 1 !important;
 
-    white-space: nowrap !important;
+    white-space: nowrap;
+
+}
+
+
+/* Mobile */
+
+@media(max-width:700px) {
+
+    #presentationPassingBar {
+
+        gap: 12px;
+
+        padding: 5px 8px !important;
+
+        font-size: 14px !important;
+
+    }
+
+    #presentationPassingBar .presentation-passing-content {
+
+        gap: 15px;
+
+        overflow-x: auto;
+
+        justify-content: flex-start;
+
+    }
+
+    #presentationPassingBar .passing-item .chord {
+
+        font-size: 17px !important;
+
+    }
+
 }
