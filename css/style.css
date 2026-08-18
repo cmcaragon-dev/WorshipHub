@@ -2235,80 +2235,80 @@ body{
 
 
 /* =========================================================
-   PASSING CHORDS
+   PRESENTATION PASSING CHORDS
 ========================================================= */
 
 #presentationPassingChords {
 
-    flex: 0 0 auto;
+    width:100%;
 
-    width: 100%;
+    display:flex;
 
-    margin: 8px 0;
+    justify-content:center;
 
-    overflow: hidden;
+    align-items:center;
+
+    margin:8px auto 12px;
+
+    padding:0 15px;
+
+    flex-shrink:0;
+
 }
 
-#presentationPassingChords .presentation-passing-bar {
+#presentationPassingChords .presentation-passing-content {
 
-    width: 100%;
+    width:100%;
 
-    background: #1f2937;
+    display:flex;
 
-    border: 1px solid #374151;
+    justify-content:center;
 
-    border-radius: 8px;
+    align-items:center;
 
-    padding: 8px 12px;
+    gap:12px;
 
-    margin: 0;
-}
+    flex-wrap:nowrap;
 
-#presentationPassingChords
-.presentation-passing-content {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 8px;
-
-    flex-wrap: nowrap;
 }
 
 #presentationPassingChords .passing-item {
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
+    align-items:center;
 
-    gap: 6px;
+    gap:6px;
 
-    white-space: nowrap;
+    padding:7px 12px;
 
-    padding: 5px 9px;
+    border-radius:7px;
 
-    border-radius: 6px;
+    background:rgba(255,255,255,0.08);
 
-    background: #111827;
+    white-space:nowrap;
 
-    font-size: clamp(11px, 1vw, 16px);
 }
 
 #presentationPassingChords .passing-item strong {
 
-    color: #cbd5e1;
+    color:#ffffff;
+
+    font-size:12px;
+
+    font-weight:800;
+
 }
 
-#presentationPassingChords .chord {
+#presentationPassingChords .passing-item .chord {
 
-    color: #f87171;
+    color:#ff5555;
 
-    font-weight: 700;
+    font-size:15px;
+
+    font-weight:900;
+
 }
-
 
 /* =========================================================
    LYRICS AREA
