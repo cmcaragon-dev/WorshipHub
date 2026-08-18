@@ -3228,3 +3228,12 @@ body.dark .service-body{
         max-height: 48px;
     }
 }
+
+.presentation-section-content {
+    color: #ffffff;
+}
+
+.presentation-section-content .chord {
+    color: #ff4444;
+    font-weight: 900;
+}
