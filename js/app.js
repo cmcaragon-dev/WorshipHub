@@ -1476,235 +1476,264 @@ async function() {
 function renderServices() {
 
     if (!serviceList) {
+
         console.error(
             "serviceList element not found."
         );
+
         return;
+
     }
+
+
+    // =====================================
+    // CLEAR SERVICE LIST
+    // =====================================
 
     serviceList.innerHTML = "";
 
-    if (!Array.isArray(services) || services.length === 0) {
+
+    // =====================================
+    // NO SERVICES
+    // =====================================
+
+    if (
+        !Array.isArray(services) ||
+        services.length === 0
+    ) {
 
         serviceList.innerHTML = `
+
             <div class="empty-message">
+
                 No Service Planner created yet.
+
             </div>
+
         `;
 
         updateDashboard();
 
         return;
+
     }
+
+
+    // =====================================
+    // SORT SERVICES
+    // =====================================
+
+    services.sort(function(a, b) {
+
+        return (a.name || "").localeCompare(
+            b.name || ""
+        );
+
+    });
+
+
+    // =====================================
+    // RENDER SERVICES
+    // =====================================
 
     services.forEach(function(service) {
 
-        // Make sure songs is always an array
         const serviceSongs =
             Array.isArray(service.songs)
                 ? service.songs
                 : [];
 
-        // =====================================
+
+        // =================================
         // SONG HTML
-        // =====================================
+        // =================================
 
         let songsHtml = "";
 
-        serviceSongs.forEach(function(song, index) {
 
-            songsHtml += `
+        serviceSongs.forEach(
+            function(song, index) {
 
-                <div class="service-song">
+                songsHtml += `
 
-                    <div class="service-song-info">
+                    <div class="service-song">
 
-                        <div class="service-song-title">
+                        <div class="service-song-info">
 
-                            🎵 ${song.title || "Untitled Song"}
+                            <div class="service-song-title">
+
+                                🎵
+                                ${song.title || "Untitled Song"}
+
+                            </div>
+
+                            <div class="service-song-artist">
+
+                                ${song.artist || ""}
+
+                            </div>
+
+                            <div class="service-song-key">
+
+                                🎼
+                                ${song.serviceKey || song.key || ""}
+
+                            </div>
 
                         </div>
 
-                        <div class="service-song-artist">
 
-                            ${song.artist || ""}
+                        <button
+                            class="remove-song-btn"
+                            onclick="
+                                removeSongFromService(
+                                    '${service.id}',
+                                    ${index}
+                                )
+                            ">
+
+                            🗑
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+        // =================================
+        // SERVICE HTML
+        // =================================
+
+        serviceList.innerHTML += `
+
+            <div class="service-item">
+
+
+                <div
+                    class="service-header"
+                    onclick="
+                        toggleService(
+                            '${service.id}'
+                        )
+                    ">
+
+                    <div>
+
+                        <div class="service-title">
+
+                            <span
+                                id="serviceArrow${service.id}">
+
+                                ▶
+
+                            </span>
+
+                            ${service.name}
 
                         </div>
 
-                        <div class="service-song-key">
 
-                            🎼 ${song.serviceKey || song.key || ""}
+                        <div class="service-count">
+
+                            ${serviceSongs.length}
+
+                            ${
+                                serviceSongs.length === 1
+                                    ? "Song"
+                                    : "Songs"
+                            }
 
                         </div>
 
                     </div>
 
-                    <button
-                        class="remove-song-btn"
-                        onclick="removeSongFromService('${service.id}', ${index})">
+                </div>
 
-                        🗑
+
+                <div
+                    id="serviceBody${service.id}"
+                    class="service-body">
+
+
+                    <button
+                        onclick="
+                            addSongsToService(
+                                '${service.id}'
+                            )
+                        ">
+
+                        ➕ Add Songs
 
                     </button>
 
-                </div>
 
-            `;
+                    <button
+                        onclick="
+                            startService(
+                                '${service.id}'
+                            )
+                        ">
 
-        });
+                        ▶ Start Service
 
-        // =====================================
-        // SERVICE
-        // =====================================
+                    </button>
 
-        serviceList.innerHTML += `
 
-    <div class="service-item">
+                    <button
+                        onclick="
+                            renameService(
+                                '${service.id}'
+                            )
+                        ">
 
-        <div
-            class="service-header"
-            onclick="toggleService('${service.id}')">
+                        ✏ Rename
 
-            <div>
+                    </button>
 
-                <div class="service-title">
 
-                    <span id="serviceArrow${service.id}">
-                        ▶
-                    </span>
+                    <button
+                        onclick="
+                            deleteService(
+                                '${service.id}'
+                            )
+                        ">
 
-                    ${service.name}
+                        🗑 Delete
 
-                </div>
+                    </button>
 
-                <div class="service-count">
 
-                    ${serviceSongs.length}
-                    ${serviceSongs.length === 1 ? "Song" : "Songs"}
+                    <hr>
+
+
+                    <div class="service-song-list">
+
+                        ${songsHtml}
+
+                    </div>
+
 
                 </div>
 
             </div>
 
-        </div>
-
-
-        <div
-            id="serviceBody${service.id}"
-            class="service-body">
-
-            <button
-                onclick="addSongsToService('${service.id}')">
-
-                ➕ Add Songs
-
-            </button>
-
-           <button onclick="startService('${service.id}')">
-    ▶ Start Service
-</button>
-
-            <button
-                onclick="renameService('${service.id}')">
-
-                ✏ Rename
-
-            </button>
-
-           <button
-    onclick="deleteService('${service.id}')">
-
-    🗑 Delete
-
-</button>
-
-            <hr>
-
-            <div class="service-song-list">
-
-                ${songsHtml}
-
-            </div>
-
-        </div>
-
-    </div>
-
-`;
+        `;
 
     });
+
+
+    // =====================================
+    // UPDATE DASHBOARD
+    // =====================================
 
     updateDashboard();
+
 }
 
-         serviceList.innerHTML += `
-
-<div class="service-item">
-
-    <div class="service-header"
-
-     onclick="toggleService(${service.id})">
-
-    <div>
-
-        <div class="service-title">
-
-            <span id="serviceArrow${service.id}">
-                ▶
-            </span>
-
-            ${service.name}
-
-        </div>
-
-        <div class="service-count">
-
-            ${service.songs.length} Songs
-
-        </div>
-
-    </div>
-
-</div>
-
-    <div id="serviceBody${service.id}"
-
-         class="service-body">
-
-        <button onclick="addSongsToService(${service.id})">
-
-            ➕ Add Songs
-
-        </button>
-
-      <button onclick="startService('${service.id}')">
-    ▶ Start Service
-</button>
-
-        <button onclick="renameService(${service.id})">
-
-            ✏ Rename
-
-        </button>
-
-       <button
-    onclick="deleteService('${service.id}')">
-
-    🗑 Delete
-
-</button>
-
-        <hr>
-
-        ${songList}
-
-    </div>
-
-</div>
-
-`;
-
-    });
 function addSongsToService(serviceId){
 
     selectedService = services.find(function(s){
