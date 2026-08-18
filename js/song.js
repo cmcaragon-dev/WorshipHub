@@ -2079,53 +2079,11 @@ build() {
             );
         }
     );
-// ======================================================
-// PRESENTATION LYRICS
-// ======================================================
 
-// ------------------------------------------------------
-// ADD 3-COLUMN LYRICS
-// ------------------------------------------------------
-
-output.appendChild(
-    grid
-);
-
-
-// ======================================================
-// PASSING CHORDS
-// PRESENTATION ONLY
-// ======================================================
-
-const passingChords =
-    document.querySelector(
-        ".presentation-passing-bar"
+    output.appendChild(
+        grid
     );
 
-const presentationPassingChords =
-    document.getElementById(
-        "presentationPassingChords"
-    );
-
-if (
-    passingChords &&
-    presentationPassingChords
-) {
-
-    presentationPassingChords.innerHTML =
-        passingChords.innerHTML;
-
-    console.log(
-        "PASSING CHORDS COPIED TO PRESENTATION"
-    );
-
-}
-else {
-
-    console.warn(
-        "PASSING CHORDS OR PRESENTATION CONTAINER NOT FOUND"
-    );
-}
     console.log(
         "PRESENTATION BUILD COMPLETE"
     );
