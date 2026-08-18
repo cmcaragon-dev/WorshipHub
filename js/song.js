@@ -2079,7 +2079,6 @@ build() {
             );
         }
     );
-
 // ======================================================
 // PRESENTATION LYRICS
 // ======================================================
@@ -2095,131 +2094,38 @@ output.appendChild(
 
 // ======================================================
 // PASSING CHORDS
-// PLACE DIRECTLY AFTER SONG TITLE
+// PRESENTATION ONLY
 // ======================================================
 
-const existingPassingBar =
+const passingChords =
     document.querySelector(
         ".presentation-passing-bar"
     );
 
-if (existingPassingBar) {
+const presentationPassingChords =
+    document.getElementById(
+        "presentationPassingChords"
+    );
 
-    // ------------------------------------------
-    // REMOVE PREVIOUS PRESENTATION COPY
-    // ------------------------------------------
+if (
+    passingChords &&
+    presentationPassingChords
+) {
 
-    const oldPassingBar =
-        document.getElementById(
-            "presentationPassingBar"
-        );
+    presentationPassingChords.innerHTML =
+        passingChords.innerHTML;
 
-    if (oldPassingBar) {
-        oldPassingBar.remove();
-    }
-
-
-    // ------------------------------------------
-    // CLONE PASSING CHORD BAR
-    // ------------------------------------------
-
-    const passingBar =
-        existingPassingBar.cloneNode(true);
-
-    passingBar.id =
-        "presentationPassingBar";
-
-
-    // ------------------------------------------
-    // FORCE VISIBILITY
-    // ------------------------------------------
-
-    passingBar.style.display =
-        "flex";
-
-    passingBar.style.visibility =
-        "visible";
-
-    passingBar.style.opacity =
-        "1";
-
-
-    // ------------------------------------------
-    // NORMAL DOCUMENT FLOW
-    // ------------------------------------------
-
-    passingBar.style.position =
-        "relative";
-
-    passingBar.style.top =
-        "auto";
-
-    passingBar.style.bottom =
-        "auto";
-
-    passingBar.style.left =
-        "auto";
-
-    passingBar.style.right =
-        "auto";
-
-    passingBar.style.transform =
-        "none";
-
-    passingBar.style.width =
-        "100%";
-
-
-    // ------------------------------------------
-    // CENTER CONTENT
-    // ------------------------------------------
-
-    passingBar.style.justifyContent =
-        "center";
-
-    passingBar.style.alignItems =
-        "center";
-
-    passingBar.style.textAlign =
-        "center";
-
-
-    // ------------------------------------------
-    // INSERT AFTER EXISTING SONG TITLE
-    // ------------------------------------------
-
-    const title =
-        document.getElementById(
-            "presentationTitle"
-        );
-
-    if (title) {
-
-        title.insertAdjacentElement(
-            "afterend",
-            passingBar
-        );
-
-        console.log(
-            "PASSING CHORDS INSERTED AFTER SONG TITLE"
-        );
-
-    }
-    else {
-
-        console.warn(
-            "#presentationTitle NOT FOUND"
-        );
-    }
+    console.log(
+        "PASSING CHORDS COPIED TO PRESENTATION"
+    );
 
 }
 else {
 
     console.warn(
-        "NO .presentation-passing-bar FOUND"
+        "PASSING CHORDS OR PRESENTATION CONTAINER NOT FOUND"
     );
 }
-
     console.log(
         "PRESENTATION BUILD COMPLETE"
     );
