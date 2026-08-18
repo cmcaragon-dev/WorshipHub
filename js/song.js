@@ -1,3954 +1,2801 @@
-/* =========================================================
-   JFCM SONGS ORGANIZER
-   MODERN UI DESIGN
-   Existing IDs / Classes preserved
-========================================================= */
 
-:root{
 
-    --primary:#6c5ce7;
-    --primary-dark:#5546d6;
-    --secondary:#4f8cff;
+"use strict";
 
-    --success:#22c55e;
-    --warning:#f59e0b;
-    --danger:#ef4444;
+/* =====================================
+FIREBASE
+===================================== */
 
-    --dark:#172033;
-    --dark-2:#243047;
+import { auth } from "./firebase.js";
 
-    --text:#1e293b;
-    --muted:#64748b;
+import {
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    --background:#f4f7fb;
-    --surface:#ffffff;
-    --surface-2:#f8fafc;
+import {
+loadPlaylists,
+savePlaylist,
+deletePlaylistCloud,
+loadServices,
+saveService,
+saveServices,
+deleteServiceCloud
+} from "./firestore.js";
 
-    --border:#e5eaf1;
+import { songs } from "./songs.js";
 
-    --radius-sm:8px;
-    --radius-md:12px;
-    --radius-lg:18px;
+/* =====================================
+CURRENT USER
+===================================== */
 
-    --shadow-sm:0 2px 8px rgba(15,23,42,.05);
-    --shadow-md:0 8px 25px rgba(15,23,42,.08);
-    --shadow-lg:0 18px 45px rgba(15,23,42,.15);
+let currentUser = null;
 
-    --transition:.25s ease;
-}
-
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
-*{
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-
-    margin:0;
-
-    font-family:
-        Inter,
-        "Segoe UI",
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:var(--background);
-
-    color:var(--text);
-
-    min-height:100vh;
-
-    -webkit-font-smoothing:antialiased;
-}
-
-
-/* =========================================================
-   TOP BAR
-========================================================= */
-
-.topbar{
-
-    height:72px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #18243a 0%,
-            #263754 100%
-        );
-
-    color:#fff;
-
-    padding:0 24px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    position:sticky;
-
-    top:0;
-
-    z-index:5000;
-
-    box-shadow:
-        0 4px 18px rgba(15,23,42,.18);
-}
-
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    font-size:23px;
-
-    font-weight:800;
-
-    letter-spacing:-.4px;
-
-    white-space:nowrap;
-}
-
-.logo::first-letter{
-    color:#a78bfa;
-}
-
-
-/* =========================================================
-   TOP ACTIONS
-========================================================= */
-
-.top-actions{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-}
-
-
-/* Search */
-
-.top-actions input{
-
-    width:340px;
-
-    height:42px;
-
-    padding:0 16px;
-
-    border:none;
-
-    outline:none;
-
-    border-radius:11px;
-
-    background:rgba(255,255,255,.96);
-
-    color:#1e293b;
-
-    font-size:14px;
-
-    transition:var(--transition);
-
-    box-shadow:
-        0 2px 8px rgba(0,0,0,.08);
-}
-
-.top-actions input::placeholder{
-
-    color:#94a3b8;
-}
-
-.top-actions input:focus{
-
-    box-shadow:
-        0 0 0 3px rgba(167,139,250,.35);
-}
-
-
-/* Header Buttons */
-
-.top-actions button{
-
-    height:42px;
-
-    min-width:42px;
-
-    padding:0 13px;
-
-    border:1px solid rgba(255,255,255,.15);
-
-    border-radius:10px;
-
-    background:rgba(255,255,255,.10);
-
-    color:#fff;
-
-    cursor:pointer;
-
-    transition:var(--transition);
-
-    backdrop-filter:blur(10px);
-}
-
-.top-actions button:hover{
-
-    background:rgba(255,255,255,.20);
-
-    transform:translateY(-1px);
-}
-
-
-/* =========================================================
-   MAIN LAYOUT
-========================================================= */
-
-.layout{
-
-    display:flex;
-
-    min-height:
-        calc(100vh - 72px);
-}
-
-
-/* =========================================================
-   SIDEBAR
-========================================================= */
-
-.sidebar{
-
-    width:250px;
-
-    min-width:250px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #f9fbff 100%
-        );
-
-    padding:24px 16px;
-
-    border-right:1px solid var(--border);
-
-    box-shadow:
-        4px 0 20px rgba(15,23,42,.04);
-
-    position:sticky;
-
-    top:72px;
-
-    height:
-        calc(100vh - 72px);
-
-    overflow-y:auto;
-}
-
-
-/* Sidebar headings */
-
-.sidebar h3{
-
-    margin:
-
-        4px 10px
-        12px;
-
-    color:#94a3b8;
-
-    font-size:11px;
-
-    font-weight:800;
-
-    letter-spacing:1.2px;
-
-    text-transform:uppercase;
-}
-
-
-/* Sidebar divider */
-
-.sidebar hr{
-
-    border:0;
-
-    height:1px;
-
-    background:var(--border);
-
-    margin:20px 8px;
-}
-
-
-/* Sidebar buttons */
-
-.sidebar button{
-
-    width:100%;
-
-    min-height:44px;
-
-    padding:11px 14px;
-
-    margin-bottom:6px;
-
-    border:1px solid transparent;
-
-    background:transparent;
-
-    color:#475569;
-
-    border-radius:11px;
-
-    cursor:pointer;
-
-    text-align:left;
-
-    font-size:14px;
-
-    font-weight:600;
-
-    transition:var(--transition);
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-}
-
-
-/* Hover */
-
-.sidebar button:hover{
-
-    background:#f0edff;
-
-    color:var(--primary);
-
-    border-color:#e6e0ff;
-
-    transform:translateX(3px);
-}
-
-
-/* Active */
-
-.sidebar button.active{
-
-    background:
-        linear-gradient(
-            135deg,
-            #6c5ce7,
-            #4f8cff
-        );
-
-    color:white;
-
-    box-shadow:
-        0 6px 16px rgba(108,92,231,.25);
-}
-
-
-/* =========================================================
-   CONTENT
-========================================================= */
-
-.content{
-
-    flex:1;
-
-    padding:30px;
-
-    min-width:0;
-}
-
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-.dashboard{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,minmax(0,1fr));
-
-    gap:18px;
-
-    margin-bottom:30px;
-}
-
-
-/* =========================================================
-   DASHBOARD CARD
-========================================================= */
-
-.card{
-
-    position:relative;
-
-    background:var(--surface);
-
-    border:1px solid var(--border);
-
-    border-radius:var(--radius-lg);
-
-    padding:23px;
-
-    text-align:left;
-
-    box-shadow:var(--shadow-sm);
-
-    overflow:hidden;
-
-    transition:var(--transition);
-}
-
-.card::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-    left:0;
-
-    width:100%;
-
-    height:3px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--primary),
-            var(--secondary)
-        );
-}
-
-.card:hover{
-
-    transform:translateY(-4px);
-
-    box-shadow:var(--shadow-md);
-}
-
-
-/* Number */
-
-.number{
-
-    font-size:36px;
-
-    line-height:1;
-
-    color:var(--primary);
-
-    font-weight:800;
-
-    letter-spacing:-1px;
-}
-
-
-/* Label */
-
-.label{
-
-    color:var(--muted);
-
-    margin-top:10px;
-
-    font-size:13px;
-
-    font-weight:600;
-
-    text-transform:uppercase;
-
-    letter-spacing:.4px;
-}
-
-
-/* =========================================================
-   SONG GRID
-========================================================= */
-
-#songGrid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(280px,1fr)
-        );
-
-    gap:18px;
-}
-
-
-/* =========================================================
-   SONG CARD
-========================================================= */
-
-.song-card{
-
-    background:var(--surface);
-
-    border:
-
-        1px solid
-        var(--border);
-
-    border-radius:var(--radius-lg);
-
-    padding:20px;
-
-    margin-bottom:18px;
-
-    box-shadow:var(--shadow-sm);
-
-    transition:var(--transition);
-
-    position:relative;
-}
-
-.song-card:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:var(--shadow-md);
-
-    border-color:#d8d0ff;
-}
-
-
-/* =========================================================
-   OPEN SONG
-========================================================= */
-
-.open-song{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:7px;
-
-    margin-top:14px;
-
-    padding:10px 16px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
-
-    color:white;
-
-    text-decoration:none;
-
-    border-radius:10px;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    box-shadow:
-        0 5px 12px rgba(108,92,231,.20);
-
-    transition:var(--transition);
-}
-
-.open-song:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 8px 18px rgba(108,92,231,.28);
-}
-
-
-/* =========================================================
-   PLAYLIST PANEL
-========================================================= */
-
-.playlist-panel{
-
-    position:fixed;
-
-    top:0;
-
-    right:-440px;
-
-    width:420px;
-
-    max-width:95vw;
-
-    height:100%;
-
-    background:#fff;
-
-    border-left:1px solid var(--border);
-
-    box-shadow:
-        -15px 0 45px rgba(15,23,42,.18);
-
-    transition:.35s ease;
-
-    z-index:9999;
-
-    overflow:auto;
-}
-
-.playlist-panel.show{
-
-    right:0;
-}
-
-
-/* =========================================================
-   PLAYLIST TOP
-========================================================= */
-
-.playlist-top{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:20px 22px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #18243a,
-            #2c3f62
-        );
-
-    color:white;
-
-    position:sticky;
-
-    top:0;
-
-    z-index:5;
-}
-
-.playlist-top h2{
-
-    margin:0;
-
-    font-size:20px;
-}
-
-.playlist-top button{
-
-    width:36px;
-
-    height:36px;
-
-    padding:0;
-
-    background:rgba(255,255,255,.12);
-
-    color:white;
-
-    border:1px solid rgba(255,255,255,.15);
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    transition:var(--transition);
-}
-
-.playlist-top button:hover{
-
-    background:#ef4444;
-
-    transform:rotate(4deg);
-}
-
-
-/* =========================================================
-   PLAYLIST CREATE
-========================================================= */
-
-.playlist-create{
-
-    padding:20px;
-}
-
-.playlist-create input{
-
-    width:100%;
-
-    height:44px;
-
-    padding:0 14px;
-
-    margin-bottom:10px;
-
-    border:1px solid var(--border);
-
-    border-radius:10px;
-
-    outline:none;
-
-    font-size:14px;
-
-    transition:var(--transition);
-}
-
-.playlist-create input:focus{
-
-    border-color:var(--primary);
-
-    box-shadow:
-        0 0 0 3px rgba(108,92,231,.10);
-}
-
-.playlist-create button{
-
-    width:100%;
-
-    height:44px;
-
-    padding:0 15px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #22c55e,
-            #16a34a
-        );
-
-    color:white;
-
-    border:none;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    font-weight:700;
+/* =====================================
+USER DATA
+===================================== */
 
-    transition:var(--transition);
-}
-
-.playlist-create button:hover{
-
-    transform:translateY(-1px);
-
-    box-shadow:
-        0 6px 14px rgba(34,197,94,.20);
-}
-
-
-/* =========================================================
-   PLAYLIST ITEM
-========================================================= */
-
-.playlist-item{
-
-    background:#fff;
-
-    border-radius:15px;
-
-    margin:0 16px 16px;
-
-    overflow:hidden;
-
-    border:1px solid var(--border);
-
-    box-shadow:var(--shadow-sm);
-
-    transition:var(--transition);
-}
-
-.playlist-item:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:var(--shadow-md);
-}
-
-
-/* =========================================================
-   PLAYLIST HEADER
-========================================================= */
-
-.playlist-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:15px 17px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #1d2a42,
-            #293b5b
-        );
-
-    color:#fff;
-
-    cursor:pointer;
-
-    font-size:16px;
-
-    font-weight:700;
-}
-
-.playlist-header:hover{
-
-    background:
-        linear-gradient(
-            135deg,
-            #243553,
-            #344a70
-        );
-}
-
-.playlist-title{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    font-size:16px;
-
-    font-weight:700;
-}
-
-.playlist-arrow{
-
-    width:28px;
-
-    height:28px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:rgba(255,255,255,.12);
-
-    border-radius:50%;
-
-    font-size:13px;
-
-    transition:.25s;
-}
-
-.playlist-header.active .playlist-arrow{
-
-    transform:rotate(90deg);
-}
-
-.playlist-count{
-
-    background:
-        linear-gradient(
-            135deg,
-            #6c5ce7,
-            #4f8cff
-        );
-
-    padding:5px 11px;
-
-    border-radius:20px;
-
-    font-size:11px;
-
-    font-weight:800;
-}
-
-
-/* =========================================================
-   PLAYLIST BODY
-========================================================= */
-
-.playlist-body{
-
-    display:none;
-
-    padding:12px;
-
-}
-
-.playlist-body.show{
-
-    display:block;
-}
-
-
-/* =========================================================
-   PLAYLIST SONG
-========================================================= */
-
-.playlist-song{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:12px;
-
-    padding:13px;
-
-    margin-bottom:9px;
-
-    background:#f8fafc;
-
-    border:1px solid #e8edf4;
-
-    border-radius:11px;
-
-    transition:var(--transition);
-}
-
-.playlist-song:hover{
-
-    background:#f2f5ff;
-
-    border-color:#dcd6ff;
-
-    transform:translateX(3px);
-}
-
-.song-info{
-
-    display:flex;
-
-    flex-direction:column;
-
-    min-width:0;
-}
-
-.song-title{
-
-    font-size:15px;
-
-    font-weight:700;
-
-    color:#1e293b;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-}
-
-.song-artist{
-
-    margin-top:4px;
-
-    color:#94a3b8;
-
-    font-size:12px;
-}
-
-
-/* =========================================================
-   PLAYLIST BUTTONS
-========================================================= */
-
-.playlist-buttons{
-
-    display:flex;
-
-    gap:6px;
-
-    flex-shrink:0;
-}
-
-.playlist-buttons button{
-
-    border:none;
-
-    border-radius:8px;
-
-    padding:8px 11px;
-
-    cursor:pointer;
-
-    font-size:12px;
-
-    font-weight:700;
-
-    transition:var(--transition);
-}
-
-.playlist-buttons button:hover{
-
-    transform:translateY(-1px);
-}
+let playlists = [];
 
+let services = [];
 
-/* =========================================================
-   PLAYLIST ACTIONS
-========================================================= */
+/* =====================================
+CURRENT SERVICE STORAGE
+===================================== */
 
-.playlist-actions{
+const STORAGE_KEYS = {
 
-    display:grid;
+CURRENT_SERVICE: "currentServiceId",
 
-    grid-template-columns:
-        repeat(2,1fr);
+CURRENT_INDEX: "currentSongIndex",
 
-    gap:8px;
+RESUME: "resumePresentation"
 
-    margin:15px 0;
-}
-
-.playlist-actions button{
-
-    width:100%;
-
-    padding:11px;
-
-    border:none;
-
-    border-radius:9px;
-
-    color:#fff;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:var(--transition);
-}
-
-.playlist-actions button:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 5px 12px rgba(15,23,42,.12);
-}
-
-.add-song-btn{
-    background:#22c55e;
-}
-
-.open-btn{
-    background:#4f8cff;
-}
-
-.rename-btn{
-    background:#f59e0b;
-}
-
-.delete-btn{
-    background:#ef4444;
-}
-
-
-/* Song action buttons */
-
-.open-song-btn{
-
-    background:#4f8cff;
-
-    color:white;
-}
-
-.remove-song-btn{
-
-    background:#ef4444;
-
-    color:white;
-}
-
-.open-song-btn:hover{
-
-    background:#3b82f6;
-}
-
-.remove-song-btn:hover{
-
-    background:#dc2626;
-}
-
-
-/* =========================================================
-   PLAYLIST POPUP
-========================================================= */
-
-.playlist-popup{
-
-    position:fixed;
-
-    inset:0;
-
-    background:
-        rgba(15,23,42,.65);
-
-    backdrop-filter:blur(6px);
-
-    display:none;
-
-    justify-content:center;
-
-    align-items:center;
-
-    z-index:99999;
-
-    padding:20px;
-}
-
-.playlist-popup.show{
-
-    display:flex;
-}
-
-.popup-content{
-
-    width:440px;
-
-    max-width:100%;
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:18px;
-
-    box-shadow:var(--shadow-lg);
-
-    animation:popupIn .25s ease;
-}
-
-@keyframes popupIn{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(15px) scale(.97);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0) scale(1);
-
-    }
-}
-
-.popup-playlist{
-
-    background:#f5f7fb;
-
-    color:#334155;
-
-    padding:13px;
-
-    margin:9px 0;
-
-    cursor:pointer;
-
-    border:1px solid var(--border);
-
-    border-radius:10px;
-
-    font-weight:600;
-
-    transition:var(--transition);
-}
-
-.popup-playlist:hover{
-
-    background:#f0edff;
-
-    color:var(--primary);
-
-    border-color:#dcd6ff;
-
-    transform:translateX(3px);
-}
-
-
-/* =========================================================
-   MODERN WORSHIP SERVICE PLANNER
-   Existing IDs/classes preserved
-========================================================= */
-
-/* ---------- SERVICE PLANNER SIDE PANEL ---------- */
-
-#servicePanel{
+};
+/* =====================================
+FIREBASE AUTHENTICATION
+===================================== */
 
-    position:fixed;
+onAuthStateChanged(auth, async function(user) {
 
-    top:0;
-    right:-460px;
+console.log("Firebase authentication state:", user);
 
-    width:440px;
-    max-width:92vw;
-    height:100vh;
+/* =====================================
+   NOT LOGGED IN
+===================================== */
 
-    background:#f8fafc;
+if (!user) {
 
-    box-shadow:-15px 0 45px rgba(15,23,42,.22);
+    window.location.href = "login.html";
 
-    transition:right .35s cubic-bezier(.4,0,.2,1);
+    return;
 
-    z-index:99999;
-
-    overflow-y:auto;
-
-    border-left:1px solid #e2e8f0;
-
-}
-
-#servicePanel.show{
-
-    right:0;
-
-}
-
-
-/* ---------- PANEL SCROLLBAR ---------- */
-
-#servicePanel::-webkit-scrollbar{
-
-    width:7px;
-
-}
-
-#servicePanel::-webkit-scrollbar-track{
-
-    background:#f1f5f9;
-
-}
-
-#servicePanel::-webkit-scrollbar-thumb{
-
-    background:#cbd5e1;
-
-    border-radius:20px;
-
-}
-
-#servicePanel::-webkit-scrollbar-thumb:hover{
-
-    background:#94a3b8;
-
-}
-
-
-/* ---------- SERVICE WINDOW ---------- */
-
-.playlist-window{
-
-    padding:0 24px 30px;
-
 }
-
 
-/* ---------- MODERN HEADER ---------- */
 
-.playlist-window h2{
+/* =====================================
+   LOGGED IN
+===================================== */
 
-    position:sticky;
+currentUser = user;
 
-    top:0;
+console.log("Logged in user:", currentUser.uid);
+console.log("Email:", currentUser.email);
 
-    z-index:10;
 
-    margin:0 -24px 25px;
+/* =====================================
+   LOAD USER PLAYLISTS
+===================================== */
 
-    padding:22px 24px;
+try {
 
-    background:linear-gradient(
-        135deg,
-        #1e293b,
-        #334155
+    playlists = await loadPlaylists(
+        currentUser.uid
     );
 
-    color:#fff;
+    playlists.sort(function(a, b) {
 
-    font-size:21px;
+        return (a.name || "").localeCompare(
+            b.name || ""
+        );
 
-    font-weight:700;
+    });
 
-    letter-spacing:.2px;
-
-    box-shadow:0 4px 15px rgba(15,23,42,.15);
-
-}
-
-
-/* Small accent under title */
-
-.playlist-window h2::after{
-
-    content:"";
-
-    display:block;
-
-    width:42px;
-
-    height:3px;
-
-    margin-top:8px;
-
-    background:#6366f1;
-
-    border-radius:10px;
-
-}
-
-
-/* ---------- SERVICE NAME INPUT ---------- */
-
-#serviceName{
-
-    width:100%;
-
-    box-sizing:border-box;
-
-    padding:14px 16px;
-
-    margin-bottom:12px;
-
-    background:#fff;
-
-    border:1px solid #dbe2ea;
-
-    border-radius:10px;
-
-    color:#1e293b;
-
-    font-size:15px;
-
-    outline:none;
-
-    transition:.2s;
-
-    box-shadow:0 1px 3px rgba(15,23,42,.04);
-
-}
-
-#serviceName::placeholder{
-
-    color:#94a3b8;
-
-}
-
-#serviceName:focus{
-
-    border-color:#6366f1;
-
-    box-shadow:
-        0 0 0 3px rgba(99,102,241,.12);
-
-}
-
-
-/* ---------- CREATE SERVICE BUTTON ---------- */
-
-#createService{
-
-    width:100%;
-
-    padding:13px 16px;
-
-    margin-top:5px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:linear-gradient(
-        135deg,
-        #6366f1,
-        #4f46e5
+    console.log(
+        "User playlists:",
+        playlists
     );
 
-    color:#fff;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-    box-shadow:0 4px 12px rgba(79,70,229,.22);
-
 }
+catch(error) {
 
-#createService:hover{
+    console.error(
+        "Playlist loading error:",
+        error
+    );
 
-    transform:translateY(-1px);
-
-    box-shadow:0 7px 18px rgba(79,70,229,.28);
-
-}
-
-#createService:active{
-
-    transform:scale(.98);
+    playlists = [];
 
 }
 
 
-/* ---------- CLOSE SERVICE BUTTON ---------- */
-
-#closeService{
-
-    width:36px;
-
-    height:36px;
-
-    padding:0;
-
-    background:rgba(255,255,255,.12);
-
-    color:white;
-
-    border:1px solid rgba(255,255,255,.15);
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    transition:var(--transition);
-}
-
-
-#closeService:hover{
-
-    background:#ef4444;
-
-    transform:rotate(4deg);
-}
-
-/* ---------- DIVIDER ---------- */
-
-#servicePanel hr{
-
-    border:none;
-
-    border-top:1px solid #e2e8f0;
-
-    margin:25px 0;
-
-}
-
-
-/* =========================================================
-   SERVICE LIST
-========================================================= */
-
-#serviceList{
-
-    margin-top:10px;
-
-}
-
-
-/* ---------- SERVICE ITEM ---------- */
-
-.service-item{
-
-    background:#fff;
-
-    padding:0;
-
-    margin-bottom:14px;
-
-    border:1px solid #e2e8f0;
-
-    border-radius:14px;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 2px 8px rgba(15,23,42,.05);
-
-    transition:.2s;
-
-}
-
-.service-item:hover{
-
-    border-color:#c7d2fe;
-
-    box-shadow:
-        0 6px 18px rgba(15,23,42,.09);
-
-}
-
-
-/* =========================================================
-   SERVICE HEADER
-========================================================= */
-
-.service-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:16px 18px;
-
-    background:#fff;
-
-    color:#1e293b;
-
-    cursor:pointer;
-
-    border:none;
-
-    border-radius:14px 14px 0 0;
-
-    transition:.2s;
-
-}
-
-.service-header:hover{
-
-    background:#f8fafc;
-
-}
-
-
-/* ---------- SERVICE TITLE ---------- */
-
-.service-title{
-
-    font-size:16px;
-
-    font-weight:700;
-
-    color:#1e293b;
-
-    line-height:1.3;
-
-}
-
-
-/* ---------- SERVICE COUNT ---------- */
-
-.service-count{
-
-    margin-top:4px;
-
-    color:#64748b;
-
-    font-size:12px;
-
-    font-weight:500;
-
-}
-
-
-/* ---------- ARROW ---------- */
-
-.service-header span{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    width:30px;
-
-    height:30px;
-
-    margin-right:0;
-
-    border-radius:50%;
-
-    background:#eef2ff;
-
-    color:#4f46e5;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    transition:.25s;
-
-}
-
-
-/* Rotate arrow when active */
-
-.service-header.active span{
-
-    transform:rotate(90deg);
-
-}
-
-
-/* =========================================================
-   SERVICE BODY
-========================================================= */
-
-.service-body{
-
-    display:none;
-
-    margin:0;
-
-    padding:14px;
-
-    background:#f8fafc;
-
-    border-top:1px solid #e2e8f0;
-
-    border-radius:0 0 14px 14px;
-
-}
-
-.service-body.show{
-
-    display:block;
-
-}
-
-
-/* =========================================================
-   SONG INSIDE SERVICE
-========================================================= */
-
-.service-song{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    width:100%;
-
-    box-sizing:border-box;
-
-    padding:12px 13px;
-
-    margin-top:8px;
-
-    background:#fff;
-
-    border:1px solid #e5e7eb;
-
-    border-radius:10px;
-
-    transition:.2s;
-
-}
-
-.service-song:first-child{
-
-    margin-top:0;
-
-}
-
-.service-song:hover{
-
-    border-color:#c7d2fe;
-
-    transform:translateX(2px);
-
-    box-shadow:
-        0 3px 10px rgba(15,23,42,.06);
-
-}
-
-
-/* ---------- SONG INFORMATION ---------- */
-
-.service-song-title{
-
-    font-size:14px;
-
-    font-weight:600;
-
-    color:#334155;
-
-    line-height:1.4;
-
-    flex:1;
-
-}
-
-
-/* ---------- SONG KEY ---------- */
-
-.service-song-key{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    min-width:42px;
-
-    height:25px;
-
-    padding:0 9px;
-
-    margin-left:10px;
-
-    box-sizing:border-box;
-
-    background:#eef2ff;
-
-    color:#4f46e5;
-
-    border:1px solid #c7d2fe;
-
-    border-radius:20px;
-
-    font-size:11px;
-
-    font-weight:700;
-
-}
-
-
-/* ---------- SERVICE SONG DELETE BUTTON ---------- */
-
-.service-song button{
-
-    margin-left:8px;
-
-    padding:6px 9px;
-
-    border:none;
-
-    border-radius:7px;
-
-    background:#fee2e2;
-
-    color:#dc2626;
-
-    font-size:12px;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-.service-song button:hover{
-
-    background:#fecaca;
-
-    transform:scale(1.05);
-
-}
-
-
-/* =========================================================
-   SERVICE ACTION BUTTONS
-========================================================= */
-
-.service-item button{
-
-    padding:8px 11px;
-
-    margin-top:10px;
-
-    margin-right:5px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#eef2ff;
-
-    color:#4f46e5;
-
-    font-size:12px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-.service-item button:hover{
-
-    background:#e0e7ff;
-
-    transform:translateY(-1px);
-
-}
-
-
-/* =========================================================
-   MOBILE SERVICE PLANNER
-========================================================= */
-
-@media(max-width:600px){
-
-    #servicePanel{
-
-        width:100%;
-
-        max-width:100%;
-
-        right:-100%;
-
-    }
-
-    #servicePanel.show{
-
-        right:0;
-
-    }
-
-    .playlist-window{
-
-        padding:0 18px 25px;
-
-    }
-
-    .playlist-window h2{
-
-        margin-left:-18px;
-
-        margin-right:-18px;
-
-        padding:20px 18px;
-
-    }
-
-}
-
-
-/* =========================================================
-   OPTIONAL MODERN BACKDROP
-   Only active when panel is open if your JS adds
-   a backdrop class/element.
-========================================================= */
-
-.service-panel-backdrop{
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(15,23,42,.35);
-
-    backdrop-filter:blur(3px);
-
-    z-index:99998;
-
-}
-
-
-/* =========================================================
-   SONG PICKER
-========================================================= */
-
-.popup{
-
-    position:fixed;
-
-    inset:0;
-
-    background:
-        rgba(15,23,42,.65);
-
-    backdrop-filter:blur(6px);
-
-    display:none;
-
-    justify-content:center;
-
-    align-items:center;
-
-    z-index:9999;
-
-    padding:20px;
-}
-
-.popup.show{
-
-    display:flex;
-}
-
-.popup-box{
-
-    width:850px;
-
-    max-width:95%;
-
-    max-height:85vh;
-
-    background:#fff;
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    display:flex;
-
-    flex-direction:column;
-
-    box-shadow:var(--shadow-lg);
-}
-
-
-/* Picker header */
-
-.popup-header{
-
-    background:
-        linear-gradient(
-            135deg,
-            #18243a,
-            #2c3f62
+/* =====================================
+   LOAD USER SERVICES
+===================================== */
+
+try {
+
+console.log(
+"Loading services for UID:",
+currentUser.uid
+);
+services = await loadServices(
+currentUser.uid
+);
+
+    services.sort(function(a, b) {
+
+        return (a.name || "").localeCompare(
+            b.name || ""
         );
 
-    color:white;
+    });
 
-    padding:18px 20px;
+    console.log(
+        "User services:",
+        services
+    );
 
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
 }
+catch(error) {
 
-.popup-header h2{
+    console.error(
+        "Service loading error:",
+        error
+    );
 
-    margin:0;
+    services = [];
 
-    font-size:19px;
-}
-
-
-/* Picker search */
-
-#songPickerSearch{
-
-    margin:15px;
-
-    height:44px;
-
-    padding:0 14px;
-
-    font-size:14px;
-
-    border:1px solid var(--border);
-
-    border-radius:10px;
-
-    outline:none;
-
-    transition:var(--transition);
-}
-
-#songPickerSearch:focus{
-
-    border-color:var(--primary);
-
-    box-shadow:
-        0 0 0 3px rgba(108,92,231,.10);
 }
 
 
-/* Picker list */
+/* =====================================
+   RENDER
+===================================== */
 
-#songPickerList{
+if (typeof renderPlaylists === "function") {
 
-    overflow:auto;
+    renderPlaylists();
 
-    padding:15px;
-
-    flex:1;
 }
 
 
-/* Picker card */
+if (typeof renderServices === "function") {
 
-.song-picker-card{
+    renderServices();
 
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:15px;
-
-    padding:13px 15px;
-
-    margin-bottom:9px;
-
-    border:1px solid var(--border);
-
-    border-radius:11px;
-
-    background:#fff;
-
-    transition:var(--transition);
 }
 
-.song-picker-card:hover{
 
-    background:#f8f7ff;
+if (typeof updatePlaylistCounter === "function") {
 
-    border-color:#dcd6ff;
+    updatePlaylistCounter();
 
-    transform:translateX(3px);
 }
 
-.song-picker-info{
 
-    display:flex;
+if (typeof updateDashboard === "function") {
 
-    flex-direction:column;
+    updateDashboard();
 
-    min-width:0;
 }
 
-.song-picker-title{
 
-    font-weight:700;
+if (typeof renderSongs === "function") {
 
-    font-size:14px;
+    renderSongs(songs);
 
-    color:#1e293b;
 }
 
-.song-picker-artist{
+});
+// ==========================================
+// ALL SONGS
+// ==========================================
 
-    color:#94a3b8;
+function showAllSongs() {
 
-    font-size:12px;
+const panel =
+    document.getElementById("allSongsPanel");
 
-    margin-top:3px;
+const tableBody =
+    document.getElementById("allSongsTableBody");
+
+
+if (!panel || !tableBody) {
+
+    console.error(
+        "All Songs panel elements not found."
+    );
+
+    return;
+
 }
 
-.song-picker-card button{
 
-    background:
-        linear-gradient(
-            135deg,
-            #22c55e,
-            #16a34a
+// Clear previous rows
+
+tableBody.innerHTML = "";
+
+
+// ==========================================
+// SORT SONGS ALPHABETICALLY
+// ==========================================
+
+const allSongs =
+    [...songs].sort(function(a, b) {
+
+        return (a.title || "").localeCompare(
+            b.title || ""
         );
 
-    color:white;
+    });
 
-    border:none;
 
-    padding:8px 14px;
+// ==========================================
+// CREATE TABLE ROWS
+// ==========================================
 
-    border-radius:8px;
+allSongs.forEach(function(song, index) {
 
-    cursor:pointer;
+    const row =
+        document.createElement("tr");
 
-    font-size:12px;
 
-    font-weight:700;
+    const title =
+        song.title || "Untitled Song";
 
-    transition:var(--transition);
+    const artist =
+        song.artist || "";
 
-    flex-shrink:0;
-}
+    const category =
+        song.category || "";
+
+    const language =
+        song.language || "";
+     const key =
+        song.key || "";
+
+    row.innerHTML = `
+
+        <td>
+            ${index + 1}
+        </td>
+
+        <td>
+
+            <a
+                href="${song.file}"
+                class="all-song-title">
+
+                🎵 ${title}
+
+            </a>
+
+        </td>
+
+        <td>
+            ${artist}
+        </td>
+
+        <td>
+            ${category}
+        </td>
+
+        <td>
+            ${language}
+        </td>
+          ${key}
+        </td>
 
-.song-picker-card button:hover{
+    `;
 
-    transform:translateY(-1px);
 
-    box-shadow:
-        0 5px 12px rgba(34,197,94,.20);
+    tableBody.appendChild(row);
+
+});
+
+
+// ==========================================
+// SHOW PANEL
+// ==========================================
+
+panel.classList.add("show");
+
+
+console.log(
+    "All Songs displayed:",
+    allSongs.length
+);
+
 }
+
+// ==========================================
+// CLOSE ALL SONGS
+// ==========================================
+
+function closeAllSongs() {
 
-.song-picker-add-btn.added{
+const panel =
+    document.getElementById("allSongsPanel");
 
-    cursor:default;
 
-    opacity:.55;
+if (!panel) {
+
+    return;
+
 }
+
 
-.song-picker-add-btn:disabled{
+panel.classList.remove("show");
 
-    pointer-events:none;
 }
 
+// ==========================================
+// ALL SONGS SEARCH
+// ==========================================
 
-/* =========================================================
-   WORSHIP / SONG DISPLAY
-========================================================= */
+function searchAllSongs() {
 
-.song-container{
+const searchInput =
+    document.getElementById("allSongsSearch");
 
-    background:#fff;
+const tableBody =
+    document.getElementById("allSongsTableBody");
 
-    border-radius:18px;
+if (!searchInput || !tableBody) {
 
-    box-shadow:var(--shadow-md);
+    console.error(
+        "All Songs search elements not found."
+    );
 
-    border:1px solid var(--border);
+    return;
+
 }
 
+const keyword =
+    searchInput.value
+        .toLowerCase()
+        .trim();
 
-/* Compact lyrics */
 
-.song-line{
+// Filter songs
+const filteredSongs = songs.filter(function(song) {
 
-    margin:0 !important;
+    const title =
+        String(song.title || "")
+            .toLowerCase();
 
-    padding:0 !important;
+    const artist =
+        String(song.artist || "")
+            .toLowerCase();
 
-    line-height:.88 !important;
+    const category =
+        String(song.category || "")
+            .toLowerCase();
 
-    font-family:
-        Consolas,
-        "Courier New",
-        monospace;
+    const language =
+        String(song.language || "")
+            .toLowerCase();
+   const key =
+        String(song.key || "")
+            .toLowerCase();
 
-    font-size:20px;
 
-    white-space:pre-wrap;
-}
+    return (
 
-.song-line p,
-.song-section p{
+        title.includes(keyword) ||
 
-    margin:0;
+        artist.includes(keyword) ||
 
-    padding:0;
+        category.includes(keyword) ||
+       
+         language.includes(keyword) ||
 
-    line-height:.88;
-}
+        key.includes(keyword)
+
+    );
+
+});
+
 
-.song-line + .song-line{
+renderAllSongsTable(filteredSongs);
 
-    margin-top:-5px;
 }
-/* ==========================================================
-   PRESENTATION MODE - HIGH VISIBILITY / WORSHIP SCREEN
-   Clear lyrics + compact chord spacing
-   JavaScript unchanged
-   ========================================================== */
 
-#presentationScreen {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    display: none;
-    overflow-y: auto;
-    overflow-x: hidden;
+// ==========================================
+// CLEAR ALL SONGS SEARCH
+// ==========================================
 
-    background: #070B14 !important;
-    color: #FFFFFF !important;
+function clearAllSongsSearch() {
+
+const searchInput =
+    document.getElementById("allSongsSearch");
+
+if (searchInput) {
+
+    searchInput.value = "";
+
 }
 
-#presentationScreen.show {
-    display: block;
+// Show all songs again
+renderAllSongsTable(songs);
+
 }
+
+// Make available to HTML onclick=""
+window.clearAllSongsSearch = clearAllSongsSearch;
 
+// ==========================================
+// RENDER ALL SONGS TABLE
+// ==========================================
 
-/* ==========================================================
-   PRESENTATION LYRICS CONTAINER
-   ========================================================== */
+function renderAllSongsTable(songList) {
 
-#presentationLyrics {
-    width: 100%;
-    min-height: calc(100vh - 150px);
+const tableBody =
+    document.getElementById("allSongsTableBody");
 
-    padding: 34px 42px 150px;
+if (!tableBody) {
 
-    background: #070B14 !important;
-    color: #FFFFFF !important;
+    console.error(
+        "allSongsTableBody not found."
+    );
+
+    return;
+
 }
 
 
-/* ==========================================================
-   3-COLUMN PRESENTATION
-   ========================================================== */
+tableBody.innerHTML = "";
 
-#presentationLyrics .presentation-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 30px;
-    width: 100%;
 
-    /* Make all columns equal height */
-    align-items: stretch;
-}
+if (!songList || songList.length === 0) {
+
+    tableBody.innerHTML = `
+
+        <tr>
+
+            <td
+                colspan="5"
+                style="
+                    text-align:center;
+                    padding:40px;
+                    color:#98a2b3;
+                ">
 
-#presentationLyrics .presentation-section {
-    height: 100%;
-    box-sizing: border-box;
+                🔍 No songs found.
+
+            </td>
+
+        </tr>
+
+    `;
+
+    return;
+
 }
 
 
-/* ==========================================================
-   SECTION CARD
-   ========================================================== */
+songList.forEach(function(song, index) {
 
-#presentationLyrics .presentation-section {
-    width: 100%;
+    const row =
+        document.createElement("tr");
 
-    padding: 20px 22px 24px;
 
-    background: #0E1626 !important;
+    // ----------------------------------
+    // SONG TITLE
+    // ----------------------------------
 
-    border:
-        1px solid #25324A !important;
+    const titleCell =
+        document.createElement("td");
 
-    border-radius: 14px;
+    titleCell.innerHTML = `
 
-    box-sizing: border-box;
+        <a
+            href="${song.file || "#"}"
+            class="all-song-title">
 
-    break-inside: avoid;
+            ${song.title || "Untitled Song"}
 
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.22);
-}
+        </a>
 
+    `;
 
-/* ==========================================================
-   SECTION TITLE
-   ========================================================== */
 
-#presentationLyrics .presentation-section-title {
+    // ----------------------------------
+    // ARTIST
+    // ----------------------------------
 
-    color: #FFFFFF !important;
+    const artistCell =
+        document.createElement("td");
 
-    background: #1D2A42 !important;
+    artistCell.textContent =
+        song.artist || "—";
 
-    border:
-        1px solid #334968 !important;
 
-    font-size: 21px;
+    // ----------------------------------
+    // CATEGORY
+    // ----------------------------------
 
-    font-weight: 900;
+    const categoryCell =
+        document.createElement("td");
 
-    letter-spacing: .4px;
+    categoryCell.textContent =
+        song.category || "—";
 
-    padding: 9px 13px;
 
-    margin: 0 0 18px;
+    // ----------------------------------
+    // LANGUAGE
+    // ----------------------------------
 
-    border-radius: 8px;
+    const languageCell =
+        document.createElement("td");
 
-    text-align: center;
-}
+    languageCell.textContent =
+        song.language || "—";
 
+   // ----------------------------------
+    // LANGUAGE
+    // ----------------------------------
 
-/* ==========================================================
-   SECTION CONTENT
-   ========================================================== */
+    const keyCell =
+        document.createElement("td");
 
-#presentationLyrics .presentation-section-content {
+    keyCell.textContent =
+        song.key || "—";
 
-    width: 100%;
 
-    color: #FFFFFF !important;
+    // ----------------------------------
+    // NUMBER
+    // ----------------------------------
 
-    margin: 0 !important;
+    const numberCell =
+        document.createElement("td");
 
-    padding: 0 !important;
+    numberCell.textContent =
+        index + 1;
 
-    gap: 0 !important;
-}
+
+    row.appendChild(numberCell);
+
+    row.appendChild(titleCell);
+
+    row.appendChild(artistCell);
+
+    row.appendChild(categoryCell);
+
+    row.appendChild(languageCell);
 
+     row.appendChild(keyCell);
 
-/* ==========================================================
-   PRESENTATION - LYRICS & CHORD SIZE
-   ========================================================== */
 
-/* Lyrics */
-#presentationLyrics .presentation-line {
-    color: #FFFFFF !important;
-    font-size: 30px !important;
-    line-height: 1.10 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    font-weight: 600;
-    letter-spacing: .1px;
+    tableBody.appendChild(row);
+
+});
+
 }
+document.addEventListener(
+"DOMContentLoaded",
+function() {
+
+    const searchInput =
+        document.getElementById("allSongsSearch");
+
+    if (!searchInput) {
+        return;
+    }
+
+    searchInput.addEventListener(
+        "keydown",
+        function(event) {
 
-/* Chords - larger than lyrics */
-#presentationLyrics .presentation-line .chord,
-#presentationLyrics .chord {
-    color: #FFD54A !important;
+            if (event.key === "Enter") {
 
-    font-size: 30px !important;
-    line-height: 1 !important;
+                searchAllSongs();
 
-    font-weight: 900 !important;
+            }
 
-    margin: 0 !important;
-    padding: 0 !important;
+        }
+    );
 
-    text-shadow:
-        0 1px 3px rgba(0,0,0,.65);
 }
 
+);
+// ==========================================
+// MAKE AVAILABLE TO HTML onclick=""
+// ==========================================
 
-/* ==========================================================
-   LYRIC CHILD ELEMENTS
-   Remove unwanted margins from p/div/span
-   ========================================================== */
+window.showAllSongs =
+showAllSongs;
 
-#presentationLyrics .presentation-line p,
-#presentationLyrics .presentation-line div,
-#presentationLyrics .presentation-line span {
+window.closeAllSongs =
+closeAllSongs;
 
-    margin-top: 0 !important;
+/* =====================================
+SAVE SERVICES TO FIREBASE
+===================================== */
 
-    margin-bottom: 0 !important;
+async function saveServicesCloud() {
 
-    padding-top: 0 !important;
+if (!currentUser) {
 
-    padding-bottom: 0 !important;
+    console.error(
+        "No logged-in user."
+    );
+
+    return false;
+}
+
+if (!Array.isArray(services)) {
+
+    console.error(
+        "Services is not an array."
+    );
+
+    return false;
 }
+
+try {
 
+    await saveServices(
+        currentUser.uid,
+        services
+    );
 
-/* ==========================================================
-   ALL LYRIC TEXT
-   ========================================================== */
+    console.log(
+        "Services saved to Firebase:",
+        services
+    );
 
-#presentationLyrics .presentation-line * {
+    return true;
 
-    color: #FFFFFF !important;
 }
+catch (error) {
+
+    console.error(
+        "Firebase service save error:",
+        error
+    );
+
+    throw error;
+}
+
+}
+/* =====================================
+PLAYLIST MANAGER
+===================================== */
+
+const playlistBtn =
+document.getElementById("playlistBtn");
+
+const playlistPanel =
+document.getElementById("playlistPanel");
 
+const closePlaylist =
+document.getElementById("closePlaylist");
 
-/* ==========================================================
-   CHORDS
-   ========================================================== */
+const playlistList =
+document.getElementById("playlistList");
 
-#presentationLyrics .presentation-line .chord,
-#presentationLyrics .chord {
+const playlistName =
+document.getElementById("playlistName");
 
-    color: #FFD54A !important;
+const createPlaylist =
+document.getElementById("createPlaylist");
 
-    font-weight: 900 !important;
+playlistBtn.onclick=function(){
 
-    line-height: 1 !important;
+playlistPanel.classList.add("show");
 
-    margin: 0 !important;
+renderPlaylists();
 
-    padding: 0 !important;
+}
+
+closePlaylist.onclick=function(){
+
+playlistPanel.classList.remove("show");
 
-    text-shadow:
-        0 1px 3px rgba(0,0,0,.65);
 }
 
+createPlaylist.onclick =
+async function() {
 
-/* ==========================================================
-   PREVIOUS / NEXT LYRIC LINE
-   Remove extra gap
-   ========================================================== */
+if (!currentUser) {
 
-#presentationLyrics .presentation-line + .presentation-line {
+    alert(
+        "Please login first."
+    );
 
-    margin-top: 0 !important;
+    return;
 
-    padding-top: 0 !important;
 }
 
 
-/* ==========================================================
-   PRESENTATION HEADER
-   ========================================================== */
+const name =
+    playlistName.value.trim();
 
-#presentationHeader {
 
-    position: sticky;
+if (!name) {
 
-    top: 0;
+    alert(
+        "Please enter a playlist name."
+    );
 
-    z-index: 40;
+    return;
 
-    width: 100%;
+}
 
-    min-height: 78px;
 
-    padding: 14px 28px;
+const youtube =
+    prompt(
+        "Enter YouTube link for this playlist (optional):"
+    ) || "";
 
-    background:
-        linear-gradient(
-            135deg,
-            #111C30 0%,
-            #1D2D49 100%
-        ) !important;
 
-    color: #FFFFFF !important;
+const playlist = {
 
-    display: flex;
+    id: String(Date.now()),
 
-    align-items: center;
+    name: name,
 
-    justify-content: space-between;
+    youtube: youtube,
 
-    gap: 20px;
+    songs: [],
 
-    border-bottom:
-        1px solid #334968;
+    createdAt:
+        new Date().toISOString()
 
-    box-shadow:
-        0 5px 20px rgba(0,0,0,.30);
-}
+};
+
 
+try {
 
-/* ==========================================================
-   SONG TITLE
-   ========================================================== */
+    await savePlaylist(
+        currentUser.uid,
+        playlist
+    );
 
-#presentationTitle {
 
-    margin: 0;
+    playlists.push(
+        playlist
+    );
 
-    padding: 0;
 
-    color: #FFFFFF !important;
+    playlists.sort(
+        (a, b) =>
+            a.name.localeCompare(
+                b.name
+            )
+    );
 
-    font-size: 26px;
 
-    font-weight: 850;
+    playlistName.value = "";
 
-    line-height: 1.2;
 
-    letter-spacing: -.3px;
+    renderPlaylists();
 
-    white-space: nowrap;
 
-    overflow: hidden;
+    updatePlaylistCounter();
 
-    text-overflow: ellipsis;
+
 }
+catch(error) {
 
+    console.error(
+        "Create playlist error:",
+        error
+    );
 
-/* ==========================================================
-   SONG COUNTER
-   ========================================================== */
+    alert(
+        "Unable to create playlist."
+    );
 
-#presentationCounter {
+}
 
-    display: inline-flex;
+};
 
-    align-items: center;
+function renderPlaylists(){
+playlists.sort(function(a,b){
 
-    justify-content: center;
+return a.name.localeCompare(b.name);
 
-    min-width: 100px;
+});
+playlistList.innerHTML="";
 
-    height: 36px;
+playlists.forEach(function(list){
 
-    padding: 0 15px;
+    let songsHtml="";
 
-    background: #263B5D !important;
+    list.songs.forEach(function(song,index){
 
-    border:
-        1px solid #496487 !important;
+        songsHtml += `
 
-    color: #FFFFFF !important;
+        <div class="playlist-song">
 
-    border-radius: 20px;
+            <div>
 
-    font-size: 13px;
+                🎵 ${song.title}
 
-    font-weight: 850;
+                <br>
 
-    white-space: nowrap;
-}
+                <small>${song.artist}</small>
 
+            </div>
 
-/* ==========================================================
-   PRESENTATION NAVIGATION
-   ========================================================== */
+            <div>
 
-#presentationNavigation {
 
-    position: fixed;
 
-    left: 0;
+<button class="youtube-btn"
+onclick="openSongYoutube('${song.youtube || ""}')">
+📺
+</button>
 
-    right: 0;
+                <button class="remove-song-btn"
+    onclick="removeSongFromPlaylist(${list.id},${index})">
 
-    bottom: 0;
+❌ 
 
-    z-index: 50;
+</button>
 
-    min-height: 82px;
+            </div>
 
-    padding: 14px 28px;
+        </div>
 
-    background: #0B1220 !important;
+        `;
 
-    border-top:
-        1px solid #263A58;
+    });
 
-    box-shadow:
-        0 -8px 25px rgba(0,0,0,.35);
+    playlistList.innerHTML += `
 
-    display: flex;
+<div class="service-item">
 
-    align-items: center;
+<div class="service-header"
+     onclick="togglePlaylist(${list.id})">
 
-    justify-content: center;
+    <div>
 
-    gap: 12px;
-}
+        <div class="service-title">
 
+            <span id="playlistArrow${list.id}">
+                ▶
+            </span>
 
-#presentationNavigation button {
+            ${list.name}
 
-    min-width: 120px;
+        </div>
 
-    height: 46px;
+        <div class="service-count">
 
-    padding: 0 18px;
+            ${list.songs.length} Songs
 
-    border:
-        1px solid #40516D;
+        </div>
 
-    border-radius: 10px;
+    </div>
 
-    background: #1A263A;
+</div>
 
-    color: #FFFFFF !important;
+<div id="playlistBody${list.id}"
+     class="service-body">
 
-    font-size: 14px;
+    <button onclick="addSongsToPlaylist(${list.id})">
 
-    font-weight: 800;
+        ➕ Add Songs
 
-    cursor: pointer;
+   
 
-    transition: .2s ease;
-}
+<button onclick="openYoutube(${list.id})">
 
+📺 YouTube
 
-#presentationNavigation button:hover {
+</button>
 
-    background: #2A3B57;
+<button onclick="editYoutube(${list.id})">
 
-    border-color: #61799E;
+🔗 Edit Link
 
-    transform: translateY(-2px);
-}
+</button>
 
+    <button onclick="renamePlaylist(${list.id})">
 
-#presentationNavigation button:active {
+        ✏ Rename
 
-    transform:
-        translateY(0)
-        scale(.97);
-}
+    </button>
 
+    <button onclick="deletePlaylist(${list.id})">
 
-#presentationNavigation button:first-child {
+        🗑 Delete
 
-    background: #34445D !important;
+    </button>
 
-    color: #FFFFFF !important;
-}
+    <hr>
 
+    ${songsHtml}
 
-#presentationNavigation button:nth-child(2) {
+</div>
 
-    background:
-        linear-gradient(
-            135deg,
-            #6C5CE7,
-            #4F8CFF
-        ) !important;
+</div>
 
-    border-color: transparent !important;
+`;
 
-    color: #FFFFFF !important;
+});
 
-    min-width: 135px;
 }
+function openSongYoutube(url){
+
+if(!url){
 
+    alert("No YouTube link.");
 
-#presentationNavigation button:last-child {
+    return;
 
-    background: #B42318 !important;
+}
 
-    border-color: #D92D20 !important;
+window.open(url,"_blank");
 
-    color: #FFFFFF !important;
 }
+function openYoutube(id){
 
+const playlist = playlists.find(p => p.id == id);
 
-/* ======================================================
-   SMALL NEXT SONG - LOWER RIGHT
-   ====================================================== */
+if(!playlist){
+    return;
+}
 
-#presentationScreen #nextSongPreview {
-    position: fixed !important;
+if(!playlist.youtube){
+    alert("This playlist has no YouTube link.");
+    return;
+}
 
-    right: 15px !important;
-    bottom: 15px !important;
+window.open(playlist.youtube, "_blank");
 
-    left: auto !important;
-    top: auto !important;
+}
 
-    transform: none !important;
+window.openYoutube = openYoutube;
 
-    display: flex !important;
-    flex-direction: column !important;
+async function editYoutube(id) {
 
-    align-items: center !important;
-    justify-content: center !important;
+if (!currentUser) {
 
-    width: 170px !important;
-    min-width: 170px !important;
-    max-width: 170px !important;
+    alert("Please login first.");
 
-    padding: 7px 10px !important;
+    return;
 
-    background: rgba(0, 0, 0, 0.75) !important;
+}
 
-    border-radius: 6px !important;
+const playlist =
+    playlists.find(
+        p => p.id == id
+    );
 
-    border: 1px solid rgba(255,255,255,0.20) !important;
+if (!playlist) {
 
-    color: white !important;
+    return;
 
-    text-align: center !important;
+}
 
-    z-index: 2147483647 !important;
+const link = prompt(
+    "YouTube Link:",
+    playlist.youtube || ""
+);
 
-    visibility: visible !important;
-    opacity: 1 !important;
+if (link === null) {
 
-    box-sizing: border-box !important;
+    return;
 
-    pointer-events: none !important;
 }
 
+playlist.youtube = link.trim();
 
-/* NEXT SONG */
+try {
 
-#presentationScreen #nextSongPreview .next-song-label {
-    font-size: 8px !important;
+    await savePlaylist(
+        currentUser.uid,
+        playlist
+    );
 
-    font-weight: 700 !important;
+    renderPlaylists();
 
-    letter-spacing: 1.5px !important;
+}
+catch(error) {
+
+    console.error(
+        "YouTube update error:",
+        error
+    );
 
-    margin-bottom: 2px !important;
+    alert(
+        "Unable to save YouTube link."
+    );
+
+}
 
-    opacity: 0.65 !important;
 }
 
+window.editYoutube = editYoutube;
 
-/* SONG TITLE */
+function togglePlaylist(id){
 
-#presentationScreen #nextSongPreview .next-song-title {
-    font-size: 12px !important;
+const body =
+document.getElementById("playlistBody"+id);
 
-    font-weight: 700 !important;
+const arrow =
+document.getElementById("playlistArrow"+id);
 
-    line-height: 1.2 !important;
+body.classList.toggle("show");
 
-    text-align: center !important;
+arrow.innerHTML =
+    body.classList.contains("show")
+    ? "▼"
+    : "▶";
 
-    word-break: break-word !important;
 }
+window.togglePlaylist = togglePlaylist;
 
+function openSong(file){
 
+location.href = file;
 
-/* ==========================================================
-   TABLET
-   ========================================================== */
+}
 
-@media (max-width: 1000px) {
+async function deletePlaylist(id) {
 
-    #presentationLyrics .presentation-grid {
+if (!currentUser) {
 
-        grid-template-columns:
-            repeat(2, minmax(0,1fr));
+    alert("Please login first.");
 
-        gap: 20px;
-    }
+    return;
 
-    #presentationLyrics .presentation-line {
+}
 
-        font-size: 27px !important;
+const playlist = playlists.find(
+    p => p.id == id
+);
 
-        line-height: 1.10 !important;
-    }
+if (!playlist) {
 
-    #presentationScreen #nextSongPreview {
+    return;
 
-        width: 210px !important;
+}
 
-        min-width: 210px !important;
+if (!confirm(
+    `Delete "${playlist.name}"?`
+)) {
 
-        max-width: 210px !important;
-    }
+    return;
+
 }
 
+try {
 
-/* ==========================================================
-   MOBILE
-   ========================================================== */
+    await deletePlaylistCloud(
+        currentUser.uid,
+        id
+    );
 
-@media (max-width: 700px) {
+    playlists = playlists.filter(
+        p => p.id != id
+    );
 
-    #presentationHeader {
+    renderPlaylists();
 
-        min-height: 64px;
+    updatePlaylistCounter();
 
-        padding: 10px 14px;
+}
+catch(error) {
 
-        gap: 10px;
-    }
+    console.error(
+        "Delete playlist error:",
+        error
+    );
 
-    #presentationTitle {
+    alert(
+        "Unable to delete playlist."
+    );
 
-        font-size: 19px;
-    }
+}
 
-    #presentationCounter {
+}
 
-        min-width: 76px;
+window.deletePlaylist = deletePlaylist;
 
-        height: 30px;
 
-        padding: 0 9px;
 
-        font-size: 11px;
-    }
+async function removeSongFromPlaylist(
+playlistId,
+songIndex
+) {
 
-    #presentationLyrics {
+if (!currentUser) {
 
-        min-height:
-            calc(100vh - 125px);
+    alert("Please login first.");
 
-        padding:
-            22px 15px 115px;
-    }
+    return;
 
-    #presentationLyrics .presentation-grid {
+}
 
-        grid-template-columns: 1fr;
+const playlist = playlists.find(
+    p => p.id == playlistId
+);
 
-        gap: 15px;
-    }
+if (!playlist) {
 
-    #presentationLyrics .presentation-section {
+    return;
 
-        padding: 16px;
-    }
+}
 
-    #presentationLyrics .presentation-section-title {
+if (!confirm(
+    "Remove this song from the playlist?"
+)) {
 
-        font-size: 18px;
+    return;
 
-        padding: 8px 10px;
-    }
+}
 
-    /*
-       IMPORTANT:
-       Do NOT use 1.5 here.
-       It creates the large spaces you showed
-       in your screenshot.
-    */
+playlist.songs.splice(
+    songIndex,
+    1
+);
 
-    #presentationLyrics .presentation-line {
+try {
 
-        font-size: 23px !important;
+    await savePlaylist(
+        currentUser.uid,
+        playlist
+    );
 
-        line-height: 1.10 !important;
+    renderPlaylists();
 
-        margin: 0 !important;
+}
+catch(error) {
 
-        padding: 0 !important;
-    }
+    console.error(
+        "Remove song error:",
+        error
+    );
 
-    #presentationNavigation {
+    alert(
+        "Unable to save playlist."
+    );
 
-        min-height: 64px;
+}
 
-        padding: 8px 10px;
+}
 
-        gap: 6px;
-    }
+window.removeSongFromPlaylist =
+removeSongFromPlaylist;
 
-    #presentationNavigation button {
+function updatePlaylistCounter(){
 
-        min-width: 0;
+const total =
 
-        flex: 1;
+document.getElementById("totalPlaylists");
 
-        height: 42px;
+if(total){
 
-        padding: 0 8px;
+    total.textContent = playlists.length;
 
-        font-size: 12px;
-    }
+}
 
-    #presentationScreen #nextSongPreview {
+}
 
-        right: 12px !important;
+updatePlaylistCounter();
 
-        bottom: 75px !important;
+function getFavorites(){
 
-        width: 185px !important;
+return JSON.parse(
 
-        min-width: 185px !important;
+    localStorage.getItem("favorites")
 
-        max-width: 185px !important;
+) || [];
 
-        padding: 9px 10px !important;
-    }
+}
 
-    #presentationScreen #nextSongPreview .next-song-title {
+function getRecentSongs(){
 
-        font-size: 13px !important;
-    }
+return JSON.parse(
+
+    localStorage.getItem("recentSongs")
+
+) || [];
+
 }
 
+function getLastSong(){
 
-/* ==========================================================
-   VERY SMALL MOBILE
-   ========================================================== */
+return JSON.parse(
 
-@media (max-width: 450px) {
+    localStorage.getItem("lastSong")
 
-    #presentationHeader {
+);
 
-        flex-wrap: wrap;
-    }
+}
+const continueBtn =
+document.getElementById("continueBtn");
 
-    #presentationTitle {
+if(continueBtn){
 
-        max-width: 70%;
+continueBtn.onclick = function(){
 
-        font-size: 17px;
-    }
+const service = getCurrentService();
 
-    #presentationCounter {
+if(!service){
 
-        font-size: 10px;
-    }
+    alert("No active service.");
 
-    #presentationLyrics .presentation-line {
+    return;
 
-        font-size: 21px !important;
+}
 
-        line-height: 1.10 !important;
-    }
+const index = Number(
+    localStorage.getItem("currentSongIndex") || 0
+);
 
-    #presentationScreen #nextSongPreview {
+location.href =
+service.songs[index].file;
 
-        width: 160px !important;
+};
+}
+function finishService() {
 
-        min-width: 160px !important;
+localStorage.removeItem("currentServiceId");
 
-        max-width: 160px !important;
+localStorage.removeItem("currentSongIndex");
 
-        right: 8px !important;
-    }
+localStorage.removeItem("resumePresentation");
+
+alert("Service Finished.");
+
+}
+window.finishService = finishService;
+function updateDashboard(){
+
+const totalServices =
+    document.getElementById("totalServices");
+
+if(totalServices){
+
+    totalServices.textContent =
+        services.length;
+
 }
 
-/* =========================================================
-   SERVICE PROGRESS
-========================================================= */
+const current =
+    document.getElementById("currentService");
 
-#serviceProgress{
+if(current){
 
-    display:inline-flex;
+    const service =
+        getCurrentService();
 
-    align-items:center;
+    current.textContent =
+        service
+        ? service.name
+        : "None";
 
-    gap:7px;
+}
 
-    padding:8px 13px;
+}
+document.getElementById("totalSongs").textContent =
+songs.length;
 
-    border-radius:20px;
+document.getElementById("totalArtists").textContent =
+new Set(songs.map(s => s.artist)).size;
 
-    background:#eef2ff;
+let filteredSongs = songs;
 
-    color:#4f46e5;
+renderSongs(filteredSongs);
 
-    font-size:12px;
+function renderSongs(songList) {
 
-    font-weight:700;
+const songGrid = document.getElementById("songGrid");
 
-    border:1px solid #e0e7ff;
+if (!songGrid) {
+    console.error("songGrid not found.");
+    return;
 }
+
+songGrid.innerHTML = "";
+
+let html = "";
+
+songList.forEach(function(song){
+
+html += `
+
+<div class="song-card">
 
+    <h3>${song.title}</h3>
 
-/* =========================================================
-   DARK MODE
-========================================================= */
+    <p><strong>Artist:</strong> ${song.artist}</p>
 
-body.dark{
+    <p><strong>Key:</strong> ${song.key}</p>
 
-    --background:#0b1120;
+    <p><strong>Category:</strong> ${song.category}</p>
 
-    --surface:#111827;
+    <a class="open-song" href="${song.file}">
+        🎵 Open Song
+    </a>
 
-    --surface-2:#172033;
+</div>
 
-    --text:#e5e7eb;
+`;
 
-    --muted:#94a3b8;
+});
+const totalSongs =
+document.getElementById("totalSongs");
 
-    --border:#263247;
+if(totalSongs){
 
-    background:#0b1120;
+totalSongs.textContent = songList.length;
 
-    color:#e5e7eb;
 }
+songGrid.innerHTML = html;
+}
+
+const servicePlannerBtn =
+document.getElementById("servicePlannerBtn");
+
+const servicePanel =
+document.getElementById("servicePanel");
 
+const closeService =
+document.getElementById("closeService");
 
-/* Dark sidebar */
+const serviceList =
+document.getElementById("serviceList");
 
-body.dark .sidebar{
+const serviceName =
+document.getElementById("serviceName");
 
-    background:#111827;
+const createService =
+document.getElementById("createService");
 
-    border-right-color:#263247;
+servicePlannerBtn.onclick=function(){
+
+servicePanel.classList.add("show");
+
 }
+
+closeService.onclick=function(){
 
-body.dark .sidebar button{
+servicePanel.classList.remove("show");
 
-    color:#cbd5e1;
+// Clear active service presentation
+localStorage.removeItem("currentService");
+localStorage.removeItem("currentSongIndex");
+localStorage.removeItem("resumePresentation");
+
+};
+function closeServicePlanner(){
+
+servicePanel.classList.remove("show");
+
+localStorage.removeItem("currentService");
+localStorage.removeItem("currentSongIndex");
+localStorage.removeItem("resumePresentation");
+
 }
 
-body.dark .sidebar button:hover{
+createService.onclick =
+async function() {
 
-    background:#1d2540;
+if (!currentUser) {
 
-    color:#a78bfa;
+    alert(
+        "Please login first."
+    );
 
-    border-color:#302b5b;
+    return;
+
 }
+
 
+const name =
+    serviceName.value.trim();
 
-/* Dark cards */
 
-body.dark .card,
-body.dark .song-card,
-body.dark .playlist-item,
-body.dark .popup-content,
-body.dark .popup-box,
-body.dark .song-picker-card{
+if (!name) {
 
-    background:#111827;
+    alert(
+        "Please enter a service name."
+    );
 
-    border-color:#263247;
+    return;
 
-    color:#e5e7eb;
 }
 
 
-/* Dark inputs */
+const service = {
 
-body.dark input{
+    id: String(Date.now()),
 
-    background:#172033;
+    name: name,
 
-    color:#e5e7eb;
+    songs: [],
 
-    border-color:#334155;
-}
+    notes: [],
 
-body.dark input::placeholder{
+    createdAt:
+        new Date().toISOString()
 
-    color:#64748b;
-}
+};
 
 
-/* Dark playlist */
+try {
 
-body.dark .playlist-panel,
-body.dark #servicePanel{
+    await saveService(
+        currentUser.uid,
+        service
+    );
 
-    background:#0f172a;
 
-    border-color:#263247;
-}
+    services.push(
+        service
+    );
 
-body.dark .playlist-song,
-body.dark .service-song{
 
-    background:#172033;
+    services.sort(
+        (a, b) =>
+            a.name.localeCompare(
+                b.name
+            )
+    );
 
-    border-color:#263247;
-}
+
+    serviceName.value = "";
 
-body.dark .playlist-song:hover{
 
-    background:#1d2540;
+    renderServices();
+
 }
+catch(error) {
+
+    console.error(
+        "Create service error:",
+        error
+    );
 
-body.dark .song-title,
-body.dark .song-picker-title,
-body.dark .service-song-title{
+    alert(
+        "Unable to create service."
+    );
 
-    color:#e5e7eb;
 }
 
-body.dark .service-body{
+};
+function renderServices() {
 
-    background:#0f172a;
+if (!serviceList) {
+    console.error(
+        "serviceList element not found."
+    );
+    return;
 }
 
+serviceList.innerHTML = "";
 
-/* =========================================================
-   SCROLLBARS
-========================================================= */
+if (!Array.isArray(services) || services.length === 0) {
 
-*{
+    serviceList.innerHTML = `
+        <div class="empty-message">
+            No Service Planner created yet.
+        </div>
+    `;
 
-    scrollbar-width:thin;
+    updateDashboard();
 
-    scrollbar-color:
-        #cbd5e1
-        transparent;
+    return;
 }
 
-*::-webkit-scrollbar{
+services.forEach(function(service) {
 
-    width:7px;
+    // Make sure songs is always an array
+    const serviceSongs =
+        Array.isArray(service.songs)
+            ? service.songs
+            : [];
 
-    height:7px;
-}
+    // =====================================
+    // SONG HTML
+    // =====================================
 
-*::-webkit-scrollbar-track{
+    let songsHtml = "";
 
-    background:transparent;
-}
+    serviceSongs.forEach(function(song, index) {
 
-*::-webkit-scrollbar-thumb{
+        songsHtml += `
 
-    background:#cbd5e1;
+            <div class="service-song">
 
-    border-radius:20px;
-}
+                <div class="service-song-info">
 
-*::-webkit-scrollbar-thumb:hover{
+                    <div class="service-song-title">
 
-    background:#94a3b8;
-}
+                        🎵 ${song.title || "Untitled Song"}
 
+                    </div>
 
-/* =========================================================
-   RESPONSIVE - TABLET
-========================================================= */
+                    <div class="service-song-artist">
 
-@media(max-width:1000px){
+                        ${song.artist || ""}
 
-    .dashboard{
+                    </div>
 
-        grid-template-columns:
-            repeat(2,1fr);
-    }
+                    <div class="service-song-key">
 
-    .sidebar{
+                        🎼 ${song.serviceKey || song.key || ""}
 
-        width:220px;
+                    </div>
 
-        min-width:220px;
-    }
+                </div>
 
-    .content{
+                <button
+                    class="remove-song-btn"
+                    onclick="removeSongFromService('${service.id}', ${index})">
 
-        padding:22px;
-    }
+                    🗑
 
-    .top-actions input{
+                </button>
 
-        width:240px;
-    }
+            </div>
+
+        `;
+
+    });
+
+    // =====================================
+    // SERVICE
+    // =====================================
+
+    serviceList.innerHTML += `
+
+<div class="service-item">
+
+    <div
+        class="service-header"
+        onclick="toggleService('${service.id}')">
+
+        <div>
+
+            <div class="service-title">
+
+                <span id="serviceArrow${service.id}">
+                    ▶
+                </span>
+
+                ${service.name}
+
+            </div>
+
+            <div class="service-count">
+
+                ${serviceSongs.length}
+                ${serviceSongs.length === 1 ? "Song" : "Songs"}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="serviceBody${service.id}"
+        class="service-body">
+
+        <button
+            onclick="addSongsToService('${service.id}')">
+
+            ➕ Add Songs
+
+        </button>
+
+       <button onclick="startService('${service.id}')">
+▶ Start Service
+
+</button>
+
+        <button
+            onclick="renameService('${service.id}')">
+
+            ✏ Rename
+
+        </button>
+
+        <button
+            onclick="('${service.id}')">
+
+            🗑 Delete
+
+        </button>
+
+        <hr>
+
+        <div class="service-song-list">
+
+            ${songsHtml}
+
+        </div>
+
+    </div>
+
+</div>
+
+`;
+
+});
+
+updateDashboard();
+
 }
 
+// Sort services alphabetically
+services.sort(function(a, b) {
+    return a.name.localeCompare(b.name);
+});
 
-/* =========================================================
-   RESPONSIVE - MOBILE
-========================================================= */
+services.forEach(function(service){
 
-@media(max-width:700px){
+let songList = "";
 
-    .topbar{
+service.songs.forEach(function(song,index){
 
-        height:auto;
+    songList += `
 
-        min-height:65px;
+<div class="service-song">
 
-        padding:10px 14px;
+   <div>
 
-        gap:10px;
-    }
+<div class="service-song-title">
 
-    .logo{
+    🎵 ${song.title}
 
-        font-size:18px;
-    }
+</div>
 
-    .top-actions input{
+<small>
 
-        width:150px;
+    ${song.artist}
 
-        height:38px;
-    }
+</small>
 
-    .top-actions button{
+<br>
 
-        height:38px;
+<span class="service-song-key">
 
-        min-width:38px;
-    }
+🎼 ${song.serviceKey}
 
-    .layout{
+</span>
 
-        display:block;
-    }
+</div>
 
-    .sidebar{
+    <button onclick="removeSongFromService(${service.id},${index})">
+        🗑 Remove
+    </button>
 
-        position:relative;
+</div>
 
-        top:0;
+`;
 
-        width:100%;
+});
 
-        min-width:0;
+    serviceList.innerHTML += `
 
-        height:auto;
+<div class="service-item">
 
-        padding:12px;
+<div class="service-header"
 
-        border-right:0;
+ onclick="toggleService(${service.id})">
 
-        border-bottom:1px solid var(--border);
+<div>
 
-        display:grid;
+    <div class="service-title">
 
-        grid-template-columns:
-            repeat(2,1fr);
+        <span id="serviceArrow${service.id}">
+            ▶
+        </span>
 
-        gap:5px;
-    }
+        ${service.name}
 
-    .sidebar h3{
+    </div>
 
-        grid-column:1/-1;
+    <div class="service-count">
 
-        margin:8px;
-    }
+        ${service.songs.length} Songs
 
-    .sidebar hr{
+    </div>
 
-        display:none;
-    }
+</div>
 
-    .sidebar button{
+</div>
 
-        margin:0;
+<div id="serviceBody${service.id}"
 
-        min-height:42px;
+     class="service-body">
 
-        font-size:12px;
-    }
+    <button onclick="addSongsToService(${service.id})">
 
-    .content{
+        ➕ Add Songs
 
-        padding:16px;
-    }
+    </button>
 
-    .dashboard{
+  <button onclick="startService('${service.id}')">
+▶ Start Service
 
-        grid-template-columns:
-            repeat(2,1fr);
+</button>
 
-        gap:10px;
-    }
+    <button onclick="renameService(${service.id})">
 
-    .card{
+        ✏ Rename
 
-        padding:17px;
-    }
+    </button>
 
-    .number{
+    <button onclick="(${service.id})">
 
-        font-size:28px;
-    }
+        🗑 Delete
 
-    .playlist-panel,
-    #servicePanel{
+    </button>
 
-        width:100%;
+    <hr>
 
-        max-width:100%;
-    }
+    ${songList}
 
-    #presentationLyrics{
+</div>
 
-        padding:15px;
-    }
+</div>
 
-        #presentationTitle{
+`;
 
-        font-size:19px;
-    }
+});
 
-    #presentationCounter{
+function addSongsToService(serviceId){
 
-        font-size:12px;
-    }
+selectedService = services.find(function(s){
+    return s.id == serviceId;
+});
 
-    #presentationNavigation button{
+console.log("Selected Service:", selectedService);
 
-        min-width:90px;
+renderSongPicker(songs);
 
-        padding:9px;
+songPicker.classList.add("show");
 
-        font-size:12px;
-    }
+}
+
+window.addSongsToService = addSongsToService;
+
+const songPicker =
+document.getElementById("songPicker");
+
+const songPickerList =
+document.getElementById("songPickerList");
+
+const songPickerSearch =
+document.getElementById("songPickerSearch");
+
+const closeSongPickerPanel =
+document.getElementById("closeSongPicker");
+
+if (closeSongPickerPanel) {
+
+closeSongPickerPanel.onclick = function () {
+
+    const songPicker =
+        document.getElementById("songPicker");
 
-    #nextSongPreview{
+    if (songPicker) {
 
-        display:none;
+        songPicker.classList.remove("show");
+
     }
+
+};
+
 }
 
+let selectedService = null;
+let selectedPlaylist = null;
 
-/* =========================================================
-   VERY SMALL MOBILE
-========================================================= */
+function renderSongPicker(list) {
 
-@media(max-width:450px){
+if (!songPickerList) {
+    console.error("songPickerList not found.");
+    return;
+}
 
-    .topbar{
+songPickerList.innerHTML = "";
 
-        flex-direction:column;
+// Songs already inside the selected Service Planner
+const addedSongs =
+    selectedService &&
+    Array.isArray(selectedService.songs)
+        ? selectedService.songs
+        : [];
 
-        align-items:stretch;
-    }
+list.forEach(function(song) {
 
-    .top-actions{
+    const alreadyAdded =
+        addedSongs.some(function(serviceSong) {
 
-        width:100%;
-    }
+            return serviceSong.file === song.file;
 
-    .top-actions input{
+        });
 
-        flex:1;
+    songPickerList.innerHTML += `
 
-        width:auto;
-    }
+        <div class="song-picker-card">
 
-    .sidebar{
+            <div class="song-picker-info">
 
-        grid-template-columns:1fr;
-    }
+                <div class="song-picker-title">
+                    ${song.title || "Untitled Song"}
+                </div>
 
-    .dashboard{
+                <div class="song-picker-artist">
+                    ${song.artist || ""}
+                </div>
 
-        grid-template-columns:1fr;
-    }
+            </div>
 
-    .playlist-actions{
+            <button
+                class="song-picker-add-btn ${alreadyAdded ? "added" : ""}"
+                ${alreadyAdded ? "disabled" : ""}
+                onclick="selectSong('${song.file}')">
 
-        grid-template-columns:1fr;
-    }
+                ${alreadyAdded ? "✓ Added" : "Add"}
 
-    .song-picker-card{
+            </button>
 
-        align-items:flex-start;
+        </div>
 
-        flex-direction:column;
-    }
+    `;
 
-    .song-picker-card button{
+});
 
-        width:100%;
-    }
 }
 
+async function selectSong(file) {
 
-/* =========================================================
-   PRINT
-========================================================= */
+if (!currentUser) {
+    alert("Please login first.");
+    return;
+}
+
+if (!selectedService) {
+    alert("No Service Planner selected.");
+    return;
+}
 
-@page{
+const song = songs.find(function(s) {
 
-    size:landscape;
+    return s.file === file;
 
-    margin:8mm;
+});
+
+if (!song) {
+    alert("Song not found.");
+    return;
 }
 
-@media print{
+// Make sure songs exists
+if (!Array.isArray(selectedService.songs)) {
 
-    html,
-    body{
+    selectedService.songs = [];
 
-        width:100%;
+}
 
-        height:100%;
+// Check if already added
+const exists =
+    selectedService.songs.some(function(s) {
 
-        margin:0;
+        return s.file === song.file;
 
-        padding:0;
+    });
 
-        background:white !important;
+if (exists) {
 
-        color:#000 !important;
-    }
+    return;
 
-    .topbar,
-    .sidebar,
-    .song-toolbar,
-    #serviceProgress,
-    #playlistPopup,
-    #presentationScreen,
-    #presentationNavigation{
-
-        display:none !important;
-    }
+}
 
-    .song-header{
+// Create service song
+const serviceSong = {
 
-        text-align:center;
+    id:
+        song.id ||
+        String(Date.now()),
 
-        margin-bottom:20px;
+    title:
+        song.title || "",
 
-        border-bottom:3px solid #333;
+    artist:
+        song.artist || "",
 
-        padding-bottom:12px;
-    }
+    file:
+        song.file || "",
 
-    .song-header h1{
+    category:
+        song.category || "",
 
-        font-size:28px;
+    language:
+        song.language || "",
 
-        font-weight:bold;
-    }
+    key:
+        song.key || "",
 
-    .song-meta{
+    originalKey:
+        song.key || "",
 
-        display:flex;
+    serviceKey:
+        song.key || "",
 
-        justify-content:center;
+    transpose: 0,
 
-        gap:30px;
+    youtube:
+        song.youtube || ""
 
-        font-size:15px;
-    }
+};
+
+// Add song locally
+selectedService.songs.push(
+    serviceSong
+);
+
+try {
 
-    .song-container{
+    // Save to Firebase
+    await saveService(
+        currentUser.uid,
+        selectedService
+    );
 
-        margin:0 !important;
+    // Update services array
+    const serviceIndex =
+        services.findIndex(function(s) {
 
-        padding:8px !important;
+            return String(s.id) ===
+                   String(selectedService.id);
 
-        box-shadow:none !important;
+        });
 
-        border:none !important;
+    if (serviceIndex !== -1) {
 
-        width:100%;
+        services[serviceIndex] = {
+            ...selectedService,
+            songs: [
+                ...selectedService.songs
+            ]
+        };
+
     }
 
-    .song{
+    // Refresh Service Planner
+    renderServices();
 
-        display:grid;
+    updateDashboard();
 
-        grid-template-columns:
-            repeat(3,1fr);
+    // IMPORTANT:
+    // Refresh picker WITHOUT closing it
+    renderSongPicker(songs);
 
-        gap:10px;
-    }
+    console.log(
+        "Song added:",
+        song.title
+    );
+
+}
+catch(error) {
 
-    .song-section{
+    console.error(
+        "Error saving song:",
+        error
+    );
 
-        break-inside:avoid;
+    // Remove local song if Firebase save failed
+    selectedService.songs =
+        selectedService.songs.filter(function(s) {
 
-        page-break-inside:avoid;
+            return s.file !== song.file;
 
-        padding:10px;
+        });
 
-        margin-bottom:10px;
-    }
+    alert(
+        "Unable to save song."
+    );
+
+}
 
-    .song-line{
+}
 
-        font-family:
-            Consolas,
-            "Courier New",
-            monospace !important;
+window.selectSong = selectSong;
 
-        font-size:15px !important;
+closeSongPicker.onclick = function(){
+songPicker.classList.remove("show");
+};
 
-        line-height:1.2 !important;
+async function startService(serviceId) {
 
-        white-space:pre !important;
-    }
+const service = services.find(function(s) {
 
-    .chord{
+    return String(s.id) === String(serviceId);
 
-        color:#d32f2f !important;
+});
 
-        font-weight:bold;
 
-        font-size:inherit !important;
+if (!service) {
 
-        display:inline;
+    alert("Service not found.");
 
-        transform:none;
-    }
+    return;
 
-    .section-title{
+}
 
-        font-size:14px;
 
-        padding:5px;
+if (
+    !Array.isArray(service.songs) ||
+    service.songs.length === 0
+) {
 
-        margin-bottom:8px;
-    }
+    alert(
+        "This service has no songs."
+    );
+
+    return;
+
 }
 
-/* ==========================================
-   ALL SONGS PANEL
-   ========================================== */
 
-.all-songs-panel {
+// ======================================
+// SAVE ACTIVE SERVICE
+// ======================================
 
-    display: none;
+localStorage.setItem(
+    "currentServiceId",
+    String(service.id)
+);
 
-    position: fixed;
 
-    inset: 0;
+localStorage.setItem(
+    "currentSongIndex",
+    "0"
+);
 
-    z-index: 9999;
 
-    background: #f5f7fb;
+localStorage.setItem(
+    "resumePresentation",
+    "true"
+);
 
-    padding: 35px;
 
-    overflow-y: auto;
+console.log(
+    "START SERVICE:"
+);
 
-}
+console.log(
+    "ID:",
+    service.id
+);
+
+console.log(
+    "NAME:",
+    service.name
+);
+
+console.log(
+    "SONGS:",
+    service.songs.length
+);
+
 
-.all-songs-panel.show {
+// ======================================
+// OPEN FIRST SONG
+// ======================================
 
-    display: block;
+const firstSong =
+    service.songs[0];
 
+
+if (!firstSong || !firstSong.file) {
+
+    alert(
+        "First song file not found."
+    );
+
+    return;
+
 }
+
+
+const filename =
+    String(firstSong.file)
+    .trim()
+    .split("/")
+    .pop();
+
 
+const url =
+    "/WorshipHub/songs/" + filename;
 
-/* ==========================================
-   HEADER
-   ========================================== */
 
-.all-songs-header {
+window.location.assign(url);
 
-    max-width: 1200px;
+}
+
+window.startService =
+startService;
+
+function displayCurrentServiceName() {
 
-    margin: 0 auto 25px;
+const serviceNameElement =
+    document.getElementById(
+        "currentServiceName"
+    );
 
-    display: flex;
+if (!serviceNameElement) {
+    return;
+}
 
-    align-items: center;
+const serviceName =
+    localStorage.getItem(
+        "currentServiceName"
+    );
 
-    justify-content: space-between;
+if (serviceName) {
 
+    serviceNameElement.textContent =
+        serviceName;
+
 }
+else {
+
+    serviceNameElement.textContent =
+        "No Active Service";
 
-.all-songs-header h2 {
+}
 
-    margin: 0;
+}
 
-    font-size: 28px;
+displayCurrentServiceName();
+function addSongsToPlaylist(playlistId){
 
-    font-weight: 700;
+selectedPlaylist = playlists.find(
+    p => p.id == playlistId
+);
 
+if(!selectedPlaylist){
+    return;
 }
 
-.all-songs-header p {
+renderPlaylistSongPicker(songs);
 
-    margin: 5px 0 0;
+songPicker.classList.add("show");
 
-    color: #777;
+songPickerSearch.value = "";
 
 }
+window.addSongsToPlaylist = addSongsToPlaylist;
+async function deleteService(id) {
 
+if (!currentUser) {
 
-/* ==========================================
-   CLOSE BUTTON
-   ========================================== */
+    alert("Please login first.");
 
-.close-all-songs {
+    return;
 
-    width: 42px;
+}
 
-    height: 42px;
+const service = services.find(function(s) {
 
-    border: none;
+    return String(s.id) === String(id);
 
-    border-radius: 50%;
+});
 
-    background: #e9edf3;
+if (!service) {
 
-    font-size: 18px;
+    alert("Service not found.");
 
-    cursor: pointer;
+    return;
 
 }
 
-.close-all-songs:hover {
+if (!confirm(`Delete "${service.name}"?`)) {
 
-    background: #dce2ea;
+    return;
 
 }
 
+try {
 
-/* ==========================================
-   TABLE CONTAINER
-   ========================================== */
+    console.log(
+        "Deleting Service:",
+        service.name,
+        "ID:",
+        service.id
+    );
 
-.all-songs-table-wrapper {
+    // ==========================================
+    // DELETE DIRECTLY FROM FIRESTORE
+    // ==========================================
 
-    max-width: 1200px;
+    await deleteServiceCloud(
+        currentUser.uid,
+        service.id
+    );
 
-    margin: auto;
+    console.log(
+        "Service successfully deleted from Firebase:",
+        service.id
+    );
 
-    background: white;
 
-    border-radius: 16px;
+    // ==========================================
+    // REMOVE FROM LOCAL ARRAY
+    // ==========================================
 
-    overflow: hidden;
+    services = services.filter(function(s) {
 
-    box-shadow:
-        0 8px 30px rgba(0,0,0,0.08);
+        return String(s.id) !== String(id);
 
-}
+    });
 
 
-/* ==========================================
-   TABLE
-   ========================================== */
+    // ==========================================
+    // CLEAR ACTIVE SERVICE IF NECESSARY
+    // ==========================================
 
-.all-songs-table {
+    const currentServiceId =
+        localStorage.getItem("currentServiceId");
 
-    width: 100%;
+    if (
+        currentServiceId &&
+        String(currentServiceId) === String(id)
+    ) {
 
-    border-collapse: collapse;
+        localStorage.removeItem(
+            "currentServiceId"
+        );
 
-    font-size: 14px;
+        localStorage.removeItem(
+            "currentSongIndex"
+        );
 
-}
+        localStorage.removeItem(
+            "resumePresentation"
+        );
+
+        localStorage.removeItem(
+            "currentService"
+        );
 
+        localStorage.removeItem(
+            "currentServiceName"
+        );
 
-/* ==========================================
-   HEADER
-   ========================================== */
+    }
 
-.all-songs-table thead {
 
-    background: #f1f4f8;
+    // ==========================================
+    // REFRESH UI
+    // ==========================================
 
-}
+    renderServices();
 
-.all-songs-table th {
+    updateDashboard();
 
-    text-align: left;
 
-    padding: 16px 18px;
+    console.log(
+        "SERVICE DELETED:",
+        service.name
+    );
 
-    font-size: 12px;
+    console.log(
+        "REMAINING SERVICES:",
+        services
+    );
 
-    text-transform: uppercase;
+}
+catch(error) {
 
-    letter-spacing: 0.5px;
+    console.error(
+        "ERROR DELETING SERVICE:",
+        error
+    );
 
-    color: #667085;
+    alert(
+        "The service could not be deleted from the database."
+    );
 
-    border-bottom:
-        1px solid #e5e7eb;
+}
 
 }
 
+window.deleteService = deleteService;
+function renderPlaylistSongPicker(list){
 
-/* ==========================================
-   CELLS
-   ========================================== */
+songPickerList.innerHTML = "";
 
-.all-songs-table td {
+list.forEach(song => {
 
-    padding: 15px 18px;
+    songPickerList.innerHTML += `
 
-    border-bottom:
-        1px solid #eef0f3;
+    <div class="song-picker-card">
 
-    color: #344054;
+        <div class="song-picker-info">
 
-}
+            <div class="song-picker-title">
 
+                ${song.title}
 
-/* ==========================================
-   ROW HOVER
-   ========================================== */
+            </div>
 
-.all-songs-table tbody tr {
+            <div class="song-picker-artist">
 
-    transition:
-        background 0.15s ease;
+                ${song.artist}
 
-}
+            </div>
 
-.all-songs-table tbody tr:hover {
+        </div>
 
-    background: #f8fafc;
+        <button onclick="selectSongForPlaylist('${song.file}')">
 
+            Add
+
+        </button>
+
+    </div>
+
+    `;
+
+});
+
 }
+async function selectSongForPlaylist(
+file
+) {
 
+if (!currentUser) {
 
-/* ==========================================
-   NUMBER
-   ========================================== */
+    alert(
+        "Please login first."
+    );
 
-.all-songs-table td:first-child {
+    return;
+
+}
 
-    width: 50px;
 
-    color: #98a2b3;
+if (!selectedPlaylist) {
 
-    text-align: center;
+    return;
 
 }
 
 
-/* ==========================================
-   CLICKABLE SONG TITLE
-   ========================================== */
+const song =
+    songs.find(
+        s => s.file === file
+    );
 
-.all-song-title {
 
-    color: #2563eb;
+if (!song) {
 
-    font-weight: 600;
+    alert(
+        "Song not found."
+    );
 
-    text-decoration: none;
+    return;
 
 }
 
-.all-song-title:hover {
 
-    text-decoration: underline;
+const exists =
+    selectedPlaylist.songs.some(
+        s => s.file === file
+    );
 
+
+if (exists) {
+
+    alert(
+        "This song is already in the playlist."
+    );
+
+    return;
+
 }
 
 
-/* ==========================================
-   MOBILE
-   ========================================== */
+selectedPlaylist.songs.push({
 
-@media (max-width: 700px) {
+    id: song.id,
 
-    .all-songs-panel {
+    title: song.title,
 
-        padding: 15px;
+    artist: song.artist,
 
-    }
+    file: song.file,
 
-    .all-songs-table-wrapper {
+    youtube:
+        song.youtube || "",
 
-        overflow-x: auto;
+    category:
+        song.category || "",
 
-    }
+    language:
+        song.language || "",
 
-    .all-songs-table {
+    key:
+        song.key || ""
 
-        min-width: 700px;
+});
 
-    }
 
-}
-/* ==========================================
-   ALL SONGS SEARCH
-   ========================================== */
+try {
+
+    await savePlaylist(
+        currentUser.uid,
+        selectedPlaylist
+    );
+
+
+    renderPlaylists();
+
 
-.all-songs-search {
+    songPicker.classList.remove(
+        "show"
+    );
 
-    max-width: 1200px;
 
-    margin: 0 auto 20px;
+}
+catch(error) {
 
-    display: flex;
+    console.error(
+        "Add song error:",
+        error
+    );
 
-    gap: 10px;
+    alert(
+        "Unable to save song."
+    );
 
-    align-items: center;
+}
 
 }
+window.selectSongForPlaylist = selectSongForPlaylist;
+
+// ==========================================
+// TOGGLE SERVICE
+// ==========================================
 
-.all-songs-search input {
+function toggleService(id) {
 
-    flex: 1;
+console.log("toggleService called:", id);
 
-    height: 46px;
+const body = document.getElementById(
+    "serviceBody" + id
+);
 
-    padding: 0 16px;
+const arrow = document.getElementById(
+    "serviceArrow" + id
+);
 
-    border: 1px solid #d0d5dd;
+if (!body) {
+    console.error(
+        "Service body not found:",
+        "serviceBody" + id
+    );
+    return;
+}
 
-    border-radius: 10px;
+body.classList.toggle("show");
 
-    font-size: 14px;
+if (arrow) {
 
-    outline: none;
+    if (body.classList.contains("show")) {
+        arrow.textContent = "▼";
+    } else {
+        arrow.textContent = "▶";
+    }
 
-    background: white;
+}
 
 }
 
-.all-songs-search input:focus {
+// MAKE FUNCTION AVAILABLE TO HTML onclick=""
+window.toggleService = toggleService;
 
-    border-color: #2563eb;
+async function renameService(id){
 
-    box-shadow:
-        0 0 0 3px rgba(37, 99, 235, 0.10);
+const service = services.find(
+    s => s.id == id
+);
 
+if(!service){
+    alert("Service not found");
+    return;
 }
 
-.all-songs-search button {
+const newName = prompt(
+    "Enter new service name:",
+    service.name
+);
 
-    height: 46px;
+if(!newName){
+    return;
+}
 
-    padding: 0 18px;
+service.name = newName;
 
-    border: none;
+await saveServicesCloud();
 
-    border-radius: 10px;
+renderServices();
+
+}
+window.renameService = renameService;
+async function removeSongFromService(serviceId, songIndex){
 
-    background: #2563eb;
+console.log(
+    "REMOVE:",
+    serviceId,
+    songIndex
+);
 
-    color: white;
+const service =
+services.find(
+    s => s.id == serviceId
+);
 
-    font-size: 14px;
+if(!service){
 
-    font-weight: 600;
+    alert("Service not found");
 
-    cursor: pointer;
+    return;
 
 }
 
-.all-songs-search button:hover {
+if(!confirm(
+    "Remove this song from " + service.name + "?"
+)){
 
-    opacity: 0.9;
+    return;
 
 }
 
-.all-songs-search button:last-child {
+service.songs.splice(
+    songIndex,
+    1
+);
 
-    background: #e9edf3;
+await saveServicesCloud();
 
-    color: #344054;
+renderServices();
 
 }
+window.removeSongFromService = removeSongFromService;
+function searchSongs(keyword = ""){
 
+if(!keyword){
 
-@media (max-width: 700px) {
+    keyword = document.getElementById("searchBox").value;
 
-    .all-songs-search {
+}
 
-        flex-direction: column;
+keyword = keyword.toLowerCase().trim();
 
-        align-items: stretch;
+filteredSongs = songs.filter(function(song){
 
-    }
+    return (
+
+        song.title.toLowerCase().includes(keyword) ||
+
+        song.artist.toLowerCase().includes(keyword) ||
 
+        song.category.toLowerCase().includes(keyword) ||
+
+        song.language.toLowerCase().includes(keyword)
+
+    );
+
+});
+
+renderSongs(filteredSongs);
+
 }
+window.searchSongs = searchSongs;
 
-/* ==========================================
-   USER WELCOME
-========================================== */
+/* =====================================
+CURRENT SERVICE HELPERS
+===================================== */
 
-.user-welcome {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+function getCurrentService() {
 
-    padding: 14px 12px;
-    margin-bottom: 18px;
+if (activeService) {
+    return activeService;
+}
 
-    border-radius: 12px;
+return null;
 
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.10);
 }
+function getCurrentSongIndex() {
 
-.welcome-icon {
-    width: 38px;
-    height: 38px;
+return Number(
+    localStorage.getItem("currentSongIndex") || 0
+);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+}
+function getSongUrl(file) {
 
-    border-radius: 50%;
+if (!file) {
+    return "";
+}
 
-    background: rgba(255, 255, 255, 0.12);
+file = file.trim();
 
-    font-size: 20px;
+if (file.startsWith("songs/")) {
+    return "../" + file;
 }
 
-.welcome-text {
-    min-width: 0;
+if (file.startsWith("../")) {
+    return file;
 }
+
+return "./" + file;
 
-.welcome-label {
-    font-size: 12px;
-    opacity: 0.65;
-    margin-bottom: 2px;
 }
+function setCurrentSongIndex(index) {
 
-.welcome-name {
-    font-size: 16px;
-    font-weight: 700;
+localStorage.setItem(
+    "currentSongIndex",
+    index
+);
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
+document.addEventListener("DOMContentLoaded", function(){
+
+renderSongs(songs);
+
+renderPlaylists();
+
+updateDashboard();
 
-/* =========================================================
-   HEADER
-========================================================= */
+});
+document.addEventListener("keydown", function(e){
 
-.topbar {
-    height: 78px;
+switch(e.key){
 
-    width: 100%;
+    case "ArrowRight":
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+        nextServiceSong();
 
-    padding: 0 24px;
+        break;
 
-    background: #064e3b;
+    case "ArrowLeft":
 
-    color: #ffffff;
+        previousServiceSong();
 
-    box-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.15);
+        break;
 
-    position: relative;
+    case "Escape":
 
-    z-index: 1000;
+        finishService();
+
+        break;
+
 }
+
+});
+
+function getCurrentSong(){
+
+const service = getCurrentService();
+
+if(!service){
 
+    return null;
 
-/* =========================================================
-   JFCM HEADER LOGO
-========================================================= */
+}
 
-.logo {
-    height: 68px;
+const index = Number(
+    localStorage.getItem("currentSongIndex") || 0
+);
 
-    display: flex;
-    align-items: center;
+return service.songs[index];
 
-    flex-shrink: 0;
 }
 
-.logo img {
-    display: block;
+function updateServiceProgress(){
 
-    width: 285px;
+const label =
+document.getElementById("serviceProgress");
 
-    height: auto;
+if(!label){
 
-    max-height: 68px;
+    return;
 
-    object-fit: contain;
 }
-@media (max-width: 750px) {
 
-    .topbar {
-        height: auto;
-        min-height: 70px;
+const service = getCurrentService();
 
-        padding: 8px 12px;
+if(!service){
 
-        flex-wrap: wrap;
+    label.textContent = "";
 
-        gap: 8px;
-    }
+    return;
 
-    .logo {
-        height: 52px;
-    }
+}
 
-    .logo img {
-        width: 230px;
-        max-height: 52px;
-    }
+const index = Number(
+    localStorage.getItem("currentSongIndex") || 0
+);
 
-    .top-actions {
-        width: 100%;
-    }
+label.textContent =
+    "Song " +
+    (index+1) +
+    " of " +
+    service.songs.length;
+
 }
-@media (max-width: 450px) {
+function updateCurrentServiceName(){
 
-    .logo img {
-        width: 200px;
-        max-height: 48px;
-    }
+const label =
+document.getElementById(
+    "currentService"
+);
+
+if(!label){
+
+    return;
+
+}
+
+const service =
+getCurrentService();
+
+label.textContent =
+    service
+    ? service.name
+    : "None";
+
+}
+function sortSongs(list) {
+
+return list.sort(function(a, b) {
+
+    return a.title.localeCompare(
+        b.title
+    );
+
+});
+
+}
+
+function sortServices() {
+
+services.sort(function(a, b) {
+
+    return a.name.localeCompare(
+        b.name
+    );
+
+});
+
+}
+
+function sortPlaylists() {
+
+playlists.sort(function(a, b) {
+
+    return a.name.localeCompare(
+        b.name
+    );
+
+});
+
 }
