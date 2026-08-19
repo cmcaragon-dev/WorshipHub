@@ -3877,83 +3877,90 @@ body.dark .service-body{
    HEADER
 ========================================================= */
 
+/* =========================================================
+   WORSHIPHUB TOP BAR
+   LIGHT LEFT → DARK RIGHT
+   ========================================================= */
+
 .topbar {
 
-    height:78px;
+    height: 78px;
 
-    width:100%;
+    width: 100%;
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:space-between;
+    justify-content: space-between;
 
-    padding:0 24px;
+    padding: 0 24px;
 
     background:
         linear-gradient(
-            135deg,
-            #064E3B 0%,
-            #0F766E 55%,
-            #115E59 100%
+            110deg,
+            #0F766E 0%,
+            #0B6258 35%,
+            #064E3B 65%,
+            #032D25 100%
         );
 
-    color:#FFFFFF;
+    color: #FFFFFF;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 5000;
 
     box-shadow:
-        0 4px 16px rgba(6,78,59,.25);
-
-    position:relative;
-
-    z-index:1000;
-}
-
-.logo-text {
-
-    font-size:25px;
-
-    font-weight:900;
-
-    letter-spacing:-.5px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #FFFFFF 0%,
-            #FFFFFF 45%,
-            #FACC15 100%
-        );
-
-    -webkit-background-clip:text;
-
-    -webkit-text-fill-color:transparent;
-
-    background-clip:text;
+        0 4px 18px rgba(3,45,37,.28);
 }
 /* =========================================================
    JFCM HEADER LOGO
 ========================================================= */
 
+/* =========================================================
+   LOGO - TOP LEFT
+   ========================================================= */
+
 .logo {
-    height: 68px;
 
     display: flex;
+
     align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 10px;
+
+    height: 60px;
+
+    margin: 0;
+
+    padding: 0;
 
     flex-shrink: 0;
 }
 
 .logo img {
+
     display: block;
 
-    width: 285px;
+    width: 210px;
 
-    height: auto;
+    height: 58px;
 
-    max-height: 68px;
+    max-height: 58px;
 
     object-fit: contain;
+
+    object-position: left center;
+
+    filter:
+        drop-shadow(
+            0 2px 4px rgba(0,0,0,.20)
+        );
 }
 @media (max-width: 750px) {
 
