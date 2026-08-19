@@ -352,6 +352,7 @@ Service.updateKeyDisplay();
 await Service.updateGuide();
 
 Service.updateProgress();
+},
 
 // ------------------------------------------------------
 // CACHE DOM
