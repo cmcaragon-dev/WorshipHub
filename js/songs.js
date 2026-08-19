@@ -365,6 +365,14 @@ title: "Papuri Kay Yahweh",
         language: "Tagalog",
         file: "songs/papurikayyahweh.html"
 	}
+	{id:44,        
+title: "Diyos Ka Sa Amin",
+        artist: "Hope Filipino Worship",
+        key: "E",
+        category: "Worship",
+        language: "Tagalog",
+        file: "songs/diyoskasaamin.html"
+	}
 ];
 songs.sort((a, b) =>
     a.title.localeCompare(b.title)
