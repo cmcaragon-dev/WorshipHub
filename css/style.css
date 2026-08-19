@@ -5225,3 +5225,353 @@ header img,
     }
 
 }
+/* ==========================================================
+   WORSHIPHUB SONG PAGE - RESPONSIVE FIX
+   ========================================================== */
+
+/* Prevent horizontal overflow */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Make all elements respect the viewport */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Main page containers */
+main,
+.container,
+.container-fluid,
+.song-container,
+.song-page,
+.song-content {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* ==========================================================
+   SONG HEADER
+   ========================================================== */
+
+.song-header,
+.song-header-inner {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.song-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* ==========================================================
+   LYRICS CONTAINER
+   ========================================================== */
+
+#lyrics {
+    width: 100%;
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 15px;
+    padding-right: 15px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* ==========================================================
+   SONG SECTIONS
+   ========================================================== */
+
+.song-section,
+.lyrics-section,
+.section {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* ==========================================================
+   SONG LINES
+   ========================================================== */
+
+.song-line {
+    width: 100%;
+    max-width: 100%;
+
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+
+    line-height: 1.35;
+}
+
+/* Chords must not force the page wider */
+.chord {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+/* ==========================================================
+   PASSING CHORDS
+   ========================================================== */
+
+.passing-chords,
+.passing-chord-container,
+.passing-chords-container {
+    max-width: 100%;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.passing-chord-item {
+    white-space: normal;
+    flex-shrink: 1;
+}
+
+/* ==========================================================
+   IMAGES
+   ========================================================== */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ==========================================================
+   BUTTONS / CONTROLS
+   ========================================================== */
+
+button,
+.btn,
+select,
+input {
+    max-width: 100%;
+}
+
+/* ==========================================================
+   TABLET
+   481px - 991px
+   ========================================================== */
+
+@media (max-width: 991px) {
+
+    #lyrics {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .song-line {
+        font-size: 18px;
+        line-height: 1.3;
+    }
+
+    .chord {
+        font-size: 18px;
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+   480px AND BELOW
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    header,
+    .top-header,
+    .song-header,
+    .navbar {
+        width: 100%;
+        max-width: 100%;
+        min-height: 55px;
+        overflow: hidden;
+    }
+
+    header img,
+    .top-header img,
+    .song-header img,
+    .navbar-brand img,
+    .logo {
+        max-width: 125px;
+        max-height: 42px;
+        width: auto;
+        height: auto;
+    }
+
+    #lyrics {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 7px;
+        padding-right: 7px;
+        margin: 0;
+    }
+
+    .song-line {
+        width: 100%;
+        max-width: 100%;
+        font-size: 16px;
+        line-height: 1.25;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .chord {
+        font-size: 16px;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .section-title {
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    .passing-chord-item {
+        font-size: 11px;
+    }
+
+    /* Prevent long song titles from pushing layout */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    /* Controls can wrap instead of overflowing */
+    .song-controls,
+    .controls,
+    .toolbar,
+    .action-buttons {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL PHONES
+   360px AND BELOW
+   ========================================================== */
+
+@media (max-width: 360px) {
+
+    #lyrics {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .song-line {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    .chord {
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 13px;
+    }
+
+    .passing-chord-item {
+        font-size: 10px;
+    }
+
+}
+
+
+/* ==========================================================
+   LARGE DESKTOP
+   ========================================================== */
+
+@media (min-width: 1400px) {
+
+    #lyrics {
+        max-width: 1500px;
+    }
+
+    .song-line {
+        font-size: 24px;
+        line-height: 1.4;
+    }
+
+    .chord {
+        font-size: 24px;
+    }
+
+}
+
+
+/* ==========================================================
+   TV / LARGE PRESENTATION
+   ========================================================== */
+
+@media (min-width: 1920px) {
+
+    #lyrics {
+        max-width: 1800px;
+    }
+
+    .song-line {
+        font-size: 30px;
+        line-height: 1.45;
+    }
+
+    .chord {
+        font-size: 30px;
+        font-weight: 900;
+    }
+
+}
+
+
+/* ==========================================================
+   VERY LARGE TV
+   ========================================================== */
+
+@media (min-width: 2560px) {
+
+    #lyrics {
+        max-width: 2200px;
+    }
+
+    .song-line {
+        font-size: 36px;
+        line-height: 1.5;
+    }
+
+    .chord {
+        font-size: 36px;
+    }
+
+}
