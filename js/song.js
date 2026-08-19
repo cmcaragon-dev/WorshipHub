@@ -515,7 +515,132 @@ return SHARP_SCALE[
 ];
 
 }
+// ==========================================================
+// PASSING CHORD HELPERS
+// ==========================================================
 
+function isWorshipSong(song) {
+
+    if (!song) {
+        return false;
+    }
+
+    const category =
+        String(
+            song.category ||
+            song.genre ||
+            ""
+        )
+        .trim()
+        .toLowerCase();
+
+    return category === "worship";
+}
+
+
+// ----------------------------------------------------------
+// GET ACTIVE SERVICE KEY FOR PASSING CHORDS
+// ----------------------------------------------------------
+
+function getPassingChordKey(song) {
+
+    if (!song) {
+        return "";
+    }
+
+    /*
+     * Priority:
+     *
+     * 1. Current displayed Service Key
+     * 2. Saved Service Key
+     * 3. Original Key
+     * 4. Song Key
+     */
+
+    const displayedServiceKey =
+        document
+            .getElementById("serviceKey")
+            ?.textContent
+            ?.trim();
+
+    if (displayedServiceKey) {
+        return displayedServiceKey;
+    }
+
+    const baseKey =
+        song.serviceKey ||
+        song.originalKey ||
+        song.key ||
+        "";
+
+    if (!baseKey) {
+        return "";
+    }
+
+    /*
+     * Apply the current transpose only when
+     * the saved serviceKey is being used.
+     *
+     * This keeps the passing chords synchronized
+     * with the currently displayed Service Key.
+     */
+
+    const transposeSteps =
+        Math.round(
+            Number(App.transpose || 0) * 2
+        );
+
+    return getTransposedKey(
+        baseKey,
+        transposeSteps
+    );
+}
+
+
+// ----------------------------------------------------------
+// BUILD PASSING CHORD DATA
+// ----------------------------------------------------------
+
+function getPassingChords(song) {
+
+    const key =
+        getPassingChordKey(song);
+
+    if (!key) {
+        return null;
+    }
+
+    const returnToVerse =
+        getTransposedKey(key, 7);
+
+    const lastThree =
+        getTransposedKey(key, 10) + "m";
+
+    const outroFive =
+        getTransposedKey(key, 5);
+
+    const worship =
+        isWorshipSong(song);
+
+    return {
+
+        key,
+
+        returnToVerse,
+
+        lastThree,
+
+        outro:
+            worship
+                ? `${outroFive} → ${outroFive}m → ${key}`
+                : "",
+
+        spirit:
+            worship
+                ? `${key} → ${outroFive}`
+                : ""
+    };
+}
 // ==========================================================
 // SERVICE
 // ==========================================================
@@ -1161,54 +1286,144 @@ updateKeyDisplay() {
     }
 },
 
-
 // ======================================================
-// UPDATE SONG GUIDE
+// UPDATE PASSING CHORDS
 // ======================================================
 
 updateGuide() {
 
-    if (!App.songEnding) {
+    const song =
+        window.currentSong;
+
+    if (!song) {
         return;
     }
 
-    const key =
-        this.getKey();
+    const passing =
+        getPassingChords(song);
 
-    if (!key) {
+    if (!passing) {
         return;
     }
 
-    const ending =
-        getTransposedKey(key, 5);
+    /*
+     * --------------------------------------------------
+     * SONG PAGE
+     * --------------------------------------------------
+     */
 
-    App.songEnding.innerHTML = `
+    let guide =
+        document.getElementById(
+            "passingChords"
+        );
 
-        <strong>LAST 3</strong>
-        : ${getTransposedKey(key, 9)}m
+    /*
+     * If #songEnding already exists, use it.
+     * Otherwise create the passing-chords container.
+     */
 
-        <br>
+    if (!guide) {
 
-        <strong>RETURN TO VERSE</strong>
-        : ${getTransposedKey(key, 7)}
+        guide =
+            document.createElement(
+                "div"
+            );
 
-        <br>
+        guide.id =
+            "passingChords";
 
-        <strong>ENDING</strong>
-        : ${ending}
-        &nbsp;
-        ${ending}m
-        &nbsp;
-        ${key}
+        const lyrics =
+            document.getElementById(
+                "lyrics"
+            );
 
-        <br>
+        if (lyrics) {
 
-        <strong>SING IN THE SPIRIT</strong>
-        : ${key}
-        &nbsp;
-        ${ending}
+            lyrics.parentNode.insertBefore(
+                guide,
+                lyrics
+            );
 
+        }
+        else {
+
+            document.body.prepend(
+                guide
+            );
+        }
+    }
+
+    /*
+     * --------------------------------------------------
+     * BUILD HORIZONTAL GUIDE
+     * --------------------------------------------------
+     */
+
+    guide.innerHTML = `
+
+        <div class="passing-chords-title">
+            PASSING CHORDS
+        </div>
+
+        <div class="passing-chords-items">
+
+            <div class="passing-chord-item">
+                <span class="passing-label">
+                    RETURN TO VERSE 1:
+                </span>
+                <span class="passing-value">
+                    ${passing.returnToVerse}
+                </span>
+            </div>
+
+            <div class="passing-chord-item">
+                <span class="passing-label">
+                    LAST 3:
+                </span>
+                <span class="passing-value">
+                    ${passing.lastThree}
+                </span>
+            </div>
+
+            <div class="passing-chord-item">
+                <span class="passing-label">
+                    OUTRO:
+                </span>
+                <span class="passing-value">
+                    ${passing.outro}
+                </span>
+            </div>
+
+            <div class="passing-chord-item">
+                <span class="passing-label">
+                    SINGING IN THE SPIRIT:
+                </span>
+                <span class="passing-value">
+                    ${passing.spirit}
+                </span>
+            </div>
+
+        </div>
     `;
+
+    /*
+     * Keep old #songEnding synchronized if it exists.
+     */
+
+    if (App.songEnding) {
+
+        App.songEnding.innerHTML =
+            guide.innerHTML;
+    }
+
+    /*
+     * --------------------------------------------------
+     * PRESENTATION PASSING CHORDS
+     * --------------------------------------------------
+     */
+
+    Presentation.updatePassingChords();
+
 },
 
 
@@ -1549,7 +1764,115 @@ async updateProgress() {
 // ==========================================================
 
 const Presentation = {
+// ======================================================
+// BUILD PRESENTATION PASSING CHORDS
+// ======================================================
 
+updatePassingChords() {
+
+    const song =
+        window.currentSong;
+
+    if (!song) {
+        return;
+    }
+
+    const passing =
+        getPassingChords(song);
+
+    if (!passing) {
+        return;
+    }
+
+    const output =
+        document.getElementById(
+            "presentationLyrics"
+        );
+
+    if (!output) {
+        return;
+    }
+
+    /*
+     * Remove previous passing-chord bar
+     */
+
+    const oldBar =
+        output.querySelector(
+            ".presentation-passing-chords"
+        );
+
+    if (oldBar) {
+        oldBar.remove();
+    }
+
+    /*
+     * Create new bar
+     */
+
+    const bar =
+        document.createElement(
+            "div"
+        );
+
+    bar.className =
+        "presentation-passing-chords";
+
+    bar.innerHTML = `
+
+        <div class="presentation-passing-title">
+            PASSING CHORDS
+        </div>
+
+        <div class="presentation-passing-items">
+
+            <div class="presentation-passing-item">
+                <span class="presentation-passing-label">
+                    RETURN TO VERSE 1:
+                </span>
+                <span class="presentation-passing-value">
+                    ${passing.returnToVerse}
+                </span>
+            </div>
+
+            <div class="presentation-passing-item">
+                <span class="presentation-passing-label">
+                    LAST 3:
+                </span>
+                <span class="presentation-passing-value">
+                    ${passing.lastThree}
+                </span>
+            </div>
+
+            <div class="presentation-passing-item">
+                <span class="presentation-passing-label">
+                    OUTRO:
+                </span>
+                <span class="presentation-passing-value">
+                    ${passing.outro}
+                </span>
+            </div>
+
+            <div class="presentation-passing-item">
+                <span class="presentation-passing-label">
+                    SINGING IN THE SPIRIT:
+                </span>
+                <span class="presentation-passing-value">
+                    ${passing.spirit}
+                </span>
+            </div>
+
+        </div>
+    `;
+
+    /*
+     * Put passing chords ABOVE the lyrics/grid.
+     */
+
+    output.prepend(
+        bar
+    );
+},
 // ======================================================
 // START PRESENTATION
 // ======================================================
@@ -1662,9 +1985,11 @@ async start() {
 
         this.build();
 
-        await this.update();
+this.updatePassingChords();
 
-        return;
+await this.update();
+
+return;
     }
 
     // ==================================================
@@ -1765,7 +2090,7 @@ localStorage.setItem(
     );
 
     this.build();
-
+this.updatePassingChords();
     const counter =
         document.getElementById(
             "presentationCounter"
@@ -2081,12 +2406,18 @@ build() {
     );
 
     output.appendChild(
-        grid
-    );
+    grid
+);
 
-    console.log(
-        "PRESENTATION BUILD COMPLETE"
-    );
+// --------------------------------------------------
+// ADD PASSING CHORDS ABOVE PRESENTATION LYRICS
+// --------------------------------------------------
+
+this.updatePassingChords();
+
+console.log(
+    "PRESENTATION BUILD COMPLETE"
+);
 
     console.log(
         "SECTIONS:",
