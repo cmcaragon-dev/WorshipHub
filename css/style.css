@@ -87,12 +87,12 @@ body{
     background:
         linear-gradient(
             135deg,
-            #0b4f55 0%,
-            #087f8c 55%,
-            #075b63 100%
+            #115E59 0%,
+            #0F766E 50%,
+            #14B8A6 100%
         );
 
-    color: #008080;
+    color: #ffffff;
 
     padding: 0 24px;
 
@@ -109,7 +109,7 @@ body{
     z-index: 5000;
 
     box-shadow:
-        0 4px 18px rgba(0, 70, 80, .25);
+        0 4px 18px rgba(15, 118, 110, .30);
 }
 
 
