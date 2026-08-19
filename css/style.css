@@ -80,35 +80,36 @@ body{
    TOP BAR
 ========================================================= */
 
-.topbar{
+.topbar {
 
-    height:72px;
+    height: 72px;
 
     background:
         linear-gradient(
             135deg,
-            #18243a 0%,
-            #263754 100%
+            #0f4c5c 0%,
+            #147d8c 50%,
+            #0b5968 100%
         );
 
-    color:#fff;
+    color: #fff;
 
-    padding:0 24px;
+    padding: 0 24px;
 
-    display:flex;
+    display: flex;
 
-    justify-content:space-between;
+    justify-content: space-between;
 
-    align-items:center;
+    align-items: center;
 
-    position:sticky;
+    position: sticky;
 
-    top:0;
+    top: 0;
 
-    z-index:5000;
+    z-index: 5000;
 
     box-shadow:
-        0 4px 18px rgba(15,23,42,.18);
+        0 4px 18px rgba(15, 76, 92, .25);
 }
 
 
