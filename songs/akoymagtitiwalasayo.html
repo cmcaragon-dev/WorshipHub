@@ -165,13 +165,14 @@ LYRICS GRID
 ==================================================*/
 
 .song{
+    column-count:3;
+    column-gap:30px;
+    column-fill:auto;
 
-    display:grid;
+    /* Available height for ONE PAGE */
+    height:calc(100vh - 260px);
 
-    grid-template-columns:repeat(3,1fr);
-
-    gap:25px;
-
+    overflow:hidden;
 }
 
 /*==================================================
@@ -179,23 +180,22 @@ SONG SECTION
 ==================================================*/
 
 .song-section{
+    display:block;
 
     border:1px solid #ddd;
-
     border-radius:12px;
-
-    padding:18px;
+    padding:14px;
 
     background:#fafafa;
 
-    min-height:340px;
+    margin-bottom:15px;
 
-}
-
-.song-section:hover{
-
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-
+    /*
+     * Prevent a section from being split
+     * between columns whenever possible.
+     */
+    break-inside:avoid;
+    page-break-inside:avoid;
 }
 
 /*==================================================
@@ -203,23 +203,20 @@ SECTION TITLE
 ==================================================*/
 
 .section-title{
-
     background:#2c3e50;
-
     color:white;
 
     text-align:center;
 
     font-weight:bold;
 
-    padding:10px;
+    padding:7px;
 
-    border-radius:8px;
+    border-radius:7px;
 
-    margin-bottom:18px;
+    margin-bottom:10px;
 
     letter-spacing:1px;
-
 }
 
 /*==================================================
@@ -227,19 +224,16 @@ LYRICS
 ==================================================*/
 
 .song-line{
-
-    margin-bottom:15px;
+    margin:0 0 7px 0;
 
     font-family:Consolas, monospace;
 
     font-size:20px;
 
-    line-height:1.8;
+    line-height:1.25;
 
     white-space:pre-wrap;
-
 }
-
 /*==================================================
 CHORDS
 ==================================================*/
