@@ -1,47 +1,42 @@
+/* =========================================================
+   JFCM SONGS ORGANIZER
+   MODERN UI DESIGN
+   Existing IDs / Classes preserved
+========================================================= */
+
 :root{
 
-    /* =====================================================
-       WORSHIPHUB BRAND COLORS
-       ===================================================== */
+    --primary:#6c5ce7;
+    --primary-dark:#5546d6;
+    --secondary:#4f8cff;
 
-    --primary:#0F766E;          /* Logo Teal */
-    --primary-dark:#115E59;     /* Dark Teal */
-    --secondary:#14B8A6;        /* Bright Teal */
+    --success:#22c55e;
+    --warning:#f59e0b;
+    --danger:#ef4444;
 
-    --accent:#FACC15;           /* Logo Gold */
-    --accent-dark:#EAB308;      /* Dark Gold */
+    --dark:#172033;
+    --dark-2:#243047;
 
-    --success:#22C55E;
-    --warning:#F59E0B;
-    --danger:#EF4444;
+    --text:#1e293b;
+    --muted:#64748b;
 
-    --dark:#12372F;
-    --dark-2:#1A4A40;
+    --background:#f4f7fb;
+    --surface:#ffffff;
+    --surface-2:#f8fafc;
 
-    --text:#18332D;
-    --muted:#64748B;
-
-    --background:#F4F9F7;
-    --surface:#FFFFFF;
-    --surface-2:#F0F7F5;
-
-    --border:#D9E8E3;
+    --border:#e5eaf1;
 
     --radius-sm:8px;
     --radius-md:12px;
     --radius-lg:18px;
 
-    --shadow-sm:
-        0 2px 8px rgba(15,118,110,.06);
-
-    --shadow-md:
-        0 8px 25px rgba(15,118,110,.10);
-
-    --shadow-lg:
-        0 18px 45px rgba(15,118,110,.16);
+    --shadow-sm:0 2px 8px rgba(15,23,42,.05);
+    --shadow-md:0 8px 25px rgba(15,23,42,.08);
+    --shadow-lg:0 18px 45px rgba(15,23,42,.15);
 
     --transition:.25s ease;
 }
+
 
 /* =========================================================
    GLOBAL
@@ -75,509 +70,153 @@ body{
     -webkit-font-smoothing:antialiased;
 }
 
+
 /* =========================================================
-   WORSHIPHUB MODERN TOP BAR
-   LOGO-MATCHING TEAL DESIGN
-   ========================================================= */
+   TOP BAR
+========================================================= */
 
-.topbar {
+.topbar{
 
-    width: 100%;
-    min-height: 76px;
-    height: 76px;
+    height:72px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 24px;
-
-    /* WorshipHub brand gradient */
     background:
         linear-gradient(
-            120deg,
-            #115E59 0%,
-            #0F766E 48%,
-            #0B8F83 75%,
-            #14B8A6 100%
+            135deg,
+            #18243a 0%,
+            #263754 100%
         );
 
-    color: #FFFFFF;
+    color:#fff;
 
-    position: sticky;
-    top: 0;
+    padding:0 24px;
 
-    z-index: 5000;
+    display:flex;
 
-    /* Subtle depth */
+    justify-content:space-between;
+
+    align-items:center;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:5000;
+
     box-shadow:
-        0 4px 18px rgba(15, 118, 110, .28);
-
-    /* Prevent content from pushing header wider */
-    overflow: hidden;
+        0 4px 18px rgba(15,23,42,.18);
 }
 
 
 /* =========================================================
-   SUBTLE GOLD ACCENT
-   ========================================================= */
+   LOGO
+========================================================= */
 
-.topbar::after {
+.logo{
 
-    content: "";
+    display:flex;
 
-    position: absolute;
+    align-items:center;
 
-    left: 0;
-    right: 0;
-    bottom: 0;
+    gap:10px;
 
-    height: 3px;
+    font-size:23px;
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent 0%,
-            #FACC15 25%,
-            #FACC15 75%,
-            transparent 100%
-        );
+    font-weight:800;
 
-    opacity: .9;
+    letter-spacing:-.4px;
 
-    pointer-events: none;
+    white-space:nowrap;
 }
 
-
-/* =========================================================
-   LOGO AREA
-   ========================================================= */
-
-.topbar .logo {
-
-    display: flex;
-    align-items: center;
-
-    gap: 10px;
-
-    height: 60px;
-
-    margin: 0;
-    padding: 0;
-
-    flex-shrink: 0;
-
-    position: relative;
-
-    z-index: 2;
-}
-
-
-/* Logo image */
-
-.topbar .logo img {
-
-    display: block;
-
-    width: 210px;
-    height: 58px;
-
-    max-width: 210px;
-    max-height: 58px;
-
-    object-fit: contain;
-    object-position: left center;
-
-    filter:
-        drop-shadow(
-            0 2px 5px rgba(0,0,0,.20)
-        );
-}
-
-
-/* =========================================================
-   WORSHIPHUB TEXT
-   ========================================================= */
-
-.topbar .logo-text {
-
-    font-size: 24px;
-
-    font-weight: 900;
-
-    letter-spacing: -.5px;
-
-    white-space: nowrap;
-
-    color: #FFFFFF;
-
-    text-shadow:
-        0 1px 3px rgba(0,0,0,.18);
+.logo::first-letter{
+    color:#a78bfa;
 }
 
 
 /* =========================================================
    TOP ACTIONS
-   ========================================================= */
+========================================================= */
 
-.topbar .top-actions {
+.top-actions{
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
+    align-items:center;
 
-    justify-content: flex-end;
-
-    gap: 9px;
-
-    margin-left: auto;
-
-    position: relative;
-
-    z-index: 2;
+    gap:10px;
 }
 
 
-/* =========================================================
-   SEARCH BOX
-   ========================================================= */
+/* Search */
 
-.topbar .top-actions input {
+.top-actions input{
 
-    width: 300px;
+    width:340px;
 
-    height: 42px;
+    height:42px;
 
-    padding: 0 16px;
+    padding:0 16px;
 
-    border: 1px solid
-        rgba(255,255,255,.20);
+    border:none;
 
-    border-radius: 12px;
+    outline:none;
 
-    outline: none;
+    border-radius:11px;
 
-    background:
-        rgba(255,255,255,.96);
+    background:rgba(255,255,255,.96);
 
-    color: #18332D;
+    color:#1e293b;
 
-    font-size: 14px;
+    font-size:14px;
+
+    transition:var(--transition);
 
     box-shadow:
-        0 3px 10px rgba(0,0,0,.10);
-
-    transition:
-        .25s ease;
+        0 2px 8px rgba(0,0,0,.08);
 }
 
+.top-actions input::placeholder{
 
-/* Placeholder */
-
-.topbar .top-actions input::placeholder {
-
-    color: #64748B;
+    color:#94a3b8;
 }
 
-
-/* Search focus */
-
-.topbar .top-actions input:focus {
-
-    background: #FFFFFF;
-
-    border-color:
-        #FACC15;
+.top-actions input:focus{
 
     box-shadow:
-        0 0 0 3px
-        rgba(250,204,21,.22),
-        0 4px 12px
-        rgba(0,0,0,.12);
+        0 0 0 3px rgba(167,139,250,.35);
 }
 
 
-/* =========================================================
-   HEADER BUTTONS
-   ========================================================= */
+/* Header Buttons */
 
-.topbar .top-actions button {
+.top-actions button{
 
-    width: 42px;
-    height: 42px;
+    height:42px;
 
-    min-width: 42px;
+    min-width:42px;
 
-    padding: 0;
+    padding:0 13px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border:1px solid rgba(255,255,255,.15);
 
-    border:
-        1px solid
-        rgba(255,255,255,.22);
+    border-radius:10px;
 
-    border-radius: 11px;
+    background:rgba(255,255,255,.10);
 
-    background:
-        rgba(255,255,255,.12);
+    color:#fff;
 
-    color: #FFFFFF;
+    cursor:pointer;
 
-    cursor: pointer;
+    transition:var(--transition);
 
-    backdrop-filter:
-        blur(8px);
-
-    -webkit-backdrop-filter:
-        blur(8px);
-
-    box-shadow:
-        0 3px 8px
-        rgba(0,0,0,.08);
-
-    transition:
-        .25s ease;
+    backdrop-filter:blur(10px);
 }
 
+.top-actions button:hover{
 
-/* Button hover */
+    background:rgba(255,255,255,.20);
 
-.topbar .top-actions button:hover {
-
-    background:
-        rgba(255,255,255,.22);
-
-    border-color:
-        rgba(255,255,255,.38);
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 6px 14px
-        rgba(0,0,0,.14);
-}
-
-
-/* Button active */
-
-.topbar .top-actions button:active {
-
-    transform:
-        translateY(0)
-        scale(.96);
-}
-
-
-/* =========================================================
-   GOLD ACTIVE / SPECIAL BUTTON
-   Add .gold to any top button if needed
-   ========================================================= */
-
-.topbar .top-actions button.gold {
-
-    background:
-        linear-gradient(
-            135deg,
-            #FACC15,
-            #EAB308
-        );
-
-    color:
-        #12372F;
-
-    border-color:
-        rgba(255,255,255,.25);
-
-    box-shadow:
-        0 4px 12px
-        rgba(250,204,21,.25);
-}
-
-.topbar .top-actions button.gold:hover {
-
-    background:
-        linear-gradient(
-            135deg,
-            #FDE047,
-            #FACC15
-        );
-
-    transform:
-        translateY(-2px);
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 750px) {
-
-    .topbar {
-
-        min-height: 68px;
-        height: auto;
-
-        padding: 8px 14px;
-
-        gap: 10px;
-
-        flex-wrap: nowrap;
-    }
-
-
-    .topbar .logo {
-
-        height: 50px;
-
-        flex-shrink: 1;
-
-        min-width: 0;
-    }
-
-
-    .topbar .logo img {
-
-        width: 170px;
-
-        height: 48px;
-
-        max-width: 170px;
-
-        max-height: 48px;
-    }
-
-
-    .topbar .logo-text {
-
-        font-size: 19px;
-    }
-
-
-    .topbar .top-actions {
-
-        gap: 6px;
-
-        flex-shrink: 0;
-    }
-
-
-    .topbar .top-actions input {
-
-        width: 170px;
-
-        height: 38px;
-
-        font-size: 13px;
-
-        padding: 0 12px;
-    }
-
-
-    .topbar .top-actions button {
-
-        width: 38px;
-
-        height: 38px;
-
-        min-width: 38px;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 500px) {
-
-    .topbar {
-
-        min-height: 62px;
-
-        padding:
-            7px 10px;
-    }
-
-
-    .topbar .logo img {
-
-        width: 145px;
-
-        height: 44px;
-
-        max-width: 145px;
-
-        max-height: 44px;
-    }
-
-
-    .topbar .logo-text {
-
-        display: none;
-    }
-
-
-    .topbar .top-actions {
-
-        gap: 5px;
-    }
-
-
-    .topbar .top-actions input {
-
-        width: 125px;
-
-        height: 36px;
-
-        font-size: 12px;
-    }
-
-
-    .topbar .top-actions button {
-
-        width: 36px;
-
-        height: 36px;
-
-        min-width: 36px;
-
-        border-radius: 9px;
-    }
-
-}
-
-
-/* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 380px) {
-
-    .topbar {
-
-        padding:
-            6px 8px;
-    }
-
-
-    .topbar .logo img {
-
-        width: 125px;
-
-        height: 40px;
-    }
-
-
-    .topbar .top-actions input {
-
-        width: 105px;
-    }
-
+    transform:translateY(-1px);
 }
 
 
@@ -790,7 +429,7 @@ body{
     transition:var(--transition);
 }
 
-.card::before {
+.card::before{
 
     content:"";
 
@@ -801,14 +440,13 @@ body{
 
     width:100%;
 
-    height:4px;
+    height:3px;
 
     background:
         linear-gradient(
             90deg,
-            #0F766E,
-            #14B8A6,
-            #FACC15
+            var(--primary),
+            var(--secondary)
         );
 }
 
@@ -2668,49 +2306,35 @@ body{
 
     gap: 0 !important;
 }
-/* ==========================================================
-   PRESENTATION CHORDS
-   SAME STYLE AS NORMAL HTML SONG
-   DO NOT CHANGE SPACING OR CHORD POSITION
-========================================================== */
 
-/* Presentation line
-   DO NOT override spacing from the song HTML */
+
+/* ==========================================================
+   PRESENTATION - LYRICS & CHORD SIZE
+   ========================================================== */
+
+/* Lyrics */
 #presentationLyrics .presentation-line {
     color: #FFFFFF !important;
-
-    font-family:
-        Consolas,
-        "Courier New",
-        monospace !important;
-
     font-size: 20px !important;
-
+    line-height: 1.10 !important;
+    margin: 0 !important;
+    padding: 0 !important;
     font-weight: 600;
-
-    white-space: pre-wrap !important;
+    letter-spacing: .1px;
 }
 
-
-/* ==========================================================
-   CHORD
-   ONLY CHANGE THE VISUAL APPEARANCE
-   DO NOT CHANGE ITS LOCATION OR SPACING
-========================================================== */
-
+/* Chords - larger than lyrics */
 #presentationLyrics .presentation-line .chord,
 #presentationLyrics .chord {
-
     color: #FFD54A !important;
 
-    font-family:
-        Consolas,
-        "Courier New",
-        monospace !important;
-
-    font-size: inherit !important;
+    font-size: 20px !important;
+    line-height: 1 !important;
 
     font-weight: 900 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
 
     text-shadow:
         0 1px 3px rgba(0,0,0,.65);
@@ -2718,48 +2342,9 @@ body{
 
 
 /* ==========================================================
-   IMPORTANT:
-   DO NOT SET:
-   
-   line-height
-   margin
-   padding
-   position
-   transform
-   vertical-align
-   display
-   
-   The HTML song's original CSS must control these.
-========================================================== */
-
-
-/* ==========================================================
-   PRESENTATION PASSING CHORDS
-   SAME GOLD CHORD COLOR
-========================================================== */
-
-.presentation-passing-value {
-    color: #FFD54A !important;
-    font-weight: 900 !important;
-    font-size: inherit !important;
-}
-
-
-/* ==========================================================
-   PRESERVE ORIGINAL LINE SPACING
-========================================================== */
-
-#presentationLyrics .presentation-line + .presentation-line {
-
-    margin-top: 0 !important;
-
-    padding-top: 0 !important;
-}
-
-
-/* ==========================================================
-   REMOVE EXTRA SPACING FROM CHILD ELEMENTS
-========================================================== */
+   LYRIC CHILD ELEMENTS
+   Remove unwanted margins from p/div/span
+   ========================================================== */
 
 #presentationLyrics .presentation-line p,
 #presentationLyrics .presentation-line div,
@@ -2776,28 +2361,34 @@ body{
 
 
 /* ==========================================================
-   LYRICS
-========================================================== */
+   ALL LYRIC TEXT
+   ========================================================== */
 
-#presentationLyrics .presentation-line {
+#presentationLyrics .presentation-line * {
+
     color: #FFFFFF !important;
 }
 
 
 /* ==========================================================
-   PRESENTATION PASSING CHORDS
-   GOLD — SAME CHORD COLOR
-========================================================== */
+   CHORDS
+   ========================================================== */
 
-.presentation-passing-value {
+#presentationLyrics .presentation-line .chord,
+#presentationLyrics .chord {
 
     color: #FFD54A !important;
 
     font-weight: 900 !important;
 
-    font-size: inherit !important;
+    line-height: 1 !important;
 
-    line-height: inherit !important;
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    text-shadow:
+        0 1px 3px rgba(0,0,0,.65);
 }
 
 
@@ -4280,81 +3871,53 @@ body.dark .service-body{
    HEADER
 ========================================================= */
 
-/* =========================================================
-   WORSHIPHUB TOP BAR
-   LIGHT LEFT → DARK RIGHT
-   ========================================================= */
-
 .topbar {
-
     height: 78px;
 
     width: 100%;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     padding: 0 24px;
 
-   color: #FFFFFF;
+    background: #064e3b;
 
-    position: sticky;
-
-    top: 0;
-
-    z-index: 5000;
+    color: #ffffff;
 
     box-shadow:
-        0 4px 18px rgba(3,45,37,.28);
+        0 3px 12px rgba(0, 0, 0, 0.15);
+
+    position: relative;
+
+    z-index: 1000;
 }
+
+
 /* =========================================================
    JFCM HEADER LOGO
 ========================================================= */
 
-/* =========================================================
-   LOGO - TOP LEFT
-   ========================================================= */
-
 .logo {
+    height: 68px;
 
     display: flex;
-
     align-items: center;
-
-    justify-content: flex-start;
-
-    gap: 10px;
-
-    height: 60px;
-
-    margin: 0;
-
-    padding: 0;
 
     flex-shrink: 0;
 }
 
 .logo img {
-
     display: block;
 
-    width: 210px;
+    width: 285px;
 
-    height: 58px;
+    height: auto;
 
-    max-height: 58px;
+    max-height: 68px;
 
     object-fit: contain;
-
-    object-position: left center;
-
-    filter:
-        drop-shadow(
-            0 2px 4px rgba(0,0,0,.20)
-        );
 }
 @media (max-width: 750px) {
 
@@ -4796,1167 +4359,5 @@ body.dark .service-body{
     backdrop-filter: blur(6px);
 
     -webkit-backdrop-filter: blur(6px);
-
-}
-
-/* ==========================================================
-   WORSHIPHUB BRAND / HEADER
-   ========================================================== */
-
-.wh-header {
-
-    width:100%;
-
-    padding:10px 24px;
-
-    display:flex;
-
-    align-items:center;    
-
-    border-bottom:
-        2px solid #FACC15;
-
-    box-shadow:
-        0 4px 15px rgba(6,78,59,.25);
-}
-
-.wh-brand {
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    text-decoration:none;
-
-    color:#FFFFFF;
-
-    font-size:25px;
-
-    font-weight:900;
-
-    letter-spacing:-.5px;
-}
-
-.wh-brand img {
-
-    width:44px;
-
-    height:44px;
-
-    object-fit:contain;
-}
-
-.wh-brand span {
-
-    background:
-        linear-gradient(
-            90deg,
-            #FFFFFF 0%,
-            #FFFFFF 45%,
-            #FACC15 100%
-        );
-
-    -webkit-background-clip:text;
-
-    -webkit-text-fill-color:transparent;
-
-    background-clip:text;
-}
-
-/* Hover */
-.wh-brand:hover span {
-    filter: brightness(1.15);
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-
-    .wh-header {
-        padding: 10px 16px;
-    }
-
-    .wh-brand {
-        font-size: 21px;
-        gap: 8px;
-    }
-
-    .wh-brand img {
-        width: 36px;
-        height: 36px;
-    }
-
-}
-
-/* =========================================================
-   WORSHIPHUB BRAND OVERRIDES
-   ========================================================= */
-
-/* Primary buttons */
-
-.open-song,
-#createService,
-.playlist-create button {
-
-    background:
-        linear-gradient(
-            135deg,
-            #0F766E,
-            #115E59
-        ) !important;
-}
-
-
-/* Purple / blue active buttons */
-
-.sidebar button.active {
-
-    background:
-        linear-gradient(
-            135deg,
-            #0F766E,
-            #14B8A6
-        ) !important;
-
-    box-shadow:
-        0 6px 16px rgba(15,118,110,.25) !important;
-}
-
-
-/* Active accents */
-
-.playlist-count {
-
-    background:
-        linear-gradient(
-            135deg,
-            #0F766E,
-            #14B8A6
-        ) !important;
-}
-
-
-/* Blue buttons */
-
-.open-btn,
-.open-song-btn {
-
-    background:#0F766E !important;
-}
-
-
-/* Hover */
-
-.open-song:hover,
-.open-song-btn:hover,
-.open-btn:hover {
-
-    background:#115E59 !important;
-}
-
-
-/* Inputs */
-
-.top-actions input:focus,
-.playlist-create input:focus,
-#serviceName:focus,
-#songPickerSearch:focus {
-
-    border-color:#0F766E !important;
-
-    box-shadow:
-        0 0 0 3px rgba(15,118,110,.12) !important;
-}
-
-
-/* Links */
-
-.all-song-title {
-
-    color:#0F766E !important;
-}
-
-
-/* Sidebar hover */
-
-.sidebar button:hover {
-
-    background:#E6F4F1 !important;
-
-    color:#0F766E !important;
-
-    border-color:#C7E7E0 !important;
-}
-
-/* =========================================================
-   WORSHIPHUB - LOGO TOP LEFT
-   ========================================================= */
-
-.topbar {
-    height: 78px;
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 24px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #063B32 0%,
-            #064E3B 50%,
-            #0F766E 100%
-        );
-
-    color: #fff;
-
-    position: sticky;
-    top: 0;
-
-    z-index: 5000;
-
-    box-shadow:
-        0 4px 16px rgba(6, 78, 59, .25);
-}
-
-
-/* =========================================================
-   LOGO - TOP LEFT
-   ========================================================= */
-
-.logo {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: flex-start;
-
-    gap: 10px;
-
-    height: 60px;
-
-    margin: 0;
-
-    padding: 0;
-
-    flex-shrink: 0;
-
-    position: relative;
-
-    left: 0;
-}
-
-
-.logo img {
-
-    display: block;
-
-    width: 210px;
-
-    height: 58px;
-
-    max-height: 58px;
-
-    object-fit: contain;
-
-    object-position: left center;
-}
-
-
-/* =========================================================
-   WORSHIPHUB TEXT BESIDE LOGO
-   ========================================================= */
-
-.logo-text {
-
-    font-size: 25px;
-
-    font-weight: 900;
-
-    letter-spacing: -.5px;
-
-    white-space: nowrap;
-
-    background:
-        linear-gradient(
-            90deg,
-            #FFFFFF 0%,
-            #FFFFFF 45%,
-            #FACC15 100%
-        );
-
-    -webkit-background-clip: text;
-
-    -webkit-text-fill-color: transparent;
-
-    background-clip: text;
-}
-
-
-/* =========================================================
-   TOP ACTIONS - RIGHT SIDE
-   ========================================================= */
-
-.top-actions {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: flex-end;
-
-    gap: 10px;
-
-    margin-left: auto;
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 750px) {
-
-    .topbar {
-
-        height: auto;
-
-        min-height: 70px;
-
-        padding: 8px 14px;
-
-        flex-wrap: nowrap;
-
-        gap: 10px;
-    }
-
-    .logo {
-
-        height: 50px;
-
-        flex-shrink: 0;
-    }
-
-    .logo img {
-
-        width: 170px;
-
-        height: 48px;
-
-        max-height: 48px;
-    }
-
-    .logo-text {
-
-        font-size: 20px;
-    }
-
-    .top-actions {
-
-        margin-left: auto;
-
-        flex-shrink: 1;
-    }
-}
-
-
-/* =========================================================
-   VERY SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 500px) {
-
-    .topbar {
-
-        padding: 7px 10px;
-    }
-
-    .logo img {
-
-        width: 145px;
-
-        height: 44px;
-    }
-
-    .logo-text {
-
-        display: none;
-    }
-
-    .top-actions {
-
-        gap: 5px;
-    }
-}
-
-/* ==========================================================
-   RESPONSIVE SONG PAGE
-   MOBILE → TABLET → DESKTOP → TV
-   ========================================================== */
-
-
-/* ==========================================================
-   GLOBAL RESPONSIVE SAFETY
-   ========================================================== */
-
-html,
-body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-
-/* ==========================================================
-   TOP HEADER
-   LIGHT LEFT → DARK RIGHT
-   LOGO TOP LEFT
-   ========================================================== */
-
-header,
-.top-header,
-.song-header,
-.navbar {
-    background: linear-gradient(
-        90deg,
-        #f5f5f5 0%,
-        #d8d8d8 22%,
-        #8a8a8a 55%,
-        #303030 100%
-    ) !important;
-}
-
-
-/* Logo always stays on the top-left */
-
-header img,
-.top-header img,
-.song-header img,
-.navbar-brand img,
-.logo {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-
-
-/* ==========================================================
-   DESKTOP / LAPTOP
-   ========================================================== */
-
-@media (min-width: 992px) {
-
-    #lyrics {
-        width: 100%;
-        max-width: 1400px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .song-line {
-        font-size: 22px;
-        line-height: 1.35;
-    }
-
-    .chord {
-        font-size: 22px;
-    }
-
-    .passing-chords-items {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 10px 18px;
-    }
-
-}
-
-
-/* ==========================================================
-   TABLET
-   768px – 991px
-   ========================================================== */
-
-@media (min-width: 768px) and (max-width: 991px) {
-
-    body {
-        font-size: 18px;
-    }
-
-    /* Header */
-
-    header,
-    .top-header,
-    .song-header,
-    .navbar {
-        min-height: 70px;
-    }
-
-    header img,
-    .top-header img,
-    .song-header img,
-    .navbar-brand img,
-    .logo {
-        max-height: 55px;
-        width: auto;
-    }
-
-    /* Main content */
-
-    #lyrics {
-        width: 96%;
-        margin: 0 auto;
-    }
-
-    .song-line {
-        font-size: 20px;
-        line-height: 1.3;
-    }
-
-    .chord {
-        font-size: 20px;
-    }
-
-    /* Passing chords */
-
-   #passingChords {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-
-    width: 100%;
-
-    background: rgba(20, 20, 20, 0.96);
-    backdrop-filter: blur(8px);
-
-    padding: 8px 12px;
-
-    overflow-x: auto;
-}
-
-.passing-chords-items {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    white-space: nowrap;
-}
-
-.passing-chord-item {
-    display: inline-flex;
-    align-items: center;
-    padding: 0 14px;
-}
-
-.passing-chord-item:not(:last-child)::after {
-    content: "|";
-    margin-left: 14px;
-    opacity: 0.5;
-}
-
-}
-
-
-/* ==========================================================
-   MOBILE
-   0 – 767px
-   ========================================================== */
-
-@media (max-width: 767px) {
-
-    html,
-    body {
-        width: 100%;
-        overflow-x: hidden;
-    }
-
-    /* ------------------------------------------
-       HEADER
-       ------------------------------------------ */
-
-    header,
-    .top-header,
-    .song-header,
-    .navbar {
-        width: 100%;
-        min-height: 60px;
-
-        background: linear-gradient(
-            90deg,
-            #f5f5f5 0%,
-            #cfcfcf 35%,
-            #666666 70%,
-            #222222 100%
-        ) !important;
-    }
-
-    /* Logo */
-
-    header img,
-    .top-header img,
-    .song-header img,
-    .navbar-brand img,
-    .logo {
-        max-width: 150px;
-        max-height: 48px;
-        width: auto;
-        height: auto;
-    }
-
-    /* ------------------------------------------
-       MAIN SONG AREA
-       ------------------------------------------ */
-
-    #lyrics {
-        width: 100%;
-        max-width: 100%;
-        padding-left: 10px;
-        padding-right: 10px;
-        margin: 0 auto;
-    }
-
-    .song {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .song-section {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    /* ------------------------------------------
-       LYRICS
-       ------------------------------------------ */
-
-    .song-line {
-        font-size: 18px;
-        line-height: 1.3;
-        white-space: normal;
-        overflow-wrap: anywhere;
-        word-break: normal;
-    }
-
-    .chord {
-        font-size: 18px;
-        font-weight: 800;
-    }
-
-    /* ------------------------------------------
-       SECTION TITLES
-       ------------------------------------------ */
-
-    .section-title {
-        font-size: 16px;
-        margin-top: 10px;
-        margin-bottom: 4px;
-    }
-
-    /* ------------------------------------------
-       PASSING CHORDS
-       ------------------------------------------ */
-
-    #passingChords {
-        width: calc(100% - 16px);
-        max-width: none;
-        margin: 8px auto;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .passing-chords-items {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        gap: 8px;
-        overflow-x: auto;
-        padding: 5px 2px;
-    }
-
-    .passing-chord-item {
-        flex: 0 0 auto;
-        white-space: nowrap;
-        font-size: 12px;
-    }
-
-    .passing-chords-title {
-        font-size: 13px;
-    }
-
-}
-
-
-/* ==========================================================
-   SMALL PHONES
-   0 – 480px
-   ========================================================== */
-
-@media (max-width: 480px) {
-
-    header,
-    .top-header,
-    .song-header,
-    .navbar {
-        min-height: 55px;
-    }
-
-    header img,
-    .top-header img,
-    .song-header img,
-    .navbar-brand img,
-    .logo {
-        max-width: 125px;
-        max-height: 42px;
-    }
-
-    #lyrics {
-        padding-left: 7px;
-        padding-right: 7px;
-    }
-
-    .song-line {
-        font-size: 16px;
-        line-height: 1.25;
-    }
-
-    .chord {
-        font-size: 16px;
-    }
-
-    .section-title {
-        font-size: 14px;
-    }
-
-    .passing-chord-item {
-        font-size: 11px;
-    }
-
-}
-
-
-/* ==========================================================
-   LARGE DESKTOP
-   1400px+
-   ========================================================== */
-
-@media (min-width: 1400px) {
-
-    #lyrics {
-        max-width: 1500px;
-    }
-
-    .song-line {
-        font-size: 24px;
-        line-height: 1.4;
-    }
-
-    .chord {
-        font-size: 24px;
-    }
-
-}
-
-
-/* ==========================================================
-   TV / LARGE PRESENTATION SCREEN
-   1920px+
-   ========================================================== */
-
-@media (min-width: 1920px) {
-
-    #lyrics {
-        max-width: 1800px;
-    }
-
-    .song-line {
-        font-size: 30px;
-        line-height: 1.45;
-    }
-
-    .chord {
-        font-size: 30px;
-        font-weight: 900;
-    }
-
-}
-
-
-/* ==========================================================
-   VERY LARGE TV
-   2560px+
-   ========================================================== */
-
-@media (min-width: 2560px) {
-
-    #lyrics {
-        max-width: 2200px;
-    }
-
-    .song-line {
-        font-size: 36px;
-        line-height: 1.5;
-    }
-
-    .chord {
-        font-size: 36px;
-    }
-
-}
-/* ==========================================================
-   WORSHIPHUB SONG PAGE - RESPONSIVE FIX
-   ========================================================== */
-
-/* Prevent horizontal overflow */
-html,
-body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-/* Make all elements respect the viewport */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-/* Main page containers */
-main,
-.container,
-.container-fluid,
-.song-container,
-.song-page,
-.song-content {
-    width: 100%;
-    max-width: 100%;
-}
-
-/* ==========================================================
-   SONG HEADER
-   ========================================================== */
-
-.song-header,
-.song-header-inner {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-.song-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-/* ==========================================================
-   LYRICS CONTAINER
-   ========================================================== */
-
-#lyrics {
-    width: 100%;
-    max-width: 1500px;
-    margin-left: auto;
-    margin-right: auto;
-
-    padding-left: 15px;
-    padding-right: 15px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-/* ==========================================================
-   SONG SECTIONS
-   ========================================================== */
-
-.song-section,
-.lyrics-section,
-.section {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-/* ==========================================================
-   SONG LINES
-   ========================================================== */
-
-.song-line {
-    width: 100%;
-    max-width: 100%;
-
-    white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: normal;
-
-    line-height: 1.35;
-}
-
-/* Chords must not force the page wider */
-.chord {
-    max-width: 100%;
-    white-space: normal;
-    overflow-wrap: anywhere;
-}
-
-/* ==========================================================
-   PASSING CHORDS
-   ========================================================== */
-
-.passing-chords,
-.passing-chord-container,
-.passing-chords-container {
-    max-width: 100%;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-
-.passing-chord-item {
-    white-space: normal;
-    flex-shrink: 1;
-}
-
-/* ==========================================================
-   IMAGES
-   ========================================================== */
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* ==========================================================
-   BUTTONS / CONTROLS
-   ========================================================== */
-
-button,
-.btn,
-select,
-input {
-    max-width: 100%;
-}
-
-/* ==========================================================
-   TABLET
-   481px - 991px
-   ========================================================== */
-
-@media (max-width: 991px) {
-
-    #lyrics {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
-    .song-line {
-        font-size: 18px;
-        line-height: 1.3;
-    }
-
-    .chord {
-        font-size: 18px;
-    }
-
-}
-
-
-/* ==========================================================
-   MOBILE
-   480px AND BELOW
-   ========================================================== */
-
-@media (max-width: 480px) {
-
-    html,
-    body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-
-    header,
-    .top-header,
-    .song-header,
-    .navbar {
-        width: 100%;
-        max-width: 100%;
-        min-height: 55px;
-        overflow: hidden;
-    }
-
-    header img,
-    .top-header img,
-    .song-header img,
-    .navbar-brand img,
-    .logo {
-        max-width: 125px;
-        max-height: 42px;
-        width: auto;
-        height: auto;
-    }
-
-    #lyrics {
-        width: 100%;
-        max-width: 100%;
-        padding-left: 7px;
-        padding-right: 7px;
-        margin: 0;
-    }
-
-    .song-line {
-        width: 100%;
-        max-width: 100%;
-        font-size: 16px;
-        line-height: 1.25;
-        white-space: normal;
-        overflow-wrap: anywhere;
-    }
-
-    .chord {
-        font-size: 16px;
-        max-width: 100%;
-        overflow-wrap: anywhere;
-    }
-
-    .section-title {
-        font-size: 14px;
-        max-width: 100%;
-    }
-
-    .passing-chord-item {
-        font-size: 11px;
-    }
-
-    /* Prevent long song titles from pushing layout */
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        max-width: 100%;
-        overflow-wrap: anywhere;
-    }
-
-    /* Controls can wrap instead of overflowing */
-    .song-controls,
-    .controls,
-    .toolbar,
-    .action-buttons {
-        width: 100%;
-        max-width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-    }
-
-}
-
-
-/* ==========================================================
-   VERY SMALL PHONES
-   360px AND BELOW
-   ========================================================== */
-
-@media (max-width: 360px) {
-
-    #lyrics {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-
-    .song-line {
-        font-size: 14px;
-        line-height: 1.2;
-    }
-
-    .chord {
-        font-size: 14px;
-    }
-
-    .section-title {
-        font-size: 13px;
-    }
-
-    .passing-chord-item {
-        font-size: 10px;
-    }
-
-}
-
-
-/* ==========================================================
-   LARGE DESKTOP
-   ========================================================== */
-
-@media (min-width: 1400px) {
-
-    #lyrics {
-        max-width: 1500px;
-    }
-
-    .song-line {
-        font-size: 24px;
-        line-height: 1.4;
-    }
-
-    .chord {
-        font-size: 24px;
-    }
-
-}
-
-
-/* ==========================================================
-   TV / LARGE PRESENTATION
-   ========================================================== */
-
-@media (min-width: 1920px) {
-
-    #lyrics {
-        max-width: 1800px;
-    }
-
-    .song-line {
-        font-size: 30px;
-        line-height: 1.45;
-    }
-
-    .chord {
-        font-size: 30px;
-        font-weight: 900;
-    }
-
-}
-
-
-/* ==========================================================
-   VERY LARGE TV
-   ========================================================== */
-
-@media (min-width: 2560px) {
-
-    #lyrics {
-        max-width: 2200px;
-    }
-
-    .song-line {
-        font-size: 36px;
-        line-height: 1.5;
-    }
-
-    .chord {
-        font-size: 36px;
-    }
 
 }
