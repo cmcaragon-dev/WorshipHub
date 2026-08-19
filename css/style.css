@@ -3952,3 +3952,211 @@ body.dark .service-body{
         max-height: 48px;
     }
 }
+
+/* ==========================================================
+   PASSING CHORDS - SONG PAGE
+   ========================================================== */
+
+#passingChords,
+#songEnding {
+    width: 100%;
+    box-sizing: border-box;
+
+    margin: 8px 0 12px 0;
+    padding: 7px 10px;
+
+    border-radius: 6px;
+
+    background: rgba(128, 128, 128, 0.08);
+    border: 1px solid rgba(128, 128, 128, 0.20);
+
+    font-size: 13px;
+    line-height: 1.3;
+}
+
+
+/* ----------------------------------------------------------
+   TITLE
+   ---------------------------------------------------------- */
+
+.passing-chords-title {
+    display: inline-block;
+
+    margin-right: 14px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    opacity: 0.75;
+}
+
+
+/* ----------------------------------------------------------
+   HORIZONTAL ITEMS
+   ---------------------------------------------------------- */
+
+.passing-chords-items {
+    display: inline-flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 5px 18px;
+}
+
+
+.passing-chord-item {
+    display: inline-flex;
+
+    align-items: center;
+
+    white-space: nowrap;
+}
+
+
+.passing-label {
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+
+.passing-value {
+    font-weight: 600;
+}
+
+
+/* ==========================================================
+   PRESENTATION PASSING CHORDS
+   ========================================================== */
+
+.presentation-passing-chords {
+
+    width: 100%;
+    box-sizing: border-box;
+
+    margin: 0 0 12px 0;
+
+    padding: 7px 12px;
+
+    border-radius: 5px;
+
+    background: rgba(0, 0, 0, 0.28);
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.18);
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    line-height: 1.3;
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+
+/* ----------------------------------------------------------
+   PRESENTATION TITLE
+   ---------------------------------------------------------- */
+
+.presentation-passing-title {
+
+    display: inline-block;
+
+    margin-right: 14px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    opacity: 0.75;
+}
+
+
+/* ----------------------------------------------------------
+   PRESENTATION ITEMS
+   ---------------------------------------------------------- */
+
+.presentation-passing-items {
+
+    display: inline-flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px 18px;
+}
+
+
+.presentation-passing-item {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    white-space: nowrap;
+}
+
+
+.presentation-passing-label {
+
+    font-weight: 700;
+
+    margin-right: 4px;
+}
+
+
+.presentation-passing-value {
+
+    font-weight: 700;
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 900px) {
+
+    #passingChords,
+    #songEnding {
+
+        font-size: 12px;
+
+    }
+
+    .passing-chords-title,
+    .presentation-passing-title {
+
+        display: block;
+
+        margin-right: 0;
+
+        margin-bottom: 4px;
+
+    }
+
+    .passing-chords-items,
+    .presentation-passing-items {
+
+        display: flex;
+
+        justify-content: center;
+
+        gap: 4px 12px;
+
+    }
+
+}
