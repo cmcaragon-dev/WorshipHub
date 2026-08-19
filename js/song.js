@@ -1233,37 +1233,51 @@ async transpose(step) {
     }
 },
 
-
 // ======================================================
 // CURRENT KEY
 // ======================================================
 
 getKey() {
 
-const song =
-    window.currentSong;
+    const song =
+        window.currentSong;
 
-if (!song) {
-    return "";
-}
+    if (!song) {
+        return "";
+    }
 
-// Service Key should have priority
-const baseKey =
-    song.serviceKey ||
-    song.key ||
-    song.originalKey;
+    /*
+     * ORIGINAL KEY is the permanent base.
+     *
+     * SERVICE KEY is the selected key for the
+     * current service.
+     */
 
-if (!baseKey) {
-    return "";
-}
+    const baseKey =
+        song.serviceKey ||
+        song.originalKey ||
+        song.key;
 
-return getTransposedKey(
-    baseKey,
-    Math.round(
-        App.transpose * 2
-    )
-);
+    if (!baseKey) {
+        return "";
+    }
 
+    /*
+     * App.transpose is stored in half-semitone units:
+     *
+     * +0.5 = +1 semitone
+     * +1.0 = +2 semitones
+     */
+
+    const steps =
+        Math.round(
+            Number(App.transpose || 0) * 2
+        );
+
+    return getTransposedKey(
+        baseKey,
+        steps
+    );
 },
 
 // ======================================================
