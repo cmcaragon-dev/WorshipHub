@@ -1,42 +1,47 @@
-/* =========================================================
-   JFCM SONGS ORGANIZER
-   MODERN UI DESIGN
-   Existing IDs / Classes preserved
-========================================================= */
-
 :root{
 
-    --primary:#6c5ce7;
-    --primary-dark:#5546d6;
-    --secondary:#4f8cff;
+    /* =====================================================
+       WORSHIPHUB BRAND COLORS
+       ===================================================== */
 
-    --success:#22c55e;
-    --warning:#f59e0b;
-    --danger:#ef4444;
+    --primary:#0F766E;          /* Logo Teal */
+    --primary-dark:#115E59;     /* Dark Teal */
+    --secondary:#14B8A6;        /* Bright Teal */
 
-    --dark:#172033;
-    --dark-2:#243047;
+    --accent:#FACC15;           /* Logo Gold */
+    --accent-dark:#EAB308;      /* Dark Gold */
 
-    --text:#1e293b;
-    --muted:#64748b;
+    --success:#22C55E;
+    --warning:#F59E0B;
+    --danger:#EF4444;
 
-    --background:#f4f7fb;
-    --surface:#ffffff;
-    --surface-2:#f8fafc;
+    --dark:#12372F;
+    --dark-2:#1A4A40;
 
-    --border:#e5eaf1;
+    --text:#18332D;
+    --muted:#64748B;
+
+    --background:#F4F9F7;
+    --surface:#FFFFFF;
+    --surface-2:#F0F7F5;
+
+    --border:#D9E8E3;
 
     --radius-sm:8px;
     --radius-md:12px;
     --radius-lg:18px;
 
-    --shadow-sm:0 2px 8px rgba(15,23,42,.05);
-    --shadow-md:0 8px 25px rgba(15,23,42,.08);
-    --shadow-lg:0 18px 45px rgba(15,23,42,.15);
+    --shadow-sm:
+        0 2px 8px rgba(15,118,110,.06);
+
+    --shadow-md:
+        0 8px 25px rgba(15,118,110,.10);
+
+    --shadow-lg:
+        0 18px 45px rgba(15,118,110,.16);
 
     --transition:.25s ease;
 }
-
 
 /* =========================================================
    GLOBAL
@@ -429,7 +434,7 @@ body{
     transition:var(--transition);
 }
 
-.card::before{
+.card::before {
 
     content:"";
 
@@ -440,13 +445,14 @@ body{
 
     width:100%;
 
-    height:3px;
+    height:4px;
 
     background:
         linear-gradient(
             90deg,
-            var(--primary),
-            var(--secondary)
+            #0F766E,
+            #14B8A6,
+            #FACC15
         );
 }
 
@@ -3872,29 +3878,59 @@ body.dark .service-body{
 ========================================================= */
 
 .topbar {
-    height: 78px;
 
-    width: 100%;
+    height:78px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    width:100%;
 
-    padding: 0 24px;
+    display:flex;
 
-    background: #064e3b;
+    align-items:center;
 
-    color: #ffffff;
+    justify-content:space-between;
+
+    padding:0 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #064E3B 0%,
+            #0F766E 55%,
+            #115E59 100%
+        );
+
+    color:#FFFFFF;
 
     box-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.15);
+        0 4px 16px rgba(6,78,59,.25);
 
-    position: relative;
+    position:relative;
 
-    z-index: 1000;
+    z-index:1000;
 }
 
+.logo-text {
 
+    font-size:25px;
+
+    font-weight:900;
+
+    letter-spacing:-.5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #FFFFFF 0%,
+            #FFFFFF 45%,
+            #FACC15 100%
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    background-clip:text;
+}
 /* =========================================================
    JFCM HEADER LOGO
 ========================================================= */
@@ -4367,37 +4403,73 @@ body.dark .service-body{
    ========================================================== */
 
 .wh-header {
-    width: 100%;
-    padding: 12px 24px;
-    display: flex;
-    align-items: center;
-    background: #111827;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    width:100%;
+
+    padding:10px 24px;
+
+    display:flex;
+
+    align-items:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #063B32,
+            #064E3B,
+            #0F766E
+        );
+
+    border-bottom:
+        2px solid #FACC15;
+
+    box-shadow:
+        0 4px 15px rgba(6,78,59,.25);
 }
 
 .wh-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 25px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    text-decoration:none;
+
+    color:#FFFFFF;
+
+    font-size:25px;
+
+    font-weight:900;
+
+    letter-spacing:-.5px;
 }
 
 .wh-brand img {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-    display: block;
+
+    width:44px;
+
+    height:44px;
+
+    object-fit:contain;
 }
 
 .wh-brand span {
-    background: linear-gradient(90deg, #ffffff, #facc15);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+
+    background:
+        linear-gradient(
+            90deg,
+            #FFFFFF 0%,
+            #FFFFFF 45%,
+            #FACC15 100%
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    background-clip:text;
 }
 
 /* Hover */
@@ -4422,4 +4494,104 @@ body.dark .service-body{
         height: 36px;
     }
 
+}
+
+/* =========================================================
+   WORSHIPHUB BRAND OVERRIDES
+   ========================================================= */
+
+/* Primary buttons */
+
+.open-song,
+#createService,
+.playlist-create button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #0F766E,
+            #115E59
+        ) !important;
+}
+
+
+/* Purple / blue active buttons */
+
+.sidebar button.active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #0F766E,
+            #14B8A6
+        ) !important;
+
+    box-shadow:
+        0 6px 16px rgba(15,118,110,.25) !important;
+}
+
+
+/* Active accents */
+
+.playlist-count {
+
+    background:
+        linear-gradient(
+            135deg,
+            #0F766E,
+            #14B8A6
+        ) !important;
+}
+
+
+/* Blue buttons */
+
+.open-btn,
+.open-song-btn {
+
+    background:#0F766E !important;
+}
+
+
+/* Hover */
+
+.open-song:hover,
+.open-song-btn:hover,
+.open-btn:hover {
+
+    background:#115E59 !important;
+}
+
+
+/* Inputs */
+
+.top-actions input:focus,
+.playlist-create input:focus,
+#serviceName:focus,
+#songPickerSearch:focus {
+
+    border-color:#0F766E !important;
+
+    box-shadow:
+        0 0 0 3px rgba(15,118,110,.12) !important;
+}
+
+
+/* Links */
+
+.all-song-title {
+
+    color:#0F766E !important;
+}
+
+
+/* Sidebar hover */
+
+.sidebar button:hover {
+
+    background:#E6F4F1 !important;
+
+    color:#0F766E !important;
+
+    border-color:#C7E7E0 !important;
 }
