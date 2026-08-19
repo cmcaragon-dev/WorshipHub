@@ -364,7 +364,7 @@ title: "Papuri Kay Yahweh",
         category: "Praise",
         language: "Tagalog",
         file: "songs/papurikayyahweh.html"
-	}
+	},
 	{id:44,        
 title: "Diyos Ka Sa Amin",
         artist: "Hope Filipino Worship",
