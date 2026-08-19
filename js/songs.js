@@ -340,6 +340,22 @@ title: "Wala Kang Katulad",
         category: "Worship",
         language: "Tagalog",
         file: "songs/walakangkatulad.html"
+	},
+	{id:41,        
+title: "I Sing Praises To Your Name",
+        artist: "Terry Macalmon",
+        key: "G",
+        category: "Worship",
+        language: "English",
+        file: "songs/isingpraises.html"
+	},
+	{id:42,        
+title: "Ngalan Mo'y Itataas",
+        artist: "Terry Macalmon",
+        key: "G",
+        category: "Worship",
+        language: "Tagalog",
+        file: "songs/ngalanmoyitataas.html"
 	}
 ];
 songs.sort((a, b) =>
