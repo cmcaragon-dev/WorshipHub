@@ -614,7 +614,7 @@ function getPassingChords(song) {
         getTransposedKey(key, 7);
 
     const lastThree =
-        getTransposedKey(key, 10) + "m";
+        getTransposedKey(key, 9) + "m";
 
     const outroFive =
         getTransposedKey(key, 5);
