@@ -347,12 +347,11 @@ async init() {
 
     await Service.restoreTranspose();
 
-    Service.updateKeyDisplay();
+Service.updateKeyDisplay();
 
-    Service.updateGuide();
+await Service.updateGuide();
 
-    Service.updateProgress();
-},
+Service.updateProgress();
 
 // ------------------------------------------------------
 // CACHE DOM
@@ -1304,14 +1303,61 @@ updateKeyDisplay() {
 // UPDATE PASSING CHORDS
 // ======================================================
 
-updateGuide() {
+async updateGuide() {
 
-    const song =
+    // ==================================================
+    // GET CURRENT SONG
+    // ==================================================
+
+    let song =
         window.currentSong;
 
+    // --------------------------------------------------
+    // IF CURRENT SONG IS NOT YET AVAILABLE,
+    // GET IT FROM THE ACTIVE SERVICE
+    // --------------------------------------------------
+
     if (!song) {
+
+        try {
+
+            song =
+                await this.getCurrentSong();
+
+            if (song) {
+
+                window.currentSong =
+                    song;
+
+            }
+
+        }
+        catch (error) {
+
+            console.warn(
+                "Unable to get current song for passing chords:",
+                error
+            );
+
+        }
+    }
+
+    // --------------------------------------------------
+    // STILL NO SONG
+    // --------------------------------------------------
+
+    if (!song) {
+
+        console.warn(
+            "PASSING CHORDS: No current song available."
+        );
+
         return;
     }
+
+    // ==================================================
+    // BUILD PASSING CHORDS
+    // ==================================================
 
     const passing =
         getPassingChords(song);
@@ -1320,21 +1366,14 @@ updateGuide() {
         return;
     }
 
-    /*
-     * --------------------------------------------------
-     * SONG PAGE
-     * --------------------------------------------------
-     */
+    // ==================================================
+    // SONG PAGE
+    // ==================================================
 
     let guide =
         document.getElementById(
             "passingChords"
         );
-
-    /*
-     * If #songEnding already exists, use it.
-     * Otherwise create the passing-chords container.
-     */
 
     if (!guide) {
 
@@ -1367,11 +1406,9 @@ updateGuide() {
         }
     }
 
-    /*
-     * --------------------------------------------------
-     * BUILD HORIZONTAL GUIDE
-     * --------------------------------------------------
-     */
+    // ==================================================
+    // BUILD HORIZONTAL GUIDE
+    // ==================================================
 
     guide.innerHTML = `
 
@@ -1382,47 +1419,71 @@ updateGuide() {
         <div class="passing-chords-items">
 
             <div class="passing-chord-item">
+
                 <span class="passing-label">
                     RETURN TO VERSE 1:
                 </span>
+
                 <span class="passing-value">
                     ${passing.returnToVerse}
                 </span>
+
             </div>
 
             <div class="passing-chord-item">
+
                 <span class="passing-label">
                     LAST 3:
                 </span>
+
                 <span class="passing-value">
                     ${passing.lastThree}
                 </span>
+
             </div>
 
-            <div class="passing-chord-item">
-                <span class="passing-label">
-                    OUTRO:
-                </span>
-                <span class="passing-value">
-                    ${passing.outro}
-                </span>
-            </div>
+            ${
+                passing.outro
+                    ? `
+                    <div class="passing-chord-item">
 
-            <div class="passing-chord-item">
-                <span class="passing-label">
-                    SINGING IN THE SPIRIT:
-                </span>
-                <span class="passing-value">
-                    ${passing.spirit}
-                </span>
-            </div>
+                        <span class="passing-label">
+                            OUTRO:
+                        </span>
+
+                        <span class="passing-value">
+                            ${passing.outro}
+                        </span>
+
+                    </div>
+                    `
+                    : ""
+            }
+
+            ${
+                passing.spirit
+                    ? `
+                    <div class="passing-chord-item">
+
+                        <span class="passing-label">
+                            SINGING IN THE SPIRIT:
+                        </span>
+
+                        <span class="passing-value">
+                            ${passing.spirit}
+                        </span>
+
+                    </div>
+                    `
+                    : ""
+            }
 
         </div>
     `;
 
-    /*
-     * Keep old #songEnding synchronized if it exists.
-     */
+    // ==================================================
+    // KEEP OLD SONG ENDING SYNCHRONIZED
+    // ==================================================
 
     if (App.songEnding) {
 
@@ -1430,11 +1491,9 @@ updateGuide() {
             guide.innerHTML;
     }
 
-    /*
-     * --------------------------------------------------
-     * PRESENTATION PASSING CHORDS
-     * --------------------------------------------------
-     */
+    // ==================================================
+    // PRESENTATION
+    // ==================================================
 
     Presentation.updatePassingChords();
 
@@ -2993,3 +3052,25 @@ window.addEventListener("afterprint", function () {
 document.body.classList.remove("print-one-page");
 
 });
+
+async function refreshPassingChords() {
+
+    console.log(
+        "REFRESHING PASSING CHORDS"
+    );
+
+    try {
+
+        await Service.updateGuide();
+
+    }
+    catch (error) {
+
+        console.error(
+            "PASSING CHORD REFRESH ERROR:",
+            error
+        );
+
+    }
+
+}
