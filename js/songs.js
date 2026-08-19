@@ -332,6 +332,14 @@ title: "Itatanghal",
         category: "Worship",
         language: "Tagalog",
         file: "songs/itatanghal.html"
+	},
+	{id:40,        
+title: "Wala Kang Katulad",
+        artist: "Faith Music Manila",
+        key: "D",
+        category: "Worship",
+        language: "Tagalog",
+        file: "songs/walakangkatulad.html"
 	}
 ];
 songs.sort((a, b) =>
