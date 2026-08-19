@@ -2127,56 +2127,169 @@ body{
     pointer-events:none;
 }
 
-
-/* =========================================================
-   WORSHIP / SONG DISPLAY
-========================================================= */
+/*==================================================
+SONG CONTAINER
+==================================================*/
 
 .song-container{
+    max-width:1800px;
+
+    margin:25px auto;
 
     background:#fff;
 
-    border-radius:18px;
+    padding:25px 30px;
 
-    box-shadow:var(--shadow-md);
+    border-radius:15px;
 
-    border:1px solid var(--border);
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
 
-/* Compact lyrics */
+/*==================================================
+CONTINUOUS 3-COLUMN SONG FLOW
+==================================================*/
+
+.song{
+
+    /*
+     * ONE continuous document
+     * flowing from column 1 → 2 → 3
+     */
+    column-count:3;
+
+    column-gap:30px;
+
+    column-fill:auto;
+
+    /*
+     * Height available for the page.
+     */
+    height:calc(100vh - 260px);
+
+    overflow:hidden;
+}
+
+
+/*==================================================
+SONG SECTION
+==================================================*/
+
+.song-section{
+
+    display:block;
+
+    background:#fafafa;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    padding:14px;
+
+    margin:0 0 15px 0;
+
+    /*
+     * Keep Verse / Chorus / Bridge together
+     * whenever there is enough room.
+     */
+    break-inside:avoid;
+
+    page-break-inside:avoid;
+}
+
+
+/*==================================================
+SECTION TITLE
+==================================================*/
+
+.section-title{
+
+    background:#2c3e50;
+
+    color:#fff;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    padding:7px 10px;
+
+    border-radius:7px;
+
+    margin-bottom:10px;
+
+    letter-spacing:1px;
+
+}
+
+
+/*==================================================
+LYRICS
+==================================================*/
 
 .song-line{
 
-    margin:0 !important;
-
-    padding:0 !important;
-
-    line-height:.88 !important;
-
-    font-family:
-        Consolas,
-        "Courier New",
-        monospace;
-
-    font-size:20px;
-
-    white-space:pre-wrap;
-}
-
-.song-line p,
-.song-section p{
-
-    margin:0;
+    margin:0 0 7px 0;
 
     padding:0;
 
-    line-height:.88;
+    font-family:Consolas, monospace;
+
+    font-size:20px;
+
+    line-height:1.25;
+
+    white-space:pre-wrap;
+
 }
 
-.song-line + .song-line{
 
-    margin-top:-5px;
+/*==================================================
+CHORDS
+==================================================*/
+
+.chord{
+
+    color:#ffd54a;
+
+    font-weight:bold;
+
+    line-height:1;
+
+    margin-bottom:-3px;
+
+}
+
+
+/*==================================================
+DARK MODE
+==================================================*/
+
+.dark .song{
+
+    background:#222;
+
+}
+
+.dark .song-section{
+
+    background:#2a2a2a;
+
+    border-color:#555;
+
+}
+
+.dark .section-title{
+
+    background:#444;
+
+}
+
+.dark .song-line{
+
+    color:#fff;
+
 }
 /* ==========================================================
    PRESENTATION MODE - HIGH VISIBILITY / WORSHIP SCREEN
