@@ -356,6 +356,14 @@ title: "Ngalan Mo'y Itataas",
         category: "Worship",
         language: "Tagalog",
         file: "songs/ngalanmoyitataas.html"
+	},
+	{id:43,        
+title: "Papuri Kay Yahweh",
+        artist: "Hope Filipino Worship",
+        key: "E",
+        category: "Praise",
+        language: "Tagalog",
+        file: "songs/papurikayyahweh.html"
 	}
 ];
 songs.sort((a, b) =>
