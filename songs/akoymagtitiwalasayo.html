@@ -165,14 +165,13 @@ LYRICS GRID
 ==================================================*/
 
 .song{
-    column-count:3;
-    column-gap:30px;
-    column-fill:auto;
 
-    /* Available height for ONE PAGE */
-    height:calc(100vh - 260px);
+    display:grid;
 
-    overflow:hidden;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
 }
 
 /*==================================================
@@ -180,22 +179,23 @@ SONG SECTION
 ==================================================*/
 
 .song-section{
-    display:block;
 
     border:1px solid #ddd;
+
     border-radius:12px;
-    padding:14px;
+
+    padding:18px;
 
     background:#fafafa;
 
-    margin-bottom:15px;
+    min-height:340px;
 
-    /*
-     * Prevent a section from being split
-     * between columns whenever possible.
-     */
-    break-inside:avoid;
-    page-break-inside:avoid;
+}
+
+.song-section:hover{
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
 }
 
 /*==================================================
@@ -203,20 +203,23 @@ SECTION TITLE
 ==================================================*/
 
 .section-title{
+
     background:#2c3e50;
+
     color:white;
 
     text-align:center;
 
     font-weight:bold;
 
-    padding:7px;
+    padding:10px;
 
-    border-radius:7px;
+    border-radius:8px;
 
-    margin-bottom:10px;
+    margin-bottom:18px;
 
     letter-spacing:1px;
+
 }
 
 /*==================================================
@@ -224,16 +227,19 @@ LYRICS
 ==================================================*/
 
 .song-line{
-    margin:0 0 7px 0;
+
+    margin-bottom:15px;
 
     font-family:Consolas, monospace;
 
     font-size:20px;
 
-    line-height:1.25;
+    line-height:1.8;
 
     white-space:pre-wrap;
+
 }
+
 /*==================================================
 CHORDS
 ==================================================*/
@@ -368,29 +374,47 @@ DARK MODE
 <div class="song-container">
 <div id="lyrics" class="song">
 
+    <!-- ================================================= -->
+    <!-- PASSING CHORDS -->
+    <!-- ================================================= -->
+<div class="song-section">
+<div class="section-title">PASSING CHORDS</div>
+<div class="song-line">
+
+
+
+LAST (3): <span class="chord">Bm</span>
+
+RETURN TO VERSE: <span class="chord">A</span>
+
+OUTRO/ENDING: <span class="chord">G - Gm - D</span>
+
+SINGING IN THE SPIRIT: <span class="chord">D - G</span></div>
+</div>  
+
 <!-- ================================================= -->
 <!-- VERSE -->
 <!-- ================================================= -->
 <div class="song-section">
     <div class="section-title">VERSE</div>
-   <div class="song-line">
+    <div class="song-line">
 INTRO: <span class="chord"> D - F#m - G - Em - A</span>   </div>
     <div class="song-line">
         <span class="chord">
 D                      F#m      Bm</span>
 Ako’y nagtitiwala sa Iyo    </div>
- <div class="song-line">
+    <div class="song-line">
         <span class="chord">
       G                Em         A</span>
 Kalakasan ko’y nanggagaling sa Iyo    </div>
- <div class="song-line">
+    <div class="song-line">
         <span class="chord">
 D                      F#m       Bm</span>
 Ako’y nagtitiwala sa Iyo    </div>
- <div class="song-line">
+    <div class="song-line">
         <span class="chord">
        G                 Em       A</span>
-Salita Mo ang tanging sandigan ko</div>
+Salita Mo ang tanging sandigan ko    </div>
 </div>
 <!-- ================================================= -->
 <!-- CHORUS -->
