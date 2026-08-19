@@ -316,6 +316,14 @@ title: "Mga Pangako Mo",
         category: "Worship",
         language: "Tagalog",
         file: "songs/mgapangakomo.html"
+	},
+	{id:38,        
+title: "Ako'y Nananabik",
+        artist: "Spring Worship",
+        key: "E",
+        category: "Praise",
+        language: "Tagalog",
+        file: "songs/akoynananabik.html"
 	}
 ];
 songs.sort((a, b) =>
