@@ -1412,7 +1412,9 @@ async updateGuide() {
     // ==================================================
 
     guide.innerHTML = `
-
+<span class="passing-chords-title">
+                    PASSING CHORDS: 
+                </span>
        
 
         <div class="passing-chords-items">
