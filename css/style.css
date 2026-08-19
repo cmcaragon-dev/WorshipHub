@@ -4361,3 +4361,23 @@ body.dark .service-body{
     -webkit-backdrop-filter: blur(6px);
 
 }
+/* ==========================================================
+   WORSHIPHUB LOGO — INDEX PAGE
+   TOP LEFT
+========================================================== */
+
+#worshipHubLogo {
+    position: fixed;
+
+    top: 18px;
+    left: 24px;
+
+    width: 120px;
+    height: auto;
+
+    object-fit: contain;
+
+    z-index: 9999;
+
+    display: block;
+}
