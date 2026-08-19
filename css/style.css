@@ -75,154 +75,509 @@ body{
     -webkit-font-smoothing:antialiased;
 }
 
-
 /* =========================================================
-   TOP BAR
-========================================================= */
+   WORSHIPHUB MODERN TOP BAR
+   LOGO-MATCHING TEAL DESIGN
+   ========================================================= */
 
 .topbar {
 
-    height: 72px;
+    width: 100%;
+    min-height: 76px;
+    height: 76px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #115E59 0%,
-            #0F766E 50%,
-            #14B8A6 100%
-        );
-
-    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     padding: 0 24px;
 
-    display: flex;
+    /* WorshipHub brand gradient */
+    background:
+        linear-gradient(
+            120deg,
+            #115E59 0%,
+            #0F766E 48%,
+            #0B8F83 75%,
+            #14B8A6 100%
+        );
 
-    justify-content: space-between;
-
-    align-items: center;
+    color: #FFFFFF;
 
     position: sticky;
-
     top: 0;
 
     z-index: 5000;
 
+    /* Subtle depth */
     box-shadow:
-        0 4px 18px rgba(15, 118, 110, .30);
+        0 4px 18px rgba(15, 118, 110, .28);
+
+    /* Prevent content from pushing header wider */
+    overflow: hidden;
 }
 
 
 /* =========================================================
-   LOGO
-========================================================= */
+   SUBTLE GOLD ACCENT
+   ========================================================= */
 
-.logo{
+.topbar::after {
 
-    display:flex;
+    content: "";
 
-    align-items:center;
+    position: absolute;
 
-    gap:10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-    font-size:23px;
+    height: 3px;
 
-    font-weight:800;
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            #FACC15 25%,
+            #FACC15 75%,
+            transparent 100%
+        );
 
-    letter-spacing:-.4px;
+    opacity: .9;
 
-    white-space:nowrap;
+    pointer-events: none;
 }
 
-.logo::first-letter{
-    color:#a78bfa;
+
+/* =========================================================
+   LOGO AREA
+   ========================================================= */
+
+.topbar .logo {
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    height: 60px;
+
+    margin: 0;
+    padding: 0;
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* Logo image */
+
+.topbar .logo img {
+
+    display: block;
+
+    width: 210px;
+    height: 58px;
+
+    max-width: 210px;
+    max-height: 58px;
+
+    object-fit: contain;
+    object-position: left center;
+
+    filter:
+        drop-shadow(
+            0 2px 5px rgba(0,0,0,.20)
+        );
+}
+
+
+/* =========================================================
+   WORSHIPHUB TEXT
+   ========================================================= */
+
+.topbar .logo-text {
+
+    font-size: 24px;
+
+    font-weight: 900;
+
+    letter-spacing: -.5px;
+
+    white-space: nowrap;
+
+    color: #FFFFFF;
+
+    text-shadow:
+        0 1px 3px rgba(0,0,0,.18);
 }
 
 
 /* =========================================================
    TOP ACTIONS
-========================================================= */
+   ========================================================= */
 
-.top-actions{
+.topbar .top-actions {
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    gap:10px;
+    justify-content: flex-end;
+
+    gap: 9px;
+
+    margin-left: auto;
+
+    position: relative;
+
+    z-index: 2;
 }
 
 
-/* Search */
+/* =========================================================
+   SEARCH BOX
+   ========================================================= */
 
-.top-actions input{
+.topbar .top-actions input {
 
-    width:340px;
+    width: 300px;
 
-    height:42px;
+    height: 42px;
 
-    padding:0 16px;
+    padding: 0 16px;
 
-    border:none;
+    border: 1px solid
+        rgba(255,255,255,.20);
 
-    outline:none;
+    border-radius: 12px;
 
-    border-radius:11px;
+    outline: none;
 
-    background:rgba(255,255,255,.96);
+    background:
+        rgba(255,255,255,.96);
 
-    color:#1e293b;
+    color: #18332D;
 
-    font-size:14px;
-
-    transition:var(--transition);
+    font-size: 14px;
 
     box-shadow:
-        0 2px 8px rgba(0,0,0,.08);
+        0 3px 10px rgba(0,0,0,.10);
+
+    transition:
+        .25s ease;
 }
 
-.top-actions input::placeholder{
 
-    color:#94a3b8;
+/* Placeholder */
+
+.topbar .top-actions input::placeholder {
+
+    color: #64748B;
 }
 
-.top-actions input:focus{
+
+/* Search focus */
+
+.topbar .top-actions input:focus {
+
+    background: #FFFFFF;
+
+    border-color:
+        #FACC15;
 
     box-shadow:
-        0 0 0 3px rgba(167,139,250,.35);
+        0 0 0 3px
+        rgba(250,204,21,.22),
+        0 4px 12px
+        rgba(0,0,0,.12);
 }
 
 
-/* Header Buttons */
+/* =========================================================
+   HEADER BUTTONS
+   ========================================================= */
 
-.top-actions button{
+.topbar .top-actions button {
 
-    height:42px;
+    width: 42px;
+    height: 42px;
 
-    min-width:42px;
+    min-width: 42px;
 
-    padding:0 13px;
+    padding: 0;
 
-    border:1px solid rgba(255,255,255,.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    border-radius:10px;
+    border:
+        1px solid
+        rgba(255,255,255,.22);
 
-    background:rgba(255,255,255,.10);
+    border-radius: 11px;
 
-    color:#fff;
+    background:
+        rgba(255,255,255,.12);
 
-    cursor:pointer;
+    color: #FFFFFF;
 
-    transition:var(--transition);
+    cursor: pointer;
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    box-shadow:
+        0 3px 8px
+        rgba(0,0,0,.08);
+
+    transition:
+        .25s ease;
 }
 
-.top-actions button:hover{
 
-    background:rgba(255,255,255,.20);
+/* Button hover */
 
-    transform:translateY(-1px);
+.topbar .top-actions button:hover {
+
+    background:
+        rgba(255,255,255,.22);
+
+    border-color:
+        rgba(255,255,255,.38);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 6px 14px
+        rgba(0,0,0,.14);
+}
+
+
+/* Button active */
+
+.topbar .top-actions button:active {
+
+    transform:
+        translateY(0)
+        scale(.96);
+}
+
+
+/* =========================================================
+   GOLD ACTIVE / SPECIAL BUTTON
+   Add .gold to any top button if needed
+   ========================================================= */
+
+.topbar .top-actions button.gold {
+
+    background:
+        linear-gradient(
+            135deg,
+            #FACC15,
+            #EAB308
+        );
+
+    color:
+        #12372F;
+
+    border-color:
+        rgba(255,255,255,.25);
+
+    box-shadow:
+        0 4px 12px
+        rgba(250,204,21,.25);
+}
+
+.topbar .top-actions button.gold:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #FDE047,
+            #FACC15
+        );
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+    .topbar {
+
+        min-height: 68px;
+        height: auto;
+
+        padding: 8px 14px;
+
+        gap: 10px;
+
+        flex-wrap: nowrap;
+    }
+
+
+    .topbar .logo {
+
+        height: 50px;
+
+        flex-shrink: 1;
+
+        min-width: 0;
+    }
+
+
+    .topbar .logo img {
+
+        width: 170px;
+
+        height: 48px;
+
+        max-width: 170px;
+
+        max-height: 48px;
+    }
+
+
+    .topbar .logo-text {
+
+        font-size: 19px;
+    }
+
+
+    .topbar .top-actions {
+
+        gap: 6px;
+
+        flex-shrink: 0;
+    }
+
+
+    .topbar .top-actions input {
+
+        width: 170px;
+
+        height: 38px;
+
+        font-size: 13px;
+
+        padding: 0 12px;
+    }
+
+
+    .topbar .top-actions button {
+
+        width: 38px;
+
+        height: 38px;
+
+        min-width: 38px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .topbar {
+
+        min-height: 62px;
+
+        padding:
+            7px 10px;
+    }
+
+
+    .topbar .logo img {
+
+        width: 145px;
+
+        height: 44px;
+
+        max-width: 145px;
+
+        max-height: 44px;
+    }
+
+
+    .topbar .logo-text {
+
+        display: none;
+    }
+
+
+    .topbar .top-actions {
+
+        gap: 5px;
+    }
+
+
+    .topbar .top-actions input {
+
+        width: 125px;
+
+        height: 36px;
+
+        font-size: 12px;
+    }
+
+
+    .topbar .top-actions button {
+
+        width: 36px;
+
+        height: 36px;
+
+        min-width: 36px;
+
+        border-radius: 9px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .topbar {
+
+        padding:
+            6px 8px;
+    }
+
+
+    .topbar .logo img {
+
+        width: 125px;
+
+        height: 40px;
+    }
+
+
+    .topbar .top-actions input {
+
+        width: 105px;
+    }
+
 }
 
 
@@ -3897,16 +4252,7 @@ body.dark .service-body{
 
     padding: 0 24px;
 
-    background:
-        linear-gradient(
-            110deg,
-            #0F766E 0%,
-            #0B6258 35%,
-            #064E3B 65%,
-            #032D25 100%
-        );
-
-    color: #FFFFFF;
+   color: #FFFFFF;
 
     position: sticky;
 
@@ -4418,15 +4764,7 @@ body.dark .service-body{
 
     display:flex;
 
-    align-items:center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #063B32,
-            #064E3B,
-            #0F766E
-        );
+    align-items:center;    
 
     border-bottom:
         2px solid #FACC15;
