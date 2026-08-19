@@ -4381,3 +4381,121 @@ body.dark .service-body{
 
     display: block;
 }
+/* ==========================================================
+   SONG PAGE — RESPONSIVE
+   MATCH PRESENTATION RESPONSIVENESS
+========================================================== */
+
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (max-width: 1000px) {
+
+    /* Song lyrics container */
+    #songContent {
+
+        width: 100%;
+
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* Song sections */
+    #songContent .song-section {
+
+        width: 100%;
+    }
+
+    /* Song lyric lines */
+    #songContent .song-line {
+
+        font-size: 27px !important;
+
+        line-height: 1.10 !important;
+    }
+
+    /* Chords */
+    #songContent .chord {
+
+        font-size: inherit !important;
+    }
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 700px) {
+
+    /* Song page */
+    #songContent {
+
+        width: 100%;
+
+        padding:
+            22px 15px 100px;
+    }
+
+    /* Song sections */
+    #songContent .song-section {
+
+        width: 100%;
+
+        padding: 16px;
+    }
+
+    /* Section title */
+    #songContent .song-section-title {
+
+        font-size: 18px;
+
+        padding: 8px 10px;
+    }
+
+    /* Song lines */
+    #songContent .song-line {
+
+        font-size: 23px !important;
+
+        line-height: 1.10 !important;
+    }
+
+    /* Chords */
+    #songContent .chord {
+
+        font-size: inherit !important;
+
+        font-weight: 900 !important;
+    }
+}
+
+
+/* ==========================================================
+   VERY SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 450px) {
+
+    #songContent {
+
+        padding:
+            18px 10px 90px;
+    }
+
+    /* Song lines */
+    #songContent .song-line {
+
+        font-size: 21px !important;
+
+        line-height: 1.10 !important;
+    }
+
+    /* Chords */
+    #songContent .chord {
+
+        font-size: inherit !important;
+    }
+}
