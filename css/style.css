@@ -4321,3 +4321,43 @@ body.dark .service-body{
     }
 
 }
+/* ==========================================================
+   STICKY PASSING CHORDS - PRESENTATION
+   ========================================================== */
+
+.presentation-passing-chords {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 9999;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin: 0 0 12px 0;
+
+    padding: 8px 12px;
+
+    border-radius: 5px;
+
+    background: rgba(0, 0, 0, 0.92);
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.18);
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    line-height: 1.25;
+
+    text-align: center;
+
+    backdrop-filter: blur(6px);
+
+    -webkit-backdrop-filter: blur(6px);
+
+}
