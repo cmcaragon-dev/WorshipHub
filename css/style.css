@@ -3968,36 +3968,41 @@ body.dark .service-body{
     border-radius: 6px;
 
     background: rgba(128, 128, 128, 0.08);
-    border: 1px solid rgba(128, 128, 128, 0.20);
+
+    border: 1px solid
+        rgba(128, 128, 128, 0.20);
 
     font-size: 20px;
+
     line-height: 1.25;
 
 }
 
 
-/* ----------------------------------------------------------
-   TITLE
-   ---------------------------------------------------------- */
+/* ==========================================================
+   PASSING CHORDS TITLE
+   ========================================================== */
 
 .passing-chords-title {
 
     display: inline-block;
 
-    margin-right: 18px;
+    margin-right: 16px;
 
     font-size: 16px;
+
     font-weight: 800;
 
     letter-spacing: 1px;
 
     opacity: 0.75;
+
 }
 
 
-/* ----------------------------------------------------------
-   HORIZONTAL ITEMS
-   ---------------------------------------------------------- */
+/* ==========================================================
+   PASSING CHORDS ITEMS
+   ========================================================== */
 
 .passing-chords-items {
 
@@ -4007,10 +4012,14 @@ body.dark .service-body{
 
     align-items: center;
 
-    gap: 6px 22px;
+    gap: 5px 10px;
 
 }
 
+
+/* ==========================================================
+   PASSING CHORD ITEM
+   ========================================================== */
 
 .passing-chord-item {
 
@@ -4023,16 +4032,44 @@ body.dark .service-body{
 }
 
 
+/* ==========================================================
+   PASSING CHORD SEPARATOR
+   ========================================================== */
+
+.passing-chord-item:not(:last-child)::after {
+
+    content: "|";
+
+    margin-left: 10px;
+
+    color: currentColor;
+
+    opacity: 0.45;
+
+    font-weight: 400;
+
+}
+
+
+/* ==========================================================
+   PASSING CHORD LABEL
+   ========================================================== */
+
 .passing-label {
 
     font-size: 17px;
 
     font-weight: 700;
 
-    margin-right: 6px;
+    margin-right: 5px;
 
 }
 
+
+/* ==========================================================
+   PASSING CHORD VALUE
+   SAME COLOR AS PRESENTATION CHORDS
+   ========================================================== */
 
 .passing-value {
 
@@ -4040,7 +4077,7 @@ body.dark .service-body{
 
     font-weight: 800;
 
-    color: #ff3333;
+    color: #ff4444;
 
 }
 
@@ -4052,11 +4089,12 @@ body.dark .service-body{
 .presentation-passing-chords {
 
     width: 100%;
+
     box-sizing: border-box;
 
     margin: 0 0 12px 0;
 
-    padding: 8px 14px;
+    padding: 8px 12px;
 
     border-radius: 5px;
 
@@ -4080,15 +4118,15 @@ body.dark .service-body{
 }
 
 
-/* ----------------------------------------------------------
-   PRESENTATION TITLE
-   ---------------------------------------------------------- */
+/* ==========================================================
+   PRESENTATION PASSING CHORD TITLE
+   ========================================================== */
 
 .presentation-passing-title {
 
     display: inline-block;
 
-    margin-right: 18px;
+    margin-right: 16px;
 
     font-size: 16px;
 
@@ -4101,9 +4139,9 @@ body.dark .service-body{
 }
 
 
-/* ----------------------------------------------------------
-   PRESENTATION ITEMS
-   ---------------------------------------------------------- */
+/* ==========================================================
+   PRESENTATION PASSING CHORD ITEMS
+   ========================================================== */
 
 .presentation-passing-items {
 
@@ -4115,10 +4153,14 @@ body.dark .service-body{
 
     justify-content: center;
 
-    gap: 6px 22px;
+    gap: 5px 10px;
 
 }
 
+
+/* ==========================================================
+   PRESENTATION PASSING CHORD ITEM
+   ========================================================== */
 
 .presentation-passing-item {
 
@@ -4131,16 +4173,46 @@ body.dark .service-body{
 }
 
 
+/* ==========================================================
+   PRESENTATION SEPARATOR
+   ========================================================== */
+
+.presentation-passing-item:not(:last-child)::after {
+
+    content: "|";
+
+    margin-left: 10px;
+
+    color: #ffffff;
+
+    opacity: 0.45;
+
+    font-weight: 400;
+
+}
+
+
+/* ==========================================================
+   PRESENTATION PASSING CHORD LABEL
+   ========================================================== */
+
 .presentation-passing-label {
 
     font-size: 17px;
 
     font-weight: 700;
 
-    margin-right: 6px;
+    margin-right: 5px;
+
+    color: #ffffff;
 
 }
 
+
+/* ==========================================================
+   PRESENTATION PASSING CHORD VALUE
+   SAME COLOR AS PRESENTATION .chord
+   ========================================================== */
 
 .presentation-passing-value {
 
@@ -4148,13 +4220,13 @@ body.dark .service-body{
 
     font-weight: 800;
 
-    color: #ff3333;
+    color: #ff4444;
 
 }
 
 
 /* ==========================================================
-   MOBILE
+   MOBILE / SMALL SCREEN
    ========================================================== */
 
 @media (max-width: 900px) {
@@ -4163,6 +4235,8 @@ body.dark .service-body{
     #songEnding {
 
         font-size: 18px;
+
+        padding: 7px 10px;
 
     }
 
@@ -4188,7 +4262,7 @@ body.dark .service-body{
 
         justify-content: center;
 
-        gap: 6px 14px;
+        gap: 5px 8px;
 
     }
 
@@ -4205,6 +4279,44 @@ body.dark .service-body{
     .presentation-passing-value {
 
         font-size: 20px;
+
+    }
+
+
+    .passing-chord-item:not(:last-child)::after,
+    .presentation-passing-item:not(:last-child)::after {
+
+        margin-left: 8px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL SCREEN
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+    .passing-chords-items,
+    .presentation-passing-items {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 4px;
+
+    }
+
+
+    .passing-chord-item:not(:last-child)::after,
+    .presentation-passing-item:not(:last-child)::after {
+
+        display: none;
 
     }
 
