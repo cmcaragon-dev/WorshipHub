@@ -2668,14 +2668,14 @@ body{
 
     gap: 0 !important;
 }
-
 /* ==========================================================
    PRESENTATION CHORDS
-   SAME STYLE + SAME POSITION AS NORMAL HTML SONG
-   DO NOT CHANGE CHORD LOCATION
+   SAME STYLE AS NORMAL HTML SONG
+   DO NOT CHANGE SPACING OR CHORD POSITION
 ========================================================== */
 
-/* Presentation line keeps the original HTML layout */
+/* Presentation line
+   DO NOT override spacing from the song HTML */
 #presentationLyrics .presentation-line {
     color: #FFFFFF !important;
 
@@ -2686,21 +2686,16 @@ body{
 
     font-size: 20px !important;
 
-    line-height: .88 !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
+    font-weight: 600;
 
     white-space: pre-wrap !important;
-
-    font-weight: 600;
 }
 
 
 /* ==========================================================
    CHORD
-   SAME VISUAL STYLE AS HTML .chord
-   POSITION IS NOT ALTERED
+   ONLY CHANGE THE VISUAL APPEARANCE
+   DO NOT CHANGE ITS LOCATION OR SPACING
 ========================================================== */
 
 #presentationLyrics .presentation-line .chord,
@@ -2717,35 +2712,36 @@ body{
 
     font-weight: 900 !important;
 
-    line-height: inherit !important;
-
-    margin: 0 !important;
-
-    padding: 0 !important;
-
-    /* IMPORTANT:
-       Do not use transform, position,
-       vertical-align or display changes.
-       This preserves the original chord location.
-    */
-
     text-shadow:
         0 1px 3px rgba(0,0,0,.65);
 }
 
 
 /* ==========================================================
-   DO NOT ALTER CHORD POSITIONING
+   IMPORTANT:
+   DO NOT SET:
+   
+   line-height
+   margin
+   padding
+   position
+   transform
+   vertical-align
+   display
+   
+   The HTML song's original CSS must control these.
 ========================================================== */
 
-#presentationLyrics .presentation-line .chord {
-    position: static !important;
 
-    transform: none !important;
+/* ==========================================================
+   PRESENTATION PASSING CHORDS
+   SAME GOLD CHORD COLOR
+========================================================== */
 
-    vertical-align: baseline !important;
-
-    display: inline !important;
+.presentation-passing-value {
+    color: #FFD54A !important;
+    font-weight: 900 !important;
+    font-size: inherit !important;
 }
 
 
