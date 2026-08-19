@@ -2223,7 +2223,7 @@ body{
 #presentationLyrics .presentation-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 30px;
+    gap: 10px;
     width: 100%;
 
     /* Make all columns equal height */
