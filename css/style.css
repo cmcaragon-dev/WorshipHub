@@ -2669,34 +2669,65 @@ body{
     gap: 0 !important;
 }
 
-
 /* ==========================================================
-   PRESENTATION - LYRICS & CHORD SIZE
-   ========================================================== */
+   PRESENTATION CHORDS
+   SAME STYLE + SAME POSITION AS NORMAL HTML SONG
+   DO NOT CHANGE CHORD LOCATION
+========================================================== */
 
-/* Lyrics */
+/* Presentation line keeps the original HTML layout */
 #presentationLyrics .presentation-line {
     color: #FFFFFF !important;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace !important;
+
     font-size: 20px !important;
-    line-height: 1.10 !important;
+
+    line-height: .88 !important;
+
     margin: 0 !important;
     padding: 0 !important;
+
+    white-space: pre-wrap !important;
+
     font-weight: 600;
-    letter-spacing: .1px;
 }
 
-/* Chords - larger than lyrics */
+
+/* ==========================================================
+   CHORD
+   SAME VISUAL STYLE AS HTML .chord
+   POSITION IS NOT ALTERED
+========================================================== */
+
 #presentationLyrics .presentation-line .chord,
 #presentationLyrics .chord {
+
     color: #FFD54A !important;
 
-    font-size: 20px !important;
-    line-height: 1 !important;
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace !important;
+
+    font-size: inherit !important;
 
     font-weight: 900 !important;
 
+    line-height: inherit !important;
+
     margin: 0 !important;
+
     padding: 0 !important;
+
+    /* IMPORTANT:
+       Do not use transform, position,
+       vertical-align or display changes.
+       This preserves the original chord location.
+    */
 
     text-shadow:
         0 1px 3px rgba(0,0,0,.65);
@@ -2704,9 +2735,35 @@ body{
 
 
 /* ==========================================================
-   LYRIC CHILD ELEMENTS
-   Remove unwanted margins from p/div/span
-   ========================================================== */
+   DO NOT ALTER CHORD POSITIONING
+========================================================== */
+
+#presentationLyrics .presentation-line .chord {
+    position: static !important;
+
+    transform: none !important;
+
+    vertical-align: baseline !important;
+
+    display: inline !important;
+}
+
+
+/* ==========================================================
+   PRESERVE ORIGINAL LINE SPACING
+========================================================== */
+
+#presentationLyrics .presentation-line + .presentation-line {
+
+    margin-top: 0 !important;
+
+    padding-top: 0 !important;
+}
+
+
+/* ==========================================================
+   REMOVE EXTRA SPACING FROM CHILD ELEMENTS
+========================================================== */
 
 #presentationLyrics .presentation-line p,
 #presentationLyrics .presentation-line div,
@@ -2723,34 +2780,28 @@ body{
 
 
 /* ==========================================================
-   ALL LYRIC TEXT
-   ========================================================== */
+   LYRICS
+========================================================== */
 
-#presentationLyrics .presentation-line * {
-
+#presentationLyrics .presentation-line {
     color: #FFFFFF !important;
 }
 
 
 /* ==========================================================
-   CHORDS
-   ========================================================== */
+   PRESENTATION PASSING CHORDS
+   GOLD — SAME CHORD COLOR
+========================================================== */
 
-#presentationLyrics .presentation-line .chord,
-#presentationLyrics .chord {
+.presentation-passing-value {
 
     color: #FFD54A !important;
 
     font-weight: 900 !important;
 
-    line-height: 1 !important;
+    font-size: inherit !important;
 
-    margin: 0 !important;
-
-    padding: 0 !important;
-
-    text-shadow:
-        0 1px 3px rgba(0,0,0,.65);
+    line-height: inherit !important;
 }
 
 
