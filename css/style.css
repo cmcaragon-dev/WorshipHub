@@ -4361,3 +4361,65 @@ body.dark .service-body{
     -webkit-backdrop-filter: blur(6px);
 
 }
+
+/* ==========================================================
+   WORSHIPHUB BRAND / HEADER
+   ========================================================== */
+
+.wh-header {
+    width: 100%;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    background: #111827;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.wh-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.wh-brand img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    display: block;
+}
+
+.wh-brand span {
+    background: linear-gradient(90deg, #ffffff, #facc15);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Hover */
+.wh-brand:hover span {
+    filter: brightness(1.15);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .wh-header {
+        padding: 10px 16px;
+    }
+
+    .wh-brand {
+        font-size: 21px;
+        gap: 8px;
+    }
+
+    .wh-brand img {
+        width: 36px;
+        height: 36px;
+    }
+
+}
