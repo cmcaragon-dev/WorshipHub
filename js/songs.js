@@ -324,6 +324,14 @@ title: "Ako'y Nananabik",
         category: "Praise",
         language: "Tagalog",
         file: "songs/akoynananabik.html"
+	},
+	{id:39,        
+title: "Itatanghal",
+        artist: "Spring Worship",
+        key: "G",
+        category: "Worship",
+        language: "Tagalog",
+        file: "songs/itatanghal.html"
 	}
 ];
 songs.sort((a, b) =>
