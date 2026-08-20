@@ -3365,30 +3365,92 @@ function printSongsInServiceFormat(songList) {
     }, 300);
 }
 
-
 // ==========================================================
 // SERVICE PLANNER PRINT
 // ==========================================================
 
-function printServiceSongs() {
+async function printServiceSongs() {
 
-    console.log(
-        "PRINT SERVICE PLANNER"
-    );
+    console.log("========================================");
+    console.log("PRINT SERVICE PLANNER");
+    console.log("========================================");
+
+    let serviceToPrint = null;
 
     // ------------------------------------------------------
-    // GET ACTIVE SERVICE
+    // 1. USE ACTIVE SERVICE ALREADY LOADED
     // ------------------------------------------------------
-
-    const service =
-        activeService ||
-        currentService;
 
     if (
-        !service ||
-        !Array.isArray(service.songs) ||
-        service.songs.length === 0
+        activeService &&
+        Array.isArray(activeService.songs)
     ) {
+
+        serviceToPrint =
+            activeService;
+
+    }
+
+    // ------------------------------------------------------
+    // 2. USE CURRENT SERVICE
+    // ------------------------------------------------------
+
+    if (
+        !serviceToPrint &&
+        currentService &&
+        Array.isArray(currentService.songs)
+    ) {
+
+        serviceToPrint =
+            currentService;
+
+    }
+
+    // ------------------------------------------------------
+    // 3. LOAD FROM FIREBASE
+    // ------------------------------------------------------
+
+    if (!serviceToPrint) {
+
+        console.log(
+            "Active service not available. Loading from Firebase..."
+        );
+
+        serviceToPrint =
+            await getActiveService();
+    }
+
+    // ------------------------------------------------------
+    // 4. CHECK SERVICE
+    // ------------------------------------------------------
+
+    if (!serviceToPrint) {
+
+        console.error(
+            "PRINT SERVICE: NO ACTIVE SERVICE"
+        );
+
+        alert(
+            "Unable to print Service Planner.\n\n" +
+            "No active service was found."
+        );
+
+        return;
+    }
+
+    // ------------------------------------------------------
+    // 5. CHECK SONGS
+    // ------------------------------------------------------
+
+    if (
+        !Array.isArray(serviceToPrint.songs) ||
+        serviceToPrint.songs.length === 0
+    ) {
+
+        console.error(
+            "PRINT SERVICE: NO SONGS",
+            serviceToPrint
+        );
 
         alert(
             "There are no songs in the Service Planner to print."
@@ -3399,22 +3461,30 @@ function printServiceSongs() {
 
     console.log(
         "SERVICE TO PRINT:",
-        service
+        serviceToPrint
     );
 
     console.log(
-        "SONGS:",
-        service.songs
+        "SONGS TO PRINT:",
+        serviceToPrint.songs
     );
 
     // ------------------------------------------------------
-    // USE COMMON PRINT ENGINE
+    // 6. USE COMMON PRINT ENGINE
     // ------------------------------------------------------
 
     printSongsInServiceFormat(
-        service.songs
+        serviceToPrint.songs
     );
 }
+
+
+// ==========================================================
+// MAKE BUTTON AVAILABLE TO HTML
+// ==========================================================
+
+window.printServiceSongs =
+    printServiceSongs;
 
 
 // ==========================================================
