@@ -177,7 +177,7 @@ title: "O Kay Saya at Kay Ganda",
 title: "Magpakailanman",
         artist: "Passion Generation Worship Band",
         key: "D",
-        category: "Worship",
+        category: "Praise",
         language: "Tagalog",
         file: "songs/magpakailanman.html"
     },
