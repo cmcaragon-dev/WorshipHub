@@ -549,12 +549,7 @@ function getPassingChordKey(song) {
     }
 
     /*
-     * Priority:
-     *
-     * 1. Current displayed Service Key
-     * 2. Saved Service Key
-     * 3. Original Key
-     * 4. Song Key
+     * The displayed Service Key is authoritative.
      */
 
     const displayedServiceKey =
@@ -567,35 +562,17 @@ function getPassingChordKey(song) {
         return displayedServiceKey;
     }
 
-    const baseKey =
+    /*
+     * Fall back to the saved service key.
+     */
+
+    return (
         song.serviceKey ||
         song.originalKey ||
         song.key ||
-        "";
-
-    if (!baseKey) {
-        return "";
-    }
-
-    /*
-     * Apply the current transpose only when
-     * the saved serviceKey is being used.
-     *
-     * This keeps the passing chords synchronized
-     * with the currently displayed Service Key.
-     */
-
-    const transposeSteps =
-        Math.round(
-            Number(App.transpose || 0) * 2
-        );
-
-    return getTransposedKey(
-        baseKey,
-        transposeSteps
+        ""
     );
 }
-
 
 // ----------------------------------------------------------
 // BUILD PASSING CHORD DATA
@@ -976,43 +953,57 @@ async saveCurrentServiceKey() {
             return false;
         }
 
-        // ----------------------------------------------
-        // PRESERVE ORIGINAL KEY
-        // ----------------------------------------------
+       // ----------------------------------------------
+// PRESERVE ORIGINAL KEY
+// ----------------------------------------------
 
-        if (!song.originalKey) {
+if (!song.originalKey) {
 
-            song.originalKey =
-                song.key ||
-                displayedKey;
-        }
+    song.originalKey =
+        song.key ||
+        displayedKey;
+}
 
-        // ----------------------------------------------
-        // SAVE KEY + TRANSPOSE
-        // ----------------------------------------------
+// ----------------------------------------------
+// SAVE FINAL SERVICE KEY
+// ----------------------------------------------
 
-        song.serviceKey =
-            displayedKey;
+song.serviceKey =
+    displayedKey;
 
-        song.transpose =
-            Number(
-                App.transpose || 0
-            );
+// Keep transpose only as historical information.
+// It must NOT be applied again when restoring.
+song.transpose =
+    Number(
+        App.transpose || 0
+    );
 
-        console.log(
-            "ORIGINAL KEY:",
-            song.originalKey
-        );
+console.log(
+    "================================"
+);
 
-        console.log(
-            "NEW SERVICE KEY:",
-            song.serviceKey
-        );
+console.log(
+    "SAVING FINAL SERVICE KEY"
+);
 
-        console.log(
-            "TRANSPOSE:",
-            song.transpose
-        );
+console.log(
+    "ORIGINAL KEY:",
+    song.originalKey
+);
+
+console.log(
+    "SERVICE KEY:",
+    song.serviceKey
+);
+
+console.log(
+    "TRANSPOSE:",
+    song.transpose
+);
+
+console.log(
+    "================================"
+);
 
         // ----------------------------------------------
         // UPDATE FIRESTORE
@@ -1239,47 +1230,29 @@ async transpose(step) {
 
 getKey() {
 
-    const song =
-        window.currentSong;
+    const song = window.currentSong;
 
     if (!song) {
         return "";
     }
 
     /*
-     * ORIGINAL KEY is the permanent base.
+     * SERVICE KEY is the saved/displayed key.
      *
-     * SERVICE KEY is the selected key for the
-     * current service.
+     * IMPORTANT:
+     * Do NOT apply App.transpose again.
+     *
+     * serviceKey already contains the final key that
+     * was saved for this service/song.
      */
 
-    const baseKey =
+    return (
         song.serviceKey ||
         song.originalKey ||
-        song.key;
-
-    if (!baseKey) {
-        return "";
-    }
-
-    /*
-     * App.transpose is stored in half-semitone units:
-     *
-     * +0.5 = +1 semitone
-     * +1.0 = +2 semitones
-     */
-
-    const steps =
-        Math.round(
-            Number(App.transpose || 0) * 2
-        );
-
-    return getTransposedKey(
-        baseKey,
-        steps
+        song.key ||
+        ""
     );
 },
-
 // ======================================================
 // DISPLAY SERVICE KEY
 // ======================================================
@@ -1290,14 +1263,14 @@ updateKeyDisplay() {
         return;
     }
 
-    const key =
-        this.getKey();
+    const key = this.getKey();
 
     if (key) {
 
         App.serviceKey.innerText =
             key;
     }
+
 },
 
 // ======================================================
@@ -1500,7 +1473,6 @@ async updateGuide() {
 
 },
 
-
 // ======================================================
 // RESTORE SAVED TRANSPOSE
 // ======================================================
@@ -1524,74 +1496,33 @@ async restoreTranspose() {
         return;
     }
 
-    const savedTranspose =
+    /*
+     * Restore the saved transpose value for the UI.
+     *
+     * IMPORTANT:
+     * Do NOT physically transpose .chord elements here.
+     *
+     * The song/chord HTML is already the original chord data.
+     * Transposition should happen only once when the song
+     * is rendered.
+     */
+
+    App.transpose =
         Number(
             song.transpose || 0
         );
 
-    App.transpose =
-        savedTranspose;
-
-    const steps =
-        Math.round(
-            savedTranspose * 2
-        );
-
-    if (steps !== 0) {
-
-        const direction =
-            steps > 0
-                ? 1
-                : -1;
-
-        for (
-            let i = 0;
-            i < Math.abs(steps);
-            i++
-        ) {
-
-            document
-                .querySelectorAll(".chord")
-                .forEach(chord => {
-
-                    chord.innerText =
-                        chord.innerText.replace(
-                            /[A-G](#|b)?/g,
-                            note => {
-
-                                let index =
-                                    SHARP_SCALE.indexOf(
-                                        note
-                                    );
-
-                                if (index === -1) {
-
-                                    index =
-                                        FLAT_SCALE.indexOf(
-                                            note
-                                        );
-                                }
-
-                                if (index === -1) {
-                                    return note;
-                                }
-
-                                return SHARP_SCALE[
-                                    (
-                                        index +
-                                        direction +
-                                        12
-                                    ) % 12
-                                ];
-                            }
-                        );
-                });
-        }
-    }
+    /*
+     * The saved serviceKey is already the final key.
+     *
+     * Therefore we display it directly.
+     */
 
     this.updateKeyDisplay();
 
-    this.updateGuide();
+    /*
+     * Update transpose indicator.
+     */
 
     const transposeDisplay =
         document.getElementById(
@@ -1608,6 +1539,13 @@ async restoreTranspose() {
             ) +
             App.transpose.toFixed(1);
     }
+
+    /*
+     * Update passing chords.
+     */
+
+    await this.updateGuide();
+
 },
 
 
