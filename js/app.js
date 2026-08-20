@@ -1681,14 +1681,13 @@ function renderServices() {
                         ▶ Start Service
 
                     </button>
- <button
+                    <button
     type="button"
-    class="btn btn-primary print-service-btn"
-    onclick="('${service.id}')"
+    onclick="printServiceSongs()"
 >
-    <i class="fas fa-print"></i>
-    Print Service
+     <i class="fas fa-print"></i>Print
 </button>
+
                     <button
                         onclick="
                             renameService(
