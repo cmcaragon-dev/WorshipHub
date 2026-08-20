@@ -4633,258 +4633,170 @@ body.dark .service-body{
     }
 }
 /* ==========================================================
-   SERVICE PLANNER PRINT
+   SERVICE / STANDALONE PRINT
    ========================================================== */
 
 @media print {
 
-    body > *:not(#servicePrintContainer) {
-        display: none !important;
+    @page {
+        size: A4 portrait;
+        margin: 10mm;
     }
 
+    body * {
+        visibility: hidden !important;
+    }
+
+    #servicePrintContainer,
+    #servicePrintContainer * {
+        visibility: visible !important;
+    }
 
     #servicePrintContainer {
-        display: block !important;
+        position: absolute;
+        left: 0;
+        top: 0;
         width: 100%;
-        margin: 0;
+        max-width: 190mm;
+        margin: 0 auto;
         padding: 0;
+        box-sizing: border-box;
     }
-
-
-    /* ======================================================
-       ONE SONG = ONE PAGE
-       ====================================================== */
 
     .service-print-song {
-
-        display: block;
-
         width: 100%;
-
-        min-height: 100vh;
-
+        max-width: 190mm;
+        min-height: 277mm;
         box-sizing: border-box;
-
-        padding:
-            8mm
-            8mm
-            8mm
-            8mm;
-
-        page-break-after: always;
-
-        break-after: page;
-
+        padding: 0;
+        margin: 0;
         overflow: hidden;
+        page-break-after: always;
+        break-after: page;
     }
-
 
     .service-print-song:last-child {
-
         page-break-after: auto;
-
         break-after: auto;
-
     }
 
-
-    /* ======================================================
+    /* ------------------------------------------------------
        TITLE
-       ====================================================== */
+       ------------------------------------------------------ */
 
     .service-print-title {
-
         display: inline-block;
 
         font-size: 22px;
+        font-weight: 900;
 
-        font-weight: 800;
+        line-height: 1.1;
 
-        line-height: 1.05;
+        margin: 0 0 2px 0;
+        padding: 2px 8px;
 
-        margin-bottom: 3px;
-
-        padding:
-            2px
-            8px;
-
-        background: yellow;
+        background: #fff200;
 
         color: #000;
 
-    }
-
-
-    /* ======================================================
-       ARTIST
-       ====================================================== */
-
-    .service-print-artist {
-
-        font-size: 12px;
-
-        font-weight: 600;
-
-        margin-bottom: 2px;
-
-    }
-
-
-    /* ======================================================
-       KEY
-       ====================================================== */
-
-    .service-print-key {
-
-        font-size: 11px;
-
-        font-weight: 700;
-
-        margin-bottom: 6px;
-
-    }
-
-
-    /* ======================================================
-       THREE COLUMN CONTENT
-       ====================================================== */
-
-    .service-print-content {
-
-        column-count: 3;
-
-        column-gap: 7mm;
-
-        column-fill: auto;
-
-        width: 100%;
-
-        height: calc(
-            100vh - 35mm
-        );
+        border-radius: 2px;
 
         box-sizing: border-box;
-
-        overflow: hidden;
-
     }
 
+    /* ------------------------------------------------------
+       ARTIST
+       ------------------------------------------------------ */
 
-    /* ======================================================
+    .service-print-artist {
+        font-size: 11px;
+        font-weight: 600;
+        margin: 1px 0;
+    }
+
+    /* ------------------------------------------------------
+       KEY
+       ------------------------------------------------------ */
+
+    .service-print-key {
+        font-size: 11px;
+        font-weight: 800;
+        margin: 1px 0 5px 0;
+    }
+
+    /* ------------------------------------------------------
        SECTION
-       ====================================================== */
+       ------------------------------------------------------ */
 
     .print-section {
-
-        break-inside: avoid;
-
-        page-break-inside: avoid;
-
-        margin: 0 0 5px 0;
-
+        margin: 3px 0 4px 0;
+        padding: 0;
     }
-
-
-    /* ======================================================
-       SECTION TITLE
-       ====================================================== */
 
     .print-section-title {
-
-        font-size: 13px;
-
-        font-weight: 800;
-
-        margin-top: 2px;
-
-        margin-bottom: 1px;
-
-        padding: 1px 4px;
-
-        background: #eeeeee;
-
-        break-after: avoid;
-
+        font-size: 11px;
+        font-weight: 900;
+        margin: 2px 0 1px 0;
+        text-transform: uppercase;
     }
 
-
-    /* ======================================================
+    /* ------------------------------------------------------
        CHORD
-       ====================================================== */
+       ------------------------------------------------------ */
 
     .print-chord-line {
-
-        color: red !important;
-
-        font-weight: 800;
+        width: 100%;
+        box-sizing: border-box;
 
         font-size: 11px;
+        font-weight: 900;
 
-        line-height: 1.0;
+        line-height: 1;
 
         margin: 0;
-
-        padding: 0;
-
-        white-space: pre-wrap;
-
-        overflow-wrap: anywhere;
-
-        break-after: avoid;
-
-    }
-
-
-    /* ======================================================
-       LYRIC
-       ====================================================== */
-
-    .print-lyric-line {
-
-        color: #000 !important;
-
-        font-size: 11px;
-
-        line-height: 1.0;
-
-        margin: 0 0 1px 0;
-
         padding: 0;
 
         white-space: normal;
 
         overflow-wrap: anywhere;
-
-        word-break: normal;
-
+        word-break: break-word;
     }
 
-
-    /* ======================================================
-       ERROR
-       ====================================================== */
-
-    .print-error {
-
-        font-size: 12px;
-
-        color: red;
-
-        font-weight: bold;
-
+    .print-chord {
+        color: red !important;
+        font-weight: 900 !important;
+        white-space: nowrap;
     }
 
+    /* ------------------------------------------------------
+       LYRICS
+       ------------------------------------------------------ */
 
-    /* ======================================================
-       PREVENT HORIZONTAL OVERFLOW
-       ====================================================== */
-
-    .service-print-content * {
-
-        max-width: 100%;
-
+    .print-lyric-line {
+        width: 100%;
         box-sizing: border-box;
 
+        font-size: 11px;
+
+        line-height: 1.05;
+
+        margin: 0;
+        padding: 0;
+
+        white-space: normal;
+
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
+    /* ------------------------------------------------------
+       ERROR
+       ------------------------------------------------------ */
+
+    .print-error,
+    .print-no-content {
+        font-size: 14px;
+        font-weight: 700;
+        color: #000;
+    }
 }
