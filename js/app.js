@@ -1693,7 +1693,7 @@ function renderServices() {
         onclick="printServiceSongs()"
     >
         <i class="fas fa-print"></i>
-        🖨 Print Service
+        Print Service
     </button>
 
 </div>
