@@ -70,69 +70,6 @@ body{
     -webkit-font-smoothing:antialiased;
 }
 
-
-/* =========================================================
-   TOP BAR
-========================================================= */
-
-.topbar{
-
-    height:72px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #18243a 0%,
-            #263754 100%
-        );
-
-    color:#fff;
-
-    padding:0 24px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    position:sticky;
-
-    top:0;
-
-    z-index:5000;
-
-    box-shadow:
-        0 4px 18px rgba(15,23,42,.18);
-}
-
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    font-size:23px;
-
-    font-weight:800;
-
-    letter-spacing:-.4px;
-
-    white-space:nowrap;
-}
-
-.logo::first-letter{
-    color:#a78bfa;
-}
-
-
 /* =========================================================
    TOP ACTIONS
 ========================================================= */
@@ -3865,6 +3802,91 @@ body.dark .service-body{
     text-overflow: ellipsis;
 }
 
+/* =========================================================
+   HEADER
+========================================================= */
+
+.topbar {
+    height: 78px;
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 24px;
+
+    background: #064e3b;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.15);
+
+    position: relative;
+
+    z-index: 1000;
+}
+
+
+/* =========================================================
+   JFCM HEADER LOGO
+========================================================= */
+
+.logo {
+    height: 68px;
+
+    display: flex;
+    align-items: center;
+
+    flex-shrink: 0;
+}
+
+.logo img {
+    display: block;
+
+    width: 285px;
+
+    height: auto;
+
+    max-height: 68px;
+
+    object-fit: contain;
+}
+@media (max-width: 750px) {
+
+    .topbar {
+        height: auto;
+        min-height: 70px;
+
+        padding: 8px 12px;
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+    }
+
+    .logo {
+        height: 52px;
+    }
+
+    .logo img {
+        width: 230px;
+        max-height: 52px;
+    }
+
+    .top-actions {
+        width: 100%;
+    }
+}
+@media (max-width: 450px) {
+
+    .logo img {
+        width: 200px;
+        max-height: 48px;
+    }
+}
 /* ==========================================================
    PASSING CHORDS - SONG PAGE
    ========================================================== */
