@@ -3133,6 +3133,11 @@ async function () {
 // SAME FORMAT AS SERVICE PLANNER PRINT
 // ==========================================================
 
+function // ==========================================================
+// COMMON PRINT ENGINE
+// USED BY SERVICE PLANNER + STANDALONE SONG
+// ==========================================================
+
 function printSongsInServiceFormat(songList) {
 
     console.log("PRINT SONGS:", songList);
@@ -3166,35 +3171,21 @@ function printSongsInServiceFormat(songList) {
     printContainer.id =
         "servicePrintContainer";
 
+
     // ------------------------------------------------------
-    // CREATE ONE PAGE FOR EACH SONG
+    // CREATE SONG PAGES
     // ------------------------------------------------------
 
-    songList.forEach(function(serviceSong) {
-
-        // Find complete song from songs.js
-        const song =
-            songs.find(function(s) {
-
-                return (
-                    s.file === serviceSong.file ||
-                    s.id === serviceSong.id ||
-                    s.id === serviceSong.songId
-                );
-
-            }) || serviceSong;
-
+    songList.forEach(function(song) {
 
         if (!song) {
-
-            console.warn(
-                "Song not found:",
-                serviceSong
-            );
-
             return;
-
         }
+
+        console.log(
+            "Preparing print:",
+            song.title
+        );
 
 
         // --------------------------------------------------
@@ -3245,7 +3236,7 @@ function printSongsInServiceFormat(songList) {
 
 
         // --------------------------------------------------
-        // SONG CONTENT
+        // CONTENT
         // --------------------------------------------------
 
         const content =
@@ -3254,6 +3245,10 @@ function printSongsInServiceFormat(songList) {
         content.className =
             "service-print-content";
 
+
+        // IMPORTANT:
+        // Do NOT use songs.find() here.
+        // The complete song object is already supplied.
 
         const songText =
             song.content ||
@@ -3287,7 +3282,7 @@ function printSongsInServiceFormat(songList) {
 
 
     // ------------------------------------------------------
-    // ADD TO DOCUMENT
+    // ADD PRINT CONTAINER
     // ------------------------------------------------------
 
     document.body.appendChild(
@@ -3422,82 +3417,44 @@ function fitToOnePage() {
     let song = null;
 
 
-    // ------------------------------------------------------
-    // 1. CURRENT SONG VARIABLE
-    // ------------------------------------------------------
+    // ======================================================
+    // GET THE SONG ALREADY LOADED BY song.js
+    // ======================================================
 
     if (
         typeof currentSong !== "undefined" &&
         currentSong
     ) {
 
-        song =
-            currentSong;
+        song = currentSong;
 
     }
 
 
-    // ------------------------------------------------------
-    // 2. WINDOW CURRENT SONG
-    // ------------------------------------------------------
+    // ======================================================
+    // TRY OTHER COMMON SONG VARIABLES
+    // ======================================================
 
-    if (
-        !song &&
-        window.currentSong
-    ) {
+    if (!song && typeof song !== "undefined") {
 
-        song =
-            window.currentSong;
+        song = window.song;
 
     }
 
 
-    // ------------------------------------------------------
-    // 3. FIND FROM URL
-    // ------------------------------------------------------
-
-    if (
-        !song &&
-        typeof songs !== "undefined"
-    ) {
-
-        const currentFile =
-            decodeURIComponent(
-                window.location.pathname
-                    .split("/")
-                    .pop()
-            );
-
-
-        song =
-            songs.find(function(s) {
-
-                const songFile =
-                    decodeURIComponent(
-                        String(s.file || "")
-                            .split("/")
-                            .pop()
-                    );
-
-
-                return (
-                    songFile ===
-                    currentFile
-                );
-
-            });
-
-    }
-
-
-    // ------------------------------------------------------
-    // SONG NOT FOUND
-    // ------------------------------------------------------
+    // ======================================================
+    // CHECK PAGE DATA
+    // ======================================================
 
     if (!song) {
 
         console.error(
-            "Standalone song not found."
+            "No standalone song object found."
+        );
+
+        console.log(
+            "Current page:",
+            window.location.pathname
         );
 
         alert(
@@ -3510,14 +3467,14 @@ function fitToOnePage() {
 
 
     console.log(
-        "Standalone song found:",
+        "Standalone song:",
         song.title
     );
 
 
-    // ------------------------------------------------------
-    // USE SAME PRINT ENGINE
-    // ------------------------------------------------------
+    // ======================================================
+    // USE EXACT SAME PRINT ENGINE
+    // ======================================================
 
     printSongsInServiceFormat([
         song
@@ -3527,11 +3484,8 @@ function fitToOnePage() {
 
 
 // ==========================================================
-// MAKE AVAILABLE TO HTML
+// HTML BUTTON ACCESS
 // ==========================================================
-
-window.printServiceSongs =
-    printServiceSongs;
 
 window.fitToOnePage =
     fitToOnePage;
