@@ -2263,7 +2263,7 @@ body{
 #presentationLyrics .chord {
     color: #FFD54A !important;
 
-    font-size: 25px !important;
+    font-size: 20px !important;
     line-height: 1 !important;
 
     font-weight: 600 !important;
@@ -2293,39 +2293,6 @@ body{
 
     padding-bottom: 0 !important;
 }
-
-
-/* ==========================================================
-   ALL LYRIC TEXT
-   ========================================================== */
-
-#presentationLyrics .presentation-line * {
-
-    color: #FFFFFF !important;
-}
-
-
-/* ==========================================================
-   CHORDS
-   ========================================================== */
-
-#presentationLyrics .presentation-line .chord,
-#presentationLyrics .chord {
-
-    color: #FFD54A !important;
-
-    font-weight: 900 !important;
-
-    line-height: 1 !important;
-
-    margin: 0 !important;
-
-    padding: 0 !important;
-
-    text-shadow:
-        0 1px 3px rgba(0,0,0,.65);
-}
-
 
 /* ==========================================================
    PREVIOUS / NEXT LYRIC LINE
