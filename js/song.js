@@ -3232,6 +3232,43 @@ async function () {
 }
 
 );
+function formatStandaloneSongForPrint() {
+
+    const lyrics =
+        document.getElementById("lyrics");
+
+    if (!lyrics) {
+        return "";
+    }
+
+
+    const clone =
+        lyrics.cloneNode(true);
+
+
+    // Remove unwanted elements
+    clone.querySelectorAll(
+        ".song-controls, button"
+    )
+    .forEach(el => el.remove());
+
+
+    // Preserve original chord positions
+    clone.querySelectorAll(".chord")
+    .forEach(chord => {
+
+        chord.style.display =
+            "inline-block";
+
+        chord.style.marginRight =
+            "4px";
+
+    });
+
+
+    return clone.innerHTML;
+
+}
 // ==========================================================
 // COMMON PRINT ENGINE
 // SERVICE PLANNER + STANDALONE SONG
@@ -3732,9 +3769,13 @@ function fitToOnePage() {
     // USE EXACT SAME PRINT ENGINE
     // ------------------------------------------------------
 
-    printSongsInServiceFormat([
-        song
-    ]);
+    song.content =
+    formatStandaloneSongForPrint();
+
+
+printSongsInServiceFormat([
+    song
+]);
 }
 
 
