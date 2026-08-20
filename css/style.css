@@ -4633,82 +4633,31 @@ body.dark .service-body{
     }
 }
 /* ==========================================================
-   SERVICE PRINT
-   3-COLUMN CONTINUOUS FLOW
+   SERVICE PLANNER PRINT
    ========================================================== */
 
 @media print {
 
-    /* Hide normal website */
+    /* Hide entire normal application */
     body > *:not(#servicePrintContainer) {
         display: none !important;
     }
 
+
     html,
     body {
-        width: 100%;
-        height: auto;
+
         margin: 0 !important;
         padding: 0 !important;
-        background: #fff !important;
-        overflow: visible !important;
+
+        width: 100% !important;
+
+        background: white !important;
+
     }
 
-
-    /* ======================================================
-       PRINT CONTAINER
-       ====================================================== */
 
     #servicePrintContainer {
-        display: block !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: #fff !important;
-    }
-
-
-    /* ======================================================
-       SERVICE HEADER
-       ====================================================== */
-
-    #servicePrintContainer .service-print-header {
-
-        text-align: center;
-
-        margin: 0 0 12px 0;
-        padding: 0 0 8px 0;
-
-        border-bottom: 2px solid #000;
-
-        break-after: avoid;
-        page-break-after: avoid;
-    }
-
-    #servicePrintContainer .service-print-header h1 {
-
-        margin: 0;
-
-        font-size: 22px;
-
-        line-height: 1.1;
-
-    }
-
-    #servicePrintContainer .service-print-subtitle {
-
-        margin-top: 3px;
-
-        font-size: 11px;
-
-    }
-
-
-    /* ======================================================
-       EACH SONG
-       ====================================================== */
-
-    #servicePrintContainer .service-print-song {
 
         display: block !important;
 
@@ -4718,23 +4667,43 @@ body.dark .service-body{
 
         padding: 0 !important;
 
-        /*
-         * IMPORTANT:
-         * Do NOT use column-count here.
-         * The content itself will flow through columns.
-         */
-
-        break-after: page;
-
-        page-break-after: always;
     }
 
 
-    #servicePrintContainer .service-print-song:last-child {
+    /* ======================================================
+       ONE SONG = ONE PAGE
+       ====================================================== */
 
-        break-after: auto;
+    .service-print-song {
 
-        page-break-after: auto;
+        display: block !important;
+
+        width: 100% !important;
+
+        height: 100vh !important;
+
+        min-height: 100vh !important;
+
+        box-sizing: border-box !important;
+
+        padding: 12mm 10mm !important;
+
+        margin: 0 !important;
+
+        page-break-after: always !important;
+
+        break-after: page !important;
+
+        overflow: hidden !important;
+
+    }
+
+
+    .service-print-song:last-child {
+
+        page-break-after: auto !important;
+
+        break-after: auto !important;
 
     }
 
@@ -4743,19 +4712,19 @@ body.dark .service-body{
        SONG TITLE
        ====================================================== */
 
-    #servicePrintContainer .service-print-title {
+    .service-print-title {
 
-        text-align: center;
+        margin: 0 0 2mm 0 !important;
 
-        margin: 0 0 2px 0;
+        padding: 0 !important;
 
-        padding: 0;
+        font-size: 24pt !important;
 
-        font-size: 20px;
+        line-height: 1.05 !important;
 
-        line-height: 1.1;
+        font-weight: 700 !important;
 
-        font-weight: 700;
+        break-after: avoid !important;
 
     }
 
@@ -4764,13 +4733,15 @@ body.dark .service-body{
        ARTIST
        ====================================================== */
 
-    #servicePrintContainer .service-print-artist {
+    .service-print-artist {
 
-        text-align: center;
+        margin: 0 0 1mm 0 !important;
 
-        margin: 0 0 2px 0;
+        font-size: 10pt !important;
 
-        font-size: 10px;
+        line-height: 1.1 !important;
+
+        color: #555 !important;
 
     }
 
@@ -4779,67 +4750,67 @@ body.dark .service-body{
        KEY
        ====================================================== */
 
-    #servicePrintContainer .service-print-key {
+    .service-print-key {
 
-        text-align: center;
+        margin: 0 0 4mm 0 !important;
 
-        margin: 0 0 8px 0;
+        font-size: 10pt !important;
 
-        font-size: 10px;
+        font-weight: 700 !important;
 
     }
 
 
     /* ======================================================
-       SONG CONTENT
+       THREE COLUMN LAYOUT
+       
+       IMPORTANT:
+       CSS COLUMNS FLOW:
+       
+       COLUMN 1
+          ↓
+       COLUMN 2
+          ↓
+       COLUMN 3
+       
+       NOT all content in column 1.
        ====================================================== */
 
-    #servicePrintContainer .service-print-content {
+    .service-print-content {
 
-        /*
-         * THIS IS THE IMPORTANT PART
-         */
+        column-count: 3 !important;
 
-        column-count: 3;
+        column-gap: 8mm !important;
 
-        column-width: auto;
+        column-fill: auto !important;
 
-        column-gap: 18px;
+        height: calc(100vh - 38mm) !important;
 
-        column-fill: auto;
+        width: 100% !important;
 
-        width: 100%;
+        box-sizing: border-box !important;
 
-        height: calc(100vh - 55mm);
+        overflow: hidden !important;
 
-        overflow: visible !important;
+    }
+
+
+    /* ======================================================
+       EACH VERSE / CHORUS / BRIDGE
+       
+       Keep title + chords + lyrics together when possible.
+       ====================================================== */
+
+    .print-song-section {
 
         display: block !important;
-    }
 
+        break-inside: avoid !important;
 
-    /* ======================================================
-       SECTION
-       ====================================================== */
+        page-break-inside: avoid !important;
 
-    #servicePrintContainer .print-section {
+        margin: 0 0 5mm 0 !important;
 
-        display: block;
-
-        width: 100%;
-
-        margin: 0 0 8px 0;
-
-        padding: 0;
-
-        /*
-         * A section stays together when possible.
-         * If it doesn't fit, it can continue naturally.
-         */
-
-        break-inside: avoid;
-
-        page-break-inside: avoid;
     }
 
 
@@ -4847,25 +4818,20 @@ body.dark .service-body{
        SECTION TITLE
        ====================================================== */
 
-    #servicePrintContainer .print-section-title {
+    .print-section-title {
 
-        display: block;
+        font-size: 12pt !important;
 
-        margin: 5px 0 2px 0;
+        font-weight: 700 !important;
 
-        padding: 0;
+        margin: 0 0 1mm 0 !important;
 
-        font-size: 12px;
+        padding: 0 !important;
 
-        line-height: 1.05;
+        line-height: 1.05 !important;
 
-        font-weight: 700;
+        break-after: avoid !important;
 
-        text-transform: uppercase;
-
-        break-after: avoid;
-
-        page-break-after: avoid;
     }
 
 
@@ -4873,27 +4839,22 @@ body.dark .service-body{
        CHORDS
        ====================================================== */
 
-    #servicePrintContainer .print-chords {
+    .print-chords {
 
-        display: block;
+        font-size: 10pt !important;
 
-        margin: 0;
+        font-weight: 700 !important;
 
-        padding: 0;
+        line-height: 1.05 !important;
 
-        font-family:
-            "Courier New",
-            monospace;
+        margin: 0 !important;
 
-        font-size: 10px;
+        padding: 0 !important;
 
-        line-height: 1.0;
+        white-space: pre-wrap !important;
 
-        font-weight: 700;
+        break-after: avoid !important;
 
-        white-space: pre-wrap;
-
-        break-after: avoid;
     }
 
 
@@ -4901,47 +4862,45 @@ body.dark .service-body{
        LYRICS
        ====================================================== */
 
-    #servicePrintContainer .print-lyrics {
+    .print-lyrics {
 
-        display: block;
+        font-size: 10pt !important;
 
-        margin: 0;
+        line-height: 1.08 !important;
 
-        padding: 0;
+        margin: 0 0 1.5mm 0 !important;
 
-        font-size: 11px;
+        padding: 0 !important;
 
-        line-height: 1.08;
-
-        white-space: pre-wrap;
-    }
-
-
-    /* ======================================================
-       EMPTY / MISSING CONTENT
-       ====================================================== */
-
-    #servicePrintContainer .print-no-content {
-
-        text-align: center;
-
-        font-size: 12px;
-
-        color: #777;
+        break-inside: avoid !important;
 
     }
 
 
     /* ======================================================
-       PAGE
+       NO CONTENT
        ====================================================== */
 
-    @page {
+    .print-no-content {
 
-        size: A4 landscape;
+        font-size: 14pt !important;
 
-        margin: 8mm;
+        padding: 20px !important;
+
+        text-align: center !important;
 
     }
+
+}
+
+
+/* ==========================================================
+   SCREEN
+   Hide print container normally
+   ========================================================== */
+
+#servicePrintContainer {
+
+    display: none;
 
 }
