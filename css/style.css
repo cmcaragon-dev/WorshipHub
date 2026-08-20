@@ -4776,11 +4776,11 @@ body.dark .service-body{
        NOT all content in column 1.
        ====================================================== */
 
-    .service-print-content {
+   .service-print-content {
 
         column-count: 3 !important;
 
-        column-gap: 8mm !important;
+        column-gap: 6mm !important;
 
         column-fill: auto !important;
 
@@ -4789,8 +4789,6 @@ body.dark .service-body{
         width: 100% !important;
 
         box-sizing: border-box !important;
-
-        overflow: hidden !important;
 
     }
 
@@ -4801,15 +4799,15 @@ body.dark .service-body{
        Keep title + chords + lyrics together when possible.
        ====================================================== */
 
-    .print-song-section {
+   .print-song-section {
 
-        display: block !important;
+        margin: 0 0 2mm 0 !important;
+
+        padding: 0 !important;
 
         break-inside: avoid !important;
 
         page-break-inside: avoid !important;
-
-        margin: 0 0 5mm 0 !important;
 
     }
 
@@ -4818,19 +4816,17 @@ body.dark .service-body{
        SECTION TITLE
        ====================================================== */
 
-    .print-section-title {
+   .print-section-title {
 
-        font-size: 12pt !important;
+        font-size: 11pt !important;
 
         font-weight: 700 !important;
 
-        margin: 0 0 1mm 0 !important;
+        line-height: 1 !important;
+
+        margin: 0 0 0.5mm 0 !important;
 
         padding: 0 !important;
-
-        line-height: 1.05 !important;
-
-        break-after: avoid !important;
 
     }
 
@@ -4841,11 +4837,13 @@ body.dark .service-body{
 
     .print-chords {
 
-        font-size: 10pt !important;
+        color: red !important;
+
+        font-size: 9.5pt !important;
 
         font-weight: 700 !important;
 
-        line-height: 1.05 !important;
+        line-height: 0.95 !important;
 
         margin: 0 !important;
 
@@ -4864,18 +4862,19 @@ body.dark .service-body{
 
     .print-lyrics {
 
-        font-size: 10pt !important;
+        color: #000 !important;
 
-        line-height: 1.08 !important;
+        font-size: 9.5pt !important;
 
-        margin: 0 0 1.5mm 0 !important;
+        line-height: 0.98 !important;
+
+        margin: 0 0 0.8mm 0 !important;
 
         padding: 0 !important;
 
         break-inside: avoid !important;
 
     }
-
 
     /* ======================================================
        NO CONTENT
