@@ -4800,3 +4800,35 @@ body.dark .service-body{
         color: #000;
     }
 }
+@media print {
+
+    body * {
+        visibility: hidden;
+    }
+
+
+    #servicePrintContainer,
+    #servicePrintContainer * {
+
+        visibility: visible;
+
+    }
+
+
+    #servicePrintContainer {
+
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+
+    }
+
+
+    .service-print-song {
+
+        page-break-after:always;
+
+    }
+
+}
