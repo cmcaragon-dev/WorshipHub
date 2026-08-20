@@ -3707,7 +3707,149 @@ window.fitToOnePage =
 
 window.printServiceSongs =
     printServiceSongs;
+// ==========================================================
+// PRINT HELPERS
+// ==========================================================
 
+function escapePrintHTML(text) {
+
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+}
+
+
+// ----------------------------------------------------------
+// CHECK IF LINE IS CHORD LINE
+// ----------------------------------------------------------
+
+function isChordLine(line) {
+
+    if (!line) {
+        return false;
+    }
+
+    const words =
+        line.trim().split(/\s+/);
+
+    if (!words.length) {
+        return false;
+    }
+
+
+    let chordCount = 0;
+
+
+    words.forEach(word => {
+
+        if (
+            /^[A-G](#|b)?(m|maj|min|sus|dim|aug)?[0-9]*$/
+            .test(word)
+        ) {
+
+            chordCount++;
+        }
+
+    });
+
+
+    return (
+        chordCount === words.length
+    );
+}
+
+
+// ----------------------------------------------------------
+// TRANSPOSE PRINT CHORDS
+// ----------------------------------------------------------
+
+function transposePrintChords(
+    chordLine,
+    song
+) {
+
+    const originalKey =
+        song.originalKey ||
+        song.key ||
+        "C";
+
+
+    const serviceKey =
+        song.serviceKey ||
+        originalKey;
+
+
+    let steps = 0;
+
+
+    let originalIndex =
+        SHARP_SCALE.indexOf(originalKey);
+
+
+    if (originalIndex === -1) {
+
+        originalIndex =
+            FLAT_SCALE.indexOf(originalKey);
+    }
+
+
+    let serviceIndex =
+        SHARP_SCALE.indexOf(serviceKey);
+
+
+    if (serviceIndex === -1) {
+
+        serviceIndex =
+            FLAT_SCALE.indexOf(serviceKey);
+    }
+
+
+    if (
+        originalIndex !== -1 &&
+        serviceIndex !== -1
+    ) {
+
+        steps =
+            serviceIndex -
+            originalIndex;
+    }
+
+
+    return chordLine.replace(
+        /[A-G](#|b)?/g,
+        note => {
+
+            let index =
+                SHARP_SCALE.indexOf(note);
+
+
+            if (index === -1) {
+
+                index =
+                    FLAT_SCALE.indexOf(note);
+            }
+
+
+            if (index === -1) {
+
+                return note;
+            }
+
+
+            return SHARP_SCALE[
+                (
+                    index +
+                    steps +
+                    12
+                ) % 12
+            ];
+
+        }
+    );
+
+}
 function formatServiceSongForPrint(
     songText,
     serviceSong
