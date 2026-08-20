@@ -4632,57 +4632,7 @@ body.dark .service-body{
         font-size: inherit !important;
     }
 }
-/* ==========================================================
-   SERVICE / STANDALONE PRINT
-   ========================================================== */
 
-@media print {
-
-    @page {
-        size: A4 portrait;
-        margin: 10mm;
-    }
-
-    body * {
-        visibility: hidden !important;
-    }
-
-    #servicePrintContainer,
-    #servicePrintContainer * {
-        visibility: visible !important;
-    }
-
-    #servicePrintContainer {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        max-width: 190mm;
-        margin: 0 auto;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    .service-print-song {
-        width: 100%;
-        max-width: 190mm;
-        min-height: 277mm;
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0;
-        overflow: hidden;
-        page-break-after: always;
-        break-after: page;
-    }
-
-    .service-print-song:last-child {
-        page-break-after: auto;
-        break-after: auto;
-    }
-
-    /* ------------------------------------------------------
-       TITLE
-       ------------------------------------------------------ */
 
     .service-print-title {
         display: inline-block;
@@ -4799,59 +4749,6 @@ body.dark .service-body{
         font-weight: 700;
         color: #000;
     }
-}
-@media print {
-
-    body * {
-        visibility: hidden;
-    }
-
-
-    #servicePrintContainer,
-    #servicePrintContainer * {
-
-        visibility: visible;
-
-    }
-
-
-    #servicePrintContainer {
-
-        position:absolute;
-        left:0;
-        top:0;
-        width:100%;
-
-    }
-
-
-    .service-print-song {
-
-        page-break-after:always;
-
-    }
-
-}
-.print-lyric-line {
-
-    white-space:pre-wrap;
-    line-height:1.15;
-
-}
-
-
-.print-chord {
-
-    font-weight:900;
-    margin-right:4px;
-
-}
-
-
-.print-chord-line {
-
-    margin-bottom:0;
-
 }
 /* ==========================================================
    STANDALONE SONG PRINT - COMPACT LANDSCAPE
