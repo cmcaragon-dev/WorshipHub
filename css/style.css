@@ -4832,3 +4832,24 @@ body.dark .service-body{
     }
 
 }
+.print-lyric-line {
+
+    white-space:pre-wrap;
+    line-height:1.15;
+
+}
+
+
+.print-chord {
+
+    font-weight:900;
+    margin-right:4px;
+
+}
+
+
+.print-chord-line {
+
+    margin-bottom:0;
+
+}
