@@ -3484,3 +3484,787 @@ function fitToOnePage() {
 
 window.fitToOnePage =
     fitToOnePage;
+
+// ==========================================================
+// SERVICE PLANNER PRINT
+// ==========================================================
+
+function printServiceSongs() {
+
+    console.log("PRINT SERVICE SONGS");
+
+    let serviceToPrint = null;
+
+    // ------------------------------------------------------
+    // CURRENTLY SELECTED SERVICE
+    // ------------------------------------------------------
+
+    if (
+        typeof selectedService !== "undefined" &&
+        selectedService &&
+        Array.isArray(selectedService.songs)
+    ) {
+        serviceToPrint = selectedService;
+    }
+
+    // ------------------------------------------------------
+    // ACTIVE SERVICE
+    // ------------------------------------------------------
+
+    if (!serviceToPrint) {
+
+        const currentServiceId =
+            localStorage.getItem("currentServiceId");
+
+        if (currentServiceId) {
+
+            serviceToPrint =
+                services.find(function(service) {
+
+                    return String(service.id) ===
+                           String(currentServiceId);
+
+                });
+
+        }
+
+    }
+
+    // ------------------------------------------------------
+    // NO SERVICE
+    // ------------------------------------------------------
+
+    if (
+        !serviceToPrint ||
+        !Array.isArray(serviceToPrint.songs) ||
+        serviceToPrint.songs.length === 0
+    ) {
+
+        alert(
+            "There are no songs in the selected Service Planner to print."
+        );
+
+        return;
+    }
+
+    console.log(
+        "Printing service:",
+        serviceToPrint.name
+    );
+
+
+    // ------------------------------------------------------
+    // REMOVE OLD PRINT CONTAINER
+    // ------------------------------------------------------
+
+    const oldContainer =
+        document.getElementById(
+            "servicePrintContainer"
+        );
+
+    if (oldContainer) {
+        oldContainer.remove();
+    }
+
+
+    // ------------------------------------------------------
+    // CREATE PRINT CONTAINER
+    // ------------------------------------------------------
+
+    const printContainer =
+        document.createElement("div");
+
+    printContainer.id =
+        "servicePrintContainer";
+
+
+    // ------------------------------------------------------
+    // BUILD SONG PAGES
+    // ------------------------------------------------------
+
+    serviceToPrint.songs.forEach(
+        function(serviceSong) {
+
+            const page =
+                document.createElement("section");
+
+            page.className =
+                "service-print-song";
+
+
+            // ==============================================
+            // HEADER
+            // ==============================================
+
+            const header =
+                document.createElement("div");
+
+            header.className =
+                "service-print-header";
+
+
+            // TITLE
+
+            const title =
+                document.createElement("div");
+
+            title.className =
+                "service-print-title";
+
+            title.textContent =
+                serviceSong.title ||
+                "Untitled Song";
+
+
+            header.appendChild(title);
+
+
+            // ARTIST
+
+            if (serviceSong.artist) {
+
+                const artist =
+                    document.createElement("div");
+
+                artist.className =
+                    "service-print-artist";
+
+                artist.textContent =
+                    serviceSong.artist;
+
+                header.appendChild(artist);
+
+            }
+
+
+            // KEY
+
+            const serviceKey =
+                serviceSong.serviceKey ||
+                serviceSong.key ||
+                "";
+
+            if (serviceKey) {
+
+                const key =
+                    document.createElement("div");
+
+                key.className =
+                    "service-print-key";
+
+                key.textContent =
+                    "Key: " + serviceKey;
+
+                header.appendChild(key);
+
+            }
+
+
+            page.appendChild(header);
+
+
+            // ==============================================
+            // CONTENT
+            // ==============================================
+
+            const content =
+                document.createElement("div");
+
+            content.className =
+                "service-print-content";
+
+
+            // IMPORTANT:
+            // Match the original song by FILE.
+
+            let sourceSong = null;
+
+            if (
+                typeof songs !== "undefined" &&
+                Array.isArray(songs)
+            ) {
+
+                sourceSong =
+                    songs.find(function(song) {
+
+                        return (
+                            song.file ===
+                            serviceSong.file
+                        );
+
+                    });
+
+            }
+
+
+            if (!sourceSong) {
+
+                content.innerHTML =
+                    "<div class='print-error'>" +
+                    "Song content not available." +
+                    "</div>";
+
+            }
+            else {
+
+                const songText =
+                    sourceSong.content ||
+                    sourceSong.lyrics ||
+                    sourceSong.song ||
+                    "";
+
+                if (!songText) {
+
+                    content.innerHTML =
+                        "<div class='print-error'>" +
+                        "Song content not available." +
+                        "</div>";
+
+                }
+                else {
+
+                    content.innerHTML =
+                        formatServiceSongForPrint(
+                            songText,
+                            serviceSong
+                        );
+
+                }
+
+            }
+
+
+            page.appendChild(content);
+
+            printContainer.appendChild(page);
+
+        }
+    );
+
+
+    // ------------------------------------------------------
+    // ADD PRINT CONTAINER
+    // ------------------------------------------------------
+
+    document.body.appendChild(
+        printContainer
+    );
+
+
+    // ------------------------------------------------------
+    // PRINT
+    // ------------------------------------------------------
+
+    setTimeout(function() {
+
+        window.print();
+
+        setTimeout(function() {
+
+            const container =
+                document.getElementById(
+                    "servicePrintContainer"
+                );
+
+            if (container) {
+                container.remove();
+            }
+
+        }, 1000);
+
+    }, 300);
+
+}
+
+
+// ==========================================================
+// FORMAT SERVICE SONG
+// ==========================================================
+
+function formatServiceSongForPrint(
+    songText,
+    serviceSong
+) {
+
+    const lines =
+        String(songText).split(/\r?\n/);
+
+    let html = "";
+
+    let sectionOpen = false;
+
+
+    lines.forEach(function(rawLine) {
+
+        const line =
+            rawLine.trim();
+
+
+        if (!line) {
+            return;
+        }
+
+
+        // --------------------------------------------------
+        // SECTION TITLE
+        // --------------------------------------------------
+
+        if (
+            /^\[.*\]$/.test(line)
+        ) {
+
+            if (sectionOpen) {
+
+                html += "</div>";
+
+            }
+
+            const sectionName =
+                line
+                    .replace(/^\[/, "")
+                    .replace(/\]$/, "");
+
+
+            html +=
+                "<div class=\"print-section\">";
+
+
+            html +=
+                "<div class=\"print-section-title\">" +
+                escapePrintHTML(sectionName) +
+                "</div>";
+
+
+            sectionOpen = true;
+
+            return;
+        }
+
+
+        // --------------------------------------------------
+        // CHORD
+        // --------------------------------------------------
+
+        if (isChordLine(line)) {
+
+            const chordLine =
+                transposePrintChords(
+                    line,
+                    serviceSong
+                );
+
+
+            html +=
+                "<div class=\"print-chord-line\">" +
+                escapePrintHTML(chordLine) +
+                "</div>";
+
+
+            return;
+        }
+
+
+        // --------------------------------------------------
+        // LYRIC
+        // --------------------------------------------------
+
+        html +=
+            "<div class=\"print-lyric-line\">" +
+            escapePrintHTML(line) +
+            "</div>";
+
+    });
+
+
+    if (sectionOpen) {
+
+        html += "</div>";
+
+    }
+
+
+    return html;
+
+}
+
+
+// ==========================================================
+// TRANSPOSE PRINT CHORDS
+// ==========================================================
+
+function transposePrintChords(
+    chordLine,
+    serviceSong
+) {
+
+    const transpose =
+        Number(serviceSong.transpose || 0);
+
+    if (!transpose) {
+
+        return chordLine;
+
+    }
+
+
+    return chordLine.replace(
+        /[A-G](?:#|b)?(?:m|min|maj|dim|aug|sus|add)?\d*(?:\/[A-G](?:#|b)?)?/g,
+        function(chord) {
+
+            return transposeSinglePrintChord(
+                chord,
+                transpose
+            );
+
+        }
+    );
+
+}
+
+
+// ==========================================================
+// TRANSPOSE ONE CHORD
+// ==========================================================
+
+function transposeSinglePrintChord(
+    chord,
+    amount
+) {
+
+    const match =
+        chord.match(
+            /^([A-G](?:#|b)?)(.*)$/
+        );
+
+    if (!match) {
+
+        return chord;
+
+    }
+
+
+    const root =
+        match[1];
+
+    const suffix =
+        match[2];
+
+
+    const notes = [
+        "C",
+        "C#",
+        "D",
+        "D#",
+        "E",
+        "F",
+        "F#",
+        "G",
+        "G#",
+        "A",
+        "A#",
+        "B"
+    ];
+
+
+    const flatMap = {
+
+        "Db": "C#",
+        "Eb": "D#",
+        "Gb": "F#",
+        "Ab": "G#",
+        "Bb": "A#"
+
+    };
+
+
+    const normalizedRoot =
+        flatMap[root] || root;
+
+
+    const index =
+        notes.indexOf(
+            normalizedRoot
+        );
+
+
+    if (index === -1) {
+
+        return chord;
+
+    }
+
+
+    const newIndex =
+        (
+            index +
+            amount +
+            12
+        ) % 12;
+
+
+    return (
+        notes[newIndex] +
+        suffix
+    );
+
+}
+
+
+// ==========================================================
+// CHORD DETECTOR
+// ==========================================================
+
+function isChordLine(line) {
+
+    const chordPattern =
+        /^(?:[A-G](?:#|b)?(?:m|min|maj|dim|aug|sus|add)?[0-9]*(?:\/[A-G](?:#|b)?)?)(?:\s+(?:[A-G](?:#|b)?(?:m|min|maj|dim|aug|sus|add)?[0-9]*(?:\/[A-G](?:#|b)?)?))*$/;
+
+    return chordPattern.test(
+        String(line).trim()
+    );
+
+}
+
+
+// ==========================================================
+// ESCAPE HTML
+// ==========================================================
+
+function escapePrintHTML(text) {
+
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+// ==========================================================
+// MAKE BUTTON AVAILABLE TO HTML
+// ==========================================================
+
+window.printServiceSongs =
+    printServiceSongs;
+
+
+// ==========================================================
+// PRINT STANDALONE SONG
+// ==========================================================
+
+function printCurrentSong() {
+
+    console.log("PRINT STANDALONE SONG");
+
+    // ------------------------------------------------------
+    // GET CURRENT SONG
+    // ------------------------------------------------------
+
+    let song = null;
+
+    // Try to get song from current page
+    if (typeof currentSong !== "undefined" && currentSong) {
+
+        song = currentSong;
+
+    }
+
+    // Try to get song from window
+    if (!song && window.currentSong) {
+
+        song = window.currentSong;
+
+    }
+
+    // Try to identify song from URL
+    if (!song) {
+
+        const currentFile =
+            window.location.pathname
+                .split("/")
+                .pop();
+
+        if (currentFile && typeof songs !== "undefined") {
+
+            song = songs.find(function(s) {
+
+                const songFile =
+                    String(s.file || "")
+                        .split("/")
+                        .pop();
+
+                return songFile === currentFile;
+
+            });
+
+        }
+
+    }
+
+    // ------------------------------------------------------
+    // SONG NOT FOUND
+    // ------------------------------------------------------
+
+    if (!song) {
+
+        console.error(
+            "Standalone song could not be found."
+        );
+
+        alert(
+            "Song is not available for printing."
+        );
+
+        return;
+
+    }
+
+    console.log(
+        "Standalone song found:",
+        song
+    );
+
+    // ------------------------------------------------------
+    // CREATE PRINT CONTAINER
+    // ------------------------------------------------------
+
+    let printContainer =
+        document.getElementById(
+            "servicePrintContainer"
+        );
+
+    if (printContainer) {
+
+        printContainer.remove();
+
+    }
+
+    printContainer =
+        document.createElement("div");
+
+    printContainer.id =
+        "servicePrintContainer";
+
+    // ------------------------------------------------------
+    // CREATE SONG PAGE
+    // ------------------------------------------------------
+
+    const page =
+        document.createElement("section");
+
+    page.className =
+        "service-print-song";
+
+    // ------------------------------------------------------
+    // TITLE
+    // ------------------------------------------------------
+
+    const title =
+        document.createElement("h1");
+
+    title.className =
+        "service-print-title";
+
+    title.textContent =
+        song.title || "Untitled Song";
+
+    page.appendChild(title);
+
+    // ------------------------------------------------------
+    // ARTIST
+    // ------------------------------------------------------
+
+    if (song.artist) {
+
+        const artist =
+            document.createElement("div");
+
+        artist.className =
+            "service-print-artist";
+
+        artist.textContent =
+            song.artist;
+
+        page.appendChild(artist);
+
+    }
+
+    // ------------------------------------------------------
+    // CONTENT
+    // ------------------------------------------------------
+
+    const content =
+        document.createElement("div");
+
+    content.className =
+        "service-print-content";
+
+    // IMPORTANT:
+    // Use the same content sources that worked
+    // for your Service Planner printing.
+
+    let songText =
+        song.content ||
+        song.lyrics ||
+        song.text ||
+        "";
+
+    if (!songText) {
+
+        console.error(
+            "Song object does not contain content:",
+            song
+        );
+
+        content.innerHTML =
+            `<div class="print-no-content">
+                Song content not available.
+            </div>`;
+
+    }
+    else {
+
+        content.innerHTML =
+            formatSongForPrint(songText);
+
+    }
+
+    page.appendChild(content);
+
+    printContainer.appendChild(page);
+
+    document.body.appendChild(
+        printContainer
+    );
+
+    // ------------------------------------------------------
+    // PRINT
+    // ------------------------------------------------------
+
+    setTimeout(function() {
+
+        window.print();
+
+        setTimeout(function() {
+
+            if (printContainer) {
+
+                printContainer.remove();
+
+            }
+
+        }, 1000);
+
+    }, 300);
+
+}
+
+
+// ==========================================================
+// MAKE AVAILABLE TO HTML onclick=""
+// ==========================================================
+
+window.printCurrentSong =
+    printCurrentSong;
