@@ -1128,62 +1128,118 @@ console.log(
 
 async transpose(step) {
 
+    console.log("================================");
+    console.log("TRANSPOSE:", step);
+
+    // --------------------------------------------------
+    // GET CURRENT SONG
+    // --------------------------------------------------
+
+    let song = window.currentSong;
+
+    if (!song) {
+        song = await this.getCurrentSong();
+
+        if (song) {
+            window.currentSong = song;
+        }
+    }
+
+    if (!song) {
+        console.error("TRANSPOSE: NO CURRENT SONG");
+        return;
+    }
+
+    // --------------------------------------------------
+    // GET CURRENT DISPLAYED KEY
+    // --------------------------------------------------
+
+    const serviceKeyElement =
+        document.getElementById("serviceKey");
+
+    const currentKey =
+        serviceKeyElement?.textContent?.trim() ||
+        song.serviceKey ||
+        song.originalKey ||
+        song.key ||
+        "";
+
+    if (!currentKey) {
+        console.error("TRANSPOSE: NO CURRENT KEY");
+        return;
+    }
+
     console.log(
-        "TRANSPOSE:",
-        step
+        "CURRENT KEY BEFORE TRANSPOSE:",
+        currentKey
     );
 
     // --------------------------------------------------
-    // CHANGE TRANSPOSE VALUE
+    // CALCULATE NEW KEY
     // --------------------------------------------------
 
-    App.transpose +=
-        step * 0.5;
+    const newKey =
+        getTransposedKey(currentKey, step);
+
+    console.log(
+        "NEW KEY:",
+        newKey
+    );
 
     // --------------------------------------------------
-    // CHANGE DISPLAYED CHORDS
+    // UPDATE TRANSPOSE VALUE
     // --------------------------------------------------
 
-   document
-    .querySelectorAll(".chord")
-    .forEach(chord => {
+    App.transpose += step * 0.5;
 
-        // Preserve original chord only once
-        if (!chord.dataset.originalChord) {
+    // --------------------------------------------------
+    // UPDATE CHORDS
+    // --------------------------------------------------
 
-            chord.dataset.originalChord =
-                chord.innerText;
-        }
+    document
+        .querySelectorAll(".chord")
+        .forEach(chord => {
 
-        const originalChord =
-            chord.dataset.originalChord;
+            // IMPORTANT:
+            // Always preserve the ORIGINAL chord.
+            if (!chord.dataset.originalChord) {
 
-        chord.innerText =
-            originalChord.replace(
-                /[A-G](#|b)?/g,
+                chord.dataset.originalChord =
+                    chord.innerText;
+            }
+
+            const originalChord =
+                chord.dataset.originalChord;
+
+            chord.innerText =
+                originalChord.replace(
+                    /[A-G](#|b)?/g,
                     note => {
 
                         let index =
-                            SHARP_SCALE.indexOf(
-                                note
-                            );
+                            SHARP_SCALE.indexOf(note);
 
                         if (index === -1) {
 
                             index =
-                                FLAT_SCALE.indexOf(
-                                    note
-                                );
+                                FLAT_SCALE.indexOf(note);
                         }
 
                         if (index === -1) {
                             return note;
                         }
 
+                        // Calculate total semitone
+                        // displacement from original key.
+                        const totalSteps =
+                            Math.round(
+                                App.transpose / 0.5
+                            );
+
                         return SHARP_SCALE[
                             (
                                 index +
-                                step +
+                                totalSteps +
                                 12
                             ) % 12
                         ];
@@ -1192,12 +1248,58 @@ async transpose(step) {
         });
 
     // --------------------------------------------------
-    // UPDATE KEY
+    // VERY IMPORTANT:
+    // UPDATE THE IN-MEMORY SONG
     // --------------------------------------------------
 
-    this.updateKeyDisplay();
+    song.serviceKey =
+        newKey;
 
-    this.updateGuide();
+    window.currentSong =
+        song;
+
+    // Also update the active service object
+    // so it does not continue holding the old key.
+
+    if (
+        currentService &&
+        Array.isArray(currentService.songs)
+    ) {
+
+        const index =
+            this.getSongIndex();
+
+        if (currentService.songs[index]) {
+
+            currentService.songs[index].serviceKey =
+                newKey;
+        }
+    }
+
+    if (
+        activeService &&
+        Array.isArray(activeService.songs)
+    ) {
+
+        const index =
+            this.getSongIndex();
+
+        if (activeService.songs[index]) {
+
+            activeService.songs[index].serviceKey =
+                newKey;
+        }
+    }
+
+    // --------------------------------------------------
+    // UPDATE DISPLAY
+    // --------------------------------------------------
+
+    if (App.serviceKey) {
+
+        App.serviceKey.innerText =
+            newKey;
+    }
 
     // --------------------------------------------------
     // UPDATE TRANSPOSE DISPLAY
@@ -1220,6 +1322,12 @@ async transpose(step) {
     }
 
     // --------------------------------------------------
+    // UPDATE PASSING CHORDS
+    // --------------------------------------------------
+
+    await this.updateGuide();
+
+    // --------------------------------------------------
     // SAVE TO FIREBASE
     // --------------------------------------------------
 
@@ -1232,29 +1340,24 @@ async transpose(step) {
             "Transpose changed locally, but Firebase save failed."
         );
     }
-},
 
-// ======================================================
-// CURRENT KEY
-// ======================================================
+    console.log("================================");
+    console.log("TRANSPOSE COMPLETE");
+    console.log("KEY:", newKey);
+    console.log("TRANSPOSE:", App.transpose);
+    console.log("================================");
+},
 
 getKey() {
 
-    const song = window.currentSong;
+    const song =
+        window.currentSong ||
+        currentService?.songs?.[this.getSongIndex()] ||
+        activeService?.songs?.[this.getSongIndex()];
 
     if (!song) {
         return "";
     }
-
-    /*
-     * SERVICE KEY is the saved/displayed key.
-     *
-     * IMPORTANT:
-     * Do NOT apply App.transpose again.
-     *
-     * serviceKey already contains the final key that
-     * was saved for this service/song.
-     */
 
     return (
         song.serviceKey ||
@@ -1263,6 +1366,7 @@ getKey() {
         ""
     );
 },
+
 // ======================================================
 // DISPLAY SERVICE KEY
 // ======================================================
