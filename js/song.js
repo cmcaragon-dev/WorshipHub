@@ -3396,36 +3396,76 @@ function printSongsInServiceFormat(songList) {
         // GET CONTENT DIRECTLY FROM SONG OBJECT
         // --------------------------------------------------
 
-        const songText =
-            song.content ||
-            song.lyrics ||
-            song.text ||
-            song.song ||
-            "";
+        let songText =
+    song.content ||
+    song.lyrics ||
+    song.text ||
+    song.song ||
+    "";
 
-        if (!songText) {
 
-            console.error(
-                "NO SONG CONTENT:",
-                song
-            );
+// --------------------------------------------------
+// FALLBACK FOR STANDALONE SONG
+// GET CURRENT DISPLAYED LYRICS
+// --------------------------------------------------
 
-            content.innerHTML =
-                `
-                <div class="print-error">
-                    Song content not available.
-                </div>
-                `;
+if (!songText) {
 
-        }
-        else {
+    const lyricsElement =
+        document.getElementById(
+            "lyrics"
+        );
 
-            content.innerHTML =
-                formatServiceSongForPrint(
-                    songText,
-                    song
-                );
-        }
+
+    if (lyricsElement) {
+
+        songText =
+            lyricsElement.innerText;
+
+        console.log(
+            "PRINT FALLBACK: USING #lyrics CONTENT"
+        );
+
+    }
+
+}
+
+
+// --------------------------------------------------
+// CHECK CONTENT
+// --------------------------------------------------
+
+if (!songText) {
+
+    console.error(
+        "NO SONG CONTENT:",
+        song
+    );
+
+
+    content.innerHTML =
+        `
+        <div class="print-error">
+            Song content not available.
+        </div>
+        `;
+
+}
+else {
+
+    console.log(
+        "PRINT SONG CONTENT FOUND:",
+        songText.substring(0,100)
+    );
+
+
+    content.innerHTML =
+        formatServiceSongForPrint(
+            songText,
+            song
+        );
+
+}
 
         page.appendChild(
             content
