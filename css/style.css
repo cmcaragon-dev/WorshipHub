@@ -3222,11 +3222,9 @@ body.dark .service-body{
         width:100%;
     }
 }
-
 /* =========================================================
-   PRINT — COMPACT SONG PRINTING
-   REMOVE ALL UNNECESSARY SPACE BETWEEN SONG LINES
-========================================================= */
+   PRINT — VERTICAL FLOW / COMPACT MULTI-COLUMN
+   ========================================================= */
 
 @page{
     size: landscape;
@@ -3237,7 +3235,7 @@ body.dark .service-body{
 
     /* =====================================================
        PAGE
-    ===================================================== */
+       ===================================================== */
 
     html,
     body{
@@ -3255,7 +3253,7 @@ body.dark .service-body{
 
     /* =====================================================
        HIDE SYSTEM UI
-    ===================================================== */
+       ===================================================== */
 
     .topbar,
     .sidebar,
@@ -3272,14 +3270,14 @@ body.dark .service-body{
 
     /* =====================================================
        SONG HEADER
-    ===================================================== */
+       ===================================================== */
 
     .song-header{
 
         text-align:center;
 
-        margin:0 0 8px 0 !important;
-        padding:0 0 6px 0 !important;
+        margin:0 0 7px 0 !important;
+        padding:0 0 5px 0 !important;
 
         border-bottom:2px solid #333;
     }
@@ -3313,7 +3311,7 @@ body.dark .service-body{
 
     /* =====================================================
        SONG CONTAINER
-    ===================================================== */
+       ===================================================== */
 
     .song-container{
 
@@ -3332,17 +3330,83 @@ body.dark .service-body{
 
 
     /* =====================================================
-       3 COLUMN SONG
-    ===================================================== */
+       IMPORTANT:
+       REMOVE SCREEN GRID
+       CREATE PRINT COLUMNS
+       ===================================================== */
 
     .song{
 
-        display:grid !important;
+        display:block !important;
 
-        grid-template-columns:
-            repeat(3,minmax(0,1fr));
+        width:100% !important;
 
-        gap:6px !important;
+        margin:0 !important;
+        padding:0 !important;
+
+        column-count:3;
+        column-gap:12px;
+
+        column-fill:auto;
+
+        height:calc(100vh - 35mm);
+
+        box-sizing:border-box;
+    }
+
+
+    /* =====================================================
+       SONG SECTIONS
+       FLOW DOWNWARD
+       ===================================================== */
+
+    .song-section{
+
+        display:block !important;
+
+        width:100% !important;
+
+        margin:0 0 6px 0 !important;
+        padding:3px 5px !important;
+
+        break-inside:avoid !important;
+        page-break-inside:avoid !important;
+
+        box-sizing:border-box;
+    }
+
+
+    /* =====================================================
+       SECTION TITLE
+       ===================================================== */
+
+    .section-title,
+    .song-section-title{
+
+        display:block !important;
+
+        width:100% !important;
+
+        margin:0 0 2px 0 !important;
+        padding:3px 5px !important;
+
+        font-size:12px !important;
+
+        line-height:1 !important;
+
+        font-weight:bold !important;
+
+        box-sizing:border-box;
+    }
+
+
+    /* =====================================================
+       SECTION CONTENT
+       ===================================================== */
+
+    .song-section-content{
+
+        display:block !important;
 
         width:100% !important;
 
@@ -3352,49 +3416,15 @@ body.dark .service-body{
 
 
     /* =====================================================
-       SONG SECTION
-    ===================================================== */
-
-    .song-section{
-
-        break-inside:avoid;
-        page-break-inside:avoid;
-
-        margin:0 !important;
-        padding:4px 6px !important;
-
-        width:100% !important;
-
-        border:none !important;
-    }
-
-
-    /* =====================================================
-       SECTION TITLE
-    ===================================================== */
-
-    .section-title,
-    .song-section-title{
-
-        font-size:12px !important;
-
-        line-height:1 !important;
-
-        margin:0 0 3px 0 !important;
-        padding:3px 5px !important;
-
-        font-weight:bold !important;
-    }
-
-
-    /* =====================================================
-       SONG LINES — MAIN FIX
-       NO GAP BETWEEN LINES
-    ===================================================== */
+       SONG LINES
+       NO SPACE BETWEEN LINES
+       ===================================================== */
 
     .song-line{
 
         display:block !important;
+
+        width:100% !important;
 
         margin:0 !important;
         padding:0 !important;
@@ -3404,9 +3434,9 @@ body.dark .service-body{
             "Courier New",
             monospace !important;
 
-        font-size:13px !important;
+        font-size:14px !important;
 
-        line-height:0.88 !important;
+        line-height:1 !important;
 
         height:auto !important;
 
@@ -3419,8 +3449,8 @@ body.dark .service-body{
 
 
     /* =====================================================
-       REMOVE SPACING BETWEEN CONSECUTIVE LINES
-    ===================================================== */
+       CONSECUTIVE SONG LINES
+       ===================================================== */
 
     .song-line + .song-line{
 
@@ -3430,8 +3460,8 @@ body.dark .service-body{
 
 
     /* =====================================================
-       REMOVE P / DIV / SPAN SPACING
-    ===================================================== */
+       REMOVE INNER ELEMENT SPACING
+       ===================================================== */
 
     .song-line p,
     .song-line div,
@@ -3447,22 +3477,8 @@ body.dark .service-body{
 
 
     /* =====================================================
-       SONG SECTION CONTENT
-    ===================================================== */
-
-    .song-section-content{
-
-        margin:0 !important;
-        padding:0 !important;
-
-        gap:0 !important;
-    }
-
-
-    /* =====================================================
        CHORDS
-       KEEP CHORDS COMPACT WITH LYRICS
-    ===================================================== */
+       ===================================================== */
 
     .chord{
 
@@ -3477,15 +3493,15 @@ body.dark .service-body{
 
         font-weight:bold !important;
 
-        transform:none !important;
-
         vertical-align:baseline !important;
+
+        transform:none !important;
     }
 
 
     /* =====================================================
-       REMOVE ANY GENERIC PARAGRAPH SPACING
-    ===================================================== */
+       REMOVE GENERAL TEXT SPACING
+       ===================================================== */
 
     .song p,
     .song div,
@@ -3500,13 +3516,26 @@ body.dark .service-body{
 
 
     /* =====================================================
+       KEEP EACH SONG SECTION TOGETHER
+       ===================================================== */
+
+    .song-section{
+
+        break-inside:avoid-column !important;
+
+        page-break-inside:avoid !important;
+    }
+
+
+    /* =====================================================
        PASSING CHORDS
-    ===================================================== */
+       ===================================================== */
 
     #passingChords,
     #songEnding{
 
         margin:3px 0 !important;
+
         padding:3px 6px !important;
 
         font-size:13px !important;
@@ -3538,8 +3567,8 @@ body.dark .service-body{
 
 
     /* =====================================================
-       REMOVE EXTRA MARGINS FROM COMMON ELEMENTS
-    ===================================================== */
+       REMOVE DEFAULT HEADING/PARAGRAPH SPACING
+       ===================================================== */
 
     h1,
     h2,
@@ -3555,22 +3584,8 @@ body.dark .service-body{
 
 
     /* =====================================================
-       PREVENT EMPTY SPACE FROM FLEX/GRID
-    ===================================================== */
-
-    .song,
-    .song-section,
-    .song-section-content,
-    .song-line{
-
-        align-content:start !important;
-        align-items:start !important;
-    }
-
-
-    /* =====================================================
-       PRINT LINKS / BUTTONS
-    ===================================================== */
+       BUTTONS / UI
+       ===================================================== */
 
     button,
     .open-song,
