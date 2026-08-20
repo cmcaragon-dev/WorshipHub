@@ -4853,3 +4853,189 @@ body.dark .service-body{
     margin-bottom:0;
 
 }
+/* ==========================================================
+   STANDALONE SONG PRINT - COMPACT LANDSCAPE
+   ========================================================== */
+
+@media print {
+
+    @page {
+        size: landscape;
+        margin: 8mm;
+    }
+
+
+    /* Hide normal screen */
+    body * {
+        visibility: hidden;
+    }
+
+
+    #servicePrintContainer,
+    #servicePrintContainer * {
+        visibility: visible;
+    }
+
+
+    #servicePrintContainer {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white;
+    }
+
+
+    /* ======================================================
+       REMOVE BORDER AND BOXES
+       ====================================================== */
+
+    .service-print-song {
+
+        border: none !important;
+
+        box-shadow: none !important;
+
+        padding: 0 !important;
+
+        margin: 0 !important;
+
+        page-break-after: always;
+    }
+
+
+    /* ======================================================
+       TITLE AREA
+       ====================================================== */
+
+    .service-print-header {
+
+        border: none !important;
+
+        margin-bottom: 10px !important;
+
+        padding: 0 !important;
+
+        text-align: center;
+    }
+
+
+    .service-print-title {
+
+        font-size: 20px !important;
+
+        font-weight: 800;
+
+        margin-bottom: 6px !important;
+
+    }
+
+
+    .service-print-artist,
+    .service-print-key {
+
+        font-size: 12px !important;
+
+        margin: 0 !important;
+
+    }
+
+
+    /* ======================================================
+       SONG CONTENT
+       ====================================================== */
+
+    .service-print-content {
+
+        padding: 0 !important;
+
+        margin: 0 !important;
+
+        column-count: 3;
+
+        column-gap: 18px;
+
+        width: 100%;
+    }
+
+
+    .print-section {
+
+        break-inside: avoid;
+
+        margin: 0 0 6px 0 !important;
+
+        padding: 0 !important;
+    }
+
+
+    .print-section-title {
+
+        font-size: 12px !important;
+
+        font-weight: bold;
+
+        margin: 3px 0 !important;
+
+    }
+
+
+    /* ======================================================
+       LYRICS - REMOVE LINE GAP
+       ====================================================== */
+
+    .print-lyric-line {
+
+        font-size: 11px !important;
+
+        line-height: 1.05 !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+
+        height: auto !important;
+
+    }
+
+
+    /* ======================================================
+       CHORDS
+       KEEP ORIGINAL POSITION
+       ====================================================== */
+
+    .print-chord-line {
+
+        font-size: 11px !important;
+
+        line-height: 1 !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+
+        white-space: pre;
+
+    }
+
+
+    .print-chord {
+
+        display: inline-block;
+
+        font-weight: 900;
+
+        margin-right: 2px;
+
+    }
+
+
+    /* Prevent browser from moving chords */
+    .print-lyric-line,
+    .print-chord-line {
+
+        white-space: pre-wrap;
+
+    }
+
+}
