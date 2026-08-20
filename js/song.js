@@ -2083,7 +2083,7 @@ async start() {
     const service =
         await Service.getCurrent();
 
-    let serviceSong = null;
+    let  = null;
     let serviceIndex = -1;
 
     if (service) {
@@ -2097,7 +2097,7 @@ async start() {
             serviceIndex < service.songs.length
         ) {
 
-            serviceSong =
+             =
                 service.songs[serviceIndex];
         }
     }
@@ -2106,7 +2106,7 @@ async start() {
     // SERVICE PLANNER MODE
     // ==================================================
 
-    if (serviceSong) {
+    if () {
 
         console.log(
             "PRESENTATION MODE: SERVICE PLANNER"
@@ -2124,7 +2124,7 @@ async start() {
 
         console.log(
             "SERVICE SONG:",
-            serviceSong
+            
         );
 
         window.currentSong =
