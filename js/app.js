@@ -1682,7 +1682,21 @@ function renderServices() {
 
                     </button>
 
+<div class="service-planner-bar">
 
+    <!-- Existing Service Planner buttons -->
+
+    <button
+        type="button"
+        id="printServiceSongsBtn"
+        class="btn btn-primary"
+        onclick="printServiceSongs()"
+    >
+        <i class="fas fa-print"></i>
+        Print Service
+    </button>
+
+</div>
                     <button
                         onclick="
                             renameService(
@@ -2820,4 +2834,242 @@ function sortPlaylists() {
 
     });
 
+}
+// ==========================================================
+// PRINT ALL SONGS IN SERVICE PLANNER
+// ==========================================================
+
+function printServiceSongs() {
+
+    console.log("PRINT SERVICE SONGS");
+
+    // Get service songs
+    const serviceSongs =
+        typeof currentService !== "undefined" &&
+        currentService &&
+        Array.isArray(currentService.songs)
+            ? currentService.songs
+            : [];
+
+    if (!serviceSongs.length) {
+        alert("There are no songs in the Service Planner to print.");
+        return;
+    }
+
+    // Create temporary print container
+    let printContainer = document.getElementById("servicePrintContainer");
+
+    if (printContainer) {
+        printContainer.remove();
+    }
+
+    printContainer = document.createElement("div");
+    printContainer.id = "servicePrintContainer";
+
+    // Build each song
+    serviceSongs.forEach((serviceSong, index) => {
+
+        // Find complete song information
+        const song =
+            typeof songs !== "undefined"
+                ? songs.find(s =>
+                    s.id === serviceSong.id ||
+                    s.id === serviceSong.songId
+                )
+                : null;
+
+        if (!song) {
+            console.warn(
+                "Song not found:",
+                serviceSong
+            );
+            return;
+        }
+
+        const page = document.createElement("section");
+        page.className = "service-print-song";
+
+        // --------------------------------------------------
+        // TITLE
+        // --------------------------------------------------
+
+        const title = document.createElement("h1");
+        title.className = "service-print-title";
+        title.textContent = song.title || "Untitled Song";
+
+        page.appendChild(title);
+
+        // Artist
+        if (song.artist) {
+
+            const artist = document.createElement("div");
+
+            artist.className = "service-print-artist";
+            artist.textContent = song.artist;
+
+            page.appendChild(artist);
+        }
+
+        // --------------------------------------------------
+        // SONG CONTENT
+        // --------------------------------------------------
+
+        const content = document.createElement("div");
+        content.className = "service-print-content";
+
+        /*
+         * Use your existing song content.
+         *
+         * This supports:
+         *
+         * [Verse 1]
+         * E
+         * Umaawit, Nagpupuri
+         *
+         * [Chorus]
+         * A
+         * Ikaw ang Panginoon
+         */
+
+        if (song.content) {
+
+            content.innerHTML = formatSongForPrint(song.content);
+
+        } else if (song.lyrics) {
+
+            content.innerHTML = formatSongForPrint(song.lyrics);
+
+        } else {
+
+            content.innerHTML =
+                "<p>No song content available.</p>";
+        }
+
+        page.appendChild(content);
+
+        printContainer.appendChild(page);
+    });
+
+    document.body.appendChild(printContainer);
+
+    // ------------------------------------------------------
+    // PRINT
+    // ------------------------------------------------------
+
+    setTimeout(() => {
+
+        window.print();
+
+        setTimeout(() => {
+
+            printContainer.remove();
+
+        }, 1000);
+
+    }, 300);
+}
+
+
+// ==========================================================
+// FORMAT SONG FOR PRINT
+// ==========================================================
+
+function formatSongForPrint(songText) {
+
+    if (!songText) {
+        return "";
+    }
+
+    const lines = songText.split(/\r?\n/);
+
+    let html = "";
+
+    lines.forEach(line => {
+
+        const trimmed = line.trim();
+
+        if (!trimmed) {
+            return;
+        }
+
+        // ----------------------------------------------
+        // SECTION TITLE
+        // ----------------------------------------------
+
+        if (
+            /^\[.*\]$/.test(trimmed)
+        ) {
+
+            const sectionName =
+                trimmed.replace(/^\[|\]$/g, "");
+
+            html += `
+                <div class="print-section">
+                    <div class="print-section-title">
+                        ${escapePrintHTML(sectionName)}
+                    </div>
+            `;
+
+            return;
+        }
+
+        // ----------------------------------------------
+        // CHORD LINE
+        // ----------------------------------------------
+
+        if (isChordLine(trimmed)) {
+
+            html += `
+                <div class="print-chords">
+                    ${escapePrintHTML(trimmed)}
+                </div>
+            `;
+
+            return;
+        }
+
+        // ----------------------------------------------
+        // LYRIC LINE
+        // ----------------------------------------------
+
+        html += `
+            <div class="print-lyrics">
+                ${escapePrintHTML(trimmed)}
+            </div>
+        `;
+    });
+
+    html += `
+        </div>
+    `;
+
+    return html;
+}
+
+
+// ==========================================================
+// DETECT CHORD LINE
+// ==========================================================
+
+function isChordLine(line) {
+
+    const chordPattern =
+        /^(?:[A-G](?:#|b)?(?:m|min|maj|dim|aug|sus|add)?[0-9]*(?:\/[A-G](?:#|b)?)?)(?:\s+(?:[A-G](?:#|b)?(?:m|min|maj|dim|aug|sus|add)?[0-9]*(?:\/[A-G](?:#|b)?)?))*$/;
+
+    return chordPattern.test(line);
+}
+
+
+// ==========================================================
+// ESCAPE HTML
+// ==========================================================
+
+function escapePrintHTML(text) {
+
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
