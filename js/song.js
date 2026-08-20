@@ -1144,13 +1144,23 @@ async transpose(step) {
     // CHANGE DISPLAYED CHORDS
     // --------------------------------------------------
 
-    document
-        .querySelectorAll(".chord")
-        .forEach(chord => {
+   document
+    .querySelectorAll(".chord")
+    .forEach(chord => {
 
-            chord.innerText =
-                chord.innerText.replace(
-                    /[A-G](#|b)?/g,
+        // Preserve original chord only once
+        if (!chord.dataset.originalChord) {
+
+            chord.dataset.originalChord =
+                chord.innerText;
+        }
+
+        const originalChord =
+            chord.dataset.originalChord;
+
+        chord.innerText =
+            originalChord.replace(
+                /[A-G](#|b)?/g,
                     note => {
 
                         let index =
