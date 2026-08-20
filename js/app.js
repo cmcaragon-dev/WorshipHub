@@ -1684,7 +1684,7 @@ function renderServices() {
  <button
     type="button"
     class="btn btn-primary print-service-btn"
-    onclick="printServiceSongs('${service.id}')"
+    onclick="('${service.id}')"
 >
     <i class="fas fa-print"></i>
     Print Service
@@ -2828,76 +2828,88 @@ function sortPlaylists() {
 
 }
 // ==========================================================
-// PRINT SONGS FROM SERVICE PLANNER
+// SERVICE PLANNER PRINT
 // ==========================================================
 
-async function printServiceSongs(serviceId) {
+function printServiceSongs() {
 
-    console.log("=================================");
-    console.log("PRINT SERVICE");
-    console.log("SERVICE ID:", serviceId);
-    console.log("=================================");
+    console.log("PRINT SERVICE SONGS");
 
-    // ======================================================
-    // FIND SERVICE
-    // ======================================================
+    // ------------------------------------------------------
+    // FIND THE SERVICE TO PRINT
+    // ------------------------------------------------------
 
-    const service = services.find(function(s) {
+    let serviceToPrint = null;
 
-        return String(s.id) === String(serviceId);
+    // If a service is currently selected
+    if (selectedService && Array.isArray(selectedService.songs)) {
+        serviceToPrint = selectedService;
+    }
 
-    });
+    // Otherwise use the currently active service
+    if (!serviceToPrint) {
 
-    if (!service) {
+        const currentServiceId =
+            localStorage.getItem("currentServiceId");
 
-        alert("Service not found.");
+        if (currentServiceId) {
 
-        return;
+            serviceToPrint = services.find(function(service) {
+
+                return String(service.id) ===
+                       String(currentServiceId);
+
+            });
+
+        }
 
     }
 
-    // ======================================================
-    // GET SONGS
-    // ======================================================
+    // ------------------------------------------------------
+    // STOP IF NOTHING FOUND
+    // ------------------------------------------------------
 
-    const serviceSongs =
-        Array.isArray(service.songs)
-            ? service.songs
-            : [];
-
-    if (!serviceSongs.length) {
+    if (
+        !serviceToPrint ||
+        !Array.isArray(serviceToPrint.songs) ||
+        serviceToPrint.songs.length === 0
+    ) {
 
         alert(
-            "There are no songs in this Service Planner."
+            "There are no songs in the selected Service Planner to print."
         );
 
         return;
-
     }
 
     console.log(
-        "SERVICE SONGS:",
-        serviceSongs
+        "PRINTING SERVICE:",
+        serviceToPrint.name
     );
 
-    // ======================================================
-    // REMOVE OLD PRINT CONTAINER
-    // ======================================================
+    console.log(
+        "SONGS:",
+        serviceToPrint.songs
+    );
 
-    const old =
+
+    // ------------------------------------------------------
+    // REMOVE OLD PRINT CONTAINER
+    // ------------------------------------------------------
+
+    const oldContainer =
         document.getElementById(
             "servicePrintContainer"
         );
 
-    if (old) {
-
-        old.remove();
-
+    if (oldContainer) {
+        oldContainer.remove();
     }
 
-    // ======================================================
+
+    // ------------------------------------------------------
     // CREATE PRINT CONTAINER
-    // ======================================================
+    // ------------------------------------------------------
 
     const printContainer =
         document.createElement("div");
@@ -2906,107 +2918,45 @@ async function printServiceSongs(serviceId) {
         "servicePrintContainer";
 
 
-    // ======================================================
-    // PROCESS EACH SONG
-    // ======================================================
+    // ------------------------------------------------------
+    // BUILD EVERY SONG
+    // ------------------------------------------------------
 
-    for (
-        let i = 0;
-        i < serviceSongs.length;
-        i++
-    ) {
+    serviceToPrint.songs.forEach(
+        function(serviceSong, songIndex) {
 
-        const serviceSong =
-            serviceSongs[i];
+            const page =
+                document.createElement("section");
 
-        console.log(
-            "PRINTING SONG:",
-            serviceSong
-        );
+            page.className =
+                "service-print-song";
 
 
-        // ==================================================
-        // FIND ORIGINAL SONG
-        // ==================================================
+            // ==================================================
+            // SONG HEADER
+            // ==================================================
 
-        let song =
-            songs.find(function(s) {
+            const header =
+                document.createElement("div");
 
-                return (
-
-                    s.file === serviceSong.file
-
-                    ||
-
-                    String(s.id) ===
-                    String(serviceSong.id)
-
-                    ||
-
-                    String(s.id) ===
-                    String(serviceSong.songId)
-
-                );
-
-            });
+            header.className =
+                "service-print-header";
 
 
-        // ==================================================
-        // FALLBACK TO SERVICE SONG
-        // ==================================================
+            // TITLE
 
-        if (!song) {
+            const title =
+                document.createElement("div");
 
-            song = serviceSong;
+            title.className =
+                "service-print-title";
 
-        }
-
-
-        console.log(
-            "MATCHED SONG:",
-            song
-        );
+            title.textContent =
+                serviceSong.title ||
+                "Untitled Song";
 
 
-        // ==================================================
-        // CREATE PAGE
-        // ==================================================
-
-        const page =
-            document.createElement("section");
-
-        page.className =
-            "service-print-song";
-
-
-        // ==================================================
-        // TITLE
-        // ==================================================
-
-        const title =
-            document.createElement("h1");
-
-        title.className =
-            "service-print-title";
-
-        title.textContent =
-            song.title ||
-            serviceSong.title ||
-            "Untitled Song";
-
-        page.appendChild(title);
-
-
-        // ==================================================
-        // ARTIST
-        // ==================================================
-
-        const artistName =
-            song.artist ||
-            serviceSong.artist ||
-            "";
-
-        if (artistName) {
+            // ARTIST
 
             const artist =
                 document.createElement("div");
@@ -3015,513 +2965,190 @@ async function printServiceSongs(serviceId) {
                 "service-print-artist";
 
             artist.textContent =
-                artistName;
-
-            page.appendChild(artist);
-
-        }
+                serviceSong.artist || "";
 
 
-        // ==================================================
-        // KEY
-        // ==================================================
+            // KEY
 
-        const key =
-            serviceSong.serviceKey ||
-            serviceSong.key ||
-            song.key ||
-            "";
-
-        if (key) {
-
-            const keyElement =
+            const key =
                 document.createElement("div");
 
-            keyElement.className =
+            key.className =
                 "service-print-key";
 
-            keyElement.textContent =
-                "Key: " + key;
-
-            page.appendChild(keyElement);
-
-        }
-
-
-        // ==================================================
-        // CONTENT
-        // ==================================================
-
-        const content =
-            document.createElement("div");
-
-        content.className =
-            "service-print-content";
-
-
-        // ==================================================
-        // LOAD ACTUAL SONG CONTENT
-        // ==================================================
-
-        let songText = "";
-
-
-        // --------------------------------------------------
-        // OPTION 1
-        // SONG OBJECT ALREADY HAS CONTENT
-        // --------------------------------------------------
-
-        if (
-            typeof song.content === "string" &&
-            song.content.trim()
-        ) {
-
-            console.log(
-                "Using song.content"
-            );
-
-            songText =
-                song.content;
-
-        }
-
-
-        // --------------------------------------------------
-        // OPTION 2
-        // SONG OBJECT HAS LYRICS
-        // --------------------------------------------------
-
-        else if (
-            typeof song.lyrics === "string" &&
-            song.lyrics.trim()
-        ) {
-
-            console.log(
-                "Using song.lyrics"
-            );
-
-            songText =
-                song.lyrics;
-
-        }
-
-
-        // --------------------------------------------------
-        // OPTION 3
-        // LOAD SONG HTML FILE
-        // --------------------------------------------------
-
-        else if (song.file) {
-
-            songText =
-                await loadSongFileForPrint(
-                    song.file
+            key.textContent =
+                "Key: " +
+                (
+                    serviceSong.serviceKey ||
+                    serviceSong.key ||
+                    ""
                 );
 
-        }
+
+            header.appendChild(title);
+
+            if (serviceSong.artist) {
+                header.appendChild(artist);
+            }
+
+            if (
+                serviceSong.serviceKey ||
+                serviceSong.key
+            ) {
+                header.appendChild(key);
+            }
 
 
-        // ==================================================
-        // CREATE PRINT CONTENT
-        // ==================================================
+            page.appendChild(header);
 
-        if (
-            songText &&
-            songText.trim()
-        ) {
 
-            console.log(
-                "CONTENT FOUND FOR:",
-                song.title
-            );
+            // ==================================================
+            // CONTENT
+            // ==================================================
 
-            content.innerHTML =
-                formatSongForPrint(
-                    songText
+            const content =
+                document.createElement("div");
+
+            content.className =
+                "service-print-content";
+
+
+            // IMPORTANT:
+            // Get the actual song text from the song itself.
+            // Match by FILE first because serviceSong and songs
+            // may not have the same ID.
+
+            const sourceSong =
+                songs.find(function(song) {
+
+                    return (
+                        song.file === serviceSong.file
+                    );
+
+                });
+
+
+            if (!sourceSong) {
+
+                console.warn(
+                    "Source song not found:",
+                    serviceSong
                 );
 
+                content.innerHTML =
+                    "<div class='print-error'>Song content not available.</div>";
+
+            }
+            else {
+
+                const songText =
+                    sourceSong.content ||
+                    sourceSong.lyrics ||
+                    sourceSong.song ||
+                    "";
+
+                if (!songText) {
+
+                    content.innerHTML =
+                        "<div class='print-error'>Song content not available.</div>";
+
+                }
+                else {
+
+                    content.innerHTML =
+                        formatServiceSongForPrint(
+                            songText,
+                            serviceSong
+                        );
+
+                }
+
+            }
+
+
+            page.appendChild(content);
+
+            printContainer.appendChild(page);
+
         }
-
-        else {
-
-            console.error(
-                "NO CONTENT FOUND:",
-                song
-            );
-
-            content.innerHTML = `
-
-                <div class="print-no-content">
-
-                    <strong>
-                        Song content not available
-                    </strong>
-
-                    <br><br>
-
-                    File:
-
-                    <br>
-
-                    ${escapePrintHTML(
-                        song.file || "No file"
-                    )}
-
-                </div>
-
-            `;
-
-        }
+    );
 
 
-        page.appendChild(content);
-
-        printContainer.appendChild(page);
-
-    }
-
-
-    // ======================================================
-    // ADD PRINT CONTAINER
-    // ======================================================
+    // ------------------------------------------------------
+    // ADD TO DOCUMENT
+    // ------------------------------------------------------
 
     document.body.appendChild(
         printContainer
     );
 
 
-    // ======================================================
-    // WAIT FOR EVERYTHING
-    // ======================================================
-
-    await new Promise(function(resolve) {
-
-        setTimeout(
-            resolve,
-            500
-        );
-
-    });
-
-
-    // ======================================================
+    // ------------------------------------------------------
     // PRINT
-    // ======================================================
-
-    console.log(
-        "OPENING PRINT DIALOG"
-    );
-
-    window.print();
-
-
-    // ======================================================
-    // CLEANUP
-    // ======================================================
+    // ------------------------------------------------------
 
     setTimeout(function() {
 
-        const container =
-            document.getElementById(
-                "servicePrintContainer"
-            );
+        window.print();
 
-        if (container) {
+        setTimeout(function() {
 
-            container.remove();
+            if (printContainer) {
+                printContainer.remove();
+            }
 
-        }
+        }, 1000);
 
-    }, 2000);
+    }, 300);
 
 }
 
 
 // ==========================================================
-// LOAD SONG FILE
+// FORMAT SERVICE SONG
 // ==========================================================
 
-async function loadSongFileForPrint(file) {
-
-    try {
-
-        console.log(
-            "================================="
-        );
-
-        console.log(
-            "LOADING SONG FILE:"
-        );
-
-        console.log(
-            file
-        );
-
-
-        // ==================================================
-        // GET ONLY FILE NAME
-        // ==================================================
-
-        const filename =
-            String(file)
-                .trim()
-                .split("/")
-                .pop();
-
-
-        // ==================================================
-        // USE SAME PATH AS startService()
-        // ==================================================
-
-        const url =
-            "/WorshipHub/songs/" +
-            filename;
-
-
-        console.log(
-            "PRINT FETCH URL:",
-            url
-        );
-
-
-        const response =
-            await fetch(
-                url,
-                {
-                    cache: "no-cache"
-                }
-            );
-
-
-        console.log(
-            "FETCH STATUS:",
-            response.status
-        );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "HTTP " +
-                response.status +
-                " - " +
-                response.statusText
-            );
-
-        }
-
-
-        const html =
-            await response.text();
-
-
-        console.log(
-            "FILE LENGTH:",
-            html.length
-        );
-
-
-        if (!html.trim()) {
-
-            return "";
-
-        }
-
-
-        // ==================================================
-        // CHECK IF FILE IS HTML
-        // ==================================================
-
-        if (
-            /<html[\s>]/i.test(html) ||
-            /<body[\s>]/i.test(html)
-        ) {
-
-            console.log(
-                "Song file is HTML."
-            );
-
-
-            const parser =
-                new DOMParser();
-
-
-            const doc =
-                parser.parseFromString(
-                    html,
-                    "text/html"
-                );
-
-
-            // =================================================
-            // TRY COMMON CONTENT CONTAINERS
-            // =================================================
-
-            const selectors = [
-
-                "#lyrics",
-
-                "#songContent",
-
-                "#songLyrics",
-
-                "#lyricsContent",
-
-                ".lyrics",
-
-                ".song-content",
-
-                ".songContent",
-
-                ".lyrics-container",
-
-                ".song-lyrics",
-
-                "main",
-
-                "article"
-
-            ];
-
-
-            for (
-                let i = 0;
-                i < selectors.length;
-                i++
-            ) {
-
-                const element =
-                    doc.querySelector(
-                        selectors[i]
-                    );
-
-
-                if (
-                    element &&
-                    element.innerText &&
-                    element.innerText.trim()
-                ) {
-
-                    console.log(
-                        "FOUND CONTENT USING:",
-                        selectors[i]
-                    );
-
-
-                    return element.innerText;
-
-                }
-
-            }
-
-
-            // =================================================
-            // FALLBACK: BODY TEXT
-            // =================================================
-
-            if (
-                doc.body &&
-                doc.body.innerText
-            ) {
-
-                console.log(
-                    "Using BODY innerText"
-                );
-
-
-                return doc.body.innerText;
-
-            }
-
-        }
-
-
-        // ==================================================
-        // FILE IS PLAIN TEXT
-        // ==================================================
-
-        console.log(
-            "Song file appears to be plain text."
-        );
-
-
-        return html;
-
-    }
-
-    catch(error) {
-
-        console.error(
-            "SONG FILE LOAD ERROR:",
-            error
-        );
-
-        return "";
-
-    }
-
-}
-
-
-// ==========================================================
-// FORMAT SONG
-// ==========================================================
-
-function formatSongForPrint(songText) {
-
-    if (!songText) {
-
-        return "";
-
-    }
-
+function formatServiceSongForPrint(
+    songText,
+    serviceSong
+) {
 
     const lines =
         songText.split(/\r?\n/);
 
-
     let html = "";
 
-    let sectionOpen = false;
+    let currentSection = null;
 
 
-    lines.forEach(function(line) {
+    lines.forEach(function(rawLine) {
 
-        const trimmed =
-            line.trim();
-
-
-        if (!trimmed) {
-
-            return;
-
-        }
+        const line =
+            rawLine.trim();
 
 
-        // ==================================================
-        // REMOVE COMMON HTML NOISE
-        // ==================================================
+        // --------------------------------------------------
+        // EMPTY LINE
+        // --------------------------------------------------
 
-        if (
-            trimmed === "Open Song" ||
-            trimmed === "Transpose" ||
-            trimmed === "Print"
-        ) {
+        if (!line) {
 
             return;
 
         }
 
 
-        // ==================================================
+        // --------------------------------------------------
         // SECTION
-        // ==================================================
+        // --------------------------------------------------
 
         if (
-            /^\[.*\]$/.test(trimmed)
+            /^\[.*\]$/.test(line)
         ) {
 
-            if (sectionOpen) {
+            // Close previous section
+
+            if (currentSection) {
 
                 html += `
                     </div>
@@ -3531,54 +3158,48 @@ function formatSongForPrint(songText) {
 
 
             const sectionName =
-                trimmed
+                line
                     .replace(/^\[/, "")
                     .replace(/\]$/, "");
 
 
+            currentSection = sectionName;
+
+
             html += `
 
-                <div
-                    class="print-song-section"
-                >
+                <div class="print-section">
 
-                    <div
-                        class="print-section-title"
-                    >
-
-                        ${escapePrintHTML(
-                            sectionName
-                        )}
-
+                    <div class="print-section-title">
+                        ${escapePrintHTML(sectionName)}
                     </div>
 
             `;
-
-
-            sectionOpen = true;
 
             return;
 
         }
 
 
-        // ==================================================
+        // --------------------------------------------------
         // CHORD LINE
-        // ==================================================
+        // --------------------------------------------------
 
-        if (
-            isChordLine(trimmed)
-        ) {
+        if (isChordLine(line)) {
+
+            // Apply service transposition
+            const transposed =
+                transposePrintChords(
+                    line,
+                    serviceSong
+                );
+
 
             html += `
 
-                <div
-                    class="print-chords"
-                >
+                <div class="print-chord-line">
 
-                    ${escapePrintHTML(
-                        trimmed
-                    )}
+                    ${escapePrintHTML(transposed)}
 
                 </div>
 
@@ -3589,19 +3210,15 @@ function formatSongForPrint(songText) {
         }
 
 
-        // ==================================================
-        // LYRIC
-        // ==================================================
+        // --------------------------------------------------
+        // LYRIC LINE
+        // --------------------------------------------------
 
         html += `
 
-            <div
-                class="print-lyrics"
-            >
+            <div class="print-lyric-line">
 
-                ${escapePrintHTML(
-                    trimmed
-                )}
+                ${escapePrintHTML(line)}
 
             </div>
 
@@ -3610,7 +3227,7 @@ function formatSongForPrint(songText) {
     });
 
 
-    if (sectionOpen) {
+    if (currentSection) {
 
         html += `
             </div>
@@ -3625,23 +3242,141 @@ function formatSongForPrint(songText) {
 
 
 // ==========================================================
-// CHORD DETECTOR
+// TRANSPOSE PRINT CHORDS
 // ==========================================================
 
-function isChordLine(line) {
+function transposePrintChords(
+    chordLine,
+    serviceSong
+) {
 
-    const chordPattern =
-        /^(?:(?:[A-G](?:#|b)?)(?:maj|min|m|dim|aug|sus|add)?[0-9]*(?:\/[A-G](?:#|b)?)?)(?:\s+(?:(?:[A-G](?:#|b)?)(?:maj|min|m|dim|aug|sus|add)?[0-9]*(?:\/[A-G](?:#|b)?)?))*$/;
+    const transpose =
+        Number(
+            serviceSong.transpose || 0
+        );
 
-    return chordPattern.test(
-        line
+    if (!transpose) {
+        return chordLine;
+    }
+
+
+    return chordLine.replace(
+        /[A-G](?:#|b)?(?:m|min|maj|dim|aug|sus|add)?\d*(?:\/[A-G](?:#|b)?)?/g,
+        function(chord) {
+
+            return transposeSinglePrintChord(
+                chord,
+                transpose
+            );
+
+        }
     );
 
 }
 
 
 // ==========================================================
-// ESCAPE HTML
+// TRANSPOSE ONE CHORD
+// ==========================================================
+
+function transposeSinglePrintChord(
+    chord,
+    amount
+) {
+
+    const match =
+        chord.match(
+            /^([A-G](?:#|b)?)(.*)$/
+        );
+
+    if (!match) {
+        return chord;
+    }
+
+
+    const root =
+        match[1];
+
+    const suffix =
+        match[2];
+
+
+    const notes = [
+        "C",
+        "C#",
+        "D",
+        "D#",
+        "E",
+        "F",
+        "F#",
+        "G",
+        "G#",
+        "A",
+        "A#",
+        "B"
+    ];
+
+
+    const flatMap = {
+
+        "Db": "C#",
+        "Eb": "D#",
+        "Gb": "F#",
+        "Ab": "G#",
+        "Bb": "A#"
+
+    };
+
+
+    const normalizedRoot =
+        flatMap[root] || root;
+
+
+    const index =
+        notes.indexOf(
+            normalizedRoot
+        );
+
+
+    if (index === -1) {
+        return chord;
+    }
+
+
+    const newIndex =
+        (
+            index +
+            amount +
+            12
+        ) % 12;
+
+
+    return (
+        notes[newIndex] +
+        suffix
+    );
+
+}
+
+
+// ==========================================================
+// CHORD DETECTOR
+// ==========================================================
+
+function isChordLine(line) {
+
+    const chordPattern =
+        /^(?:[A-G](?:#|b)?(?:m|min|maj|dim|aug|sus|add)?[0-9]*(?:\/[A-G](?:#|b)?)?)(?:\s+(?:[A-G](?:#|b)?(?:m|min|maj|dim|aug|sus|add)?[0-9]*(?:\/[A-G](?:#|b)?)?))*$/;
+
+    return chordPattern.test(
+        line.trim()
+    );
+
+}
+
+
+// ==========================================================
+// ESCAPE
 // ==========================================================
 
 function escapePrintHTML(text) {
