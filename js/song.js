@@ -3496,6 +3496,14 @@ else {
     );
 
 
+    if (song.isHTMLContent) {
+
+    content.innerHTML =
+        songText;
+
+}
+else {
+
     content.innerHTML =
         formatServiceSongForPrint(
             songText,
@@ -3545,7 +3553,110 @@ else {
 
     }, 300);
 }
+// ==========================================================
+// LOAD SERVICE SONG CONTENT BEFORE PRINT
+// ==========================================================
 
+async function prepareServiceSongsForPrint(songList) {
+
+
+    for (const song of songList) {
+
+
+        if (!song) {
+            continue;
+        }
+
+
+        // Already has content
+        if (
+            song.content ||
+            song.lyrics ||
+            song.text
+        ) {
+
+            continue;
+
+        }
+
+
+        // Need file path
+        if (!song.file) {
+
+            console.warn(
+                "NO FILE FOR SONG:",
+                song
+            );
+
+            continue;
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    song.file
+                );
+
+
+            const html =
+                await response.text();
+
+
+            const parser =
+                new DOMParser();
+
+
+            const doc =
+                parser.parseFromString(
+                    html,
+                    "text/html"
+                );
+
+
+            const lyrics =
+                doc.getElementById(
+                    "lyrics"
+                );
+
+
+            if (lyrics) {
+
+                song.content =
+                    lyrics.innerText;
+
+
+                console.log(
+                    "LOADED SONG:",
+                    song.title
+                );
+
+            }
+            else {
+
+                console.warn(
+                    "NO #lyrics FOUND:",
+                    song.title
+                );
+
+            }
+
+
+        }
+        catch(error) {
+
+            console.error(
+                "LOAD SONG ERROR:",
+                song.title,
+                error
+            );
+
+        }
+
+    }
+
+}
 // ==========================================================
 // SERVICE PLANNER PRINT
 // ==========================================================
@@ -3654,9 +3765,13 @@ async function printServiceSongs() {
     // 6. USE COMMON PRINT ENGINE
     // ------------------------------------------------------
 
-    printSongsInServiceFormat(
-        serviceToPrint.songs
-    );
+    await prepareServiceSongsForPrint(
+    serviceToPrint.songs
+);
+
+printSongsInServiceFormat(
+    serviceToPrint.songs
+);
 }
 
 
@@ -3772,6 +3887,8 @@ function fitToOnePage() {
     song.content =
     formatStandaloneSongForPrint();
 
+song.isHTMLContent =
+    true;
 
 printSongsInServiceFormat([
     song
