@@ -3707,6 +3707,12 @@ window.fitToOnePage =
 
 window.printServiceSongs =
     printServiceSongs;
+
+console.log(
+    "PRINT FUNCTIONS READY",
+    typeof window.fitToOnePage,
+    typeof window.printServiceSongs
+);
 // ==========================================================
 // PRINT HELPERS
 // ==========================================================
