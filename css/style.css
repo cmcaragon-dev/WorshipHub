@@ -4749,51 +4749,115 @@ body.dark .service-body{
 
 
     .print-section-title {
+/* ======================================================
+   PRINT LANDSCAPE MODE
+   ====================================================== */
 
-        font-size: 12px !important;
+@media print {
 
-        font-weight: bold;
+    @page {
+        size: landscape;
+        margin: 8mm;
+    }
 
-        margin: 3px 0 !important;
+    html,
+    body {
+
+        width: 100%;
+        height: auto;
+
+        margin: 0 !important;
+        padding: 0 !important;
 
     }
 
 
-    /* ======================================================
-       LYRICS - REMOVE LINE GAP
-       ====================================================== */
+    /* Remove all borders */
+    *,
+    *::before,
+    *::after {
 
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+
+    }
+
+
+    /* PRINT CONTAINER */
+
+    #servicePrintContainer {
+
+        width: 100% !important;
+        display: block !important;
+
+    }
+
+
+    .service-print-song {
+
+        width: 100% !important;
+
+        page-break-after: always;
+
+        border: none !important;
+
+        box-shadow: none !important;
+
+        padding: 0 !important;
+
+        margin: 0 !important;
+
+    }
+
+
+    /* TITLE SPACE ONLY */
+
+    .service-print-title {
+
+        margin-bottom: 12px !important;
+
+        font-size: 18px !important;
+
+        font-weight: 900;
+
+    }
+
+
+    /* REMOVE GAP BETWEEN SONG LINES */
+
+    .service-print-content,
+    .print-section,
+    .print-chord-line,
     .print-lyric-line {
 
-        font-size: 11px !important;
+        margin: 0 !important;
+
+        padding: 0 !important;
 
         line-height: 1.05 !important;
 
-        margin: 0 !important;
+    }
 
-        padding: 0 !important;
 
-        height: auto !important;
+    .print-section-title {
+
+        margin-top: 4px !important;
+
+        margin-bottom: 2px !important;
+
+        font-weight: bold;
 
     }
 
 
-    /* ======================================================
-       CHORDS
-       KEEP ORIGINAL POSITION
-       ====================================================== */
+    /* KEEP CHORD POSITION */
 
     .print-chord-line {
 
-        font-size: 11px !important;
+        white-space: pre !important;
 
-        line-height: 1 !important;
-
-        margin: 0 !important;
-
-        padding: 0 !important;
-
-        white-space: pre;
+        font-weight: 900;
 
     }
 
@@ -4802,18 +4866,16 @@ body.dark .service-body{
 
         display: inline-block;
 
-        font-weight: 900;
+        margin-right: 2px !important;
 
-        margin-right: 2px;
+        font-weight: 900;
 
     }
 
 
-    /* Prevent browser from moving chords */
-    .print-lyric-line,
-    .print-chord-line {
+    .print-lyric-line {
 
-        white-space: pre-wrap;
+        white-space: pre !important;
 
     }
 
