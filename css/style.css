@@ -4818,3 +4818,62 @@ body.dark .service-body{
     }
 
 }
+/* ======================================================
+   REMOVE ALL PRINT BOX / BORDER
+   ====================================================== */
+
+@media print {
+
+    #servicePrintContainer,
+    #servicePrintContainer *,
+    .service-print-song,
+    .service-print-header,
+    .service-print-content,
+    .print-section,
+    .print-section-title,
+    .print-chord-line,
+    .print-lyric-line {
+
+        border: 0 !important;
+
+        border-left: 0 !important;
+
+        border-right: 0 !important;
+
+        border-top: 0 !important;
+
+        border-bottom: 0 !important;
+
+        outline: 0 !important;
+
+        box-shadow: none !important;
+
+        background: transparent !important;
+    }
+
+
+    /* Remove page/card spacing */
+    .service-print-song {
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+    }
+
+
+    .service-print-content {
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+    }
+
+
+    .print-section {
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+    }
+
+}
