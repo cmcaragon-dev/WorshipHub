@@ -3509,7 +3509,7 @@ else {
             songText,
             song
         );
-
+}
 }
 
         page.appendChild(
