@@ -3128,47 +3128,410 @@ async function () {
 }
 
 );
+// ==========================================================
+// COMMON SONG PRINT ENGINE
+// SAME FORMAT AS SERVICE PLANNER PRINT
+// ==========================================================
 
-// ==========================================
-// PRINT - ONE A4 LANDSCAPE PAGE
-// ==========================================
+function printSongsInServiceFormat(songList) {
+
+    console.log("PRINT SONGS:", songList);
+
+    if (!Array.isArray(songList) || songList.length === 0) {
+
+        alert("No song available to print.");
+
+        return;
+
+    }
+
+    // ------------------------------------------------------
+    // REMOVE OLD PRINT CONTAINER
+    // ------------------------------------------------------
+
+    const oldContainer =
+        document.getElementById("servicePrintContainer");
+
+    if (oldContainer) {
+        oldContainer.remove();
+    }
+
+    // ------------------------------------------------------
+    // CREATE PRINT CONTAINER
+    // ------------------------------------------------------
+
+    const printContainer =
+        document.createElement("div");
+
+    printContainer.id =
+        "servicePrintContainer";
+
+    // ------------------------------------------------------
+    // CREATE ONE PAGE FOR EACH SONG
+    // ------------------------------------------------------
+
+    songList.forEach(function(serviceSong) {
+
+        // Find complete song from songs.js
+        const song =
+            songs.find(function(s) {
+
+                return (
+                    s.file === serviceSong.file ||
+                    s.id === serviceSong.id ||
+                    s.id === serviceSong.songId
+                );
+
+            }) || serviceSong;
+
+
+        if (!song) {
+
+            console.warn(
+                "Song not found:",
+                serviceSong
+            );
+
+            return;
+
+        }
+
+
+        // --------------------------------------------------
+        // SONG PAGE
+        // --------------------------------------------------
+
+        const page =
+            document.createElement("section");
+
+        page.className =
+            "service-print-song";
+
+
+        // --------------------------------------------------
+        // TITLE
+        // --------------------------------------------------
+
+        const title =
+            document.createElement("h1");
+
+        title.className =
+            "service-print-title";
+
+        title.textContent =
+            song.title || "Untitled Song";
+
+        page.appendChild(title);
+
+
+        // --------------------------------------------------
+        // ARTIST
+        // --------------------------------------------------
+
+        if (song.artist) {
+
+            const artist =
+                document.createElement("div");
+
+            artist.className =
+                "service-print-artist";
+
+            artist.textContent =
+                song.artist;
+
+            page.appendChild(artist);
+
+        }
+
+
+        // --------------------------------------------------
+        // SONG CONTENT
+        // --------------------------------------------------
+
+        const content =
+            document.createElement("div");
+
+        content.className =
+            "service-print-content";
+
+
+        const songText =
+            song.content ||
+            song.lyrics ||
+            song.text ||
+            "";
+
+
+        if (songText) {
+
+            content.innerHTML =
+                formatSongForPrint(songText);
+
+        }
+        else {
+
+            content.innerHTML = `
+                <div class="print-no-content">
+                    Song content not available.
+                </div>
+            `;
+
+        }
+
+
+        page.appendChild(content);
+
+        printContainer.appendChild(page);
+
+    });
+
+
+    // ------------------------------------------------------
+    // ADD TO DOCUMENT
+    // ------------------------------------------------------
+
+    document.body.appendChild(
+        printContainer
+    );
+
+
+    // ------------------------------------------------------
+    // PRINT
+    // ------------------------------------------------------
+
+    setTimeout(function() {
+
+        window.print();
+
+        setTimeout(function() {
+
+            if (
+                document.body.contains(
+                    printContainer
+                )
+            ) {
+
+                printContainer.remove();
+
+            }
+
+        }, 1000);
+
+    }, 300);
+
+}
+
+
+// ==========================================================
+// SERVICE PLANNER PRINT
+// ==========================================================
+
+function printServiceSongs() {
+
+    console.log(
+        "PRINT SERVICE PLANNER"
+    );
+
+
+    // Find the service that is currently selected
+    let service = null;
+
+
+    if (
+        typeof selectedService !== "undefined" &&
+        selectedService
+    ) {
+
+        service =
+            selectedService;
+
+    }
+
+
+    // If not selected, use active service
+    if (
+        !service &&
+        typeof activeService !== "undefined" &&
+        activeService
+    ) {
+
+        service =
+            activeService;
+
+    }
+
+
+    // If still not found, use currentServiceId
+    if (!service) {
+
+        const serviceId =
+            localStorage.getItem(
+                "currentServiceId"
+            );
+
+
+        if (serviceId) {
+
+            service =
+                services.find(function(s) {
+
+                    return String(s.id) ===
+                           String(serviceId);
+
+                });
+
+        }
+
+    }
+
+
+    if (
+        !service ||
+        !Array.isArray(service.songs) ||
+        service.songs.length === 0
+    ) {
+
+        alert(
+            "There are no songs in the Service Planner to print."
+        );
+
+        return;
+
+    }
+
+
+    printSongsInServiceFormat(
+        service.songs
+    );
+
+}
+
+
+// ==========================================================
+// STANDALONE SONG PRINT
+// BUTTON: fitToOnePage()
+// ==========================================================
 
 function fitToOnePage() {
 
-document.body.classList.add("print-one-page");
-
-window.print();
-
-}
-
-// Make available to HTML onclick=""
-window.fitToOnePage = fitToOnePage;
-
-// Remove print class after printing
-window.addEventListener("afterprint", function () {
-
-document.body.classList.remove("print-one-page");
-
-});
-
-async function refreshPassingChords() {
-
     console.log(
-        "REFRESHING PASSING CHORDS"
+        "PRINT STANDALONE SONG"
     );
 
-    try {
 
-        await Service.updateGuide();
+    let song = null;
+
+
+    // ------------------------------------------------------
+    // 1. CURRENT SONG VARIABLE
+    // ------------------------------------------------------
+
+    if (
+        typeof currentSong !== "undefined" &&
+        currentSong
+    ) {
+
+        song =
+            currentSong;
 
     }
-    catch (error) {
+
+
+    // ------------------------------------------------------
+    // 2. WINDOW CURRENT SONG
+    // ------------------------------------------------------
+
+    if (
+        !song &&
+        window.currentSong
+    ) {
+
+        song =
+            window.currentSong;
+
+    }
+
+
+    // ------------------------------------------------------
+    // 3. FIND FROM URL
+    // ------------------------------------------------------
+
+    if (
+        !song &&
+        typeof songs !== "undefined"
+    ) {
+
+        const currentFile =
+            decodeURIComponent(
+                window.location.pathname
+                    .split("/")
+                    .pop()
+            );
+
+
+        song =
+            songs.find(function(s) {
+
+                const songFile =
+                    decodeURIComponent(
+                        String(s.file || "")
+                            .split("/")
+                            .pop()
+                    );
+
+
+                return (
+                    songFile ===
+                    currentFile
+                );
+
+            });
+
+    }
+
+
+    // ------------------------------------------------------
+    // SONG NOT FOUND
+    // ------------------------------------------------------
+
+    if (!song) {
 
         console.error(
-            "PASSING CHORD REFRESH ERROR:",
-            error
+            "Standalone song not found."
         );
+
+        alert(
+            "Song is not available for printing."
+        );
+
+        return;
 
     }
 
+
+    console.log(
+        "Standalone song found:",
+        song.title
+    );
+
+
+    // ------------------------------------------------------
+    // USE SAME PRINT ENGINE
+    // ------------------------------------------------------
+
+    printSongsInServiceFormat([
+        song
+    ]);
+
 }
+
+
+// ==========================================================
+// MAKE AVAILABLE TO HTML
+// ==========================================================
+
+window.printServiceSongs =
+    printServiceSongs;
+
+window.fitToOnePage =
+    fitToOnePage;
