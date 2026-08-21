@@ -352,7 +352,7 @@ title: "I Sing Praises To Your Name",
 	{id:42,        
 title: "Ngalan Mo'y Itataas",
         artist: "Terry Macalmon",
-        key: "G",
+        key: "E",
         category: "Worship",
         language: "Tagalog",
         file: "songs/ngalanmoyitataas.html"
