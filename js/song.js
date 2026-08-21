@@ -3241,7 +3241,69 @@ function formatStandaloneSongForPrint() {
         return "";
     }
 
+const wrapper =
+        document.createElement("div");
 
+    // --------------------------------------------------
+    // ADD PASSING CHORDS
+    // --------------------------------------------------
+
+    const song =
+        window.currentSong ||
+        currentService?.songs?.[Service.getSongIndex()] ||
+        activeService?.songs?.[Service.getSongIndex()];
+
+    const passing =
+        getPassingChords(song);
+
+    if (passing) {
+        const passingGuide =
+            document.createElement("div");
+
+        passingGuide.className =
+            "service-print-passing-chords";
+
+        const items = [
+            {
+                label: "RETURN TO VERSE 1",
+                value: passing.returnToVerse
+            },
+            {
+                label: "LAST 3",
+                value: passing.lastThree
+            },
+            {
+                label: "OUTRO",
+                value: passing.outro
+            },
+            {
+                label: "SINGING IN THE SPIRIT",
+                value: passing.spirit
+            }
+        ].filter(item => item.value);
+
+        passingGuide.innerHTML = `
+            <div class="service-print-passing-title">
+                PASSING CHORDS
+            </div>
+
+            <div class="service-print-passing-items">
+                ${items.map(item => `
+                    <div class="service-print-passing-item">
+                        <span class="service-print-passing-label">
+                            ${escapePrintHTML(item.label)}:
+                        </span>
+
+                        <span class="service-print-passing-value">
+                            ${escapePrintHTML(item.value)}
+                        </span>
+                    </div>
+                `).join("")}
+            </div>
+        `;
+
+        wrapper.appendChild(passingGuide);
+    }
     const clone =
         lyrics.cloneNode(true);
 
