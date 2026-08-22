@@ -1789,6 +1789,56 @@ async updateGuide() {
 async restoreTranspose() {
 
     // --------------------------------------------------
+    // GET CURRENT SONG
+    // --------------------------------------------------
+
+    let song =
+        window.currentSong;
+
+    // --------------------------------------------------
+    // IF CURRENT SONG IS NOT AVAILABLE,
+    // GET IT FROM THE ACTIVE SERVICE
+    // --------------------------------------------------
+
+    if (!song) {
+
+        try {
+
+            song =
+                await this.getCurrentSong();
+
+            if (song) {
+
+                window.currentSong =
+                    song;
+            }
+
+        }
+        catch (error) {
+
+            console.warn(
+                "RESTORE TRANSPOSE: Unable to get current song:",
+                error
+            );
+
+            return;
+        }
+    }
+
+    // --------------------------------------------------
+    // STILL NO SONG
+    // --------------------------------------------------
+
+    if (!song) {
+
+        console.warn(
+            "RESTORE TRANSPOSE: No current song available."
+        );
+
+        return;
+    }
+
+    // --------------------------------------------------
     // GET ORIGINAL KEY
     // --------------------------------------------------
 
@@ -1796,36 +1846,6 @@ async restoreTranspose() {
         song.originalKey ||
         song.key ||
         "";
-
-    // --------------------------------------------------
-    // GET SAVED SERVICE KEY
-    // --------------------------------------------------
-
-    const savedServiceKey =
-        song.serviceKey ||
-        originalKey;
-
-    if (!originalKey || !savedServiceKey) {
-        return;
-    }
-
-    console.log(
-        "================================"
-    );
-
-    console.log(
-        "RESTORING SERVICE KEY"
-    );
-
-    console.log(
-        "ORIGINAL KEY:",
-        originalKey
-    );
-
-    console.log(
-        "SAVED SERVICE KEY:",
-        savedServiceKey
-    );
 
     // --------------------------------------------------
     // CALCULATE DIFFERENCE
