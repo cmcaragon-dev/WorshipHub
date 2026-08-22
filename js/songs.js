@@ -372,6 +372,14 @@ title: "Diyos Ka Sa Amin",
         category: "Worship",
         language: "Tagalog",
         file: "songs/diyoskasaamin.html"
+	},
+	{id:45,        
+title: "Happy Day",
+        artist: "Tim Hughes",
+        key: "C",
+        category: "Praise",
+        language: "English",
+        file: "songs/happyday.html"
 	}
 ];
 songs.sort((a, b) =>
