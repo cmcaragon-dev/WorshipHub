@@ -339,93 +339,21 @@ async init() {
 
     try {
 
-        // ==================================================
-        // 1. CACHE DOM
-        // ==================================================
-
         this.cacheDOM();
-
-
-        // ==================================================
-        // 2. LOAD DARK MODE
-        // ==================================================
 
         this.loadDarkMode();
 
-
-        // ==================================================
-        // 3. BIND EVENTS
-        // ==================================================
+        this.updateLyricsFont();
 
         this.bindEvents();
 
-
-        // ==================================================
-        // 4. LOAD CURRENT SONG FIRST
-        // ==================================================
-
-        await this.loadSong();
-
-
-        // ==================================================
-        // 5. UPDATE LYRICS FONT
-        // ==================================================
-
-        this.updateLyricsFont();
-
-
-        // ==================================================
-        // 6. RESTORE SERVICE KEY / TRANSPOSE
-        // ==================================================
-
         await Service.restoreTranspose();
-
-
-        // ==================================================
-        // 7. UPDATE SERVICE KEY DISPLAY
-        // ==================================================
 
         Service.updateKeyDisplay();
 
-
-        // ==================================================
-        // 8. UPDATE PASSING CHORDS / GUIDE
-        // ==================================================
-
         await Service.updateGuide();
 
-
-        // ==================================================
-        // 9. UPDATE PROGRESS
-        // ==================================================
-
         Service.updateProgress();
-
-
-        // ==================================================
-        // 10. PRESENTATION MODE
-        // ==================================================
-
-        if (
-            typeof this.startPresentation === "function"
-        ) {
-
-            console.log(
-                "PRESENTATION: Ready"
-            );
-
-            // Give the browser time to render
-            requestAnimationFrame(() => {
-
-                requestAnimationFrame(() => {
-
-                    this.startPresentation();
-
-                });
-
-            });
-
-        }
 
         console.log(
             "APP INITIALIZATION COMPLETE"
