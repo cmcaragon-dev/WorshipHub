@@ -1786,7 +1786,7 @@ async updateGuide() {
 // RESTORE SAVED SERVICE KEY + CHORDS
 // ======================================================
 
-restoreTranspose
+async restoreTranspose() {
 
     // --------------------------------------------------
     // GET ORIGINAL KEY
