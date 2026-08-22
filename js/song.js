@@ -1788,42 +1788,25 @@ async updateGuide() {
 
 async restoreTranspose() {
 
-    // --------------------------------------------------
-    // GET CURRENT SONG
-    // --------------------------------------------------
+    try {
 
-    let song =
-        window.currentSong;
+        // Get the saved service key safely
+        const savedServiceKey =
+            localStorage.getItem("serviceKey") ||
+            localStorage.getItem("savedServiceKey") ||
+            null;
 
-    // --------------------------------------------------
-    // IF CURRENT SONG IS NOT AVAILABLE,
-    // GET IT FROM THE ACTIVE SERVICE
-    // --------------------------------------------------
-
-    if (!song) {
-
-        try {
-
-            song =
-                await this.getCurrentSong();
-
-            if (song) {
-
-                window.currentSong =
-                    song;
-            }
-
-        }
-        catch (error) {
-
-            console.warn(
-                "RESTORE TRANSPOSE: Unable to get current song:",
-                error
-            );
-
+        if (!savedServiceKey) {
+            console.log("TRANSPOSE: No saved service key");
             return;
         }
+
+        // Continue with your existing transpose logic here
+
+    } catch (error) {
+        console.error("TRANSPOSE RESTORE ERROR:", error);
     }
+}
 
     // --------------------------------------------------
     // STILL NO SONG
