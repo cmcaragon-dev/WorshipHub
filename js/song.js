@@ -1790,209 +1790,234 @@ async restoreTranspose() {
 
     try {
 
-        // Get the saved service key safely
+        // ==================================================
+        // GET CURRENT SONG
+        // ==================================================
+
+        if (!song) {
+
+            console.warn(
+                "RESTORE TRANSPOSE: No current song available."
+            );
+
+            return;
+        }
+
+        // ==================================================
+        // GET SAVED SERVICE KEY
+        // ==================================================
+
         const savedServiceKey =
             localStorage.getItem("serviceKey") ||
             localStorage.getItem("savedServiceKey") ||
             null;
 
         if (!savedServiceKey) {
-            console.log("TRANSPOSE: No saved service key");
+
+            console.log(
+                "TRANSPOSE: No saved service key"
+            );
+
             return;
         }
 
-        // Continue with your existing transpose logic here
+        // ==================================================
+        // GET ORIGINAL KEY
+        // ==================================================
 
-    } catch (error) {
-        console.error("TRANSPOSE RESTORE ERROR:", error);
-    }
-}
+        const originalKey =
+            song.originalKey ||
+            song.key ||
+            "";
 
-    // --------------------------------------------------
-    // STILL NO SONG
-    // --------------------------------------------------
+        if (!originalKey) {
 
-    if (!song) {
+            console.warn(
+                "RESTORE TRANSPOSE: No original key found."
+            );
 
-        console.warn(
-            "RESTORE TRANSPOSE: No current song available."
-        );
-
-        return;
-    }
-
-    // --------------------------------------------------
-    // GET ORIGINAL KEY
-    // --------------------------------------------------
-
-    const originalKey =
-        song.originalKey ||
-        song.key ||
-        "";
-
-    // --------------------------------------------------
-    // CALCULATE DIFFERENCE
-    // --------------------------------------------------
-
-    let originalIndex =
-        SHARP_SCALE.indexOf(originalKey);
-
-    if (originalIndex === -1) {
-        originalIndex =
-            FLAT_SCALE.indexOf(originalKey);
-    }
-
-    let serviceIndex =
-        SHARP_SCALE.indexOf(savedServiceKey);
-
-    if (serviceIndex === -1) {
-        serviceIndex =
-            FLAT_SCALE.indexOf(savedServiceKey);
-    }
-
-    let steps = 0;
-
-    if (
-        originalIndex !== -1 &&
-        serviceIndex !== -1
-    ) {
-
-        steps =
-            serviceIndex -
-            originalIndex;
-
-        // Normalize to shortest direction
-        if (steps > 6) {
-            steps -= 12;
+            return;
         }
 
-        if (steps < -6) {
-            steps += 12;
+        // ==================================================
+        // FIND ORIGINAL KEY INDEX
+        // ==================================================
+
+        let originalIndex =
+            SHARP_SCALE.indexOf(originalKey);
+
+        if (originalIndex === -1) {
+
+            originalIndex =
+                FLAT_SCALE.indexOf(originalKey);
         }
-    }
 
-    console.log(
-        "CHORD TRANSPOSE STEPS:",
-        steps
-    );
+        // ==================================================
+        // FIND SERVICE KEY INDEX
+        // ==================================================
 
-    // --------------------------------------------------
-    // SET APP TRANSPOSE
-    // --------------------------------------------------
+        let serviceIndex =
+            SHARP_SCALE.indexOf(savedServiceKey);
 
-    /*
-     * Your system stores:
-     *
-     * 0.5 = 1 semitone
-     *
-     * Therefore:
-     *
-     * 1 semitone = 0.5
-     */
+        if (serviceIndex === -1) {
 
-    App.transpose =
-        steps * 0.5;
+            serviceIndex =
+                FLAT_SCALE.indexOf(savedServiceKey);
+        }
 
-    // --------------------------------------------------
-    // RESTORE CHORDS FROM ORIGINAL HTML
-    // --------------------------------------------------
+        // ==================================================
+        // CALCULATE TRANSPOSE STEPS
+        // ==================================================
 
-    document
-        .querySelectorAll(".chord")
-        .forEach(chord => {
+        let steps = 0;
 
-            if (!chord.dataset.originalChord) {
+        if (
+            originalIndex !== -1 &&
+            serviceIndex !== -1
+        ) {
 
-                chord.dataset.originalChord =
-                    chord.innerText;
+            steps =
+                serviceIndex -
+                originalIndex;
+
+            // Normalize to shortest direction
+            if (steps > 6) {
+                steps -= 12;
             }
 
-            const originalChord =
-                chord.dataset.originalChord;
+            if (steps < -6) {
+                steps += 12;
+            }
+        }
 
-            chord.innerText =
-                originalChord.replace(
-                    /[A-G](#|b)?/g,
-                    note => {
-
-                        let noteIndex =
-                            SHARP_SCALE.indexOf(
-                                note
-                            );
-
-                        if (noteIndex === -1) {
-
-                            noteIndex =
-                                FLAT_SCALE.indexOf(
-                                    note
-                                );
-                        }
-
-                        if (noteIndex === -1) {
-                            return note;
-                        }
-
-                        return SHARP_SCALE[
-                            (
-                                noteIndex +
-                                steps +
-                                12
-                            ) % 12
-                        ];
-                    }
-                );
-        });
-
-    // --------------------------------------------------
-    // FORCE DISPLAYED SERVICE KEY
-    // --------------------------------------------------
-
-    if (App.serviceKey) {
-
-        App.serviceKey.innerText =
-            savedServiceKey;
-    }
-
-    // --------------------------------------------------
-    // UPDATE TRANSPOSE DISPLAY
-    // --------------------------------------------------
-
-    const transposeDisplay =
-        document.getElementById(
-            "transposeValue"
+        console.log(
+            "TRANSPOSE RESTORE:",
+            {
+                originalKey,
+                savedServiceKey,
+                steps
+            }
         );
 
-    if (transposeDisplay) {
+        // ==================================================
+        // SET APP TRANSPOSE
+        // ==================================================
 
-        transposeDisplay.innerText =
-            (
-                App.transpose >= 0
-                    ? "+"
-                    : ""
-            ) +
-            App.transpose.toFixed(1);
+        App.transpose =
+            steps * 0.5;
+
+        // ==================================================
+        // RESTORE CHORDS
+        // ==================================================
+
+        document
+            .querySelectorAll(".chord")
+            .forEach(chord => {
+
+                if (!chord.dataset.originalChord) {
+
+                    chord.dataset.originalChord =
+                        chord.innerText;
+                }
+
+                const originalChord =
+                    chord.dataset.originalChord;
+
+                chord.innerText =
+                    originalChord.replace(
+                        /[A-G](#|b)?/g,
+                        note => {
+
+                            let noteIndex =
+                                SHARP_SCALE.indexOf(
+                                    note
+                                );
+
+                            if (noteIndex === -1) {
+
+                                noteIndex =
+                                    FLAT_SCALE.indexOf(
+                                        note
+                                    );
+                            }
+
+                            if (noteIndex === -1) {
+                                return note;
+                            }
+
+                            return SHARP_SCALE[
+                                (
+                                    noteIndex +
+                                    steps +
+                                    12
+                                ) % 12
+                            ];
+                        }
+                    );
+            });
+
+        // ==================================================
+        // FORCE DISPLAYED SERVICE KEY
+        // ==================================================
+
+        if (App.serviceKey) {
+
+            App.serviceKey.innerText =
+                savedServiceKey;
+        }
+
+        // ==================================================
+        // UPDATE TRANSPOSE DISPLAY
+        // ==================================================
+
+        const transposeDisplay =
+            document.getElementById(
+                "transposeValue"
+            );
+
+        if (transposeDisplay) {
+
+            transposeDisplay.innerText =
+                (
+                    App.transpose >= 0
+                        ? "+"
+                        : ""
+                ) +
+                App.transpose.toFixed(1);
+        }
+
+        // ==================================================
+        // UPDATE PASSING CHORDS / GUIDE
+        // ==================================================
+
+        await this.updateGuide();
+
+        // ==================================================
+        // DEBUG
+        // ==================================================
+
+        console.log(
+            "SERVICE KEY RESTORED:",
+            savedServiceKey
+        );
+
+        console.log(
+            "CHORDS RESTORED WITH STEPS:",
+            steps
+        );
+
+        console.log(
+            "================================"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "RESTORE TRANSPOSE ERROR:",
+            error
+        );
     }
-
-    // --------------------------------------------------
-    // UPDATE PASSING CHORDS
-    // --------------------------------------------------
-
-    await this.updateGuide();
-
-    console.log(
-        "SERVICE KEY RESTORED:",
-        savedServiceKey
-    );
-
-    console.log(
-        "CHORDS RESTORED WITH STEPS:",
-        steps
-    );
-
-    console.log(
-        "================================"
-    );
-},
+}
 
 // ======================================================
 // NEXT SONG
