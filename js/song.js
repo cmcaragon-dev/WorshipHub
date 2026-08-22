@@ -1794,14 +1794,23 @@ async restoreTranspose() {
         // GET CURRENT SONG
         // ==================================================
 
-        if (!song) {
+       // ==================================================
+// GET CURRENT SONG
+// ==================================================
 
-            console.warn(
-                "RESTORE TRANSPOSE: No current song available."
-            );
+const currentSong =
+    this.currentSong ||
+    window.currentSong ||
+    null;
 
-            return;
-        }
+if (!currentSong) {
+
+    console.warn(
+        "RESTORE TRANSPOSE: No current song available."
+    );
+
+    return;
+}
 
         // ==================================================
         // GET SAVED SERVICE KEY
@@ -1825,10 +1834,10 @@ async restoreTranspose() {
         // GET ORIGINAL KEY
         // ==================================================
 
-        const originalKey =
-            song.originalKey ||
-            song.key ||
-            "";
+       const originalKey =
+    currentSong.originalKey ||
+    currentSong.key ||
+    "";
 
         if (!originalKey) {
 
