@@ -347,13 +347,11 @@ async init() {
 
         this.bindEvents();
 
-        await Service.restoreTranspose();
+       Service.updateKeyDisplay();
 
-        Service.updateKeyDisplay();
+await Service.updateGuide();
 
-        await Service.updateGuide();
-
-        Service.updateProgress();
+Service.updateProgress();
 
         console.log(
             "APP INITIALIZATION COMPLETE"
@@ -2322,52 +2320,68 @@ updatePassingChords() {
     bar.className =
         "presentation-passing-chords";
 
-    bar.innerHTML = `
+   bar.innerHTML = `
 
-        <div class="presentation-passing-title">
-            PASSING CHORDS
+    <div class="presentation-passing-title">
+        PASSING CHORDS
+    </div>
+
+    <div class="presentation-passing-items">
+
+        <div class="presentation-passing-item">
+            <span class="presentation-passing-label">
+                RETURN TO VERSE 1:
+            </span>
+
+            <span class="presentation-passing-value">
+                ${passing.returnToVerse}
+            </span>
         </div>
 
-        <div class="presentation-passing-items">
+        <div class="presentation-passing-item">
+            <span class="presentation-passing-label">
+                LAST 3:
+            </span>
 
-            <div class="presentation-passing-item">
-                <span class="presentation-passing-label">
-                    RETURN TO VERSE 1:
-                </span>
-                <span class="presentation-passing-value">
-                    ${passing.returnToVerse}
-                </span>
-            </div>
-
-            <div class="presentation-passing-item">
-                <span class="presentation-passing-label">
-                    LAST 3:
-                </span>
-                <span class="presentation-passing-value">
-                    ${passing.lastThree}
-                </span>
-            </div>
-
-            <div class="presentation-passing-item">
-                <span class="presentation-passing-label">
-                    OUTRO:
-                </span>
-                <span class="presentation-passing-value">
-                    ${passing.outro}
-                </span>
-            </div>
-
-            <div class="presentation-passing-item">
-                <span class="presentation-passing-label">
-                    SINGING IN THE SPIRIT:
-                </span>
-                <span class="presentation-passing-value">
-                    ${passing.spirit}
-                </span>
-            </div>
-
+            <span class="presentation-passing-value">
+                ${passing.lastThree}
+            </span>
         </div>
-    `;
+
+        ${
+            passing.outro
+                ? `
+                    <div class="presentation-passing-item">
+                        <span class="presentation-passing-label">
+                            OUTRO:
+                        </span>
+
+                        <span class="presentation-passing-value">
+                            ${passing.outro}
+                        </span>
+                    </div>
+                  `
+                : ""
+        }
+
+        ${
+            passing.spirit
+                ? `
+                    <div class="presentation-passing-item">
+                        <span class="presentation-passing-label">
+                            SINGING IN THE SPIRIT:
+                        </span>
+
+                        <span class="presentation-passing-value">
+                            ${passing.spirit}
+                        </span>
+                    </div>
+                  `
+                : ""
+        }
+
+    </div>
+`;
 
     /*
      * Put passing chords ABOVE the lyrics/grid.
