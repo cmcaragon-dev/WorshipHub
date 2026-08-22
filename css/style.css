@@ -4057,6 +4057,20 @@ body.dark .service-body{
 
         padding: 0 !important;
     }  
+    .print-section-title {
+    font-weight: 700 !important;
+    background: #ffeb3b !important;
+    color: #000 !important;
+    padding: 2px 6px !important;
+    margin: 0 0 3px 0 !important;
+    display: inline-block;
+    line-height: 1.1 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
 /* ======================================================
    PRINT LANDSCAPE MODE
    ====================================================== */
