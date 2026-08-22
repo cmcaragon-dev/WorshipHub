@@ -2647,7 +2647,6 @@ async start() {
     console.log(
         "STANDALONE PRESENTATION READY"
     );
-}
 },
 
 
