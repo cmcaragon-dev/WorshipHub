@@ -4939,3 +4939,373 @@ body.dark .service-body{
     }
 
 }
+/* ==========================================================
+   WORSHIPHUB PRESENTATION
+   MAXIMUM FULL-PAGE LYRICS + CHORDS
+   ZERO OUTER MARGIN / ZERO OUTER PADDING
+   ========================================================== */
+
+#presentationScreen {
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    box-sizing: border-box !important;
+
+    background: #070B14 !important;
+}
+
+
+/* ==========================================================
+   PRESENTATION LYRICS
+   ========================================================== */
+
+#presentationLyrics {
+
+    width: 100% !important;
+    height: 100% !important;
+
+    min-height: 0 !important;
+
+    margin: 0 !important;
+
+    /* ZERO OUTER SPACE */
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+
+    background: #070B14 !important;
+
+    overflow: hidden !important;
+}
+
+
+/* ==========================================================
+   3 COLUMNS
+   ========================================================== */
+
+#presentationLyrics .presentation-grid {
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr)) !important;
+
+    width: 100% !important;
+
+    height: 100% !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    gap: 0 !important;
+
+    box-sizing: border-box !important;
+
+    align-items: start !important;
+}
+
+
+/* ==========================================================
+   PRESENTATION SECTION
+   NO CARD MARGIN / NO CARD PADDING
+   ========================================================== */
+
+#presentationLyrics .presentation-section {
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-width: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 4px 8px !important;
+
+    box-sizing: border-box !important;
+
+    border: none !important;
+
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    background: #0E1626 !important;
+
+    break-inside: avoid !important;
+}
+
+
+/* ==========================================================
+   SECTION TITLE
+   SMALL SPACE BELOW TITLE ONLY
+   ========================================================== */
+
+#presentationLyrics .presentation-section-title {
+
+    width: 100% !important;
+
+    margin: 0 0 5px 0 !important;
+
+    padding: 3px 6px !important;
+
+    box-sizing: border-box !important;
+
+    font-size: 18px !important;
+
+    line-height: 1 !important;
+
+    font-weight: 900 !important;
+
+    border: none !important;
+
+    border-radius: 0 !important;
+
+    text-align: center !important;
+}
+
+
+/* ==========================================================
+   SECTION CONTENT
+   ========================================================== */
+
+#presentationLyrics .presentation-section-content {
+
+    width: 100% !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    gap: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ==========================================================
+   LYRICS
+   ZERO GAP BETWEEN LINES
+   ========================================================== */
+
+#presentationLyrics .presentation-line {
+
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    line-height: 0.88 !important;
+
+    font-size: 20px !important;
+
+    font-weight: 600 !important;
+
+    letter-spacing: 0 !important;
+
+    white-space: pre !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ==========================================================
+   REMOVE GAP BETWEEN CONSECUTIVE LINES
+   ========================================================== */
+
+#presentationLyrics
+.presentation-line
++
+.presentation-line {
+
+    margin-top: 0 !important;
+
+    padding-top: 0 !important;
+
+    border: none !important;
+}
+
+
+/* ==========================================================
+   REMOVE SPACING FROM CHILD ELEMENTS
+   ========================================================== */
+
+#presentationLyrics .presentation-line p,
+#presentationLyrics .presentation-line div,
+#presentationLyrics .presentation-line span {
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    line-height: inherit !important;
+
+    height: auto !important;
+}
+
+
+/* ==========================================================
+   CHORDS
+   KEEP CHORDS IN ORIGINAL POSITION
+   ========================================================== */
+
+#presentationLyrics .presentation-line .chord,
+#presentationLyrics .chord {
+
+    display: inline !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    font-size: 20px !important;
+
+    line-height: inherit !important;
+
+    font-weight: 900 !important;
+
+    vertical-align: baseline !important;
+
+    transform: none !important;
+}
+
+
+/* ==========================================================
+   REMOVE EXTRA SONG ELEMENT SPACING
+   ========================================================== */
+
+#presentationLyrics .song,
+#presentationLyrics .song-section,
+#presentationLyrics .song-section-content,
+#presentationLyrics p,
+#presentationLyrics div,
+#presentationLyrics span {
+
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+}
+
+
+/* ==========================================================
+   PASSING CHORDS
+   KEEP COMPACT
+   ========================================================== */
+
+#presentationLyrics .presentation-passing-chords {
+
+    width: 100% !important;
+
+    margin: 0 !important;
+
+    padding: 3px 6px !important;
+
+    box-sizing: border-box !important;
+
+    border: none !important;
+
+    border-radius: 0 !important;
+}
+
+
+/* ==========================================================
+   HEADER
+   REDUCE WASTED SPACE
+   ========================================================== */
+
+#presentationHeader {
+
+    min-height: 48px !important;
+
+    height: 48px !important;
+
+    margin: 0 !important;
+
+    padding: 5px 12px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ==========================================================
+   TITLE
+   ========================================================== */
+
+#presentationTitle {
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    font-size: 22px !important;
+
+    line-height: 1 !important;
+}
+
+
+/* ==========================================================
+   COUNTER
+   ========================================================== */
+
+#presentationCounter {
+
+    height: 30px !important;
+
+    min-width: 80px !important;
+
+    padding: 0 10px !important;
+
+    margin: 0 !important;
+
+    font-size: 11px !important;
+}
+
+
+/* ==========================================================
+   NAVIGATION
+   KEEP SMALL
+   ========================================================== */
+
+#presentationNavigation {
+
+    min-height: 45px !important;
+
+    height: 45px !important;
+
+    margin: 0 !important;
+
+    padding: 4px 8px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ==========================================================
+   NEXT SONG PREVIEW
+   ========================================================== */
+
+#nextSongPreview {
+
+    margin: 0 !important;
+
+    padding: 5px 15px !important;
+
+    bottom: 48px !important;
+}
