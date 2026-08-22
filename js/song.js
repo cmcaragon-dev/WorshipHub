@@ -1124,85 +1124,197 @@ console.log(
 
 // ======================================================
 // TRANSPOSE
+// WORKS FOR SERVICE PLANNER + STANDALONE SONG
 // ======================================================
 
 async transpose(step) {
 
     console.log("================================");
     console.log("TRANSPOSE:", step);
+    console.log("================================");
 
     // --------------------------------------------------
     // GET CURRENT SONG
     // --------------------------------------------------
 
-    let song = window.currentSong;
+    let song =
+        window.currentSong || null;
+
+    // --------------------------------------------------
+    // STANDALONE FALLBACK
+    // --------------------------------------------------
 
     if (!song) {
-        song = await this.getCurrentSong();
 
-        if (song) {
-            window.currentSong = song;
+        try {
+
+            if (
+                typeof currentSong !== "undefined" &&
+                currentSong
+            ) {
+
+                song = currentSong;
+
+                window.currentSong =
+                    song;
+
+                console.log(
+                    "TRANSPOSE: FOUND STANDALONE currentSong"
+                );
+            }
+
+        }
+        catch (error) {
+
+            console.log(
+                "No global currentSong available."
+            );
+
         }
     }
 
+    // --------------------------------------------------
+    // SERVICE PLANNER FALLBACK
+    // --------------------------------------------------
+
     if (!song) {
-        console.error("TRANSPOSE: NO CURRENT SONG");
-        return;
+
+        try {
+
+            song =
+                await this.getCurrentSong();
+
+            if (song) {
+
+                window.currentSong =
+                    song;
+
+                console.log(
+                    "TRANSPOSE: FOUND SERVICE SONG"
+                );
+            }
+
+        }
+        catch (error) {
+
+            console.error(
+                "Unable to get service song:",
+                error
+            );
+
+        }
     }
 
     // --------------------------------------------------
-    // GET CURRENT DISPLAYED KEY
+    // FINAL CHECK
     // --------------------------------------------------
 
-    const serviceKeyElement =
-        document.getElementById("serviceKey");
+    if (!song) {
 
-    const currentKey =
+        console.error(
+            "TRANSPOSE: NO CURRENT SONG"
+        );
+
+        alert(
+            "Unable to transpose.\n\n" +
+            "The current song could not be identified."
+        );
+
+        return;
+    }
+
+    console.log(
+        "TRANSPOSE SONG:",
+        song.title
+    );
+
+
+    // ==================================================
+    // GET CURRENT DISPLAYED KEY
+    // ==================================================
+
+    const serviceKeyElement =
+        document.getElementById(
+            "serviceKey"
+        );
+
+    const displayedKey =
         serviceKeyElement?.textContent?.trim() ||
         song.serviceKey ||
         song.originalKey ||
         song.key ||
         "";
 
-    if (!currentKey) {
-        console.error("TRANSPOSE: NO CURRENT KEY");
+    if (!displayedKey) {
+
+        console.error(
+            "TRANSPOSE: NO CURRENT KEY"
+        );
+
         return;
     }
 
     console.log(
-        "CURRENT KEY BEFORE TRANSPOSE:",
-        currentKey
+        "CURRENT DISPLAYED KEY:",
+        displayedKey
     );
 
-    // --------------------------------------------------
+
+    // ==================================================
     // CALCULATE NEW KEY
-    // --------------------------------------------------
+    // ==================================================
 
     const newKey =
-        getTransposedKey(currentKey, step);
+        getTransposedKey(
+            displayedKey,
+            step
+        );
 
     console.log(
         "NEW KEY:",
         newKey
     );
 
-    // --------------------------------------------------
-    // UPDATE TRANSPOSE VALUE
-    // --------------------------------------------------
 
-    App.transpose += step * 0.5;
+    // ==================================================
+    // UPDATE APP TRANSPOSE
+    // ==================================================
 
-    // --------------------------------------------------
+    App.transpose +=
+        step * 0.5;
+
+
+    // ==================================================
+    // CALCULATE TOTAL SEMITONES
+    // ==================================================
+
+    const totalSteps =
+        Math.round(
+            App.transpose / 0.5
+        );
+
+    console.log(
+        "TOTAL TRANSPOSE STEPS:",
+        totalSteps
+    );
+
+
+    // ==================================================
     // UPDATE CHORDS
-    // --------------------------------------------------
+    // ALWAYS USE ORIGINAL CHORD
+    // ==================================================
 
     document
         .querySelectorAll(".chord")
         .forEach(chord => {
 
-            // IMPORTANT:
-            // Always preserve the ORIGINAL chord.
-            if (!chord.dataset.originalChord) {
+            // ------------------------------------------
+            // SAVE ORIGINAL CHORD ON FIRST USE
+            // ------------------------------------------
+
+            if (
+                !chord.dataset.originalChord
+            ) {
 
                 chord.dataset.originalChord =
                     chord.innerText;
@@ -1211,30 +1323,31 @@ async transpose(step) {
             const originalChord =
                 chord.dataset.originalChord;
 
+            // ------------------------------------------
+            // TRANSPOSE FROM ORIGINAL
+            // ------------------------------------------
+
             chord.innerText =
                 originalChord.replace(
                     /[A-G](#|b)?/g,
                     note => {
 
                         let index =
-                            SHARP_SCALE.indexOf(note);
+                            SHARP_SCALE.indexOf(
+                                note
+                            );
 
                         if (index === -1) {
 
                             index =
-                                FLAT_SCALE.indexOf(note);
+                                FLAT_SCALE.indexOf(
+                                    note
+                                );
                         }
 
                         if (index === -1) {
                             return note;
                         }
-
-                        // Calculate total semitone
-                        // displacement from original key.
-                        const totalSteps =
-                            Math.round(
-                                App.transpose / 0.5
-                            );
 
                         return SHARP_SCALE[
                             (
@@ -1247,53 +1360,71 @@ async transpose(step) {
                 );
         });
 
-    // --------------------------------------------------
-    // VERY IMPORTANT:
-    // UPDATE THE IN-MEMORY SONG
-    // --------------------------------------------------
+
+    // ==================================================
+    // UPDATE SONG OBJECT
+    // ==================================================
 
     song.serviceKey =
         newKey;
 
+    song.transpose =
+        App.transpose;
+
     window.currentSong =
         song;
 
-    // Also update the active service object
-    // so it does not continue holding the old key.
+
+    // ==================================================
+    // UPDATE SERVICE SONG IF AVAILABLE
+    // ==================================================
+
+    const serviceIndex =
+        this.getSongIndex();
 
     if (
         currentService &&
-        Array.isArray(currentService.songs)
+        Array.isArray(
+            currentService.songs
+        ) &&
+        currentService.songs[serviceIndex]
     ) {
 
-        const index =
-            this.getSongIndex();
-
-        if (currentService.songs[index]) {
-
-            currentService.songs[index].serviceKey =
+        currentService
+            .songs[serviceIndex]
+            .serviceKey =
                 newKey;
-        }
+
+        currentService
+            .songs[serviceIndex]
+            .transpose =
+                App.transpose;
     }
+
 
     if (
         activeService &&
-        Array.isArray(activeService.songs)
+        Array.isArray(
+            activeService.songs
+        ) &&
+        activeService.songs[serviceIndex]
     ) {
 
-        const index =
-            this.getSongIndex();
-
-        if (activeService.songs[index]) {
-
-            activeService.songs[index].serviceKey =
+        activeService
+            .songs[serviceIndex]
+            .serviceKey =
                 newKey;
-        }
+
+        activeService
+            .songs[serviceIndex]
+            .transpose =
+                App.transpose;
     }
 
-    // --------------------------------------------------
-    // UPDATE DISPLAY
-    // --------------------------------------------------
+
+    // ==================================================
+    // UPDATE SERVICE KEY DISPLAY
+    // ==================================================
 
     if (App.serviceKey) {
 
@@ -1301,9 +1432,10 @@ async transpose(step) {
             newKey;
     }
 
-    // --------------------------------------------------
+
+    // ==================================================
     // UPDATE TRANSPOSE DISPLAY
-    // --------------------------------------------------
+    // ==================================================
 
     const transposeDisplay =
         document.getElementById(
@@ -1321,30 +1453,94 @@ async transpose(step) {
             App.transpose.toFixed(1);
     }
 
-    // --------------------------------------------------
+
+    // ==================================================
     // UPDATE PASSING CHORDS
-    // --------------------------------------------------
+    // ==================================================
 
     await this.updateGuide();
 
-    // --------------------------------------------------
-    // SAVE TO FIREBASE
-    // --------------------------------------------------
 
-    const saved =
-        await this.saveCurrentServiceKey();
+    // ==================================================
+    // SAVE ONLY IF THIS IS A SERVICE SONG
+    // ==================================================
 
-    if (!saved) {
-
-        console.warn(
-            "Transpose changed locally, but Firebase save failed."
+    const presentationMode =
+        localStorage.getItem(
+            "presentationMode"
         );
+
+    const hasService =
+        activeService ||
+        currentService ||
+        localStorage.getItem(
+            "currentServiceId"
+        );
+
+    if (
+        hasService &&
+        presentationMode !== "standalone"
+    ) {
+
+        const saved =
+            await this.saveCurrentServiceKey();
+
+        if (!saved) {
+
+            console.warn(
+                "Transpose changed locally, but Firebase save failed."
+            );
+        }
+
     }
+    else {
+
+        console.log(
+            "STANDALONE SONG: Firebase service save skipped."
+        );
+
+    }
+
+
+    // ==================================================
+    // SAVE STANDALONE TRANSPOSE LOCALLY
+    // ==================================================
+
+    if (
+        presentationMode === "standalone"
+    ) {
+
+        try {
+
+            localStorage.setItem(
+                "standaloneSongKey",
+                newKey
+            );
+
+            localStorage.setItem(
+                "standaloneSongTranspose",
+                String(App.transpose)
+            );
+
+        }
+        catch (error) {
+
+            console.warn(
+                "Unable to save standalone transpose locally:",
+                error
+            );
+
+        }
+    }
+
 
     console.log("================================");
     console.log("TRANSPOSE COMPLETE");
     console.log("KEY:", newKey);
-    console.log("TRANSPOSE:", App.transpose);
+    console.log(
+        "TRANSPOSE:",
+        App.transpose
+    );
     console.log("================================");
 },
 
@@ -1590,24 +1786,7 @@ async updateGuide() {
 // RESTORE SAVED SERVICE KEY + CHORDS
 // ======================================================
 
-async restoreTranspose() {
-
-    const service =
-        await this.getCurrent();
-
-    if (!service) {
-        return;
-    }
-
-    const index =
-        this.getSongIndex();
-
-    const song =
-        service.songs?.[index];
-
-    if (!song) {
-        return;
-    }
+restoreTranspose
 
     // --------------------------------------------------
     // GET ORIGINAL KEY
@@ -2306,8 +2485,35 @@ if (serviceSong) {
         song
     );
 
-    window.currentSong =
-        song;
+   // ==================================================
+// REGISTER STANDALONE SONG GLOBALLY
+// ==================================================
+
+window.currentSong =
+    song;
+
+// Keep a local copy as well
+window.standaloneSong =
+    song;
+
+console.log(
+    "STANDALONE CURRENT SONG REGISTERED:",
+    window.currentSong
+);
+
+
+// ==================================================
+// UPDATE SERVICE KEY FOR STANDALONE SONG
+// ==================================================
+
+App.transpose =
+    Number(
+        song.transpose || 0
+    );
+
+Service.updateKeyDisplay();
+
+await Service.updateGuide();
 
 // ==================================================
 // UPDATE SERVICE KEY FOR STANDALONE SONG
