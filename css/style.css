@@ -6180,71 +6180,74 @@ body{
     }
 }
 /* =========================================================
-   PRESENTATION — COMPACT CHORD + LYRIC SPACING
-   Removes unwanted gaps between chord/lyric pairs
+   PRESENTATION SONG LINES
+   COMPACT CHORD + LYRICS
 ========================================================= */
 
-/* Main song content */
-#presentationScreen .song-content,
-#presentationScreen .presentation-song,
-#presentationScreen .song-body {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Every chord line */
-#presentationScreen .chord-line {
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 1 !important;
-    min-height: 0 !important;
-}
-
-/* Every lyric line */
-#presentationScreen .lyric-line {
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 1.15 !important;
-    min-height: 0 !important;
-}
-
-/* Remove the gap BETWEEN chord and lyric */
-#presentationScreen .chord-line + .lyric-line {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}
-
-/* Remove the gap AFTER each lyric before the next chord */
-#presentationScreen .lyric-line + .chord-line {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}
-
-/* Remove gaps created by paragraphs/divs */
-#presentationScreen .chord-line,
-#presentationScreen .lyric-line,
-#presentationScreen p,
-#presentationScreen div {
-    margin-bottom: 0 !important;
-}
-
-/* Keep the song lines compact */
+/* Each chord + lyric pair */
 #presentationScreen .song-line {
+    display: block !important;
+
     margin: 0 !important;
     padding: 0 !important;
+
+    line-height: 1.15 !important;
+
+    min-height: 0 !important;
+
+    height: auto !important;
+}
+
+/* Chord */
+#presentationScreen .song-line .chord {
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    line-height: 1 !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+/* Lyrics */
+#presentationScreen .song-line {
     line-height: 1.15 !important;
 }
 
-/* Prevent flex/grid gap from creating blank space */
-#presentationScreen .song-content,
-#presentationScreen .song-lines,
-#presentationScreen .lyrics-container {
-    gap: 0 !important;
-    row-gap: 0 !important;
-}
-#presentationScreen pre {
+/* Remove paragraph-like spacing */
+#presentationScreen .song-line p {
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1.15 !important;
-    white-space: pre-wrap !important;
+}
+
+/* Remove spacing between consecutive song lines */
+#presentationScreen .song-line + .song-line {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* =========================================================
+   SONG SECTION
+========================================================= */
+
+#presentationScreen .song-section {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+#presentationScreen .section-title {
+    margin-top: 8px !important;
+    margin-bottom: 3px !important;
+    padding: 0 !important;
+}
+
+/* First section title should not create huge space */
+#presentationScreen .song-section:first-child .section-title {
+    margin-top: 0 !important;
 }
