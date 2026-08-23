@@ -5364,3 +5364,445 @@ body{
         font-size: 21px !important;
     }
 }
+/* ============================================================
+   FINAL PRESENTATION COMPACT + SCROLL FIX
+   ============================================================ */
+
+
+/* ============================================================
+   1. ALLOW THE FULL SONG TO SCROLL
+   ============================================================ */
+
+#presentationLyrics {
+    position: absolute !important;
+
+    top: 92px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 88px !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+
+    scrollbar-width: thin !important;
+}
+
+
+/* Chrome / Edge scrollbar */
+
+#presentationLyrics::-webkit-scrollbar {
+    width: 7px !important;
+}
+
+#presentationLyrics::-webkit-scrollbar-track {
+    background: #000000 !important;
+}
+
+#presentationLyrics::-webkit-scrollbar-thumb {
+    background: #3a3a3a !important;
+    border-radius: 4px !important;
+}
+
+#presentationLyrics::-webkit-scrollbar-thumb:hover {
+    background: #666666 !important;
+}
+
+
+/* ============================================================
+   2. GRID MUST BE ALLOWED TO GROW
+   ============================================================ */
+
+#presentationLyrics .presentation-grid {
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr)) !important;
+
+    align-items: start !important;
+
+    overflow: visible !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ============================================================
+   3. COLUMNS MUST NOT BE LOCKED TO SCREEN HEIGHT
+   ============================================================ */
+
+#presentationLyrics .presentation-section {
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 100% !important;
+
+    overflow: visible !important;
+
+    padding-top: 16px !important;
+    padding-bottom: 25px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ============================================================
+   4. REDUCE SECTION TITLE GAP
+   ============================================================ */
+
+#presentationLyrics
+.presentation-section-title {
+
+    margin-top: 0 !important;
+
+    margin-bottom: 7px !important;
+
+    padding: 0 !important;
+
+    font-size: 20px !important;
+
+    line-height: 1 !important;
+}
+
+
+/* ============================================================
+   5. COMPACT CHORD → LYRIC GAP
+   ============================================================ */
+
+/*
+   Chord lines should sit immediately above the lyric.
+*/
+
+#presentationLyrics
+.presentation-line:has(.chord) {
+
+    margin-bottom: 2px !important;
+
+    padding-bottom: 0 !important;
+
+    line-height: 1 !important;
+}
+
+
+/* Chord itself */
+
+#presentationLyrics
+.presentation-line:has(.chord)
+.chord {
+
+    line-height: 1 !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    display: inline !important;
+}
+
+
+/* ============================================================
+   6. LYRIC LINE AFTER CHORD
+   ============================================================ */
+
+/*
+   Keep only a small gap after the lyric before the
+   next chord/lyric pair.
+*/
+
+#presentationLyrics
+.presentation-line:has(.chord)
++ .presentation-line {
+
+    margin-top: 0 !important;
+
+    padding-top: 0 !important;
+
+    margin-bottom: 7px !important;
+
+    line-height: 1.15 !important;
+}
+
+
+/* ============================================================
+   7. NORMAL PRESENTATION LINE SPACING
+   ============================================================ */
+
+#presentationLyrics
+.presentation-line {
+
+    margin-top: 0 !important;
+
+    margin-bottom: 7px !important;
+
+    padding-top: 0 !important;
+
+    padding-bottom: 0 !important;
+
+    line-height: 1.15 !important;
+}
+
+
+/* ============================================================
+   8. REMOVE SPACING FROM CHILD ELEMENTS
+   ============================================================ */
+
+#presentationLyrics
+.presentation-line p,
+
+#presentationLyrics
+.presentation-line div,
+
+#presentationLyrics
+.presentation-line span {
+
+    margin-top: 0 !important;
+
+    margin-bottom: 0 !important;
+
+    padding-top: 0 !important;
+
+    padding-bottom: 0 !important;
+}
+
+
+/* ============================================================
+   9. CHORD SIZE
+   ============================================================ */
+
+#presentationLyrics
+.presentation-line .chord,
+
+#presentationLyrics
+.chord {
+
+    font-size: 20px !important;
+
+    line-height: 1 !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    color: #FFD700 !important;
+
+    font-weight: 900 !important;
+}
+
+
+/* ============================================================
+   10. LYRIC SIZE
+   ============================================================ */
+
+#presentationLyrics
+.presentation-line {
+
+    font-size: 19px !important;
+
+    line-height: 1.15 !important;
+
+    color: #ffffff !important;
+}
+
+
+/* ============================================================
+   11. LARGE TV
+   ============================================================ */
+
+@media (min-width: 1400px) {
+
+    #presentationLyrics
+    .presentation-line {
+
+        font-size: 19px !important;
+
+        line-height: 1.15 !important;
+    }
+
+
+    #presentationLyrics
+    .presentation-line .chord,
+
+    #presentationLyrics
+    .chord {
+
+        font-size: 20px !important;
+
+        line-height: 1 !important;
+    }
+
+
+    #presentationLyrics
+    .presentation-section-title {
+
+        font-size: 20px !important;
+
+        margin-bottom: 7px !important;
+    }
+
+
+    #presentationLyrics
+    .presentation-section {
+
+        padding-top: 16px !important;
+
+        padding-bottom: 30px !important;
+    }
+}
+
+
+/* ============================================================
+   12. KEEP THREE COLUMNS ON LARGE SCREEN
+   ============================================================ */
+
+@media (min-width: 1101px) {
+
+    #presentationLyrics
+    .presentation-grid {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr)) !important;
+    }
+}
+
+
+/* ============================================================
+   13. TABLET
+   ============================================================ */
+
+@media (max-width: 1100px) {
+
+    #presentationLyrics {
+
+        top: 82px !important;
+
+        bottom: 75px !important;
+
+        overflow-y: auto !important;
+    }
+
+
+    #presentationLyrics
+    .presentation-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+
+        height: auto !important;
+
+        min-height: 100% !important;
+    }
+
+
+    #presentationLyrics
+    .presentation-section {
+
+        height: auto !important;
+
+        min-height: 0 !important;
+
+        padding: 14px 15px 25px !important;
+    }
+
+
+    #presentationLyrics
+    .presentation-line {
+
+        font-size: 16px !important;
+
+        line-height: 1.12 !important;
+    }
+
+
+    #presentationLyrics
+    .presentation-line .chord,
+
+    #presentationLyrics
+    .chord {
+
+        font-size: 17px !important;
+
+        line-height: 1 !important;
+    }
+}
+
+
+/* ============================================================
+   14. MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    #presentationLyrics {
+
+        top: 58px !important;
+
+        bottom: 62px !important;
+
+        overflow-y: auto !important;
+    }
+
+
+    #presentationLyrics
+    .presentation-grid {
+
+        display: grid !important;
+
+        grid-template-columns: 1fr !important;
+
+        height: auto !important;
+
+        min-height: 0 !important;
+    }
+
+
+    #presentationLyrics
+    .presentation-section {
+
+        height: auto !important;
+
+        min-height: 0 !important;
+
+        padding: 12px 11px 20px !important;
+    }
+
+
+    #presentationLyrics
+    .presentation-line {
+
+        font-size: 15px !important;
+
+        line-height: 1.12 !important;
+
+        margin-bottom: 6px !important;
+    }
+
+
+    #presentationLyrics
+    .presentation-line .chord,
+
+    #presentationLyrics
+    .chord {
+
+        font-size: 16px !important;
+
+        line-height: 1 !important;
+    }
+}
