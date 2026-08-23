@@ -2826,3 +2826,93 @@ function sortPlaylists() {
     });
 
 }
+function ensurePresentationCloseButton() {
+
+    const overlay =
+        document.getElementById("presentationScreen");
+
+    if (!overlay) {
+        return null;
+    }
+
+    let closeButton =
+        document.getElementById("closePresentation");
+
+    if (!closeButton) {
+
+        closeButton =
+            document.createElement("button");
+
+        closeButton.id =
+            "closePresentation";
+
+        closeButton.type =
+            "button";
+
+        closeButton.setAttribute(
+            "aria-label",
+            "Close presentation"
+        );
+
+        closeButton.title =
+            "Close presentation";
+
+        closeButton.textContent =
+            "×";
+
+        overlay.appendChild(
+            closeButton
+        );
+    }
+
+    if (!closeButton.dataset.presentationCloseBound) {
+
+        closeButton.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                window.exitPresentation();
+            }
+        );
+
+        closeButton.dataset.presentationCloseBound =
+            "true";
+    }
+
+    closeButton.style.display = "flex";
+    closeButton.style.visibility = "visible";
+    closeButton.style.opacity = "1";
+    closeButton.style.pointerEvents = "auto";
+    closeButton.style.zIndex = "99999999";
+
+    return closeButton;
+}
+window.exitPresentation = function () {
+
+    console.log("EXIT PRESENTATION");
+
+    const overlay =
+        document.getElementById(
+            "presentationScreen"
+        );
+
+    if (overlay) {
+        overlay.classList.remove("show");
+        overlay.style.display = "none";
+    }
+
+    localStorage.removeItem(
+        "presentationMode"
+    );
+
+    localStorage.removeItem(
+        "resumePresentation"
+    );
+
+    console.log(
+        "PRESENTATION CLOSED"
+    );
+};
