@@ -2272,124 +2272,147 @@ const Presentation = {
 
 updatePassingChords() {
 
-    const song =
-        window.currentSong;
+    const song = window.currentSong;
 
     if (!song) {
         return;
     }
 
-    const passing =
-        getPassingChords(song);
+    const passing = getPassingChords(song);
 
     if (!passing) {
         return;
     }
 
-    const output =
-        document.getElementById(
-            "presentationLyrics"
-        );
+    /* ======================================================
+       PUT PASSING CHORDS INSIDE THE PRESENTATION HEADER
+       ====================================================== */
 
-    if (!output) {
+    const header =
+        document.getElementById("presentationHeader");
+
+    if (!header) {
         return;
     }
 
-    /*
-     * Remove previous passing-chord bar
-     */
+    /* Remove old passing chord bar */
 
-    const oldBar =
-        output.querySelector(
+    const oldBars =
+        header.querySelectorAll(
             ".presentation-passing-chords"
         );
 
-    if (oldBar) {
-        oldBar.remove();
-    }
+    oldBars.forEach(bar => bar.remove());
 
-    /*
-     * Create new bar
-     */
+
+    /* ======================================================
+       CREATE PASSING CHORD BAR
+       ====================================================== */
 
     const bar =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     bar.className =
         "presentation-passing-chords";
 
-   bar.innerHTML = `
 
-    <div class="presentation-passing-title">
-        PASSING CHORDS
-    </div>
+    bar.innerHTML = `
 
-    <div class="presentation-passing-items">
-
-        <div class="presentation-passing-item">
-            <span class="presentation-passing-label">
-                RETURN TO VERSE 1:
-            </span>
-
-            <span class="presentation-passing-value">
-                ${passing.returnToVerse}
-            </span>
+        <div class="presentation-passing-title">
+            PASSING CHORDS
         </div>
 
-        <div class="presentation-passing-item">
-            <span class="presentation-passing-label">
-                LAST 3:
-            </span>
+        <div class="presentation-passing-items">
 
-            <span class="presentation-passing-value">
-                ${passing.lastThree}
-            </span>
-        </div>
+            <div class="presentation-passing-item">
 
-        ${
-            passing.outro
+                <span class="presentation-passing-label">
+                    RETURN TO VERSE 1
+                </span>
+
+                <span class="presentation-passing-value">
+                    ${passing.returnToVerse}
+                </span>
+
+            </div>
+
+
+            <div class="presentation-passing-item">
+
+                <span class="presentation-passing-label">
+                    LAST 3
+                </span>
+
+                <span class="presentation-passing-value">
+                    ${passing.lastThree}
+                </span>
+
+            </div>
+
+
+            ${
+                passing.outro
                 ? `
                     <div class="presentation-passing-item">
+
                         <span class="presentation-passing-label">
-                            OUTRO:
+                            OUTRO
                         </span>
 
                         <span class="presentation-passing-value">
                             ${passing.outro}
                         </span>
+
                     </div>
                   `
                 : ""
-        }
+            }
 
-        ${
-            passing.spirit
+
+            ${
+                passing.spirit
                 ? `
                     <div class="presentation-passing-item">
+
                         <span class="presentation-passing-label">
-                            SINGING IN THE SPIRIT:
+                            SINGING IN THE SPIRIT
                         </span>
 
                         <span class="presentation-passing-value">
                             ${passing.spirit}
                         </span>
+
                     </div>
                   `
                 : ""
-        }
+            }
 
-    </div>
-`;
+        </div>
+    `;
 
-    /*
-     * Put passing chords ABOVE the lyrics/grid.
-     */
 
-    output.prepend(
-        bar
-    );
+    /* ======================================================
+       INSERT AFTER SONG TITLE
+       ====================================================== */
+
+    const title =
+        document.getElementById(
+            "presentationTitle"
+        );
+
+    if (title) {
+
+        title.insertAdjacentElement(
+            "afterend",
+            bar
+        );
+
+    } else {
+
+        header.prepend(bar);
+
+    }
+
 },
 // ======================================================
 // START PRESENTATION
