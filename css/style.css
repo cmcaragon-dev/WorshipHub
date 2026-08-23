@@ -4650,3 +4650,54 @@ body{
     }
 
 }
+
+
+/* ============================================================
+   PRESENTATION CLOSE BUTTON — DYNAMIC FALLBACK
+   ============================================================ */
+
+#presentationScreen > #closePresentation {
+    position: absolute !important;
+    top: 28px !important;
+    right: 22px !important;
+    width: 48px !important;
+    min-width: 48px !important;
+    height: 48px !important;
+    min-height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,.70) !important;
+    border-radius: 6px !important;
+    font-size: 30px !important;
+    line-height: 1 !important;
+    font-weight: 400 !important;
+    cursor: pointer !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    z-index: 99999999 !important;
+    box-sizing: border-box !important;
+}
+
+#presentationScreen > #closePresentation:hover {
+    background: #ef4444 !important;
+    border-color: #ef4444 !important;
+    color: #ffffff !important;
+}
+
+@media (max-width: 700px) {
+    #presentationScreen > #closePresentation {
+        top: 12px !important;
+        right: 10px !important;
+        width: 38px !important;
+        min-width: 38px !important;
+        height: 38px !important;
+        min-height: 38px !important;
+        font-size: 24px !important;
+    }
+}
