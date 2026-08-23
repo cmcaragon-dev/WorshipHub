@@ -3638,3 +3638,127 @@ body{
     border-radius: 10px !important;
 
 }
+
+/* ============================================================
+   PRESENTATION CLOSE BUTTON — FORCE VISIBLE
+   ============================================================ */
+
+/* Common close-button IDs */
+#closePresentation,
+#presentationClose,
+#closePresentationBtn,
+#presentationScreen .close-presentation,
+#presentationScreen .presentation-close {
+
+    position: absolute !important;
+
+    top: 28px !important;
+    right: 22px !important;
+
+    width: 48px !important;
+    min-width: 48px !important;
+
+    height: 48px !important;
+    min-height: 48px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: transparent !important;
+
+    color: #ffffff !important;
+
+    border: 1px solid rgba(255,255,255,.55) !important;
+
+    border-radius: 6px !important;
+
+    font-size: 22px !important;
+    line-height: 1 !important;
+
+    cursor: pointer !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    z-index: 9999999 !important;
+
+    pointer-events: auto !important;
+
+    box-sizing: border-box !important;
+
+    transition:
+        background .18s ease,
+        border-color .18s ease,
+        transform .18s ease !important;
+}
+
+
+/* Hover */
+#closePresentation:hover,
+#presentationClose:hover,
+#closePresentationBtn:hover,
+#presentationScreen .close-presentation:hover,
+#presentationScreen .presentation-close:hover {
+
+    background: #ef4444 !important;
+
+    border-color: #ef4444 !important;
+
+    color: #ffffff !important;
+
+    transform: none !important;
+}
+
+
+/* ============================================================
+   IF THE CLOSE BUTTON IS AN ICON
+   ============================================================ */
+
+#closePresentation i,
+#presentationClose i,
+#closePresentationBtn i,
+#presentationScreen .close-presentation i,
+#presentationScreen .presentation-close i {
+
+    display: block !important;
+
+    color: inherit !important;
+
+    font-size: 21px !important;
+
+    line-height: 1 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    #closePresentation,
+    #presentationClose,
+    #closePresentationBtn,
+    #presentationScreen .close-presentation,
+    #presentationScreen .presentation-close {
+
+        top: 12px !important;
+        right: 10px !important;
+
+        width: 34px !important;
+        min-width: 34px !important;
+
+        height: 34px !important;
+        min-height: 34px !important;
+
+        font-size: 16px !important;
+    }
+
+}
