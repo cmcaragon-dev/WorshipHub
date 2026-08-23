@@ -214,277 +214,8 @@ body{
         0 4px 18px rgba(15,23,42,.12);
 }
 
-
 /* =========================================================
-   TOPBAR BRAND / LOGO
-========================================================= */
-
-.topbar .brand,
-.topbar .logo,
-.topbar .app-title{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    color:#ffffff;
-
-    font-size:20px;
-
-    font-weight:800;
-
-    white-space:nowrap;
-
-}
-
-
-/* =========================================================
-   TOPBAR TITLE
-========================================================= */
-
-.topbar h1,
-.topbar h2,
-.topbar h3{
-
-    margin:0;
-
-    padding:0;
-
-    color:#ffffff;
-
-    font-size:20px;
-
-    font-weight:800;
-
-    line-height:1;
-
-    white-space:nowrap;
-}
-
-
-/* =========================================================
-   TOPBAR ICON
-========================================================= */
-
-.topbar i{
-
-    color:inherit;
-
-}
-
-
-/* =========================================================
-   TOPBAR ACTION AREA
-========================================================= */
-
-.topbar .top-actions{
-
-    margin-left:auto;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:flex-end;
-
-    gap:10px;
-
-    min-width:0;
-}
-
-
-/* =========================================================
-   TOPBAR SEARCH
-========================================================= */
-
-.topbar .top-actions input{
-
-    width:340px;
-
-    max-width:35vw;
-
-    height:42px;
-
-    padding:0 16px;
-
-    box-sizing:border-box;
-
-    border:none;
-
-    outline:none;
-
-    border-radius:11px;
-
-    background:rgba(255,255,255,.96);
-
-    color:#1e293b;
-
-    font-size:14px;
-
-    transition:var(--transition);
-
-    box-shadow:
-        0 2px 8px rgba(0,0,0,.08);
-}
-
-
-.topbar .top-actions input::placeholder{
-
-    color:#94a3b8;
-
-}
-
-
-.topbar .top-actions input:focus{
-
-    box-shadow:
-        0 0 0 3px rgba(167,139,250,.35);
-}
-
-
-/* =========================================================
-   TOPBAR BUTTONS
-========================================================= */
-
-.topbar .top-actions button{
-
-    width:42px;
-
-    min-width:42px;
-
-    height:42px;
-
-    margin:0;
-
-    padding:0;
-
-    box-sizing:border-box;
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border:1px solid rgba(255,255,255,.18);
-
-    border-radius:10px;
-
-    background:rgba(255,255,255,.10);
-
-    color:#ffffff;
-
-    cursor:pointer;
-
-    transition:var(--transition);
-
-    backdrop-filter:blur(10px);
-
-    -webkit-backdrop-filter:blur(10px);
-}
-
-
-.topbar .top-actions button:hover{
-
-    background:rgba(255,255,255,.20);
-
-    border-color:rgba(255,255,255,.35);
-
-    transform:translateY(-1px);
-}
-
-
-/* =========================================================
-   TOPBAR BUTTON ICON
-========================================================= */
-
-.topbar .top-actions button i{
-
-    font-size:16px;
-
-    color:#ffffff;
-}
-
-
-/* =========================================================
-   TOPBAR RESPONSIVE
-========================================================= */
-
-@media(max-width:900px){
-
-    .topbar{
-
-        height:64px;
-
-        min-height:64px;
-
-        padding:0 16px;
-
-        gap:12px;
-    }
-
-
-    .topbar h1,
-    .topbar h2,
-    .topbar h3,
-    .topbar .brand,
-    .topbar .logo,
-    .topbar .app-title{
-
-        font-size:17px;
-    }
-
-
-    .topbar .top-actions input{
-
-        width:240px;
-
-        max-width:30vw;
-    }
-
-}
-
-
-@media(max-width:600px){
-
-    .topbar{
-
-        height:auto;
-
-        min-height:60px;
-
-        padding:10px 12px;
-
-        flex-wrap:wrap;
-
-        gap:8px;
-    }
-
-
-    .topbar .top-actions{
-
-        width:100%;
-
-        margin-left:0;
-    }
-
-
-    .topbar .top-actions input{
-
-        flex:1;
-
-        width:auto;
-
-        max-width:none;
-    }
-
-}
-/* =========================================================
-   TOPBAR LOGO — WORSHIPHUB
-   Worship = White
-   Hub = Visible Accent
+   TOPBAR LOGO — ORIGINAL LOGO + WHITE BACKGROUND
 ========================================================= */
 
 .topbar .brand,
@@ -492,10 +223,11 @@ body{
 .topbar .app-title{
 
     display:flex !important;
+
     align-items:center !important;
     justify-content:flex-start !important;
 
-    gap:0 !important;
+    gap:10px !important;
 
     height:72px !important;
 
@@ -505,62 +237,121 @@ body{
     color:#ffffff !important;
 
     flex-shrink:0 !important;
+
     white-space:nowrap !important;
 }
 
 
 /* =========================================================
-   WORSHIP
+   LOGO IMAGE — KEEP ORIGINAL COLORS
 ========================================================= */
 
-.topbar .brand .worship,
-.topbar .logo .worship,
-.topbar .app-title .worship{
+.topbar .brand img,
+.topbar .logo img,
+.topbar .app-title img,
+.topbar img.logo{
+
+    display:block !important;
+
+    width:auto !important;
+    height:48px !important;
+
+    max-width:190px !important;
+    max-height:48px !important;
+
+    object-fit:contain !important;
+    object-position:center !important;
+
+    margin:0 !important;
+    padding:5px 10px !important;
+
+    /*
+       WHITE BACKGROUND
+       Keeps original logo colors visible
+    */
+    background:#ffffff !important;
+
+    border-radius:8px !important;
+
+    /*
+       IMPORTANT:
+       No filter here.
+       Original logo colors are preserved.
+    */
+    filter:none !important;
+
+    opacity:1 !important;
+
+    flex-shrink:0 !important;
+
+    box-shadow:
+        0 2px 6px rgba(0,0,0,.12) !important;
+}
+
+
+/* =========================================================
+   SVG LOGO — ORIGINAL COLORS
+========================================================= */
+
+.topbar .brand svg,
+.topbar .logo svg,
+.topbar .app-title svg{
+
+    width:auto !important;
+
+    height:48px !important;
+
+    max-width:190px !important;
+    max-height:48px !important;
+
+    display:block !important;
+
+    margin:0 !important;
+
+    padding:5px 10px !important;
+
+    background:#ffffff !important;
+
+    border-radius:8px !important;
+
+    /*
+       Do NOT force fill/color.
+       This preserves the original SVG colors.
+    */
+
+    color:initial !important;
+
+    fill:initial !important;
+
+    flex-shrink:0 !important;
+
+    box-shadow:
+        0 2px 6px rgba(0,0,0,.12) !important;
+}
+
+
+/* =========================================================
+   LOGO TEXT
+========================================================= */
+
+.topbar .brand span,
+.topbar .logo span,
+.topbar .app-title span{
 
     color:#ffffff !important;
 
-    font-size:22px !important;
+    font-size:20px !important;
+
     font-weight:800 !important;
 
     line-height:1 !important;
+
+    white-space:nowrap !important;
 }
 
 
 /* =========================================================
-   HUB
-========================================================= */
-
-.topbar .brand .hub,
-.topbar .logo .hub,
-.topbar .app-title .hub{
-
-    color:#FFD700 !important;
-
-    font-size:22px !important;
-    font-weight:900 !important;
-
-    line-height:1 !important;
-}
-
-
-/* =========================================================
-   OPTIONAL LOGO ICON
-========================================================= */
-
-.topbar .brand i,
-.topbar .logo i,
-.topbar .app-title i{
-
-    color:#ffffff !important;
-
-    font-size:22px !important;
-
-    margin-right:9px !important;
-}
-
-
-/* =========================================================
-   TOPBAR POSITION
+   FORCE LOGO TO TOP-LEFT
 ========================================================= */
 
 .topbar{
@@ -572,7 +363,9 @@ body{
 }
 
 
-/* Keep search/actions on right */
+/* =========================================================
+   KEEP TOP ACTIONS ON RIGHT
+========================================================= */
 
 .topbar .top-actions{
 
@@ -591,16 +384,38 @@ body{
     .topbar .app-title{
 
         height:64px !important;
+
     }
 
-    .topbar .brand .worship,
-    .topbar .logo .worship,
-    .topbar .app-title .worship,
-    .topbar .brand .hub,
-    .topbar .logo .hub,
-    .topbar .app-title .hub{
 
-        font-size:19px !important;
+    .topbar .brand img,
+    .topbar .logo img,
+    .topbar .app-title img,
+    .topbar img.logo{
+
+        height:42px !important;
+
+        max-height:42px !important;
+
+        max-width:160px !important;
+
+        padding:4px 8px !important;
+
+    }
+
+
+    .topbar .brand svg,
+    .topbar .logo svg,
+    .topbar .app-title svg{
+
+        height:42px !important;
+
+        max-height:42px !important;
+
+        max-width:160px !important;
+
+        padding:4px 8px !important;
+
     }
 
 }
@@ -614,25 +429,54 @@ body{
 
     .topbar{
 
-        padding-left:12px !important;
-        padding-right:12px !important;
+        padding-left:10px !important;
+
+        padding-right:10px !important;
+
     }
+
 
     .topbar .brand,
     .topbar .logo,
     .topbar .app-title{
 
         height:40px !important;
+
     }
 
-    .topbar .brand .worship,
-    .topbar .logo .worship,
-    .topbar .app-title .worship,
-    .topbar .brand .hub,
-    .topbar .logo .hub,
-    .topbar .app-title .hub{
 
-        font-size:17px !important;
+    .topbar .brand img,
+    .topbar .logo img,
+    .topbar .app-title img,
+    .topbar img.logo{
+
+        height:34px !important;
+
+        max-height:34px !important;
+
+        max-width:130px !important;
+
+        padding:3px 7px !important;
+
+        border-radius:6px !important;
+
+    }
+
+
+    .topbar .brand svg,
+    .topbar .logo svg,
+    .topbar .app-title svg{
+
+        height:34px !important;
+
+        max-height:34px !important;
+
+        max-width:130px !important;
+
+        padding:3px 7px !important;
+
+        border-radius:6px !important;
+
     }
 
 }
