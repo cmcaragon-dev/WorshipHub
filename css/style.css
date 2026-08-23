@@ -2571,257 +2571,441 @@ body{
 
 
 /* ============================================================
-   4. PASSING CHORDS HEADER
-   ============================================================ */
+   PRESENTATION HEADER — FINAL LAYOUT
+   TITLE → PASSING CHORDS → COUNTER → BUTTONS
+============================================================ */
 
-/*
-   This visually places the passing-chord information
-   directly beside the song title.
+#presentationHeader {
 
-   Works whether your JS places the element in the
-   presentation header or directly inside the presentation
-   screen.
-*/
+    display:flex !important;
+
+    align-items:center !important;
+
+    justify-content:flex-start !important;
+
+    gap:0 !important;
+
+    overflow:hidden !important;
+}
+
+
+/* ============================================================
+   SONG TITLE
+============================================================ */
+
+#presentationTitle {
+
+    flex:0 0 395px !important;
+
+    width:395px !important;
+
+    max-width:395px !important;
+
+    height:100% !important;
+
+    display:flex !important;
+
+    align-items:center !important;
+
+    margin:0 !important;
+
+    padding:0 18px 0 0 !important;
+
+    box-sizing:border-box !important;
+
+    overflow:hidden !important;
+
+    white-space:nowrap !important;
+
+    text-overflow:ellipsis !important;
+
+}
+
+
+/* ============================================================
+   PASSING CHORDS — DIRECTLY BESIDE TITLE
+============================================================ */
 
 #presentationHeader .presentation-passing-chords {
 
-    position: relative !important;
+    position:relative !important;
 
-    top: auto !important;
-    left: auto !important;
+    top:auto !important;
+    left:auto !important;
+    right:auto !important;
 
-    flex: 1 1 auto !important;
+    flex:1 1 auto !important;
 
-    width: auto !important;
+    width:auto !important;
 
-    min-width: 0 !important;
+    min-width:0 !important;
 
-    height: 100% !important;
+    max-width:none !important;
 
-    margin: 0 !important;
+    height:100% !important;
 
-    padding: 0 18px !important;
+    margin:0 !important;
 
-    box-sizing: border-box !important;
+    padding:0 18px !important;
 
-    display: flex !important;
+    box-sizing:border-box !important;
 
-    align-items: center !important;
+    display:flex !important;
 
-    justify-content: flex-start !important;
+    align-items:center !important;
 
-    gap: 0 !important;
+    justify-content:flex-start !important;
 
-    background: transparent !important;
+    overflow:hidden !important;
 
-    border: none !important;
+    background:#000000 !important;
 
-    border-left: 1px solid rgba(255,255,255,.30) !important;
+    border:none !important;
 
-    border-radius: 0 !important;
+    border-left:1px solid rgba(255,255,255,.30) !important;
 
-    box-shadow: none !important;
+    border-radius:0 !important;
 
-    backdrop-filter: none !important;
+    box-shadow:none !important;
 
-    -webkit-backdrop-filter: none !important;
-
-    text-align: left !important;
-
-    overflow: hidden !important;
+    z-index:1001 !important;
 
 }
 
 
 /* ============================================================
    PASSING CHORD TITLE
-   ============================================================ */
+============================================================ */
 
 #presentationHeader .presentation-passing-title {
 
-    position: absolute !important;
+    position:absolute !important;
 
-    top: 15px !important;
-    left: 20px !important;
+    top:14px !important;
 
-    margin: 0 !important;
+    left:18px !important;
 
-    padding: 0 !important;
+    margin:0 !important;
 
-    color: #FFD700 !important;
+    padding:0 !important;
 
-    font-size: 16px !important;
+    color:#FFD700 !important;
 
-    line-height: 1 !important;
+    font-size:14px !important;
 
-    font-weight: 900 !important;
+    font-weight:900 !important;
 
-    letter-spacing: .4px !important;
+    line-height:1 !important;
 
-    opacity: 1 !important;
+    letter-spacing:.4px !important;
 
 }
 
 
 /* ============================================================
    PASSING CHORD ITEMS
-   ============================================================ */
+============================================================ */
 
 #presentationHeader .presentation-passing-items {
 
-    width: 100% !important;
+    display:flex !important;
 
-    height: 100% !important;
+    flex-direction:row !important;
 
-    margin: 0 !important;
+    align-items:center !important;
 
-    padding: 30px 0 0 0 !important;
+    justify-content:flex-start !important;
 
-    box-sizing: border-box !important;
+    flex-wrap:nowrap !important;
 
-    display: flex !important;
+    width:100% !important;
 
-    flex-direction: row !important;
+    height:100% !important;
 
-    align-items: center !important;
+    margin:0 !important;
 
-    justify-content: flex-start !important;
+    padding:24px 0 0 0 !important;
 
-    flex-wrap: nowrap !important;
+    box-sizing:border-box !important;
 
-    gap: 0 !important;
+    overflow:hidden !important;
 
 }
 
 
 /* ============================================================
-   PASSING CHORD ITEM
-   ============================================================ */
+   INDIVIDUAL PASSING CHORD
+============================================================ */
 
 #presentationHeader .presentation-passing-item {
 
-    height: 58px !important;
+    flex:0 0 auto !important;
 
-    min-width: 120px !important;
+    min-width:105px !important;
 
-    padding: 0 20px !important;
+    height:52px !important;
 
-    box-sizing: border-box !important;
+    margin:0 !important;
 
-    display: flex !important;
+    padding:0 16px !important;
 
-    flex-direction: column !important;
+    display:flex !important;
 
-    align-items: flex-start !important;
+    flex-direction:column !important;
 
-    justify-content: center !important;
+    align-items:flex-start !important;
 
-    border: none !important;
+    justify-content:center !important;
 
-    border-right: 1px solid rgba(255,255,255,.25) !important;
+    box-sizing:border-box !important;
 
-    white-space: nowrap !important;
+    border:none !important;
 
-}
+    border-right:1px solid rgba(255,255,255,.25) !important;
 
-
-/* Remove old separator */
-
-#presentationHeader
-.presentation-passing-item:not(:last-child)::after {
-
-    display: none !important;
+    white-space:nowrap !important;
 
 }
 
 
 /* ============================================================
    PASSING LABEL
-   ============================================================ */
+============================================================ */
 
 #presentationHeader .presentation-passing-label {
 
-    display: block !important;
+    margin:0 0 3px 0 !important;
 
-    margin: 0 0 4px 0 !important;
+    padding:0 !important;
 
-    padding: 0 !important;
+    color:#ffffff !important;
 
-    color: #ffffff !important;
+    font-size:12px !important;
 
-    font-size: 14px !important;
+    font-weight:800 !important;
 
-    line-height: 1 !important;
-
-    font-weight: 800 !important;
-
-    letter-spacing: .3px !important;
+    line-height:1 !important;
 
 }
 
 
 /* ============================================================
    PASSING VALUE
-   ============================================================ */
+============================================================ */
 
 #presentationHeader .presentation-passing-value {
 
-    display: block !important;
+    margin:0 !important;
 
-    margin: 0 !important;
+    padding:0 !important;
 
-    padding: 0 !important;
+    color:#FFD700 !important;
 
-    color: #FFD700 !important;
+    font-size:22px !important;
 
-    font-size: 24px !important;
+    font-weight:900 !important;
 
-    line-height: 1 !important;
-
-    font-weight: 900 !important;
+    line-height:1 !important;
 
 }
 
 
 /* ============================================================
-   5. PRESENTATION COUNTER
-   ============================================================ */
+   REMOVE ABSOLUTE PASSING CHORD WORKAROUND
+============================================================ */
+
+#presentationScreen > .presentation-passing-chords {
+
+    position:static !important;
+
+    top:auto !important;
+    left:auto !important;
+    right:auto !important;
+
+    width:auto !important;
+
+    height:auto !important;
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+    border:none !important;
+
+    background:transparent !important;
+
+}
+
+
+/* ============================================================
+   COUNTER — AFTER PASSING CHORDS
+============================================================ */
 
 #presentationCounter {
 
-    flex: 0 0 auto !important;
+    flex:0 0 102px !important;
 
-    width: 102px !important;
+    width:102px !important;
 
-    min-width: 102px !important;
+    min-width:102px !important;
 
-    height: 48px !important;
+    height:48px !important;
 
-    margin: 0 8px !important;
+    margin:0 8px !important;
 
-    padding: 0 12px !important;
+    position:relative !important;
 
-    box-sizing: border-box !important;
+    z-index:1002 !important;
 
-    display: flex !important;
+}
 
-    align-items: center !important;
 
-    justify-content: center !important;
+/* ============================================================
+   CLOSE BUTTON — ALWAYS CLICKABLE
+============================================================ */
 
-    background: transparent !important;
+#presentationHeader #closePresentation,
+#presentationHeader #presentationClose,
+#presentationHeader #closePresentationBtn,
+#presentationHeader .close-presentation,
+#presentationHeader .presentation-close {
 
-    border: 1px solid rgba(255,255,255,.55) !important;
+    position:relative !important;
 
-    border-radius: 6px !important;
+    top:auto !important;
 
-    color: #ffffff !important;
+    right:auto !important;
 
-    font-size: 18px !important;
+    flex:0 0 48px !important;
 
-    font-weight: 700 !important;
+    width:48px !important;
 
-    line-height: 1 !important;
+    min-width:48px !important;
+
+    max-width:48px !important;
+
+    height:48px !important;
+
+    min-height:48px !important;
+
+    margin:0 4px !important;
+
+    padding:0 !important;
+
+    display:flex !important;
+
+    align-items:center !important;
+
+    justify-content:center !important;
+
+    box-sizing:border-box !important;
+
+    background:#000000 !important;
+
+    color:#ffffff !important;
+
+    border:1px solid rgba(255,255,255,.65) !important;
+
+    border-radius:6px !important;
+
+    cursor:pointer !important;
+
+    opacity:1 !important;
+
+    visibility:visible !important;
+
+    pointer-events:auto !important;
+
+    z-index:999999999 !important;
+
+}
+
+
+/* ============================================================
+   CLOSE BUTTON HOVER
+============================================================ */
+
+#presentationHeader #closePresentation:hover,
+#presentationHeader #presentationClose:hover,
+#presentationHeader #closePresentationBtn:hover,
+#presentationHeader .close-presentation:hover,
+#presentationHeader .presentation-close:hover {
+
+    background:#ef4444 !important;
+
+    border-color:#ef4444 !important;
+
+}
+
+
+/* ============================================================
+   CLOSE ICON
+============================================================ */
+
+#presentationHeader #closePresentation i,
+#presentationHeader #presentationClose i,
+#presentationHeader #closePresentationBtn i,
+#presentationHeader .close-presentation i,
+#presentationHeader .presentation-close i {
+
+    pointer-events:none !important;
+
+    color:inherit !important;
+
+    font-size:21px !important;
+
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media(max-width:700px){
+
+    #presentationHeader .presentation-passing-chords {
+
+        display:none !important;
+
+    }
+
+    #presentationCounter {
+
+        flex:0 0 65px !important;
+
+        width:65px !important;
+
+        min-width:65px !important;
+
+        height:32px !important;
+
+        margin:0 3px !important;
+
+    }
+
+    #presentationHeader #closePresentation,
+    #presentationHeader #presentationClose,
+    #presentationHeader #closePresentationBtn,
+    #presentationHeader .close-presentation,
+    #presentationHeader .presentation-close {
+
+        flex:0 0 34px !important;
+
+        width:34px !important;
+
+        min-width:34px !important;
+
+        max-width:34px !important;
+
+        height:34px !important;
+
+        min-height:34px !important;
+
+        margin:0 2px !important;
+
+        font-size:16px !important;
+
+    }
 
 }
 
@@ -4324,165 +4508,6 @@ body{
 
         letter-spacing:-.5px !important;
 
-    }
-
-}
-/* ============================================================
-   PRESENTATION CLOSE BUTTON — FINAL OVERRIDE
-   MUST BE LAST IN style.css
-============================================================ */
-
-#presentationScreen #closePresentation,
-#presentationScreen #presentationClose,
-#presentationScreen #closePresentationBtn,
-#presentationScreen .close-presentation,
-#presentationScreen .presentation-close,
-#presentationHeader #closePresentation,
-#presentationHeader #presentationClose,
-#presentationHeader #closePresentationBtn,
-#presentationHeader .close-presentation,
-#presentationHeader .presentation-close {
-
-    position:absolute !important;
-
-    top:28px !important;
-    right:22px !important;
-
-    width:48px !important;
-    min-width:48px !important;
-    max-width:48px !important;
-
-    height:48px !important;
-    min-height:48px !important;
-    max-height:48px !important;
-
-    margin:0 !important;
-    padding:0 !important;
-
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-
-    box-sizing:border-box !important;
-
-    background:#000000 !important;
-
-    color:#ffffff !important;
-
-    border:1px solid rgba(255,255,255,.65) !important;
-
-    border-radius:6px !important;
-
-    font-size:22px !important;
-    font-weight:700 !important;
-    line-height:1 !important;
-
-    opacity:1 !important;
-    visibility:visible !important;
-
-    z-index:99999999 !important;
-
-    cursor:pointer !important;
-
-    pointer-events:auto !important;
-
-    overflow:visible !important;
-
-    transform:none !important;
-
-    transition:
-        background .18s ease,
-        border-color .18s ease !important;
-}
-
-
-/* Close icon */
-#presentationScreen #closePresentation i,
-#presentationScreen #presentationClose i,
-#presentationScreen #closePresentationBtn i,
-#presentationScreen .close-presentation i,
-#presentationScreen .presentation-close i {
-
-    display:block !important;
-
-    margin:0 !important;
-    padding:0 !important;
-
-    color:#ffffff !important;
-
-    font-size:22px !important;
-    line-height:1 !important;
-
-    visibility:visible !important;
-    opacity:1 !important;
-
-    pointer-events:none !important;
-}
-
-
-/* Text / × symbol */
-#presentationScreen #closePresentation,
-#presentationScreen #presentationClose,
-#presentationScreen #closePresentationBtn,
-#presentationScreen .close-presentation,
-#presentationScreen .presentation-close {
-
-    text-align:center !important;
-    white-space:nowrap !important;
-}
-
-
-/* Hover */
-#presentationScreen #closePresentation:hover,
-#presentationScreen #presentationClose:hover,
-#presentationScreen #closePresentationBtn:hover,
-#presentationScreen .close-presentation:hover,
-#presentationScreen .presentation-close:hover {
-
-    background:#ef4444 !important;
-
-    border-color:#ef4444 !important;
-
-    color:#ffffff !important;
-
-    transform:none !important;
-}
-
-
-/* ============================================================
-   MOBILE
-============================================================ */
-
-@media(max-width:700px){
-
-    #presentationScreen #closePresentation,
-    #presentationScreen #presentationClose,
-    #presentationScreen #closePresentationBtn,
-    #presentationScreen .close-presentation,
-    #presentationScreen .presentation-close {
-
-        top:12px !important;
-        right:10px !important;
-
-        width:34px !important;
-        min-width:34px !important;
-        max-width:34px !important;
-
-        height:34px !important;
-        min-height:34px !important;
-        max-height:34px !important;
-
-        font-size:16px !important;
-    }
-
-
-    #presentationScreen #closePresentation i,
-    #presentationScreen #presentationClose i,
-    #presentationScreen #closePresentationBtn i,
-    #presentationScreen .close-presentation i,
-    #presentationScreen .presentation-close i {
-
-        font-size:16px !important;
     }
 
 }
