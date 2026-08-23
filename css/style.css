@@ -6315,3 +6315,70 @@ body{
 #presentationScreen .song-section:first-child .section-title {
     margin-top: 0 !important;
 }
+
+/* =========================================================
+   CHORD + LYRICS EDITOR
+========================================================= */
+.song-editor-panel{
+    position:fixed;
+    inset:0;
+    z-index:5000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    background:rgba(15,23,42,.72);
+    backdrop-filter:blur(8px);
+}
+.song-editor-panel.show{display:flex}
+.song-editor-shell{
+    width:min(1200px,96vw);
+    max-height:94vh;
+    overflow:auto;
+    background:var(--surface,#fff);
+    border-radius:20px;
+    box-shadow:0 24px 70px rgba(0,0,0,.25);
+    color:var(--text,#1e293b);
+}
+.song-editor-header{
+    position:sticky;top:0;z-index:3;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 24px;
+    background:linear-gradient(135deg,#18243a,#243b63);
+    color:#fff;
+}
+.song-editor-header h2{margin:0 0 4px;font-size:22px}
+.song-editor-header p{margin:0;color:#dbe5f5;font-size:13px}
+.song-editor-close{border:0;background:rgba(255,255,255,.12);color:#fff;width:40px;height:40px;border-radius:10px;font-size:20px;cursor:pointer}
+.song-editor-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:20px 24px;border-bottom:1px solid var(--border,#e5eaf1)}
+.song-editor-meta label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;color:var(--muted,#64748b)}
+.song-editor-meta input,.song-editor-meta select{height:42px;border:1px solid #d8dee9;border-radius:9px;padding:0 11px;background:#fff;color:#172033;font-size:14px;outline:none}
+.song-editor-toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;padding:14px 24px;background:#f8fafc;border-bottom:1px solid #e5eaf1}
+.song-editor-toolbar button,.editor-secondary,.editor-primary{border:1px solid #d6dce7;border-radius:9px;padding:9px 13px;background:#fff;cursor:pointer;font-weight:700}
+.song-editor-toolbar button:hover,.editor-secondary:hover{background:#f1f5f9}
+.editor-primary{background:#6c5ce7;color:#fff;border-color:#6c5ce7}
+.song-editor-tip{font-size:12px;color:#64748b;margin-left:auto}
+.song-editor-sections{padding:20px 24px}
+.editor-section{border:1px solid #dfe5ee;border-radius:14px;margin-bottom:16px;overflow:hidden;background:#fff}
+.editor-section-head{display:flex;align-items:center;gap:10px;padding:11px 12px;background:#f8fafc;border-bottom:1px solid #e5eaf1}
+.editor-section-head select,.editor-section-head input{height:36px;border:1px solid #d5dce7;border-radius:8px;padding:0 9px;background:#fff}
+.editor-section-head select{width:130px}.editor-section-head input{width:70px}
+.editor-section-head .spacer{flex:1}
+.editor-icon-btn{width:34px;height:34px;border:1px solid #d5dce7;border-radius:8px;background:#fff;cursor:pointer}
+.editor-lines{padding:12px}
+.editor-line{display:grid;grid-template-columns:1fr 34px;gap:8px;margin-bottom:10px}
+.editor-line:last-child{margin-bottom:0}
+.editor-line-main{border:1px solid #dce3ed;border-radius:10px;overflow:auto;background:#fff}
+.editor-chord-strip{height:32px;min-width:520px;position:relative;background:#fafbfc;border-bottom:1px dashed #dce3ed;font-family:monospace;font-weight:800;color:#6c5ce7;font-size:16px;line-height:32px;white-space:pre;cursor:crosshair;padding-left:8px}
+.editor-lyric-input{display:block;width:100%;min-width:520px;min-height:42px;border:0;outline:0;padding:9px 8px;font-family:monospace;font-size:17px;line-height:24px;resize:vertical;background:#fff;color:#172033}
+.editor-chord-chip{position:absolute;top:0;transform:translateX(-1px);height:31px;padding:0 3px;color:#6c5ce7;cursor:pointer;background:#f5f3ff}
+.editor-chord-chip:hover{background:#ede9fe}
+.editor-line-delete{border:1px solid #fecaca;background:#fff;color:#dc2626;border-radius:8px;cursor:pointer;height:34px}
+.song-editor-footer{display:flex;justify-content:flex-end;gap:10px;padding:16px 24px;border-top:1px solid #e5eaf1;background:#f8fafc;position:sticky;bottom:0}
+.editor-preview-modal{position:fixed;inset:0;z-index:6000;display:none;background:#05070c;color:#fff;align-items:center;justify-content:center;padding:30px}
+.editor-preview-modal.show{display:flex}
+.editor-preview-card{width:min(1200px,96vw);max-height:90vh;overflow:auto;background:#0b1020;border:1px solid #27324a;border-radius:18px;padding:28px}
+.editor-preview-section{margin-bottom:34px}.editor-preview-section-title{font-size:18px;color:#a5b4fc;font-weight:800;margin-bottom:18px;text-transform:uppercase;letter-spacing:.08em}
+.editor-preview-line{font-family:monospace;margin-bottom:18px;overflow-x:auto}.editor-preview-chords{position:relative;height:28px;white-space:pre;color:#a5b4fc;font-weight:800}.editor-preview-lyrics{white-space:pre;font-size:25px;line-height:1.35}
+@media(max-width:800px){.song-editor-meta{grid-template-columns:1fr 1fr}.song-editor-tip{width:100%;margin-left:0}.song-editor-shell{width:100%}}
+@media(max-width:560px){.song-editor-meta{grid-template-columns:1fr}.song-editor-panel{padding:8px}.song-editor-sections,.song-editor-meta,.song-editor-footer,.song-editor-toolbar{padding-left:12px;padding-right:12px}}
