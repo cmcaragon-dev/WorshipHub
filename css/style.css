@@ -4072,3 +4072,183 @@ body{
     }
 
 }
+/* =========================================================
+   MODERN WELCOME HEADER
+========================================================= */
+
+.welcome-message{
+
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+
+    margin:0 0 24px 0 !important;
+    padding:0 !important;
+
+    line-height:1 !important;
+}
+
+
+/* Greeting */
+
+.welcome-message .welcome-greeting{
+
+    display:flex !important;
+    align-items:center !important;
+    gap:7px !important;
+
+    margin:0 0 5px 0 !important;
+    padding:0 !important;
+
+    color:#64748b !important;
+
+    font-size:14px !important;
+    font-weight:600 !important;
+
+    letter-spacing:.2px !important;
+
+    line-height:1.2 !important;
+}
+
+
+/* Hand icon */
+
+.welcome-message .welcome-greeting .wave{
+
+    font-size:18px !important;
+
+    line-height:1 !important;
+
+    display:inline-block !important;
+
+    transform-origin:70% 70%;
+
+}
+
+
+/* Main name */
+
+.welcome-message .welcome-name{
+
+    margin:0 !important;
+    padding:0 !important;
+
+    color:#172033 !important;
+
+    font-size:30px !important;
+
+    font-weight:800 !important;
+
+    letter-spacing:-.8px !important;
+
+    line-height:1.1 !important;
+}
+
+
+/* Optional accent */
+
+.welcome-message .welcome-name .accent{
+
+    color:#6c5ce7 !important;
+}
+
+
+/* Small underline/accent */
+
+.welcome-message::after{
+
+    content:"";
+
+    display:block;
+
+    width:42px;
+    height:4px;
+
+    margin-top:10px;
+
+    background:linear-gradient(
+        90deg,
+        #6c5ce7,
+        #4f8cff
+    );
+
+    border-radius:20px;
+}
+
+
+/* =========================================================
+   HOVER / MICRO INTERACTION
+========================================================= */
+
+.welcome-message:hover .wave{
+
+    animation:welcomeWave .6s ease;
+
+}
+
+
+@keyframes welcomeWave{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    25%{
+        transform:rotate(14deg);
+    }
+
+    50%{
+        transform:rotate(-8deg);
+    }
+
+    75%{
+        transform:rotate(10deg);
+    }
+
+    100%{
+        transform:rotate(0deg);
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    .welcome-message .welcome-name{
+
+        font-size:26px !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .welcome-message{
+
+        margin-bottom:18px !important;
+
+    }
+
+    .welcome-message .welcome-greeting{
+
+        font-size:13px !important;
+
+    }
+
+    .welcome-message .welcome-name{
+
+        font-size:23px !important;
+
+    }
+
+}
