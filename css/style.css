@@ -4076,61 +4076,126 @@ body{
    MODERN WELCOME HEADER
 ========================================================= */
 
-.welcome-message{
+/* =========================================================
+   MODERN USER WELCOME
+   Existing HTML preserved
+========================================================= */
+
+.user-welcome{
 
     display:flex !important;
-    flex-direction:column !important;
-    align-items:flex-start !important;
+
+    align-items:center !important;
+
+    gap:14px !important;
 
     margin:0 0 24px 0 !important;
+
     padding:0 !important;
 
-    line-height:1 !important;
 }
 
 
-/* Greeting */
+/* =========================================================
+   WELCOME ICON
+========================================================= */
 
-.welcome-message .welcome-greeting{
+.welcome-icon{
+
+    width:48px !important;
+
+    height:48px !important;
+
+    min-width:48px !important;
 
     display:flex !important;
-    align-items:center !important;
-    gap:7px !important;
 
-    margin:0 0 5px 0 !important;
+    align-items:center !important;
+
+    justify-content:center !important;
+
+    background:linear-gradient(
+        135deg,
+        #f0edff,
+        #e8f0ff
+    ) !important;
+
+    border:1px solid #e2ddff !important;
+
+    border-radius:14px !important;
+
+    font-size:24px !important;
+
+    line-height:1 !important;
+
+    box-shadow:
+        0 4px 12px rgba(108,92,231,.10) !important;
+
+    transition:.25s ease !important;
+
+}
+
+
+/* Gentle hover */
+
+.user-welcome:hover .welcome-icon{
+
+    transform:translateY(-2px) rotate(-3deg) !important;
+
+    box-shadow:
+        0 7px 18px rgba(108,92,231,.16) !important;
+
+}
+
+
+/* =========================================================
+   WELCOME TEXT
+========================================================= */
+
+.welcome-text{
+
+    display:flex !important;
+
+    flex-direction:column !important;
+
+    justify-content:center !important;
+
+    min-width:0 !important;
+
+}
+
+
+/* =========================================================
+   WELCOME LABEL
+========================================================= */
+
+.welcome-label{
+
+    margin:0 0 4px 0 !important;
+
     padding:0 !important;
 
     color:#64748b !important;
 
-    font-size:14px !important;
+    font-size:13px !important;
+
     font-weight:600 !important;
+
+    line-height:1.2 !important;
 
     letter-spacing:.2px !important;
 
-    line-height:1.2 !important;
 }
 
 
-/* Hand icon */
+/* =========================================================
+   USER NAME
+========================================================= */
 
-.welcome-message .welcome-greeting .wave{
-
-    font-size:18px !important;
-
-    line-height:1 !important;
-
-    display:inline-block !important;
-
-    transform-origin:70% 70%;
-
-}
-
-
-/* Main name */
-
-.welcome-message .welcome-name{
+.welcome-name{
 
     margin:0 !important;
+
     padding:0 !important;
 
     color:#172033 !important;
@@ -4139,75 +4204,43 @@ body{
 
     font-weight:800 !important;
 
+    line-height:1.05 !important;
+
     letter-spacing:-.8px !important;
 
-    line-height:1.1 !important;
+    white-space:nowrap !important;
+
+    overflow:hidden !important;
+
+    text-overflow:ellipsis !important;
+
 }
 
 
-/* Optional accent */
+/* =========================================================
+   OPTIONAL ACCENT ON NAME
+   If JS outputs "JFCM S7", entire name remains clean.
+========================================================= */
 
-.welcome-message .welcome-name .accent{
-
-    color:#6c5ce7 !important;
-}
-
-
-/* Small underline/accent */
-
-.welcome-message::after{
+.welcome-name::after{
 
     content:"";
 
     display:block;
 
-    width:42px;
-    height:4px;
+    width:38px;
 
-    margin-top:10px;
+    height:3px;
+
+    margin-top:8px;
+
+    border-radius:20px;
 
     background:linear-gradient(
         90deg,
         #6c5ce7,
         #4f8cff
     );
-
-    border-radius:20px;
-}
-
-
-/* =========================================================
-   HOVER / MICRO INTERACTION
-========================================================= */
-
-.welcome-message:hover .wave{
-
-    animation:welcomeWave .6s ease;
-
-}
-
-
-@keyframes welcomeWave{
-
-    0%{
-        transform:rotate(0deg);
-    }
-
-    25%{
-        transform:rotate(14deg);
-    }
-
-    50%{
-        transform:rotate(-8deg);
-    }
-
-    75%{
-        transform:rotate(10deg);
-    }
-
-    100%{
-        transform:rotate(0deg);
-    }
 
 }
 
@@ -4218,7 +4251,31 @@ body{
 
 @media(max-width:900px){
 
-    .welcome-message .welcome-name{
+    .user-welcome{
+
+        gap:12px !important;
+
+        margin-bottom:20px !important;
+
+    }
+
+
+    .welcome-icon{
+
+        width:44px !important;
+
+        height:44px !important;
+
+        min-width:44px !important;
+
+        font-size:22px !important;
+
+        border-radius:12px !important;
+
+    }
+
+
+    .welcome-name{
 
         font-size:26px !important;
 
@@ -4233,21 +4290,42 @@ body{
 
 @media(max-width:600px){
 
-    .welcome-message{
+    .user-welcome{
+
+        gap:10px !important;
 
         margin-bottom:18px !important;
 
     }
 
-    .welcome-message .welcome-greeting{
 
-        font-size:13px !important;
+    .welcome-icon{
+
+        width:40px !important;
+
+        height:40px !important;
+
+        min-width:40px !important;
+
+        font-size:20px !important;
+
+        border-radius:11px !important;
 
     }
 
-    .welcome-message .welcome-name{
+
+    .welcome-label{
+
+        font-size:12px !important;
+
+    }
+
+
+    .welcome-name{
 
         font-size:23px !important;
+
+        letter-spacing:-.5px !important;
 
     }
 
