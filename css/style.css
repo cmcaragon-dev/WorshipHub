@@ -6179,3 +6179,66 @@ body{
         line-height: 0.88 !important;
     }
 }
+/* =========================================================
+   PRESENTATION — COMPACT CHORD + LYRIC SPACING
+   Removes unwanted gaps between chord/lyric pairs
+========================================================= */
+
+/* Main song content */
+#presentationScreen .song-content,
+#presentationScreen .presentation-song,
+#presentationScreen .song-body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Every chord line */
+#presentationScreen .chord-line {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    min-height: 0 !important;
+}
+
+/* Every lyric line */
+#presentationScreen .lyric-line {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.15 !important;
+    min-height: 0 !important;
+}
+
+/* Remove the gap BETWEEN chord and lyric */
+#presentationScreen .chord-line + .lyric-line {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Remove the gap AFTER each lyric before the next chord */
+#presentationScreen .lyric-line + .chord-line {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Remove gaps created by paragraphs/divs */
+#presentationScreen .chord-line,
+#presentationScreen .lyric-line,
+#presentationScreen p,
+#presentationScreen div {
+    margin-bottom: 0 !important;
+}
+
+/* Keep the song lines compact */
+#presentationScreen .song-line {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.15 !important;
+}
+
+/* Prevent flex/grid gap from creating blank space */
+#presentationScreen .song-content,
+#presentationScreen .song-lines,
+#presentationScreen .lyrics-container {
+    gap: 0 !important;
+    row-gap: 0 !important;
+}
