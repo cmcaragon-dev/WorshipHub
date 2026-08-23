@@ -5916,3 +5916,70 @@ body{
         padding: 0 !important;
     }
 }
+/* ============================================================
+   PRESENTATION - REMOVE GAP BETWEEN LYRIC AND NEXT CHORD
+   ============================================================ */
+
+/* Every presentation line touches the next line */
+#presentationLyrics .presentation-line {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    line-height: 0.90 !important;
+}
+
+
+/* Remove spacing between ALL consecutive lines */
+#presentationLyrics .presentation-line + .presentation-line {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+
+/* Chord */
+#presentationLyrics .presentation-line .chord,
+#presentationLyrics .chord {
+    display: inline !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    line-height: 0.90 !important;
+
+    vertical-align: baseline !important;
+}
+
+
+/* All elements inside presentation lines */
+#presentationLyrics .presentation-line * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+
+/* ============================================================
+   LARGE TV
+   ============================================================ */
+
+@media (min-width: 1400px) {
+
+    #presentationLyrics .presentation-line {
+        margin: 0 !important;
+        padding: 0 !important;
+
+        line-height: 0.88 !important;
+    }
+
+    #presentationLyrics .presentation-line .chord,
+    #presentationLyrics .chord {
+        line-height: 0.88 !important;
+    }
+}
