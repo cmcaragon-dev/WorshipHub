@@ -476,45 +476,157 @@ Salita Mo ang tanging sandigan ko    </div>
 
 </div>
 
-<!-- ===================================== -->
-<!-- PRESENTATION MODE -->
-<!-- ===================================== -->
+<!-- =========================================================
+     PRESENTATION MODE
+     ========================================================= -->
 
 <div id="presentationScreen">
 
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
     <div id="presentationHeader">
 
-        <div id="presentationTitle"></div>
+        <!-- SONG TITLE -->
 
-        <div id="presentationCounter"></div>
+        <div id="presentationTitle">
+        </div>
+
+
+        <!-- PASSING CHORDS ARE INSERTED HERE BY song.js -->
+
+
+        <!-- SONG COUNTER -->
+
+        <div id="presentationCounter">
+        </div>
+
+
+        <!-- EDIT -->
+
+        <button
+            id="presentationEdit"
+            type="button"
+            title="Edit Song">
+
+            <i class="fas fa-pen"></i>
+
+        </button>
+
+
+        <!-- SONG LIST -->
+
+        <button
+            id="presentationSongList"
+            type="button"
+            title="Song List">
+
+            <i class="fas fa-list"></i>
+
+        </button>
+
+
+        <!-- SETTINGS -->
+
+        <button
+            id="presentationSettings"
+            type="button"
+            title="Settings">
+
+            <i class="fas fa-cog"></i>
+
+        </button>
+
+
+        <!-- FULLSCREEN -->
+
+        <button
+            id="presentationFullscreen"
+            type="button"
+            title="Fullscreen">
+
+            <i class="fas fa-expand"></i>
+
+        </button>
+
+
+        <!-- CLOSE -->
+
+        <button
+            id="closePresentation"
+            type="button"
+            title="Close Presentation">
+
+            <i class="fas fa-times"></i>
+
+        </button>
 
     </div>
 
-    <!-- PASSING CHORDS FOR PRESENTATION -->
-    <div id="presentationPassingChords"></div>
 
-    <div id="presentationLyrics"></div>
+    <!-- =====================================================
+         LYRICS
+         ===================================================== -->
 
-    <div id="nextSongPreview"></div>
+    <div id="presentationLyrics">
+    </div>
+
+
+    <!-- =====================================================
+         BOTTOM NAVIGATION
+         ===================================================== -->
 
     <div id="presentationNavigation">
 
-        <button onclick="previousServiceSong()">
-            ⏮ Previous
-        </button>
+        <div class="presentation-nav-left">
 
-        <button onclick="nextServiceSong()">
-            ⏭ Next
-        </button>
+            <button
+                id="presentationPrevious"
+                onclick="previousServiceSong()">
 
-        <button onclick="exitPresentation()">
-            ✖ Close
-        </button>
+                <i class="fas fa-backward"></i>
+
+                <span>PREVIOUS</span>
+
+            </button>
+
+            <button
+                id="presentationNext"
+                onclick="nextServiceSong()">
+
+                <i class="fas fa-forward"></i>
+
+                <span>NEXT</span>
+
+            </button>
+
+        </div>   
+
+
+            <button
+                id="presentationNavSettings"
+                type="button">
+
+                <i class="fas fa-cog"></i>
+
+                <span>SETTINGS</span>
+
+            </button>
+
+        </div>
 
     </div>
 
-</div>
 
+    <!-- =====================================================
+         NEXT SONG
+         ===================================================== -->
+
+    <div id="nextSongPreview">
+    </div>
+
+</div>
  
 
 
