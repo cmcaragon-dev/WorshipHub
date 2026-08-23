@@ -169,7 +169,318 @@ body{
         calc(100vh - 72px);
 }
 
+/* =========================================================
+   TOPBAR
+========================================================= */
 
+.topbar{
+
+    width:100%;
+
+    height:72px;
+
+    min-height:72px;
+
+    padding:0 24px;
+
+    box-sizing:border-box;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    background:
+        linear-gradient(
+            135deg,
+            #18243a 0%,
+            #243b63 100%
+        );
+
+    color:#ffffff;
+
+    border:none;
+
+    box-shadow:
+        0 4px 18px rgba(15,23,42,.12);
+}
+
+
+/* =========================================================
+   TOPBAR BRAND / LOGO
+========================================================= */
+
+.topbar .brand,
+.topbar .logo,
+.topbar .app-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#ffffff;
+
+    font-size:20px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================================================
+   TOPBAR TITLE
+========================================================= */
+
+.topbar h1,
+.topbar h2,
+.topbar h3{
+
+    margin:0;
+
+    padding:0;
+
+    color:#ffffff;
+
+    font-size:20px;
+
+    font-weight:800;
+
+    line-height:1;
+
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   TOPBAR ICON
+========================================================= */
+
+.topbar i{
+
+    color:inherit;
+
+}
+
+
+/* =========================================================
+   TOPBAR ACTION AREA
+========================================================= */
+
+.topbar .top-actions{
+
+    margin-left:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    min-width:0;
+}
+
+
+/* =========================================================
+   TOPBAR SEARCH
+========================================================= */
+
+.topbar .top-actions input{
+
+    width:340px;
+
+    max-width:35vw;
+
+    height:42px;
+
+    padding:0 16px;
+
+    box-sizing:border-box;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:11px;
+
+    background:rgba(255,255,255,.96);
+
+    color:#1e293b;
+
+    font-size:14px;
+
+    transition:var(--transition);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.08);
+}
+
+
+.topbar .top-actions input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+.topbar .top-actions input:focus{
+
+    box-shadow:
+        0 0 0 3px rgba(167,139,250,.35);
+}
+
+
+/* =========================================================
+   TOPBAR BUTTONS
+========================================================= */
+
+.topbar .top-actions button{
+
+    width:42px;
+
+    min-width:42px;
+
+    height:42px;
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.18);
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.10);
+
+    color:#ffffff;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+    backdrop-filter:blur(10px);
+
+    -webkit-backdrop-filter:blur(10px);
+}
+
+
+.topbar .top-actions button:hover{
+
+    background:rgba(255,255,255,.20);
+
+    border-color:rgba(255,255,255,.35);
+
+    transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   TOPBAR BUTTON ICON
+========================================================= */
+
+.topbar .top-actions button i{
+
+    font-size:16px;
+
+    color:#ffffff;
+}
+
+
+/* =========================================================
+   TOPBAR RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .topbar{
+
+        height:64px;
+
+        min-height:64px;
+
+        padding:0 16px;
+
+        gap:12px;
+    }
+
+
+    .topbar h1,
+    .topbar h2,
+    .topbar h3,
+    .topbar .brand,
+    .topbar .logo,
+    .topbar .app-title{
+
+        font-size:17px;
+    }
+
+
+    .topbar .top-actions input{
+
+        width:240px;
+
+        max-width:30vw;
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .topbar{
+
+        height:auto;
+
+        min-height:60px;
+
+        padding:10px 12px;
+
+        flex-wrap:wrap;
+
+        gap:8px;
+    }
+
+
+    .topbar .top-actions{
+
+        width:100%;
+
+        margin-left:0;
+    }
+
+
+    .topbar .top-actions input{
+
+        flex:1;
+
+        width:auto;
+
+        max-width:none;
+    }
+
+}
 /* =========================================================
    SIDEBAR
 ========================================================= */
