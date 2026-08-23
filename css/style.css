@@ -4072,9 +4072,6 @@ body{
     }
 
 }
-/* =========================================================
-   MODERN WELCOME HEADER
-========================================================= */
 
 /* =========================================================
    MODERN USER WELCOME
@@ -4327,6 +4324,165 @@ body{
 
         letter-spacing:-.5px !important;
 
+    }
+
+}
+/* ============================================================
+   PRESENTATION CLOSE BUTTON — FINAL OVERRIDE
+   MUST BE LAST IN style.css
+============================================================ */
+
+#presentationScreen #closePresentation,
+#presentationScreen #presentationClose,
+#presentationScreen #closePresentationBtn,
+#presentationScreen .close-presentation,
+#presentationScreen .presentation-close,
+#presentationHeader #closePresentation,
+#presentationHeader #presentationClose,
+#presentationHeader #closePresentationBtn,
+#presentationHeader .close-presentation,
+#presentationHeader .presentation-close {
+
+    position:absolute !important;
+
+    top:28px !important;
+    right:22px !important;
+
+    width:48px !important;
+    min-width:48px !important;
+    max-width:48px !important;
+
+    height:48px !important;
+    min-height:48px !important;
+    max-height:48px !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+
+    box-sizing:border-box !important;
+
+    background:#000000 !important;
+
+    color:#ffffff !important;
+
+    border:1px solid rgba(255,255,255,.65) !important;
+
+    border-radius:6px !important;
+
+    font-size:22px !important;
+    font-weight:700 !important;
+    line-height:1 !important;
+
+    opacity:1 !important;
+    visibility:visible !important;
+
+    z-index:99999999 !important;
+
+    cursor:pointer !important;
+
+    pointer-events:auto !important;
+
+    overflow:visible !important;
+
+    transform:none !important;
+
+    transition:
+        background .18s ease,
+        border-color .18s ease !important;
+}
+
+
+/* Close icon */
+#presentationScreen #closePresentation i,
+#presentationScreen #presentationClose i,
+#presentationScreen #closePresentationBtn i,
+#presentationScreen .close-presentation i,
+#presentationScreen .presentation-close i {
+
+    display:block !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    color:#ffffff !important;
+
+    font-size:22px !important;
+    line-height:1 !important;
+
+    visibility:visible !important;
+    opacity:1 !important;
+
+    pointer-events:none !important;
+}
+
+
+/* Text / × symbol */
+#presentationScreen #closePresentation,
+#presentationScreen #presentationClose,
+#presentationScreen #closePresentationBtn,
+#presentationScreen .close-presentation,
+#presentationScreen .presentation-close {
+
+    text-align:center !important;
+    white-space:nowrap !important;
+}
+
+
+/* Hover */
+#presentationScreen #closePresentation:hover,
+#presentationScreen #presentationClose:hover,
+#presentationScreen #closePresentationBtn:hover,
+#presentationScreen .close-presentation:hover,
+#presentationScreen .presentation-close:hover {
+
+    background:#ef4444 !important;
+
+    border-color:#ef4444 !important;
+
+    color:#ffffff !important;
+
+    transform:none !important;
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media(max-width:700px){
+
+    #presentationScreen #closePresentation,
+    #presentationScreen #presentationClose,
+    #presentationScreen #closePresentationBtn,
+    #presentationScreen .close-presentation,
+    #presentationScreen .presentation-close {
+
+        top:12px !important;
+        right:10px !important;
+
+        width:34px !important;
+        min-width:34px !important;
+        max-width:34px !important;
+
+        height:34px !important;
+        min-height:34px !important;
+        max-height:34px !important;
+
+        font-size:16px !important;
+    }
+
+
+    #presentationScreen #closePresentation i,
+    #presentationScreen #presentationClose i,
+    #presentationScreen #closePresentationBtn i,
+    #presentationScreen .close-presentation i,
+    #presentationScreen .presentation-close i {
+
+        font-size:16px !important;
     }
 
 }
