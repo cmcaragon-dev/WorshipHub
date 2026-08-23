@@ -482,6 +482,211 @@ body{
 
 }
 /* =========================================================
+   TOPBAR LOGO — FINAL
+   White logo at top-left
+========================================================= */
+
+.topbar .brand,
+.topbar .logo,
+.topbar .app-title{
+
+    display:flex !important;
+
+    align-items:center !important;
+    justify-content:flex-start !important;
+
+    gap:10px !important;
+
+    height:72px !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    color:#ffffff !important;
+
+    flex-shrink:0 !important;
+
+    white-space:nowrap !important;
+}
+
+
+/* Logo image */
+
+.topbar .brand img,
+.topbar .logo img,
+.topbar .app-title img,
+.topbar img.logo{
+
+    display:block !important;
+
+    width:auto !important;
+    height:46px !important;
+
+    max-width:180px !important;
+    max-height:46px !important;
+
+    object-fit:contain !important;
+    object-position:left center !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    /* Makes dark/colored logo appear white */
+    filter:
+        brightness(0)
+        invert(1) !important;
+
+    opacity:1 !important;
+
+    flex-shrink:0 !important;
+}
+
+
+/* If the logo is SVG */
+
+.topbar .brand svg,
+.topbar .logo svg,
+.topbar .app-title svg{
+
+    width:auto !important;
+    height:46px !important;
+
+    max-width:180px !important;
+    max-height:46px !important;
+
+    display:block !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    color:#ffffff !important;
+
+    fill:#ffffff !important;
+
+    flex-shrink:0 !important;
+}
+
+
+/* Logo text */
+
+.topbar .brand span,
+.topbar .logo span,
+.topbar .app-title span{
+
+    color:#ffffff !important;
+
+    font-size:20px !important;
+    font-weight:800 !important;
+
+    line-height:1 !important;
+
+    white-space:nowrap !important;
+}
+
+
+/* =========================================================
+   FORCE BRAND TO THE TOP-LEFT
+========================================================= */
+
+.topbar{
+
+    justify-content:flex-start !important;
+
+    padding-left:18px !important;
+    padding-right:18px !important;
+}
+
+
+/* Keep actions on the right */
+
+.topbar .top-actions{
+
+    margin-left:auto !important;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    .topbar .brand,
+    .topbar .logo,
+    .topbar .app-title{
+
+        height:64px !important;
+
+    }
+
+    .topbar .brand img,
+    .topbar .logo img,
+    .topbar .app-title img,
+    .topbar img.logo{
+
+        height:40px !important;
+        max-height:40px !important;
+        max-width:150px !important;
+
+    }
+
+    .topbar .brand svg,
+    .topbar .logo svg,
+    .topbar .app-title svg{
+
+        height:40px !important;
+        max-height:40px !important;
+        max-width:150px !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .topbar{
+
+        padding-left:12px !important;
+        padding-right:12px !important;
+
+    }
+
+    .topbar .brand,
+    .topbar .logo,
+    .topbar .app-title{
+
+        height:40px !important;
+
+    }
+
+    .topbar .brand img,
+    .topbar .logo img,
+    .topbar .app-title img,
+    .topbar img.logo{
+
+        height:34px !important;
+        max-height:34px !important;
+        max-width:130px !important;
+
+    }
+
+    .topbar .brand svg,
+    .topbar .logo svg,
+    .topbar .app-title svg{
+
+        height:34px !important;
+        max-height:34px !important;
+        max-width:130px !important;
+
+    }
+
+}
+/* =========================================================
    SIDEBAR
 ========================================================= */
 
