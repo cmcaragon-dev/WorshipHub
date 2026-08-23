@@ -380,16 +380,8 @@ title: "Happy Day",
         category: "Praise",
         language: "English",
         file: "songs/happyday.html"
-	},
-	{id:46,        
-title: "You, You Are God",
-        artist: "Gateway Worship",
-        key: "C",
-        category: "Praise",
-        language: "English",
-        file: "songs/youyouaregod.html"
 	}
-];
+	];
 songs.sort((a, b) =>
     a.title.localeCompare(b.title)
 );
