@@ -1,0 +1,19 @@
+/* WorshipHub modern built-in song pages */
+:root{--wh-bg:#070b12;--wh-surface:#0f1724;--wh-surface-2:#121c2b;--wh-border:rgba(255,255,255,.10);--wh-text:#f8fafc;--wh-muted:#aab5c5;--wh-gold:#f5c400;--wh-blue:#2563eb;--wh-shadow:0 18px 55px rgba(0,0,0,.28)}
+html,body{background:linear-gradient(145deg,#05080d 0%,#0b1220 100%)!important;color:var(--wh-text)!important;min-height:100%;}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;}
+.song-header{background:rgba(10,16,27,.92)!important;border:1px solid var(--wh-border)!important;border-radius:0 0 18px 18px!important;box-shadow:var(--wh-shadow)!important;padding:22px 28px!important;backdrop-filter:blur(14px)!important;}
+.song-title{font-size:clamp(28px,3vw,46px)!important;letter-spacing:-.035em!important;color:#fff!important;line-height:1.05!important;}
+.song-meta{color:var(--wh-muted)!important;font-size:14px!important;line-height:1.5!important;}
+.song-toolbar{background:rgba(15,23,36,.92)!important;border:1px solid var(--wh-border)!important;border-radius:16px!important;margin:14px 18px!important;padding:12px 14px!important;box-shadow:0 12px 35px rgba(0,0,0,.22)!important;backdrop-filter:blur(12px)!important;}
+.song-toolbar button,.song-toolbar a{background:#172235!important;color:#f8fafc!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:11px!important;padding:10px 14px!important;font-weight:750!important;box-shadow:none!important;}
+.song-toolbar button:hover,.song-toolbar a:hover{background:#22324b!important;border-color:rgba(245,196,0,.45)!important;transform:translateY(-1px)!important;}
+.song-container{max-width:1700px!important;margin:18px auto 30px!important;padding:24px!important;background:rgba(10,16,27,.78)!important;border:1px solid var(--wh-border)!important;border-radius:20px!important;box-shadow:var(--wh-shadow)!important;}
+.song{display:block!important;line-height:1.45!important;}
+.song-section{background:linear-gradient(180deg,rgba(18,28,43,.96),rgba(12,19,31,.96))!important;border:1px solid var(--wh-border)!important;border-radius:16px!important;padding:18px 20px!important;margin-bottom:16px!important;min-height:0!important;box-shadow:0 8px 25px rgba(0,0,0,.16)!important;}
+.section-title{background:transparent!important;color:#fff!important;text-align:left!important;padding:0 0 12px!important;border-radius:0!important;margin:0!important;font-size:18px!important;font-weight:850!important;letter-spacing:.04em!important;border-bottom:1px solid rgba(255,255,255,.08)!important;}
+.song-line{font-family:Consolas,"Courier New",monospace!important;font-size:clamp(16px,1.35vw,21px)!important;line-height:1.28!important;margin:0!important;padding:8px 0!important;white-space:pre-wrap!important;color:#f8fafc!important;}
+.song-line .chord,.chord{color:var(--wh-gold)!important;font-weight:900!important;}
+#serviceProgress{background:rgba(15,23,36,.85)!important;color:var(--wh-muted)!important;border-color:var(--wh-border)!important;border-radius:10px!important;margin:0 18px!important;}
+/* Keep the presentation visually independent from song-page layout. */
+@media(max-width:900px){.song-container{padding:14px!important;margin:10px!important}.song-section{padding:14px!important}.song-toolbar{margin:10px!important}.song-toolbar button{flex:1 1 auto}}
