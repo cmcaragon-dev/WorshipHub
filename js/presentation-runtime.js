@@ -205,8 +205,9 @@ function renderPassingChords(song) {
 
     const visible = items.filter(([, value, rule]) => value && (rule === "always" || isWorship(song)));
 
+    // The section heading "PASSING CHORDS" was intentionally removed.
+    // The labels/values sit directly beside the song title to avoid overlap.
     box.innerHTML = `
-        <div class="presentation-passing-title">PASSING CHORDS</div>
         <div class="presentation-passing-items">
             ${visible.map(([label, value]) => `
                 <div class="presentation-passing-item">
@@ -336,8 +337,10 @@ function renderNextPreview() {
     preview.dataset.url = getSongUrl(next);
     preview.innerHTML = `
         <span class="next-preview-label">NEXT SONG</span>
-        <strong>${esc(next.title || "Untitled Song")}</strong>
-        <span class="next-preview-key">${esc(next.serviceKey || next.key || "")}</span>
+        <div class="next-preview-song-line">
+            <strong class="next-preview-title">${esc(next.title || "Untitled Song")}</strong>
+            <span class="next-preview-key">Key: ${esc(next.serviceKey || next.key || "—")}</span>
+        </div>
     `;
 }
 
@@ -438,6 +441,7 @@ window.previousServiceSong = () => navigateService(-1);
 window.nextPresentationSong = () => navigateService(1);
 window.previousPresentationSong = () => navigateService(-1);
 window.maximizePresentation = enterFullscreen;
+window.refreshPresentation = renderPresentation;
 
 window.openPresentationSongList = function openPresentationSongList() {
     window.location.assign("../index.html#songs");
