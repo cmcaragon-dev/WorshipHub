@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tinapay ng Buhay</title>
+<link rel="icon" type="image/png" href="../images/WHlogo.png">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/song-pages-modern.css">
+
+
+</head>
+
+<body class="song-page">
+
+<div class="song-header">
+
+    <div class="song-title">
+
+        Tinapay ng Buhay
+
+    </div>
+ <div class="song-meta">
+
+    <div class="meta-row">
+        <span class="meta-label">Artist: </span>
+        <span class="meta-value">Bukas Palad Music Ministry</span>
+    </div>
+
+    <div class="meta-row">
+        <span class="meta-label">Original Key: </span>
+        <span class="meta-value">D</span>
+    </div>
+
+    <div class="meta-row">
+        <span class="meta-label">Service Key: </span>
+        <span class="meta-value" id="serviceKey">D</span>
+    </div>
+
+</div>
+</div>
+
+<div class="song-toolbar">
+<button onclick="goHome()">
+    🏠 Home
+</button>
+
+<button id="transposeDown">− Transpose</button>
+
+<button id="transposeUp">+ Transpose</button>
+
+<button id="fontMinus">A−</button>
+
+<button id="fontPlus">A+</button>
+
+<button id="darkMode">🌙 Dark</button>
+
+<button id="favoriteBtn">⭐ Favorite</button>
+
+<button id="presentationBtn" onclick="startPresentation()">
+    📺 Presentation
+</button>
+
+<button onclick="fitToOnePage()">🖨 Print</button>
+
+<button onclick="previousServiceSong()">⏮ Previous</button>
+
+<button onclick="nextServiceSong()">⏭ Next</button>
+<button id="saveServiceKey">
+    💾 Save Service Key
+</button>
+<button onclick="stopService()">
+    ⏹ Stop Service
+</button>
+</div>
+<div id="serviceProgress"></div>
+<div class="song-container">
+<div id="lyrics" class="song">
+<!-- ================================================= -->
+<!-- VERSE 1 -->
+<!-- ================================================= -->
+
+<div class="song-section">
+<div class="section-title">VERSE 1</div>
+<div class="song-line">
+<span class="chord">
+D         A        Bm</span>
+Ito ang tinapay ng buhay,</div>
+<div class="song-line">
+<span class="chord">
+      G            A</span>
+Kunin mo't makibahagi</div>
+<div class="song-line">
+<span class="chord">
+D         A        Bm</span>
+Ito ang tinapay ng buhay,</div>
+<div class="song-line">
+<span class="chord">
+      G         A</span>
+Kunin mo't maki-isa</div>
+<div class="song-line">
+<span class="chord">
+    D       A        Bm</span>
+Yan ang katawang nabayubay,</div>
+<div class="song-line">
+<span class="chord">
+       G        A</span>
+Upang ikaw ay mabuhay</div>
+<div class="song-line">
+<span class="chord">
+    D       A       Bm</span>
+Yan ang katawang naghirap</div>
+<div class="song-line">
+<span class="chord">
+       G               A</span>
+Upang iyong kamtan ang buhay na</div>
+<div class="song-line">
+<span class="chord">
+           D</span>
+Walang hanggan</div>
+</div>
+<!-- ================================================= -->
+<!-- VERSE 2 -->
+<!-- ================================================= -->
+
+<div class="song-section">
+<div class="section-title">VERSE 2</div>
+<div class="song-line">
+<span class="chord">
+D       A         Bm</span>
+Ito ang saro ng bagong tipan,</div>
+<div class="song-line">
+<span class="chord">
+       G            A</span>
+Inumin mo't makibahagi</div>
+<div class="song-line">
+<span class="chord">
+D       A         Bm</span>
+Ito ang saro ng bagong tipan,</div>
+<div class="song-line">
+<span class="chord">
+       G          A</span>
+Inumin mo't maki-isa</div>
+<div class="song-line">
+<span class="chord">
+    D     A      Bm</span>
+Yan ang dugong dumanak,</div>
+<div class="song-line">
+<span class="chord">
+      G         A</span>
+Upang ikaw ay luminis</div>
+<div class="song-line">
+<span class="chord">
+    D     A      Bm</span>
+Yan ang dugo ni Kristo</div>
+<div class="song-line">
+<span class="chord">
+        G</span>
+Na para sa iyo</div>
+<div class="song-line">
+<span class="chord">
+        A             D</span>
+Doon sa Kalbaryo ay tumigis</div>
+</div>
+<!-- ================================================= -->
+<!-- VERSE 3 -->
+<!-- ================================================= -->
+<div class="song-section">
+<div class="section-title">VERSE 3</div>
+<div class="song-line">
+<span class="chord">
+D         A        Bm</span>
+Ito ang tinapay ng buhay,</div>
+<div class="song-line">
+<span class="chord">
+G                 A</span>
+Ito ang saro ng bagong tipan</div>
+<div class="song-line">
+<span class="chord">
+    D       A        Bm</span>
+Yan ang katawang nabayubay,</div>
+<div class="song-line">
+<span class="chord">
+    G             A</span>
+Yan ang dugong itinigis</div>
+<div class="song-line">
+<span class="chord">
+D        A      Bm</span>
+Ito ang aking patunay,</div>
+<div class="song-line">
+<span class="chord">
+        G           A</span>
+Ako'y kasama Niyang namatay</div>
+<div class="song-line">
+<span class="chord">
+D       A        Bm</span>
+Ito ang aking ipahahayag</div>
+<div class="song-line">
+<span class="chord">
+      G       A             D</span>
+Na magbabalik si Hesus na buhay</div>
+</div>
+</div>
+
+<!-- ========================================================= -->
+<!-- PLAYLIST POPUP -->
+<!-- ========================================================= -->
+
+<div id="playlistPopup" class="playlist-popup">
+
+    <div class="popup-content">
+
+        <h2>🎵 Add Song To Playlist</h2>
+
+        <div id="popupPlaylistList"></div>
+
+        <div style="margin-top:20px;text-align:right;">
+
+            <button id="closePopup">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- PRESENTATION MODE -->
+<!-- ===================================== -->
+
+<div id="presentationScreen">
+
+    <div id="presentationHeader">
+
+        <div id="presentationTitle"></div>
+
+        <div id="presentationPassingChords"></div>
+
+        <div id="presentationCounter"></div>
+
+        <div class="presentation-header-actions">
+            <button type="button" onclick="openPresentationSongList()" title="Song List" aria-label="Song List">☰</button>
+            <button type="button" onclick="openPresentationSettings()" title="Settings" aria-label="Settings">⚙</button>
+            <button type="button" onclick="maximizePresentation()" title="Maximize" aria-label="Maximize">⛶</button>
+            <button type="button" onclick="exitPresentation()" title="Close" aria-label="Close">✕</button>
+        </div>
+
+    </div>
+
+    <div id="presentationLyrics"></div>
+
+    <div id="presentationNavigation">
+
+        <button type="button" onclick="previousServiceSong()">
+            ◀◀ &nbsp; PREVIOUS
+        </button>
+
+        <button type="button" onclick="nextServiceSong()">
+            ▶▶ &nbsp; NEXT
+        </button>
+
+        <button type="button" class="presentation-nav-secondary" onclick="openPresentationSongList()">
+            ☷ &nbsp; SONG LIST
+        </button>
+
+        <button type="button" class="presentation-nav-secondary" onclick="openPresentationSettings()">
+            ⚙ &nbsp; SETTINGS
+        </button>
+
+        <div id="nextSongPreview" role="button" tabindex="0" aria-label="Next song preview"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- CURRENT SONG -->
+<!-- ========================================================= -->
+
+<script>
+
+const currentSong={
+
+    title:"Tinapay ng Buhay",
+
+    artist:"Bukas Palad Music Ministry",
+
+    key:"D",
+
+    category:"Worship",
+
+    language:"Tagalog",
+
+    file:"songs/tinapayngbuhay.html"
+
+};
+
+window.currentSong = currentSong;
+
+</script>
+
+
+<!-- ========================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================================= -->
+
+<script type="module" src="../js/song-runtime.js"></script>
+<script type="module" src="../js/presentation-runtime.js"></script>
+
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const resume =
+            localStorage.getItem(
+                "resumePresentation"
+            );
+
+        if (resume === "true") {
+
+            setTimeout(function() {
+
+                if (
+                    typeof startPresentation ===
+                    "function"
+                ) {
+
+                    startPresentation();
+
+                }
+
+            }, 300);
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
