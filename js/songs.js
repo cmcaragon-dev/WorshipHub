@@ -416,7 +416,7 @@ title: "Great Is The Lord",
 	{id:50,        
 title: "Your Grace Is Enough",
         artist: "Chris Tomlin",
-        key: ""G,
+        key: "G",
         category: "Praise",
         language: "English",
         file: "songs/yougraceisenough.html"
