@@ -396,6 +396,14 @@ title: "I Give You Glory",
         category: "Praise",
         language: "English",
         file: "songs/igiveyouglory.html"
+	},
+	{id:48,        
+title: "For You Alone",
+        artist: "Don Harris",
+        key: "G",
+        category: "Worship",
+        language: "English",
+        file: "songs/foryoualone.html"
 	}
 	];
 songs.sort((a, b) =>
