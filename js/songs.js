@@ -388,6 +388,14 @@ title: "You, You Are God",
         category: "Praise",
         language: "English",
         file: "songs/youyouaregod.html"
+	},
+	{id:47,        
+title: "I Give You Glory",
+        artist: "Klaus",
+        key: "C",
+        category: "Praise",
+        language: "English",
+        file: "songs/igiveyouglory.html"
 	}
 	];
 songs.sort((a, b) =>
