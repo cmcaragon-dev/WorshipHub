@@ -312,7 +312,7 @@ title: "Ako'y Magtitiwala Sayo",
 	{id:37,        
 title: "Mga Pangako Mo",
         artist: "Faith Music Manila",
-        key: "D",
+        key: "G",
         category: "Worship",
         language: "Tagalog",
         file: "songs/mgapangakomo.html"
