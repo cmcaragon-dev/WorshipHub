@@ -404,6 +404,14 @@ title: "For You Alone",
         category: "Worship",
         language: "English",
         file: "songs/foryoualone.html"
+	},
+	{id:49,        
+title: "Great Is The Lord",
+        artist: "Maranatha",
+        key: "A",
+        category: "Worship",
+        language: "English",
+        file: "songs/greatisthelord.html"
 	}
 	];
 songs.sort((a, b) =>
