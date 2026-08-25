@@ -387,7 +387,7 @@ title: "You, You Are God",
         key: "C",
         category: "Praise",
         language: "English",
-        file: "songs/youyouaregod.html"
+        file: "songs/youaregod.html"
 	},
 	{id:47,        
 title: "I Give You Glory",
