@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ikaw Lamang</title>
+<link rel="icon" type="image/png" href="../images/WHlogo.png">
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#eef2f7;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/*==================================================
+HEADER
+==================================================*/
+
+.song-header{
+
+    background:#2c3e50;
+
+    color:#fff;
+
+    padding:20px 30px;
+
+}
+
+.song-title{
+
+    font-size:34px;
+
+    font-weight:bold;
+color:white;
+
+}
+
+.song-meta{
+
+    margin-top:8px;
+
+    color:#d9d9d9;
+
+    font-size:15px;
+
+}
+.chord{
+    line-height:1;
+    margin-bottom:-3px;
+}
+.song-line{
+    margin:0;
+    padding:0;
+    line-height:0.85;
+}
+.song{
+    line-height:0.85;
+    margin:0;
+    padding:0;
+}
+
+/*==================================================
+TOOLBAR
+==================================================*/
+
+.song-toolbar{
+
+    background:#fff;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    align-items:center;
+
+    padding:15px 20px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.10);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+}
+
+.song-toolbar button{
+
+    background:#3498db;
+
+    color:#fff;
+
+    border:none;
+
+    padding:10px 16px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.song-toolbar button:hover{
+
+    background:#2980b9;
+
+}
+
+/*==================================================
+SERVICE PROGRESS
+==================================================*/
+
+#serviceProgress{
+
+    text-align:center;
+
+    background:#f8f9fa;
+
+    padding:10px;
+
+    font-weight:bold;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+/*==================================================
+SONG CONTAINER
+==================================================*/
+
+.song-container{
+
+    max-width:1800px;
+
+    margin:25px auto;
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+/*==================================================
+LYRICS GRID
+==================================================*/
+
+.song{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+/*==================================================
+SONG SECTION
+==================================================*/
+
+.song-section{
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    padding:18px;
+
+    background:#fafafa;
+
+    min-height:340px;
+
+}
+
+.song-section:hover{
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+/*==================================================
+SECTION TITLE
+==================================================*/
+
+.section-title{
+
+    background:#2c3e50;
+
+    color:white;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    margin-bottom:18px;
+
+    letter-spacing:1px;
+
+}
+
+/*==================================================
+LYRICS
+==================================================*/
+
+.song-line{
+
+    margin-bottom:15px;
+
+    font-family:Consolas, monospace;
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    white-space:pre-wrap;
+
+}
+
+/*==================================================
+CHORDS
+==================================================*/
+
+.chord{
+
+    color:#d32f2f;
+
+    font-weight:bold;
+
+}
+
+/*==================================================
+DARK MODE
+==================================================*/
+
+.dark{
+
+    background:#111;
+
+    color:white;
+
+}
+
+.dark .song-container{
+
+    background:#222;
+
+}
+
+.dark .song-toolbar{
+
+    background:#333;
+
+}
+
+.dark .song-section{
+
+    background:#2a2a2a;
+
+    border-color:#555;
+
+}
+
+.dark .section-title{
+
+    background:#444;
+
+}
+
+.dark .song-line{
+
+    color:white;
+
+}
+
+
+
+</style>
+
+
+    <link rel="stylesheet" href="../css/song-pages-modern.css">
+</head>
+
+<body>
+
+
+<div class="song-header">
+
+    <div class="song-title">
+
+        Ikaw Lamang
+
+    </div>
+ <div class="song-meta">
+
+    <div class="meta-row">
+        <span class="meta-label">Artist: </span>
+        <span class="meta-value">Rommel Guevara</span>
+    </div>
+
+    <div class="meta-row">
+        <span class="meta-label">Original Key: </span>
+        <span class="meta-value">G</span>
+    </div>
+
+    <div class="meta-row">
+        <span class="meta-label">Service Key: </span>
+        <span class="meta-value" id="serviceKey">G</span>
+    </div>
+
+</div>
+
+</div>
+
+<div class="song-toolbar">
+<button onclick="goHome()">
+    🏠 Home
+</button>
+
+<button id="transposeDown">− Transpose</button>
+
+<button id="transposeUp">+ Transpose</button>
+
+<button id="fontMinus">A−</button>
+
+<button id="fontPlus">A+</button>
+
+<button id="darkMode">🌙 Dark</button>
+
+<button id="favoriteBtn">⭐ Favorite</button>
+
+<button id="presentationBtn" onclick="startPresentation()">
+    📺 Presentation
+</button>
+
+<button onclick="fitToOnePage()">🖨 Print</button>
+
+<button onclick="previousServiceSong()">⏮ Previous</button>
+
+<button onclick="nextServiceSong()">⏭ Next</button>
+<button id="saveServiceKey">
+    💾 Save Service Key
+</button>
+<button onclick="stopService()">
+    ⏹ Stop Service
+</button>
+</div>
+<div id="serviceProgress"></div>
+<div class="song-container">
+<div id="lyrics" class="song">
+<!-- ================================================= -->
+<!-- VERSE 1 -->
+<!-- ================================================= -->
+<div class="song-section">
+    <div class="section-title">VERSE 1</div>
+    <div class="song-line">
+        <span class="chord">  G                  C</span>
+O Diyos sa kabutihan Mo    </div>
+    <div class="song-line">
+        <span class="chord">            Bm</span>
+Ako'y naririto    </div>
+    <div class="song-line">
+        <span class="chord">              Am    D</span>
+Upang magpuri Sa Iyo    </div>
+</div>
+<!-- ================================================= -->
+<!-- VERSE 2 -->
+<!-- ================================================= -->
+<div class="song-section">
+    <div class="section-title">VERSE 2</div>
+    <div class="song-line">
+        <span class="chord">  G                   C</span>
+O Diyos, sa kabanalan Mo    </div>
+    <div class="song-line">
+        <span class="chord">          Bm</span>
+Nalulugod ako    </div>
+    <div class="song-line">
+        <span class="chord">                Am D</span>
+Buhay ay iaalay ko    </div>
+</div>
+<!-- ================================================= -->
+<!-- KORO -->
+<!-- ================================================= -->
+<div class="song-section">
+    <div class="section-title">CHORUS</div>
+    <div class="song-line">
+        <span class="chord">CM7                  D/C</span>
+Ikaw lamang ang nagtiwala sa akin    </div>
+    <div class="song-line">
+        <span class="chord">  Bm              E7</span>
+O Diyos di kita bibiguin    </div>
+    <div class="song-line">
+        <span class="chord">   Am</span>
+Magtatapat Sa'yo    </div>
+    <div class="song-line">
+        <span class="chord">   Bm        E7</span>
+Maglilingkod Ako    </div>
+    <div class="song-line">
+        <span class="chord">  Am         D    G</span>
+O Diyos, kay buti mo    </div>
+</div>
+</div>
+<!-- ========================================================= -->
+<!-- PLAYLIST POPUP -->
+<!-- ========================================================= -->
+
+<div id="playlistPopup" class="playlist-popup">
+
+    <div class="popup-content">
+
+        <h2>🎵 Add Song To Playlist</h2>
+
+
+        <div id="popupPlaylistList">
+
+        </div>
+
+
+        <div style="margin-top:20px;text-align:right;">
+
+            <button id="closePopup">
+
+                Close
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ===================================== -->
+<!-- PRESENTATION MODE -->
+<!-- ===================================== -->
+
+<div id="presentationScreen">
+
+    <div id="presentationHeader">
+
+        <div id="presentationTitle"></div>
+
+        <div id="presentationPassingChords"></div>
+
+        <div id="presentationCounter"></div>
+
+        <div class="presentation-header-actions">
+            <button type="button" onclick="previousServiceSong()" title="Previous Song" aria-label="Previous Song">◀</button>
+            <button type="button" onclick="nextServiceSong()" title="Next Song" aria-label="Next Song">▶</button>
+            <button type="button" onclick="openPresentationSongList()" title="Song List" aria-label="Song List">☰</button>
+            <button type="button" onclick="openPresentationSettings()" title="Settings" aria-label="Settings">⚙</button>
+            <button type="button" onclick="maximizePresentation()" title="Maximize" aria-label="Maximize">⛶</button>
+            <button type="button" onclick="exitPresentation()" title="Close" aria-label="Close">✕</button>
+        </div>
+
+    </div>
+
+    <div id="presentationLyrics"></div>
+
+    <div id="presentationNavigation">
+
+        <button type="button" onclick="previousServiceSong()">
+            ◀◀ &nbsp; PREVIOUS
+        </button>
+
+        <button type="button" onclick="nextServiceSong()">
+            ▶▶ &nbsp; NEXT
+        </button>
+
+        <button type="button" class="presentation-nav-secondary" onclick="openPresentationSongList()">
+            ☷ &nbsp; SONG LIST
+        </button>
+
+        <button type="button" class="presentation-nav-secondary" onclick="openPresentationSettings()">
+            ⚙ &nbsp; SETTINGS
+        </button>
+
+        <div id="nextSongPreview" role="button" tabindex="0" aria-label="Next song preview"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- CURRENT SONG INFORMATION -->
+<!-- ========================================================= -->
+
+
+<script>
+
+
+const currentSong={
+
+
+    title:"Ikaw Lamang",
+
+
+    artist:"Rommel Guevara",
+
+
+    key:"G",
+
+
+    category:"Worship",
+
+
+    language:"Tagalog",
+
+
+    file:"songs/ikawlamang.html"
+
+
+};
+
+window.currentSong = currentSong;
+
+
+</script>
+
+ 
+
+
+<!-- ========================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================================= -->
+
+<script type="module" src="../js/song-runtime.js"></script>
+<script type="module" src="../js/presentation-runtime.js"></script>
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const resume =
+            localStorage.getItem(
+                "resumePresentation"
+            );
+
+        if (resume === "true") {
+
+            setTimeout(function() {
+
+                if (
+                    typeof startPresentation ===
+                    "function"
+                ) {
+
+                    startPresentation();
+
+                }
+
+            }, 300);
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
