@@ -419,7 +419,7 @@ title: "Your Grace Is Enough",
         key: "G",
         category: "Praise",
         language: "English",
-        file: "songs/yougraceisenough.html"
+        file: "songs/yourgraceisenough.html"
 	}
 	];
 songs.sort((a, b) =>
