@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorshipHub — Settings</title>
+<link rel="icon" href="images/jfcm-favicon.png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/modern.css">
+<style>
+.settings-page{min-height:100vh;background:#f4f7fb;color:#172033}
+.settings-page-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 28px;background:#111827;color:#fff;box-shadow:0 8px 24px rgba(15,23,42,.16)}
+.settings-page-brand{display:flex;align-items:center;gap:12px}.settings-page-brand img{width:42px;height:42px;object-fit:contain}.settings-page-brand h1{margin:0;font-size:20px}.settings-page-brand p{margin:2px 0 0;color:#cbd5e1;font-size:12px}
+.settings-back{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:700}.settings-back:hover{background:rgba(255,255,255,.16)}
+.settings-page-main{width:min(1080px,calc(100% - 32px));margin:28px auto 50px}.settings-page-intro{margin-bottom:20px}.settings-page-intro h2{margin:0 0 6px;font-size:30px}.settings-page-intro p{margin:0;color:#64748b}
+.settings-page .settings-shell{width:100%;max-height:none;overflow:visible;border-radius:22px}
+@media(max-width:640px){.settings-page-header{padding:14px 16px}.settings-page-main{width:min(100% - 20px,1080px);margin-top:16px}.settings-page-intro h2{font-size:24px}.settings-page .settings-content{padding:18px 16px 20px}}
+</style>
+</head>
+<body class="settings-page">
+<header class="settings-page-header">
+  <div class="settings-page-brand">
+    <img src="images/WHlogo.png" alt="WorshipHub">
+    <div><h1>WorshipHub</h1><p>Settings & User Management</p></div>
+  </div>
+  <button class="settings-back" type="button" onclick="window.location.href='index.html'">← Back to Dashboard</button>
+</header>
+<main class="settings-page-main">
+  <div class="settings-page-intro">
+    <h2>⚙ Settings</h2>
+    <p>Manage your account and, for administrators, control who can add and edit songs.</p>
+  </div>
+  <div class="settings-shell">
+    <div id="adminSettingsContent" class="settings-content">
+      <div class="settings-loading">Checking your permissions…</div>
+    </div>
+  </div>
+</main>
+<script type="module" src="js/firebase.js"></script>
+<script type="module" src="js/admin-settings.js"></script>
+</body>
+</html>
