@@ -1,0 +1,45 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function admin() {
+      return signedIn()
+        && request.auth.token.email == "cmcaragon@gmail.com";
+    }
+
+    /* User profiles and their Service Planner / Playlist subcollections. */
+    match /users/{uid} {
+      allow read, write: if signedIn() && (request.auth.uid == uid || admin());
+    }
+
+    match /users/{uid}/{subcollection}/{docId} {
+      allow read, write: if signedIn() && (request.auth.uid == uid || admin());
+    }
+
+    match /users/{uid}/services/{serviceId} {
+      allow read, write: if signedIn() && (request.auth.uid == uid || admin());
+    }
+
+    match /users/{uid}/playlists/{playlistId} {
+      allow read, write: if signedIn() && (request.auth.uid == uid || admin());
+    }
+
+    /*
+     * Custom songs and administrator-saved chord/lyric layouts.
+     * All authenticated users may read songs. Only the administrator,
+     * or a user explicitly granted Edit Song permission, may write.
+     */
+    match /songs/{songId} {
+      allow read: if signedIn();
+      allow create, update, delete: if signedIn() && (
+        admin() ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.allowEditSongs == true
+      );
+    }
+  }
+}
