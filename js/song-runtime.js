@@ -1,0 +1,681 @@
+"use strict";
+
+import { auth, db } from "./firebase.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { doc, getDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const SHARP = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+const FLAT_TO_SHARP = { Db:"C#", Eb:"D#", Gb:"F#", Ab:"G#", Bb:"A#" };
+
+let transposeSteps = 0;
+let fontSize = 0;
+let activeService = null;
+let authReady = false;
+
+function getCurrentSongSafe() {
+    try {
+        if (typeof currentSong !== "undefined" && currentSong) return currentSong;
+    } catch (_) {}
+    return window.currentSong || null;
+}
+
+function noteIndex(note) {
+    // Accept complete key/chord names such as C#m, Bm7, F#sus4, etc.
+    // Only the root note is needed when calculating the semitone distance.
+    const value = String(note ?? "").trim();
+    const match = value.match(/^([A-Ga-g])([#b]?)/);
+    if (!match) return -1;
+    const root = match[1].toUpperCase() + match[2];
+    return SHARP.indexOf(FLAT_TO_SHARP[root] || root);
+}
+
+function transposeNote(note, steps) {
+    const i = noteIndex(note);
+    if (i < 0) return note;
+    return SHARP[((i + steps) % 12 + 12) % 12];
+}
+
+function transposeChord(chord, steps = transposeSteps) {
+    const value = String(chord ?? "");
+    if (!value.trim()) return "";
+
+    // A .chord span may contain several chords (for example "Bm C#m F#m")
+    // separated by spaces. Transpose EVERY chord token while preserving every
+    // character of whitespace exactly as entered. This keeps chord placement
+    // aligned with the lyric text.
+    const transposeToken = token => {
+        const root = token.match(/^([A-Ga-g])([#b]?)/);
+        if (!root) return token;
+
+        const rootName = root[1].toUpperCase() + root[2];
+        let result = transposeNote(rootName, Number(steps) || 0) + token.slice(root[0].length);
+
+        // Also transpose slash/bass notes, e.g. C#m/G#.
+        result = result.replace(/\/([A-Ga-g])([#b]?)(?=$|[^A-Za-z])/g,
+            (_, n, a) => "/" + transposeNote(n.toUpperCase() + a, Number(steps) || 0));
+        return result;
+    };
+
+    return value.replace(/\S+/g, transposeToken);
+}
+
+function originalChord(span) {
+    if (!span.dataset.originalChord) span.dataset.originalChord = span.textContent;
+    return span.dataset.originalChord;
+}
+
+function transposeChordLayout(layout, steps = transposeSteps) {
+    const value = String(layout ?? "");
+    if (!value) return "";
+    return value.replace(/(^|\s)([A-Ga-g](?:#|b)?(?:m|maj7?|min7?|sus[24]?|dim7?|aug)?(?:\/[A-Ga-g](?:#|b)?)?)(?=\s|$)/g,
+        (_, prefix, chord) => prefix + transposeChord(chord, steps));
+}
+
+function updateChordSpans(root = document) {
+    root.querySelectorAll(".chord").forEach(span => {
+        const original = originalChord(span);
+        span.textContent = span.dataset.layoutChord === "true"
+            ? transposeChordLayout(original)
+            : transposeChord(original, transposeSteps);
+    });
+}
+
+function updateKey() {
+    const song = getCurrentSongSafe();
+    const keyElement = document.getElementById("serviceKey");
+    if (!keyElement) return;
+
+    const serviceIndex = Number(localStorage.getItem("currentSongIndex") || 0);
+    const serviceSong = activeService?.songs?.[serviceIndex];
+
+    // Always calculate the displayed key from the ORIGINAL key plus the
+    // current in-page transpose amount. On initial load transposeSteps is
+    // restored from the saved Service Planner record; after the user clicks
+    // Transpose it changes immediately without changing Firebase until Save.
+    const key = serviceSong?.originalKey
+        || serviceSong?.baseKey
+        || song?.originalKey
+        || song?.key
+        || song?.serviceKey
+        || "";
+
+    keyElement.textContent = transposeChord(key, transposeSteps);
+}
+
+function updateProgress() {
+    const el = document.getElementById("serviceProgress");
+    if (!el) return;
+    if (!activeService?.songs?.length) {
+        el.textContent = "";
+        return;
+    }
+    const index = Number(localStorage.getItem("currentSongIndex") || 0);
+    const serviceName = String(
+        activeService.name ||
+        activeService.title ||
+        activeService.serviceName ||
+        activeService.label ||
+        "Service Planner"
+    ).trim();
+    el.textContent = `${serviceName}  •  Song ${Math.min(index + 1, activeService.songs.length)} / ${activeService.songs.length}`;
+}
+
+function updateAll() {
+    updateChordSpans(document.getElementById("lyrics") || document);
+    updateKey();
+    updateProgress();
+    requestAnimationFrame(layoutSongPageTwoColumns);
+    if (document.getElementById("presentationScreen")?.classList.contains("show")) {
+        if (typeof window.refreshPresentation === "function") window.refreshPresentation();
+        else buildPresentation();
+    }
+}
+
+function setTranspose(delta) {
+    transposeSteps += Number(delta) || 0;
+    if (transposeSteps > 11) transposeSteps -= 12;
+    if (transposeSteps < -11) transposeSteps += 12;
+    updateAll();
+}
+
+function setFontSize(delta) {
+    fontSize = Math.max(-4, Math.min(8, fontSize + Number(delta || 0)));
+    const px = `${fontSize}px`;
+    const source = document.getElementById("lyrics");
+    const layout = document.getElementById("songDisplayLayout");
+    if (source) source.style.setProperty("--wh-font-adjust", px);
+    if (layout) layout.style.setProperty("--wh-font-adjust", px);
+    document.querySelectorAll("#songDisplayLayout .song-display-line").forEach(line => {
+        line.style.setProperty("--wh-font-adjust", px);
+    });
+    const presentation = document.getElementById("presentationLyrics");
+    if (presentation) presentation.style.setProperty("--wh-font-adjust", px);
+    requestAnimationFrame(layoutSongPageTwoColumns);
+}
+
+function goHome() {
+    window.location.assign("../index.html");
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+    const enabled = document.body.classList.contains("dark-mode");
+    document.documentElement.classList.toggle("dark-mode", enabled);
+    localStorage.setItem("worshipHubDarkMode", enabled ? "1" : "0");
+    const button = document.getElementById("darkMode");
+    if (button) button.textContent = enabled ? "☀️ Light" : "🌙 Dark";
+}
+
+function restoreDarkMode() {
+    if (localStorage.getItem("worshipHubDarkMode") === "1") {
+        document.body.classList.add("dark-mode");
+        document.documentElement.classList.add("dark-mode");
+    }
+    const button = document.getElementById("darkMode");
+    if (button) button.textContent = document.body.classList.contains("dark-mode") ? "☀️ Light" : "🌙 Dark";
+}
+
+function toggleFavorite() {
+    const song = getCurrentSongSafe();
+    if (!song) return;
+    const key = String(song.id || song.file || song.title || location.pathname);
+    let favorites = [];
+    try { favorites = JSON.parse(localStorage.getItem("favorites") || "[]"); } catch (_) {}
+    const exists = favorites.includes(key);
+    favorites = exists ? favorites.filter(x => x !== key) : [...favorites, key];
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    const button = document.getElementById("favoriteBtn");
+    if (button) button.textContent = exists ? "☆ Favorite" : "★ Favorited";
+}
+
+function isFavorite() {
+    const song = getCurrentSongSafe();
+    if (!song) return false;
+    try {
+        return JSON.parse(localStorage.getItem("favorites") || "[]").includes(String(song.id || song.file || song.title || location.pathname));
+    } catch (_) { return false; }
+}
+
+function fitToOnePage() {
+    if (typeof window.printSong === "function") {
+        window.printSong();
+        return;
+    }
+    window.print();
+}
+
+function buildPresentation() {
+    const overlay = document.getElementById("presentationScreen");
+    const output = document.getElementById("presentationLyrics");
+    const source = document.getElementById("lyrics");
+    if (!overlay || !output || !source) return;
+    const title = document.getElementById("presentationTitle");
+    const counter = document.getElementById("presentationCounter");
+    const song = getCurrentSongSafe();
+    if (title) title.textContent = song?.title || document.title || "WorshipHub";
+    if (counter) counter.textContent = activeService?.songs?.length ? `Song ${Number(localStorage.getItem("currentSongIndex") || 0) + 1} / ${activeService.songs.length}` : "Song";
+    output.innerHTML = source.innerHTML;
+    updateChordSpans(output);
+    output.querySelectorAll(".chord").forEach(span => span.style.color = "#D4AF37");
+}
+
+function startPresentation() {
+    const overlay = document.getElementById("presentationScreen");
+    if (!overlay) return;
+    localStorage.setItem("presentationMode", "true");
+    buildPresentation();
+    overlay.style.display = "block";
+    overlay.classList.add("show");
+}
+
+function exitPresentation() {
+    const overlay = document.getElementById("presentationScreen");
+    if (overlay) {
+        overlay.classList.remove("show");
+        overlay.style.display = "none";
+    }
+    localStorage.removeItem("presentationMode");
+}
+
+async function loadActiveService() {
+    const serviceId = localStorage.getItem("currentServiceId");
+    if (!serviceId) return null;
+
+    // Firebase Auth can finish restoring the session after DOMContentLoaded.
+    // Always wait for the real authenticated user instead of silently loading
+    // the master song with its Original Key.
+    const user = auth.currentUser || await new Promise(resolve => {
+        let done = false;
+        const unsubscribe = onAuthStateChanged(auth, u => {
+            if (done) return;
+            done = true;
+            unsubscribe();
+            resolve(u || null);
+        });
+    });
+
+    if (!user) return null;
+
+    try {
+        const snap = await getDoc(
+            doc(db, "users", user.uid, "services", String(serviceId))
+        );
+        if (!snap.exists()) return null;
+        activeService = { id: snap.id, ...snap.data() };
+        if (!Array.isArray(activeService.songs)) activeService.songs = [];
+        return activeService;
+    } catch (error) {
+        console.warn("Unable to load active service:", error);
+        return null;
+    }
+}
+
+async function restoreServiceSongFromFirebase() {
+    const serviceId = localStorage.getItem("currentServiceId");
+    if (!serviceId) return false;
+
+    const service = await loadActiveService();
+    if (!service || !Array.isArray(service.songs)) return false;
+
+    const index = Number(localStorage.getItem("currentSongIndex") || 0);
+    const serviceSong = service.songs[index];
+    if (!serviceSong) return false;
+
+    const pageSong = getCurrentSongSafe() || {};
+    const originalKey = serviceSong.originalKey || serviceSong.baseKey || pageSong.originalKey || pageSong.key || serviceSong.key || "";
+    // The Service Planner's visible `key` is authoritative. Older records can
+    // have a stale `serviceKey`, so never let that stale field override the key
+    // actually saved/displayed in the planner.
+    const savedServiceKey = serviceSong.key || serviceSong.serviceKey || originalKey;
+
+    // Always derive the transpose from the saved Original Key -> Service Key
+    // relationship. This prevents an old/inconsistent `transpose` value from
+    // making the song page or presentation display a different key.
+    const oi = noteIndex(originalKey);
+    const si = noteIndex(savedServiceKey);
+    let savedTranspose = (oi >= 0 && si >= 0)
+        ? (si - oi + 12) % 12
+        : Number(serviceSong.transpose);
+    if (!Number.isFinite(savedTranspose)) savedTranspose = 0;
+    if (savedTranspose > 6) savedTranspose -= 12;
+
+    // Firebase is the source of truth. Restore the exact service-specific key
+    // and transpose amount every time the song page is opened/refreshed.
+    transposeSteps = savedTranspose;
+    window.currentSong = {
+        ...pageSong,
+        ...serviceSong,
+        originalKey,
+        serviceKey: savedServiceKey,
+        key: savedServiceKey,
+        transpose: savedTranspose
+    };
+
+    updateAll();
+    return true;
+}
+
+function serviceSongAt(offset) {
+    if (!activeService?.songs?.length) return null;
+    const current = Number(localStorage.getItem("currentSongIndex") || 0);
+    const target = current + offset;
+    if (target < 0 || target >= activeService.songs.length) return null;
+    return { song: activeService.songs[target], index: target };
+}
+
+function openServiceSong(item) {
+    if (!item?.song) return;
+    localStorage.setItem("currentSongIndex", String(item.index));
+    const song = item.song;
+    if (song.customSong) {
+        window.location.assign(`../custom-song.html?id=${encodeURIComponent(song.id || "")}`);
+        return;
+    }
+    const file = String(song.file || "").split("/").pop();
+    if (file) window.location.assign(`./${encodeURIComponent(file)}`);
+}
+
+function previousServiceSong() {
+    const item = serviceSongAt(-1);
+    if (!item) return alert("This is the first song in the service.");
+    openServiceSong(item);
+}
+
+function nextServiceSong() {
+    const item = serviceSongAt(1);
+    if (!item) return alert("This is the last song in the service.");
+    openServiceSong(item);
+}
+
+function stopService() {
+    localStorage.removeItem("currentServiceId");
+    localStorage.removeItem("currentSongIndex");
+    localStorage.removeItem("resumePresentation");
+    exitPresentation();
+    alert("Service stopped.");
+}
+
+async function saveServiceKey() {
+    const serviceId = localStorage.getItem("currentServiceId");
+    const index = Number(localStorage.getItem("currentSongIndex") || 0);
+
+    // IMPORTANT: the Service Planner copy is the authoritative record for a
+    // service-specific key. Never save the key back to the master song.
+    if (!auth.currentUser || !serviceId) {
+        alert("No active Service Planner is available.");
+        return false;
+    }
+
+    // Always refresh the selected Service Planner from Firebase before saving.
+    // This prevents an old/stale in-memory service from overwriting a key that
+    // was changed elsewhere.
+    try {
+        const snap = await getDoc(
+            doc(db, "users", auth.currentUser.uid, "services", String(serviceId))
+        );
+
+        if (!snap.exists()) {
+            alert("The selected Service Planner could not be found in Firebase.");
+            return false;
+        }
+
+        activeService = { id: snap.id, ...snap.data() };
+        if (!Array.isArray(activeService.songs)) activeService.songs = [];
+    } catch (error) {
+        console.error("Unable to reload Service Planner before saving key:", error);
+        alert("Unable to read the selected Service Planner from Firebase.");
+        return false;
+    }
+
+    const serviceSong = activeService.songs[index];
+    if (!serviceSong) {
+        alert("Current song was not found in the selected Service Planner.");
+        return false;
+    }
+
+    const pageSong = getCurrentSongSafe();
+    const baseKey =
+        serviceSong.originalKey ||
+        serviceSong.baseKey ||
+        pageSong?.originalKey ||
+        pageSong?.key ||
+        serviceSong.key ||
+        "";
+
+    if (!baseKey) {
+        alert("The original key for this song could not be determined.");
+        return false;
+    }
+
+    // transposeSteps is the number of semitones applied to the original song.
+    // The value saved in the Service Planner is the FINAL SERVICE KEY.
+    const displayedKey = transposeChord(baseKey, transposeSteps);
+
+    // Keep the original/master key separate from the service-specific key.
+    serviceSong.originalKey = serviceSong.originalKey || baseKey;
+    serviceSong.serviceKey = displayedKey;
+    serviceSong.transpose = Number(transposeSteps) || 0;
+
+    // Keep `key` synchronized with the Service Planner key as requested, while
+    // `originalKey` remains the immutable reference used for transposition.
+    serviceSong.key = displayedKey;
+
+    try {
+        const serviceRef = doc(
+            db,
+            "users",
+            auth.currentUser.uid,
+            "services",
+            String(serviceId)
+        );
+
+        await updateDoc(serviceRef, {
+            songs: activeService.songs,
+            updatedAt: serverTimestamp()
+        });
+
+        // Verify the exact selected service-song entry was written.
+        const verify = await getDoc(serviceRef);
+        const savedSongs = verify.exists() ? verify.data().songs : null;
+        const savedSong = Array.isArray(savedSongs) ? savedSongs[index] : null;
+
+        if (!savedSong || savedSong.serviceKey !== displayedKey) {
+            throw new Error("Firebase verification failed: Service Key was not retained.");
+        }
+
+        // Synchronize this page immediately. Do not let the master song's key
+        // replace the selected Service Planner key after saving.
+        window.currentSong = {
+            ...(pageSong || {}),
+            ...savedSong,
+            originalKey: savedSong.originalKey || baseKey,
+            serviceKey: savedSong.serviceKey,
+            key: savedSong.key || savedSong.serviceKey,
+            transpose: Number(savedSong.transpose) || 0
+        };
+        activeService.songs[index] = savedSong;
+
+        // Optional cache only for backward compatibility; Firebase remains the
+        // source of truth.
+        localStorage.setItem(`serviceKey:${serviceId}:${index}`, displayedKey);
+        localStorage.setItem(`serviceTranspose:${serviceId}:${index}`, String(transposeSteps));
+
+        // Tell index.html that the selected Service Planner changed so its
+        // visible Song Key is updated without requiring a page refresh.
+        window.dispatchEvent(new CustomEvent("worshiphub:service-updated", {
+            detail: {
+                id: String(serviceId),
+                service: activeService,
+                songIndex: index,
+                serviceKey: displayedKey
+            }
+        }));
+
+        updateAll();
+        alert(`Service Key saved successfully: ${displayedKey}`);
+        return true;
+    } catch (error) {
+        console.error("Unable to save service key:", error);
+        alert(
+            "Unable to save the Service Key to Firebase.\n\n" +
+            (error?.message || "Please check your Firebase permissions.")
+        );
+        return false;
+    }
+}
+
+function bindButtons() {
+    const bindings = [
+        ["transposeDown", () => setTranspose(-1)],
+        ["transposeUp", () => setTranspose(1)],
+        ["fontMinus", () => setFontSize(-1)],
+        ["fontPlus", () => setFontSize(1)],
+        ["darkMode", toggleDarkMode],
+        ["favoriteBtn", toggleFavorite],
+        ["saveServiceKey", saveServiceKey]
+    ];
+    bindings.forEach(([id, handler]) => {
+        const button = document.getElementById(id);
+        if (!button) return;
+        button.type = "button";
+        button.onclick = handler;
+    });
+}
+
+function normalizeSongDisplayLine(line) {
+    const clone = line.cloneNode(true);
+    clone.classList.add("song-display-line");
+    clone.style.cssText = "";
+
+    const chords = [...clone.querySelectorAll(":scope > .chord")];
+    if (!chords.length) {
+        const lyric = document.createElement("div");
+        lyric.className = "song-display-lyric-row";
+        const text = [...clone.childNodes]
+            .filter(n => n.nodeType === Node.TEXT_NODE)
+            .map(n => n.nodeValue || "")
+            .join("")
+            .replace(/^\s+/, "");
+        lyric.textContent = text;
+        clone.innerHTML = "";
+        clone.appendChild(lyric);
+        return clone;
+    }
+
+    const chordRow = document.createElement("div");
+    chordRow.className = "song-display-chord-row";
+    chordRow.textContent = chords.map(c => String(c.textContent || "")
+        .replace(/\r?\n/g, "")
+        .replace(/\t/g, "")
+    ).join("");
+
+    const lyricRow = document.createElement("div");
+    lyricRow.className = "song-display-lyric-row";
+    const lyricText = [...line.childNodes]
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.nodeValue || "")
+        .join("")
+        .replace(/^\s*(?:\r?\n)?\s*/, "");
+    lyricRow.textContent = lyricText;
+
+    clone.innerHTML = "";
+    clone.appendChild(chordRow);
+    clone.appendChild(lyricRow);
+    return clone;
+}
+
+function normalizeSongDisplaySection(section) {
+    const clone = section.cloneNode(false);
+    clone.className = "song-display-section";
+    const title = section.querySelector(":scope > .section-title");
+    if (title) {
+        const titleClone = title.cloneNode(true);
+        titleClone.className = "song-display-section-title";
+        clone.appendChild(titleClone);
+    }
+
+    section.querySelectorAll(":scope > .song-line").forEach(line => {
+        clone.appendChild(normalizeSongDisplayLine(line));
+    });
+    return clone;
+}
+
+function layoutSongPageTwoColumns() {
+    const source = document.getElementById("lyrics");
+    if (!source) return;
+
+    const sections = [...source.querySelectorAll(":scope > .song-section")];
+    if (!sections.length) return;
+
+    let layout = document.getElementById("songDisplayLayout");
+    if (!layout) {
+        layout = document.createElement("div");
+        layout.id = "songDisplayLayout";
+        layout.className = "song-display-layout";
+        source.parentNode.insertBefore(layout, source);
+    }
+
+    // The original HTML remains the authoritative source for transpose,
+    // print and presentation. It must never be visible beside the generated
+    // display, otherwise every section appears twice.
+    source.classList.add("wh-v24-source");
+    layout.innerHTML = "";
+
+    const availableHeight = Math.max(360, Math.floor(window.innerHeight - 250));
+    let page = null;
+    let columns = null;
+    let columnIndex = 0;
+
+    const newPage = () => {
+        page = document.createElement("div");
+        page.className = "song-display-page";
+        page.style.minHeight = `${availableHeight}px`;
+        page.style.height = `${availableHeight}px`;
+
+        columns = [document.createElement("div"), document.createElement("div")];
+        columns.forEach((col, i) => {
+            col.className = "song-display-column";
+            col.dataset.columnIndex = String(i);
+            page.appendChild(col);
+        });
+        layout.appendChild(page);
+        columnIndex = 0;
+    };
+
+    newPage();
+
+    sections.forEach(section => {
+        const displaySection = normalizeSongDisplaySection(section);
+        let current = columns[columnIndex];
+        current.appendChild(displaySection);
+
+        if (current.scrollHeight > availableHeight + 2 && current.children.length > 1) {
+            current.removeChild(displaySection);
+
+            if (columnIndex === 0) {
+                columnIndex = 1;
+                columns[1].appendChild(displaySection);
+            } else {
+                newPage();
+                columns[0].appendChild(displaySection);
+            }
+        }
+    });
+}
+
+async function init() {
+    const song = getCurrentSongSafe();
+    window.currentSong = song || window.currentSong || null;
+    restoreDarkMode();
+    bindButtons();
+    transposeSteps = 0;
+
+    // Never decide the service key from the standalone HTML alone. The selected
+    // Service Planner entry in Firebase is authoritative.
+    const activeServiceId = localStorage.getItem("currentServiceId");
+    if (activeServiceId) {
+        await restoreServiceSongFromFirebase();
+        if (activeService?.songs?.length) {
+            localStorage.setItem("resumePresentation", "true");
+        }
+    } else {
+        updateAll();
+    }
+
+    requestAnimationFrame(layoutSongPageTwoColumns);
+    const favorite = document.getElementById("favoriteBtn");
+    if (favorite) favorite.textContent = isFavorite() ? "★ Favorited" : "☆ Favorite";
+    // Presentation startup is owned by presentation-runtime.js so there is
+    // only one automatic presenter and no duplicate startup race.
+}
+
+onAuthStateChanged(auth, async user => {
+    authReady = true;
+    if (user && localStorage.getItem("currentServiceId")) {
+        // Important: init() may have run before Firebase Auth restored the
+        // session. Re-read the selected service now and restore its saved key.
+        await restoreServiceSongFromFirebase();
+    }
+    updateProgress();
+    requestAnimationFrame(layoutSongPageTwoColumns);
+});
+
+let songLayoutResizeTimer = 0;
+window.addEventListener("resize", () => {
+    clearTimeout(songLayoutResizeTimer);
+    songLayoutResizeTimer = setTimeout(layoutSongPageTwoColumns, 120);
+});
+
+document.addEventListener("DOMContentLoaded", init);
+
+window.goHome = goHome;
+window.fitToOnePage = fitToOnePage;
+window.startPresentation = startPresentation;
+window.exitPresentation = exitPresentation;
+window.previousServiceSong = previousServiceSong;
+window.nextServiceSong = nextServiceSong;
+window.stopService = stopService;
+window.setSongFontSize = setFontSize;
+window.toggleSongDarkMode = toggleDarkMode;
+window.setSongTranspose = setTranspose;
+window.WorshipHubSongRuntime = { setTranspose, updateAll, setFontSize, toggleDarkMode, startPresentation, exitPresentation, layoutSongPageTwoColumns };
