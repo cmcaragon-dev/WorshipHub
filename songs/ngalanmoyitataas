@@ -309,28 +309,28 @@ DARK MODE
 
     <div class="song-title">
 
-        Napakabuti Mo
+        Ngalan Mo'y Itataas
 
     </div>
  <div class="song-meta">
 
     <div class="meta-row">
         <span class="meta-label">Artist: </span>
-        <span class="meta-value">Rommel Guevarra</span>
+        <span class="meta-value">Terry Macalmon</span>
     </div>
 
     <div class="meta-row">
         <span class="meta-label">Original Key: </span>
-        <span class="meta-value">G</span>
+        <span class="meta-value">B</span>
     </div>
 
     <div class="meta-row">
         <span class="meta-label">Service Key: </span>
-        <span class="meta-value" id="serviceKey">G</span>
+        <span class="meta-value" id="serviceKey">B</span>
     </div>
 
 </div>
-   
+
 </div>
 
 <div class="song-toolbar">
