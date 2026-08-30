@@ -554,10 +554,10 @@ const currentSong={
     category:"Worship",
 
 
-    language:"English",
+    language:"Tagalog",
 
 
-    file:"songs/isingpraises.html"
+    file:"songs/ngalanmoyitataas.html"
 
 
 };
