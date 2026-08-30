@@ -541,21 +541,29 @@ Sa buhay ko'y tapat    </div>
 
 const currentSong={
 
-    title:"Napakabuti Mo",
+    
+    title:"Ngalan Mo'y Itataas",
 
-    artist:"Rommel Guevara",
 
-    key:"G",
+    artist:"Terry Macalmon",
+
+
+    key:"B",
+
 
     category:"Worship",
 
-    language:"Tagalog",
 
-    file:"songs/ngalanmoyitataas.html"
+    language:"English",
+
+
+    file:"songs/isingpraises.html"
+
 
 };
 
 window.currentSong = currentSong;
+
 
 </script>
 
