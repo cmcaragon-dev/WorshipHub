@@ -373,88 +373,21 @@ DARK MODE
 <!-- VERSE 1 -->
 <!-- ================================================= -->
 <div class="song-section">
-   <div class="section-title">VERSE 1</div>
-    <div class="song-line">
-<span class="chord">  G              C</span>
-O Diyos na napakabuti    </div>
-    <div class="song-line">
-<span class="chord">   G            G7</span>
-Sa'yo ako'y lumalapit    </div>
-    <div class="song-line">
-<span class="chord">  C         G/B      C           G/B</span>
-Walang kapantay, pag-ibig Mong tunay    </div>
-    <div class="song-line">
-<span class="chord">  Am7           Bm7</span>
-Karangalan at papuri    </div>
-    <div class="song-line">
-<span class="chord">  C            D7</span>
-Sa'yo lamang laan    </div>
-
-</div>
-<!-- ================================================= -->
-<!-- CHORUS -->
-<!-- ================================================= -->
-<div class="song-section">
     <div class="section-title">CHORUS</div>
     <div class="song-line">
-<span class="chord">      Cmaj7 D         Bm7     Em7 E/G#</span>
-Napakabuti Mo, Aming Diyos Ama    </div>
+        <span class="chord">            E        A</span>
+Ang ngalan Mo'y itataas    </div>
     <div class="song-line">
-<span class="chord"> Am7              D         G G7</span>
-Iyong likha'y luluwalhatiin Ka    </div>
+        <span class="chord">    B</span>
+O Diyos    </div>
     <div class="song-line">
-<span class="chord">      Cmaj7 D            Bm7 Em7   E/G#</span>
-Napakabuti Mo, 'Di Ka nagbabago    </div>
+        <span class="chord">         E         C#m</span>
+Ika'y itataas, O Diyos </div>
     <div class="song-line">
-<span class="chord"> Am7     Bm7     C      Bm7</span>
-Noon, ngayon, kailan pa man    </div>
-    <div class="song-line">
-<span class="chord">   Am7   D      Gsus4</span>
-Sa buhay ko'y tapat    </div>
-</div>
-<!-- ================================================= -->
-<!-- VERSE 2 -->
-<!-- ================================================= -->
-<div class="song-section">
-    <div class="section-title">VERSE 2</div>
-    <div class="song-line">
-<span class="chord">G              C</span>
-Ikaw ang Panginoon ko    </div>
-    <div class="song-line">
-<span class="chord"> G             G7</span>
-Hari ng aking puso    </div>
-    <div class="song-line">
-<span class="chord">  C               G/B</span>
-Tanging sa piling Mo    </div>
-    <div class="song-line">
-<span class="chord">    C         G/B</span>
-Ang kagalakan ko    </div>
-    <div class="song-line">
-<span class="chord"> Am7      Bm7</span>
-Kapag kasama Mo, O Diyos    </div>
-    <div class="song-line">
-<span class="chord"> C            D7</span>
-Lubos ang ligaya    </div>
-</div>
-<!-- ================================================= -->
-<!-- TAG -->
-<!-- ================================================= -->
-<div class="song-section">
-    <div class="section-title">TAG</div>
-    <div class="song-line">
-<span class="chord"> Am7      Bm7    C      Bm7</span>
-Noon, ngayon, kailan pa man    </div>
-    <div class="song-line">
-<span class="chord">   Am7    D     Bm7       E</span>
-Sa buhay ko'y tapa......t    </div>
-    <div class="song-line">
-<span class="chord"> Am7     Bm7     C      Bm7</span>
-Noon, ngayon, kailan pa man    </div>
-    <div class="song-line">
-<span class="chord">   Am7    D      G</span>
-Sa buhay ko'y tapat    </div>
-</div>
-</div>
+        <span class="chord">     F#m         B         E</span>
+Sapagkat ika'y dakila at tapat    </div>     
+  </div>
+ </div>
 <!-- ========================================================= -->
 <!-- PLAYLIST POPUP -->
 <!-- ========================================================= -->
