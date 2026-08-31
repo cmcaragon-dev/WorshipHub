@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WorshipHub Custom Song</title>
+<link rel="stylesheet" href="css/modern.css">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#05070c;color:#fff;font-family:Inter,"Segoe UI",Arial,sans-serif}button{cursor:pointer}.top{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;padding:14px 18px;background:#10182a;border-bottom:1px solid #26334d}.title{flex:1}.title h1{margin:0;font-size:20px}.title small{color:#9fb0ca}.key{font-weight:800;color:#D4AF37}.controls button{border:1px solid #D4AF37;background:#182238;color:#fff;border-radius:8px;padding:8px 12px}.controls button:hover{background:#3a3117;color:#FFD966}.stage{max-width:1400px;margin:0 auto;padding:36px 5vw}.section{margin-bottom:44px}.section-title{text-transform:uppercase;letter-spacing:.12em;color:#D4AF37;font-size:18px;font-weight:800;margin-bottom:22px}.line{font-family:Consolas,Monaco,"Courier New",monospace;margin-bottom:22px;overflow-x:auto}.chords{position:relative;height:32px;white-space:pre;color:#D4AF37 !important;font-size:clamp(18px,2vw,27px);font-weight:800}.chord{position:absolute;white-space:nowrap;color:#D4AF37 !important}.lyrics{white-space:pre;font-size:clamp(22px,3vw,40px);line-height:1.35}.nav{display:flex;justify-content:center;gap:10px;padding:14px;background:#0c1220;border-top:1px solid #26334d;position:sticky;bottom:0}.nav button{border:1px solid #35435e;background:#182238;color:#fff;border-radius:8px;padding:10px 16px;font-weight:800}.nav span{padding:10px 14px;color:#aebbd0}.nav button:disabled{opacity:.35;cursor:not-allowed}.chord{color:#D4AF37 !important}.empty{padding:80px;text-align:center;color:#9fb0ca}
+</style>
+
+<style>
+html,body{background:#f4f7fb!important;color:#18212f!important}
+body{overflow-x:hidden}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96)!important;color:#18212f!important;border-bottom:1px solid #e4e9f0!important;padding:8px 12px!important;gap:8px!important}
+.title h1{color:#18212f!important;font-size:clamp(18px,2.2vw,28px)!important}
+.title small{color:#667085!important}
+.key{color:#8b6500!important}
+.controls{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-start}
+.controls button{background:#fff!important;color:#344054!important;border:1px solid #d8dee8!important;border-radius:7px!important;padding:6px 9px!important;font-size:12px!important}
+.stage{max-width:1800px!important;margin:0 auto!important;padding:12px 18px 24px!important}
+.stage .section{background:#fff;border-radius:10px;padding:12px 14px;margin:0 0 12px;box-shadow:0 8px 24px rgba(16,24,40,.08)}
+.stage .section-title{color:#8b6500!important;font-size:16px!important;margin:0 0 5px!important}
+.stage .line{margin:0!important;padding:0!important;line-height:1!important}
+.stage .chords{height:1em!important;line-height:1!important;margin:0!important;padding:0!important}
+.stage .lyrics{font-family:Consolas,Monaco,"Courier New",monospace!important;font-size:20px!important;line-height:1!important}
+.nav{padding:6px 10px!important;background:#fff!important;border-top:1px solid #e4e9f0!important}
+.nav button{background:#fff!important;color:#344054!important;border:1px solid #d8dee8!important;border-radius:7px!important;padding:7px 10px!important;font-size:12px!important}
+#stage{column-count:2;column-gap:28px;column-fill:auto}
+#stage .section{break-inside:avoid;column-break-inside:avoid}
+@media(max-width:900px){#stage{column-count:1!important}.stage{padding:10px 12px 20px!important}.top{flex-wrap:wrap}.title{min-width:100%}}
+
+/* Exact linked chord positioning for Custom/Add Songs.
+   The chord row is a literal monospace text row above the lyric row.
+   Do not position or reflow it with absolute/flex layout. */
+#stage .line.song-line{
+  position:relative!important;
+  overflow:visible!important;
+  white-space:normal!important;
+  font-family:Consolas,Monaco,"Courier New",monospace!important;
+  font-variant-ligatures:none!important;
+  font-feature-settings:"liga" 0,"clig" 0!important;
+  letter-spacing:0!important;
+}
+#stage .line.song-line > .chord{
+  position:static!important;
+  display:block!important;
+  width:max-content!important;
+  max-width:none!important;
+  height:20px!important;
+  min-height:20px!important;
+  margin:0!important;
+  padding:0!important;
+  white-space:pre!important;
+  overflow:visible!important;
+  font-family:Consolas,Monaco,"Courier New",monospace!important;
+  font-size:20px!important;
+  font-weight:800!important;
+  line-height:20px!important;
+  letter-spacing:0!important;
+  font-variant-ligatures:none!important;
+  font-feature-settings:"liga" 0,"clig" 0!important;
+}
+#stage .line.song-line > br{display:none!important}
+#stage .line.song-line > .lyrics{
+  display:block!important;
+  width:max-content!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  white-space:pre!important;
+  font-family:Consolas,Monaco,"Courier New",monospace!important;
+  font-size:20px!important;
+  line-height:20px!important;
+  letter-spacing:0!important;
+  font-variant-ligatures:none!important;
+  font-feature-settings:"liga" 0,"clig" 0!important;
+}
+
+/* Remove the native per-line scrollbar arrows. Long lines can use the page/column overflow instead. */
+#stage .line.song-line::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+#stage .line.song-line{scrollbar-width:none!important;-ms-overflow-style:none!important}
+
+/* Keep Print Preview/printed custom songs on the exact same monospace character grid. */
+#worshipHubPrintRoot .song-line{
+  font-family:Consolas,Monaco,"Courier New",monospace!important;
+  font-variant-ligatures:none!important;
+  font-feature-settings:"liga" 0,"clig" 0!important;
+  letter-spacing:0!important;
+  white-space:normal!important;
+}
+#worshipHubPrintRoot .song-line > .chord{
+  position:static!important;
+  display:block!important;
+  width:max-content!important;
+  white-space:pre!important;
+  margin:0!important;
+  padding:0!important;
+  line-height:1!important;
+  font-family:Consolas,Monaco,"Courier New",monospace!important;
+  font-variant-ligatures:none!important;
+  font-feature-settings:"liga" 0,"clig" 0!important;
+  letter-spacing:0!important;
+}
+#worshipHubPrintRoot .song-line > .print-lyric-text{
+  display:block!important;
+  width:max-content!important;
+  white-space:pre!important;
+  margin:0!important;
+  padding:0!important;
+  line-height:1!important;
+  font-family:Consolas,Monaco,"Courier New",monospace!important;
+  font-variant-ligatures:none!important;
+  font-feature-settings:"liga" 0,"clig" 0!important;
+  letter-spacing:0!important;
+}
+</style>
+
+
+<style>
+#customPresentationScreen{display:none;position:fixed;inset:0;width:100vw;height:100vh;z-index:2147483647;background:#000;color:#fff;flex-direction:column;overflow:hidden}
+#customPresentationScreen.show{display:flex}
+#customPresentationHeader{display:flex;align-items:center;gap:16px;padding:10px 18px;min-height:64px;background:#000;border-bottom:1px solid #222}
+#customPresentationTitle{font-weight:900;font-size:clamp(20px,2.3vw,34px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#customPresentationKey{color:#FFD700;font-weight:800;white-space:nowrap}
+.custom-presentation-passing{flex:1;display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0;font-family:Inter,"Segoe UI",Arial,sans-serif}.custom-presentation-passing-item{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.custom-presentation-passing-label{font-size:10px;color:#FFD700;font-weight:900;letter-spacing:.04em}.custom-presentation-passing-value{font-size:14px;color:#fff;font-weight:800}.custom-presentation-passing-separator{color:#666}
+.custom-presentation-actions{margin-left:auto;display:flex;gap:6px}
+.custom-presentation-actions button{width:38px;height:34px;border:1px solid rgba(255,255,255,.25);border-radius:7px;background:#111;color:#fff}
+#customPresentationLyrics{flex:1;overflow-y:auto;overflow-x:hidden;padding:18px 24px 70px;background:#000}
+.custom-presentation-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px;align-items:start}
+.custom-presentation-column{min-width:0}
+.custom-presentation-section{margin:0 0 16px;break-inside:avoid}
+.custom-presentation-section-title{display:inline-block;background:#FFD700;color:#000;border-radius:7px;padding:4px 12px;margin:0 0 7px;font-size:clamp(18px,2vw,30px);font-weight:900;line-height:1}
+.custom-presentation-line{display:block;margin:0;padding:0;font-family:Consolas,"Courier New",monospace;font-size:clamp(18px,1.8vw,32px);line-height:1;white-space:pre}
+.custom-presentation-chord{display:block;height:1em;min-height:1em;line-height:1em;margin:0;padding:0;font-family:inherit;font-size:1em;font-weight:700;color:#FFD700;white-space:pre;overflow:visible}
+.custom-presentation-lyric{display:block;height:1em;min-height:1em;line-height:1em;margin:0;padding:0;font-family:inherit;font-size:1em;font-weight:400;color:#fff;white-space:pre;overflow:visible}
+#customNextSongPreview{position:fixed;right:18px;bottom:16px;z-index:30;display:none;flex-direction:column;gap:2px;min-width:240px;max-width:min(420px,40vw);padding:8px 13px;border:1px solid rgba(255,255,255,.3);border-radius:8px;background:rgba(8,8,8,.94);color:#fff;cursor:pointer}
+.custom-next-label{font-size:10px;color:#FFD700;font-weight:900;letter-spacing:.06em}.custom-next-title{font-size:16px}.custom-next-key{font-size:11px;color:#FFD700;font-weight:800}
+.custom-presentation-bottom{position:absolute;left:0;right:0;bottom:0;min-height:48px;display:flex;align-items:center;gap:8px;padding:6px 12px;background:rgba(0,0,0,.88);border-top:1px solid #222}.custom-presentation-bottom button{border:1px solid #333;background:#111;color:#fff;border-radius:6px;padding:7px 12px}
+@media(max-width:900px){.custom-presentation-grid{grid-template-columns:1fr}.custom-presentation-line{font-size:clamp(16px,3.8vw,23px)}#customPresentationHeader{flex-wrap:wrap}.custom-presentation-actions{margin-left:0}}
+body.custom-dark .stage .section{background:#0e1522!important;color:#fff!important}body.custom-dark .stage .lyrics{color:#fff!important}
+</style>
+
+<style id="custom-song-print-preview-css">
+/* ============================================================
+   CUSTOM SONG PRINT PREVIEW - TRUE POP-UP OVERLAY
+   ============================================================ */
+.wh-print-preview-overlay{
+  display:none!important;
+  position:fixed!important;
+  inset:0!important;
+  z-index:2147483647!important;
+  width:100vw!important;
+  height:100vh!important;
+  min-height:100vh!important;
+  margin:0!important;
+  padding:14px!important;
+  box-sizing:border-box!important;
+  background:rgba(8,10,14,.78)!important;
+  overflow:auto!important;
+}
+.wh-print-preview-overlay.show{
+  display:flex!important;
+  align-items:stretch!important;
+  justify-content:center!important;
+}
+.wh-print-preview-card{
+  width:min(1500px,100%)!important;
+  height:calc(100vh - 28px)!important;
+  min-height:0!important;
+  margin:0 auto!important;
+  background:#e9edf2!important;
+  border-radius:14px!important;
+  box-shadow:0 24px 80px rgba(0,0,0,.45)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+}
+.wh-print-preview-toolbar{
+  flex:0 0 auto!important;
+  position:relative!important;
+  z-index:5!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  flex-wrap:wrap!important;
+  padding:10px 14px!important;
+  background:#151a22!important;
+  color:#fff!important;
+  border-bottom:1px solid rgba(255,255,255,.12)!important;
+}
+.wh-print-preview-toolbar strong{font-size:16px!important}
+.wh-print-preview-help{font-size:11px!important;color:#b9c1cb!important;flex:1 1 300px!important}
+.wh-print-preview-actions{display:flex!important;gap:6px!important;margin-left:auto!important}
+.wh-print-preview-actions button{border:1px solid #3a424e!important;background:#202632!important;color:#fff!important;border-radius:7px!important;padding:7px 12px!important;font-weight:700!important;cursor:pointer!important}
+.wh-print-preview-actions button.primary{background:#c99a00!important;color:#111!important;border-color:#c99a00!important}
+.wh-print-preview-paper{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  width:100%!important;
+  padding:18px!important;
+  box-sizing:border-box!important;
+  overflow:auto!important;
+}
+.wh-print-preview-paper #worshipHubPrintRoot{
+  display:block!important;
+  visibility:visible!important;
+  width:100%!important;
+  max-width:none!important;
+  min-height:100%!important;
+  margin:0!important;
+  padding:20px!important;
+  box-sizing:border-box!important;
+  background:#fff!important;
+  color:#111!important;
+  box-shadow:0 2px 12px rgba(0,0,0,.12)!important;
+}
+.wh-print-preview-paper .print-song-title{font-size:24px!important;font-weight:900!important;margin-bottom:6px!important}
+.wh-print-preview-paper .print-song-info{display:flex!important;gap:18px!important;flex-wrap:wrap!important;font-size:12px!important;margin-bottom:10px!important}
+.wh-print-preview-paper .song-section{display:block!important;visibility:visible!important;opacity:1!important}
+.wh-print-preview-paper .song-line{
+  display:block!important;
+  width:max-content!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  line-height:1!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  font-family:Consolas,Monaco,"Courier New",monospace!important;
+  font-variant-ligatures:none!important;
+  font-feature-settings:"liga" 0,"clig" 0!important;
+  letter-spacing:0!important;
+}
+.wh-print-preview-paper .song-line .chord{
+  display:block!important;
+  position:static!important;
+  width:max-content!important;
+  max-width:none!important;
+  height:20px!important;
+  margin:0!important;
+  padding:0!important;
+  line-height:20px!important;
+  white-space:pre!important;
+  font-family:Consolas,Monaco,"Courier New",monospace!important;
+  font-size:20px!important;
+  font-weight:800!important;
+  letter-spacing:0!important;
+}
+.wh-print-preview-paper .song-line .print-lyric-text{
+  display:block!important;
+  width:max-content!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  line-height:20px!important;
+  white-space:pre!important;
+  font-family:Consolas,Monaco,"Courier New",monospace!important;
+  font-size:20px!important;
+  letter-spacing:0!important;
+}
+.wh-print-preview-paper .song-line br{display:none!important}
+.wh-print-preview-paper .wh-print-layout{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0 5mm!important;width:100%!important;align-items:start!important}
+.wh-print-preview-paper .wh-print-layout-col{display:block!important;width:100%!important;min-width:0!important;overflow:visible!important}
+.wh-print-preview-paper .wh-print-layout-section{width:100%!important;break-inside:avoid!important;page-break-inside:avoid!important;margin:0 0 3mm!important;padding:0!important}
+.wh-print-preview-paper .wh-print-section-controls{display:flex!important;visibility:visible!important;position:relative!important;z-index:10!important;gap:4px!important;margin:0 0 4px!important}
+.wh-print-preview-paper .wh-print-section-controls button{display:inline-flex!important;visibility:visible!important;opacity:1!important}
+
+/* Never allow the application page to show below the preview. */
+body.wh-print-preview-open{overflow:hidden!important}
+body.wh-print-preview-open > .top,
+body.wh-print-preview-open > #stage,
+body.wh-print-preview-open > .nav{visibility:hidden!important}
+
+@media print{
+  body.wh-printing-from-preview > *:not(#whPrintPreview){display:none!important;visibility:hidden!important}
+  body.wh-printing-from-preview #whPrintPreview{display:block!important;position:static!important;width:100%!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important;background:#fff!important;overflow:visible!important}
+  body.wh-printing-from-preview #whPrintPreview .wh-print-preview-card,
+  body.wh-printing-from-preview #whPrintPreview .wh-print-preview-paper{display:block!important;width:100%!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important;background:#fff!important;box-shadow:none!important;border:0!important;overflow:visible!important}
+  body.wh-printing-from-preview #whPrintPreview .wh-print-preview-toolbar{display:none!important}
+  body.wh-printing-from-preview .wh-print-section-controls{display:none!important;visibility:hidden!important}
+  body.wh-printing-from-preview .wh-print-layout{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0 5mm!important;width:100%!important}
+  body.wh-printing-from-preview .wh-print-layout-col{display:block!important;width:100%!important}
+  body.wh-printing-from-preview .wh-print-layout-section{break-inside:avoid!important;page-break-inside:avoid!important}
+  body.wh-printing-from-preview .song-line{display:block!important;width:max-content!important;white-space:normal!important;line-height:1!important;margin:0!important;padding:0!important}
+  body.wh-printing-from-preview .song-line .chord{display:block!important;position:static!important;width:max-content!important;white-space:pre!important;height:20px!important;line-height:20px!important;font-family:Consolas,Monaco,"Courier New",monospace!important;font-size:20px!important;letter-spacing:0!important}
+  body.wh-printing-from-preview .song-line .print-lyric-text{display:block!important;width:max-content!important;white-space:pre!important;line-height:20px!important;font-family:Consolas,Monaco,"Courier New",monospace!important;font-size:20px!important;letter-spacing:0!important}
+  @page{size:landscape;margin:5mm}
+}
+</style>
+
+</head>
+<body>
+<div class="top"><div class="title"><h1 id="songTitle">WorshipHub</h1><small id="songArtist"></small></div><div class="key">Key: <span id="songKey">—</span></div><div class="controls"><button id="minus" title="Decrease lyric/chord display size">−A</button><button id="plus" title="Increase lyric/chord display size">+A</button><button id="down" title="Transpose down one semitone">− Transpose</button><button id="up" title="Transpose up one semitone">+ Transpose</button><button id="dark" title="Toggle dark/light mode">◐ Dark / Light</button><button id="presentationBtn" title="Open presentation">▣ Presentation</button><button id="printBtn" title="Open Print Preview">🖨 Print</button><button id="close">⌂ Home</button></div></div>
+<main id="stage" class="stage"><div class="empty">Loading song…</div></main>
+<div class="nav"><button id="prev">◀ Previous</button><span id="counter">Song</span><button id="next">Next ▶</button></div>
+
+<div id="customPresentationScreen" aria-hidden="true">
+  <div id="customPresentationHeader">
+    <div id="customPresentationTitle">WorshipHub</div>
+    <div id="customPresentationPassing" aria-label="Automatic passing chords"></div>
+    <div id="customPresentationKey">Key: —</div>
+    <div class="custom-presentation-actions">
+      <button id="customPresentationPrev" title="Previous Song">◀</button>
+      <button id="customPresentationNext" title="Next Song">▶</button>
+      <button id="customPresentationMax" title="Maximize">⛶</button>
+      <button id="customPresentationClose" title="Close Presentation">✕</button>
+    </div>
+  </div>
+  <div id="customPresentationLyrics"></div>
+  <div id="customNextSongPreview" role="button" tabindex="0"></div>
+  <div class="custom-presentation-bottom"><button id="customPresentationPrevBottom">◀ Previous</button><button id="customPresentationNextBottom">Next ▶</button></div>
+</div>
+
+<script type="module" src="js/custom-song-runtime.js"></script>
+<script src="js/print-preview.js"></script>
+
+<style>
+/* V32 — custom/add-song presentation responsive override */
+html,body{max-width:100%;overflow-x:hidden!important}
+@media(max-width:800px){
+ #stage{column-count:1!important;column-width:auto!important}
+ #customPresentationHeader{height:auto!important;min-height:56px!important;flex-wrap:wrap!important}
+ #customPresentationTitle{flex:1 1 100%!important;max-width:100%!important}
+ #customPresentationLyrics{overflow-y:auto!important;overflow-x:hidden!important;padding:12px 10px 64px!important}
+ .custom-presentation-grid{grid-template-columns:1fr!important}
+}
+@media(max-width:480px){
+ .stage{padding:8px 8px 20px!important}
+ .stage .lyrics{font-size:clamp(18px,5.5vw,25px)!important}
+ .stage .chords,.stage .line.song-line>.chord{font-size:clamp(17px,5vw,24px)!important}
+}
+</style>
+</body>
+</html>
