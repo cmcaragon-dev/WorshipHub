@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sukdulang Biyaya</title>
+<link rel="icon" type="image/png" href="../images/WHlogo.png">
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#eef2f7;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/*==================================================
+HEADER
+==================================================*/
+
+.song-header{
+
+    background:#2c3e50;
+
+    color:#fff;
+
+    padding:20px 30px;
+
+}
+
+.song-title{
+
+    font-size:34px;
+
+    font-weight:bold;
+	color:white;
+
+}
+
+.song-meta{
+
+    margin-top:8px;
+
+    color:#d9d9d9;
+
+    font-size:15px;
+
+}
+.chord{
+    line-height:1;
+    margin-bottom:-3px;
+}
+.song-line{
+    margin:0;
+    padding:0;
+    line-height:0.85;
+}
+.song{
+    line-height:0.85;
+    margin:0;
+    padding:0;
+}
+
+/*==================================================
+TOOLBAR
+==================================================*/
+
+.song-toolbar{
+
+    background:#fff;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    align-items:center;
+
+    padding:15px 20px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.10);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+}
+
+.song-toolbar button{
+
+    background:#3498db;
+
+    color:#fff;
+
+    border:none;
+
+    padding:10px 16px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.song-toolbar button:hover{
+
+    background:#2980b9;
+
+}
+
+/*==================================================
+SERVICE PROGRESS
+==================================================*/
+
+#serviceProgress{
+
+    text-align:center;
+
+    background:#f8f9fa;
+
+    padding:10px;
+
+    font-weight:bold;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+/*==================================================
+SONG CONTAINER
+==================================================*/
+
+.song-container{
+
+    max-width:1800px;
+
+    margin:25px auto;
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+/*==================================================
+LYRICS GRID
+==================================================*/
+
+.song{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+/*==================================================
+SONG SECTION
+==================================================*/
+
+.song-section{
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    padding:18px;
+
+    background:#fafafa;
+
+    min-height:340px;
+
+}
+
+.song-section:hover{
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+/*==================================================
+SECTION TITLE
+==================================================*/
+
+.section-title{
+
+    background:#2c3e50;
+
+    color:white;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    margin-bottom:18px;
+
+    letter-spacing:1px;
+
+}
+
+/*==================================================
+LYRICS
+==================================================*/
+
+.song-line{
+
+    margin-bottom:15px;
+
+    font-family:Consolas, monospace;
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    white-space:pre-wrap;
+
+}
+
+/*==================================================
+CHORDS
+==================================================*/
+
+.chord{
+
+    color:#d32f2f;
+
+    font-weight:bold;
+
+}
+
+/*==================================================
+DARK MODE
+==================================================*/
+
+.dark{
+
+    background:#111;
+
+    color:white;
+
+}
+
+.dark .song-container{
+
+    background:#222;
+
+}
+
+.dark .song-toolbar{
+
+    background:#333;
+
+}
+
+.dark .song-section{
+
+    background:#2a2a2a;
+
+    border-color:#555;
+
+}
+
+.dark .section-title{
+
+    background:#444;
+
+}
+
+.dark .song-line{
+
+    color:white;
+
+}
+
+
+
+</style>
+
+    <link rel="stylesheet" href="../css/song-pages-modern.css">
+</head>
+
+<body>
+
+<div class="song-header">
+
+    <div class="song-title">
+
+        Sukdulang Biyaya
+
+    </div>
+ <div class="song-meta">
+
+    <div class="meta-row">
+        <span class="meta-label">Artist: </span>
+        <span class="meta-value">Musikatha</span>
+    </div>
+
+    <div class="meta-row">
+        <span class="meta-label">Original Key: </span>
+        <span class="meta-value">D</span>
+    </div>
+
+    <div class="meta-row">
+        <span class="meta-label">Service Key: </span>
+        <span class="meta-value" id="serviceKey">D</span>
+    </div>
+
+</div>
+   
+</div>
+
+<div class="song-toolbar">
+<button onclick="goHome()">
+    🏠 Home
+</button>
+
+<button id="transposeDown">− Transpose</button>
+
+<button id="transposeUp">+ Transpose</button>
+
+<button id="fontMinus">A−</button>
+
+<button id="fontPlus">A+</button>
+
+<button id="darkMode">🌙 Dark</button>
+
+<button id="favoriteBtn">⭐ Favorite</button>
+
+<button id="presentationBtn" onclick="startPresentation()">
+    📺 Presentation
+</button>
+
+<button onclick="fitToOnePage()">🖨 Print</button>
+
+<button onclick="previousServiceSong()">⏮ Previous</button>
+
+<button onclick="nextServiceSong()">⏭ Next</button>
+<button id="saveServiceKey">
+    💾 Save Service Key
+</button>
+<button onclick="stopService()">
+    ⏹ Stop Service
+</button>
+</div>
+<div id="serviceProgress"></div>
+<div class="song-container">
+<div id="lyrics" class="song">
+<!-- ================================================= -->
+<!-- VERSE 1-->
+<!-- ================================================ -->
+<div class="song-section">
+    <div class="section-title">VERSE 1</div>
+	<div class="song-line">
+INTRO: <span class="chord">D - Bm - G -A</span>  </div>
+    <div class="song-line">
+<span class="chord">D                    Bm</span>
+Habang hindi karapat-dapat    </div>
+    <div class="song-line">
+<span class="chord">                G                       D</span>
+Pag-ukulan ng habag at wagas Mong pagsinta.    </div>
+    <div class="song-line">
+<span class="chord">D                   Bm</span>
+Habang walang kakayanang    </div>
+    <div class="song-line">
+<span class="chord">                  G          </span>
+Masuklian Ka ng mabuti sa lahat   </div>
+ <div class="song-line">
+<span class="chord">         D</span>
+Mong ginawa.    </div>
+</div>
+<!-- ================================================= -->
+<!-- PRE-CHORUS -->
+<!-- ================================================= -->
+
+<div class="song-section">
+    <div class="section-title">PRE-CHORUS</div>
+    <div class="song-line">
+<span class="chord">        Bm  A      G          A</span>
+Niyakap Mo ako sa aking karumihan.    </div>
+    <div class="song-line">
+<span class="chord">       Bm  A         G           A</span>
+Inibig Mo ako ng 'di kayang tumbasan.    </div>
+</div>
+<!-- ================================================= -->
+<!-- CHORUS -->
+<!-- ================================================= -->
+<div class="song-section">
+    <div class="section-title">CHORUS</div>
+    <div class="song-line">
+<span class="chord">      D             Bm</span>
+O Diyos ng katarungan at katuwiran    </div>
+    <div class="song-line">
+<span class="chord"> G                A</span>
+Na kahit minsa'y 'di nabahiran    </div>
+    <div class="song-line">
+<span class="chord">F#m            Bm</span>
+Ang kabanala't kaluwalhatian    </div>
+    <div class="song-line">
+<span class="chord">  Em          F#m      G    A</span>
+Salamat sa sukdulang biyaya Mo.    </div>
+    <div class="song-line">
+<span class="chord">      D             Bm</span>
+O Diyos ng pag-ibig na mas    </div>
+    <div class="song-line">
+<span class="chord">        G                A          F#m</span>
+Malawak pa kaysa aking mga pagkakasala.    </div>
+    <div class="song-line">
+<span class="chord">            Bm</span>
+Higit pa sa buhay ko    </div>
+    <div class="song-line">
+<span class="chord">  Em          A              D</span>
+Salamat sa sukdulang biyaya Mo.    </div>
+</div>
+
+<!-- ================================================= -->
+<!-- VERSE 2-->
+<!-- ================================================= -->
+<div class="song-section">
+    <div class="section-title">VERSE 2</div>
+    <div class="song-line">
+<span class="chord">D                     Bm</span>
+Ang walang salang Manunubos    </div>
+    <div class="song-line">
+<span class="chord">                G                  D</span>
+ang umako ng parusang nararapat sa‘kin    </div>
+    <div class="song-line">
+<span class="chord">D                    Bm</span>
+Anong habag sa tulad ko’y igawad   </div>
+    <div class="song-line">
+<span class="chord">               G  </span>
+ ang Iyong katuwiran  </div>
+ <div class="song-line">
+<span class="chord">               D  </span>
+at ako’y patawarin…    </div>
+</div>
+	</div>
+<!-- ========================================================= -->
+<!-- PLAYLIST POPUP -->
+<!-- ========================================================= -->
+
+<div id="playlistPopup" class="playlist-popup">
+
+    <div class="popup-content">
+
+        <h2>🎵 Add Song To Playlist</h2>
+
+        <div id="popupPlaylistList"></div>
+
+        <div style="margin-top:20px;text-align:right;">
+
+            <button id="closePopup">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- PRESENTATION MODE -->
+<!-- ===================================== -->
+
+<div id="presentationScreen">
+
+    <div id="presentationHeader">
+
+        <div id="presentationTitle"></div>
+
+        <div id="presentationPassingChords"></div>
+
+        <div id="presentationCounter"></div>
+
+        <div class="presentation-header-actions">
+            <button type="button" onclick="previousServiceSong()" title="Previous Song" aria-label="Previous Song">◀</button>
+            <button type="button" onclick="nextServiceSong()" title="Next Song" aria-label="Next Song">▶</button>
+            <button type="button" onclick="openPresentationSongList()" title="Song List" aria-label="Song List">☰</button>
+            <button type="button" onclick="openPresentationSettings()" title="Settings" aria-label="Settings">⚙</button>
+            <button type="button" onclick="maximizePresentation()" title="Maximize" aria-label="Maximize">⛶</button>
+            <button type="button" onclick="stopService()" title="Stop Service" aria-label="Stop Service">⏹</button>
+            <button type="button" onclick="exitPresentation()" title="Close" aria-label="Close">✕</button>
+        </div>
+
+    </div>
+
+    <div id="presentationLyrics"></div>
+
+    <div id="presentationNavigation">
+
+        <button type="button" onclick="previousServiceSong()">
+            ◀◀ &nbsp; PREVIOUS
+        </button>
+
+        <button type="button" onclick="nextServiceSong()">
+            ▶▶ &nbsp; NEXT
+        </button>
+
+        <button type="button" class="presentation-nav-secondary" onclick="openPresentationSongList()">
+            ☷ &nbsp; SONG LIST
+        </button>
+
+        <button type="button" class="presentation-nav-secondary" onclick="openPresentationSettings()">
+            ⚙ &nbsp; SETTINGS
+        </button>
+
+        <div id="nextSongPreview" role="button" tabindex="0" aria-label="Next song preview"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- CURRENT SONG -->
+<!-- ========================================================= -->
+
+<script>
+
+const currentSong={
+
+    title:"Sukdulang Biyaya",
+
+    artist:"Musikatha",
+
+    key:"D",
+
+    category:"Worship",
+
+    language:"Tagalog",
+
+    file:"songs/sukdulangbiyaya.html"
+
+};
+
+window.currentSong = currentSong;
+// WorshipHub structured song data v1: migrated from legacy HTML; exact chord spacing preserved.
+window.currentSong.sections = [{"type":"Verse","lines":[{"lyrics":"INTRO:","chordText":"      D - Bm - G -A","chords":[{"id":"chord-0-0-0","chord":"D","originalChord":"D","position":6},{"id":"chord-0-0-1","chord":"-","originalChord":"-","position":8},{"id":"chord-0-0-2","chord":"Bm","originalChord":"Bm","position":10},{"id":"chord-0-0-3","chord":"-","originalChord":"-","position":13},{"id":"chord-0-0-4","chord":"G","originalChord":"G","position":15},{"id":"chord-0-0-5","chord":"-A","originalChord":"-A","position":17}]},{"lyrics":"Habang hindi karapat-dapat","chordText":"D                    Bm","chords":[{"id":"chord-0-1-0","chord":"D","originalChord":"D","position":0},{"id":"chord-0-1-1","chord":"Bm","originalChord":"Bm","position":21}]},{"lyrics":"Pag-ukulan ng habag at wagas Mong pagsinta.","chordText":"                G                       D","chords":[{"id":"chord-0-2-0","chord":"G","originalChord":"G","position":16},{"id":"chord-0-2-1","chord":"D","originalChord":"D","position":40}]},{"lyrics":"Habang walang kakayanang","chordText":"D                   Bm","chords":[{"id":"chord-0-3-0","chord":"D","originalChord":"D","position":0},{"id":"chord-0-3-1","chord":"Bm","originalChord":"Bm","position":20}]},{"lyrics":"Masuklian Ka ng mabuti sa lahat","chordText":"                  G          ","chords":[{"id":"chord-0-4-0","chord":"G","originalChord":"G","position":18}]},{"lyrics":"Mong ginawa.","chordText":"         D","chords":[{"id":"chord-0-5-0","chord":"D","originalChord":"D","position":9}]}],"number":1},{"type":"Pre-Chorus","lines":[{"lyrics":"Niyakap Mo ako sa aking karumihan.","chordText":"        Bm  A      G          A","chords":[{"id":"chord-1-0-0","chord":"Bm","originalChord":"Bm","position":8},{"id":"chord-1-0-1","chord":"A","originalChord":"A","position":12},{"id":"chord-1-0-2","chord":"G","originalChord":"G","position":19},{"id":"chord-1-0-3","chord":"A","originalChord":"A","position":30}]},{"lyrics":"Inibig Mo ako ng 'di kayang tumbasan.","chordText":"       Bm  A         G           A","chords":[{"id":"chord-1-1-0","chord":"Bm","originalChord":"Bm","position":7},{"id":"chord-1-1-1","chord":"A","originalChord":"A","position":11},{"id":"chord-1-1-2","chord":"G","originalChord":"G","position":21},{"id":"chord-1-1-3","chord":"A","originalChord":"A","position":33}]}]},{"type":"Chorus","lines":[{"lyrics":"O Diyos ng katarungan at katuwiran","chordText":"      D             Bm","chords":[{"id":"chord-2-0-0","chord":"D","originalChord":"D","position":6},{"id":"chord-2-0-1","chord":"Bm","originalChord":"Bm","position":20}]},{"lyrics":"Na kahit minsa'y 'di nabahiran","chordText":" G                A","chords":[{"id":"chord-2-1-0","chord":"G","originalChord":"G","position":1},{"id":"chord-2-1-1","chord":"A","originalChord":"A","position":18}]},{"lyrics":"Ang kabanala't kaluwalhatian","chordText":"F#m            Bm","chords":[{"id":"chord-2-2-0","chord":"F#m","originalChord":"F#m","position":0},{"id":"chord-2-2-1","chord":"Bm","originalChord":"Bm","position":15}]},{"lyrics":"Salamat sa sukdulang biyaya Mo.","chordText":"  Em          F#m      G    A","chords":[{"id":"chord-2-3-0","chord":"Em","originalChord":"Em","position":2},{"id":"chord-2-3-1","chord":"F#m","originalChord":"F#m","position":14},{"id":"chord-2-3-2","chord":"G","originalChord":"G","position":23},{"id":"chord-2-3-3","chord":"A","originalChord":"A","position":28}]},{"lyrics":"O Diyos ng pag-ibig na mas","chordText":"      D             Bm","chords":[{"id":"chord-2-4-0","chord":"D","originalChord":"D","position":6},{"id":"chord-2-4-1","chord":"Bm","originalChord":"Bm","position":20}]},{"lyrics":"Malawak pa kaysa aking mga pagkakasala.","chordText":"        G                A          F#m","chords":[{"id":"chord-2-5-0","chord":"G","originalChord":"G","position":8},{"id":"chord-2-5-1","chord":"A","originalChord":"A","position":25},{"id":"chord-2-5-2","chord":"F#m","originalChord":"F#m","position":36}]},{"lyrics":"Higit pa sa buhay ko","chordText":"            Bm","chords":[{"id":"chord-2-6-0","chord":"Bm","originalChord":"Bm","position":12}]},{"lyrics":"Salamat sa sukdulang biyaya Mo.","chordText":"  Em          A              D","chords":[{"id":"chord-2-7-0","chord":"Em","originalChord":"Em","position":2},{"id":"chord-2-7-1","chord":"A","originalChord":"A","position":14},{"id":"chord-2-7-2","chord":"D","originalChord":"D","position":29}]}]},{"type":"Verse","lines":[{"lyrics":"Ang walang salang Manunubos","chordText":"D                     Bm","chords":[{"id":"chord-3-0-0","chord":"D","originalChord":"D","position":0},{"id":"chord-3-0-1","chord":"Bm","originalChord":"Bm","position":22}]},{"lyrics":"ang umako ng parusang nararapat sa‘kin","chordText":"                G                  D","chords":[{"id":"chord-3-1-0","chord":"G","originalChord":"G","position":16},{"id":"chord-3-1-1","chord":"D","originalChord":"D","position":35}]},{"lyrics":"Anong habag sa tulad ko’y igawad","chordText":"D                    Bm","chords":[{"id":"chord-3-2-0","chord":"D","originalChord":"D","position":0},{"id":"chord-3-2-1","chord":"Bm","originalChord":"Bm","position":21}]},{"lyrics":"ang Iyong katuwiran","chordText":"               G  ","chords":[{"id":"chord-3-3-0","chord":"G","originalChord":"G","position":15}]},{"lyrics":"at ako’y patawarin…","chordText":"               D  ","chords":[{"id":"chord-3-4-0","chord":"D","originalChord":"D","position":15}]}],"number":2}];
+window.currentSong.structuredVersion = 1;
+// WorshipHub structured song data v1 (migrated from legacy HTML; chordText preserves exact spacing)
+window.currentSong.sections = [{"type":"Verse","lines":[{"lyrics":"INTRO:","chordText":"D - Bm - G -A","chords":[{"id":"chord-0-0-0","chord":"D","originalChord":"D","position":0},{"id":"chord-0-0-1","chord":"-","originalChord":"-","position":2},{"id":"chord-0-0-2","chord":"Bm","originalChord":"Bm","position":4},{"id":"chord-0-0-3","chord":"-","originalChord":"-","position":7},{"id":"chord-0-0-4","chord":"G","originalChord":"G","position":9},{"id":"chord-0-0-5","chord":"-A","originalChord":"-A","position":11}]},{"lyrics":"Habang hindi karapat-dapat","chordText":"D                    Bm","chords":[{"id":"chord-0-1-0","chord":"D","originalChord":"D","position":0},{"id":"chord-0-1-1","chord":"Bm","originalChord":"Bm","position":21}]},{"lyrics":"Pag-ukulan ng habag at wagas Mong pagsinta.","chordText":"                G                       D","chords":[{"id":"chord-0-2-0","chord":"G","originalChord":"G","position":16},{"id":"chord-0-2-1","chord":"D","originalChord":"D","position":40}]},{"lyrics":"Habang walang kakayanang","chordText":"D                   Bm","chords":[{"id":"chord-0-3-0","chord":"D","originalChord":"D","position":0},{"id":"chord-0-3-1","chord":"Bm","originalChord":"Bm","position":20}]},{"lyrics":"Masuklian Ka ng mabuti sa lahat","chordText":"                  G          ","chords":[{"id":"chord-0-4-0","chord":"G","originalChord":"G","position":18}]},{"lyrics":"Mong ginawa.","chordText":"         D","chords":[{"id":"chord-0-5-0","chord":"D","originalChord":"D","position":9}]}],"number":1},{"type":"Pre-Chorus","lines":[{"lyrics":"Niyakap Mo ako sa aking karumihan.","chordText":"        Bm  A      G          A","chords":[{"id":"chord-1-0-0","chord":"Bm","originalChord":"Bm","position":8},{"id":"chord-1-0-1","chord":"A","originalChord":"A","position":12},{"id":"chord-1-0-2","chord":"G","originalChord":"G","position":19},{"id":"chord-1-0-3","chord":"A","originalChord":"A","position":30}]},{"lyrics":"Inibig Mo ako ng 'di kayang tumbasan.","chordText":"       Bm  A         G           A","chords":[{"id":"chord-1-1-0","chord":"Bm","originalChord":"Bm","position":7},{"id":"chord-1-1-1","chord":"A","originalChord":"A","position":11},{"id":"chord-1-1-2","chord":"G","originalChord":"G","position":21},{"id":"chord-1-1-3","chord":"A","originalChord":"A","position":33}]}]},{"type":"Chorus","lines":[{"lyrics":"O Diyos ng katarungan at katuwiran","chordText":"      D             Bm","chords":[{"id":"chord-2-0-0","chord":"D","originalChord":"D","position":6},{"id":"chord-2-0-1","chord":"Bm","originalChord":"Bm","position":20}]},{"lyrics":"Na kahit minsa'y 'di nabahiran","chordText":" G                A","chords":[{"id":"chord-2-1-0","chord":"G","originalChord":"G","position":1},{"id":"chord-2-1-1","chord":"A","originalChord":"A","position":18}]},{"lyrics":"Ang kabanala't kaluwalhatian","chordText":"F#m            Bm","chords":[{"id":"chord-2-2-0","chord":"F#m","originalChord":"F#m","position":0},{"id":"chord-2-2-1","chord":"Bm","originalChord":"Bm","position":15}]},{"lyrics":"Salamat sa sukdulang biyaya Mo.","chordText":"  Em          F#m      G    A","chords":[{"id":"chord-2-3-0","chord":"Em","originalChord":"Em","position":2},{"id":"chord-2-3-1","chord":"F#m","originalChord":"F#m","position":14},{"id":"chord-2-3-2","chord":"G","originalChord":"G","position":23},{"id":"chord-2-3-3","chord":"A","originalChord":"A","position":28}]},{"lyrics":"O Diyos ng pag-ibig na mas","chordText":"      D             Bm","chords":[{"id":"chord-2-4-0","chord":"D","originalChord":"D","position":6},{"id":"chord-2-4-1","chord":"Bm","originalChord":"Bm","position":20}]},{"lyrics":"Malawak pa kaysa aking mga pagkakasala.","chordText":"        G                A          F#m","chords":[{"id":"chord-2-5-0","chord":"G","originalChord":"G","position":8},{"id":"chord-2-5-1","chord":"A","originalChord":"A","position":25},{"id":"chord-2-5-2","chord":"F#m","originalChord":"F#m","position":36}]},{"lyrics":"Higit pa sa buhay ko","chordText":"            Bm","chords":[{"id":"chord-2-6-0","chord":"Bm","originalChord":"Bm","position":12}]},{"lyrics":"Salamat sa sukdulang biyaya Mo.","chordText":"  Em          A              D","chords":[{"id":"chord-2-7-0","chord":"Em","originalChord":"Em","position":2},{"id":"chord-2-7-1","chord":"A","originalChord":"A","position":14},{"id":"chord-2-7-2","chord":"D","originalChord":"D","position":29}]}]},{"type":"Verse","lines":[{"lyrics":"Ang walang salang Manunubos","chordText":"D                     Bm","chords":[{"id":"chord-3-0-0","chord":"D","originalChord":"D","position":0},{"id":"chord-3-0-1","chord":"Bm","originalChord":"Bm","position":22}]},{"lyrics":"ang umako ng parusang nararapat sa‘kin","chordText":"                G                  D","chords":[{"id":"chord-3-1-0","chord":"G","originalChord":"G","position":16},{"id":"chord-3-1-1","chord":"D","originalChord":"D","position":35}]},{"lyrics":"Anong habag sa tulad ko’y igawad","chordText":"D                    Bm","chords":[{"id":"chord-3-2-0","chord":"D","originalChord":"D","position":0},{"id":"chord-3-2-1","chord":"Bm","originalChord":"Bm","position":21}]},{"lyrics":"ang Iyong katuwiran","chordText":"               G  ","chords":[{"id":"chord-3-3-0","chord":"G","originalChord":"G","position":15}]},{"lyrics":"at ako’y patawarin…","chordText":"               D  ","chords":[{"id":"chord-3-4-0","chord":"D","originalChord":"D","position":15}]}],"number":2}];
+window.currentSong.structuredVersion = 1;
+
+</script>
+
+
+<!-- ========================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================================= -->
+<script type="module" src="../js/song-runtime.js"></script>
+<script type="module" src="../js/song-edit.js"></script>
+<script type="module" src="../js/presentation-runtime.js"></script>
+
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const resume =
+            localStorage.getItem(
+                "resumePresentation"
+            );
+
+        if (resume === "true") {
+
+            setTimeout(function() {
+
+                if (
+                    typeof startPresentation ===
+                    "function"
+                ) {
+
+                    startPresentation();
+
+                }
+
+            }, 300);
+
+        }
+
+    }
+);
+
+</script>
+
+<script src="../js/print-preview.js"></script>
+</body>
+
+</html>
