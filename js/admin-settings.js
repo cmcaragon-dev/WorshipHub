@@ -3,7 +3,7 @@ import { songs as staticSongs } from "./initial-songs.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { collection, doc, getDoc, getDocs, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-export const ADMIN_EMAIL = "jfcm.s07@gmail.com";
+export const ADMIN_EMAIL = "cmcaragon@gmail.com";
 
 const normalizeEmail = value => String(value || "").trim().toLowerCase();
 export const isAdmin = (user = auth.currentUser) => normalizeEmail(user?.email) === ADMIN_EMAIL;
