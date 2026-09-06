@@ -1,0 +1,32 @@
+CHORDIO MULTI-SCREEN CONTROL - V45
+
+MAIN CONTROL
+1. Open a Service Planner and open any song.
+2. Click Multi-Screen.
+3. The left side shows the LIVE PREVIEW first, then all songs in the selected Service Planner.
+4. Click any song to make it the live song for all enabled output screens.
+
+OUTPUTS
+- Screen 1: Lyrics Only
+- Screen 2: Lyrics Only
+- Screen 3: Lyrics Only
+- Screen 4: Lyrics + Chords
+Each screen has a Use checkbox. Disable a screen if it is not connected/being used.
+
+SONG PART CONTROL
+Click Verse 1, Chorus, Bridge, Outro, etc. The enabled output screens show ONLY that selected part.
+
+STRUCTURE
+Use Arrange Song Structure to move sections up/down or hide sections. Save Structure stores the layout for the current Service Planner and song only; it does not change the master song.
+
+PRESENTATION OUTPUT
+Lyrics + Chords output follows the CHORDIO presentation style and includes title, artist, service key, passing chords, service note, and next-song preview.
+
+BACKGROUND
+Choose Default Black, Background Image, or Background Video. You may paste a URL or select a local image/video file. The selected background is sent to enabled output windows.
+
+WINDOWS EXTENDED DISPLAYS
+Use Windows Display Settings > Extend these displays. Open the enabled CHORDIO output windows and move each window to its assigned HDMI display, then maximize it.
+
+IMPORTANT
+A normal browser cannot reliably force a popup onto a specific physical monitor. The current CHORDIO implementation opens independent output windows so they can be assigned to the four extended HDMI displays.
