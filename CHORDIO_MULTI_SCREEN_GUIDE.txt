@@ -1,0 +1,66 @@
+CHORDIO MULTI-SCREEN CONTROL - UPDATED GUIDE
+
+MAIN CONTROL
+1. Open a Service Planner first, then open a song and choose Multi-Screen.
+2. The upper-left panel now shows SERVICE SONGS only. The old Live Preview has been removed.
+3. Click any service song to make it the live song for all enabled output screens.
+
+CHOOSE SONG PART
+1. The center panel contains the song-part buttons (Verse 1, Chorus, Bridge, etc.).
+2. Clicking a part changes the live position on all enabled screens.
+3. The center preview below the part buttons shows ONLY the selected part's lyrics.
+4. Lyrics can be reformatted for this Service Planner and song using the lyrics editor.
+   Put one displayed line on each row, for example:
+   For all You've done in my life,
+   You took my darkness and gave me Your light.
+5. Save Lyrics Formatting to keep the custom line breaks for this Service Planner only.
+6. Reset to Song restores the original song line breaks.
+7. Line spacing, vertical position, font size and alignment can also be adjusted and saved for this Service Planner.
+
+SONG STRUCTURE
+1. Use Up/Down to change the order of sections.
+2. Hide/Show can remove or restore a section from the presentation structure.
+3. Save Structure stores the arrangement for the selected Service Planner and song only.
+4. The master song is not changed.
+
+SCREEN OUTPUTS
+Screen 1 / 2 / 3 - Lyrics Only:
+- Full-screen lyrics only.
+- No song title, artist, key, passing chords, song note, next-song preview, or "Lyrics Only" label.
+- Uses the selected image/video background.
+- Shows the selected song part only.
+
+Screen 4 - Lyrics + Chords:
+- Uses the CHORDIO presentation-style header and information.
+- Shows passing chords, service note and next-song preview.
+- Shows the complete arranged song so the instrumentalist can see other sections.
+- Clicking Verse/Chorus/Bridge moves/scrolls the display to that part; it does NOT hide the other sections.
+- Background remains BLACK for this mode.
+
+BACKGROUND
+- Default Black, Background Image, or Background Video.
+- The chosen image/video is applied to Lyrics Only outputs.
+- Lyrics + Chords outputs remain black.
+
+SCREEN PREVIEWS
+Below Save Structure, the Screen Output Preview area shows a miniature preview for Screens 1-4, including each screen's current mode and selected content.
+
+USE / HIDE SCREENS
+- Uncheck Use for any HDMI output that is not connected or not being used.
+- Disabled screens are hidden and their output window is closed.
+
+WINDOWS EXTENDED DISPLAY
+The browser output windows are separate windows. Move Screen 1, Screen 2, Screen 3 and Screen 4 to the desired Windows extended monitors and maximize them.
+
+
+V58 updates: fixed HDMI output state handoff, removed the unused Page Slide white preview area, and changed Online Bible to English NIV plus Tagalog options with Book → Chapter → Verse lookup.
+
+V58.1 SCREEN OUTPUT PREVIEW
+- Use PREVIEW SCREENS to choose 1, 2, 3, or 4 screens.
+- 1 screen = one full preview panel.
+- 2 screens = one full-width screen above another full-width screen.
+- 3 screens = Screen 1 full width on top, Screens 2 and 3 below.
+- 4 screens = 2 x 2 grid.
+- Double-click any preview screen to enlarge it inside the preview panel; double-click again to return to the selected layout.
+- The preview follows the currently selected song part and the selected screen mode (Lyrics Only or Lyrics + Chords).
+- Screen Output state now has a stronger localStorage/BroadcastChannel fallback so the output window can recover the selected song and lyrics if the first message arrives before the output page is ready.
