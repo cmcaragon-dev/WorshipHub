@@ -1,0 +1,11 @@
+CHORDIO V59.7 — IMAGE/VIDEO BACKGROUND LIBRARY
+
+Changes:
+1. Renamed “CMG WORSHIP BACKGROUNDS” to “IMAGE/VIDEO BACKGROUND”.
+2. Renamed “USE CMG” button to “APPLY”.
+3. Uploaded image/video backgrounds are now saved persistently in the browser using IndexedDB.
+4. Saved uploads are automatically added to the same background dropdown under “MY SAVED BACKGROUNDS”.
+5. Saved uploads remain available after page refresh/reopen on the same browser profile.
+6. Uploaded images and videos can be previewed and applied to All Screens or Current Song.
+7. Output screen resolves saved uploaded backgrounds from IndexedDB, so large video files are not stored in localStorage.
+8. Existing bundled CMG backgrounds remain available.
