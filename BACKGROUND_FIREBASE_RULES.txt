@@ -1,0 +1,55 @@
+CHORDIO — SHARED IMAGE/VIDEO BACKGROUND FIREBASE RULES
+======================================================
+
+The application stores uploaded background FILES in Firebase Storage and
+background METADATA in Firestore collection:
+
+    backgrounds/{backgroundId}
+
+Storage path:
+
+    backgrounds/{backgroundId}-{safeFileName}
+
+The rules below allow every authenticated WorshipHub user to READ shared
+backgrounds. A user can delete backgrounds they uploaded. The configured
+administrator email can delete any uploaded background.
+
+IMPORTANT:
+Merge these rules into your existing Firebase rules. Do not replace your
+existing Firestore/Storage rules if they protect other application data.
+
+FIRESTORE RULE SNIPPET
+----------------------
+
+match /backgrounds/{backgroundId} {
+  allow read: if request.auth != null;
+  allow create: if request.auth != null
+                && request.resource.data.ownerUid == request.auth.uid;
+  allow update: if request.auth != null
+                && resource.data.ownerUid == request.auth.uid;
+  allow delete: if request.auth != null
+                && (resource.data.ownerUid == request.auth.uid
+                    || request.auth.token.email == "cmcaragon@gmail.com");
+}
+
+STORAGE RULE SNIPPET
+--------------------
+
+match /backgrounds/{fileName} {
+  allow read: if request.auth != null;
+  allow write: if request.auth != null
+                && request.resource.metadata.ownerUid == request.auth.uid;
+  allow delete: if request.auth != null
+                && (resource.metadata.ownerUid == request.auth.uid
+                    || request.auth.token.email == "cmcaragon@gmail.com");
+}
+
+NOTE:
+The application also checks owner/admin permissions before showing deletion
+success. The Firebase rules above provide the server-side owner/admin check.
+If your project uses different administrator accounts, update the email in
+both the client and rules.
+
+RECOMMENDED STORAGE LIMIT
+-------------------------
+The CHORDIO client limits uploaded image/video backgrounds to 100 MB.
