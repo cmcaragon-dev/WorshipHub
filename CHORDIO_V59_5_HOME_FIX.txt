@@ -1,0 +1,9 @@
+CHORDIO V59.5 - HOME BUTTON FIX
+
+Fixed the Home button on the Song page when a song is opened from Service Planner.
+
+The Home button now:
+- clears active service/resume state
+- exits browser fullscreen if active
+- always returns to index.html using a same-origin URL
+- does not rely on history.back(), which could restore the wrong planner/song state
