@@ -1,0 +1,336 @@
+<!doctype html><html><head>
+<link rel="icon" type="image/png" href="images/chordio-favicon.png"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CHORDIO Screen Output</title><style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;color:#fff;font-family:Inter,"Segoe UI",Arial,sans-serif}#app{position:fixed;inset:0;background:#000;overflow:hidden}#bg{position:absolute;inset:0;background:center/cover no-repeat;z-index:0}#bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}#shade{position:absolute;inset:0;background:rgba(0,0,0,.15);z-index:1;pointer-events:none}#header{position:absolute;left:0;right:0;top:0;z-index:5;min-height:76px;padding:12px 22px;display:grid;grid-template-columns:minmax(0,1.3fr) auto minmax(0,1.8fr) auto;align-items:center;gap:14px;background:rgba(5,8,12,.88);border-bottom:1px solid rgba(255,215,0,.24)}#title{font-size:clamp(20px,2.2vw,36px);font-weight:900}#artist{font-size:clamp(10px,1vw,16px);opacity:.72;margin-left:10px}#key{font-weight:800}#passing{font-size:clamp(10px,1vw,16px);text-align:center}.pass{margin:0 5px}.pass b{color:#FFD700}.sep{opacity:.55}#mode{font-size:11px;font-weight:900;text-transform:uppercase;opacity:.7}#content{position:absolute;inset:0;z-index:3;overflow:hidden}.lyrics{position:absolute;inset:0;padding:6vw;display:flex;flex-direction:column;justify-content:center;text-align:center}.lyrics div{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.15}.chords{position:absolute;inset:76px 0 0;padding:28px 5vw 150px;overflow:auto}.section-title{color:#FFD700;font-weight:900;font-size:clamp(16px,1.7vw,28px);margin:0 0 18px}.line{margin:0 0 10px}.chord{font-family:Consolas,"Courier New",monospace;color:#FFD700;white-space:pre}.lyric{font-family:Consolas,"Courier New",monospace;white-space:pre-wrap;overflow-wrap:anywhere}.lower{position:absolute;right:24px;bottom:24px;z-index:6;display:flex;gap:12px}.box{min-width:150px;max-width:300px;padding:7px 9px;background:rgba(7,7,7,.9);border:1px solid rgba(255,255,255,.12)}.box span{display:block;font-size:8px;opacity:.65}.box strong{display:block;font-size:12px}.box small{font-size:9px;opacity:.7}.empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#aaa;font-weight:700}.page{position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:7vw;text-align:center}.page-card{display:flex;flex-direction:column;gap:22px;align-items:center}.page-title{font-size:clamp(24px,3vw,52px);font-weight:900;color:#FFD700}.page-text{max-width:1400px;white-space:pre-wrap;overflow-wrap:anywhere}
+</style><style>
+/* CHORDIO V58.6 — Screen Output mirrors Presentation + per-screen background */
+body{background:#000!important;color:#fff!important}
+#bg{background-color:#000!important}#shade{background:rgba(0,0,0,.28)!important}
+.chords{position:absolute!important;inset:76px 0 0!important;padding:24px 5vw 150px!important;overflow-y:auto!important;overflow-x:hidden!important;box-sizing:border-box!important;background:transparent!important}
+.presentation-output-section{display:block!important;margin:0 0 34px!important;padding:0 0 28px!important;scroll-margin-top:96px!important}
+.presentation-output-section.selected{outline:0!important}
+.presentation-output-section .section-title{display:inline-block!important;background:#FFD700!important;color:#000!important;border-radius:5px!important;padding:5px 12px!important;margin:0 0 14px!important;font-size:clamp(18px,1.45vw,26px)!important;line-height:1.05!important;font-weight:900!important;letter-spacing:.05em!important}
+.presentation-output-section .line{display:block!important;width:100%!important;margin:0!important;padding:0!important;min-width:0!important;overflow:visible!important}
+.presentation-output-section .chord{display:block!important;height:auto!important;min-height:1em!important;line-height:1.08!important;margin:0!important;padding:0!important;font-family:Consolas,"Courier New",monospace!important;font-size:clamp(24px,3vw,58px)!important;font-weight:800!important;color:#FFD700!important;white-space:pre!important;overflow:visible!important}
+.presentation-output-section .lyric{display:block!important;height:auto!important;min-height:1em!important;line-height:1.08!important;margin:0!important;padding:0!important;font-family:Consolas,"Courier New",monospace!important;font-size:clamp(24px,3vw,58px)!important;font-weight:500!important;color:#fff!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;word-break:normal!important;overflow:visible!important}
+.multi-output-chords #content{z-index:2!important}
+@media(max-width:650px){.chords{inset:68px 0 0!important;padding:18px 18px 120px!important}.presentation-output-section .chord,.presentation-output-section .lyric{font-size:clamp(20px,6vw,38px)!important}}
+</style><style>
+html:fullscreen,html:-webkit-full-screen,body:fullscreen,body:-webkit-full-screen,#app:fullscreen,#app:-webkit-full-screen{
+  width:100vw!important;height:100vh!important;max-width:none!important;max-height:none!important;margin:0!important;
+}
+</style></head><body><div id="app"><div id="bg"></div><div id="shade"></div><div id="header"><div><span id="title">CHORDIO</span><span id="artist"></span></div><span id="key"></span><div id="passing"></div><span id="mode"></span></div><div id="content"></div><div id="lower" class="lower"><div id="note" class="box"><span>SONG NOTE</span><strong></strong></div><div id="next" class="box"><span>NEXT SONG</span><strong>END OF SERVICE</strong><small></small></div></div></div><script>(function(){
+'use strict';
+const params=new URLSearchParams(location.search);
+async function enterOutputFullscreen(){
+  if(document.fullscreenElement)return true;
+  const target=document.documentElement;
+  try{
+    if(target.requestFullscreen){
+      await target.requestFullscreen({navigationUI:"hide"});
+      return !!document.fullscreenElement;
+    }
+  }catch(_){}
+  try{
+    if(document.body?.requestFullscreen){
+      await document.body.requestFullscreen({navigationUI:"hide"});
+      return !!document.fullscreenElement;
+    }
+  }catch(_){}
+  return false;
+}
+function scheduleOutputFullscreen(){
+  void enterOutputFullscreen();
+  [100,400,900,1600].forEach(ms=>setTimeout(()=>void enterOutputFullscreen(),ms));
+}
+const display=String(params.get('display')||'1');
+const forcedMode=params.get('mode')||'lyrics';
+let state=null;
+const $=id=>document.getElementById(id);
+
+function read(){
+  const keys=[`chordioMultiScreenOutputState:${display}`,'chordioMultiScreenState'];
+  for(const key of keys){
+    try{
+      const x=JSON.parse(localStorage.getItem(key)||'null');
+      if(x?.song?.sections?.length || x?.song?.title) return x;
+    }catch(_){ }
+  }
+  return null;
+}
+function escText(x){return String(x??'');}
+function normalizeSections(song){
+  return Array.isArray(song?.sections)?song.sections.map(s=>({...s,lines:Array.isArray(s?.lines)?s.lines:[]})):[];
+}
+function transposeChordText(text,steps){
+  const sharp=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+  const flats={Db:'C#',Eb:'D#',Gb:'F#',Ab:'G#',Bb:'A#'};
+  const note=n=>{
+    const r=n[0].toUpperCase()+n.slice(1);
+    const i=sharp.indexOf(flats[r]||r);
+    return i<0?n:sharp[((i+steps)%12+12)%12];
+  };
+  return String(text||'').replace(/\S+/g,t=>{
+    const m=t.match(/^([A-Ga-g])([#b]?)/);
+    if(!m)return t;
+    const r=note(m[1].toUpperCase()+m[2]);
+    let z=r+t.slice(m[0].length);
+    return z.replace(/\/([A-Ga-g])([#b]?)(?=$|[^A-Za-z])/g,(_,a,b)=>'/'+note(a.toUpperCase()+b));
+  });
+}
+function chordRow(line,steps){
+  let text=typeof line?.chordText==='string'?line.chordText:'';
+  if(text)return transposeChordText(text,steps);
+  const chars=[];
+  for(const c of (Array.isArray(line?.chords)?line.chords:[])){
+    const pos=Math.max(0,Number(c?.position)||0);
+    while(chars.length<pos)chars.push(' ');
+    const v=transposeChordText(String(c?.originalChord||c?.chord||''),steps);
+    Array.from(v).forEach((ch,i)=>chars[pos+i]=ch);
+  }
+  return chars.join('');
+}
+function layoutVisible(song,msg){
+  const src=normalizeSections(song);
+  const lay=Array.isArray(msg?.layout)&&msg.layout.length?msg.layout:src.map((_,i)=>({id:i,visible:true}));
+  return lay.map(x=>({item:x,section:src[Number(x.id)]})).filter(x=>x.section&&x.item.visible!==false);
+}
+function presentationLabel(section,index){
+  return `${section?.type||''} ${section?.number||''}`.trim()||`Section ${index+1}`;
+}
+function settings(msg){
+  return {fontPx:42,spacing:1.15,align:'center',fontFamily:'Arial',color:'#fff',bold:false,italic:false,underline:false,...(msg?.lyricsSettings||{})};
+}
+function passingChords(song){
+  const key=String(song?.serviceKey||song?.key||song?.originalKey||'C').trim();
+  const norm=v=>v.replace(/\s*(major|minor|maj|m)\s*$/i,'').replace(/[♯]/g,'#').replace(/[♭]/g,'b');
+  const root=(norm(key).match(/^[A-G](?:#|b)?/i)||['C'])[0];
+  const sharp=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+  const mapped={Db:'C#',Eb:'D#',Gb:'F#',Ab:'G#',Bb:'A#'};
+  const base=Math.max(0,sharp.indexOf(mapped[root]||root));
+  const trans=n=>sharp[(base+n+120)%12];
+  const out=[['RETURN TO VERSE 1',trans(7)],['LAST 3',trans(9)+'m']];
+  if(String(song?.category||song?.genre||'').trim().toLowerCase()==='worship'){
+    const p5=trans(5);
+    out.push(['OUTRO',`${p5} → ${p5}m → ${norm(key)}`],['SINGING IN THE SPIRIT',`${norm(key)} → ${p5}`]);
+  }
+  return out;
+}
+const CHORDIO_UPLOADED_BG_DB="chordioUploadedBackgroundsDB";
+const CHORDIO_UPLOADED_BG_STORE="backgrounds";
+function chordioOpenUploadedBackgroundDB(){return new Promise((resolve,reject)=>{try{const req=indexedDB.open(CHORDIO_UPLOADED_BG_DB,1);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(CHORDIO_UPLOADED_BG_STORE))db.createObjectStore(CHORDIO_UPLOADED_BG_STORE,{keyPath:"id"});};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);}catch(e){reject(e);}});}
+async function chordioGetUploadedBackground(id){const db=await chordioOpenUploadedBackgroundDB();const item=await new Promise((resolve,reject)=>{const req=db.transaction(CHORDIO_UPLOADED_BG_STORE,"readonly").objectStore(CHORDIO_UPLOADED_BG_STORE).get(id);req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error);});db.close();return item;}
+async function chordioResolveBackgroundUrl(url){const raw=String(url||"");if(!raw.startsWith("idb://"))return raw;try{const item=await chordioGetUploadedBackground(raw.slice(6));return item?.blob?URL.createObjectURL(item.blob):"";}catch(_){return "";}}
+async function applyBackground(bg){
+  const el=$('bg');
+  if(!el)return;
+  el.style.backgroundImage='none';
+  let video=el.querySelector('video');
+  const resolvedUrl=bg?.url?await chordioResolveBackgroundUrl(bg.url):'';
+  if(bg?.type==='image'&&resolvedUrl){
+    if(video)video.remove();
+    el.style.backgroundImage=`url(${JSON.stringify(String(resolvedUrl))})`;
+  }else if(bg?.type==='video'&&resolvedUrl){
+    if(!video){video=document.createElement('video');video.autoplay=true;video.muted=true;video.loop=true;video.playsInline=true;el.appendChild(video);}
+    if(video.src!==String(resolvedUrl))video.src=String(resolvedUrl);
+    video.play().catch(()=>{});
+  }else if(video){video.remove();}
+}
+function resolveBackground(state,song){
+  const mode=state?.backgroundModes?.[display]||'common';
+  if(mode==='black')return {type:'none',url:''};
+  let bg=state?.songBackground||state?.background||{type:'none',url:''};
+  if(!bg?.url){
+    try{
+      const saved=JSON.parse(localStorage.getItem('chordioMultiScreenSongBackgrounds')||'{}');
+      const key=String(song?.id||song?.title||'song');
+      if(saved?.[key]?.url)bg=saved[key];
+    }catch(_){ }
+  }
+  return bg;
+}
+function fitLyricsOnly(wrap,set){
+  if(!wrap)return;
+  const width=Math.max(320,window.innerWidth||1280);
+  const height=Math.max(240,window.innerHeight||720);
+  const spacing=Math.max(.75,Math.min(1.9,Number(set?.spacing)||1.15));
+  const requested=Math.max(14,Math.min(180,Number(set?.fontPx)||42));
+  const vertical=Math.max(0,Math.min(100,Number(set?.vertical??50)));
+  const align=set?.align||'center';
+  const lines=[...wrap.children];
+
+  // Full-screen Lyrics Only. Lyrics Display Settings apply here only.
+  wrap.style.position='absolute';
+  wrap.style.inset='0';
+  wrap.style.width='100%';
+  wrap.style.height='100%';
+  wrap.style.padding='0 5vw';
+  wrap.style.margin='0';
+  wrap.style.boxSizing='border-box';
+  wrap.style.display='flex';
+  wrap.style.flexDirection='column';
+  wrap.style.alignItems=align==='left'?'flex-start':align==='right'?'flex-end':'center';
+  wrap.style.justifyContent='flex-start';
+  wrap.style.overflow='hidden';
+  wrap.style.textAlign=align;
+
+  const apply=size=>lines.forEach(d=>{
+    d.style.fontSize=size+'px';
+    d.style.lineHeight=String(spacing);
+    d.style.width='100%';
+    d.style.boxSizing='border-box';
+    d.style.whiteSpace='pre-wrap';
+    d.style.overflowWrap='anywhere';
+    d.style.wordBreak='break-word';
+    d.style.textAlign=align;
+    d.style.margin='0';
+    d.style.padding='0';
+  });
+  const contentHeight=()=>lines.reduce((sum,d)=>sum+d.getBoundingClientRect().height,0);
+  const contentWidth=()=>Math.max(0,...lines.map(d=>d.scrollWidth||d.getBoundingClientRect().width));
+  const fits=size=>{apply(size);return contentHeight()<=height*.90&&contentWidth()<=width*.92;};
+
+  let low=14,high=requested,best=14;
+  if(fits(high)) best=high;
+  else {
+    for(let i=0;i<16&&low<=high;i++){
+      const mid=Math.floor((low+high)/2);
+      if(fits(mid)){best=mid;low=mid+1;}else high=mid-1;
+    }
+  }
+  apply(best);
+  const used=contentHeight();
+  const free=Math.max(0,height-used);
+  const top=Math.round(free*(vertical/100));
+  wrap.style.paddingTop=top+'px';
+  wrap.style.paddingBottom=Math.max(0,free-top)+'px';
+  wrap.dataset.fittedFontSize=String(best);
+}
+
+function wrapPresentationSections(sections,maxChars){
+  const limit=Math.max(20,Number(maxChars)||80);
+  const out=[];
+  (sections||[]).forEach(sec=>{
+    const copy={...sec,lines:[]};
+    (sec.lines||[]).forEach(line=>{
+      const lyrics=String(line?.lyrics||'');
+      const chord=chordRow(line,0);
+      const len=Math.max(lyrics.length,chord.length);
+      if(len<=limit){copy.lines.push({...line});return;}
+      let start=0;
+      while(start<len){
+        let end=Math.min(len,start+limit);
+        if(end<len){const part=lyrics.slice(start,end);const at=part.lastIndexOf(' ');if(at>=Math.floor(limit*.55))end=start+at+1;}
+        if(end<=start)end=Math.min(len,start+limit);
+        copy.lines.push({...line,lyrics:lyrics.slice(start,end),chordText:chord.slice(start,end),chords:[]});
+        start=end;
+      }
+    });
+    out.push(copy);
+  });
+  return out;
+}
+function render(msg){
+  state=msg||state||read();
+  if(!state?.song){$('content').innerHTML='<div class="empty">Waiting for CHORDIO song output…</div>';return;}
+  const song=state.song;
+  const mode=state?.modes?.[display]||forcedMode||'lyrics';
+  const enabled=state?.enabled?.[display]!==false;
+  const set=settings(state);
+  const bg=resolveBackground(state,song);
+  const vis=layoutVisible(song,state);
+  const idx=Math.max(0,Math.min(Number(state.sectionIndex??0),Math.max(0,vis.length-1)));
+
+  $('title').textContent=song.title||'CHORDIO';
+  $('artist').textContent=song.artist||'';
+  const key=song.serviceKey||song.key||song.originalKey||'';
+  $('key').textContent=key?`Key: ${key}`:'';
+  $('mode').textContent=enabled?(mode==='chords'?'Lyrics + Chords':mode==='blank'?'Blank':'Lyrics Only'):'Hidden';
+  $('passing').innerHTML=passingChords(song).map((x,i)=>`${i?'<span class="sep">|</span>':''}<span class="pass"><b>${escText(x[0])}</b>: ${escText(x[1])}</span>`).join('');
+  const currentService=state.serviceSongs?.[Number(state.serviceIndex)];
+  const next=state.serviceSongs?.[Number(state.serviceIndex)+1];
+  $('note').querySelector('strong').textContent=currentService?.presentationNote||'';
+  $('next').querySelector('strong').textContent=next?.title||'END OF SERVICE';
+  $('next').querySelector('small').textContent=next?`Service Key: ${next.serviceKey||next.key||next.originalKey||'—'}`:'';
+  $('header').style.display=mode==='chords'&&enabled?'grid':'none';
+  $('lower').style.display=mode==='chords'&&enabled?'flex':'none';
+  void applyBackground(bg);
+
+  if(state.activePageSlide&&enabled){
+    $('header').style.display='none';$('lower').style.display='none';
+    $('content').innerHTML='';
+    const pg=document.createElement('div');pg.className='page';
+    const card=document.createElement('div');card.className='page-card';
+    const t=document.createElement('div');t.className='page-title';t.textContent=state.activePageSlide.title||'';
+    const b=document.createElement('div');b.className='page-text';b.textContent=state.activePageSlide.text||'';
+    b.style.fontFamily=set.fontFamily;b.style.color=set.color;b.style.fontWeight=set.bold?'800':'400';b.style.fontStyle=set.italic?'italic':'normal';b.style.textDecoration=set.underline?'underline':'none';b.style.letterSpacing=`${Number(set.letterSpacing||0)}px`;b.style.fontSize=`${Number(set.fontPx||42)}px`;b.style.lineHeight=String(set.spacing||1.15);
+    card.append(t,b);pg.append(card);$('content').append(pg);return;
+  }
+  if(state.black||!enabled||mode==='blank'){$('content').innerHTML='';return;}
+  if(!vis.length){$('content').innerHTML='<div class="empty">No lyrics available for this song.</div>';return;}
+
+  $('content').innerHTML='';
+  if(mode==='lyrics'){
+    const entry=vis[idx]||vis[0];
+    const wrap=document.createElement('div');wrap.className='lyrics';
+    wrap.style.textAlign=set.align;wrap.style.fontFamily=set.fontFamily;wrap.style.color=set.color;wrap.style.fontWeight=set.bold?'800':'400';wrap.style.fontStyle=set.italic?'italic':'normal';wrap.style.textDecoration=set.underline?'underline':'none';wrap.style.letterSpacing=`${Number(set.letterSpacing||0)}px`;
+    // Lyrics Only is the ONLY mode that uses the Lyrics Display Settings.
+    // Custom line-break/spacing edits are allowed here and are fitted to the
+    // real output screen automatically.
+    const overrides=state.lyricsOverrides||{};
+    const lines=Array.isArray(overrides[String(entry.item.id)])?overrides[String(entry.item.id)]:entry.section.lines.map(x=>String(x.lyrics||''));
+    lines.forEach(x=>{const d=document.createElement('div');d.textContent=x;wrap.appendChild(d);});
+    $('content').append(wrap);
+    fitLyricsOnly(wrap,set);
+  }else{
+    // Render every section, exactly like Presentation. The selected section is
+    // highlighted and scrolled into view; changing Verse/Chorus/Bridge on the
+    // controller only changes sectionIndex, so the full song remains present.
+    const wrap=document.createElement('div');wrap.className='chords';
+    // Lyrics + Chords deliberately ignores ALL Lyrics Only custom overrides.
+    // It follows the same presentation source/structure and normal wrapping.
+    const steps=Number(song.transpose||0);
+    const presentationVis=wrapPresentationSections(vis.map(x=>x.section), Math.max(48,Math.floor((window.innerWidth||1280)/10)));
+    presentationVis.forEach((sec,sectionIndex)=>{
+      const section=document.createElement('section');
+      section.className='presentation-output-section'+(sectionIndex===idx?' selected':'');
+      section.dataset.sectionIndex=String(sectionIndex);
+      const h=document.createElement('div');h.className='section-title';h.textContent=presentationLabel(sec,sectionIndex);section.appendChild(h);
+      (sec.lines||[]).forEach((line)=>{
+        const row=document.createElement('div');row.className='line';
+        const c=chordRow(line,steps);
+        if(c){const cd=document.createElement('div');cd.className='chord';cd.textContent=c;row.appendChild(cd);}
+        const ly=document.createElement('div');ly.className='lyric';ly.textContent=String(line.lyrics||'');row.appendChild(ly);
+        section.appendChild(row);
+      });
+      wrap.appendChild(section);
+    });
+    $('content').append(wrap);
+    $('content').scrollTop=0;
+    const selected=wrap.querySelector(`.presentation-output-section[data-section-index="${idx}"]`);
+    if(selected)requestAnimationFrame(()=>selected.scrollIntoView({block:'start',behavior:'auto'}));
+  }
+  const selectedLabel=vis[idx]?presentationLabel(vis[idx].section,idx):'';
+  $('mode').textContent=mode==='chords'?'Lyrics + Chords':mode==='blank'?'Blank':'Lyrics Only';
+  document.title=`${song.title||'CHORDIO'} — Screen ${display}`;
+}
+window.addEventListener('message',e=>{
+  if(e.data?.type==='chordio-multiscreen-state'){
+    try{localStorage.setItem(`chordioMultiScreenOutputState:${display}`,JSON.stringify(e.data));}catch(_){ }
+    render(e.data);
+  }
+});
+window.addEventListener('storage',e=>{
+  if(e.key===`chordioMultiScreenOutputState:${display}`||e.key==='chordioMultiScreenState'||e.key==='chordioMultiScreenBackground'||e.key==='chordioMultiScreenSongBackgrounds')render(read());
+});
+window.addEventListener('resize',()=>render(state||read()));
+window.addEventListener('pointerdown',()=>void enterOutputFullscreen(),{passive:true});
+window.addEventListener('keydown',()=>void enterOutputFullscreen(),{passive:true});
+window.addEventListener('dblclick',()=>void enterOutputFullscreen(),{passive:true});
+window.addEventListener('load',scheduleOutputFullscreen,{once:true});
+scheduleOutputFullscreen();
+render(read());
+setTimeout(()=>render(read()),150);
+setTimeout(()=>render(read()),600);
+setTimeout(()=>render(read()),1500);
+})();
+</script></body></html>
