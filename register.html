@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>CHORDIO — Create Account</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eef2f7;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    min-height:100vh;
+}
+
+.register-box{
+
+    width:380px;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:15px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+h1{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:13px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    box-sizing:border-box;
+
+}
+
+button{
+
+    width:100%;
+
+    padding:13px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#3498db;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#2980b9;
+
+}
+
+#message{
+
+    margin-top:15px;
+
+    text-align:center;
+
+    font-size:14px;
+
+}
+
+.login-link{
+
+    text-align:center;
+
+    margin-top:20px;
+
+}
+
+</style>
+
+  <link rel="icon" type="image/png" href="images/chordio-favicon.png">
+
+<link rel="stylesheet" href="css/modern.css">
+</head>
+
+<body class="register-page">
+
+<div class="register-box">
+
+    <h1>Create Account</h1>
+
+    <form id="registerForm">
+
+        <input
+            type="text"
+            id="registerName"
+            placeholder="Full Name"
+            required
+        >
+
+        <input
+            type="email"
+            id="registerEmail"
+            placeholder="Email"
+            required
+        >
+
+        <input
+            type="password"
+            id="registerPassword"
+            placeholder="Password"
+            minlength="6"
+            required
+        >
+
+        <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            minlength="6"
+            required
+        >
+
+        <button type="submit">
+            Create Account
+        </button>
+
+    </form>
+
+    <div id="message"></div>
+
+    <div class="login-link">
+
+        Already have an account?
+
+        <a href="login.html">
+            Login
+        </a>
+
+    </div>
+
+</div>
+
+
+<script type="module" src="js/register.js"></script>
+
+
+<style>
+/* V32 responsive authentication layout */
+html,body{max-width:100%;overflow-x:hidden!important}
+*,*::before,*::after{box-sizing:border-box}
+@media(max-width:520px){
+ body{padding:12px!important}
+ .login-box,.register-box,.auth-box,.container,.card{width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important}
+ input,select,button{max-width:100%!important}
+}
+</style>
+
+<footer class="chordio-footer" aria-label="Matthew 6:33">
+  <div class="footer-verse">“But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.”</div>
+  <div class="footer-ref">Matthew 6:33</div>
+</footer>
+
+
+<style>
+/* FINAL AUTH CENTERING FIX */
+html, body { width:100%; min-height:100%; }
+body {
+  position:relative !important;
+  min-height:100vh !important;
+  min-height:100dvh !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  align-items:center !important;
+  padding:32px 20px 96px !important;
+}
+.register-box {
+  position:relative !important;
+  width:min(420px, 100%) !important;
+  max-width:420px !important;
+  margin:auto !important;
+  left:auto !important;
+  right:auto !important;
+  transform:none !important;
+  align-self:center !important;
+}
+.chordio-footer {
+  position:absolute !important;
+  left:20px !important;
+  right:20px !important;
+  bottom:18px !important;
+  width:auto !important;
+  margin:0 !important;
+  text-align:center !important;
+}
+@media (max-width:520px) {
+  body { padding:20px 12px 105px !important; }
+  .register-box { width:100% !important; max-width:420px !important; padding:28px 22px !important; }
+  .chordio-footer { left:12px !important; right:12px !important; bottom:10px !important; }
+}
+</style>
+
+</body>
+
+</html><style>
+/* CHORDIO light mechanical auth override */
+body.register-page{display:flex!important;align-items:center!important;justify-content:center!important;min-height:100dvh!important;overflow:auto!important;}
+body.register-page .register-box{margin:auto!important;left:auto!important;right:auto!important;transform:none!important;float:none!important;}
+</style>
