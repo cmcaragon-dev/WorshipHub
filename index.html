@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CHORDIO</title>
+
+<!-- Website Icon / Favicon -->
+<link rel="icon" type="image/png" href="images/chordio-favicon.png">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/modern.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+.service-song[draggable="true"]{cursor:grab;user-select:none;position:relative}
+.service-song[draggable="true"]:active{cursor:grabbing}
+.service-song.dragging{opacity:.45;outline:2px dashed #888}
+.admin-all-service-item.expanded .service-body{display:block!important}
+</style>
+</head>
+
+<body>
+
+<!-- ===========================
+     HEADER
+=========================== -->
+
+<header class="topbar">
+
+   <div class="logo chordio-brand-wrap">
+    <img class="chordio-topbar-logo" src="images/chordio-topbar.png" alt="CHORDIO">
+    <div class="brand chordio-wordmark" aria-label="CHORDIO">
+        <span class="chordio-name">CHORD</span><span class="chordio-name chordio-name-accent">IO</span>
+    </div>
+</div>
+
+   <div class="top-actions">
+
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="Search songs..."
+        onkeyup="searchSongs(this.value)">
+
+    <button onclick="searchSongs()">🔍</button>
+
+    <button id="loginAccountBtn" type="button" style="display:none">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        Login Account
+    </button>
+
+    <button id="logoutBtn" type="button">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+    </button>
+
+</div>
+
+</header>
+
+
+<!-- ===========================
+     MAIN LAYOUT
+=========================== -->
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<!-- ===========================
+     USER WELCOME
+=========================== -->
+
+<div class="user-welcome">
+
+    <div class="welcome-icon">
+        👋
+    </div>
+
+    <div class="welcome-text">
+
+        <div class="welcome-label">
+            Welcome,
+        </div>
+
+        <div id="userName" class="welcome-name">
+            User
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===========================
+     LIBRARY
+=========================== -->
+
+<h3>LIBRARY</h3>
+
+<button onclick="showAllSongs()">
+    🎵 All Songs
+</button>
+
+<button id="servicePlannerBtn">
+    📅 Service Planner
+</button>
+
+
+<hr>
+
+<h3>PLAYLISTS</h3>
+
+<button id="playlistBtn">
+    ➕ Playlist Manager
+</button>
+
+<hr>
+
+<h3>TOOLS</h3>
+
+<button id="addSongBtn">
+    ➕ Add Song
+</button>
+
+<button id="importSongBtn" type="button">
+    🔗 Import Song from Chord Link
+</button>
+
+<button id="settingsBtn" type="button">
+    ⚙ Settings
+</button>
+
+</aside>
+
+
+
+<!-- ===========================
+     CONTENT
+=========================== -->
+
+<main class="content">
+
+<div class="dashboard">
+
+<div class="card">
+
+<div class="number" id="totalSongs">
+
+0
+
+</div>
+
+<div class="label">
+
+Songs
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="number" id="totalArtists">
+
+0
+
+</div>
+
+<div class="label">
+
+Artists
+
+</div>
+
+</div>
+
+<div class="card">
+
+    <div class="number" id="totalServices">
+
+        0
+
+    </div>
+
+    <div class="label">
+
+        Service Plans
+
+    </div>
+
+</div>
+
+<div class="card">
+
+<div class="number" id="totalPlaylists">
+
+0
+
+</div>
+
+<div class="label">
+
+Playlists
+
+</div>
+
+</div>
+
+</div>
+
+<h2>
+
+All Songs
+
+</h2>
+
+<div id="songGrid">
+
+</div>
+
+</main>
+</div>
+
+
+<!-- ======================================
+     ALL SONGS PANEL
+====================================== -->
+
+<div class="all-songs-panel" id="allSongsPanel">
+
+    <div class="all-songs-header">
+
+        <div>
+            <h2>🎵 All Songs</h2>
+            <p>Complete song library</p>
+        </div>
+
+        <button
+            class="close-all-songs"
+            onclick="closeAllSongs()">
+            ✖
+        </button>
+
+    </div>
+
+
+    <!-- SEARCH -->
+    <div class="all-songs-search">
+
+        <input
+            type="text"
+            id="allSongsSearch"
+            placeholder="Search by song title, artist, category or language..."
+            autocomplete="off">
+
+        <button
+            type="button"
+            onclick="searchAllSongs()">
+            🔍 Search
+        </button>
+
+        <button
+            type="button"
+            onclick="clearAllSongsSearch()">
+            ✖ Clear
+        </button>
+
+    </div>
+
+
+    <div class="all-songs-table-wrapper">
+
+        <table class="all-songs-table">
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Song Title</th>
+                    <th>Artist</th>
+                    <th>Category</th>					 
+                    <th>Language</th>
+					<th>Key</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="allSongsTableBody">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =================================== -->
+<!-- CHORD + LYRICS SONG EDITOR -->
+<!-- =================================== -->
+<div id="songEditorPanel" class="song-editor-panel" aria-hidden="true">
+  <div class="song-editor-shell">
+    <div class="song-editor-header">
+      <div>
+        <h2>🎵 Add Song</h2>
+        <p>Build lyrics and place chords exactly above the words.</p>
+      </div>
+      <button id="closeSongEditor" class="song-editor-close" type="button">✕</button>
+    </div>
+
+    <div class="song-editor-meta">
+      <label>Song Title<input id="editorSongTitle" type="text" placeholder="Song title"></label>
+      <label>Artist<input id="editorSongArtist" type="text" placeholder="Artist / Writer"></label>
+      <label>Category<select id="editorSongCategory"><option value="Worship">Worship</option><option value="Praise">Praise</option><option value="Hymn">Hymn</option><option value="Other">Other</option></select></label>
+      <label>Language<input id="editorSongLanguage" type="text" value="English" placeholder="Language"></label>
+      <label>Original Key<select id="editorSongKey"></select></label>
+      <label>YouTube Link<input id="editorSongYoutube" type="url" placeholder="https://youtube.com/..." /></label>
+      <label class="editor-import-url-field">Chord Page URL<input id="editorSourceUrl" type="url" placeholder="https://example.com/song-chords" /></label>
+    </div>
+
+    <div class="song-editor-toolbar">
+      <button type="button" id="addEditorSection">＋ Section</button>
+      <button type="button" id="addEditorLine">＋ Lyric Line</button>
+      <button type="button" id="importChordPageBtn">🔗 Import Chord Page</button>
+      <button type="button" id="editorPreviewBtn">▶ Preview</button>
+      <span class="song-editor-tip">Type chords in the row directly above the lyrics. Use spaces to place each chord exactly above the desired word or character. Every chord row is saved as <span class="chord"> for transposition.</span>
+    </div>
+
+    <div id="songEditorSections" class="song-editor-sections"></div>
+
+    <div class="song-editor-footer">
+      <button type="button" id="cancelSongEditor" class="editor-secondary">Cancel</button>
+      <button type="button" id="saveSongEditor" class="editor-primary">💾 Save Song</button>
+    </div>
+  </div>
+</div>
+
+<!-- Custom song presentation page is used for songs created in the editor. -->
+
+
+<div id="servicePanel" class="playlist-panel">
+
+    <div class="playlist-top">
+
+        <h2>📅 Worship Service Planner</h2>
+	<button id="closeService">✖</button></div>
+
+        <input
+            type="text"
+            id="serviceName"
+            placeholder="Service Name">
+
+        <button id="createService">
+            Create Service
+        </button>
+
+        <hr>
+
+        <div id="serviceList"></div>
+
+
+
+    </div>
+
+</div>
+
+<!-- Playlist Panel -->
+
+<!-- ======================================
+     PLAYLIST PANEL
+====================================== -->
+
+<div id="playlistPanel" class="playlist-panel">
+
+<div class="playlist-top">
+
+<h2>🎵 Playlist Manager</h2>
+
+<button id="closePlaylist">✖</button>
+
+</div>
+
+
+
+<div class="playlist-create">
+
+<input
+id="playlistName"
+type="text"
+placeholder="Enter playlist name">
+
+<button id="createPlaylist">
+
+➕ Create Playlist
+
+</button>
+
+</div>
+
+<hr>
+
+<div id="playlistList">
+
+</div>
+
+</div>
+
+<!-- =================================== -->
+<!-- SONG PICKER -->
+<!-- =================================== -->
+
+<div id="songPicker" class="popup">
+
+    <div class="popup-box">
+
+        <div class="popup-header">
+
+            <h2>Select Songs</h2>
+
+            <button id="closeSongPicker">✖</button>
+
+        </div>
+
+        <input
+            type="text"
+            id="songPickerSearch"
+            placeholder="Search songs...">
+
+        <div id="songPickerList"></div>
+
+    </div>
+
+</div>
+
+<script
+    type="module"
+    src="js/firebase.js">
+</script>
+
+<script type="module" src="js/auth.js"></script>
+
+<script type="module" src="js/song-editor.js"></script>
+<script type="module" src="js/admin-settings.js"></script>
+
+<script
+    type="module"
+    src="js/app.js">
+</script>
+
+
+
+<script src="js/chordio-v63-ux.js"></script>
+</body>
+
+</html>
+<style id="chordio-v63-dashboard-style">
+/* V63: return to the cleaner compact dashboard style */
+.chordio-v63-dashboard{margin:14px 0 18px}.chordio-quick{border:1px solid #dfe5eb;border-radius:14px;background:linear-gradient(135deg,#fff,#f7f9fb);padding:18px 20px;box-shadow:0 5px 18px rgba(15,31,46,.06)}
+.chordio-quick-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:14px}.chordio-quick-head span{font-size:10px;font-weight:900;letter-spacing:.12em;color:#c39200}.chordio-quick-head h2{margin:3px 0 0;font-size:20px;color:#172635}.chordio-quick-head p{margin:0;color:#74808b;font-size:12px}.chordio-quick-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.chordio-quick-grid button{min-height:46px;border:1px solid #d4dce3;border-radius:10px;background:#fff;color:#263644;font-weight:800;cursor:pointer;transition:.15s}.chordio-quick-grid button:hover{transform:translateY(-1px);border-color:#bd9a32;box-shadow:0 5px 14px rgba(15,31,46,.08)}.chordio-quick-grid button.primary{background:#172a3a;color:#fff;border-color:#172a3a}.chordio-modal{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(7,15,24,.62);backdrop-filter:blur(3px);padding:22px}.chordio-modal.show{display:flex}.chordio-dialog{width:min(760px,96vw);max-height:88vh;overflow:auto;border-radius:16px;background:#fff;box-shadow:0 24px 80px rgba(0,0,0,.28)}.chordio-dialog-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid #e7ebef}.chordio-dialog-head span{font-size:10px;font-weight:900;letter-spacing:.12em;color:#b58a00}.chordio-dialog-head h3{margin:4px 0 0;font-size:20px;color:#172635}.chordio-dialog-head>button{border:0;background:#eef1f4;border-radius:8px;width:34px;height:34px;cursor:pointer}.chordio-dialog-help{padding:0 20px;color:#6e7a85;font-size:12px}.chordio-service-choice{width:calc(100% - 40px);margin:7px 20px;padding:13px 14px;display:flex;align-items:center;justify-content:space-between;border:1px solid #dce2e7;border-radius:10px;background:#fff;cursor:pointer;text-align:left}.chordio-service-choice:hover{border-color:#bd9a32;background:#fafbfc}.chordio-service-choice span{display:flex;flex-direction:column;gap:3px}.chordio-service-choice small{color:#7b8791}.chordio-service-choice b{color:#a47c00}.chordio-empty{padding:25px;text-align:center;color:#7b8791}.chordio-form-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:12px;padding:18px 20px 10px}.chordio-form-grid label{font-size:10px;font-weight:900;letter-spacing:.08em;color:#697681}.chordio-form-grid input,.v63-song-search{display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:11px 12px;border:1px solid #d7dfe6;border-radius:9px;outline:none}.v63-selected-head{display:flex;justify-content:space-between;align-items:end;padding:12px 20px 8px}.v63-selected-head strong{font-size:11px;letter-spacing:.08em;color:#263644}.v63-selected-head span{font-size:11px;color:#7b8791}.v63-song-search{width:calc(100% - 40px);margin:8px 20px}.v63-song-list{padding:0 20px 15px;max-height:430px;overflow:auto}.v63-song-choice{display:grid;grid-template-columns:1fr 130px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #edf0f3}.v63-song-check{display:flex;align-items:center;gap:10px}.v63-song-check input{width:18px;height:18px}.v63-song-check span{display:flex;flex-direction:column}.v63-song-check small{color:#7c8790;margin-top:2px}.v63-song-key{padding:9px;border:1px solid #d7dfe6;border-radius:8px;background:#fff}.v63-create-footer{position:sticky;bottom:0;display:flex;align-items:center;gap:9px;padding:12px 20px;background:#f8fafb;border-top:1px solid #e4e9ed}.v63-create-footer span{margin-right:auto;font-size:11px;color:#697681}.v63-create-footer button{padding:10px 14px;border-radius:8px;border:1px solid #cfd7df;background:#fff;font-weight:800;cursor:pointer}.v63-create-footer button.primary{background:#172a3a;color:#fff;border-color:#172a3a}.v63-create-footer button.secondary{background:#fff}
+@media(max-width:900px){.chordio-quick-grid{grid-template-columns:repeat(2,1fr)}.chordio-quick-head{align-items:flex-start;flex-direction:column}.chordio-form-grid{grid-template-columns:1fr}}
+</style>
