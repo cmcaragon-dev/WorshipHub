@@ -1,8 +1,0 @@
-{
-  "MBBTAG": [],
-  "NIV": [],
-  "format": {
-    "description": "CHORDIO local-only Bible data. Add licensed MBB/NIV entries as {reference,book,text} objects under MBBTAG or NIV.",
-    "example": {"reference": "Juan 3:16", "book": "Juan", "text": "PASTE LICENSED LOCAL TEXT HERE"}
-  }
-}
