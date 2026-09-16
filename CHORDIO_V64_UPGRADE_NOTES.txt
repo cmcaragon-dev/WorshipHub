@@ -1,0 +1,17 @@
+CHORDIO V64 — Dashboard, Service Planner & Color Picker Fixes
+
+1. Removed the old V62 UX layer from index.html and custom-song.html so Favorites, Recently Used, and the old Control Center cannot duplicate the dashboard.
+2. Fixed duplicate Quick Actions cards by removing the repeated dashboard rebuild interval.
+3. Quick Actions are now exactly:
+   - + New Service
+   - Service Planner
+   - Multi-Screen
+   - Songs
+   - + Add Song
+4. Sidebar now mirrors the same five Quick Actions. Legacy application buttons remain hidden in a support container so existing app modules continue to work.
+5. New Service remains a dedicated popup where the user enters service title/date, selects songs, chooses each service key, and saves the service.
+6. Service Planner is now a review/control page only. The old Create Service input/button was removed from the visible planner.
+7. Service Planner cards show service date, song count, songs, artist, and service key, with saved services expanded by default.
+8. Multi-Screen Lyrics Display Settings now use the browser's native type=color picker for Text color instead of a text/select-style color list. The selected hex value is shown beside the picker.
+9. Existing CHORDIO navy/gold styling, rounded cards, consistent buttons, Live/Prepare controls, screen preview tiles, and other V63 functionality are retained.
+10. All JavaScript files were syntax-checked with Node.js before packaging.
