@@ -1,0 +1,24 @@
+CHORDIO V62 — MODERN UX + PRESENTATION CONTROL UPGRADE
+
+Base: CHORDIO FINAL(4) - Lyrics Display Settings Fixed
+
+Implemented:
+1. Removed dashboard/sidebar Welcome panel.
+2. Added Quick Actions Control Center.
+3. Multi-Screen Quick Action opens a Service Planner chooser and launches the selected planner.
+4. Added visible Favorites (star) on song cards and Favorites dashboard panel.
+5. Added Recently Used dashboard panel and automatic tracking when songs are opened.
+6. Added working ? keyboard shortcut help.
+7. Added Multi-Screen keyboard shortcuts: arrows/space navigation in Live Mode, 1-4 screen focus, B blank all, L Live Mode, ? help.
+8. Added visible upper-right PREPARE/LIVE toggle. LIVE is blinking red; PREPARE is gray.
+9. Live Mode hides configuration controls and reduces the Multi-Screen interface to presentation/navigation essentials to reduce accidental changes.
+10. Lyrics presets added: Standard, Large, Projector, Reset Defaults. Projector/default font size is 100 px.
+11. Added modern toast notifications.
+12. Added visible Auto-save status indicator in Multi-Screen control.
+13. Added modern responsive UX styling, cards, dialogs, library panels and interaction states.
+14. Existing Firebase/service/song/presentation architecture retained.
+
+Live Mode meaning:
+- PREPARE: configuration controls are available for setup.
+- LIVE: configuration controls are hidden/locked from the main operator view; navigation and output control remain available.
+- LIVE does not turn off the HDMI outputs; it is an operator-safety mode.
