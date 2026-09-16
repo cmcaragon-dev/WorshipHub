@@ -1,7 +1,0 @@
-CHORDIO V65.2 FIXES
-
-1. Sidebar now renders HELLO, WELCOME above Quick Actions and reuses #userName so the logged-in Firebase/Firestore user name is displayed. Name fallbacks remain Firebase displayName and email prefix.
-2. Service Planner cards are collapsed by default. Clicking the service header expands/collapses the song list. Date is aligned to the right of the count row.
-3. Multi-Screen header no longer contains an extra generated screen selector strip. The Screen 1-4 square selector tiles are not created and any existing tiles are removed.
-4. Multi-Screen Live button always says LIVE. OFF = gray; ON = blinking red. PREPARE is no longer displayed.
-5. Quick Actions no longer says Prepare Your Service and the explanatory sentence was removed.
