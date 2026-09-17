@@ -57,6 +57,11 @@
       <button type="button" id="settingsBtn" class="chordio-sidebar-action settings-action"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></button>
       <button type="button" class="chordio-sidebar-action" data-sidebar-quick="help"><span class="quick-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span><span>Help & Shortcuts</span></button>
       <button type="button" class="chordio-sidebar-action" data-sidebar-quick="import"><span class="quick-icon"><i class="fa-solid fa-link" aria-hidden="true"></i></span><span>Import Song</span></button>
+      <div class="chordio-bible-day" aria-label="Bible Verse of the Day">
+        <div class="chordio-bible-day-head"><i class="fa-solid fa-book-bible" aria-hidden="true"></i><span>BIBLE VERSE OF THE DAY</span></div>
+        <div id="sidebarBibleVerseText" class="chordio-bible-day-text">“Trust in the LORD with all your heart.”</div>
+        <div id="sidebarBibleVerseRef" class="chordio-bible-day-ref">Proverbs 3:5</div>
+      </div>
     </div>`;
     side.addEventListener('click',e=>{
       const b=e.target.closest('[data-sidebar-quick],#settingsBtn'); if(!b)return;
@@ -180,4 +185,19 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 (function(){
 function presets(){document.querySelectorAll('[data-lyrics-preset]').forEach(b=>{if(b.dataset.v63preset)return;b.dataset.v63preset='1';b.onclick=()=>{const v={standard:[72,1.15,50],large:[90,1.1,50],projector:[100,1.05,50],reset:[100,1.15,50]}[b.dataset.lyricsPreset];if(!v)return;[['multiLyricsFontPx',v[0]],['multiLyricsSpacing',v[1]],['multiLyricsVertical',v[2]]].forEach(([id,x])=>{const el=document.getElementById(id);if(el)el.value=x});document.getElementById('multiLyricsSettingsApply')?.click()}})};setInterval(presets,1200);presets();
+})();
+
+
+(function initSidebarBibleVerse(){
+  const verses=[
+    ['“Trust in the LORD with all your heart.”','Proverbs 3:5'],
+    ['“The LORD is my shepherd; I shall not want.”','Psalm 23:1'],
+    ['“I can do all things through Christ which strengtheneth me.”','Philippians 4:13'],
+    ['“Be strong and of a good courage; be not afraid.”','Joshua 1:9'],
+    ['“The LORD is good; his mercy is everlasting.”','Psalm 100:5'],
+    ['“Commit thy works unto the LORD.”','Proverbs 16:3'],
+    ['“Let all that ye do be done with charity.”','1 Corinthians 16:14']
+  ];
+  function render(){const now=new Date();const day=Math.floor(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())/86400000);const v=verses[((day%verses.length)+verses.length)%verses.length];const t=document.getElementById('sidebarBibleVerseText'),r=document.getElementById('sidebarBibleVerseRef');if(t)t.textContent=v[0];if(r)r.textContent=v[1];}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render);else render();
 })();

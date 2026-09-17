@@ -669,3 +669,49 @@ body{background:var(--wh-bg)!important;color:var(--wh-ink)!important}
 .multi-screen-preview-card-head .multi-screen-live-status.online{color:#15803d!important}
 .multi-screen-preview-card-head .multi-screen-live-status.stale{color:#b45309!important}
 .multi-screen-preview-card-head .multi-screen-live-status:not(.online):not(.stale){color:#b42318!important}
+
+/* PHASE 8 — modal, table, Multi-Screen preview settings, and reliable counters */
+#songEditorPanel.song-editor-panel{
+  position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;
+  display:none!important;align-items:center!important;justify-content:center!important;
+  padding:22px!important;box-sizing:border-box!important;z-index:2147483600!important;
+  background:rgba(15,23,42,.62)!important;backdrop-filter:blur(4px)!important;overflow:auto!important;
+}
+#songEditorPanel.song-editor-panel.show{display:flex!important}
+#songEditorPanel .song-editor-shell{
+  width:min(1180px,96vw)!important;max-height:92vh!important;overflow:auto!important;
+  margin:0!important;background:#fff!important;border-radius:18px!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.32)!important;
+}
+/* Keep All Songs as one coherent dialog instead of separate floating columns. */
+#allSongsPanel.all-songs-panel{padding:18px!important;overflow:hidden!important}
+#allSongsPanel .all-songs-header,#allSongsPanel .all-songs-search,#allSongsPanel .all-songs-filterbar,#allSongsPanel .all-songs-table-wrapper{width:min(1220px,94vw)!important}
+#allSongsPanel .all-songs-table-wrapper{max-height:64vh!important;overflow:auto!important}
+#allSongsPanel .all-songs-table{min-width:0!important;width:100%!important;table-layout:fixed!important}
+#allSongsPanel .all-songs-table th:nth-child(1),#allSongsPanel .all-songs-table td:nth-child(1){width:5%!important}
+#allSongsPanel .all-songs-table th:nth-child(2),#allSongsPanel .all-songs-table td:nth-child(2){width:28%!important}
+#allSongsPanel .all-songs-table th:nth-child(3),#allSongsPanel .all-songs-table td:nth-child(3){width:17%!important}
+#allSongsPanel .all-songs-table th:nth-child(4),#allSongsPanel .all-songs-table td:nth-child(4){width:13%!important}
+#allSongsPanel .all-songs-table th:nth-child(5),#allSongsPanel .all-songs-table td:nth-child(5){width:12%!important}
+#allSongsPanel .all-songs-table th:nth-child(6),#allSongsPanel .all-songs-table td:nth-child(6){width:8%!important}
+#allSongsPanel .all-songs-table th:nth-child(7),#allSongsPanel .all-songs-table td:nth-child(7){width:17%!important}
+#allSongsPanel .all-songs-table td:last-child{white-space:normal!important;overflow:visible!important}
+#allSongsPanel .song-actions-cell{display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:wrap!important}
+#allSongsPanel .song-actions-cell>a,#allSongsPanel .song-actions-cell>button{flex:0 0 auto!important}
+
+.multi-screen-preview-card{position:relative!important;overflow:visible!important}
+.multi-preview-card-settings{display:none!important;padding:9px!important;border-top:1px solid #e5e7eb!important;background:#f8fafc!important}
+.multi-preview-card-settings.open{display:block!important}
+.multi-preview-card-settings-row{display:flex!important;align-items:center!important;gap:7px!important;flex-wrap:wrap!important}
+.multi-preview-card-settings select,.multi-preview-card-settings button{height:34px!important;border:1px solid #cfd7df!important;border-radius:7px!important;background:#fff!important;padding:0 9px!important;font-size:11px!important;font-weight:800!important}
+.multi-preview-card-settings button{background:#172a3a!important;color:#fff!important;border-color:#172a3a!important;cursor:pointer!important}
+.multi-preview-card-settings label{font-size:11px!important;font-weight:800!important;display:inline-flex!important;align-items:center!important;gap:5px!important}
+.chordio-bible-day{margin-top:12px;padding:12px;border:1px solid #dbe3ea;border-radius:12px;background:linear-gradient(145deg,#fff,#f7fafc);box-shadow:0 4px 14px rgba(15,23,42,.05)}
+.chordio-bible-day-head{display:flex;align-items:center;gap:7px;font-size:9px;font-weight:900;letter-spacing:.09em;color:#a47c00}.chordio-bible-day-text{margin-top:8px;font-size:12px;line-height:1.45;font-weight:700;color:#253746}.chordio-bible-day-ref{margin-top:6px;font-size:10px;font-weight:900;color:#64748b}
+/* Fix All Songs dialog structure: its direct sections must stack vertically. */
+#allSongsPanel.all-songs-panel{flex-direction:column!important;align-items:center!important;justify-content:center!important;}
+#allSongsPanel .all-songs-header{flex:0 0 auto!important}
+#allSongsPanel .all-songs-search{flex:0 0 auto!important}
+#allSongsPanel .all-songs-filterbar{flex:0 0 auto!important}
+#allSongsPanel .all-songs-table-wrapper{flex:0 1 auto!important}
+@media(max-width:800px){#allSongsPanel.all-songs-panel{justify-content:flex-start!important}}

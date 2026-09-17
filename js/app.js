@@ -976,8 +976,8 @@ function updateDashboard(){
     if(totalServices){
         totalServices.textContent = services.length;
     }
-    const totalVisits=document.getElementById("totalVisits");
-    if(totalVisits && window.chordioSiteVisits!=null) totalVisits.textContent=Number(window.chordioSiteVisits||0).toLocaleString();
+    const totalLibrarySongs=document.getElementById("totalLibrarySongs");
+    if(totalLibrarySongs) totalLibrarySongs.textContent=Array.isArray(songs)?songs.filter(x=>!isAnyDeletedSong(x)).length.toLocaleString():"0";
 
     const current =
         document.getElementById("currentService");
@@ -1182,7 +1182,7 @@ function renderServices() {
         let songsHtml = "";
         serviceSongs.forEach(function(song, index) {
             songsHtml += `
-                <div class="service-song" draggable="true" data-service-id="${escapeHtml(service.id)}" data-song-index="${index}">
+                <div class="service-song" draggable="true" data-service-id="${escapeHtml(service.id)}" data-song-index="${index}" data-song-instance="${escapeHtml(song._chordioInstanceId || `${serviceSongIdentity(song)}::${index}`)}">
                     <div class="service-song-drag" title="Drag to reorder" aria-label="Drag to reorder song">⋮⋮</div>
                     <div class="service-song-info">
                         <div class="service-song-title">🎵 ${escapeHtml(song.title || "Untitled Song")}</div>
@@ -1266,7 +1266,20 @@ function renderServices() {
             const list = row.parentElement;
             const rows = [...list.querySelectorAll('.service-song[draggable="true"]')];
             const original = Array.isArray(service.songs) ? [...service.songs] : [];
-            const reordered = rows.map(r => original[Number(r.dataset.songIndex)]).filter(Boolean);
+            // Rebuild by stable song-instance identity, not the old DOM index.
+            // This prevents the sequence from snapping back when rows were moved more than once.
+            const buckets = new Map();
+            original.forEach((item, idx) => {
+                const key = String(item?._chordioInstanceId || `${serviceSongIdentity(item)}::${idx}`);
+                if(!buckets.has(key)) buckets.set(key, []);
+                buckets.get(key).push(item);
+            });
+            const reordered = [];
+            rows.forEach(r => {
+                const key = String(r.dataset.songInstance || `${serviceSongIdentity(original[Number(r.dataset.songIndex)])}::${Number(r.dataset.songIndex)}`);
+                const bucket = buckets.get(key);
+                if(bucket?.length) reordered.push(bucket.shift());
+            });
             if(reordered.length !== original.length) return;
             service.songs = reordered;
             service.updatedAt = new Date().toISOString();
