@@ -1483,6 +1483,22 @@ async function saveMultiScreenQueue(queue){
     }
     return true;
 }
+window.chordioSyncServicePlannerOrder=async function(updatedSongs){
+    if(!service||!Array.isArray(updatedSongs))return false;
+    const currentQueue=multiScreenQueue();
+    const presentations=currentQueue.filter(x=>x.type==='presentation');
+    const nextSongs=updatedSongs.map((x,i)=>({type:'song',id:String(x?.id||''),item:x,sourceIndex:i})).filter(x=>x.id);
+    const next=[...nextSongs,...presentations];
+    service={...service,songs:updatedSongs};
+    try{localStorage.setItem('currentServiceSnapshot',JSON.stringify(service));}catch(_){}
+    await saveMultiScreenQueue(next);
+    const currentId=String(song?.id||'');
+    const currentIndex=updatedSongs.findIndex(x=>String(x?.id||'')===currentId);
+    if(currentIndex>=0){index=currentIndex;song={...updatedSongs[currentIndex],sections:normalizeSections(updatedSongs[currentIndex].sections),serviceKey:updatedSongs[currentIndex].serviceKey||updatedSongs[currentIndex].key,transpose:Number(updatedSongs[currentIndex].transpose||0)};transposeSteps=Number(song.transpose||0);multiScreenQueueIndex=multiScreenQueueIndexForSong(song.id,index);}
+    renderMultiServiceSongs();multiScreenBroadcast({serviceSongs:nextSongs.map(x=>x.item),serviceIndex:multiScreenQueueIndex});
+    return true;
+};
+
 function currentMultiQueueEntry(){
     const queue=multiScreenQueue();
     const qIndex=Number.isInteger(multiScreenQueueIndex)?multiScreenQueueIndex:multiScreenQueueIndexForSong(song?.id);
@@ -1613,7 +1629,7 @@ function renderMultiServiceSongs(){
         b.className="multi-service-song"+(i===multiScreenQueueIndex?" active":"")+(entry.type==="presentation"?" presentation-item":"");
         b.dataset.queueIndex=String(i);
         const isPresentation=entry.type==="presentation";
-        b.innerHTML=`<span class="song-drag" title="Drag to reorder">☷</span><span class="song-num">${i+1}</span><span class="song-name">${isPresentation?"📄 ":""}${esc(item.title||"Untitled")}</span><span class="song-meta">${isPresentation?"PRESENTATION":"Key: "+esc(item.serviceKey||item.key||item.originalKey||"—")}</span>${isPresentation?`<span class="song-note">${esc(String(item.presentationSlide?.text||"").replace(/\s+/g," ").slice(0,70))}</span>`:(item.presentationNote?`<span class="song-note">📝 ${esc(item.presentationNote)}</span>`:"")}${isPresentation?`<button type="button" class="multi-service-presentation-delete" title="Remove this presentation" aria-label="Remove presentation">✕</button>`:`<button type="button" class="multi-service-song-delete" title="Remove this song from the Service Planner" aria-label="Remove ${esc(item.title||"song")} from Service Planner">✕</button>`}`;
+        b.innerHTML=`<span class="song-drag" title="Drag to reorder">☷</span><span class="song-num">${String(i+1).padStart(2,"0")}</span><span class="song-name">${isPresentation?"📄 ":""}${esc(item.title||"Untitled")}</span><span class="song-meta">${isPresentation?"PRESENTATION":"Key: "+esc(item.serviceKey||item.key||item.originalKey||"—")}</span>${isPresentation?`<span class="song-note">${esc(String(item.presentationSlide?.text||"").replace(/\s+/g," ").slice(0,70))}</span>`:(item.presentationNote?`<span class="song-note">📝 ${esc(item.presentationNote)}</span>`:"")}${isPresentation?`<button type="button" class="multi-service-presentation-delete" title="Remove this presentation" aria-label="Remove presentation">✕</button>`:`<button type="button" class="multi-service-song-delete" title="Remove this song from the Service Planner" aria-label="Remove ${esc(item.title||"song")} from Service Planner">✕</button>`}`;
         b.addEventListener("click",async e=>{
             if(e.target.closest("button"))return;
             await selectMultiScreenQueueEntry(i);
@@ -1964,10 +1980,11 @@ function renderMultiScreenPreviews(){
         });
         const head=document.createElement("div");head.className="multi-screen-preview-card-head";
         const title=document.createElement("strong");title.textContent=`SCREEN ${n}`;
-        const mode=document.createElement("span");mode.textContent=multiScreenEnabled[n]===false?"HIDDEN":multiScreenModeLabel(multiScreenModes[n]);
+        const mode=document.createElement("span");mode.textContent=multiScreenEnabled[n]===false?"DISABLED":multiScreenModeLabel(multiScreenModes[n]);
+        const status=document.createElement("span");status.id=`multiScreenLiveStatus${n}`;status.className="multi-screen-live-status";status.textContent=multiScreenEnabled[n]===false?"● DISABLED":"● OFFLINE";
         const settingsBtn=document.createElement("button");settingsBtn.type="button";settingsBtn.className="multi-preview-settings-button";settingsBtn.textContent="⚙ SETTINGS";settingsBtn.setAttribute("data-preview-settings",String(n));
         settingsBtn.onclick=(ev)=>{ev.stopPropagation();const panel=document.getElementById(`multiScreenSettings${n}`);if(panel){document.querySelectorAll("#multiScreenControl .multi-screen-settings-panel.open").forEach(p=>{if(p!==panel)p.classList.remove("open")});panel.classList.toggle("open");}};
-        head.append(title,mode,settingsBtn);card.appendChild(head);
+        head.append(title,mode,status,settingsBtn);card.appendChild(head);
 
         const stage=document.createElement("div");stage.className="multi-screen-preview-stage";stage.title="Double-click to enlarge this screen";
         stage.ondblclick=(ev)=>{ev.preventDefault();ev.stopPropagation();multiScreenPreviewExpanded=(multiScreenPreviewExpanded===n?0:n);renderMultiScreenPreviews();};
@@ -2358,7 +2375,7 @@ function initMultiScreen(){
             multiScreenLastOutputState=normalized;
             renderMultiScreenOutput(normalized);
         };
-        window.addEventListener("message",e=>{if(e.data?.type==="chordio-multiscreen-state")acceptState(e.data);if(e.data?.type==="chordio-multiscreen-request")window.opener?.postMessage(multiScreenMessage(),"*");});
+        window.addEventListener("message",e=>{if(e.data?.type==="chordio-multiscreen-state")acceptState(e.data);if(e.data?.type==="chordio-multiscreen-request")window.opener?.postMessage(multiScreenMessage(),"*");if(e.data?.type==="chordio-multiscreen-heartbeat")try{localStorage.setItem(`chordioMultiScreenOutputHeartbeat:${multiScreenDisplayId}`,JSON.stringify({at:Number(e.data.at)||Date.now(),display:String(multiScreenDisplayId)}));}catch(_){} });
         multiScreenChannel?.addEventListener("message",e=>{if(e.data?.type==="chordio-multiscreen-state")acceptState(e.data);});
         window.addEventListener("storage",e=>{if(e.key==="chordioServiceSlidesBackground"||e.key==="chordioServiceSlidesBackgroundUpdatedAt"){try{if(multiScreenLastOutputState){const next={...multiScreenLastOutputState,serviceSlidesBackground:getMultiServiceSlidesBackground()};multiScreenLastOutputState=next;renderMultiScreenOutput(next);}}catch(_){}}});
         try{const scoped=JSON.parse(localStorage.getItem(`chordioMultiScreenOutputState:${multiScreenDisplayId}`)||"null");if(scoped&&(!expectedSongId||String(scoped?.song?.id||"")===expectedSongId))acceptState(scoped);if(!multiScreenLastOutputState){const cached=JSON.parse(localStorage.getItem("chordioMultiScreenState")||"null");if(cached&&(!expectedSongId||String(cached?.song?.id||"")===expectedSongId))acceptState(cached);}}catch(_){}

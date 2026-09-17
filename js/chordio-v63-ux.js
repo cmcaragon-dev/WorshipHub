@@ -45,7 +45,7 @@
     if(!side || side.dataset.chordioV65Sidebar==='1') return;
     side.dataset.chordioV65Sidebar='1';
     side.innerHTML=`<div class="chordio-sidebar-welcome">
-      <div class="chordio-sidebar-welcome-icon"><i class="fa-solid fa-hand-wave" aria-hidden="true"></i></div>
+      <div class="chordio-sidebar-welcome-icon modern-wave-hand" aria-hidden="true">👋</div>
       <div class="chordio-sidebar-welcome-text"><div class="chordio-sidebar-welcome-label">HELLO, WELCOME</div><div id="userName" class="chordio-sidebar-welcome-name">User</div></div>
     </div>
     <div class="chordio-sidebar-actions">
@@ -79,7 +79,7 @@
   function openMultiPicker(){
     let m=$('#chordioServicePicker'); if(!m){m=document.createElement('div');m.id='chordioServicePicker';m.className='chordio-modal';m.innerHTML=`<div class="chordio-dialog"><div class="chordio-dialog-head"><div><span>CHOOSE SERVICE</span><h3>Open Multi-Screen</h3></div><button type="button" data-close>✕</button></div><p class="chordio-dialog-help">Choose the Service Planner you want to control.</p><div id="chordioServicePickerList"></div></div>`;document.body.appendChild(m);m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('show')});m.querySelector('[data-close]').onclick=()=>m.classList.remove('show')}
     const list=Array.isArray(window.services)?window.services:[], box=$('#chordioServicePickerList');
-    box.innerHTML=list.length?list.map(s=>`<button class="chordio-service-choice" data-service-choice="${esc(s.id)}"><span><strong>${esc(s.name||'Unnamed Service')}</strong><small>${esc(s.date||'')} · ${Array.isArray(s.songs)?s.songs.length:0} songs</small></span><b>OPEN →</b></button>`).join(''):'<div class="chordio-empty">No Service Planner created yet.</div>';
+    box.innerHTML=list.length?list.map((s,i)=>`<button class="chordio-service-choice" data-service-choice="${esc(s.id)}"><span><strong><em class="chordio-service-choice-number">${String(i+1).padStart(2,'0')}</em>${esc(s.name||'Unnamed Service')}</strong><small>${esc(s.date||'')} · ${Array.isArray(s.songs)?s.songs.length:0} songs</small></span><b>OPEN →</b></button>`).join(''):'<div class="chordio-empty">No Service Planner created yet.</div>';
     $$('.chordio-service-choice',box).forEach(b=>b.onclick=()=>{const s=list.find(x=>String(x.id)===String(b.dataset.serviceChoice));if(!s)return;m.classList.remove('show');window.startMultiScreenService?.(s.id)});m.classList.add('show');
   }
 
@@ -94,20 +94,52 @@
     const selected=normalizedRoot+suffix;
     return keys.map(k=>({v:k+suffix,sel:k+suffix===selected}));
   }
-  function openNewService(){
-    let m=$('#chordioNewServiceModal'); if(!m){m=document.createElement('div');m.id='chordioNewServiceModal';m.className='chordio-modal';m.innerHTML=`<div class="chordio-dialog chordio-service-creator"><div class="chordio-dialog-head"><div><span>NEW SERVICE</span><h3>Create Service Planner</h3></div><button type="button" data-close>✕</button></div><div class="chordio-form-grid"><label>Service Title<input id="v63ServiceTitle" type="text" placeholder="e.g. Sunday Worship Service"></label><label>Service Date<input id="v63ServiceDate" type="date"></label></div><div class="v63-selected-head"><strong>ADD SONGS</strong><span>Choose songs and set the preferred service key.</span></div><input id="v63SongSearch" class="v63-song-search" type="search" placeholder="Search title, artist, category or language..."><div id="v63SongList" class="v63-song-list"></div><div class="v63-create-footer"><span id="v63SongCount">0 songs selected</span><button data-close class="secondary">CANCEL</button><button id="v63SaveService" class="primary">✓ SAVE SERVICE</button></div></div>`;document.body.appendChild(m);m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('show')});$$('[data-close]',m).forEach(b=>b.onclick=()=>m.classList.remove('show'));$('#v63SongSearch',m).addEventListener('input',()=>renderSongChoices(m));$('#v63SaveService',m).onclick=saveNewService;}
-    $('#v63ServiceTitle').value=''; $('#v63ServiceDate').value=new Date().toISOString().slice(0,10); renderSongChoices(m); m.classList.add('show'); setTimeout(()=>$('#v63ServiceTitle')?.focus(),80);
+  function openNewService(editService=null){
+    let m=$('#chordioNewServiceModal');
+    if(!m){
+      m=document.createElement('div');
+      m.id='chordioNewServiceModal';
+      m.className='chordio-modal';
+      m.innerHTML=`<div class="chordio-dialog chordio-service-creator"><div class="chordio-dialog-head"><div><span id="v63ServiceKicker">NEW SERVICE</span><h3 id="v63ServiceHeading">Create Service Planner</h3></div><button type="button" data-close>✕</button></div><div class="chordio-form-grid"><label>Service Title<input id="v63ServiceTitle" type="text" placeholder="e.g. Sunday Worship Service"></label><label>Service Date<input id="v63ServiceDate" type="date"></label></div><div class="v63-selected-head"><strong>SONGS IN SERVICE</strong><span>Choose songs and set the preferred service key.</span></div><input id="v63SongSearch" class="v63-song-search" type="search" placeholder="Search title, artist, category or language..."><div id="v63SongList" class="v63-song-list"></div><div class="v63-create-footer"><span id="v63SongCount">0 songs selected</span><button data-close class="secondary">CANCEL</button><button id="v63SaveService" class="primary">✓ SAVE SERVICE</button></div></div>`;
+      document.body.appendChild(m);
+      m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('show')});
+      $$('[data-close]',m).forEach(b=>b.onclick=()=>m.classList.remove('show'));
+      $('#v63SongSearch',m).addEventListener('input',()=>renderSongChoices(m));
+      $('#v63SaveService',m).onclick=saveNewService;
+    }
+    m.dataset.editServiceId=editService?.id ? String(editService.id) : '';
+    $('#v63ServiceKicker').textContent=editService?'EDIT SERVICE':'NEW SERVICE';
+    $('#v63ServiceHeading').textContent=editService?'Edit Service Planner':'Create Service Planner';
+    $('#v63SaveService').textContent=editService?'✓ SAVE CHANGES':'✓ SAVE SERVICE';
+    $('#v63ServiceTitle').value=editService?.name||'';
+    $('#v63ServiceDate').value=editService?.date||new Date().toISOString().slice(0,10);
+    $('#v63SongSearch').value='';
+    renderSongChoices(m,editService);
+    m.classList.add('show');
+    setTimeout(()=>$('#v63ServiceTitle')?.focus(),80);
   }
-  function renderSongChoices(m){const box=$('#v63SongList',m), q=String($('#v63SongSearch',m)?.value||'').toLowerCase();const list=(Array.isArray(window.songs)?window.songs:[]).filter(s=>{const t=[s.title,s.artist,s.category,s.language].join(' ').toLowerCase();return !q||t.includes(q)}).filter(s=>s?.sections?.length).slice().sort((a,b)=>String(a.title||'').localeCompare(String(b.title||'')));
-    box.innerHTML=list.map(s=>{const id=esc(s.id||s.file||s.title);const keys=keysFor(s);return `<div class="v63-song-choice" data-song-id="${id}"><label class="v63-song-check"><input type="checkbox"><span><strong>${esc(s.title||'Untitled')}</strong><small>${esc(s.artist||'')}</small></span></label><select class="v63-song-key">${keys.map(k=>`<option value="${esc(k.v)}" ${k.sel?'selected':''}>${esc(k.v)}</option>`).join('')}</select></div>`}).join('')||'<div class="chordio-empty">No structured songs found.</div>';
+  function openEditService(service){ openNewService(service); }
+  function renderSongChoices(m,editService=null){
+    const box=$('#v63SongList',m), q=String($('#v63SongSearch',m)?.value||'').toLowerCase();
+    const selectedSongs=Array.isArray(editService?.songs)?editService.songs:[];
+    const selectedCounts=new Map(selectedSongs.map(x=>[String(x?.id||x?.file||x?.title||''), (selectedSongs.filter(y=>String(y?.id||y?.file||y?.title||'')===String(x?.id||x?.file||x?.title||''))).length]));
+    const list=(Array.isArray(window.songs)?window.songs:[]).filter(s=>{const t=[s.title,s.artist,s.category,s.language].join(' ').toLowerCase();return !q||t.includes(q)}).filter(s=>s?.sections?.length).slice().sort((a,b)=>String(a.title||'').localeCompare(String(b.title||'')));
+    box.innerHTML=list.map(s=>{
+      const id=esc(s.id||s.file||s.title), key=String(s.id||s.file||s.title||''), existing=selectedSongs.find(x=>String(x?.id||x?.file||x?.title||'')===key), keys=keysFor(existing||s);
+      return `<div class="v63-song-choice" data-song-id="${id}"><label class="v63-song-check"><input type="checkbox" ${existing?'checked':''}><span><strong>${esc(s.title||'Untitled')}</strong><small>${esc(s.artist||'')}</small></span></label><select class="v63-song-key">${keys.map(k=>`<option value="${esc(k.v)}" ${String(existing?.serviceKey||'')===String(k.v)?'selected':k.sel?'selected':''}>${esc(k.v)}</option>`).join('')}</select></div>`;
+    }).join('')||'<div class="chordio-empty">No structured songs found.</div>';
     $$('.v63-song-choice input',box).forEach(i=>i.onchange=()=>{$('#v63SongCount').textContent=`${$$('.v63-song-choice input:checked',box).length} song${$$('.v63-song-choice input:checked',box).length===1?'':'s'} selected`});
+    $('#v63SongCount').textContent=`${$$('.v63-song-choice input:checked',box).length} song${$$('.v63-song-choice input:checked',box).length===1?'':'s'} selected`;
   }
   async function saveNewService(){
-    const title=String($('#v63ServiceTitle')?.value||'').trim(), date=$('#v63ServiceDate')?.value||''; if(!title)return toast('Enter a service title','error');
+    const title=String($('#v63ServiceTitle')?.value||'').trim(), date=$('#v63ServiceDate')?.value||'', editId=String($('#chordioNewServiceModal')?.dataset.editServiceId||'');
+    if(!title)return toast('Enter a service title','error');
     const rows=$$('.v63-song-choice input:checked'); if(!rows.length)return toast('Add at least one song','error');
-    const source=Array.isArray(window.songs)?window.songs:[]; const songsOut=rows.map(ch=>{const row=ch.closest('.v63-song-choice'), id=row.dataset.songId, s=source.find(x=>String(x.id||x.file||x.title)===id), originalKey=s?.originalKey||s?.key||'C', key=$('.v63-song-key',row)?.value||originalKey;return {id:s.id||String(Date.now()+Math.random()),title:s.title||'',artist:s.artist||'',file:s.file||'',category:s.category||'',language:s.language||'',key:s.key||originalKey,originalKey,serviceKey:key,transpose:0,youtube:s.youtube||'',customSong:s.customSong===true,sections:Array.isArray(s.sections)?JSON.parse(JSON.stringify(s.sections)):null,createdAt:s.createdAt||null,updatedAt:s.updatedAt||null};});
+    const source=Array.isArray(window.songs)?window.songs:[];
+    const songsOut=rows.map(ch=>{const row=ch.closest('.v63-song-choice'), id=row.dataset.songId, s=source.find(x=>String(x.id||x.file||x.title)===id), originalKey=s?.originalKey||s?.key||'C', key=$('.v63-song-key',row)?.value||originalKey;return {id:s.id||String(Date.now()+Math.random()),title:s.title||'',artist:s.artist||'',file:s.file||'',category:s.category||'',language:s.language||'',key:s.key||originalKey,originalKey,serviceKey:key,transpose:0,youtube:s.youtube||'',customSong:s.customSong===true,sections:Array.isArray(s.sections)?JSON.parse(JSON.stringify(s.sections)):null,createdAt:s.createdAt||null,updatedAt:s.updatedAt||null};});
     if(typeof window.chordioCreateService!=='function')return toast('Service save function is unavailable','error');
-    const ok=await window.chordioCreateService({name:title,date,songs:songsOut}); if(ok){$('#chordioNewServiceModal').classList.remove('show');toast('Service saved successfully');}
+    const ok=editId ? await window.chordioUpdateService?.(editId,{name:title,date,songs:songsOut}) : await window.chordioCreateService({name:title,date,songs:songsOut});
+    if(ok){$('#chordioNewServiceModal').classList.remove('show');toast(editId?'Service updated successfully':'Service saved successfully');}
   }
 
   function improveScreenPreview(){
@@ -124,7 +156,7 @@
   function addEditorDrag(){const root=$('#songEditorSections');if(!root)return;$$('.editor-section',root).forEach((sec,i)=>{sec.draggable=true;sec.classList.add('v63-draggable-section');if(!sec.dataset.v63bound){sec.dataset.v63bound='1';sec.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',String(i));sec.classList.add('v63-dragging')});sec.addEventListener('dragend',()=>sec.classList.remove('v63-dragging'));sec.addEventListener('dragover',e=>e.preventDefault());sec.addEventListener('drop',e=>{e.preventDefault();const from=Number(e.dataTransfer.getData('text/plain'));const to=Number(sec.dataset.sectionIndex);if(from===to||!window.WorshipHubSongEditor?.moveSection)return;window.WorshipHubSongEditor.moveSection(from,to)});}})}
   function init(){buildDashboard();buildSidebarQuickActions();improveScreenPreview();addEditorDrag();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-  window.chordioV63={openNewService,openMultiPicker};
+  window.chordioV63={openNewService,openEditService,openMultiPicker};
 })();
 
 /* V63 retained operator controls from V62 */

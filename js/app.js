@@ -1195,7 +1195,7 @@ function renderServices() {
                 </div>
                 <div id="serviceBody${escapeHtml(service.id)}" class="service-body">
                     <div class="service-action-bar">
-                        <button type="button" onclick="addSongsToService('${escapeHtml(service.id)}')">➕ Add Songs</button>
+                        <button type="button" class="edit-service-btn" onclick="editService('${escapeHtml(service.id)}')">✎ Edit Service</button>
                         <button type="button" onclick="startService('${escapeHtml(service.id)}')">▶ Start Service</button>
                         <button type="button" class="start-multi-screen-service-btn" onclick="startMultiScreenService('${escapeHtml(service.id)}')" title="Open Multi-Screen for this Service Planner">🖥 Multi-Screen</button>
                         <button type="button" onclick="printServiceSongs('${escapeHtml(service.id)}')"><i class="fas fa-print"></i> Print</button>
@@ -1247,7 +1247,14 @@ function renderServices() {
             const rows = [...list.querySelectorAll('.service-song[draggable="true"]')];
             const reordered = rows.map(r => service.songs[Number(r.dataset.songIndex)]).filter(Boolean);
             service.songs = reordered;
+            service.updatedAt = new Date().toISOString();
             await saveServicesCloud();
+            try {
+                if(String(localStorage.getItem("currentServiceId")||"")===String(service.id)){
+                    localStorage.setItem("currentServiceSnapshot",JSON.stringify(service));
+                    window.chordioSyncServicePlannerOrder?.(service.songs);
+                }
+            } catch(_) {}
             renderServices();
         });
     });
@@ -1292,6 +1299,13 @@ async function duplicateService(id){
     }
 }
 window.duplicateService = duplicateService;
+
+function editService(serviceId){
+    const target=services.find(s=>String(s.id)===String(serviceId));
+    if(!target){alert("Service not found.");return;}
+    if(window.chordioV63?.openEditService) window.chordioV63.openEditService(target);
+}
+window.editService=editService;
 
 function addSongsToService(serviceId){
 
@@ -2601,9 +2615,27 @@ window.chordioCreateService = async function(payload){
         const idx=services.findIndex(s=>String(s.id)===service.id);
         if(idx>=0) services[idx]={...service}; else services.push({...service});
         services.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
-        window.services=services;
-        renderServices();
-        try{const fresh=await loadServices(currentUser.uid);if(Array.isArray(fresh)){services=fresh;services.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));window.services=services;renderServices();}}catch(_){ }
+        window.services=services; renderServices();
+        try{const fresh=await loadServices(currentUser.uid);if(Array.isArray(fresh)){services=fresh;services.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));window.services=services;renderServices();}}catch(_){}
         return true;
     }catch(error){console.error('V63 create service error',error);alert('Unable to create service.');return false;}
+};
+
+window.chordioUpdateService = async function(serviceId,payload){
+    if(!currentUser){ alert('Please login first.'); return false; }
+    const idx=services.findIndex(s=>String(s.id)===String(serviceId));
+    if(idx<0){ alert('Service not found.'); return false; }
+    const existing=services[idx];
+    const service={...existing,id:String(serviceId),name:String(payload?.name||existing.name||'').trim(),date:String(payload?.date||''),songs:Array.isArray(payload?.songs)?payload.songs:[],updatedAt:new Date().toISOString()};
+    if(!service.name)return false;
+    try{
+        await saveService(currentUser.uid,service);
+        services[idx]=service; window.services=services; renderServices();
+        if(String(localStorage.getItem('currentServiceId')||'')===String(service.id)){
+            localStorage.setItem('currentServiceSnapshot',JSON.stringify(service));
+            window.chordioSyncServicePlannerOrder?.(service.songs);
+        }
+        try{const fresh=await loadServices(currentUser.uid);if(Array.isArray(fresh)){services=fresh;window.services=services;renderServices();}}catch(_){}
+        return true;
+    }catch(error){console.error('CHORDIO update service error',error);alert('Unable to update Service Planner.');return false;}
 };
