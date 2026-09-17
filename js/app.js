@@ -19,7 +19,8 @@ import {
     getDocs,
     setDoc,
     deleteDoc,
-    serverTimestamp
+    serverTimestamp,
+    increment
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
@@ -363,6 +364,22 @@ const STORAGE_KEYS = {
    FIREBASE AUTHENTICATION
 ===================================== */
 
+async function recordSiteVisit(){
+    const countedKey='chordioSiteVisitCounted';
+    if(sessionStorage.getItem(countedKey)==='1') return;
+    try{
+        const ref=doc(db,'appStats','site');
+        await setDoc(ref,{visits:increment(1),updatedAt:serverTimestamp()},{merge:true});
+        sessionStorage.setItem(countedKey,'1');
+        const snap=await getDoc(ref);
+        window.chordioSiteVisits=Number(snap.data()?.visits||0);
+        updateDashboard();
+    }catch(error){console.warn('Unable to record site visit:',error);}
+}
+async function loadSiteVisitCount(){
+    try{const snap=await getDoc(doc(db,'appStats','site'));window.chordioSiteVisits=Number(snap.data()?.visits||0);updateDashboard();}catch(error){console.warn('Unable to load site visits:',error);}
+}
+
 onAuthStateChanged(auth, async function(user) {
 
     console.log("Firebase authentication state:", user);
@@ -399,6 +416,8 @@ onAuthStateChanged(auth, async function(user) {
         if (typeof renderAllSongsTable === "function") renderAllSongsTable(songs);
         if (typeof renderServices === "function") renderServices();
         if (typeof updateDashboard === "function") updateDashboard();
+        await loadSiteVisitCount();
+        await recordSiteVisit();
         return;
     }
 
@@ -411,6 +430,8 @@ onAuthStateChanged(auth, async function(user) {
 
     currentUser = user;
     await loadCurrentUserProfile();
+    await loadSiteVisitCount();
+    await recordSiteVisit();
     await migrateLocalDeletedTitlesToFirebase();
     // Sync the shared song library only after deletion migration. This is the
     // single authoritative /songs read for this login, preventing the page
@@ -953,11 +974,10 @@ function updateDashboard(){
         document.getElementById("totalServices");
 
     if(totalServices){
-
-        totalServices.textContent =
-            services.length;
-
+        totalServices.textContent = services.length;
     }
+    const totalVisits=document.getElementById("totalVisits");
+    if(totalVisits && window.chordioSiteVisits!=null) totalVisits.textContent=Number(window.chordioSiteVisits||0).toLocaleString();
 
     const current =
         document.getElementById("currentService");
@@ -1245,16 +1265,19 @@ function renderServices() {
             if(!service) return;
             const list = row.parentElement;
             const rows = [...list.querySelectorAll('.service-song[draggable="true"]')];
-            const reordered = rows.map(r => service.songs[Number(r.dataset.songIndex)]).filter(Boolean);
+            const original = Array.isArray(service.songs) ? [...service.songs] : [];
+            const reordered = rows.map(r => original[Number(r.dataset.songIndex)]).filter(Boolean);
+            if(reordered.length !== original.length) return;
             service.songs = reordered;
             service.updatedAt = new Date().toISOString();
-            await saveServicesCloud();
-            try {
-                if(String(localStorage.getItem("currentServiceId")||"")===String(service.id)){
-                    localStorage.setItem("currentServiceSnapshot",JSON.stringify(service));
-                    window.chordioSyncServicePlannerOrder?.(service.songs);
-                }
-            } catch(_) {}
+            const ok = await saveServicesCloud();
+            if(!ok){ service.songs=original; renderServices(); alert('Unable to save the new song sequence. Please try again.'); return; }
+            // Keep every open/reopened Multi-Screen session on the same order.
+            const activeId=String(localStorage.getItem('currentServiceId')||'');
+            if(activeId===String(service.id)){
+                try{localStorage.setItem('currentServiceSnapshot',JSON.stringify(service));}catch(_){}
+                window.chordioSyncServicePlannerOrder?.(service.songs);
+            }
             renderServices();
         });
     });
@@ -1299,13 +1322,6 @@ async function duplicateService(id){
     }
 }
 window.duplicateService = duplicateService;
-
-function editService(serviceId){
-    const target=services.find(s=>String(s.id)===String(serviceId));
-    if(!target){alert("Service not found.");return;}
-    if(window.chordioV63?.openEditService) window.chordioV63.openEditService(target);
-}
-window.editService=editService;
 
 function addSongsToService(serviceId){
 
@@ -2604,6 +2620,29 @@ window.exitPresentation = function () {
     );
 };
 
+function editService(serviceId){
+    const target=services.find(s=>String(s.id)===String(serviceId));
+    if(!target){alert('Service Planner not found.');return;}
+    if(window.chordioV63?.openEditService) window.chordioV63.openEditService(target);
+}
+window.editService=editService;
+
+window.chordioUpdateService = async function(serviceId,payload){
+    if(!currentUser){alert('Please login first.');return false;}
+    const idx=services.findIndex(s=>String(s.id)===String(serviceId));
+    if(idx<0){alert('Service Planner not found.');return false;}
+    const updated={...services[idx],name:String(payload?.name||services[idx].name||'').trim(),date:String(payload?.date||''),songs:Array.isArray(payload?.songs)?payload.songs:[],updatedAt:new Date().toISOString()};
+    if(!updated.name)return false;
+    try{
+        await saveService(currentUser.uid,updated);
+        services[idx]=updated;window.services=services;
+        try{localStorage.setItem('currentServiceSnapshot',JSON.stringify(updated));}catch(_){}
+        if(String(localStorage.getItem('currentServiceId')||'')===String(updated.id)) window.chordioSyncServicePlannerOrder?.(updated.songs);
+        renderServices();updateDashboard();
+        return true;
+    }catch(error){console.error('Service update error',error);alert('Unable to update Service Planner.');return false;}
+};
+
 // CHORDIO V63 — dashboard New Service creator bridge
 window.chordioCreateService = async function(payload){
     if(!currentUser){ alert('Please login first.'); return false; }
@@ -2615,27 +2654,9 @@ window.chordioCreateService = async function(payload){
         const idx=services.findIndex(s=>String(s.id)===service.id);
         if(idx>=0) services[idx]={...service}; else services.push({...service});
         services.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
-        window.services=services; renderServices();
-        try{const fresh=await loadServices(currentUser.uid);if(Array.isArray(fresh)){services=fresh;services.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));window.services=services;renderServices();}}catch(_){}
+        window.services=services;
+        renderServices();
+        try{const fresh=await loadServices(currentUser.uid);if(Array.isArray(fresh)){services=fresh;services.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));window.services=services;renderServices();}}catch(_){ }
         return true;
     }catch(error){console.error('V63 create service error',error);alert('Unable to create service.');return false;}
-};
-
-window.chordioUpdateService = async function(serviceId,payload){
-    if(!currentUser){ alert('Please login first.'); return false; }
-    const idx=services.findIndex(s=>String(s.id)===String(serviceId));
-    if(idx<0){ alert('Service not found.'); return false; }
-    const existing=services[idx];
-    const service={...existing,id:String(serviceId),name:String(payload?.name||existing.name||'').trim(),date:String(payload?.date||''),songs:Array.isArray(payload?.songs)?payload.songs:[],updatedAt:new Date().toISOString()};
-    if(!service.name)return false;
-    try{
-        await saveService(currentUser.uid,service);
-        services[idx]=service; window.services=services; renderServices();
-        if(String(localStorage.getItem('currentServiceId')||'')===String(service.id)){
-            localStorage.setItem('currentServiceSnapshot',JSON.stringify(service));
-            window.chordioSyncServicePlannerOrder?.(service.songs);
-        }
-        try{const fresh=await loadServices(currentUser.uid);if(Array.isArray(fresh)){services=fresh;window.services=services;renderServices();}}catch(_){}
-        return true;
-    }catch(error){console.error('CHORDIO update service error',error);alert('Unable to update Service Planner.');return false;}
 };

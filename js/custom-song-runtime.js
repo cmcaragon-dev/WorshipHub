@@ -1483,22 +1483,6 @@ async function saveMultiScreenQueue(queue){
     }
     return true;
 }
-window.chordioSyncServicePlannerOrder=async function(updatedSongs){
-    if(!service||!Array.isArray(updatedSongs))return false;
-    const currentQueue=multiScreenQueue();
-    const presentations=currentQueue.filter(x=>x.type==='presentation');
-    const nextSongs=updatedSongs.map((x,i)=>({type:'song',id:String(x?.id||''),item:x,sourceIndex:i})).filter(x=>x.id);
-    const next=[...nextSongs,...presentations];
-    service={...service,songs:updatedSongs};
-    try{localStorage.setItem('currentServiceSnapshot',JSON.stringify(service));}catch(_){}
-    await saveMultiScreenQueue(next);
-    const currentId=String(song?.id||'');
-    const currentIndex=updatedSongs.findIndex(x=>String(x?.id||'')===currentId);
-    if(currentIndex>=0){index=currentIndex;song={...updatedSongs[currentIndex],sections:normalizeSections(updatedSongs[currentIndex].sections),serviceKey:updatedSongs[currentIndex].serviceKey||updatedSongs[currentIndex].key,transpose:Number(updatedSongs[currentIndex].transpose||0)};transposeSteps=Number(song.transpose||0);multiScreenQueueIndex=multiScreenQueueIndexForSong(song.id,index);}
-    renderMultiServiceSongs();multiScreenBroadcast({serviceSongs:nextSongs.map(x=>x.item),serviceIndex:multiScreenQueueIndex});
-    return true;
-};
-
 function currentMultiQueueEntry(){
     const queue=multiScreenQueue();
     const qIndex=Number.isInteger(multiScreenQueueIndex)?multiScreenQueueIndex:multiScreenQueueIndexForSong(song?.id);
@@ -1526,6 +1510,26 @@ async function saveServiceSongs(updatedSongs){
     if(serviceId&&auth.currentUser){try{await setDoc(doc(db,"users",auth.currentUser.uid,"services",String(serviceId)),{songs:normalizedSongs,updatedAt:serverTimestamp()},{merge:true});return true;}catch(error){console.warn("Unable to save service songs:",error);return false;}}
     return true;
 }
+
+window.chordioSyncServicePlannerOrder = async function(updatedSongs){
+    if(!service || !Array.isArray(updatedSongs)) return false;
+    const normalized=updatedSongs.map((x,i)=>({...x,_chordioInstanceId:x?._chordioInstanceId||createServiceSongInstanceId(i)}));
+    service={...service,songs:normalized};
+    try{localStorage.setItem("currentServiceSnapshot",JSON.stringify(service));}catch(_){ }
+    const currentQueue=multiScreenQueue();
+    const presentations=currentQueue.filter(x=>x.type==="presentation");
+    const songQueue=normalized.map((item,i)=>({type:"song",id:String(item?.id||""),item,sourceIndex:i}));
+    const rebuilt=[...songQueue,...presentations];
+    await saveMultiScreenQueue(rebuilt);
+    const serviceId=localStorage.getItem("currentServiceId");
+    if(serviceId&&auth.currentUser){try{await setDoc(doc(db,"users",auth.currentUser.uid,"services",String(serviceId)),{songs:normalized,multiScreenQueue:rebuilt.map(x=>x.type==="presentation"?{type:"presentation",id:String(x.id||"")}:{type:"song",id:String(x.id||""),songIndex:Number(x.sourceIndex)}),updatedAt:serverTimestamp()},{merge:true});}catch(error){console.warn("Unable to sync Service Planner order to Multi-Screen:",error);return false;}}
+    if(Number.isInteger(index)&&index>=normalized.length) index=Math.max(0,normalized.length-1);
+    if(normalized[index]) song={...normalized[index],sections:normalizeSections(normalized[index].sections),serviceKey:normalized[index].serviceKey||normalized[index].key,transpose:Number(normalized[index].transpose||0)};
+    multiScreenQueueIndex=multiScreenQueueIndexForSong(song?.id,index);
+    renderMultiServiceSongs();
+    multiScreenBroadcast({});
+    return true;
+};
 
 let multiSongLibraryCache=null;
 async function refreshMultiSongLibrary(){
@@ -1666,7 +1670,22 @@ function renderMultiServiceSongs(){
             e.preventDefault();e.stopPropagation();b.classList.remove("drag-over");
             const from=Number(e.dataTransfer.getData("text/plain")),to=i;if(!Number.isInteger(from)||from===to)return;
             const next=[...multiScreenQueue()];const [moved]=next.splice(from,1);next.splice(to,0,moved);
-            await saveMultiScreenQueue(next);multiScreenQueueIndex=to;renderMultiScreenControl();multiScreenBroadcast({});
+            // Reorder the actual Service Planner songs to match the Multi-Screen sequence.
+            const songEntries=next.filter(x=>x.type==="song");
+            const currentSongs=Array.isArray(service?.songs)?[...service.songs]:[];
+            const reorderedSongs=songEntries.map(x=>currentSongs[Number(x.sourceIndex)]).filter(Boolean);
+            if(reorderedSongs.length===currentSongs.length){
+                service={...service,songs:reorderedSongs};
+                await saveServiceSongs(reorderedSongs);
+                try{localStorage.setItem("currentServiceSnapshot",JSON.stringify(service));}catch(_){}
+            }
+            // Rebuild source indexes after the reorder and preserve presentation entries.
+            const rebuilt=next.map(x=>{
+                if(x.type!=="song") return x;
+                const idx=reorderedSongs.findIndex(s=>String(s?._chordioInstanceId||s?.id||"")===String(x.item?._chordioInstanceId||x.item?.id||""));
+                return {...x,sourceIndex:idx>=0?idx:x.sourceIndex};
+            });
+            await saveMultiScreenQueue(rebuilt);multiScreenQueueIndex=to;renderMultiScreenControl();multiScreenBroadcast({});
         });
         box.appendChild(b);
     });
@@ -1980,7 +1999,7 @@ function renderMultiScreenPreviews(){
         });
         const head=document.createElement("div");head.className="multi-screen-preview-card-head";
         const title=document.createElement("strong");title.textContent=`SCREEN ${n}`;
-        const mode=document.createElement("span");mode.textContent=multiScreenEnabled[n]===false?"DISABLED":multiScreenModeLabel(multiScreenModes[n]);
+        const mode=document.createElement("span");mode.textContent=multiScreenEnabled[n]===false?"HIDDEN":multiScreenModeLabel(multiScreenModes[n]);
         const status=document.createElement("span");status.id=`multiScreenLiveStatus${n}`;status.className="multi-screen-live-status";status.textContent=multiScreenEnabled[n]===false?"● DISABLED":"● OFFLINE";
         const settingsBtn=document.createElement("button");settingsBtn.type="button";settingsBtn.className="multi-preview-settings-button";settingsBtn.textContent="⚙ SETTINGS";settingsBtn.setAttribute("data-preview-settings",String(n));
         settingsBtn.onclick=(ev)=>{ev.stopPropagation();const panel=document.getElementById(`multiScreenSettings${n}`);if(panel){document.querySelectorAll("#multiScreenControl .multi-screen-settings-panel.open").forEach(p=>{if(p!==panel)p.classList.remove("open")});panel.classList.toggle("open");}};
@@ -2375,7 +2394,7 @@ function initMultiScreen(){
             multiScreenLastOutputState=normalized;
             renderMultiScreenOutput(normalized);
         };
-        window.addEventListener("message",e=>{if(e.data?.type==="chordio-multiscreen-state")acceptState(e.data);if(e.data?.type==="chordio-multiscreen-request")window.opener?.postMessage(multiScreenMessage(),"*");if(e.data?.type==="chordio-multiscreen-heartbeat")try{localStorage.setItem(`chordioMultiScreenOutputHeartbeat:${multiScreenDisplayId}`,JSON.stringify({at:Number(e.data.at)||Date.now(),display:String(multiScreenDisplayId)}));}catch(_){} });
+        window.addEventListener("message",e=>{if(e.data?.type==="chordio-multiscreen-state")acceptState(e.data);if(e.data?.type==="chordio-multiscreen-request")window.opener?.postMessage(multiScreenMessage(),"*");});
         multiScreenChannel?.addEventListener("message",e=>{if(e.data?.type==="chordio-multiscreen-state")acceptState(e.data);});
         window.addEventListener("storage",e=>{if(e.key==="chordioServiceSlidesBackground"||e.key==="chordioServiceSlidesBackgroundUpdatedAt"){try{if(multiScreenLastOutputState){const next={...multiScreenLastOutputState,serviceSlidesBackground:getMultiServiceSlidesBackground()};multiScreenLastOutputState=next;renderMultiScreenOutput(next);}}catch(_){}}});
         try{const scoped=JSON.parse(localStorage.getItem(`chordioMultiScreenOutputState:${multiScreenDisplayId}`)||"null");if(scoped&&(!expectedSongId||String(scoped?.song?.id||"")===expectedSongId))acceptState(scoped);if(!multiScreenLastOutputState){const cached=JSON.parse(localStorage.getItem("chordioMultiScreenState")||"null");if(cached&&(!expectedSongId||String(cached?.song?.id||"")===expectedSongId))acceptState(cached);}}catch(_){}

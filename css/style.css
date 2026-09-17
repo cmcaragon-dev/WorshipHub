@@ -991,7 +991,3 @@ body.service-planner-open:before{content:"";position:fixed;inset:0;background:rg
 .chordio-service-planner-head-actions button{border:1px solid #d7dfe6;background:#fff;color:#263644;border-radius:9px;min-height:34px;padding:7px 11px;font-weight:800;cursor:pointer}
 .chordio-service-planner-head-actions button:hover{border-color:#bd9a32;box-shadow:0 3px 10px rgba(15,31,46,.08)}
 @media(max-width:640px){.chordio-service-planner-head-actions button:first-child{font-size:0}.chordio-service-planner-head-actions button:first-child::before{content:'＋';font-size:18px}.chordio-service-planner-head-actions{gap:5px}}
-
-/* Final popup behavior: All Songs must open as a modal, not continue below the page. */
-#allSongsPanel{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;box-sizing:border-box!important;z-index:2147483000!important;display:none!important;align-items:center!important;justify-content:center!important;background:rgba(15,23,42,.58)!important;backdrop-filter:blur(4px)!important;padding:24px!important;overflow:auto!important}
-#allSongsPanel.show{display:flex!important}
