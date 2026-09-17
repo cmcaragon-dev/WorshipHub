@@ -124,23 +124,26 @@ function getOriginalKey(song) {
 // etc. after the Presentation is opened. Firebase is only a fallback when the
 // page has not rendered a Service Key yet.
 function getServiceKey(song) {
-    const pageKey = qs("serviceKey")?.textContent?.trim();
-    if (pageKey && !/^service\s*key\s*:/i.test(pageKey)) {
-        return normalizeKey(pageKey);
-    }
-
-    const readyKey = window.__worshipHubServiceKeyReady
-        ? (window.currentSong?.serviceKey || window.currentSong?.key)
-        : null;
-
+    // IMPORTANT: The Service Planner occurrence is authoritative.
+    // Do NOT read the rendered song-page key first: that value can still be
+    // the original/master key while the planner occurrence has been saved
+    // with a different transposed Service Key.
     const serviceIndex = Number(localStorage.getItem("currentSongIndex") || 0);
-    const firebaseServiceKey = service?.songs?.[serviceIndex]?.serviceKey
-        || service?.songs?.[serviceIndex]?.key;
+    const firebaseServiceSong = Array.isArray(service?.songs)
+        ? service.songs[serviceIndex]
+        : null;
+    const firebaseServiceKey = firebaseServiceSong?.serviceKey
+        || firebaseServiceSong?.key;
+
+    const currentSongServiceKey = window.currentSong?.serviceKey;
+    const songServiceKey = song?.serviceKey;
+    const pageKey = qs("serviceKey")?.textContent?.trim();
 
     return normalizeKey(
-        readyKey ||
         firebaseServiceKey ||
-        song?.serviceKey ||
+        currentSongServiceKey ||
+        songServiceKey ||
+        (pageKey && !/^service\s*key\s*:/i.test(pageKey) ? pageKey : null) ||
         song?.currentKey ||
         song?.key ||
         getOriginalKey(song) ||
@@ -551,15 +554,24 @@ window.startPresentation = async function startPresentation(options = {}) {
         if (found >= 0) {
             serviceIndex = found;
             // Merge service data with the full page song so category/original key are retained.
-            // If the Service Planner key has been restored, keep
-            // that exact key authoritative instead of allowing a stale service copy.
-            const mergedServiceSong = { ...pageSong, ...service.songs[found] };
-            if (window.__worshipHubServiceKeyReady && window.currentSong?.serviceKey) {
+            // The saved Service Planner occurrence is authoritative for the
+            // displayed/transposed key. Never overwrite it with the key shown
+            // by the song page (which may still represent the master/original key).
+            const serviceOccurrence = service.songs[found];
+            const mergedServiceSong = { ...pageSong, ...serviceOccurrence };
+            const savedServiceKey = serviceOccurrence?.serviceKey || serviceOccurrence?.key;
+            if (savedServiceKey) {
+                mergedServiceSong.serviceKey = savedServiceKey;
+                mergedServiceSong.key = savedServiceKey;
+            } else if (window.__worshipHubServiceKeyReady && window.currentSong?.serviceKey) {
+                // Fallback only when the saved occurrence has no Service Key.
                 mergedServiceSong.serviceKey = window.currentSong.serviceKey;
                 mergedServiceSong.key = window.currentSong.serviceKey;
                 mergedServiceSong.transpose = window.currentSong.transpose;
-                mergedServiceSong.originalKey = window.currentSong.originalKey || mergedServiceSong.originalKey;
             }
+            mergedServiceSong.originalKey = serviceOccurrence?.originalKey
+                || window.currentSong?.originalKey
+                || mergedServiceSong.originalKey;
             currentSong = normalizeSong(mergedServiceSong);
         }
     }
