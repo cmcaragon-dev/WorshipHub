@@ -1961,15 +1961,35 @@ function fitMultiLyricsPreviewToStage(stage, element, settings){
 
 function initUnifiedMultiScreenOutputSettings(){
     const btn=document.getElementById("multiScreenOutputSettingsBtn");
-    const drawer=document.querySelector("#multiScreenControl .multi-output-settings-in-preview");
-    if(!btn||!drawer||btn.dataset.bound==="1")return;
+    let drawer=document.querySelector(".multi-output-settings-in-preview");
+    if(!btn||!drawer)return;
+
+    // Phase 16: move the real settings panel to BODY so parent preview CSS/overflow
+    // can never hide or clip it. Keep the same DOM so existing setting controls work.
+    if(drawer.parentElement!==document.body){
+        document.body.appendChild(drawer);
+    }
+    drawer.classList.add("chordio-screen-settings-popup");
+
+    if(btn.dataset.bound==="1")return;
     btn.dataset.bound="1";
-    const close=()=>{drawer.classList.remove("phase12-open");document.body.classList.remove("chordio-output-settings-open");};
-    btn.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();drawer.classList.add("phase12-open");document.body.classList.add("chordio-output-settings-open");});
-    // Clicking the dark area outside the settings closes the popup automatically.
+
+    const close=()=>{
+        drawer.classList.remove("phase12-open","phase16-open");
+        document.body.classList.remove("chordio-output-settings-open");
+    };
+    const open=()=>{
+        drawer.classList.add("phase16-open");
+        document.body.classList.add("chordio-output-settings-open");
+    };
+
+    btn.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();open();});
+    // Clicking the overlay/backdrop closes the popup.
     drawer.addEventListener("click",ev=>{if(ev.target===drawer)close();});
-    drawer.querySelectorAll(".multi-popup-close,.multi-screen-settings-close").forEach(b=>b.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();close();}));
-    document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&drawer.classList.contains("phase12-open"))close();});
+    drawer.querySelectorAll(".multi-popup-close,.multi-screen-settings-close").forEach(b=>
+        b.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();close();})
+    );
+    document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&drawer.classList.contains("phase16-open"))close();});
 }
 
 function renderMultiScreenPreviews(){
