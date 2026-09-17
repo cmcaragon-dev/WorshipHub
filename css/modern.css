@@ -907,3 +907,21 @@ body{background:var(--wh-bg)!important;color:var(--wh-ink)!important}
 #songEditorPanel .editor-chord-input:focus + .editor-lyric-input{box-shadow:inset 0 0 0 2px rgba(37,99,235,.08)!important}
 #songEditorPanel .editor-chord-input{scrollbar-width:thin!important}
 #songEditorPanel .editor-lyric-input{scrollbar-width:thin!important}
+
+/* CHORDIO — Service song ADD controls and independent duplicate occurrences */
+.v63-song-choice{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid rgba(127,127,127,.18);border-radius:12px;margin:7px 0;background:rgba(255,255,255,.02)}
+.v63-song-choice-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.v63-song-choice-info strong{font-size:14px}
+.v63-song-choice-info small{opacity:.65;font-size:12px}
+.v63-add-song-btn{border:0;border-radius:9px;padding:8px 14px;font-weight:700;cursor:pointer;white-space:nowrap}
+.v63-add-song-btn.is-maxed{opacity:.55;cursor:not-allowed}
+.v63-selected-songs{margin:10px 0 14px}
+.v63-selected-song{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:10px;margin:6px 0;background:rgba(127,127,127,.08);border:1px solid rgba(127,127,127,.15)}
+.v63-selected-song-num{width:25px;height:25px;display:grid;place-items:center;border-radius:50%;font-size:11px;font-weight:800;background:rgba(127,127,127,.15)}
+.v63-selected-song-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.v63-selected-song-info strong{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v63-selected-song-info small{font-size:11px;opacity:.6}
+.v63-selected-song .v63-song-key{min-width:78px}
+.v63-remove-song{border:0;background:transparent;font-size:16px;cursor:pointer;opacity:.7;padding:5px 8px}
+.v63-remove-song:hover{opacity:1}
+.v63-selected-empty{padding:12px;border:1px dashed rgba(127,127,127,.3);border-radius:10px;text-align:center;opacity:.65;font-size:12px}
