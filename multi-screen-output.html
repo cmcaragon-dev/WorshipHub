@@ -278,7 +278,7 @@ function render(msg){
 
   $('title').textContent=song.title||'CHORDIO';
   $('artist').textContent=song.artist||'';
-  const key=state.serviceKey||song.serviceKey||song.key||song.originalKey||'';
+  const key=song.serviceKey||song.key||song.originalKey||'';
   $('key').textContent=key?`Key: ${key}`:'';
   $('mode').textContent=enabled?(mode==='chords'?'Lyrics + Chords':mode==='blank'?'Blank':'Lyrics Only'):'Hidden';
   $('passing').innerHTML=passingChords(song).map((x,i)=>`${i?'<span class="sep">|</span>':''}<span class="pass"><b>${escText(x[0])}</b>: ${escText(x[1])}</span>`).join('');
@@ -324,21 +324,14 @@ function render(msg){
     const wrap=document.createElement('div');wrap.className='chords';
     // Lyrics + Chords deliberately ignores ALL Lyrics Only custom overrides.
     // It follows the same presentation source/structure and normal wrapping.
-    // Always derive the chord transposition from the Service Key when the
-    // saved transpose offset is missing/stale. This prevents a Service Key of
-    // D from displaying the original A chords.
-    const keyRoot = value => {
-      const v=String(value||'C').trim().replace(/\s*(major|minor|maj|m)\s*$/i,'').replace(/[♯]/g,'#').replace(/[♭]/g,'b');
-      const root=(v.match(/^[A-G](?:#|b)?/i)||['C'])[0];
-      const sharp=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
-      const flat={Db:'C#',Eb:'D#',Gb:'F#',Ab:'G#',Bb:'A#'};
-      return sharp.indexOf(flat[root]||root);
-    };
-    const originalIndex=keyRoot(song.originalKey||song.baseKey||song.key);
-    const serviceIndex=keyRoot(state.serviceKey||song.serviceKey||song.key||song.originalKey);
-    const derivedSteps=(originalIndex>=0&&serviceIndex>=0)?((serviceIndex-originalIndex+12)%12):0;
-    const savedSteps=Number(song.transpose);
-    const steps=(Number.isFinite(savedSteps)&&savedSteps!==0)?savedSteps:derivedSteps;
+    // The service key is authoritative for Lyrics + Chords. Older service
+    // entries may have a stale `transpose` value, so calculate the semitone
+    // shift directly from the immutable original key to the saved Service Key.
+    const originalKey=String(song?.originalKey||song?.baseKey||song?.key||'C');
+    const serviceKey=String(song?.serviceKey||song?.key||originalKey);
+    const normalizeKeyValue=v=>String(v||'').trim().replace(/\s*(major|minor|maj|m)\s*$/i,'').replace(/[♯]/g,'#').replace(/[♭]/g,'b');
+    const noteIndex=v=>{const r=(normalizeKeyValue(v).match(/^[A-G](?:#|b)?/i)||['C'])[0];const flatMap={Db:'C#',Eb:'D#',Gb:'F#',Ab:'G#',Bb:'A#'};return ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'].indexOf(flatMap[r]||r);};
+    const steps=((noteIndex(serviceKey)-noteIndex(originalKey)+6)%12)-6;
     const presentationVis=wrapPresentationSections(vis.map(x=>x.section), Math.max(48,Math.floor((window.innerWidth||1280)/10)));
     presentationVis.forEach((sec,sectionIndex)=>{
       const section=document.createElement('section');
