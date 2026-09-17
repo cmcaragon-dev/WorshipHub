@@ -138,23 +138,78 @@
     };
   }
 
+  function ensureServiceEditorStyles(){
+    if($('#chordio-service-editor-modern-style')) return;
+    const st=document.createElement('style'); st.id='chordio-service-editor-modern-style';
+    st.textContent=`
+      #chordioNewServiceModal .chordio-service-creator{width:min(820px,96vw)!important;max-height:92vh!important;overflow:hidden!important;display:flex!important;flex-direction:column!important}
+      #chordioNewServiceModal .v64-service-body{overflow:auto;min-height:0}
+      #chordioNewServiceModal .v64-section{padding:16px 22px 0}
+      #chordioNewServiceModal .v64-section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+      #chordioNewServiceModal .v64-section-title strong{font-size:11px;letter-spacing:.12em;color:#263644}
+      #chordioNewServiceModal .v64-section-title span{font-size:11px;color:#7b8791}
+      #chordioNewServiceModal .v64-selected-songs{display:flex;flex-direction:column;gap:8px}
+      #chordioNewServiceModal .v64-selected-song{display:grid;grid-template-columns:34px minmax(0,1fr) 112px 38px;align-items:center;gap:12px;padding:12px 13px;border:1px solid #e1e7ec;border-radius:12px;background:linear-gradient(180deg,#fff,#f8fafb);box-shadow:0 2px 7px rgba(15,31,46,.04)}
+      #chordioNewServiceModal .v64-selected-song-num{width:28px;height:28px;display:grid;place-items:center;border-radius:8px;background:#edf1f4;color:#52616d;font-size:11px;font-weight:900}
+      #chordioNewServiceModal .v64-selected-song-info{min-width:0;display:flex;flex-direction:column;gap:3px}
+      #chordioNewServiceModal .v64-selected-song-info strong{font-size:14px;color:#172635;line-height:1.3;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
+      #chordioNewServiceModal .v64-selected-song-info small{font-size:11px;color:#7b8791;line-height:1.25;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
+      #chordioNewServiceModal .v64-song-key{width:100%;padding:9px 10px;border:1px solid #d4dde4;border-radius:9px;background:#fff;color:#172635;font-weight:700}
+      #chordioNewServiceModal .v64-remove-song{width:34px;height:34px;border:1px solid #e1cfd0;border-radius:9px;background:#fff;color:#a34747;cursor:pointer;font-size:14px}
+      #chordioNewServiceModal .v64-remove-song:hover{background:#fff3f3;border-color:#c98b8b}
+      #chordioNewServiceModal .v64-add-song-wrap{padding:12px 0 17px}
+      #chordioNewServiceModal .v64-add-song-main{width:100%;min-height:44px;border:1px dashed #c5a33c;border-radius:11px;background:#fffaf0;color:#8c6900;font-weight:900;cursor:pointer;letter-spacing:.01em}
+      #chordioNewServiceModal .v64-add-song-main:hover{background:#fff5d8;border-color:#b58a00;transform:translateY(-1px)}
+      #chordioNewServiceModal .v64-empty{padding:20px;border:1px dashed #d9e0e5;border-radius:11px;text-align:center;color:#7b8791;background:#fafcfd}
+      #chordioNewServiceModal .v64-picker{position:absolute;inset:0;z-index:3;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(7,15,24,.45);backdrop-filter:blur(2px)}
+      #chordioNewServiceModal .v64-picker.show{display:flex}
+      #chordioNewServiceModal .v64-picker-card{width:min(650px,94vw);max-height:78vh;display:flex;flex-direction:column;overflow:hidden;background:#fff;border-radius:15px;box-shadow:0 24px 70px rgba(0,0,0,.25)}
+      #chordioNewServiceModal .v64-picker-head{display:flex;align-items:center;justify-content:space-between;padding:15px 17px;border-bottom:1px solid #e5eaee}
+      #chordioNewServiceModal .v64-picker-head strong{font-size:14px;color:#172635}
+      #chordioNewServiceModal .v64-picker-head small{display:block;margin-top:3px;color:#7b8791;font-size:10px}
+      #chordioNewServiceModal .v64-picker-close{width:32px;height:32px;border:0;border-radius:8px;background:#eef1f4;cursor:pointer}
+      #chordioNewServiceModal .v64-picker-search{margin:12px 15px 8px;padding:10px 12px;border:1px solid #d7dfe6;border-radius:9px;outline:none;font-size:13px}
+      #chordioNewServiceModal .v64-picker-list{overflow:auto;padding:0 15px 14px}
+      #chordioNewServiceModal .v64-picker-row{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:12px;align-items:center;padding:10px 2px;border-bottom:1px solid #edf0f3}
+      #chordioNewServiceModal .v64-picker-info{min-width:0;display:flex;flex-direction:column;gap:3px}
+      #chordioNewServiceModal .v64-picker-info strong{font-size:13px;color:#172635;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
+      #chordioNewServiceModal .v64-picker-info small{font-size:10px;color:#7b8791;white-space:normal;overflow-wrap:anywhere}
+      #chordioNewServiceModal .v64-picker-add{min-height:35px;border:1px solid #c9a62e;border-radius:8px;background:#fffaf0;color:#876600;font-weight:900;cursor:pointer}
+      #chordioNewServiceModal .v64-picker-add:hover{background:#fff1bf}
+      #chordioNewServiceModal .v64-picker-add:disabled{border-color:#dfe4e8;background:#f2f4f5;color:#9aa4ac;cursor:not-allowed}
+      #chordioNewServiceModal .v64-create-footer{flex:none!important}
+      @media(max-width:650px){#chordioNewServiceModal .v64-selected-song{grid-template-columns:30px minmax(0,1fr) 92px 34px;gap:8px;padding:10px}.v64-selected-song-num{width:26px!important;height:26px!important}.v64-song-key{font-size:12px!important}.v64-picker-row{grid-template-columns:1fr 80px}}
+    `;
+    document.head.appendChild(st);
+  }
+
   function openNewService(editService=null){
+    ensureServiceEditorStyles();
     let m=$('#chordioNewServiceModal');
     if(!m){
       m=document.createElement('div');m.id='chordioNewServiceModal';m.className='chordio-modal';
       m.innerHTML=`<div class="chordio-dialog chordio-service-creator">
         <div class="chordio-dialog-head"><div><span id="v63ServiceKicker">NEW SERVICE</span><h3 id="v63ServiceHeading">Create Service Planner</h3></div><button type="button" data-close>✕</button></div>
-        <div class="chordio-form-grid"><label>Service Title<input id="v63ServiceTitle" type="text" placeholder="e.g. Sunday Worship Service"></label><label>Service Date<input id="v63ServiceDate" type="date"></label></div>
-        <div class="v63-selected-head"><strong>SONGS</strong><span>Click <b>ADD</b> to add a song. The same song can be added up to 3 times.</span></div>
-        <input id="v63SongSearch" class="v63-song-search" type="search" placeholder="Search title, artist, category or language...">
-        <div id="v63SelectedSongs" class="v63-selected-songs"></div>
-        <div id="v63SongList" class="v63-song-list"></div>
+        <div class="v64-service-body">
+          <div class="chordio-form-grid"><label>Service Title<input id="v63ServiceTitle" type="text" placeholder="e.g. Sunday Worship Service"></label><label>Service Date<input id="v63ServiceDate" type="date"></label></div>
+          <div class="v64-section"><div class="v64-section-title"><strong>SONGS</strong><span id="v64SongCountLabel">0 songs</span></div>
+            <div id="v63SelectedSongs" class="v63-selected-songs v64-selected-songs"></div>
+            <div class="v64-add-song-wrap"><button id="v64AddSongButton" type="button" class="v64-add-song-main">＋ ADD SONG</button></div>
+          </div>
+        </div>
         <div class="v63-create-footer"><span id="v63SongCount">0 songs selected</span><button data-close class="secondary">CANCEL</button><button id="v63SaveService" class="primary">✓ SAVE SERVICE</button></div>
+        <div id="v64SongPicker" class="v64-picker"><div class="v64-picker-card">
+          <div class="v64-picker-head"><div><strong>ADD SONG TO SERVICE</strong><small>Select a song to add. The same song may be added up to 3 times.</small></div><button type="button" class="v64-picker-close">✕</button></div>
+          <input id="v64PickerSearch" class="v64-picker-search" type="search" placeholder="Search song title, artist, category or language...">
+          <div id="v64PickerList" class="v64-picker-list"></div>
+        </div></div>
       </div>`;
       document.body.appendChild(m);
       m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('show')});
       $$('[data-close]',m).forEach(b=>b.onclick=()=>m.classList.remove('show'));
-      $('#v63SongSearch',m).addEventListener('input',()=>renderSongChoices(m));
+      $('#v64AddSongButton',m).onclick=()=>{$('#v64SongPicker',m).classList.add('show');renderSongPicker(m);setTimeout(()=>$('#v64PickerSearch',m)?.focus(),50)};
+      $('.v64-picker-close',m).onclick=()=>$('#v64SongPicker',m).classList.remove('show');
+      $('#v64PickerSearch',m).addEventListener('input',()=>renderSongPicker(m));
       $('#v63SaveService',m).onclick=saveNewService;
     }
     m._editService=editService||null;
@@ -164,69 +219,40 @@
     $('#v63SaveService').textContent=editService?'✓ SAVE CHANGES':'✓ SAVE SERVICE';
     $('#v63ServiceTitle').value=String(editService?.name||'');
     $('#v63ServiceDate').value=String(editService?.date||new Date().toISOString().slice(0,10));
-    $('#v63SongSearch').value='';
-    renderSongChoices(m);
+    $('#v64SongPicker').classList.remove('show');
+    renderSelectedSongs(m);
     m.classList.add('show');
     setTimeout(()=>$('#v63ServiceTitle')?.focus(),80);
   }
 
-  function renderSongChoices(m){
-    const box=$('#v63SongList',m), selectedBox=$('#v63SelectedSongs',m);
-    const q=String($('#v63SongSearch',m)?.value||'').toLowerCase();
-    const source=Array.isArray(window.songs)?window.songs:[];
+  function renderSelectedSongs(m){
     const selected=Array.isArray(m._draftSongs)?m._draftSongs:[];
-    const byKey=new Map();
-    [...source,...selected].forEach(s=>{if(!s)return;const key=serviceIdentity(s);if(key&&!byKey.has(key))byKey.set(key,s);});
-    const list=[...byKey.values()]
-      .filter(s=>{const t=[s.title,s.artist,s.category,s.language].join(' ').toLowerCase();return !q||t.includes(q)})
-      .filter(s=>s?.sections?.length||selected.some(x=>serviceIdentity(x)===serviceIdentity(s)))
-      .sort((a,b)=>String(a.title||'').localeCompare(String(b.title||'')));
-
-    // Show every occurrence separately so each copy has its own key control and remove button.
-    selectedBox.innerHTML=selected.length ? selected.map((s,i)=>{
-      const keys=keysFor(s);
-      const current=s.serviceKey||s.key||s.originalKey||'C';
-      return `<div class="v63-selected-song" data-occurrence-index="${i}">
-        <span class="v63-selected-song-num">${i+1}</span>
-        <div class="v63-selected-song-info"><strong>${esc(s.title||'Untitled')}</strong><small>${esc(s.artist||'')}</small></div>
-        <select class="v63-song-key" data-occurrence-key="${i}" title="Service Key">${keys.map(k=>`<option value="${esc(k.v)}" ${String(k.v)===String(current)?'selected':''}>${esc(k.v)}</option>`).join('')}</select>
-        <button type="button" class="v63-remove-song" data-remove-occurrence="${i}" title="Remove this copy">✕</button>
+    const box=$('#v63SelectedSongs',m);
+    box.innerHTML=selected.length ? selected.map((s,i)=>{
+      const keys=keysFor(s), current=s.serviceKey||s.key||s.originalKey||'C';
+      return `<div class="v64-selected-song" data-occurrence-index="${i}">
+        <span class="v64-selected-song-num">${i+1}</span>
+        <div class="v64-selected-song-info"><strong>${esc(s.title||'Untitled')}</strong><small>${esc(s.artist||'')}</small></div>
+        <select class="v64-song-key" data-occurrence-key="${i}" title="Service Key">${keys.map(k=>`<option value="${esc(k.v)}" ${String(k.v)===String(current)?'selected':''}>${esc(k.v)}</option>`).join('')}</select>
+        <button type="button" class="v64-remove-song" data-remove-occurrence="${i}" title="Remove this copy">✕</button>
       </div>`;
-    }).join('') : '<div class="v63-selected-empty">No songs added yet. Use the <b>ADD</b> button below.</div>';
-
-    selectedBox.querySelectorAll('[data-occurrence-key]').forEach(sel=>{
-      sel.onchange=()=>{const i=Number(sel.dataset.occurrenceKey);if(m._draftSongs?.[i]){m._draftSongs[i].serviceKey=sel.value;m._draftSongs[i].key=sel.value;}};
-    });
-    selectedBox.querySelectorAll('[data-remove-occurrence]').forEach(btn=>{
-      btn.onclick=()=>{const i=Number(btn.dataset.removeOccurrence);if(Array.isArray(m._draftSongs)){m._draftSongs.splice(i,1);renderSongChoices(m);}};
-    });
-
-    box.innerHTML=list.map(s=>{
-      const id=esc(s.id||s.file||s.title);
-      const count=serviceSongCountLocal(selected,s);
-      const maxed=count>=3;
-      return `<div class="v63-song-choice" data-song-id="${id}">
-        <div class="v63-song-choice-info"><strong>${esc(s.title||'Untitled')}</strong><small>${esc(s.artist||'')}</small></div>
-        <button type="button" class="v63-add-song-btn ${maxed?'is-maxed':''}" ${maxed?'disabled':''} data-add-song="${id}">
-          ${maxed?'✓ 3 ADDED':`＋ ADD${count?` (${count}/3)`:''}`}
-        </button>
-      </div>`;
-    }).join('')||'<div class="chordio-empty">No songs found.</div>';
-
-    box.querySelectorAll('[data-add-song]').forEach(btn=>{
-      btn.onclick=()=>{
-        const id=btn.dataset.addSong;
-        const song=source.find(x=>String(x.id||x.file||x.title)===id)||selected.find(x=>serviceIdentity(x)===String(id).toLowerCase());
-        if(!song)return;
-        const count=serviceSongCountLocal(m._draftSongs,song);
-        if(count>=3){toast('A song can only be added 3 times to one service','error');return;}
-        m._draftSongs.push(makeServiceOccurrence(song));
-        renderSongChoices(m);
-      };
-    });
-
+    }).join('') : '<div class="v64-empty">No songs added yet.<br>Click <b>＋ ADD SONG</b> below to choose songs.</div>';
+    box.querySelectorAll('[data-occurrence-key]').forEach(sel=>sel.onchange=()=>{const i=Number(sel.dataset.occurrenceKey);if(m._draftSongs?.[i]){m._draftSongs[i].serviceKey=sel.value;m._draftSongs[i].key=sel.value;}});
+    box.querySelectorAll('[data-remove-occurrence]').forEach(btn=>btn.onclick=()=>{const i=Number(btn.dataset.removeOccurrence);m._draftSongs.splice(i,1);renderSelectedSongs(m);renderSongPicker(m)});
     const n=selected.length;
     $('#v63SongCount').textContent=`${n} song${n===1?'':'s'} selected`;
+    $('#v64SongCountLabel').textContent=`${n} song${n===1?'':'s'}`;
+  }
+
+  function renderSongPicker(m){
+    const box=$('#v64PickerList',m); if(!box)return;
+    const q=String($('#v64PickerSearch',m)?.value||'').toLowerCase();
+    const source=Array.isArray(window.songs)?window.songs:[];
+    const selected=Array.isArray(m._draftSongs)?m._draftSongs:[];
+    const byKey=new Map(); [...source,...selected].forEach(s=>{if(s){const k=serviceIdentity(s);if(k&&!byKey.has(k))byKey.set(k,s)}});
+    const list=[...byKey.values()].filter(s=>{const t=[s.title,s.artist,s.category,s.language].join(' ').toLowerCase();return !q||t.includes(q)}).filter(s=>s?.sections?.length||selected.some(x=>serviceIdentity(x)===serviceIdentity(s))).sort((a,b)=>String(a.title||'').localeCompare(String(b.title||'')));
+    box.innerHTML=list.length?list.map(s=>{const id=esc(s.id||s.file||s.title),count=serviceSongCountLocal(selected,s),maxed=count>=3;return `<div class="v64-picker-row"><div class="v64-picker-info"><strong>${esc(s.title||'Untitled')}</strong><small>${esc(s.artist||'')}${count?` · ${count}/3 added`:''}</small></div><button type="button" class="v64-picker-add" data-add-song="${id}" ${maxed?'disabled':''}>${maxed?'✓ 3 ADDED':'＋ ADD'}</button></div>`}).join(''):'<div class="v64-empty">No songs found.</div>';
+    box.querySelectorAll('[data-add-song]').forEach(btn=>btn.onclick=()=>{const id=btn.dataset.addSong;const song=source.find(x=>String(x.id||x.file||x.title)===id)||selected.find(x=>serviceIdentity(x)===String(id).toLowerCase());if(!song)return;const count=serviceSongCountLocal(m._draftSongs,song);if(count>=3){toast('A song can only be added 3 times to one service','error');return;}m._draftSongs.push(makeServiceOccurrence(song));renderSelectedSongs(m);renderSongPicker(m);});
   }
 
   async function saveNewService(){
