@@ -659,8 +659,8 @@ body.multi-screen-output-page #multiScreenOutput{position:fixed!important;inset:
 </div><div class="multi-part-preview-help">Compact preview. Click any part above to move the HDMI display to that section.</div></section></section>
 <aside class="multi-screen-column">
 <div class="multi-screen-preview-panel multi-screen-preview-panel-large">
-<div class="multi-section-head multi-screen-output-preview-head"><strong>SCREEN OUTPUT PREVIEW</strong><span>4 HDMI OUTPUTS</span></div>
-<div class="multi-screen-previews v53-preview-grid" id="multiScreenPreviews"><button type="button" id="multiScreenOutputSettingsBtn" class="multi-screen-output-settings-btn" aria-label="Open screen output settings">⚙</button></div>
+<div class="multi-section-head multi-screen-output-preview-head"><strong>SCREEN OUTPUT PREVIEW</strong><button type="button" id="multiScreenOutputSettingsBtn" class="multi-screen-output-settings-btn" aria-label="Open screen output settings">⚙ SETTINGS</button></div>
+<div class="multi-screen-previews v53-preview-grid" id="multiScreenPreviews"></div>
 </div>
 <div class="multi-output-settings-in-preview">
 <div class="multi-screen-status"><span class="multi-live-dot"></span><strong>OUTPUT SCREENS</strong><span>Use SETTINGS on each screen.</span></div>
@@ -1987,5 +1987,36 @@ body.multi-screen-output-page #multiOutputPageSlide:has(+ *){}
  #multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel{grid-template-columns:1fr!important}
  #multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel .multi-screen-enable,
  #multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel>[data-open-screen]{grid-column:1!important}
+}
+</style>
+
+<style id="chordio-phase15-screen-settings-final">
+/* PHASE 15 — Settings button belongs in the SCREEN OUTPUT PREVIEW header, right aligned. */
+#multiScreenControl .multi-screen-preview-panel .multi-screen-output-preview-head{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;
+  width:100%!important;box-sizing:border-box!important;
+}
+#multiScreenControl .multi-screen-output-preview-head .multi-screen-output-settings-btn{
+  position:static!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;
+  width:auto!important;height:34px!important;min-width:92px!important;padding:6px 12px!important;
+  border-radius:8px!important;border:1px solid rgba(255,255,255,.22)!important;
+  background:#17222c!important;color:#f4c928!important;box-shadow:none!important;
+  font-size:11px!important;font-weight:900!important;line-height:1!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 0 auto!important;cursor:pointer!important;
+}
+#multiScreenControl .multi-screen-output-preview-head .multi-screen-output-settings-btn:hover{
+  transform:none!important;filter:brightness(1.12)!important;
+}
+/* The settings are hidden until the header button is clicked. */
+#multiScreenControl .multi-output-settings-in-preview{display:none!important;margin:0!important;padding:0!important;}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open{
+  display:flex!important;position:fixed!important;inset:0!important;z-index:2147483646!important;
+  align-items:center!important;justify-content:center!important;padding:18px!important;
+  background:rgba(3,7,11,.78)!important;backdrop-filter:blur(7px)!important;
+  -webkit-backdrop-filter:blur(7px)!important;box-sizing:border-box!important;
+}
+@media(max-width:700px){
+ #multiScreenControl .multi-screen-output-preview-head .multi-screen-output-settings-btn{min-width:82px!important;height:32px!important;padding:5px 9px!important;font-size:10px!important}
 }
 </style>
