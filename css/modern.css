@@ -872,3 +872,38 @@ body{background:var(--wh-bg)!important;color:var(--wh-ink)!important}
 #allSongsPanel .youtube-real-icon{font-size:19px!important}
 @media(max-width:900px){#songEditorPanel .song-editor-meta{grid-template-columns:repeat(2,minmax(0,1fr))!important}#songEditorPanel .song-editor-meta label:nth-child(1),#songEditorPanel .song-editor-meta label:nth-child(6),#songEditorPanel .song-editor-meta label:nth-child(7){grid-column:span 2!important}}
 @media(max-width:600px){#songEditorPanel .song-editor-shell{width:100%!important;max-height:96vh!important;border-radius:16px!important}#songEditorPanel .song-editor-meta{grid-template-columns:1fr!important;padding:13px!important}#songEditorPanel .song-editor-meta label:nth-child(1),#songEditorPanel .song-editor-meta label:nth-child(6),#songEditorPanel .song-editor-meta label:nth-child(7){grid-column:span 1!important}#songEditorPanel .song-editor-header,#songEditorPanel .song-editor-toolbar,#songEditorPanel .song-editor-sections{padding-left:13px!important;padding-right:13px!important}#multiScreenControl .multi-preview-settings-grid{grid-template-columns:1fr!important}#multiScreenControl .multi-preview-settings-grid>label:first-child{grid-column:auto!important}}
+
+
+/* PHASE 11 — Multi-Screen settings portal fix.
+   The settings dialogs are intentionally appended to <body>; therefore these
+   rules must not depend on #multiScreenControl. */
+.multi-preview-card-settings[data-portal="1"]{display:none!important;position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;z-index:2147483646!important;box-sizing:border-box!important;align-items:center!important;justify-content:center!important;padding:20px!important;background:rgba(15,23,42,.72)!important;backdrop-filter:blur(7px)!important}
+.multi-preview-card-settings[data-portal="1"].open{display:flex!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-dialog{width:min(520px,94vw)!important;max-height:min(720px,92vh)!important;overflow:auto!important;background:#fff!important;border-radius:18px!important;box-shadow:0 30px 100px rgba(0,0,0,.38)!important;color:#172a3a!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-head{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:16px!important;padding:20px!important;border-bottom:1px solid #e6eaf0!important;background:#fff!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-head span{display:block!important;color:#2563eb!important;font-size:9px!important;font-weight:900!important;letter-spacing:.12em!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-head strong{display:block!important;margin-top:4px!important;font-size:20px!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-head small{display:block!important;margin-top:4px!important;color:#667085!important;font-size:11px!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-close{width:36px!important;height:36px!important;flex:0 0 36px!important;border:1px solid #d0d5dd!important;border-radius:10px!important;background:#fff!important;color:#667085!important;cursor:pointer!important;font-weight:900!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important;padding:18px 20px!important;background:#f8fafc!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-grid>label{display:flex!important;flex-direction:column!important;gap:6px!important;color:#475467!important;font-size:10px!important;font-weight:900!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-grid>label:first-child{grid-column:1/-1!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-enable{flex-direction:row!important;align-items:center!important;gap:10px!important;padding:12px!important;border:1px solid #dfe5ec!important;border-radius:11px!important;background:#fff!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-enable input{width:18px!important;height:18px!important;accent-color:#2563eb!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-enable b{display:block!important;font-size:12px!important;color:#172a3a!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-enable small{display:block!important;margin-top:2px!important;color:#667085!important;font-size:9px!important}
+.multi-preview-card-settings[data-portal="1"] select{height:42px!important;border:1px solid #d0d5dd!important;border-radius:10px!important;background:#fff!important;color:#172a3a!important;padding:0 10px!important;font-size:11px!important;font-weight:800!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-actions{display:flex!important;justify-content:flex-end!important;gap:8px!important;padding:14px 20px!important;background:#fff!important;border-top:1px solid #e6eaf0!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-actions button{height:40px!important;padding:0 14px!important;border-radius:9px!important;font-size:10px!important;font-weight:900!important;cursor:pointer!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-secondary{border:1px solid #d0d5dd!important;background:#fff!important;color:#344054!important}
+.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-primary{border:1px solid #2563eb!important;background:#2563eb!important;color:#fff!important}
+@media(max-width:600px){.multi-preview-card-settings[data-portal="1"]{padding:12px!important}.multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-dialog{width:100%!important;border-radius:16px!important}.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-grid{grid-template-columns:1fr!important;padding:14px!important}.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-grid>label:first-child{grid-column:auto!important}.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-actions{padding:12px 14px!important}.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-actions button{flex:1!important}}
+
+/* PHASE 11 — Add Song chord-above-lyrics editing surface */
+#songEditorPanel .editor-line-main{position:relative!important}
+#songEditorPanel .editor-chord-input{min-height:48px!important;padding-top:10px!important;padding-bottom:10px!important}
+#songEditorPanel .editor-lyric-input{min-height:50px!important;padding-top:10px!important;padding-bottom:10px!important}
+#songEditorPanel .editor-line-main:after{content:"CHORDS ABOVE LYRICS  •  spaces control exact position";position:absolute!important;right:10px!important;top:6px!important;color:#94a3b8!important;font-size:7px!important;font-weight:900!important;letter-spacing:.05em!important;pointer-events:none!important}
+#songEditorPanel .editor-chord-input:focus + .editor-lyric-input{box-shadow:inset 0 0 0 2px rgba(37,99,235,.08)!important}
+#songEditorPanel .editor-chord-input{scrollbar-width:thin!important}
+#songEditorPanel .editor-lyric-input{scrollbar-width:thin!important}

@@ -384,6 +384,23 @@ function renderEditor() {
             syncLineChords(si, li, e.target.value);
         });
     });
+
+    // Chord-over-lyric alignment: both rows share the same horizontal scroll
+    // position, making spaces/character positions easy to match.
+    root.querySelectorAll(".editor-line-main").forEach(main => {
+        const chord = main.querySelector(".editor-chord-input");
+        const lyric = main.querySelector(".editor-lyric-input");
+        if (!chord || !lyric) return;
+        let syncing = false;
+        const sync = (source, target) => {
+            if (syncing) return;
+            syncing = true;
+            target.scrollLeft = source.scrollLeft;
+            syncing = false;
+        };
+        chord.addEventListener("scroll", () => sync(chord, lyric), {passive:true});
+        lyric.addEventListener("scroll", () => sync(lyric, chord), {passive:true});
+    });
 }
 
 function chordTextFromPositions(line) {

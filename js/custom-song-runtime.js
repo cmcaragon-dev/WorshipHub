@@ -1962,7 +1962,7 @@ function fitMultiLyricsPreviewToStage(stage, element, settings){
 function renderMultiScreenPreviews(){
     const box=document.getElementById("multiScreenPreviews");if(!box)return;
     // Settings dialogs are portaled to <body> so they can never be clipped by the preview grid/card.
-    document.querySelectorAll("#multiScreenControl .multi-preview-card-settings[data-portal='1']").forEach(el=>el.remove());
+    document.querySelectorAll(".multi-preview-card-settings[data-portal='1']").forEach(el=>el.remove());
     box.innerHTML="";
     const visible=multiScreenVisibleSections(),selected=visible[multiScreenCurrentSection]?.section,settings=getMultiLyricsSettings();
     const count=Math.max(1,Math.min(4,Number(multiScreenPreviewCount)||4));
