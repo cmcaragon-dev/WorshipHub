@@ -1343,7 +1343,7 @@ function multiScreenVisibleSections(){
 function multiScreenMessage(){
     const queue=multiScreenQueue();
     const qIndex=Math.max(0,Math.min(Number(multiScreenQueueIndex)||0,Math.max(0,queue.length-1)));
-    return {type:"chordio-multiscreen-state",song:song?{...song,sections:normalizeSections(song.sections)}:null,serviceName:service?.name||"",serviceIndex:qIndex,serviceSongs:queue.map(x=>({...x.item,presentation:x.type==="presentation",presentationSlide:x.type==="presentation"?x.item.presentationSlide:null})),sectionIndex:multiScreenCurrentSection,modes:{...multiScreenModes},enabled:{...multiScreenEnabled},backgroundModes:{...multiScreenBackgroundModes},background:{...multiScreenBackground},songBackground:getMultiScreenSongBackground(song),serviceSlidesBackground:getMultiServiceSlidesBackground(),layout:getPresentationLayout(),lyricsSettings:getMultiLyricsSettings(),lyricsOverrides:getMultiLyricsOverrides(),activePageSlide:multiActivePageSlide};
+    return {type:"chordio-multiscreen-state",heartbeatAt:Date.now(),song:song?{...song,sections:normalizeSections(song.sections)}:null,serviceName:service?.name||"",serviceIndex:qIndex,serviceSongs:queue.map(x=>({...x.item,presentation:x.type==="presentation",presentationSlide:x.type==="presentation"?x.item.presentationSlide:null})),sectionIndex:multiScreenCurrentSection,modes:{...multiScreenModes},enabled:{...multiScreenEnabled},backgroundModes:{...multiScreenBackgroundModes},background:{...multiScreenBackground},songBackground:getMultiScreenSongBackground(song),serviceSlidesBackground:getMultiServiceSlidesBackground(),layout:getPresentationLayout(),lyricsSettings:getMultiLyricsSettings(),lyricsOverrides:getMultiLyricsOverrides(),activePageSlide:multiActivePageSlide};
 }
 function multiScreenBroadcast(extra={}){
     const message={...multiScreenMessage(),...extra};
@@ -1351,6 +1351,39 @@ function multiScreenBroadcast(extra={}){
     try{localStorage.setItem("chordioMultiScreenState",JSON.stringify(message));Object.keys(multiScreenWindows||{}).forEach(k=>{try{localStorage.setItem(`chordioMultiScreenOutputState:${k}`,JSON.stringify({...message,display:String(k)}));}catch(_){}});}catch(_){}
     Object.values(multiScreenWindows).forEach(w=>{try{if(w&&!w.closed)w.postMessage(message,"*");}catch(_){} });
 }
+let multiScreenKeyboardBound = false;
+function initMultiPartKeyboard(){
+    if(multiScreenKeyboardBound) return;
+    multiScreenKeyboardBound = true;
+    document.addEventListener("keydown", async (event)=>{
+        const panel=document.getElementById("multiScreenControl");
+        if(!panel?.classList.contains("show")) return;
+        if(["INPUT","TEXTAREA","SELECT"].includes(event.target?.tagName)) return;
+        if(event.altKey||event.ctrlKey||event.metaKey) return;
+        if(event.key==="ArrowDown"){
+            event.preventDefault();
+            multiScreenSelectSection(Math.min(multiScreenCurrentSection+1, Math.max(0,multiScreenVisibleSections().length-1)));
+        }else if(event.key==="ArrowUp"){
+            event.preventDefault();
+            multiScreenSelectSection(Math.max(0,multiScreenCurrentSection-1));
+        }else if(event.key==="PageDown"||event.key===">"){
+            event.preventDefault();
+            await selectMultiScreenQueueEntry(Math.min(multiScreenQueueIndex+1, Math.max(0,multiScreenQueue().length-1)));
+        }else if(event.key==="PageUp"||event.key==="<"){
+            event.preventDefault();
+            await selectMultiScreenQueueEntry(Math.max(0,multiScreenQueueIndex-1));
+        }else if(event.key.toLowerCase()==="b"){
+            event.preventDefault();
+            multiScreenBroadcast({black:true});
+        }else if(event.key.toLowerCase()==="r"){
+            event.preventDefault();
+            multiScreenBroadcast({black:false});
+        }else if(event.key==="Escape"){
+            multiScreenCloseControl();
+        }
+    });
+}
+
 function multiScreenOpenControl(){
     const panel=document.getElementById("multiScreenControl");if(!panel)return;
     const existingSongQueueIndex=multiScreenQueueIndexForSong(song?.id,index);if(existingSongQueueIndex>=0)multiScreenQueueIndex=existingSongQueueIndex;
@@ -2053,6 +2086,22 @@ function multiScreenOpenDisplay(displayNumber){
     const features="popup=yes,resizable=yes,scrollbars=no,fullscreen=yes,width=1920,height=1080";let w=multiScreenWindows[n];if(!w||w.closed)w=window.open(url.href,`CHORDIO_SCREEN_${n}`,features);else{try{w.location.replace(url.href);w.focus();}catch(_){}}multiScreenWindows[n]=w;
     const send=()=>{try{w?.postMessage({...multiScreenMessage(),display:String(n)},"*");}catch(_){} };send();setTimeout(send,200);setTimeout(send,500);setTimeout(send,1000);setTimeout(send,1800);
 }
+function updateMultiScreenLiveStatus(){
+    [1,2,3,4].forEach(n=>{
+        const el=document.getElementById(`multiScreenLiveStatus${n}`);
+        if(!el) return;
+        let heartbeat=0;
+        try{heartbeat=Number(JSON.parse(localStorage.getItem(`chordioMultiScreenOutputHeartbeat:${n}`)||"0")?.at||0);}catch(_){heartbeat=0;}
+        const age=Date.now()-heartbeat;
+        const enabled=multiScreenEnabled[n]!==false;
+        el.classList.remove("online","stale");
+        if(!enabled){el.textContent="● DISABLED";return;}
+        if(age<4500){el.textContent="● LIVE";el.classList.add("online");}
+        else if(age<15000){el.textContent="● STALE";el.classList.add("stale");}
+        else el.textContent="● OFFLINE";
+    });
+}
+
 function multiScreenOpenAll(){[1,2,3,4].forEach(n=>{if(multiScreenEnabled[n]!==false)multiScreenOpenDisplay(n);});}
 function multiScreenCloseAll(){Object.values(multiScreenWindows).forEach(w=>{try{if(w&&!w.closed)w.close();}catch(_){}});multiScreenWindows={};}
 function multiScreenBlackAll(){multiScreenBroadcast({black:true});}
@@ -2501,3 +2550,5 @@ onAuthStateChanged(auth,async()=>{
 
 window.stopService = stopCustomService;
 window.WorshipHubCustomSong={transposeUp:()=>setTranspose(1),transposeDown:()=>setTranspose(-1),getTranspose:()=>transposeSteps,getSong:()=>song,startPresentation:startCustomPresentation,exitPresentation:exitCustomPresentation,loadServiceIndex,reload:()=>{song=null;service=null;loading=false;bootPromise=null;load();}};
+
+setInterval(()=>{try{updateMultiScreenLiveStatus();}catch(_){ }},1500);

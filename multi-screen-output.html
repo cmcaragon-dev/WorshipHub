@@ -78,6 +78,11 @@ const forcedMode=params.get('mode')||'lyrics';
 let state=null;
 const $=id=>document.getElementById(id);
 
+function publishHeartbeat(){
+  try{localStorage.setItem(`chordioMultiScreenOutputHeartbeat:${display}`,JSON.stringify({at:Date.now(),display,songTitle:state?.song?.title||""}));}catch(_){ }
+  try{window.opener?.postMessage({type:"chordio-multiscreen-heartbeat",display,at:Date.now()} ,"*");}catch(_){ }
+}
+
 function read(){
   const keys=[`chordioMultiScreenOutputState:${display}`,'chordioMultiScreenState'];
   for(const key of keys){
@@ -358,6 +363,8 @@ window.addEventListener('pointerdown',()=>void enterOutputFullscreen(),{passive:
 window.addEventListener('keydown',()=>void enterOutputFullscreen(),{passive:true});
 window.addEventListener('dblclick',()=>void enterOutputFullscreen(),{passive:true});
 window.addEventListener('load',scheduleOutputFullscreen,{once:true});
+setInterval(publishHeartbeat,2000);
+publishHeartbeat();
 scheduleOutputFullscreen();
 render(read());
 setTimeout(()=>render(read()),150);
