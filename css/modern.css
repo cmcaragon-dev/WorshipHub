@@ -803,3 +803,72 @@ body{background:var(--wh-bg)!important;color:var(--wh-ink)!important}
  #multiScreenControl .multi-preview-card-settings-row{grid-template-columns:1fr!important}
  #multiScreenControl .multi-preview-card-settings-row:before,#multiScreenControl .multi-preview-card-settings button[data-preview-open]{grid-column:1!important}
 }
+
+/* ==========================================================
+   PHASE 10 — CLEAN ADD SONG EDITOR + SCREEN 1–4 SETTINGS
+   ========================================================== */
+#songEditorPanel .song-editor-shell{width:min(1240px,97vw)!important;max-height:94vh!important;border-radius:22px!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;background:#f8fafc!important}
+#songEditorPanel .song-editor-header{padding:20px 24px!important;background:#fff!important;border-bottom:1px solid #e6eaf0!important;display:flex!important;align-items:center!important;justify-content:space-between!important}
+#songEditorPanel .song-editor-header h2{margin:0!important;font-size:22px!important;color:#172a3a!important;letter-spacing:-.02em!important}
+#songEditorPanel .song-editor-header p{margin:5px 0 0!important;color:#667085!important;font-size:12px!important}
+#songEditorPanel .song-editor-close{width:38px!important;height:38px!important;border:1px solid #d7dde5!important;border-radius:10px!important;background:#fff!important;color:#667085!important;font-size:16px!important;cursor:pointer!important}
+#songEditorPanel .song-editor-meta{padding:16px 24px!important;background:#f1f5f9!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:11px!important}
+#songEditorPanel .song-editor-meta label{display:flex!important;flex-direction:column!important;gap:6px!important;color:#475467!important;font-size:10px!important;font-weight:900!important}
+#songEditorPanel .song-editor-meta label:nth-child(1),#songEditorPanel .song-editor-meta label:nth-child(6),#songEditorPanel .song-editor-meta label:nth-child(7){grid-column:span 2!important}
+#songEditorPanel .song-editor-meta input,#songEditorPanel .song-editor-meta select{width:100%!important;height:40px!important;box-sizing:border-box!important;border:1px solid #d0d5dd!important;border-radius:10px!important;background:#fff!important;color:#172a3a!important;padding:0 11px!important;font-size:12px!important;outline:none!important}
+#songEditorPanel .song-editor-meta input:focus,#songEditorPanel .song-editor-meta select:focus{border-color:#4f8cff!important;box-shadow:0 0 0 3px rgba(79,140,255,.12)!important}
+#songEditorPanel .song-editor-toolbar{padding:11px 24px!important;background:#fff!important;border-bottom:1px solid #e6eaf0!important;display:flex!important;align-items:center!important;gap:8px!important;flex-wrap:wrap!important}
+#songEditorPanel .song-editor-toolbar button{min-height:36px!important;border:1px solid #d0d5dd!important;border-radius:9px!important;background:#fff!important;color:#344054!important;padding:0 12px!important;font-size:11px!important;font-weight:900!important;cursor:pointer!important}
+#songEditorPanel .song-editor-toolbar button:hover{background:#f5f8fc!important;border-color:#98a2b3!important}
+#songEditorPanel .song-editor-toolbar #addEditorSection{background:#172a3a!important;color:#fff!important;border-color:#172a3a!important}
+#songEditorPanel .song-editor-sections{padding:18px 24px 28px!important;background:#eef2f6!important;min-height:0!important}
+#songEditorPanel .editor-section{margin:0 0 14px!important;border:1px solid #dfe5ec!important;border-radius:15px!important;box-shadow:0 5px 16px rgba(16,24,40,.05)!important;overflow:hidden!important}
+#songEditorPanel .editor-section-head{display:flex!important;align-items:center!important;gap:7px!important;padding:10px 12px!important;background:#fff!important}
+#songEditorPanel .editor-section-head select,#songEditorPanel .editor-section-head input{height:34px!important;border:1px solid #d0d5dd!important;border-radius:8px!important;background:#f8fafc!important;padding:0 9px!important;color:#344054!important;font-size:11px!important;font-weight:800!important}
+#songEditorPanel .editor-section-head select{min-width:130px!important}.editor-section-number{width:55px!important}
+#songEditorPanel .editor-icon-btn{width:32px!important;height:32px!important;border:1px solid #d9dee7!important;border-radius:8px!important;background:#fff!important;color:#475467!important;font-weight:900!important;cursor:pointer!important}
+#songEditorPanel .editor-section-head .section-delete{color:#b42318!important}
+#songEditorPanel .editor-lines{padding:10px!important;background:#f8fafc!important}
+#songEditorPanel .editor-line{display:grid!important;grid-template-columns:minmax(0,1fr) 34px!important;gap:7px!important;align-items:stretch!important;margin-bottom:8px!important}
+#songEditorPanel .editor-line:last-child{margin-bottom:0!important}
+#songEditorPanel .editor-line-main{display:grid!important;grid-template-rows:auto auto!important;border:1px solid #d7dde5!important;border-radius:10px!important;background:#fff!important;overflow:hidden!important}
+#songEditorPanel .editor-line-main:before{content:"CHORDS  •  type spaces to align with lyrics";display:block!important;padding:5px 10px!important;background:#f1f5f9!important;border-bottom:1px solid #e6eaf0!important;color:#64748b!important;font-size:8px!important;font-weight:900!important;letter-spacing:.07em!important}
+#songEditorPanel .editor-chord-input,#songEditorPanel .editor-lyric-input{width:100%!important;box-sizing:border-box!important;border:0!important;outline:0!important;resize:none!important;overflow-x:auto!important;white-space:pre!important;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace!important;line-height:1.45!important;font-size:13px!important;padding:9px 12px!important;min-height:40px!important}
+#songEditorPanel .editor-chord-input{color:#b07b00!important;background:#fffdf4!important;font-weight:900!important;border-bottom:1px dashed #e5e7eb!important}
+#songEditorPanel .editor-chord-input::placeholder{color:#b5a06b!important;font-weight:600!important}
+#songEditorPanel .editor-lyric-input{color:#172a3a!important;background:#fff!important;min-height:44px!important}
+#songEditorPanel .editor-lyric-input::placeholder{color:#98a2b3!important;font-family:inherit!important}
+#songEditorPanel .editor-chord-input:focus,#songEditorPanel .editor-lyric-input:focus{background:#fafdff!important;box-shadow:inset 0 0 0 2px rgba(79,140,255,.15)!important}
+#songEditorPanel .editor-line-delete{width:34px!important;height:34px!important;align-self:start!important;border:1px solid #ead0d0!important;border-radius:9px!important;background:#fff!important;color:#b42318!important;font-size:17px!important;font-weight:900!important;cursor:pointer!important}
+#songEditorPanel .song-editor-tip{background:#f8fafc!important;border:1px solid #e4e7ec!important;border-radius:9px!important;padding:7px 10px!important;color:#667085!important}
+
+/* Screen settings are true viewport-level dialogs, not elements trapped inside a preview card. */
+#multiScreenControl .multi-preview-card-settings[data-portal="1"]{display:none!important;position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;z-index:2147483646!important;box-sizing:border-box!important;align-items:center!important;justify-content:center!important;padding:20px!important;background:rgba(15,23,42,.68)!important;backdrop-filter:blur(6px)!important}
+#multiScreenControl .multi-preview-card-settings[data-portal="1"].open{display:flex!important}
+#multiScreenControl .multi-preview-card-settings-dialog{width:min(520px,94vw)!important;background:#fff!important;border-radius:18px!important;box-shadow:0 30px 100px rgba(0,0,0,.38)!important;overflow:hidden!important;color:#172a3a!important}
+#multiScreenControl .multi-preview-card-settings-head{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:16px!important;padding:20px!important;border-bottom:1px solid #e6eaf0!important;background:#fff!important}
+#multiScreenControl .multi-preview-card-settings-head span{display:block!important;color:#2563eb!important;font-size:9px!important;font-weight:900!important;letter-spacing:.12em!important}
+#multiScreenControl .multi-preview-card-settings-head strong{display:block!important;margin-top:4px!important;font-size:20px!important}
+#multiScreenControl .multi-preview-card-settings-head small{display:block!important;margin-top:4px!important;color:#667085!important;font-size:11px!important}
+#multiScreenControl .multi-preview-settings-close{width:34px!important;height:34px!important;flex:0 0 34px!important;border:1px solid #d0d5dd!important;border-radius:9px!important;background:#fff!important;color:#667085!important;cursor:pointer!important;font-weight:900!important}
+#multiScreenControl .multi-preview-settings-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important;padding:18px 20px!important;background:#f8fafc!important}
+#multiScreenControl .multi-preview-settings-grid>label{display:flex!important;flex-direction:column!important;gap:6px!important;color:#475467!important;font-size:10px!important;font-weight:900!important}
+#multiScreenControl .multi-preview-settings-grid>label:first-child{grid-column:1/-1}
+#multiScreenControl .multi-preview-enable{flex-direction:row!important;align-items:center!important;gap:10px!important;padding:12px!important;border:1px solid #dfe5ec!important;border-radius:11px!important;background:#fff!important}
+#multiScreenControl .multi-preview-enable input{width:18px!important;height:18px!important;accent-color:#2563eb!important}
+#multiScreenControl .multi-preview-enable b{display:block!important;font-size:12px!important;color:#172a3a!important}
+#multiScreenControl .multi-preview-enable small{display:block!important;margin-top:2px!important;color:#667085!important;font-size:9px!important}
+#multiScreenControl .multi-preview-settings-grid select{height:42px!important;border:1px solid #d0d5dd!important;border-radius:10px!important;background:#fff!important;color:#172a3a!important;padding:0 10px!important;font-size:11px!important;font-weight:800!important}
+#multiScreenControl .multi-preview-settings-actions{display:flex!important;justify-content:flex-end!important;gap:8px!important;padding:14px 20px!important;background:#fff!important;border-top:1px solid #e6eaf0!important}
+#multiScreenControl .multi-preview-settings-actions button{height:40px!important;padding:0 14px!important;border-radius:9px!important;font-size:10px!important;font-weight:900!important;cursor:pointer!important}
+#multiScreenControl .multi-preview-settings-secondary{border:1px solid #d0d5dd!important;background:#fff!important;color:#344054!important}
+#multiScreenControl .multi-preview-settings-primary{border:1px solid #2563eb!important;background:#2563eb!important;color:#fff!important}
+#multiScreenControl .multi-preview-settings-primary:hover{filter:brightness(.95)!important}
+
+#allSongsPanel .song-actions-cell{justify-content:center!important;align-items:center!important;flex-wrap:nowrap!important}
+#allSongsPanel .youtube-song-btn{width:38px!important;height:38px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;border-radius:10px!important;border:1px solid #f0caca!important;background:#fff5f5!important;color:#ff0000!important;text-decoration:none!important}
+#allSongsPanel .youtube-song-btn:not(.disabled):hover{background:#ffe8e8!important;transform:translateY(-1px)!important}
+#allSongsPanel .youtube-song-btn.disabled{opacity:.28!important;cursor:not-allowed!important}
+#allSongsPanel .youtube-real-icon{font-size:19px!important}
+@media(max-width:900px){#songEditorPanel .song-editor-meta{grid-template-columns:repeat(2,minmax(0,1fr))!important}#songEditorPanel .song-editor-meta label:nth-child(1),#songEditorPanel .song-editor-meta label:nth-child(6),#songEditorPanel .song-editor-meta label:nth-child(7){grid-column:span 2!important}}
+@media(max-width:600px){#songEditorPanel .song-editor-shell{width:100%!important;max-height:96vh!important;border-radius:16px!important}#songEditorPanel .song-editor-meta{grid-template-columns:1fr!important;padding:13px!important}#songEditorPanel .song-editor-meta label:nth-child(1),#songEditorPanel .song-editor-meta label:nth-child(6),#songEditorPanel .song-editor-meta label:nth-child(7){grid-column:span 1!important}#songEditorPanel .song-editor-header,#songEditorPanel .song-editor-toolbar,#songEditorPanel .song-editor-sections{padding-left:13px!important;padding-right:13px!important}#multiScreenControl .multi-preview-settings-grid{grid-template-columns:1fr!important}#multiScreenControl .multi-preview-settings-grid>label:first-child{grid-column:auto!important}}

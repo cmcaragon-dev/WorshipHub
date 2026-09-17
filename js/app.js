@@ -775,49 +775,10 @@ function renderAllSongsTable(songList) {
                    href="${song.youtube ? escapeHtml(song.youtube) : "#"}"
                    ${song.youtube ? 'target="_blank" rel="noopener noreferrer"' : 'aria-disabled="true" onclick="return false;"'}
                    title="${song.youtube ? "Open YouTube link" : "No YouTube link added"}"><i class="fa-brands fa-youtube youtube-real-icon" aria-hidden="true"></i></a>
-                ${canManageSongs ? `
-                    <button type="button" class="song-action-btn edit" data-song-action="edit" data-song-id="${escapeHtml(song.id)}">✏ Edit</button>
-                    <button type="button" class="song-action-btn duplicate" data-song-action="duplicate" data-song-id="${escapeHtml(song.id)}">⧉ Duplicate</button>
-                    <button type="button" class="song-action-btn delete" data-song-action="delete" data-song-id="${escapeHtml(song.id)}">🗑 Delete</button>
-                ` : ''}
             </td>`;
 
-        if (canManageSongs) {
-            row.querySelector('[data-song-action="edit"]')?.addEventListener("click", () => {
-                const target = songs.find(x => String(x.id) === String(song.id));
-                if (target && window.WorshipHubSongEditor?.open) {
-                    window.WorshipHubSongEditor.open(target);
-                }
-            });
-            row.querySelector('[data-song-action="duplicate"]')?.addEventListener("click", async () => {
-                const target = songs.find(x => String(x.id) === String(song.id));
-                if(!target) return;
-                const name = prompt("Name for the duplicated song:", `${target.title || "Song"} — Copy`);
-                if(name === null) return;
-                const finalName=String(name).trim();
-                if(!finalName) return alert("Please enter a song title.");
-                let copy=JSON.parse(JSON.stringify(target));
-                copy.title=finalName;
-                try{
-                    if(currentUser){
-                        if(!window.WorshipHubSongEditor?.duplicate) throw new Error("Song duplication service unavailable");
-                        copy=await window.WorshipHubSongEditor.duplicate(target, finalName);
-                    } else {
-                        copy.id=`song-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
-                        copy.createdAt=new Date().toISOString();
-                        copy.updatedAt=new Date().toISOString();
-                    }
-                    songs.push(copy); window.songs=songs;
-                    renderSongs(songs); renderAllSongsTable(songs);
-                }catch(error){ console.error("Song duplication failed:",error); alert("Unable to duplicate this song."); }
-            });
-            row.querySelector('[data-song-action="delete"]')?.addEventListener("click", async () => {
-                if (window.WorshipHubSongEditor?.deleteSong) {
-                    const deleted = await window.WorshipHubSongEditor.deleteSong(song.id);
-                    if (deleted) renderAllSongsTable(songs);
-                }
-            });
-        }
+        // All Songs is intentionally read-only here; YouTube is the only row action.
+
 
         tableBody.appendChild(row);
     });

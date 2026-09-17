@@ -1961,6 +1961,8 @@ function fitMultiLyricsPreviewToStage(stage, element, settings){
 
 function renderMultiScreenPreviews(){
     const box=document.getElementById("multiScreenPreviews");if(!box)return;
+    // Settings dialogs are portaled to <body> so they can never be clipped by the preview grid/card.
+    document.querySelectorAll("#multiScreenControl .multi-preview-card-settings[data-portal='1']").forEach(el=>el.remove());
     box.innerHTML="";
     const visible=multiScreenVisibleSections(),selected=visible[multiScreenCurrentSection]?.section,settings=getMultiLyricsSettings();
     const count=Math.max(1,Math.min(4,Number(multiScreenPreviewCount)||4));
@@ -2012,15 +2014,26 @@ function renderMultiScreenPreviews(){
         const settingsPanel=document.createElement("div");
         settingsPanel.className="multi-preview-card-settings";
         settingsPanel.id=`multiPreviewSettings${n}`;
-        settingsPanel.innerHTML=`<div class="multi-preview-card-settings-row"><label><input type="checkbox" ${multiScreenEnabled[n]!==false?"checked":""} data-preview-enabled="${n}"> Use</label><select data-preview-mode="${n}"><option value="lyrics">Lyrics Only</option><option value="chords">Lyrics + Chords</option><option value="blank">Blank</option></select><select data-preview-bg="${n}"><option value="common">Background: Common</option><option value="black">Background: Black</option></select><button type="button" data-preview-open="${n}">OPEN OUTPUT</button></div>`;
+        settingsPanel.dataset.portal="1";
+        settingsPanel.innerHTML=`<div class="multi-preview-card-settings-dialog">
+            <div class="multi-preview-card-settings-head"><div><span>SCREEN ${n}</span><strong>Output Settings</strong><small>Choose what this screen sends to its display.</small></div><button type="button" class="multi-preview-settings-close" aria-label="Close settings">✕</button></div>
+            <div class="multi-preview-settings-grid">
+              <label class="multi-preview-enable"><input type="checkbox" ${multiScreenEnabled[n]!==false?"checked":""} data-preview-enabled="${n}"><span><b>Use Screen ${n}</b><small>Enable this output</small></span></label>
+              <label><span>Display Mode</span><select data-preview-mode="${n}"><option value="lyrics">Lyrics Only</option><option value="chords">Lyrics + Chords</option><option value="blank">Blank</option></select></label>
+              <label><span>Background</span><select data-preview-bg="${n}"><option value="common">Common Background</option><option value="black">Black Background</option></select></label>
+            </div>
+            <div class="multi-preview-settings-actions"><button type="button" class="multi-preview-settings-secondary multi-preview-settings-close">CLOSE</button><button type="button" class="multi-preview-settings-primary" data-preview-open="${n}">OPEN OUTPUT</button></div>
+        </div>`;
         const modeSelect=settingsPanel.querySelector(`[data-preview-mode="${n}"]`); if(modeSelect) modeSelect.value=multiScreenModes[n]||"lyrics";
         const bgSelect=settingsPanel.querySelector(`[data-preview-bg="${n}"]`); if(bgSelect) bgSelect.value=multiScreenBackgroundModes[n]||"common";
-        settingsBtn.onclick=(ev)=>{ev.stopPropagation();settingsPanel.classList.toggle("open");};
+        settingsPanel.querySelectorAll(".multi-preview-settings-close").forEach(btn=>btn.addEventListener("click",()=>settingsPanel.classList.remove("open")));
+        settingsPanel.addEventListener("click",e=>{if(e.target===settingsPanel)settingsPanel.classList.remove("open");});
+        settingsBtn.onclick=(ev)=>{ev.stopPropagation();settingsPanel.classList.add("open");};
         settingsPanel.querySelector(`[data-preview-enabled="${n}"]`)?.addEventListener("change",e=>{multiScreenEnabled[n]=e.target.checked;try{localStorage.setItem("chordioMultiScreenEnabled",JSON.stringify(multiScreenEnabled));}catch(_){}renderMultiScreenPreviews();if(!multiScreenEnabled[n]){try{multiScreenWindows[n]?.close();}catch(_){}}multiScreenBroadcast({});});
         modeSelect?.addEventListener("change",e=>{multiScreenModes[n]=e.target.value;try{localStorage.setItem("chordioMultiScreenModes",JSON.stringify(multiScreenModes));}catch(_){}renderMultiScreenPreviews();multiScreenBroadcast({});});
         bgSelect?.addEventListener("change",e=>{multiScreenBackgroundModes[n]=e.target.value;try{localStorage.setItem("chordioMultiScreenBackgroundModes",JSON.stringify(multiScreenBackgroundModes));}catch(_){}renderMultiScreenPreviews();multiScreenBroadcast({});});
         settingsPanel.querySelector(`[data-preview-open="${n}"]`)?.addEventListener("click",()=>multiScreenOpenDisplay(n));
-        card.appendChild(settingsPanel);
+        document.body.appendChild(settingsPanel);
 
         const stage=document.createElement("div");stage.className="multi-screen-preview-stage";stage.title="Double-click to enlarge this screen";
         stage.ondblclick=(ev)=>{ev.preventDefault();ev.stopPropagation();multiScreenPreviewExpanded=(multiScreenPreviewExpanded===n?0:n);renderMultiScreenPreviews();};
