@@ -510,6 +510,8 @@ function showAllSongs() {
     if (!panel) return;
     panel.classList.add("show");
     bindAllSongsColumnFilters();
+    populateAllSongsFilters();
+    updateAllSongsLibraryMeta();
     if (!songsReady) {
         const body = document.getElementById("allSongsTableBody");
         if(body) body.innerHTML = '<tr><td colspan="10" style="text-align:center;padding:24px">Loading songs…</td></tr>';
@@ -517,7 +519,7 @@ function showAllSongs() {
     }
     filterDeletedSongsFromLibrary();
     removeDuplicateSongTitles();
-    renderAllSongsTable([...songs].filter(song => !isAnyDeletedSong(song)).sort((a,b) => String(a.title || "").localeCompare(String(b.title || ""))));
+    applyAllSongsColumnFilters();
 }
 
 // ==========================================
@@ -646,9 +648,29 @@ function getAllSongsColumnFilters() {
     return { title:value("filterSongTitle"), artist:value("filterArtist"), category:value("filterCategory"), language:value("filterLanguage"), key:value("filterKey") };
 }
 
+function populateAllSongsFilters() {
+    const defs = [
+        ["filterCategory", [...new Set(songs.map(s => String(s?.category || "").trim()).filter(Boolean))].sort()],
+        ["filterLanguage", [...new Set(songs.map(s => String(s?.language || "").trim()).filter(Boolean))].sort()],
+        ["filterKey", [...new Set(songs.map(s => String(s?.key || s?.originalKey || "").trim()).filter(Boolean))].sort()]
+    ];
+    defs.forEach(([id, values]) => {
+        const el = document.getElementById(id); if(!el) return;
+        const current = el.value;
+        el.innerHTML = `<option value="">All</option>` + values.map(v => `<option value="${escapeHtml(v.toLowerCase())}">${escapeHtml(v)}</option>`).join("");
+        el.value = current;
+    });
+}
+function updateAllSongsLibraryMeta(visibleCount=null) {
+    const meta=document.getElementById("allSongsLibraryMeta");
+    if(!meta) return;
+    const total=songs.filter(song=>!isAnyDeletedSong(song)).filter(hasStructuredLyrics).length;
+    meta.textContent=`${visibleCount == null ? total : visibleCount} of ${total} songs`;
+}
 function applyAllSongsColumnFilters() {
     const filters = getAllSongsColumnFilters();
     const global = String(document.getElementById("allSongsSearch")?.value || "").trim().toLowerCase();
+    const sortBy = String(document.getElementById("allSongsSort")?.value || "title");
     const filtered = songs.filter(song => {
         if (isAnyDeletedSong(song)) return false;
         const fields = {
@@ -661,13 +683,14 @@ function applyAllSongsColumnFilters() {
         const globalMatch = !global || Object.values(fields).some(v => v.includes(global));
         return globalMatch && Object.entries(filters).every(([k,v]) => !v || fields[k].includes(v));
     });
+    filtered.sort((a,b)=>String(a?.[sortBy] || a?.title || "").localeCompare(String(b?.[sortBy] || b?.title || ""),undefined,{sensitivity:"base",numeric:true}));
     renderAllSongsTable(filtered);
 }
 
 function bindAllSongsColumnFilters() {
-    ["filterSongTitle","filterArtist","filterCategory","filterLanguage","filterKey"].forEach(id => {
+    ["filterSongTitle","filterArtist","filterCategory","filterLanguage","filterKey","allSongsSort"].forEach(id => {
         const el=document.getElementById(id);
-        if(el && !el.dataset.bound){ el.dataset.bound="1"; el.addEventListener("input", applyAllSongsColumnFilters); }
+        if(el && !el.dataset.bound){ el.dataset.bound="1"; el.addEventListener("input", applyAllSongsColumnFilters); el.addEventListener("change", applyAllSongsColumnFilters); }
     });
 }
 
@@ -681,6 +704,7 @@ function renderAllSongsTable(songList) {
         .filter((song, index, arr) => arr.findIndex(x => normalizeDeletedSongTitle(x?.title) === normalizeDeletedSongTitle(song?.title)) === index);
 
     if (!list.length) {
+        updateAllSongsLibraryMeta(0);
         tableBody.innerHTML = `
             <tr><td colspan="7" style="text-align:center;padding:40px;color:#98a2b3;">
                 🔍 No songs found.
@@ -688,6 +712,7 @@ function renderAllSongsTable(songList) {
         return;
     }
 
+    updateAllSongsLibraryMeta(list.length);
     list.forEach((song, index) => {
         const row = document.createElement("tr");
         const title = song.title || "Untitled Song";
@@ -713,6 +738,7 @@ function renderAllSongsTable(songList) {
                    title="${song.youtube ? "Open YouTube link" : "No YouTube link added"}"><i class="fa-brands fa-youtube youtube-real-icon" aria-hidden="true"></i></a>
                 ${canManageSongs ? `
                     <button type="button" class="song-action-btn edit" data-song-action="edit" data-song-id="${escapeHtml(song.id)}">✏ Edit</button>
+                    <button type="button" class="song-action-btn duplicate" data-song-action="duplicate" data-song-id="${escapeHtml(song.id)}">⧉ Duplicate</button>
                     <button type="button" class="song-action-btn delete" data-song-action="delete" data-song-id="${escapeHtml(song.id)}">🗑 Delete</button>
                 ` : ''}
             </td>`;
@@ -723,6 +749,28 @@ function renderAllSongsTable(songList) {
                 if (target && window.WorshipHubSongEditor?.open) {
                     window.WorshipHubSongEditor.open(target);
                 }
+            });
+            row.querySelector('[data-song-action="duplicate"]')?.addEventListener("click", async () => {
+                const target = songs.find(x => String(x.id) === String(song.id));
+                if(!target) return;
+                const name = prompt("Name for the duplicated song:", `${target.title || "Song"} — Copy`);
+                if(name === null) return;
+                const finalName=String(name).trim();
+                if(!finalName) return alert("Please enter a song title.");
+                let copy=JSON.parse(JSON.stringify(target));
+                copy.title=finalName;
+                try{
+                    if(currentUser){
+                        if(!window.WorshipHubSongEditor?.duplicate) throw new Error("Song duplication service unavailable");
+                        copy=await window.WorshipHubSongEditor.duplicate(target, finalName);
+                    } else {
+                        copy.id=`song-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+                        copy.createdAt=new Date().toISOString();
+                        copy.updatedAt=new Date().toISOString();
+                    }
+                    songs.push(copy); window.songs=songs;
+                    renderSongs(songs); renderAllSongsTable(songs);
+                }catch(error){ console.error("Song duplication failed:",error); alert("Unable to duplicate this song."); }
             });
             row.querySelector('[data-song-action="delete"]')?.addEventListener("click", async () => {
                 if (window.WorshipHubSongEditor?.deleteSong) {
@@ -747,32 +795,13 @@ function escapeHtml(value) {
 
 window.renderAllSongsTable = renderAllSongsTable;
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        const searchInput =
-            document.getElementById("allSongsSearch");
-
-        if (!searchInput) {
-            return;
-        }
-
-        searchInput.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key === "Enter") {
-
-                    searchAllSongs();
-
-                }
-
-            }
-        );
-
+document.addEventListener("DOMContentLoaded", function(){
+    const searchInput=document.getElementById("allSongsSearch");
+    if(searchInput && !searchInput.dataset.liveBound){
+        searchInput.dataset.liveBound="1";
+        searchInput.addEventListener("input", applyAllSongsColumnFilters);
     }
-);
+});
 // ==========================================
 // MAKE AVAILABLE TO HTML onclick=""
 // ==========================================
@@ -1092,310 +1121,170 @@ function closeServicePlanner(){
 /* Service creation is handled by the CHORDIO New Service dialog.
    The Service Planner is intentionally a review/control view only. */
 
+function serviceDisplayNumber(service, index) {
+    const n = Number.isFinite(index) ? index + 1 : 1;
+    return String(n).padStart(2, "0");
+}
+
+function serviceStatus(service) {
+    const active = String(localStorage.getItem("currentServiceId") || "") === String(service?.id || "");
+    return active ? { label: "ACTIVE", cls: "active" } : { label: "READY", cls: "ready" };
+}
+
 function renderServices() {
-
     if (!serviceList) {
-
-        console.error(
-            "serviceList element not found."
-        );
-
+        console.error("serviceList element not found.");
         return;
-
     }
-
-
-    // =====================================
-    // CLEAR SERVICE LIST
-    // =====================================
-
     serviceList.innerHTML = "";
-
-
-    // =====================================
-    // NO SERVICES
-    // =====================================
-
-    if (
-        !Array.isArray(services) ||
-        services.length === 0
-    ) {
-
-        serviceList.innerHTML = `
-
-            <div class="empty-message">
-
-                No Service Planner created yet.
-
-            </div>
-
-        `;
-
+    if (!Array.isArray(services) || services.length === 0) {
+        serviceList.innerHTML = `<div class="empty-message">No Service Planner created yet.</div>`;
         updateDashboard();
-
         return;
-
     }
 
-
-    // =====================================
-    // SORT SERVICES
-    // =====================================
-
-    services.sort(function(a, b) {
-
-        return (a.name || "").localeCompare(
-            b.name || ""
-        );
-
+    services.sort((a, b) => {
+        const ad = String(a?.date || "");
+        const bd = String(b?.date || "");
+        return bd.localeCompare(ad) || String(a?.name || "").localeCompare(String(b?.name || ""));
     });
 
-
-    // =====================================
-    // RENDER SERVICES
-    // =====================================
-
-    services.forEach(function(service) {
-
-        const serviceSongs =
-            Array.isArray(service.songs)
-                ? service.songs
-                : [];
-
-
-        // =================================
-        // SONG HTML
-        // =================================
-
+    services.forEach(function(service, serviceIndex) {
+        const serviceSongs = Array.isArray(service.songs) ? service.songs : [];
+        const status = serviceStatus(service);
         let songsHtml = "";
-
-
-        serviceSongs.forEach(
-            function(song, index) {
-
-                songsHtml += `
-
-                    <div class="service-song" draggable="true" data-service-id="${service.id}" data-song-index="${index}">
-
-                        <div class="service-song-info">
-
-                            <div class="service-song-title">
-
-                                🎵
-                                ${song.title || "Untitled Song"}
-
-                            </div>
-
-                            <div class="service-song-artist">
-
-                                ${song.artist || ""}
-
-                            </div>
-
-                            <div class="service-song-key">
-
-                                🎼
-                                ${song.serviceKey || song.key || ""}
-
-                            </div>
-
-                            ${song.presentationNote ? `
-                                <div class="service-song-note" title="Presentation note">📝 ${escapeHtml(song.presentationNote)} </div>
-                            ` : ""}
-
-                        </div>
-
-
-                        <div class="service-song-actions">
-                            <a
-                                class="service-youtube-btn${song.youtube ? "" : " disabled"}"
-                                href="${song.youtube ? escapeHtml(song.youtube) : "#"}"
-                                ${song.youtube ? 'target="_blank" rel="noopener noreferrer"' : 'aria-disabled="true" onclick="return false;"'}
-                                title="${song.youtube ? "Open YouTube" : "No YouTube link"}">
-                                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
-                            </a>
-                            <button
-                                class="remove-song-btn"
-                                onclick="removeSongFromService('${service.id}', ${index})"
-                                title="Delete song">
-                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                            </button>
-                        </div>
-
+        serviceSongs.forEach(function(song, index) {
+            songsHtml += `
+                <div class="service-song" draggable="true" data-service-id="${escapeHtml(service.id)}" data-song-index="${index}">
+                    <div class="service-song-drag" title="Drag to reorder" aria-label="Drag to reorder song">⋮⋮</div>
+                    <div class="service-song-info">
+                        <div class="service-song-title">🎵 ${escapeHtml(song.title || "Untitled Song")}</div>
+                        <div class="service-song-artist">${escapeHtml(song.artist || "")}</div>
+                        <div class="service-song-key">🎼 ${escapeHtml(song.serviceKey || song.key || song.originalKey || "—")}</div>
+                        ${song.presentationNote ? `<div class="service-song-note" title="Presentation note">📝 ${escapeHtml(song.presentationNote)}</div>` : ""}
                     </div>
-
-                `;
-
-            }
-        );
-
-
-        // =================================
-        // SERVICE HTML
-        // =================================
+                    <div class="service-song-actions">
+                        <a class="service-youtube-btn${song.youtube ? "" : " disabled"}" href="${song.youtube ? escapeHtml(song.youtube) : "#"}" ${song.youtube ? 'target="_blank" rel="noopener noreferrer"' : 'aria-disabled="true" onclick="return false;"'} title="${song.youtube ? "Open YouTube" : "No YouTube link"}"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+                        <button class="remove-song-btn" onclick="removeSongFromService('${escapeHtml(service.id)}', ${index})" title="Delete song"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                    </div>
+                </div>`;
+        });
 
         serviceList.innerHTML += `
-
-            <div class="service-item">
-
-
-                <div
-                    class="service-header"
-                    onclick="
-                        toggleService(
-                            '${service.id}'
-                        )
-                    ">
-
-                    <div>
-
+            <div class="service-item" data-service-id="${escapeHtml(service.id)}">
+                <div class="service-header" tabindex="0" role="button" aria-expanded="false" aria-controls="serviceBody${escapeHtml(service.id)}">
+                    <div class="service-header-main">
                         <div class="service-title">
-
-                            <span
-                                id="serviceArrow${service.id}">
-
-                                ▼
-
-                            </span>
-
-                            ${service.name}
-
+                            <span class="service-number">${serviceDisplayNumber(service, serviceIndex)}</span>
+                            <span id="serviceArrow${escapeHtml(service.id)}" class="service-arrow">▸</span>
+                            <span class="service-name-text">${escapeHtml(service.name || "Unnamed Service")}</span>
+                            <span class="chordio-service-status ${status.cls}">${status.label}</span>
                         </div>
-
-
                         <div class="service-count">
                             <span class="chordio-service-date">${service.date ? escapeHtml(service.date) : "Date not set"}</span>
                             <span class="chordio-service-song-count">${serviceSongs.length} ${serviceSongs.length === 1 ? "Song" : "Songs"}</span>
                         </div>
-
                     </div>
-
                 </div>
-
-
-                <div
-                    id="serviceBody${service.id}"
-                    class="service-body">
-
-
-                    <button
-                        onclick="
-                            addSongsToService(
-                                '${service.id}'
-                            )
-                        ">
-
-                        ➕ Add Songs
-
-                    </button>
-
-
-                    <button
-                        onclick="
-                            startService(
-                                '${service.id}'
-                            )
-                        ">
-
-                        ▶ Start Service
-
-                    </button>
-
-                    <button
-                        class="start-multi-screen-service-btn"
-                        onclick="
-                            startMultiScreenService(
-                                '${service.id}'
-                            )
-                        "
-                        title="Open Multi-Screen for this Service Planner">
-
-                        🖥 Start Multi-Screen
-
-                    </button>
-                    <button
-    type="button"
-    onclick="printServiceSongs('${service.id}')"
->
-     <i class="fas fa-print"></i>Print Service
-</button>
-
-                    <button
-                        onclick="
-                            renameService(
-                                '${service.id}'
-                            )
-                        ">
-
-                        ✏ Rename
-
-                    </button>
-
-
-                    <button
-                        onclick="
-                            deleteService(
-                                '${service.id}'
-                            )
-                        ">
-
-                        🗑 Delete
-
-                    </button>
-
-
+                <div id="serviceBody${escapeHtml(service.id)}" class="service-body">
+                    <div class="service-action-bar">
+                        <button type="button" onclick="addSongsToService('${escapeHtml(service.id)}')">➕ Add Songs</button>
+                        <button type="button" onclick="startService('${escapeHtml(service.id)}')">▶ Start Service</button>
+                        <button type="button" class="start-multi-screen-service-btn" onclick="startMultiScreenService('${escapeHtml(service.id)}')" title="Open Multi-Screen for this Service Planner">🖥 Multi-Screen</button>
+                        <button type="button" onclick="printServiceSongs('${escapeHtml(service.id)}')"><i class="fas fa-print"></i> Print</button>
+                        <button type="button" onclick="duplicateService('${escapeHtml(service.id)}')">⧉ Duplicate</button>
+                        <button type="button" onclick="renameService('${escapeHtml(service.id)}')">✏ Rename</button>
+                        <button type="button" class="danger-action" onclick="deleteService('${escapeHtml(service.id)}')">🗑 Delete</button>
+                    </div>
+                    <div class="service-song-hint"><span>↕ Drag the handle</span><span>•</span><span>Song order is saved automatically</span></div>
                     <hr>
-
-
-                    <div class="service-song-list">
-
-                        ${songsHtml}
-
-                    </div>
-
-
+                    <div class="service-song-list">${songsHtml || `<div class="service-empty-songs">No songs in this service yet.</div>`}</div>
                 </div>
-
-            </div>
-
-        `;
-
+            </div>`;
     });
 
-
-    // Service cards start collapsed. Clicking the header expands/collapses the song list.
-    serviceList.querySelectorAll('.service-header').forEach(header=>{
-        header.addEventListener('keydown',event=>{
-            if(event.key==='Enter'||event.key===' '){event.preventDefault();header.click();}
+    serviceList.querySelectorAll('.service-header').forEach(header => {
+        header.addEventListener('click', () => toggleService(header.closest('.service-item')?.dataset.serviceId));
+        header.addEventListener('keydown', event => {
+            if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); header.click(); }
         });
     });
 
-    // Enable drag-and-drop song ordering.
-    serviceList.querySelectorAll('.service-song[draggable="true"]').forEach(row=>{
-        row.addEventListener('dragstart',()=>row.classList.add('dragging'));
-        row.addEventListener('dragend',()=>row.classList.remove('dragging'));
-        row.addEventListener('dragover',event=>{ event.preventDefault(); const dragging=serviceList.querySelector('.service-song.dragging'); if(!dragging || dragging===row)return; const rect=row.getBoundingClientRect(); const before=event.clientY < rect.top+rect.height/2; const list=row.parentElement; if(before) list.insertBefore(dragging,row); else list.insertBefore(dragging,row.nextSibling); });
+    serviceList.querySelectorAll('.service-song[draggable="true"]').forEach(row => {
+        const handle = row.querySelector('.service-song-drag');
+        row.addEventListener('dragstart', event => {
+            row.classList.add('dragging');
+            event.dataTransfer.effectAllowed = 'move';
+            try { event.dataTransfer.setData('text/plain', row.dataset.songIndex || ''); } catch(_) {}
+        });
+        row.addEventListener('dragend', () => row.classList.remove('dragging'));
+        row.addEventListener('dragover', event => {
+            event.preventDefault();
+            const dragging = serviceList.querySelector('.service-song.dragging');
+            if(!dragging || dragging === row) return;
+            const rect = row.getBoundingClientRect();
+            const before = event.clientY < rect.top + rect.height / 2;
+            const list = row.parentElement;
+            if(before) list.insertBefore(dragging, row); else list.insertBefore(dragging, row.nextSibling);
+        });
+        handle?.addEventListener('mousedown', () => row.classList.add('drag-handle-active'));
+        handle?.addEventListener('mouseup', () => row.classList.remove('drag-handle-active'));
     });
 
-    // Persist the new order when the user releases a dragged song.
-    serviceList.querySelectorAll('.service-song[draggable="true"]').forEach(row=>{
-        row.addEventListener('dragend',async()=>{
-            const serviceId=row.dataset.serviceId; const service=services.find(x=>String(x.id)===String(serviceId)); if(!service)return;
-            const list=row.parentElement; const rows=[...list.querySelectorAll('.service-song[draggable="true"]')];
-            const reordered=rows.map(r=>service.songs[Number(r.dataset.songIndex)]).filter(Boolean);
-            service.songs=reordered;
+    serviceList.querySelectorAll('.service-song[draggable="true"]').forEach(row => {
+        row.addEventListener('dragend', async () => {
+            const serviceId = row.dataset.serviceId;
+            const service = services.find(x => String(x.id) === String(serviceId));
+            if(!service) return;
+            const list = row.parentElement;
+            const rows = [...list.querySelectorAll('.service-song[draggable="true"]')];
+            const reordered = rows.map(r => service.songs[Number(r.dataset.songIndex)]).filter(Boolean);
+            service.songs = reordered;
             await saveServicesCloud();
             renderServices();
         });
     });
-
-    // =====================================
-    // UPDATE DASHBOARD
-    // =====================================
-
     updateDashboard();
-
 }
+
+async function duplicateService(id){
+    if(!currentUser){ alert("Please login first."); return; }
+    const source = services.find(s => String(s.id) === String(id));
+    if(!source){ alert("Service not found."); return; }
+    const baseName = String(source.name || "Service Planner").trim();
+    const suggested = `${baseName} — Copy`;
+    const name = prompt("Name for the duplicated Service Planner:", suggested);
+    if(name === null) return;
+    const finalName = String(name).trim();
+    if(!finalName){ alert("Please enter a service name."); return; }
+    const copy = JSON.parse(JSON.stringify(source));
+    const oldId = String(copy.id || "");
+    copy.id = `service-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+    if(copy.presentationLayouts && typeof copy.presentationLayouts === "object") {
+        const migratedLayouts={};
+        Object.entries(copy.presentationLayouts).forEach(([key,value])=>{
+            migratedLayouts[String(key).startsWith(oldId+":") ? copy.id+String(key).slice(oldId.length) : key]=value;
+        });
+        copy.presentationLayouts=migratedLayouts;
+    }
+    copy.name = finalName;
+    copy.createdAt = new Date().toISOString();
+    copy.updatedAt = new Date().toISOString();
+    delete copy.status;
+    services.push(copy);
+    try{
+        await saveServicesCloud();
+        renderServices();
+        updateDashboard();
+        try{ localStorage.setItem("chordioToastMessage", `Duplicated “${baseName}” successfully.`); }catch(_){ }
+    }catch(error){
+        services = services.filter(s => String(s.id) !== String(copy.id));
+        window.services = services;
+        console.error("Duplicate service save failed:", error);
+        alert("Unable to duplicate this Service Planner. Please try again.");
+    }
+}
+window.duplicateService = duplicateService;
 
 function addSongsToService(serviceId){
 

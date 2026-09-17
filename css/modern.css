@@ -578,3 +578,41 @@ body{background:var(--wh-bg)!important;color:var(--wh-ink)!important}
 #multiScreenControl .multi-screen-head>#multiScreenClose{display:none!important;}
 #multiScreenControl .chordio-multi-close-bottom{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;margin:14px 0 0!important;padding:13px 18px!important;border:1px solid #b42318!important;border-radius:8px!important;background:#fff!important;color:#b42318!important;font-size:12px!important;font-weight:900!important;letter-spacing:.08em!important;cursor:pointer!important;}
 #multiScreenControl .chordio-multi-close-bottom:hover{background:#fff1f0!important;border-color:#912018!important;color:#912018!important;}
+
+
+/* =========================================================
+   CHORDIO PHASE 3 — Service Planner + Library refinements
+   ========================================================= */
+#servicePanel .service-item{overflow:hidden;border:1px solid #e4e7ec!important;border-radius:14px!important;background:#fff!important;box-shadow:0 5px 18px rgba(16,24,40,.05)!important;margin-bottom:12px!important}
+#servicePanel .service-header{padding:14px 16px!important;background:#fff!important}
+#servicePanel .service-header:focus{outline:2px solid #2563eb!important;outline-offset:-2px}
+#servicePanel .service-header-main{width:100%!important}
+#servicePanel .service-title{display:flex!important;align-items:center!important;gap:9px!important;min-width:0!important}
+#servicePanel .service-number{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:34px!important;height:28px!important;border-radius:8px!important;background:#f2f4f7!important;color:#475467!important;font-size:11px!important;font-weight:900!important;flex:0 0 auto!important}
+#servicePanel .service-arrow{width:18px!important;color:#667085!important;font-weight:900!important;transition:transform .18s ease!important}
+#servicePanel .service-name-text{font-weight:900!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+#servicePanel .chordio-service-status{margin-left:auto!important;display:inline-flex!important;align-items:center!important;padding:4px 8px!important;border-radius:999px!important;font-size:9px!important;letter-spacing:.08em!important;font-weight:900!important;flex:0 0 auto!important}
+#servicePanel .chordio-service-status.active{background:#fee4e2!important;color:#b42318!important}
+#servicePanel .chordio-service-status.ready{background:#ecfdf3!important;color:#027a48!important}
+#servicePanel .service-body{padding:12px 16px 16px!important}
+#servicePanel .service-action-bar{display:flex!important;flex-wrap:wrap!important;gap:7px!important;align-items:center!important}
+#servicePanel .service-action-bar button{border:1px solid #d8dee8!important;background:#fff!important;color:#344054!important;border-radius:8px!important;padding:8px 10px!important;font-weight:800!important;font-size:11px!important}
+#servicePanel .service-action-bar button:hover{background:#f8fafc!important;border-color:#b8c2cf!important}
+#servicePanel .service-action-bar .danger-action{color:#b42318!important;border-color:#f0c7c4!important}
+#servicePanel .service-song-hint{display:flex!important;gap:7px!important;align-items:center!important;margin:9px 0 5px!important;color:#98a2b3!important;font-size:10px!important;font-weight:700!important}
+#servicePanel .service-song{position:relative!important;display:grid!important;grid-template-columns:28px minmax(0,1fr) auto!important;align-items:center!important;gap:10px!important;padding:10px!important}
+#servicePanel .service-song-drag{display:flex!important;align-items:center!important;justify-content:center!important;width:28px!important;height:42px!important;border:1px dashed #cbd5e1!important;border-radius:8px!important;background:#f8fafc!important;color:#667085!important;font-size:17px!important;letter-spacing:-5px!important;cursor:grab!important;user-select:none!important}
+#servicePanel .service-song-drag:active,#servicePanel .service-song.drag-handle-active .service-song-drag{cursor:grabbing!important;background:#eef2ff!important;border-color:#818cf8!important;color:#4338ca!important}
+#servicePanel .service-song.dragging{opacity:.55!important;border-style:dashed!important}
+#servicePanel .service-song-info{min-width:0!important}
+#servicePanel .service-song-title{overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+#servicePanel .service-empty-songs{padding:20px!important;text-align:center!important;color:#98a2b3!important;border:1px dashed #d8dee8!important;border-radius:10px!important}
+@media(max-width:700px){#servicePanel .service-action-bar button{flex:1 1 auto}#servicePanel .service-title{gap:6px!important}#servicePanel .chordio-service-status{margin-left:4px!important}.service-song-hint{font-size:9px!important}}
+
+/* All Songs library toolbar */
+.all-songs-library-meta{display:inline-flex;align-items:center;padding:6px 9px;border-radius:999px;background:#f2f4f7;color:#475467;font-size:11px;font-weight:800}
+.all-songs-filterbar{display:grid;grid-template-columns:repeat(3,minmax(120px,1fr)) auto;gap:8px;padding:10px 0}
+.all-songs-filterbar select{width:100%;border:1px solid #d8dee8;border-radius:8px;background:#fff;padding:8px 10px;color:#344054;font-size:12px}
+.all-songs-filterbar .all-songs-sort{grid-column:4}
+.song-action-btn.duplicate{color:#175cd3!important}
+@media(max-width:800px){.all-songs-filterbar{grid-template-columns:1fr 1fr}.all-songs-filterbar .all-songs-sort{grid-column:auto}}

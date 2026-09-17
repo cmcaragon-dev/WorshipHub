@@ -122,6 +122,11 @@ body{overflow-x:hidden}
 #customPresentationScreen{display:none;position:fixed;inset:0;width:100vw;height:100dvh;min-height:100dvh;z-index:2147483647;background:#000;color:#fff;flex-direction:column;overflow:hidden}
 #customPresentationScreen.show{display:flex}
 #customPresentationHeader{flex:0 0 auto;display:flex;align-items:center;gap:14px;padding:10px 18px;min-height:64px;background:#000;border-bottom:1px solid #222}
+/* Phase 3: presentation controls remain visible while lyrics scroll. */
+#customPresentationHeader{position:sticky!important;top:0!important;z-index:80!important;box-shadow:0 3px 16px rgba(0,0,0,.28)!important}
+#customPresentationHeader button{min-height:38px!important;touch-action:manipulation!important}
+#customPresentationHeader .presentation-toolbar-group{position:sticky!important;top:0!important}
+
 #customPresentationTitle{font-weight:900;font-size:clamp(22px,2.5vw,38px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:32vw}
 #customPresentationKey{color:#FFD700;font-weight:800;white-space:nowrap;font-size:clamp(14px,1.3vw,20px)}
 .custom-presentation-passing{flex:1 1 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0;font-family:Inter,"Segoe UI",Arial,sans-serif}

@@ -232,8 +232,10 @@ All Songs
 
         <div>
             <h2>🎵 All Songs</h2>
-            <p>Complete song library</p>
+            <p>Search, filter and manage your complete song library.</p>
         </div>
+
+        <span id="allSongsLibraryMeta" class="all-songs-library-meta">0 songs</span>
 
         <button
             class="close-all-songs"
@@ -265,6 +267,19 @@ All Songs
             ✖ Clear
         </button>
 
+    </div>
+
+    <div class="all-songs-filterbar" aria-label="Song library filters">
+        <select id="filterCategory" aria-label="Filter by category"><option value="">All categories</option></select>
+        <select id="filterLanguage" aria-label="Filter by language"><option value="">All languages</option></select>
+        <select id="filterKey" aria-label="Filter by key"><option value="">All keys</option></select>
+        <select id="allSongsSort" class="all-songs-sort" aria-label="Sort songs">
+            <option value="title">Sort: Title</option>
+            <option value="artist">Sort: Artist</option>
+            <option value="category">Sort: Category</option>
+            <option value="language">Sort: Language</option>
+            <option value="key">Sort: Key</option>
+        </select>
     </div>
 
 

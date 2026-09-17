@@ -926,7 +926,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.openSongEditor = openEditor;
     window.closeSongEditor = closeEditor;
-    window.WorshipHubSongEditor = { open: openEditor, save: saveSong, deleteFirebaseSong: deleteSongFromFirebase, deleteSong };
+    window.WorshipHubSongEditor = {
+        open: openEditor,
+        save: saveSong,
+        deleteFirebaseSong: deleteSongFromFirebase,
+        deleteSong,
+        duplicate: async function(source, newTitle){
+            const user=auth.currentUser;
+            const allowed=await canAddSongs(user);
+            const isAdmin=String(user?.email || "").toLowerCase()===ADMIN_EMAIL;
+            if(!user || (!allowed && !isAdmin)) throw new Error("You do not have permission to duplicate songs.");
+            const copy=JSON.parse(JSON.stringify(source || {}));
+            copy.id=`song-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+            copy.title=String(newTitle || "").trim();
+            if(!copy.title) throw new Error("A song title is required.");
+            copy.createdByUid=user.uid;
+            copy.createdAt=new Date().toISOString();
+            copy.updatedAt=new Date().toISOString();
+            await saveSongToFirebase(copy);
+            return copy;
+        }
+    };
 });
 
 loadCustomSongs();
