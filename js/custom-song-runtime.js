@@ -1381,7 +1381,18 @@ function multiScreenMessage(){
         // and the physical output screen. Keep originalKey only as metadata.
         serviceKey: authoritativeServiceKey,
         key: authoritativeServiceKey,
-        transpose: Number(serviceOccurrence?.transpose ?? song?.transpose ?? 0) || 0,
+        // The Service Key is the source of truth for chord transposition.
+        // Older/saved service entries can contain serviceKey=D but a stale
+        // transpose value of 0; derive the offset from Original Key -> Service
+        // Key whenever the saved offset does not actually match the keys.
+        originalKey: serviceOccurrence?.originalKey || song?.originalKey || song?.key || authoritativeServiceKey,
+        transpose: (() => {
+            const saved = Number(serviceOccurrence?.transpose ?? song?.transpose);
+            const original = String(serviceOccurrence?.originalKey || song?.originalKey || song?.key || authoritativeServiceKey).trim();
+            const target = authoritativeServiceKey;
+            const derived = serviceKeyTransposeSteps(original, target);
+            return Number.isFinite(saved) && saved !== 0 ? saved : derived;
+        })(),
         sections: normalizeSections(song.sections)
     } : null;
 
