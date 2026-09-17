@@ -445,22 +445,43 @@ onAuthStateChanged(auth, async function(user) {
     ===================================== */
 
     currentUser = user;
-    await loadCurrentUserProfile();
-    await loadTotalUsersCount();
-    await loadSiteVisitCount();
-    await recordSiteVisit();
-    await migrateLocalDeletedTitlesToFirebase();
-    // Sync the shared song library only after deletion migration. This is the
-    // single authoritative /songs read for this login, preventing the page
-    // from rendering the bundled 75-song list and then correcting it later.
-    await syncAllSongDocumentsIntoLibrary();
+
+    // FAST HOME LOAD: render the bundled library immediately. Previously the
+    // home page waited for several sequential Firestore reads (profile, user
+    // count, visit count, deletion migration, and the entire songs collection)
+    // before displaying any songs. The bundled structured library is safe to
+    // show immediately and is reconciled with Firebase in the background.
     filterDeletedSongsFromLibrary();
     removeDuplicateSongTitles();
     songsReady = true;
-    // Service Planner button is available through its normal UI binding.
-    // Do not call an undefined admin-only helper during login.
     renderSongs(songs);
     if (typeof renderAllSongsTable === "function") renderAllSongsTable(songs);
+
+    // Do not block the Home UI on dashboard counters or cloud synchronization.
+    // These operations update the page as their results arrive.
+    Promise.allSettled([
+        loadCurrentUserProfile(),
+        loadTotalUsersCount(),
+        loadSiteVisitCount(),
+        recordSiteVisit()
+    ]);
+
+    (async function syncLibraryInBackground(){
+        try {
+            await migrateLocalDeletedTitlesToFirebase();
+            await syncAllSongDocumentsIntoLibrary();
+            filterDeletedSongsFromLibrary();
+            removeDuplicateSongTitles();
+            songsReady = true;
+            renderSongs(songs);
+            if (typeof renderAllSongsTable === "function") renderAllSongsTable(songs);
+        } catch(error) {
+            console.warn("Background song synchronization failed:", error);
+            // Keep the already-rendered bundled library available offline.
+            songsReady = true;
+            renderSongs(songs);
+        }
+    })();
 
 
     console.log("Logged in user:", currentUser.uid);

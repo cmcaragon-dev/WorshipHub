@@ -2114,3 +2114,46 @@ body .chordio-modal .chordio-dialog{position:relative!important;z-index:1!import
 #multiScreenControl .multi-edit-service-open{min-width:118px!important;}
 @media(max-width:700px){#multiScreenControl .multi-edit-service-open{min-width:0!important;padding:7px 8px!important;font-size:9px!important;}}
 </style>
+
+<style id="chordio-phase18-exact-service-planner-editor-style">
+/* PHASE 18 — Multi-Screen EDIT SERVICE uses the exact Service Planner editor appearance. */
+body #chordioNewServiceModal.chordio-modal{position:fixed!important;inset:0!important;z-index:2147483647!important;display:none!important;align-items:center!important;justify-content:center!important;background:rgba(7,15,24,.62)!important;backdrop-filter:blur(3px)!important;padding:22px!important;box-sizing:border-box!important;}
+body #chordioNewServiceModal.chordio-modal.show{display:flex!important;}
+body #chordioNewServiceModal .chordio-dialog.chordio-service-creator{width:min(760px,96vw)!important;max-height:88vh!important;overflow:auto!important;border-radius:16px!important;background:#fff!important;box-shadow:0 24px 80px rgba(0,0,0,.28)!important;color:#172635!important;position:relative!important;z-index:1!important;}
+body #chordioNewServiceModal .chordio-dialog-head{display:flex!important;align-items:center!important;justify-content:space-between!important;padding:18px 20px!important;border-bottom:1px solid #e7ebef!important;background:#fff!important;}
+body #chordioNewServiceModal .chordio-dialog-head span{font-size:10px!important;font-weight:900!important;letter-spacing:.12em!important;color:#b58a00!important;}
+body #chordioNewServiceModal .chordio-dialog-head h3{margin:4px 0 0!important;font-size:20px!important;color:#172635!important;}
+body #chordioNewServiceModal .chordio-dialog-head>button{border:0!important;background:#eef1f4!important;color:#172635!important;border-radius:8px!important;width:34px!important;height:34px!important;cursor:pointer!important;font-size:16px!important;}
+body #chordioNewServiceModal .chordio-form-grid{display:grid!important;grid-template-columns:1.5fr 1fr!important;gap:12px!important;padding:18px 20px 10px!important;}
+body #chordioNewServiceModal .chordio-form-grid label{font-size:10px!important;font-weight:900!important;letter-spacing:.08em!important;color:#697681!important;display:block!important;}
+body #chordioNewServiceModal .chordio-form-grid input{display:block!important;width:100%!important;box-sizing:border-box!important;margin-top:6px!important;padding:11px 12px!important;border:1px solid #d7dfe6!important;border-radius:9px!important;outline:none!important;background:#fff!important;color:#172635!important;font-size:14px!important;}
+body #chordioNewServiceModal .v63-selected-head{display:flex!important;justify-content:space-between!important;align-items:end!important;padding:12px 20px 8px!important;gap:12px!important;}
+body #chordioNewServiceModal .v63-selected-head strong{font-size:11px!important;letter-spacing:.08em!important;color:#263644!important;}
+body #chordioNewServiceModal .v63-selected-head span{font-size:11px!important;color:#7b8791!important;}
+body #chordioNewServiceModal .v63-song-search{display:block!important;width:calc(100% - 40px)!important;margin:8px 20px!important;padding:11px 12px!important;box-sizing:border-box!important;border:1px solid #d7dfe6!important;border-radius:9px!important;outline:none!important;background:#fff!important;color:#172635!important;font-size:14px!important;}
+body #chordioNewServiceModal .v63-song-list{padding:0 20px 15px!important;max-height:430px!important;overflow:auto!important;background:#fff!important;}
+body #chordioNewServiceModal .v63-song-choice{display:grid!important;grid-template-columns:1fr 130px!important;gap:12px!important;align-items:center!important;padding:10px 0!important;border-bottom:1px solid #edf0f3!important;background:#fff!important;}
+body #chordioNewServiceModal .v63-song-check{display:flex!important;align-items:center!important;gap:10px!important;}
+body #chordioNewServiceModal .v63-song-check input{width:18px!important;height:18px!important;accent-color:#172a3a!important;}
+body #chordioNewServiceModal .v63-song-check span{display:flex!important;flex-direction:column!important;gap:2px!important;color:#172635!important;}
+body #chordioNewServiceModal .v63-song-check strong{font-size:13px!important;color:#172635!important;}
+body #chordioNewServiceModal .v63-song-check small{color:#7c8790!important;margin-top:2px!important;font-size:11px!important;}
+body #chordioNewServiceModal .v63-song-key{padding:9px!important;border:1px solid #d7dfe6!important;border-radius:8px!important;background:#fff!important;color:#172635!important;width:100%!important;box-sizing:border-box!important;}
+body #chordioNewServiceModal .v63-create-footer{position:sticky!important;bottom:0!important;display:flex!important;align-items:center!important;gap:9px!important;padding:12px 20px!important;background:#f8fafb!important;border-top:1px solid #e4e9ed!important;z-index:2!important;}
+body #chordioNewServiceModal .v63-create-footer span{margin-right:auto!important;font-size:11px!important;color:#697681!important;}
+body #chordioNewServiceModal .v63-create-footer button{padding:10px 14px!important;border-radius:8px!important;border:1px solid #cfd7df!important;background:#fff!important;color:#263644!important;font-weight:800!important;cursor:pointer!important;}
+body #chordioNewServiceModal .v63-create-footer button.primary{background:#172a3a!important;color:#fff!important;border-color:#172a3a!important;}
+body #chordioNewServiceModal .v63-create-footer button.secondary{background:#fff!important;color:#263644!important;}
+@media(max-width:700px){
+ body #chordioNewServiceModal.chordio-modal{padding:10px!important;}
+ body #chordioNewServiceModal .chordio-dialog.chordio-service-creator{width:100%!important;max-width:100%!important;max-height:94vh!important;border-radius:14px!important;}
+ body #chordioNewServiceModal .chordio-form-grid{grid-template-columns:1fr!important;padding:14px!important;}
+ body #chordioNewServiceModal .v63-selected-head{padding:10px 14px 7px!important;align-items:flex-start!important;flex-direction:column!important;}
+ body #chordioNewServiceModal .v63-song-search{width:calc(100% - 28px)!important;margin:8px 14px!important;}
+ body #chordioNewServiceModal .v63-song-list{padding:0 14px 12px!important;max-height:52vh!important;}
+ body #chordioNewServiceModal .v63-song-choice{grid-template-columns:1fr!important;gap:7px!important;}
+ body #chordioNewServiceModal .v63-song-key{margin-left:28px!important;width:calc(100% - 28px)!important;}
+ body #chordioNewServiceModal .v63-create-footer{padding:10px 14px!important;flex-wrap:wrap!important;}
+ body #chordioNewServiceModal .v63-create-footer span{width:100%!important;margin-right:0!important;}
+}
+</style>
