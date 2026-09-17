@@ -659,8 +659,8 @@ body.multi-screen-output-page #multiScreenOutput{position:fixed!important;inset:
 </div><div class="multi-part-preview-help">Compact preview. Click any part above to move the HDMI display to that section.</div></section></section>
 <aside class="multi-screen-column">
 <div class="multi-screen-preview-panel multi-screen-preview-panel-large">
-<div class="multi-section-head multi-screen-output-preview-head"><strong>SCREEN OUTPUT PREVIEW</strong><span>4 HDMI OUTPUTS</span><button type="button" id="multiScreenOutputSettingsBtn" class="multi-screen-output-settings-btn">⚙ SETTINGS</button></div>
-<div class="multi-screen-previews v53-preview-grid" id="multiScreenPreviews"></div>
+<div class="multi-section-head multi-screen-output-preview-head"><strong>SCREEN OUTPUT PREVIEW</strong><span>4 HDMI OUTPUTS</span></div>
+<div class="multi-screen-previews v53-preview-grid" id="multiScreenPreviews"><button type="button" id="multiScreenOutputSettingsBtn" class="multi-screen-output-settings-btn" aria-label="Open screen output settings">⚙</button></div>
 </div>
 <div class="multi-output-settings-in-preview">
 <div class="multi-screen-status"><span class="multi-live-dot"></span><strong>OUTPUT SCREENS</strong><span>Use SETTINGS on each screen.</span></div>
@@ -1912,5 +1912,80 @@ body.multi-screen-output-page #multiOutputPageSlide:has(+ *){}
  #multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid:before{font-size:12px!important}
  #multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel{grid-template-columns:1fr!important}
  #multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel .multi-screen-enable,#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel>[data-open-screen]{grid-column:1!important}
+}
+</style>
+
+<style id="chordio-phase13-popup-screen-settings">
+/* PHASE 13 — Screen Output Settings is a true popup, not a settings section at the top. */
+#multiScreenControl .multi-screen-preview-panel{position:relative!important}
+#multiScreenControl .multi-screen-output-settings-btn{
+  position:absolute!important;right:14px!important;bottom:14px!important;top:auto!important;z-index:20!important;
+  width:42px!important;height:42px!important;border-radius:50%!important;border:1px solid rgba(255,255,255,.25)!important;
+  background:rgba(17,25,34,.92)!important;color:#f4c928!important;box-shadow:0 8px 24px rgba(0,0,0,.35)!important;
+  font-size:18px!important;font-weight:900!important;cursor:pointer!important;display:flex!important;align-items:center!important;justify-content:center!important;
+}
+#multiScreenControl .multi-screen-output-settings-btn:hover{transform:scale(1.05)!important}
+#multiScreenControl .multi-output-settings-in-preview{display:none!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open{
+  display:flex!important;position:fixed!important;inset:0!important;z-index:2147483646!important;
+  align-items:center!important;justify-content:center!important;padding:18px!important;
+  background:rgba(3,7,11,.78)!important;backdrop-filter:blur(7px)!important;-webkit-backdrop-filter:blur(7px)!important;
+  box-sizing:border-box!important;
+}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid{
+  display:grid!important;position:relative!important;width:min(980px,calc(100vw - 36px))!important;
+  max-height:calc(100vh - 36px)!important;overflow:auto!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:14px!important;margin:0!important;padding:20px!important;border:1px solid #4b5d6e!important;
+  border-radius:16px!important;background:#101820!important;box-shadow:0 30px 100px rgba(0,0,0,.7)!important;box-sizing:border-box!important;
+}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid:before{
+  content:"SCREEN OUTPUT SETTINGS"!important;grid-column:1/-1!important;display:block!important;
+  color:#f4c928!important;font-size:15px!important;font-weight:900!important;letter-spacing:.08em!important;
+  padding:2px 2px 12px!important;border-bottom:1px solid #344352!important;
+}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid .multi-screen-card{
+  display:block!important;width:auto!important;height:auto!important;min-width:0!important;overflow:visible!important;
+  padding:15px!important;border:1px solid #40505f!important;border-radius:11px!important;background:#17222c!important;
+  pointer-events:auto!important;box-sizing:border-box!important;
+}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-toggle{display:none!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel{
+  display:grid!important;position:static!important;grid-template-columns:1fr 1fr!important;gap:9px!important;
+  width:auto!important;height:auto!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;
+  box-shadow:none!important;transform:none!important;color:#e8edf3!important;pointer-events:auto!important;
+}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel .multi-screen-settings-head{
+  display:flex!important;grid-column:1/-1!important;align-items:center!important;justify-content:space-between!important;
+  padding-bottom:8px!important;border-bottom:1px solid #344352!important;margin-bottom:2px!important;
+}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel .multi-popup-close{
+  display:flex!important;width:30px!important;height:30px!important;align-items:center!important;justify-content:center!important;
+  padding:0!important;border:1px solid #526272!important;border-radius:7px!important;background:#202d38!important;
+  color:#d5dee6!important;cursor:pointer!important;
+}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel label{
+  display:flex!important;align-items:center!important;gap:7px!important;color:#cbd5df!important;font-size:10px!important;font-weight:800!important;
+}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel .multi-screen-enable{
+  grid-column:1/-1!important;padding:9px 10px!important;border:1px solid #344352!important;border-radius:7px!important;
+  background:#121c24!important;
+}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel select,
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel>[data-open-screen]{
+  width:100%!important;min-height:40px!important;padding:8px 10px!important;border:1px solid #526272!important;
+  border-radius:7px!important;background:#202d38!important;color:#edf2f6!important;font-size:10px!important;font-weight:800!important;
+  box-sizing:border-box!important;cursor:pointer!important;
+}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel>[data-open-screen]{
+  grid-column:1/-1!important;background:#d3aa00!important;color:#111!important;border-color:#f0c72c!important;font-weight:900!important;
+}
+@media(max-width:700px){
+ #multiScreenControl .multi-screen-output-settings-btn{right:10px!important;bottom:10px!important;width:38px!important;height:38px!important}
+ #multiScreenControl .multi-output-settings-in-preview.phase12-open{padding:10px!important}
+ #multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid{width:calc(100vw - 20px)!important;max-height:calc(100vh - 20px)!important;grid-template-columns:1fr!important;padding:13px!important;gap:10px!important}
+ #multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid:before{font-size:12px!important}
+ #multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel{grid-template-columns:1fr!important}
+ #multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel .multi-screen-enable,
+ #multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel>[data-open-screen]{grid-column:1!important}
 }
 </style>

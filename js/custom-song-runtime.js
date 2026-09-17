@@ -1965,9 +1965,11 @@ function initUnifiedMultiScreenOutputSettings(){
     if(!btn||!drawer||btn.dataset.bound==="1")return;
     btn.dataset.bound="1";
     const close=()=>{drawer.classList.remove("phase12-open");document.body.classList.remove("chordio-output-settings-open");};
-    btn.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();drawer.classList.toggle("phase12-open");document.body.classList.toggle("chordio-output-settings-open",drawer.classList.contains("phase12-open"));});
+    btn.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();drawer.classList.add("phase12-open");document.body.classList.add("chordio-output-settings-open");});
+    // Clicking the dark area outside the settings closes the popup automatically.
     drawer.addEventListener("click",ev=>{if(ev.target===drawer)close();});
-    drawer.querySelectorAll(".multi-popup-close,.multi-screen-settings-close").forEach(b=>b.addEventListener("click",close));
+    drawer.querySelectorAll(".multi-popup-close,.multi-screen-settings-close").forEach(b=>b.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();close();}));
+    document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&drawer.classList.contains("phase12-open"))close();});
 }
 
 function renderMultiScreenPreviews(){
@@ -2181,7 +2183,30 @@ function updateMultiScreenLiveStatus(){
 }
 
 function multiScreenOpenAll(){[1,2,3,4].forEach(n=>{if(multiScreenEnabled[n]!==false)multiScreenOpenDisplay(n);});}
-function multiScreenCloseAll(){Object.values(multiScreenWindows).forEach(w=>{try{if(w&&!w.closed)w.close();}catch(_){}});multiScreenWindows={};}
+function clearMultiScreenServiceSession(){
+    // Closing Multi-Screen ends the currently selected Service Planner session.
+    // This prevents the planner from being restored as ACTIVE when the user
+    // returns to Home or opens the app again.
+    try{
+        multiScreenBroadcast({type:"chordio-multiscreen-stop",stoppedAt:Date.now()});
+    }catch(_){}
+    [
+        "currentService",
+        "currentServiceId",
+        "currentServiceName",
+        "currentServiceSnapshot",
+        "currentSongIndex",
+        "resumePresentation",
+        "presentationMode",
+        "startMultiScreenOnLoad"
+    ].forEach(key=>{try{localStorage.removeItem(key);}catch(_){} });
+}
+
+function multiScreenCloseAll(){
+    clearMultiScreenServiceSession();
+    Object.values(multiScreenWindows).forEach(w=>{try{if(w&&!w.closed)w.close();}catch(_){}});
+    multiScreenWindows={};
+}
 function multiScreenBlackAll(){multiScreenBroadcast({black:true});}
 function fitMultiLyricsToScreen(output, section, settings){
     if(!output||!section)return;
@@ -2428,6 +2453,10 @@ function initMultiScreen(){
         const expectedSongId=String(params.get("id")||"");
         let outputHandshakeComplete=false;
         const acceptState=state=>{
+            if(state?.type==="chordio-multiscreen-stop"){
+                try{ window.close(); }catch(_){}
+                return;
+            }
             const normalized=multiScreenEnsureOutputContent(state);
             if(!normalized?.song)return;
             const incomingId=String(normalized?.song?.id||"");
@@ -2529,11 +2558,11 @@ function initMultiScreen(){
 // CHORDIO HOME NAVIGATION — defined globally so the Home button works even
 // if another optional control initialization fails before bindControls finishes.
 window.chordioGoHome = function(){
+    // Returning Home from the song/Multi-Screen page also ends the selected
+    // Service Planner session so it cannot resume automatically later.
     try {
-        localStorage.removeItem("resumePresentation");
-        localStorage.removeItem("currentSongIndex");
+        clearMultiScreenServiceSession();
         localStorage.removeItem("currentService");
-        localStorage.removeItem("currentServiceId");
         sessionStorage.removeItem("worshiphubSongOpenedFromIndex");
     } catch(_) {}
 
