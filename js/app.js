@@ -1,3 +1,4 @@
+/* CHORDIO PHASE 5 — session-state reliability and Service Planner cleanup */
 
 "use strict";
 
@@ -930,21 +931,20 @@ if(continueBtn){
         localStorage.setItem("resumePresentation", "true");
     }
 
-    location.href =
-    service.songs[index].file;
+    const selectedSong = Array.isArray(service.songs) ? service.songs[index] : null;
+    if (!selectedSong?.file) {
+        alert("The selected song could not be opened. Please check the Service Planner order.");
+        return;
+    }
+
+    location.href = selectedSong.file;
 
 };
 }
 function finishService() {
-
-    localStorage.removeItem("currentServiceId");
-
-    localStorage.removeItem("currentSongIndex");
-
-    localStorage.removeItem("resumePresentation");
-
+    clearActiveServiceState();
+    if (typeof renderServices === "function") renderServices();
     alert("Service Finished.");
-
 }
 window.finishService = finishService;
 function updateDashboard(){
@@ -1096,26 +1096,33 @@ servicePlannerBtn.onclick = async function(){
     renderServices();
 }
 
+function clearActiveServiceState(){
+    // Closing the planner must fully clear the presentation session.
+    // This prevents a closed planner from appearing ACTIVE after reopening.
+    [
+        "currentService",
+        "currentServiceId",
+        "currentServiceName",
+        "currentServiceSnapshot",
+        "currentSongIndex",
+        "resumePresentation",
+        "presentationMode",
+        "startMultiScreenOnLoad"
+    ].forEach(key => localStorage.removeItem(key));
+}
+
 closeService.onclick=function(){
-
     servicePanel.classList.remove("show");
     document.body.classList.remove("service-planner-open");
-
-    // Clear active service presentation
-    localStorage.removeItem("currentService");
-    localStorage.removeItem("currentSongIndex");
-    localStorage.removeItem("resumePresentation");
-
+    clearActiveServiceState();
+    renderServices();
 };
-function closeServicePlanner(){
 
+function closeServicePlanner(){
     servicePanel.classList.remove("show");
     document.body.classList.remove("service-planner-open");
-
-    localStorage.removeItem("currentService");
-    localStorage.removeItem("currentSongIndex");
-    localStorage.removeItem("resumePresentation");
-
+    clearActiveServiceState();
+    renderServices();
 }
 
 /* Service creation is handled by the CHORDIO New Service dialog.
@@ -1710,13 +1717,10 @@ async function startService(serviceId) {
 
 
     if (!firstSong || !firstSong.file) {
-
-        alert(
-            "First song file not found."
-        );
-
+        clearActiveServiceState();
+        renderServices();
+        alert("First song file not found.");
         return;
-
     }
 
 
