@@ -364,6 +364,21 @@ const STORAGE_KEYS = {
    FIREBASE AUTHENTICATION
 ===================================== */
 
+
+async function loadTotalUsersCount(){
+    const target=document.getElementById("totalUsers");
+    if(!target) return;
+    try{
+        const snap=await getDocs(collection(db,"users"));
+        window.chordioTotalUsers=snap.size;
+        target.textContent=snap.size.toLocaleString();
+    }catch(error){
+        console.warn("Unable to load total users count:",error);
+        if(!Number.isFinite(window.chordioTotalUsers)) target.textContent="—";
+    }
+}
+window.loadTotalUsersCount=loadTotalUsersCount;
+
 async function recordSiteVisit(){
     const countedKey='chordioSiteVisitCounted';
     if(sessionStorage.getItem(countedKey)==='1') return;
@@ -416,6 +431,7 @@ onAuthStateChanged(auth, async function(user) {
         if (typeof renderAllSongsTable === "function") renderAllSongsTable(songs);
         if (typeof renderServices === "function") renderServices();
         if (typeof updateDashboard === "function") updateDashboard();
+        await loadTotalUsersCount();
         await loadSiteVisitCount();
         await recordSiteVisit();
         return;
@@ -430,6 +446,7 @@ onAuthStateChanged(auth, async function(user) {
 
     currentUser = user;
     await loadCurrentUserProfile();
+    await loadTotalUsersCount();
     await loadSiteVisitCount();
     await recordSiteVisit();
     await migrateLocalDeletedTitlesToFirebase();
@@ -976,8 +993,8 @@ function updateDashboard(){
     if(totalServices){
         totalServices.textContent = services.length;
     }
-    const totalLibrarySongs=document.getElementById("totalLibrarySongs");
-    if(totalLibrarySongs) totalLibrarySongs.textContent=Array.isArray(songs)?songs.filter(x=>!isAnyDeletedSong(x)).length.toLocaleString():"0";
+    const totalUsers=document.getElementById("totalUsers");
+    if(totalUsers && Number.isFinite(window.chordioTotalUsers)) totalUsers.textContent=Number(window.chordioTotalUsers).toLocaleString();
 
     const current =
         document.getElementById("currentService");
