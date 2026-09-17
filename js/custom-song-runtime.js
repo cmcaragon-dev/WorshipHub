@@ -1959,7 +1959,19 @@ function fitMultiLyricsPreviewToStage(stage, element, settings){
     element.dataset.referenceScreen=`${refW}x${refH}`;
 }
 
+function initUnifiedMultiScreenOutputSettings(){
+    const btn=document.getElementById("multiScreenOutputSettingsBtn");
+    const drawer=document.querySelector("#multiScreenControl .multi-output-settings-in-preview");
+    if(!btn||!drawer||btn.dataset.bound==="1")return;
+    btn.dataset.bound="1";
+    const close=()=>{drawer.classList.remove("phase12-open");document.body.classList.remove("chordio-output-settings-open");};
+    btn.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();drawer.classList.toggle("phase12-open");document.body.classList.toggle("chordio-output-settings-open",drawer.classList.contains("phase12-open"));});
+    drawer.addEventListener("click",ev=>{if(ev.target===drawer)close();});
+    drawer.querySelectorAll(".multi-popup-close,.multi-screen-settings-close").forEach(b=>b.addEventListener("click",close));
+}
+
 function renderMultiScreenPreviews(){
+    initUnifiedMultiScreenOutputSettings();
     const box=document.getElementById("multiScreenPreviews");if(!box)return;
     // Settings dialogs are portaled to <body> so they can never be clipped by the preview grid/card.
     document.querySelectorAll(".multi-preview-card-settings[data-portal='1']").forEach(el=>el.remove());

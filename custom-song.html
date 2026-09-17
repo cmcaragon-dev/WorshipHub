@@ -659,7 +659,7 @@ body.multi-screen-output-page #multiScreenOutput{position:fixed!important;inset:
 </div><div class="multi-part-preview-help">Compact preview. Click any part above to move the HDMI display to that section.</div></section></section>
 <aside class="multi-screen-column">
 <div class="multi-screen-preview-panel multi-screen-preview-panel-large">
-<div class="multi-section-head"><strong>SCREEN OUTPUT PREVIEW</strong><span>Large live preview of the HDMI screens.</span></div>
+<div class="multi-section-head multi-screen-output-preview-head"><strong>SCREEN OUTPUT PREVIEW</strong><span>4 HDMI OUTPUTS</span><button type="button" id="multiScreenOutputSettingsBtn" class="multi-screen-output-settings-btn">⚙ SETTINGS</button></div>
 <div class="multi-screen-previews v53-preview-grid" id="multiScreenPreviews"></div>
 </div>
 <div class="multi-output-settings-in-preview">
@@ -1873,4 +1873,44 @@ body.multi-screen-output-page #multiOutputPageSlide:has(+ *){}
 .service-key-save-status.pending{color:#a06d00}.service-key-save-status.saved{color:#18794e}.service-key-save-status.error{color:#b42318}
 #saveServiceKeyBtn:disabled{opacity:.6;cursor:wait}
 @media(max-width:900px){.service-key-save-status{min-width:auto}.controls #saveServiceKeyBtn{padding-inline:9px}}
+</style>
+<style id="chordio-phase12-unified-screen-settings">
+/* PHASE 12 — Unified Screen 1–4 Output Settings */
+#multiScreenControl .multi-screen-output-preview-head{display:flex!important;align-items:center!important;gap:10px!important}
+#multiScreenControl .multi-screen-output-preview-head>span{margin-left:auto!important;color:#91a0af!important;font-size:9px!important;letter-spacing:.08em!important;font-weight:800!important}
+#multiScreenControl .multi-screen-output-settings-btn{flex:0 0 auto!important;height:32px!important;padding:0 12px!important;border:1px solid #667787!important;border-radius:7px!important;background:#202d38!important;color:#f4c928!important;font-size:10px!important;font-weight:900!important;letter-spacing:.04em!important;cursor:pointer!important;box-shadow:0 2px 7px rgba(0,0,0,.18)!important}
+#multiScreenControl .multi-screen-output-settings-btn:hover{background:#2c3b47!important;border-color:#d3aa00!important;transform:translateY(-1px)!important}
+/* The individual per-card portal settings are intentionally replaced by the unified button. */
+#multiScreenControl .multi-preview-settings-button{display:none!important}
+.multi-preview-card-settings[data-portal="1"]{display:none!important}
+/* Turn the existing Screen 1–4 settings area into one viewport-level dialog. */
+#multiScreenControl .multi-output-settings-in-preview{display:none!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open{display:flex!important;position:fixed!important;inset:0!important;z-index:2147483646!important;align-items:center!important;justify-content:center!important;padding:24px!important;box-sizing:border-box!important;background:rgba(4,9,14,.76)!important;backdrop-filter:blur(6px)!important;-webkit-backdrop-filter:blur(6px)!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-status{display:none!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid{display:grid!important;position:relative!important;width:min(920px,calc(100vw - 48px))!important;max-height:min(760px,calc(100vh - 48px))!important;overflow:auto!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin:0!important;padding:18px!important;border:1px solid #536475!important;border-radius:14px!important;background:#111922!important;box-shadow:0 28px 90px rgba(0,0,0,.62)!important;box-sizing:border-box!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid:before{content:"SCREEN 1–4 — OUTPUT SETTINGS";grid-column:1/-1!important;display:block!important;color:#f4c928!important;font-size:14px!important;font-weight:900!important;letter-spacing:.08em!important;padding:2px 2px 12px!important;border-bottom:1px solid #344352!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid .multi-screen-card{display:block!important;width:auto!important;height:auto!important;min-width:0!important;overflow:visible!important;padding:14px!important;border:1px solid #40505f!important;border-radius:10px!important;background:#17222c!important;pointer-events:auto!important;box-sizing:border-box!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid .multi-screen-card>div:first-child{display:block!important;color:#fff!important;margin-bottom:8px!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid .multi-screen-card>div:first-child b{display:block!important;color:#f4c928!important;font-size:12px!important;letter-spacing:.06em!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid .multi-screen-card>div:first-child small{display:block!important;color:#91a0af!important;font-size:9px!important;margin-top:2px!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-toggle{display:none!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel{display:grid!important;position:static!important;grid-template-columns:1fr 1fr!important;gap:8px!important;width:auto!important;height:auto!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;transform:none!important;color:#e8edf3!important;pointer-events:auto!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel .multi-screen-settings-head{display:flex!important;grid-column:1/-1!important;align-items:center!important;justify-content:space-between!important;padding-bottom:7px!important;border-bottom:1px solid #344352!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel .multi-screen-settings-head strong{color:#e8edf3!important;font-size:11px!important;font-weight:900!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel .multi-popup-close{display:flex!important;width:28px!important;height:28px!important;align-items:center!important;justify-content:center!important;padding:0!important;border:1px solid #526272!important;border-radius:6px!important;background:#202d38!important;color:#d5dee6!important;cursor:pointer!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel label{display:flex!important;align-items:center!important;gap:7px!important;color:#cbd5df!important;font-size:10px!important;font-weight:800!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel .multi-screen-enable{grid-column:1/-1!important;padding:8px 10px!important;border:1px solid #344352!important;border-radius:7px!important;background:#121c24!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel select,#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel>button{width:100%!important;height:38px!important;padding:7px 9px!important;border:1px solid #526272!important;border-radius:7px!important;background:#202d38!important;color:#edf2f6!important;font-size:10px!important;font-weight:800!important;box-sizing:border-box!important;cursor:pointer!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel>[data-open-screen]{grid-column:1/-1!important;background:#d3aa00!important;color:#111!important;border-color:#f0c72c!important;font-weight:900!important}
+#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel>[data-open-screen]:hover{filter:brightness(1.08)!important}
+@media(max-width:700px){
+ #multiScreenControl .multi-screen-output-preview-head{flex-wrap:wrap!important}
+ #multiScreenControl .multi-screen-output-preview-head>span{order:3;width:100%;margin-left:0!important}
+ #multiScreenControl .multi-screen-output-settings-btn{margin-left:auto!important}
+ #multiScreenControl .multi-output-settings-in-preview.phase12-open{padding:12px!important}
+ #multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid{width:calc(100vw - 24px)!important;max-height:calc(100vh - 24px)!important;grid-template-columns:1fr!important;padding:12px!important}
+ #multiScreenControl .multi-output-settings-in-preview.phase12-open>.multi-screen-grid:before{font-size:12px!important}
+ #multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel{grid-template-columns:1fr!important}
+ #multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel .multi-screen-enable,#multiScreenControl .multi-output-settings-in-preview.phase12-open .multi-screen-settings-panel>[data-open-screen]{grid-column:1!important}
+}
 </style>
