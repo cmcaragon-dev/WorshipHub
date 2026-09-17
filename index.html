@@ -38,6 +38,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 .sidebar .chordio-sidebar-action:hover .quick-icon,.chordio-quick-grid button:hover .quick-icon{transform:scale(1.05);}
 .quick-icon{transition:transform .16s ease,box-shadow .16s ease!important;}
 </style>
+
+<style id="chordio-phase17-service-modal-front">
+/* PHASE 17 — New/Edit Service Planner dialogs must appear above every planner layer. */
+body .chordio-modal{z-index:2147483647!important;position:fixed!important;inset:0!important;}
+body .chordio-modal.show{display:flex!important;}
+body .chordio-modal .chordio-dialog{position:relative!important;z-index:1!important;}
+</style>
 </head>
 
 <body>

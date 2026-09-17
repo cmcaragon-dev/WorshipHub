@@ -613,7 +613,7 @@ body.multi-screen-output-page #multiScreenOutput{position:fixed!important;inset:
 <div class="multi-control-layout v53-layout">
 <aside class="multi-service-column">
 <div class="multi-song-panel multi-song-panel-left">
-<div class="multi-panel-title multi-service-song-panel-head"><strong id="multiServiceSongTitle">SERVICE SONG</strong><button id="multiAddSongButton" type="button" class="multi-add-song-open">＋ ADD SONG</button></div>
+<div class="multi-panel-title multi-service-song-panel-head"><strong id="multiServiceSongTitle">SERVICE SONG</strong><button id="multiEditServiceButton" type="button" class="multi-add-song-open multi-edit-service-open" title="Edit this Service Planner">✎ EDIT SERVICE</button></div>
 <div class="multi-right-help">Drag songs to change the service sequence.</div>
 <div class="multi-service-song-list" id="multiServiceSongList"></div>
 <div class="multi-background-drawer">
@@ -2104,4 +2104,13 @@ body .multi-output-settings-in-preview.chordio-screen-settings-popup.phase16-ope
  body .multi-output-settings-in-preview.chordio-screen-settings-popup.phase16-open .multi-screen-enable,
  body .multi-output-settings-in-preview.chordio-screen-settings-popup.phase16-open .multi-screen-settings-panel>[data-open-screen]{grid-column:1!important}
 }
+</style>
+
+<style id="chordio-phase17-service-modal-front">
+/* PHASE 17 — Service Planner editor always stays in front of the planner panel. */
+body .chordio-modal{z-index:2147483647!important;position:fixed!important;inset:0!important;}
+body .chordio-modal.show{display:flex!important;}
+body .chordio-modal .chordio-dialog{position:relative!important;z-index:1!important;}
+#multiScreenControl .multi-edit-service-open{min-width:118px!important;}
+@media(max-width:700px){#multiScreenControl .multi-edit-service-open{min-width:0!important;padding:7px 8px!important;font-size:9px!important;}}
 </style>

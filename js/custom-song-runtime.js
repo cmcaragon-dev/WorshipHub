@@ -1809,6 +1809,85 @@ function populateOnlineBibleResult(reference,data){const results=document.getEle
 async function fetchOnlineBibleVerse(){const reference=getOnlineBibleReference(),results=document.getElementById("multiBibleResults"),textBox=document.getElementById("multiBibleText");if(!reference){if(results)results.textContent="Enter Book, Chapter and Verse.";return null;}if(results)results.textContent="Searching…";try{return populateOnlineBibleResult(reference,await fetchHelloAOBible(reference));}catch(error){console.warn("Online Bible lookup failed:",error);if(results)results.textContent="Unable to retrieve this scripture. Check the reference and internet connection.";if(textBox)textBox.value="";return null;}}
 async function addBibleReferenceSlide(){const reference=getOnlineBibleReference(),version="BSB";if(!reference){alert("Enter Book, Chapter and Verse first. Example: John → 3 → 16 or John → 3 → 1-5.");return;}let text=String(document.getElementById("multiBibleText")?.value||"").trim();if(!text)text=await fetchOnlineBibleVerse();if(!text)return;if(!service?.songs?.[index]){alert("Open a Service Planner song first.");return;}const slide={id:`scripture-${Date.now()}`,title:reference,text,scriptureReference:reference,scriptureVersion:version},slides=[...currentServiceSongSlides(),slide];await saveServiceSongs(service.songs.map((x,i)=>i===index?{...x,pageSlides:slides}:x));const presentation=await addPresentationEntryForSlide(slide);multiSelectedPageSlideIndex=slides.length-1;renderMultiSlides();if(presentation)multiScreenQueueIndex=multiScreenQueue().findIndex(x=>x.type==="presentation"&&String(x.id)===String(presentation.id));renderMultiServiceSongs();multiScreenBroadcast({});const title=document.getElementById("multiSlideTitle"),slideText=document.getElementById("multiSlideText");if(title)title.value=slide.title;if(slideText)slideText.value=slide.text;setMultiSlideStatus("Scripture added as slide");}
 
+/* PHASE 17 — Edit the currently selected Service Planner from Multi-Screen.
+   Reuse the same Service Planner editor used by the dashboard so changes to
+   name/date/songs are saved to the same Firebase service and appear in the
+   Service Planner list the next time it is opened. */
+async function openMultiServicePlannerEditor(){
+    if(!service?.id){alert("No Service Planner is selected.");return;}
+    try{
+        // The shared editor expects the master song library on window.songs.
+        // Keep the editor's source synchronized with the Multi-Screen library.
+        window.songs = Array.isArray(worshipHubSongs) ? worshipHubSongs : [];
+        if(window.chordioV63?.openEditService){
+            window.chordioV63.openEditService(JSON.parse(JSON.stringify(service)));
+            return;
+        }
+        alert("Service Planner editor is not available.");
+    }catch(error){
+        console.error("Unable to open Service Planner editor from Multi-Screen:",error);
+        alert("Unable to open Service Planner editor.");
+    }
+}
+
+// custom-song.html does not load app.js, so provide the same update bridge here.
+// This makes the shared New/Edit Service dialog save directly to the current
+// user's Firebase Service Planner and immediately update the Multi-Screen state.
+if(typeof window.chordioUpdateService !== "function"){
+    window.chordioUpdateService = async function(serviceId,payload){
+        if(!auth.currentUser){alert("Please login first.");return false;}
+        const id=String(serviceId||localStorage.getItem("currentServiceId")||service?.id||"");
+        if(!id){alert("Service Planner not found.");return false;}
+        const updated={
+            ...(service||{}),
+            id,
+            name:String(payload?.name||service?.name||"").trim(),
+            date:String(payload?.date||"")
+        };
+        if(!updated.name){alert("Enter a service title.");return false;}
+        if(!Array.isArray(payload?.songs)) return false;
+        const used=new Set();
+        updated.songs=payload.songs.map((item,i)=>{
+            const existing=String(item?._chordioInstanceId||"").trim();
+            if(existing&&!used.has(existing)){used.add(existing);return item;}
+            const instanceId=createServiceSongInstanceId(i);used.add(instanceId);
+            return {...item,_chordioInstanceId:instanceId};
+        });
+        try{
+            await setDoc(doc(db,"users",auth.currentUser.uid,"services",id),{
+                name:updated.name,
+                date:updated.date,
+                songs:updated.songs,
+                updatedAt:serverTimestamp()
+            },{merge:true});
+            service=updated;
+            localStorage.setItem("currentServiceId",id);
+            localStorage.setItem("currentServiceName",updated.name);
+            localStorage.setItem("currentServiceSnapshot",JSON.stringify(updated));
+            // Rebuild the Multi-Screen queue so additions/removals from the
+            // editor are immediately reflected in the current service.
+            const currentQueue=multiScreenQueue();
+            const presentations=currentQueue.filter(x=>x.type==="presentation");
+            const songQueue=updated.songs.map((item,i)=>({type:"song",id:String(item?.id||""),item,sourceIndex:i})).filter(x=>x.id);
+            const rebuilt=[...songQueue,...presentations];
+            await saveMultiScreenQueue(rebuilt);
+            index=Math.max(0,Math.min(index,Math.max(0,updated.songs.length-1)));
+            if(updated.songs[index]){
+                song={...updated.songs[index],sections:normalizeSections(updated.songs[index].sections),serviceKey:updated.songs[index].serviceKey||updated.songs[index].key,transpose:Number(updated.songs[index].transpose||0)};
+                transposeSteps=Number(song.transpose||0);
+            }else{song=null;index=0;}
+            multiScreenQueueIndex=Math.max(0,Math.min(multiScreenQueueIndex,Math.max(0,rebuilt.length-1)));
+            renderMultiScreenControl();
+            setMultiSlideStatus("Service Planner updated");
+            return true;
+        }catch(error){
+            console.error("Unable to update Service Planner from Multi-Screen:",error);
+            alert("Unable to update Service Planner. Please check your Firebase permissions.");
+            return false;
+        }
+    };
+}
+
 function initMultiFeatureAccordions(){
     const root=document.getElementById("multiScreenControl");if(!root)return;
     root.querySelectorAll(".multi-feature-toggle").forEach(toggle=>{
@@ -2515,7 +2594,7 @@ function initMultiScreen(){
             if(typeof window.chordioGoHome==="function") window.chordioGoHome();
             else window.location.href=new URL("index.html",window.location.href).href;
         });
-        document.getElementById("multiAddSongButton")?.addEventListener("click",openMultiAddSong);
+        document.getElementById("multiEditServiceButton")?.addEventListener("click",()=>openMultiServicePlannerEditor());
         document.getElementById("multiAddSongClose")?.addEventListener("click",closeMultiAddSong);
         document.getElementById("multiAddSongCancel")?.addEventListener("click",closeMultiAddSong);
         document.getElementById("multiAddSongSearch")?.addEventListener("input",renderMultiAddSongList);
