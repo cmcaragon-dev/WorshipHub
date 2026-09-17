@@ -1360,7 +1360,52 @@ function multiScreenVisibleSections(){
 function multiScreenMessage(){
     const queue=multiScreenQueue();
     const qIndex=Math.max(0,Math.min(Number(multiScreenQueueIndex)||0,Math.max(0,queue.length-1)));
-    return {type:"chordio-multiscreen-state",heartbeatAt:Date.now(),song:song?{...song,sections:normalizeSections(song.sections)}:null,serviceName:service?.name||"",serviceIndex:qIndex,serviceSongs:queue.map(x=>({...x.item,presentation:x.type==="presentation",presentationSlide:x.type==="presentation"?x.item.presentationSlide:null})),sectionIndex:multiScreenCurrentSection,modes:{...multiScreenModes},enabled:{...multiScreenEnabled},backgroundModes:{...multiScreenBackgroundModes},background:{...multiScreenBackground},songBackground:getMultiScreenSongBackground(song),serviceSlidesBackground:getMultiServiceSlidesBackground(),layout:getPresentationLayout(),lyricsSettings:getMultiLyricsSettings(),lyricsOverrides:getMultiLyricsOverrides(),activePageSlide:multiActivePageSlide};
+
+    // IMPORTANT: Multi-Screen must use the key belonging to the exact Service
+    // Planner occurrence currently selected. The global `song` object can be
+    // refreshed from the master song document (whose key may be the original
+    // key, e.g. A) after the Service Planner occurrence was transposed (e.g. D).
+    // Never let that refresh replace the Service Key sent to the output.
+    const serviceOccurrence = service?.songs?.[index] || null;
+    const authoritativeServiceKey = String(
+        serviceOccurrence?.serviceKey ||
+        serviceOccurrence?.key ||
+        song?.serviceKey ||
+        song?.key ||
+        song?.originalKey ||
+        "C"
+    ).trim();
+    const outputSong = song ? {
+        ...song,
+        // Service occurrence key is authoritative for BOTH the control preview
+        // and the physical output screen. Keep originalKey only as metadata.
+        serviceKey: authoritativeServiceKey,
+        key: authoritativeServiceKey,
+        transpose: Number(serviceOccurrence?.transpose ?? song?.transpose ?? 0) || 0,
+        sections: normalizeSections(song.sections)
+    } : null;
+
+    return {
+        type:"chordio-multiscreen-state",
+        heartbeatAt:Date.now(),
+        song:outputSong,
+        serviceKey:authoritativeServiceKey,
+        serviceSongIndex:Number.isInteger(Number(index))?Number(index):0,
+        serviceName:service?.name||"",
+        serviceIndex:qIndex,
+        serviceSongs:queue.map(x=>({...x.item,presentation:x.type==="presentation",presentationSlide:x.type==="presentation"?x.item.presentationSlide:null})),
+        sectionIndex:multiScreenCurrentSection,
+        modes:{...multiScreenModes},
+        enabled:{...multiScreenEnabled},
+        backgroundModes:{...multiScreenBackgroundModes},
+        background:{...multiScreenBackground},
+        songBackground:getMultiScreenSongBackground(outputSong),
+        serviceSlidesBackground:getMultiServiceSlidesBackground(),
+        layout:getPresentationLayout(),
+        lyricsSettings:getMultiLyricsSettings(),
+        lyricsOverrides:getMultiLyricsOverrides(),
+        activePageSlide:multiActivePageSlide
+    };
 }
 function multiScreenBroadcast(extra={}){
     const message={...multiScreenMessage(),...extra};

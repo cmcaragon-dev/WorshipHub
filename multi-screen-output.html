@@ -278,7 +278,7 @@ function render(msg){
 
   $('title').textContent=song.title||'CHORDIO';
   $('artist').textContent=song.artist||'';
-  const key=song.serviceKey||song.key||song.originalKey||'';
+  const key=state.serviceKey||song.serviceKey||song.key||song.originalKey||'';
   $('key').textContent=key?`Key: ${key}`:'';
   $('mode').textContent=enabled?(mode==='chords'?'Lyrics + Chords':mode==='blank'?'Blank':'Lyrics Only'):'Hidden';
   $('passing').innerHTML=passingChords(song).map((x,i)=>`${i?'<span class="sep">|</span>':''}<span class="pass"><b>${escText(x[0])}</b>: ${escText(x[1])}</span>`).join('');
