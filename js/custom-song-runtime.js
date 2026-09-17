@@ -184,7 +184,21 @@ function wrappedSectionsForDisplay(sections, element, fontSizePx) {
     }));
 }
 
-function currentKey(){ return song?.originalKey || song?.key || song?.serviceKey || ""; }
+function currentKey(){
+    // The key displayed in the Service Song / Multi-Screen presentation must
+    // always be the key saved for THIS Service Planner occurrence.
+    // originalKey is immutable (for example A) and must never take priority
+    // over a saved serviceKey (for example D).
+    const serviceSong = service?.songs?.[index];
+    return String(
+        serviceSong?.serviceKey ||
+        serviceSong?.key ||
+        song?.serviceKey ||
+        song?.key ||
+        song?.originalKey ||
+        ""
+    ).trim();
+}
 
 function render() {
     if (!song) return;
@@ -871,8 +885,11 @@ function renderCustomPresentation(){
     const t=document.getElementById("customPresentationTitle");
     if(t)t.textContent=song.title||"Untitled Song";
     const k=document.getElementById("customPresentationKey");
-    const pageKey = String(document.getElementById("songKey")?.textContent || "").trim();
-    const authoritativeKey = pageKey || customServiceKey();
+    // Never use the visible Song Page key here. That element can still show
+    // the master/original key (e.g. A) while this Service Planner occurrence
+    // is saved/transposed to another key (e.g. D). The Service Planner
+    // occurrence is the single source of truth for Multi-Screen output.
+    const authoritativeKey = customServiceKey();
     if(k)k.textContent=`Key: ${authoritativeKey || "—"}`;
     renderCustomPassingChords();
     renderCustomNextPreview();
