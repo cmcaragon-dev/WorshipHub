@@ -26,7 +26,7 @@ const applyServiceKeyToSong = (candidate, master = null) => {
     const serviceKey = String(candidate?.serviceKey || candidate?.key || merged.serviceKey || merged.key || merged.originalKey || "C").trim();
     const originalKey = String(candidate?.originalKey || merged.originalKey || merged.key || serviceKey || "C").trim();
     const steps = serviceKeyTransposeSteps(originalKey, serviceKey);
-    return { ...merged, serviceKey, transpose: steps };
+    return { ...merged, originalKey, serviceKey, key: serviceKey, transpose: steps };
 };
 
 function transposeChord(chord, steps = transposeSteps) {
@@ -184,21 +184,7 @@ function wrappedSectionsForDisplay(sections, element, fontSizePx) {
     }));
 }
 
-function currentKey(){
-    // The key displayed in the Service Song / Multi-Screen presentation must
-    // always be the key saved for THIS Service Planner occurrence.
-    // originalKey is immutable (for example A) and must never take priority
-    // over a saved serviceKey (for example D).
-    const serviceSong = service?.songs?.[index];
-    return String(
-        serviceSong?.serviceKey ||
-        serviceSong?.key ||
-        song?.serviceKey ||
-        song?.key ||
-        song?.originalKey ||
-        ""
-    ).trim();
-}
+function currentKey(){ return song?.originalKey || song?.key || song?.serviceKey || ""; }
 
 function render() {
     if (!song) return;
@@ -885,11 +871,8 @@ function renderCustomPresentation(){
     const t=document.getElementById("customPresentationTitle");
     if(t)t.textContent=song.title||"Untitled Song";
     const k=document.getElementById("customPresentationKey");
-    // Never use the visible Song Page key here. That element can still show
-    // the master/original key (e.g. A) while this Service Planner occurrence
-    // is saved/transposed to another key (e.g. D). The Service Planner
-    // occurrence is the single source of truth for Multi-Screen output.
-    const authoritativeKey = customServiceKey();
+    const pageKey = String(document.getElementById("songKey")?.textContent || "").trim();
+    const authoritativeKey = pageKey || customServiceKey();
     if(k)k.textContent=`Key: ${authoritativeKey || "—"}`;
     renderCustomPassingChords();
     renderCustomNextPreview();
@@ -1360,63 +1343,14 @@ function multiScreenVisibleSections(){
 function multiScreenMessage(){
     const queue=multiScreenQueue();
     const qIndex=Math.max(0,Math.min(Number(multiScreenQueueIndex)||0,Math.max(0,queue.length-1)));
-
-    // IMPORTANT: Multi-Screen must use the key belonging to the exact Service
-    // Planner occurrence currently selected. The global `song` object can be
-    // refreshed from the master song document (whose key may be the original
-    // key, e.g. A) after the Service Planner occurrence was transposed (e.g. D).
-    // Never let that refresh replace the Service Key sent to the output.
-    const serviceOccurrence = service?.songs?.[index] || null;
-    const authoritativeServiceKey = String(
-        serviceOccurrence?.serviceKey ||
-        serviceOccurrence?.key ||
-        song?.serviceKey ||
-        song?.key ||
-        song?.originalKey ||
-        "C"
-    ).trim();
-    const outputSong = song ? {
-        ...song,
-        // Service occurrence key is authoritative for BOTH the control preview
-        // and the physical output screen. Keep originalKey only as metadata.
-        serviceKey: authoritativeServiceKey,
-        key: authoritativeServiceKey,
-        // The Service Key is the source of truth for chord transposition.
-        // Older/saved service entries can contain serviceKey=D but a stale
-        // transpose value of 0; derive the offset from Original Key -> Service
-        // Key whenever the saved offset does not actually match the keys.
-        originalKey: serviceOccurrence?.originalKey || song?.originalKey || song?.key || authoritativeServiceKey,
-        transpose: (() => {
-            const saved = Number(serviceOccurrence?.transpose ?? song?.transpose);
-            const original = String(serviceOccurrence?.originalKey || song?.originalKey || song?.key || authoritativeServiceKey).trim();
-            const target = authoritativeServiceKey;
-            const derived = serviceKeyTransposeSteps(original, target);
-            return Number.isFinite(saved) && saved !== 0 ? saved : derived;
-        })(),
-        sections: normalizeSections(song.sections)
-    } : null;
-
-    return {
-        type:"chordio-multiscreen-state",
-        heartbeatAt:Date.now(),
-        song:outputSong,
-        serviceKey:authoritativeServiceKey,
-        serviceSongIndex:Number.isInteger(Number(index))?Number(index):0,
-        serviceName:service?.name||"",
-        serviceIndex:qIndex,
-        serviceSongs:queue.map(x=>({...x.item,presentation:x.type==="presentation",presentationSlide:x.type==="presentation"?x.item.presentationSlide:null})),
-        sectionIndex:multiScreenCurrentSection,
-        modes:{...multiScreenModes},
-        enabled:{...multiScreenEnabled},
-        backgroundModes:{...multiScreenBackgroundModes},
-        background:{...multiScreenBackground},
-        songBackground:getMultiScreenSongBackground(outputSong),
-        serviceSlidesBackground:getMultiServiceSlidesBackground(),
-        layout:getPresentationLayout(),
-        lyricsSettings:getMultiLyricsSettings(),
-        lyricsOverrides:getMultiLyricsOverrides(),
-        activePageSlide:multiActivePageSlide
-    };
+    const occurrence=queue[qIndex]?.item||null;
+    // The service occurrence is the single source of truth for the key sent to
+    // Multi-Screen. Never allow a library/master song refresh to replace a
+    // saved Service Key (for example D) with the original library key (A).
+    const occurrenceServiceKey=String(occurrence?.serviceKey||occurrence?.key||song?.serviceKey||song?.key||song?.originalKey||"C").trim();
+    const occurrenceOriginalKey=String(song?.originalKey||occurrence?.originalKey||occurrence?.key||occurrenceServiceKey||"C").trim();
+    const screenSong=song?{...song,originalKey:occurrenceOriginalKey,serviceKey:occurrenceServiceKey,key:occurrenceServiceKey,transpose:serviceKeyTransposeSteps(occurrenceOriginalKey,occurrenceServiceKey),sections:normalizeSections(song.sections)}:null;
+    return {type:"chordio-multiscreen-state",heartbeatAt:Date.now(),song:screenSong,serviceName:service?.name||"",serviceIndex:qIndex,serviceSongs:queue.map(x=>({...x.item,presentation:x.type==="presentation",presentationSlide:x.type==="presentation"?x.item.presentationSlide:null})),sectionIndex:multiScreenCurrentSection,modes:{...multiScreenModes},enabled:{...multiScreenEnabled},backgroundModes:{...multiScreenBackgroundModes},background:{...multiScreenBackground},songBackground:getMultiScreenSongBackground(screenSong),serviceSlidesBackground:getMultiServiceSlidesBackground(),layout:getPresentationLayout(),lyricsSettings:getMultiLyricsSettings(),lyricsOverrides:getMultiLyricsOverrides(),activePageSlide:multiActivePageSlide};
 }
 function multiScreenBroadcast(extra={}){
     const message={...multiScreenMessage(),...extra};
@@ -2239,7 +2173,19 @@ function renderMultiScreenPreviews(){
             }else{
                 stage.classList.add("chords-preview");
                 const entry=visible[multiScreenCurrentSection];
-                if(entry){const sec=document.createElement("div");sec.className="preview-chords-section selected";const lab=document.createElement("b");lab.textContent=presentationSectionLabel(entry.section,multiScreenCurrentSection);sec.appendChild(lab);(entry.section.lines||[]).forEach(line=>{const row=document.createElement("div");row.className="preview-chord-row";const ch=document.createElement("span");ch.className="pc-chord";ch.textContent=chordRowFromPositions(line);const ly=document.createElement("span");ly.textContent=String(line.lyrics||"");row.append(ch,ly);sec.appendChild(row);});stage.appendChild(sec);}
+                if(entry){const sec=document.createElement("div");sec.className="preview-chords-section selected";const lab=document.createElement("b");lab.textContent=presentationSectionLabel(entry.section,multiScreenCurrentSection);sec.appendChild(lab);(entry.section.lines||[]).forEach(line=>{const row=document.createElement("div");row.className="preview-chord-row";const ch=document.createElement("span");ch.className="pc-chord";
+                        // IMPORTANT: the Screen Output Preview must use the
+                        // Service Key for this service occurrence, never the
+                        // library/original key and never a stale transpose value.
+                        // This is especially important after selecting/double-clicking
+                        // the Selected Part preview, which re-renders this preview.
+                        const previewOccurrence=multiScreenQueue()[Number.isInteger(multiScreenQueueIndex)?multiScreenQueueIndex:0]?.item||null;
+                        const previewOriginalKey=String(song?.originalKey||previewOccurrence?.originalKey||previewOccurrence?.key||song?.key||"C");
+                        const previewServiceKey=String(previewOccurrence?.serviceKey||previewOccurrence?.key||song?.serviceKey||song?.key||previewOriginalKey);
+                        const previewSteps=serviceKeyTransposeSteps(previewOriginalKey,previewServiceKey);
+                        const originalChordText=chordRowFromPositionsNoTranspose(line);
+                        ch.textContent=transposeChord(originalChordText,previewSteps);
+                        const ly=document.createElement("span");ly.textContent=String(line.lyrics||"");row.append(ch,ly);sec.appendChild(row);});stage.appendChild(sec);}
             }
         }
         card.appendChild(stage);grid.appendChild(card);
@@ -2509,6 +2455,13 @@ function renderMultiScreenOutput(message){
         // editor and its lyricsOverrides here. Those controls belong only to
         // Lyrics Only. Presentation uses the saved presentation layout and its
         // normal line-wrapping, so Screen Output follows that same source.
+        // Screen Output Preview must render the SAME transposed chords as the
+        // service occurrence.  The serviceKey is authoritative; do not trust
+        // a stale `transpose` value (older saved service entries can still
+        // contain transpose: 0 even when serviceKey was changed).
+        const previewOriginalKey = String(data?.originalKey || data?.baseKey || data?.key || "C");
+        const previewServiceKey = String(data?.serviceKey || data?.key || previewOriginalKey);
+        const previewTransposeSteps = serviceKeyTransposeSteps(previewOriginalKey, previewServiceKey);
         const presentationSections=wrappedSectionsForDisplay(
             applyPresentationLayout(data.sections||[]),
             output,
@@ -2533,7 +2486,8 @@ function renderMultiScreenOutput(message){
             sectionEl.appendChild(title);
             (sec.lines||[]).forEach(line=>{
                 const pair=document.createElement("div");pair.className="custom-presentation-line";
-                const chordText=chordRowFromPositions(line);
+                const originalChordText = chordRowFromPositionsNoTranspose(line);
+                const chordText = transposeChord(originalChordText, previewTransposeSteps);
                 if(chordText){
                     const ch=document.createElement("div");
                     ch.className="custom-presentation-chord";
