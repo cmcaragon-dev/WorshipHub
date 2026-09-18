@@ -26,7 +26,7 @@ const applyServiceKeyToSong = (candidate, master = null) => {
     const serviceKey = String(candidate?.serviceKey || candidate?.key || merged.serviceKey || merged.key || merged.originalKey || "C").trim();
     const originalKey = String(candidate?.originalKey || merged.originalKey || merged.key || serviceKey || "C").trim();
     const steps = serviceKeyTransposeSteps(originalKey, serviceKey);
-    return { ...merged, serviceKey, transpose: steps };
+    return { ...merged, originalKey, serviceKey, key: serviceKey, transpose: steps };
 };
 
 function transposeChord(chord, steps = transposeSteps) {
@@ -2166,7 +2166,18 @@ function renderMultiScreenPreviews(){
             }else{
                 stage.classList.add("chords-preview");
                 const entry=visible[multiScreenCurrentSection];
-                if(entry){const sec=document.createElement("div");sec.className="preview-chords-section selected";const lab=document.createElement("b");lab.textContent=presentationSectionLabel(entry.section,multiScreenCurrentSection);sec.appendChild(lab);(entry.section.lines||[]).forEach(line=>{const row=document.createElement("div");row.className="preview-chord-row";const ch=document.createElement("span");ch.className="pc-chord";ch.textContent=chordRowFromPositions(line);const ly=document.createElement("span");ly.textContent=String(line.lyrics||"");row.append(ch,ly);sec.appendChild(row);});stage.appendChild(sec);}
+                if(entry){const sec=document.createElement("div");sec.className="preview-chords-section selected";const lab=document.createElement("b");lab.textContent=presentationSectionLabel(entry.section,multiScreenCurrentSection);sec.appendChild(lab);(entry.section.lines||[]).forEach(line=>{const row=document.createElement("div");row.className="preview-chord-row";const ch=document.createElement("span");ch.className="pc-chord";
+                        // IMPORTANT: the Screen Output Preview must use the
+                        // Service Key for this service occurrence, never the
+                        // library/original key and never a stale transpose value.
+                        // This is especially important after selecting/double-clicking
+                        // the Selected Part preview, which re-renders this preview.
+                        const previewOriginalKey=String(song?.originalKey||song?.baseKey||song?.key||"C");
+                        const previewServiceKey=String(song?.serviceKey||song?.key||previewOriginalKey);
+                        const previewSteps=serviceKeyTransposeSteps(previewOriginalKey,previewServiceKey);
+                        const originalChordText=chordRowFromPositionsNoTranspose(line);
+                        ch.textContent=transposeChord(originalChordText,previewSteps);
+                        const ly=document.createElement("span");ly.textContent=String(line.lyrics||"");row.append(ch,ly);sec.appendChild(row);});stage.appendChild(sec);}
             }
         }
         card.appendChild(stage);grid.appendChild(card);
