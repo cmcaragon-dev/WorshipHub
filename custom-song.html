@@ -601,6 +601,40 @@ body{min-height:100vh!important}
 }
 @media print{.song-paper.lyrics-only-mode #stage .line.song-line>.chord{display:none!important;}.song-page-organization{color:#222!important;}}
 </style>
+<style id="chordio-service-note-upgrade">
+#chordioNewServiceModal .v64-selected-song-info{gap:5px!important}
+#chordioNewServiceModal .v64-service-note{font-size:11px!important}
+.service-song-key .service-song-note-inline,.song-meta .song-note-inline{font-weight:700!important;opacity:.9!important}
+#multiScreenControl .multi-screen-head{justify-content:flex-start!important}
+#multiScreenControl .multi-screen-head #multiScreenClose{order:3!important;margin-left:auto!important}
+#multiScreenControl .multi-screen-head #chordioLiveToggle{order:2!important;margin-left:8px!important}
+#multiScreenControl .multi-screen-head .chordio-autosave{order:1!important}
+</style>
+<style id="chordio-v67-service-note-and-controls">
+/* V67 — Service Note + larger Lyrics/Chords output metadata */
+#multiScreenControl .multi-screen-head{justify-content:flex-start!important}
+#multiScreenControl .multi-screen-head #chordioLiveToggle{order:2!important;margin-left:auto!important}
+#multiScreenControl .multi-screen-head #multiScreenClose{order:3!important;margin-left:8px!important}
+#multiScreenControl .multi-screen-head .chordio-autosave{order:1!important}
+#multiScreenControl .service-song-key .service-song-note-inline,
+#multiScreenControl .song-meta .song-note-inline{font-size:inherit!important;font-weight:800!important}
+.multi-output-chords #multiOutputPassing{font-size:clamp(18px,1.6vw,32px)!important;font-weight:900!important;line-height:1.35!important}
+.multi-output-chords .multi-output-passing-label{font-size:clamp(12px,1vw,20px)!important}
+.multi-output-chords .multi-output-passing-value{font-size:clamp(18px,1.45vw,30px)!important}
+.multi-output-chords #multiOutputNote,
+.multi-output-chords #multiOutputNext{min-width:300px!important;max-width:500px!important;padding:16px 20px!important}
+.multi-output-chords #multiOutputNote span,
+.multi-output-chords #multiOutputNext span{font-size:clamp(12px,1vw,19px)!important}
+.multi-output-chords #multiOutputNoteText{font-size:clamp(21px,1.7vw,34px)!important;line-height:1.35!important}
+.multi-output-chords #multiOutputNext strong{font-size:clamp(23px,1.8vw,36px)!important;line-height:1.25!important}
+.multi-output-chords #multiOutputNext small{font-size:clamp(14px,1.1vw,22px)!important}
+@media(max-width:650px){
+ .multi-output-chords #multiOutputNote,.multi-output-chords #multiOutputNext{min-width:200px!important;max-width:310px!important;padding:10px 12px!important}
+ .multi-output-chords #multiOutputNoteText{font-size:17px!important}
+ .multi-output-chords #multiOutputNext strong{font-size:19px!important}
+ .multi-output-chords #multiOutputNext small{font-size:13px!important}
+}
+</style>
 </head>
 <body>
 <main class="song-paper" id="songPaper">

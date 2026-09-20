@@ -1186,8 +1186,7 @@ function renderServices() {
                     <div class="service-song-info">
                         <div class="service-song-title">🎵 ${escapeHtml(song.title || "Untitled Song")}</div>
                         <div class="service-song-artist">${escapeHtml(song.artist || "")}</div>
-                        <div class="service-song-key">🎼 ${escapeHtml(song.serviceKey || song.key || song.originalKey || "—")}</div>
-                        ${song.presentationNote ? `<div class="service-song-note" title="Presentation note">📝 ${escapeHtml(song.presentationNote)}</div>` : ""}
+                        <div class="service-song-key">🎼 KEY: ${escapeHtml(song.serviceKey || song.key || song.originalKey || "—")}${song.presentationNote ? ` <span class="service-song-note-inline">| ${escapeHtml(song.presentationNote)}</span>` : ""}</div>
                     </div>
                     <div class="service-song-actions">
                         <a class="service-youtube-btn${song.youtube ? "" : " disabled"}" href="${song.youtube ? escapeHtml(song.youtube) : "#"}" ${song.youtube ? 'target="_blank" rel="noopener noreferrer"' : 'aria-disabled="true" onclick="return false;"'} title="${song.youtube ? "Open YouTube" : "No YouTube link"}"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>

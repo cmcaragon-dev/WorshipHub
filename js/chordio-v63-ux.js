@@ -101,6 +101,7 @@
       customSong:s.customSong===true,
       sections:Array.isArray(s.sections)?JSON.parse(JSON.stringify(s.sections)):null,
       createdAt:existing?.createdAt||s.createdAt||null,
+      presentationNote:existing?.presentationNote ?? s.presentationNote ?? '',
       updatedAt:new Date().toISOString()
     };
   }
@@ -122,6 +123,9 @@
       #chordioNewServiceModal .v64-selected-song-info strong{font-size:14px;color:#172635;line-height:1.3;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
       #chordioNewServiceModal .v64-selected-song-info small{font-size:11px;color:#7b8791;line-height:1.25;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
       #chordioNewServiceModal .v64-song-key{width:100%;padding:9px 10px;border:1px solid #d4dde4;border-radius:9px;background:#fff;color:#172635;font-weight:700}
+      #chordioNewServiceModal .v64-service-note{width:100%;padding:7px 9px;border:1px solid #d4dde4;border-radius:8px;background:#fff;color:#172635;font-size:11px;outline:none}
+      #chordioNewServiceModal .v64-service-note::placeholder{color:#98a3ad}
+      #chordioNewServiceModal .v64-service-note:focus{border-color:#c9a62e;box-shadow:0 0 0 2px rgba(201,166,46,.12)}
       #chordioNewServiceModal .v64-remove-song{width:34px;height:34px;border:1px solid #e1cfd0;border-radius:9px;background:#fff;color:#a34747;cursor:pointer;font-size:14px}
       #chordioNewServiceModal .v64-remove-song:hover{background:#fff3f3;border-color:#c98b8b}
       #chordioNewServiceModal .v64-add-song-wrap{padding:12px 0 17px}
@@ -199,12 +203,13 @@
       const keys=keysFor(s), current=s.serviceKey||s.key||s.originalKey||'C';
       return `<div class="v64-selected-song" data-occurrence-index="${i}">
         <span class="v64-selected-song-num">${i+1}</span>
-        <div class="v64-selected-song-info"><strong>${esc(s.title||'Untitled')}</strong><small>${esc(s.artist||'')}</small></div>
+        <div class="v64-selected-song-info"><strong>${esc(s.title||'Untitled')}</strong><small>${esc(s.artist||'')}</small><input class="v64-service-note" data-occurrence-note="${i}" type="text" maxlength="160" value="${esc(s.presentationNote||'')}" placeholder="Service note (optional)"></div>
         <select class="v64-song-key" data-occurrence-key="${i}" title="Service Key">${keys.map(k=>`<option value="${esc(k.v)}" ${String(k.v)===String(current)?'selected':''}>${esc(k.v)}</option>`).join('')}</select>
         <button type="button" class="v64-remove-song" data-remove-occurrence="${i}" title="Remove this copy">✕</button>
       </div>`;
     }).join('') : '<div class="v64-empty">No songs added yet.<br>Click <b>＋ ADD SONG</b> below to choose songs.</div>';
     box.querySelectorAll('[data-occurrence-key]').forEach(sel=>sel.onchange=()=>{const i=Number(sel.dataset.occurrenceKey);if(m._draftSongs?.[i]){m._draftSongs[i].serviceKey=sel.value;m._draftSongs[i].key=sel.value;}});
+    box.querySelectorAll('[data-occurrence-note]').forEach(input=>input.addEventListener('input',()=>{const i=Number(input.dataset.occurrenceNote);if(m._draftSongs?.[i])m._draftSongs[i].presentationNote=String(input.value||'').trim();}));
     box.querySelectorAll('[data-remove-occurrence]').forEach(btn=>btn.onclick=()=>{const i=Number(btn.dataset.removeOccurrence);m._draftSongs.splice(i,1);renderSelectedSongs(m);renderSongPicker(m)});
     const n=selected.length;
     $('#v63SongCount').textContent=`${n} song${n===1?'':'s'} selected`;

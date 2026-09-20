@@ -49,7 +49,21 @@ html:fullscreen,html:-webkit-full-screen,body:fullscreen,body:-webkit-full-scree
   .presentation-output-section.selected{margin-left:0!important;margin-right:0!important}
 }
 </style>
-</head><body><div id="app"><div id="bg"></div><div id="shade"></div><div id="header"><div><span id="title">CHORDIO</span><span id="artist"></span></div><span id="key"></span><div id="passing"></div><span id="mode"></span></div><div id="content"></div><div id="lower" class="lower"><div id="note" class="box"><span>SONG NOTE</span><strong></strong></div><div id="next" class="box"><span>NEXT SONG</span><strong>END OF SERVICE</strong><small></small></div></div></div><script>(function(){
+<style id="chordio-service-note-output-upgrade">
+#header #passing{font-size:clamp(19px,1.55vw,30px)!important;font-weight:900!important;line-height:1.3!important}
+#lower{gap:18px!important;right:28px!important;bottom:28px!important}
+#lower .box{min-width:230px!important;max-width:440px!important;padding:12px 15px!important}
+#lower .box span{font-size:clamp(11px,.9vw,17px)!important;letter-spacing:.07em!important}
+#lower .box strong{font-size:clamp(20px,1.55vw,31px)!important;line-height:1.25!important}
+#lower .box small{font-size:clamp(14px,1vw,20px)!important;line-height:1.25!important}
+@media(max-width:650px){
+ #header #passing{font-size:17px!important}
+ #lower .box{min-width:200px!important;padding:10px 12px!important}
+ #lower .box strong{font-size:19px!important}
+ #lower .box small{font-size:14px!important}
+}
+</style>
+</head><body><div id="app"><div id="bg"></div><div id="shade"></div><div id="header"><div><span id="title">CHORDIO</span><span id="artist"></span></div><span id="key"></span><div id="passing"></div><span id="mode"></span></div><div id="content"></div><div id="lower" class="lower"><div id="note" class="box"><span>SERVICE NOTE</span><strong></strong></div><div id="next" class="box"><span>NEXT SONG</span><strong>END OF SERVICE</strong><small></small></div></div></div><script>(function(){
 'use strict';
 const params=new URLSearchParams(location.search);
 async function enterOutputFullscreen(){
