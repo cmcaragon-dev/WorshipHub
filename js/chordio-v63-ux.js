@@ -5,39 +5,6 @@
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const toast=(msg,type='success')=>{let st=$('#chordioToastStack');if(!st){st=document.createElement('div');st.id='chordioToastStack';document.body.appendChild(st)}const el=document.createElement('div');el.className='chordio-toast '+type;el.textContent=msg;st.appendChild(el);setTimeout(()=>el.remove(),3200)};
 
-  function buildDashboard(){
-    const content=document.querySelector('.content');
-    const stats=content?.querySelector('.dashboard');
-    if(!content)return;
-    // Remove any dashboard created by an earlier V62/V63 pass so only one Quick Actions panel can exist.
-    document.querySelectorAll('.chordio-v62-dashboard,.chordio-v63-dashboard,#chordioModernLibrary').forEach(el=>el.remove());
-    const box=document.createElement('section');
-    box.className='chordio-v63-dashboard';
-    box.id='chordioQuickActions';
-    box.innerHTML=`<div class="chordio-quick">
-      <div class="chordio-quick-head">
-        <div><span>QUICK ACTIONS</span></div>
-      </div>
-      <div class="chordio-quick-grid">
-        <button type="button" data-quick="service" class="primary"><span class="quick-icon"><i class="fa-solid fa-calendar-plus" aria-hidden="true"></i></span><span>New Service</span></button>
-        <button type="button" data-quick="songs"><span class="quick-icon"><i class="fa-solid fa-music" aria-hidden="true"></i></span><span>Songs</span></button>
-        <button type="button" data-quick="multi"><span class="quick-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span><span>Multi-Screen</span></button>
-      </div>
-    </div>`;
-    // Quick Actions belongs below the four dashboard statistics, not inside the stats grid.
-    if(stats?.parentElement===content) stats.insertAdjacentElement('afterend',box);
-    else content.insertBefore(box,content.firstChild||null);
-    box.addEventListener('click',e=>{
-      const b=e.target.closest('[data-quick]'); if(!b)return;
-      const t=b.dataset.quick;
-      if(t==='service') return openNewService();
-      if(t==='planner') return document.getElementById('servicePlannerBtn')?.click();
-      if(t==='songs') return window.showAllSongs?.();
-      if(t==='addsong') return document.getElementById('addSongBtn')?.click();
-      if(t==='multi') return openMultiPicker();
-    });
-  }
-
   function buildSidebarQuickActions(){
     const side=document.querySelector('.sidebar');
     if(!side || side.dataset.chordioV65Sidebar==='1') return;
@@ -281,7 +248,7 @@
     });
   }
   function addEditorDrag(){const root=$('#songEditorSections');if(!root)return;$$('.editor-section',root).forEach((sec,i)=>{sec.draggable=true;sec.classList.add('v63-draggable-section');if(!sec.dataset.v63bound){sec.dataset.v63bound='1';sec.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',String(i));sec.classList.add('v63-dragging')});sec.addEventListener('dragend',()=>sec.classList.remove('v63-dragging'));sec.addEventListener('dragover',e=>e.preventDefault());sec.addEventListener('drop',e=>{e.preventDefault();const from=Number(e.dataTransfer.getData('text/plain'));const to=Number(sec.dataset.sectionIndex);if(from===to||!window.WorshipHubSongEditor?.moveSection)return;window.WorshipHubSongEditor.moveSection(from,to)});}})}
-  function init(){buildDashboard();buildSidebarQuickActions();improveScreenPreview();addEditorDrag();}
+  function init(){buildSidebarQuickActions();improveScreenPreview();addEditorDrag();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
   window.chordioV63={openNewService,openEditService,openMultiPicker};
 })();

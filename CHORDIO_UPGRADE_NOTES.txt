@@ -1,0 +1,11 @@
+CHORDIO FINAL(3) – Requested Upgrade
+1. Removed center Quick Actions dashboard panel; sidebar actions remain.
+2. Removed standalone Start Service / Presentation entry points from Service Planner.
+3. Removed standalone Presentation UI from Song Page; Multi-Screen remains.
+4. Redesigned Song Page as centered white paper-style layout.
+5. Song header now shows Title, Artist, Key, Passing Chords, metadata (Song ID / Date Added / Last Update).
+6. Removed Font +/- and Dark/Light controls from Song Page.
+7. Added compact Service Note popup.
+8. Added icon-only Previous / Next service-song controls.
+9. Chords are red and lyrics are black in the paper-style song display.
+10. Opening a song no longer automatically launches standalone Presentation; Multi-Screen startup behavior remains.

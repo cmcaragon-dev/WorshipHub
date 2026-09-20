@@ -194,6 +194,25 @@ function render() {
     document.getElementById("songArtist")?.replaceChildren(document.createTextNode(song.artist || ""));
     const key = document.getElementById("songKey");
     if (key) key.textContent = transposeChord(currentKey(), transposeSteps) || "—";
+    const passingBox=document.getElementById("songPassingChords");
+    if(passingBox){
+        const items=customPassingChords();
+        passingBox.innerHTML=items.map(([label,value],i)=>
+            `${i?'<span class="custom-presentation-passing-separator">|</span>':''}<span class="custom-presentation-passing-item"><span class="custom-presentation-passing-label">${esc(label)}:</span><span class="custom-presentation-passing-value">${esc(value)}</span></span>`
+        ).join("");
+    }
+    const meta=document.getElementById("songMeta");
+    if(meta){
+        const fmtDate=v=>{
+            if(!v) return "—";
+            try{
+                const d=v?.toDate? v.toDate() : new Date(v);
+                if(Number.isNaN(d.getTime())) return String(v);
+                return d.toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"});
+            }catch(_){return String(v);}
+        };
+        meta.textContent=`Song ID: ${song.id||"—"}  |  Date Added: ${fmtDate(song.createdAt||song.dateAdded||song.createdDate)}  |  Last Update: ${fmtDate(song.updatedAt||song.lastUpdated||song.modifiedAt)}`;
+    }
     const stage = document.getElementById("stage");
     if (!stage) return;
     sizeSongColumnsToContent(stage);
@@ -642,9 +661,6 @@ async function load(){
                     console.warn("Unable to auto-open Multi-Screen:", error);
                 }
             }, 120);
-        } else if(resumePresentation && service && service.songs?.length){
-            localStorage.setItem("presentationMode","service");
-            setTimeout(() => { void startCustomPresentation(); }, 0);
         }
         return true;
     })();
@@ -1003,7 +1019,7 @@ async function saveServiceSongNote(){
         renderCustomPresentationNote();
         renderMultiServiceSongs();
         multiScreenBroadcast({});
-        if(status)status.textContent="Saved — available in Presentation";
+        if(status)status.textContent="Saved — available in Multi-Screen";
         setTimeout(()=>{if(status)status.textContent="";},1800);
     }catch(error){
         console.error("Unable to save Service Note:",error);
@@ -2735,6 +2751,14 @@ function bindControls(){
     document.getElementById("customPresentationStop")?.addEventListener("click",stopCustomService);
     document.getElementById("customPresentationNoteSave")?.addEventListener("click",()=>void saveCustomPresentationNote());
     document.getElementById("serviceSongNoteSave")?.addEventListener("click",()=>void saveServiceSongNote());
+    document.getElementById("serviceNoteOpen")?.addEventListener("click",()=>{
+        const p=document.getElementById("serviceNotePopup");
+        if(p){p.classList.add("show");p.setAttribute("aria-hidden","false");document.getElementById("serviceSongNote")?.focus();}
+    });
+    document.getElementById("serviceNoteClose")?.addEventListener("click",()=>{
+        const p=document.getElementById("serviceNotePopup");
+        if(p){p.classList.remove("show");p.setAttribute("aria-hidden","true");}
+    });
     document.getElementById("serviceSongPrevious")?.addEventListener("click",()=>void goServiceSong(-1));
     document.getElementById("serviceSongNext")?.addEventListener("click",()=>void goServiceSong(1));
     document.getElementById("stopServiceBtn")?.addEventListener("click",stopCustomService);
