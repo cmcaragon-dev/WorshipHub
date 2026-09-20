@@ -578,6 +578,29 @@ body{min-height:100vh!important}
 @media(max-width:850px){.song-paper{width:calc(100vw - 20px)!important;min-height:calc(100vh - 30px)!important;margin:10px auto 30px!important;padding:18mm 14mm 22mm!important}.song-actions-menu{grid-template-columns:repeat(3,40px)!important}.saved-service-note{right:14mm!important;bottom:10mm!important;max-width:65%!important}}
 @media print{html,body{background:#fff!important}.song-paper{width:210mm!important;min-height:297mm!important;margin:0!important;border:0!important;box-shadow:none!important;padding:20mm!important}.song-actions-toggle,.song-actions-menu,.service-note-popup{display:none!important}.saved-service-note{position:absolute!important}}
 </style>
+
+<style id="chordio-song-page-final-controls">
+.song-paper{--song-font-extra:3px;}
+#stage .line.song-line>.chord,#stage .line.song-line>.lyrics{font-size:calc(20px + var(--song-font-extra)) !important;}
+#stage .line.song-line>.chord{line-height:calc(20px + var(--song-font-extra)) !important;}
+.song-paper.lyrics-only-mode #stage .line.song-line>.chord{display:none!important;}
+.song-paper.lyrics-only-mode #stage .line.song-line>br{display:none!important;}
+#lyricsOnlyBtn.active{background:#172a3a!important;color:#fff!important;border-color:#172a3a!important;box-shadow:0 0 0 2px rgba(23,42,58,.12)!important;}
+.song-page-organization{margin-top:6px!important;color:#667085!important;font-size:10px!important;font-weight:800!important;letter-spacing:.08em!important;text-transform:uppercase!important;}
+@media(max-width:600px){
+  .song-paper{width:calc(100vw - 16px)!important;min-height:calc(100vh - 20px)!important;padding:12mm 9mm 18mm!important;margin:8px auto 20px!important;}
+  .song-paper-topbar{gap:8px!important;}
+  .song-paper-heading h1{font-size:clamp(21px,7vw,30px)!important;}
+  .song-page-artist{font-size:13px!important;}
+  .song-passing-chords{gap:5px 9px!important;}
+  .song-actions-toggle{width:38px!important;height:38px!important;}
+  .song-actions-menu{right:-2px!important;grid-template-columns:repeat(3,38px)!important;max-width:calc(100vw - 28px)!important;}
+  .song-actions-menu button{width:38px!important;height:35px!important;}
+  #stage .section{margin-bottom:18px!important;}
+  #stage .line.song-line{margin-bottom:7px!important;}
+}
+@media print{.song-paper.lyrics-only-mode #stage .line.song-line>.chord{display:none!important;}.song-page-organization{color:#222!important;}}
+</style>
 </head>
 <body>
 <main class="song-paper" id="songPaper">
@@ -595,6 +618,9 @@ body{min-height:100vh!important}
         <button id="down" title="Transpose down one semitone" aria-label="Transpose down">−</button>
         <button id="up" title="Transpose up one semitone" aria-label="Transpose up">+</button>
         <button id="saveServiceKeyBtn" title="Save the selected key to this Service Planner" aria-label="Save Service Key">✓</button>
+        <button id="fontDecreaseBtn" type="button" title="Decrease chord and lyric size" aria-label="Decrease chord and lyric size">−A</button>
+        <button id="fontIncreaseBtn" type="button" title="Increase chord and lyric size" aria-label="Increase chord and lyric size">+A</button>
+        <button id="lyricsOnlyBtn" type="button" title="Show lyrics only" aria-label="Show lyrics only" aria-pressed="false">♫</button>
         <button id="serviceNoteOpen" type="button" title="Service Note" aria-label="Service Note">📝</button>
         <button id="serviceSongPrevious" class="service-nav-icon" type="button" title="Previous Song" aria-label="Previous Song">←</button>
         <button id="serviceSongNext" class="service-nav-icon" type="button" title="Next Song" aria-label="Next Song">→</button>
@@ -607,6 +633,7 @@ body{min-height:100vh!important}
   <div id="stage"><div class="empty">Loading song…</div></div>
   <div class="song-page-footer-rule"></div>
   <div id="songMeta" class="song-page-meta"></div>
+  <div class="song-page-organization">JFCM KSA WESTERN REGION</div>
   <div id="savedServiceNote" class="saved-service-note" aria-live="polite" hidden></div>
 </main>
 <div id="serviceSongTools" class="service-song-tools" aria-label="Service Planner song controls">
@@ -802,15 +829,37 @@ body{min-height:100vh!important}
           menu.hidden=true;toggle.setAttribute('aria-expanded','false');
         }
       });
-      menu.addEventListener('click',function(e){
-        const b=e.target.closest('button');
-        if(b && b.id!=='serviceNoteOpen'){
-          setTimeout(()=>{menu.hidden=true;toggle.setAttribute('aria-expanded','false');},0);
-        }
-      });
+      // Keep the action panel open while using its buttons. It closes only
+      // when the three-line toggle is clicked again or when the user clicks
+      // outside the menu/panel.
+      menu.addEventListener('click',function(e){ e.stopPropagation(); });
     }
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSongPageControls);else initSongPageControls();
+  function initSongPageDisplayControls(){
+    const paper=document.getElementById('songPaper');
+    const plus=document.getElementById('fontIncreaseBtn');
+    const minus=document.getElementById('fontDecreaseBtn');
+    const lyricsOnly=document.getElementById('lyricsOnlyBtn');
+    if(!paper || paper.dataset.displayControlsBound==='1') return;
+    paper.dataset.displayControlsBound='1';
+    let size=Number(sessionStorage.getItem('chordioSongFontSize')||'3');
+    if(!Number.isFinite(size)) size=3;
+    size=Math.max(0,Math.min(14,size));
+    let lyricsOnlyMode=sessionStorage.getItem('chordioLyricsOnly')==='1';
+    const apply=()=>{
+      paper.style.setProperty('--song-font-extra',`${size}px`);
+      paper.classList.toggle('lyrics-only-mode',lyricsOnlyMode);
+      if(lyricsOnly){lyricsOnly.classList.toggle('active',lyricsOnlyMode);lyricsOnly.setAttribute('aria-pressed',String(lyricsOnlyMode));}
+    };
+    plus?.addEventListener('click',()=>{size=Math.min(14,size+1);sessionStorage.setItem('chordioSongFontSize',String(size));apply();window.dispatchEvent(new CustomEvent('chordio:song-font-change',{detail:{size}}));});
+    minus?.addEventListener('click',()=>{size=Math.max(0,size-1);sessionStorage.setItem('chordioSongFontSize',String(size));apply();window.dispatchEvent(new CustomEvent('chordio:song-font-change',{detail:{size}}));});
+    lyricsOnly?.addEventListener('click',()=>{lyricsOnlyMode=!lyricsOnlyMode;sessionStorage.setItem('chordioLyricsOnly',lyricsOnlyMode?'1':'0');apply();});
+    window.addEventListener('chordio:song-rendered',apply);
+    apply();
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',()=>{initSongPageControls();initSongPageDisplayControls();});
+  }else{initSongPageControls();initSongPageDisplayControls();}
 })();
 </script>
 <style>
