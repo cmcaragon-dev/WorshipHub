@@ -1141,23 +1141,22 @@ function printCustomSong(){
     if(!song) return;
     const root=document.createElement("div");
     root.id="worshipHubPrintRoot";
-    root.dataset.printLayout="flow2";
 
     const key=customServiceKey();
     const passing=customPassingChords();
     root.innerHTML=`
-      <div class="print-song-header">
-        <div class="print-song-meta-grid">
-          <div><span class="print-song-title-label">SONG TITLE:</span> ${esc(song.title||"Untitled Song")}</div>
-          <div><span class="print-song-info-label">ARTIST:</span> ${esc(song.artist||"")}</div>
-          <div><span class="print-song-info-label">SONG KEY:</span> ${esc(key||"")}</div>
-          <div><span class="print-song-info-label">PASSING CHORDS:</span> ${passing.map(([label,value])=>`${esc(label)}: ${esc(value)}`).join("  |  ")}</div>
-        </div>
-        <div class="print-song-rule"></div>
-      </div>
-      <div class="print-song-content"><div class="wh-print-source-content song"></div></div>`;
+      <article class="service-print-song">
+        <header class="service-print-header">
+          <h1>${esc(song.title||"Untitled Song")}</h1>
+          <div class="service-print-artist">${esc(song.artist||"")}</div>
+          <div class="service-print-key"><b>SONG KEY:</b> ${esc(key||"—")}</div>
+          <div class="service-print-passing"><b>PASSING CHORDS:</b> ${passing.map(([label,value])=>`<span class="service-print-passing-item">${esc(label)}: ${esc(value)}</span>`).join(" <span class=\"service-print-separator\">|</span> ")}</div>
+          <div class="service-print-rule"></div>
+        </header>
+        <div class="service-print-content"></div>
+      </article>`;
 
-    const source=root.querySelector(".wh-print-source-content.song");
+    const content=root.querySelector(".service-print-content");
     normalizeSections(song.sections).forEach(section=>{
         const sec=document.createElement("section");
         sec.className="song-section";
@@ -1177,12 +1176,47 @@ function printCustomSong(){
             row.append(chord,document.createElement("br"),lyric);
             sec.appendChild(row);
         });
-        source.appendChild(sec);
+        content.appendChild(sec);
     });
 
     document.getElementById("worshipHubPrintRoot")?.remove();
     document.body.appendChild(root);
-    window.WorshipHubPrintPreview?.open(root);
+    document.body.classList.add("worshiphub-song-printing");
+
+    let style=document.getElementById("chordioSongPrintStyle");
+    if(style) style.remove();
+    style=document.createElement("style");
+    style.id="chordioSongPrintStyle";
+    style.textContent=`
+      #worshipHubPrintRoot{display:none!important;}
+      body.worshiphub-song-printing > *:not(#worshipHubPrintRoot){display:none!important;visibility:hidden!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot{display:block!important;position:static!important;visibility:visible!important;background:#fff!important;color:#111!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .service-print-song{display:flex!important;flex-direction:column!important;position:relative!important;width:297mm!important;height:210mm!important;min-height:210mm!important;box-sizing:border-box!important;padding:12mm 14mm 10mm!important;margin:0 auto!important;background:#fff!important;color:#111!important;overflow:hidden!important;break-after:page!important;page-break-after:always!important;font-family:Arial,Helvetica,sans-serif!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .service-print-song:last-child{break-after:auto!important;page-break-after:auto!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .service-print-header{flex:0 0 auto!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot h1{margin:0 0 3px!important;font-size:22pt!important;line-height:1.08!important;color:#111!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .service-print-artist{font-size:11pt!important;font-weight:600!important;margin-bottom:4px!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .service-print-key{font-size:10pt!important;margin-bottom:5px!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .service-print-passing{font-size:8.5pt!important;line-height:1.3!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .service-print-passing-item{display:inline-block!important;margin-right:5px!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .service-print-rule{height:1px!important;background:#222!important;width:100%!important;margin:6px 0 8px!important;flex:0 0 auto!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .service-print-content{font-size:9.5pt!important;line-height:1.08!important;column-count:2!important;column-gap:9mm!important;column-fill:auto!important;column-width:auto!important;flex:1 1 auto!important;min-height:0!important;height:auto!important;overflow:hidden!important;font-family:Consolas,Monaco,"Courier New",monospace!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .song-section{display:block!important;margin:0 0 8px!important;break-inside:auto!important;page-break-inside:auto!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .section-title{display:block!important;color:#111!important;background:transparent!important;font-weight:900!important;text-transform:uppercase!important;margin:0 0 2px!important;padding:0!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .song-line{display:block!important;margin:0 0 2px!important;padding:0!important;white-space:pre!important;font-family:Consolas,Monaco,"Courier New",monospace!important;line-height:1.05!important;break-inside:avoid!important;page-break-inside:avoid!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .song-line .chord{display:block!important;color:#b42318!important;font-weight:800!important;white-space:pre!important;}
+      body.worshiphub-song-printing #worshipHubPrintRoot .song-line .print-lyric-text{display:block!important;color:#111!important;white-space:pre!important;}
+      @page{size:A4 landscape;margin:0;}
+    `;
+    document.head.appendChild(style);
+
+    const cleanup=()=>{
+        document.body.classList.remove("worshiphub-song-printing");
+        root.remove();
+        style.remove();
+    };
+    window.addEventListener("afterprint",cleanup,{once:true});
+    setTimeout(()=>window.print(),80);
 }
 
 // CHORDIO MULTI-SCREEN OUTPUT CONTROL
