@@ -531,126 +531,56 @@ body.multi-screen-output-page #multiScreenOutput{position:fixed!important;inset:
 #multiScreenControl .multi-service-song .multi-service-presentation-delete{margin-left:auto!important;flex:0 0 auto!important}
 </style>
 
-<style id="chordio-service-song-tools-v61">
-.service-song-tools{max-width:1800px;margin:0 auto;padding:0 18px 28px;display:flex;flex-direction:column;gap:10px}
-.service-song-note-card{background:#fff;border:1px solid #d8dee8;border-radius:10px;padding:12px 14px;box-shadow:0 6px 18px rgba(16,24,40,.06)}
-.service-song-note-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px;color:#344054}.service-song-note-head strong{color:#8b6500;font-size:13px}.service-song-note-head span{font-size:11px;color:#667085}
-#serviceSongNote{display:block;width:100%;box-sizing:border-box;min-height:64px;resize:vertical;border:1px solid #d8dee8;border-radius:7px;background:#fff;color:#18212f;padding:8px;font:14px/1.4 Inter,"Segoe UI",Arial,sans-serif}
-#serviceSongNote:focus{outline:none;border-color:#c79d00;box-shadow:0 0 0 2px rgba(199,157,0,.12)}
-.service-song-note-actions{display:flex;align-items:center;gap:8px;margin-top:7px}.service-song-note-actions button{border:1px solid #b89000;background:#fff8d6;color:#6f5200;border-radius:7px;padding:7px 11px;font-weight:800;cursor:pointer}.service-song-note-actions button:disabled{opacity:.45;cursor:not-allowed}.service-song-note-actions span{font-size:11px;color:#667085}
+
+<style id="chordio-service-song-navigation">
 .service-song-navigation{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 0}.service-song-navigation button{border:1px solid #d8dee8;background:#fff;color:#344054;border-radius:7px;padding:8px 14px;font-weight:800;cursor:pointer}.service-song-navigation button:hover:not(:disabled){border-color:#c79d00;background:#fff8d6}.service-song-navigation button:disabled{opacity:.4;cursor:not-allowed}.service-song-navigation span{min-width:125px;text-align:center;font-size:11px;font-weight:900;color:#8b6500}
-@media(max-width:650px){.service-song-tools{padding:0 10px 20px}.service-song-note-head{align-items:flex-start;flex-direction:column;gap:3px}.service-song-navigation{gap:6px}.service-song-navigation button{padding:7px 9px;font-size:11px}.service-song-navigation span{min-width:95px;font-size:10px}}
-</style>
-
-<style id="chordio-song-page-a4-v2">
-html,body{background:#e9edf2!important;color:#151a20!important}
-body{min-height:100vh!important}
-.song-paper{position:relative!important;width:210mm!important;min-height:297mm!important;height:auto!important;margin:28px auto 48px!important;padding:20mm!important;background:#fff!important;border:1px solid #d5d9de!important;border-radius:0!important;box-shadow:0 12px 40px rgba(20,30,40,.14)!important;box-sizing:border-box!important}
-.song-paper-topbar{position:relative!important;display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:18px!important;margin:0 0 14px!important}
-.song-paper-heading{min-width:0!important;flex:1 1 auto!important}
-.song-paper-heading h1{margin:0!important;color:#111827!important;font-size:30px!important;line-height:1.15!important;font-weight:850!important;letter-spacing:-.02em!important}
-.song-page-artist{margin-top:6px!important;color:#475467!important;font-size:15px!important;font-weight:600!important}
-.song-page-key-label{margin-top:9px!important;color:#667085!important;font-size:12px!important;font-weight:850!important;letter-spacing:.05em!important}
-.song-page-key{color:#17212b!important;font-size:16px!important;font-weight:900!important}
-.song-passing-chords{display:flex!important;flex-wrap:wrap!important;gap:6px 15px!important;margin-top:11px!important;font-size:12px!important}
-.song-passing-chords .custom-presentation-passing-label{color:#344054!important;font-size:10px!important;font-weight:850!important}
-.song-passing-chords .custom-presentation-passing-value{color:#17212b!important;font-size:13px!important;font-weight:800!important}
-.song-page-rule,.song-page-footer-rule{height:1px!important;background:#cfd5dc!important;width:100%!important;margin:15px 0 18px!important}
-.song-page-menu-wrap{position:relative!important;flex:0 0 auto!important}
-.song-actions-toggle{width:40px!important;height:40px!important;border:1px solid #cfd5dc!important;border-radius:8px!important;background:#fff!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;cursor:pointer!important}
-.song-actions-toggle span{display:block!important;width:18px!important;height:2px!important;background:#344054!important;border-radius:2px!important}
-.song-actions-menu{position:absolute!important;right:0!important;top:46px!important;z-index:2000!important;display:grid!important;grid-template-columns:repeat(3,40px)!important;gap:6px!important;padding:8px!important;background:#fff!important;border:1px solid #d5dbe2!important;border-radius:10px!important;box-shadow:0 14px 35px rgba(20,30,40,.18)!important}
-.song-actions-menu[hidden]{display:none!important}
-.song-actions-menu button{width:40px!important;height:36px!important;padding:0!important;border:1px solid #d5dbe2!important;border-radius:7px!important;background:#fff!important;color:#28333d!important;font-weight:850!important;cursor:pointer!important}
-.song-actions-menu button:hover{background:#f2f5f7!important}
-.song-actions-menu .service-nav-icon{font-size:18px!important}
-.song-actions-menu #saveServiceKeyBtn{color:#14724a!important}
-#stage{display:block!important;width:100%!important;column-count:1!important}
-#stage .section{margin:0 0 24px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;break-inside:avoid!important}
-#stage .section-title{color:#202832!important;background:transparent!important;padding:0!important;margin:0 0 8px!important;text-transform:uppercase!important;letter-spacing:.10em!important;font-size:13px!important;font-weight:900!important}
-#stage .line.song-line{margin:0 0 9px!important;padding:0!important;overflow:visible!important}
-#stage .line.song-line>.chord{color:#d21f2f!important;font-weight:800!important}
-#stage .line.song-line>.lyrics{color:#111!important}
-.song-page-meta{margin:0!important;color:#667085!important;font-size:10px!important;letter-spacing:.02em!important}
-.saved-service-note{position:absolute!important;right:20mm!important;bottom:14mm!important;max-width:55%!important;padding:8px 10px!important;border-left:3px solid #8b6500!important;background:#faf8ef!important;color:#30353b!important;font:12px/1.35 Inter,"Segoe UI",Arial,sans-serif!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important}
-.saved-service-note::before{content:"SERVICE NOTE";display:block!important;margin-bottom:3px!important;color:#8b6500!important;font-size:9px!important;font-weight:900!important;letter-spacing:.08em!important}
-.service-note-popup{position:fixed!important;right:24px!important;top:76px!important;z-index:3000!important}
-@media(max-width:850px){.song-paper{width:calc(100vw - 20px)!important;min-height:calc(100vh - 30px)!important;margin:10px auto 30px!important;padding:18mm 14mm 22mm!important}.song-actions-menu{grid-template-columns:repeat(3,40px)!important}.saved-service-note{right:14mm!important;bottom:10mm!important;max-width:65%!important}}
-@media print{html,body{background:#fff!important}.song-paper{width:210mm!important;min-height:297mm!important;margin:0!important;border:0!important;box-shadow:none!important;padding:20mm!important}.song-actions-toggle,.song-actions-menu,.service-note-popup{display:none!important}.saved-service-note{position:absolute!important}}
-</style>
-
-<style id="chordio-song-page-final-controls">
-.song-paper{--song-font-extra:3px;}
-#stage .line.song-line>.chord,#stage .line.song-line>.lyrics{font-size:calc(20px + var(--song-font-extra)) !important;}
-#stage .line.song-line>.chord{line-height:calc(20px + var(--song-font-extra)) !important;}
-.song-paper.lyrics-only-mode #stage .line.song-line>.chord{display:none!important;}
-.song-paper.lyrics-only-mode #stage .line.song-line>br{display:none!important;}
-#lyricsOnlyBtn.active{background:#172a3a!important;color:#fff!important;border-color:#172a3a!important;box-shadow:0 0 0 2px rgba(23,42,58,.12)!important;}
-.song-page-organization{margin-top:6px!important;color:#667085!important;font-size:10px!important;font-weight:800!important;letter-spacing:.08em!important;text-transform:uppercase!important;}
-@media(max-width:600px){
-  .song-paper{width:calc(100vw - 16px)!important;min-height:calc(100vh - 20px)!important;padding:12mm 9mm 18mm!important;margin:8px auto 20px!important;}
-  .song-paper-topbar{gap:8px!important;}
-  .song-paper-heading h1{font-size:clamp(21px,7vw,30px)!important;}
-  .song-page-artist{font-size:13px!important;}
-  .song-passing-chords{gap:5px 9px!important;}
-  .song-actions-toggle{width:38px!important;height:38px!important;}
-  .song-actions-menu{right:-2px!important;grid-template-columns:repeat(3,38px)!important;max-width:calc(100vw - 28px)!important;}
-  .song-actions-menu button{width:38px!important;height:35px!important;}
-  #stage .section{margin-bottom:18px!important;}
-  #stage .line.song-line{margin-bottom:7px!important;}
-}
-@media print{.song-paper.lyrics-only-mode #stage .line.song-line>.chord{display:none!important;}.song-page-organization{color:#222!important;}}
+@media(max-width:650px){.service-song-tools{padding:0 10px 20px}.service-song-navigation{gap:6px}.service-song-navigation button{padding:7px 9px;font-size:11px}.service-song-navigation span{min-width:95px;font-size:10px}}
 </style>
 </head>
 <body>
-<main class="song-paper" id="songPaper">
-  <div class="song-paper-topbar">
-    <div class="song-paper-heading">
-      <h1 id="songTitle">CHORDIO</h1>
-      <div id="songArtist" class="song-page-artist"></div>
-      <div class="song-page-key-label">KEY: <span id="songKey" class="song-page-key">—</span></div>
-      <div id="songPassingChords" class="song-passing-chords" aria-label="Passing Chords"></div>
-      <div class="song-page-rule"></div>
-    </div>
-    <div class="song-page-menu-wrap">
-      <button id="songActionsToggle" class="song-actions-toggle" type="button" aria-label="Song actions" aria-expanded="false" title="Song actions"><span></span><span></span><span></span></button>
-      <div id="songActionsMenu" class="song-actions-menu" hidden>
-        <button id="down" title="Transpose down one semitone" aria-label="Transpose down">−</button>
-        <button id="up" title="Transpose up one semitone" aria-label="Transpose up">+</button>
-        <button id="saveServiceKeyBtn" title="Save the selected key to this Service Planner" aria-label="Save Service Key">✓</button>
-        <button id="fontDecreaseBtn" type="button" title="Decrease chord and lyric size" aria-label="Decrease chord and lyric size">−A</button>
-        <button id="fontIncreaseBtn" type="button" title="Increase chord and lyric size" aria-label="Increase chord and lyric size">+A</button>
-        <button id="lyricsOnlyBtn" type="button" title="Show lyrics only" aria-label="Show lyrics only" aria-pressed="false">♫</button>
-        <button id="serviceNoteOpen" type="button" title="Service Note" aria-label="Service Note">📝</button>
-        <button id="serviceSongPrevious" class="service-nav-icon" type="button" title="Previous Song" aria-label="Previous Song">←</button>
-        <button id="serviceSongNext" class="service-nav-icon" type="button" title="Next Song" aria-label="Next Song">→</button>
-        <button id="multiScreenOpen" title="Control 4 extended HDMI screens" aria-label="Multi-Screen">🖥</button>
-        <button id="printBtn" title="Open Print Preview" aria-label="Print">🖨</button>
-        <button id="close" type="button" onclick="window.chordioGoHome()" aria-label="Home" title="Home">⌂</button>
-      </div>
-    </div>
-  </div>
-  <div id="stage"><div class="empty">Loading song…</div></div>
-  <div class="song-page-footer-rule"></div>
-  <div id="songMeta" class="song-page-meta"></div>
-  <div class="song-page-organization">JFCM KSA WESTERN REGION</div>
-  <div id="savedServiceNote" class="saved-service-note" aria-live="polite" hidden></div>
-</main>
+<div class="top"><div class="title"><h1 id="songTitle">CHORDIO</h1><small id="songArtist"></small></div><div class="key">Key: <span id="songKey">—</span></div><div class="controls"><button id="minus" title="Decrease lyric/chord display size">−A</button><button id="plus" title="Increase lyric/chord display size">+A</button><button id="down" title="Transpose down one semitone">− Transpose</button><button id="up" title="Transpose up one semitone">+ Transpose</button><button id="saveServiceKeyBtn" title="Save the selected key to this Service Planner">✓ Save Key</button><span id="serviceKeySaveStatus" class="service-key-save-status" aria-live="polite"></span><button id="dark" title="Toggle dark/light mode">◐ Dark / Light</button><button id="presentationBtn" title="Open presentation">▣ Presentation</button><button id="multiScreenOpen" title="Control 4 extended HDMI screens">🖥 Multi-Screen</button><button id="stopServiceBtn" title="Stop the current service">⏹ Stop Service</button><button id="printBtn" title="Open Print Preview">🖨 Print</button><button id="close" type="button" onclick="window.chordioGoHome()" aria-label="Home">⌂ Home</button></div></div>
+<main class="stage" id="stage"><div class="empty">Loading song…</div></main>
 <div id="serviceSongTools" class="service-song-tools" aria-label="Service Planner song controls">
-  <div id="serviceNotePopup" class="service-note-popup" aria-hidden="true">
-    <div class="service-note-popup-head">
-      <strong>📝 Service Note</strong>
-      <button id="serviceNoteClose" type="button" aria-label="Close Service Note">✕</button>
-    </div>
-    <textarea id="serviceSongNote" rows="4" placeholder="Write a note for this song in the selected Service Planner..."></textarea>
-    <div class="service-song-note-actions">
-      <button id="serviceSongNoteSave" type="button">Save Note</button>
-      <span id="serviceSongNoteStatus" aria-live="polite"></span>
-    </div>
+  <div class="service-song-navigation">
+    <button id="serviceSongPrevious" type="button">◀ Previous Song</button>
+    <span id="serviceSongPosition">—</span>
+    <button id="serviceSongNext" type="button">Next Song ▶</button>
   </div>
-  <span id="serviceSongPosition" class="service-song-position" aria-hidden="true">—</span>
 </div>
 <div hidden="" id="counter">Custom Song</div>
+<div aria-hidden="true" id="customPresentationScreen">
+<div id="customPresentationHeader">
+<div id="customPresentationTitle">CHORDIO</div>
+<div aria-label="Automatic passing chords" id="customPresentationPassing"></div>
+<div id="customPresentationKey">Key: —</div>
+<div class="custom-presentation-actions">
+<button id="customPresentationSectionPrev" title="Previous Section">↑</button>
+<button id="customPresentationSectionNext" title="Next Section">↓</button>
+<button id="customPresentationPrev" title="Previous Song">◀</button>
+<button id="customPresentationNext" title="Next Song">▶</button>
+<button id="customPresentationStop" title="Stop Service">⏹</button>
+<button id="customPresentationLayout" title="Arrange / hide song sections">☷ Sections</button>
+<button id="customPresentationMax" title="Maximize">⛶</button>
+<button id="customPresentationClose" title="Close Presentation">✕</button>
+</div>
+</div>
+<div aria-label="Presentation section layout" hidden="" id="customPresentationLayoutPanel">
+<div class="custom-layout-head">
+<strong>Presentation Sections</strong>
+<button id="customPresentationLayoutClose" title="Close" type="button">✕</button>
+</div>
+<div class="custom-layout-help">Use ↑ / ↓ to choose which section appears first. Uncheck a section to hide it.</div>
+<div id="customPresentationLayoutList"></div>
+<div class="custom-layout-actions">
+<button id="customPresentationLayoutReset" type="button">Reset Layout</button>
+</div>
+</div>
+<div id="customPresentationLyrics"></div>
+<div id="customPresentationLowerRight">
+<div id="customNextSongPreview" role="button" tabindex="0"></div>
+</div>
+<div class="custom-presentation-bottom"><button id="customPresentationSectionPrevBottom">↑ Previous Section</button><button id="customPresentationSectionNextBottom">Next Section ↓</button><button id="customPresentationPrevBottom">◀ Previous Song</button><button id="customPresentationNextBottom">Next Song ▶</button></div>
+</div>
 <div aria-hidden="true" id="multiScreenControl">
 <div class="multi-add-song-modal" id="multiAddSongModal">
 <div class="multi-add-song-dialog">
@@ -811,57 +741,6 @@ body{min-height:100vh!important}
 <script src="js/chordio-v63-ux.js"></script>
 <script src="js/custom-song-runtime.js" type="module"></script>
 <script src="js/print-preview.js"></script>
-<script>
-(function(){
-  function initSongPageControls(){
-    const toggle=document.getElementById('songActionsToggle');
-    const menu=document.getElementById('songActionsMenu');
-    if(toggle && menu && !toggle.dataset.bound){
-      toggle.dataset.bound='1';
-      toggle.addEventListener('click',function(e){
-        e.stopPropagation();
-        const open=menu.hidden;
-        menu.hidden=!open;
-        toggle.setAttribute('aria-expanded',String(open));
-      });
-      document.addEventListener('click',function(e){
-        if(!menu.hidden && !e.target.closest('.song-page-menu-wrap')){
-          menu.hidden=true;toggle.setAttribute('aria-expanded','false');
-        }
-      });
-      // Keep the action panel open while using its buttons. It closes only
-      // when the three-line toggle is clicked again or when the user clicks
-      // outside the menu/panel.
-      menu.addEventListener('click',function(e){ e.stopPropagation(); });
-    }
-  }
-  function initSongPageDisplayControls(){
-    const paper=document.getElementById('songPaper');
-    const plus=document.getElementById('fontIncreaseBtn');
-    const minus=document.getElementById('fontDecreaseBtn');
-    const lyricsOnly=document.getElementById('lyricsOnlyBtn');
-    if(!paper || paper.dataset.displayControlsBound==='1') return;
-    paper.dataset.displayControlsBound='1';
-    let size=Number(sessionStorage.getItem('chordioSongFontSize')||'3');
-    if(!Number.isFinite(size)) size=3;
-    size=Math.max(0,Math.min(14,size));
-    let lyricsOnlyMode=sessionStorage.getItem('chordioLyricsOnly')==='1';
-    const apply=()=>{
-      paper.style.setProperty('--song-font-extra',`${size}px`);
-      paper.classList.toggle('lyrics-only-mode',lyricsOnlyMode);
-      if(lyricsOnly){lyricsOnly.classList.toggle('active',lyricsOnlyMode);lyricsOnly.setAttribute('aria-pressed',String(lyricsOnlyMode));}
-    };
-    plus?.addEventListener('click',()=>{size=Math.min(14,size+1);sessionStorage.setItem('chordioSongFontSize',String(size));apply();window.dispatchEvent(new CustomEvent('chordio:song-font-change',{detail:{size}}));});
-    minus?.addEventListener('click',()=>{size=Math.max(0,size-1);sessionStorage.setItem('chordioSongFontSize',String(size));apply();window.dispatchEvent(new CustomEvent('chordio:song-font-change',{detail:{size}}));});
-    lyricsOnly?.addEventListener('click',()=>{lyricsOnlyMode=!lyricsOnlyMode;sessionStorage.setItem('chordioLyricsOnly',lyricsOnlyMode?'1':'0');apply();});
-    window.addEventListener('chordio:song-rendered',apply);
-    apply();
-  }
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',()=>{initSongPageControls();initSongPageDisplayControls();});
-  }else{initSongPageControls();initSongPageDisplayControls();}
-})();
-</script>
 <style>
 /* Final responsive Add Song presentation layout.
    The presentation is intentionally content-sized and scrollable: it never
@@ -2268,82 +2147,4 @@ body #chordioNewServiceModal .v63-create-footer button.secondary{background:#fff
 /* Final override: Multi-Screen EDIT SERVICE uses the same readable New Service layout. */
 #chordioNewServiceModal .v63-selected-song-info strong,#chordioNewServiceModal .v63-selected-song-info small,
 #chordioNewServiceModal .v63-song-choice-info strong,#chordioNewServiceModal .v63-song-choice-info small{white-space:normal!important;overflow-wrap:anywhere!important;word-break:break-word!important;}
-</style>
-
-<style id="chordio-song-page-clean-design">
-/* CHORDIO — clean paper-style Song Page */
-html,body{background:#eef1f5!important;color:#151a20!important;}
-body{margin:0!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important;}
-body.custom-dark{background:#eef1f5!important;color:#151a20!important;}
-.song-page-header{
-  position:sticky!important;top:0!important;z-index:1000!important;
-  display:flex!important;align-items:flex-start!important;justify-content:space-between!important;
-  gap:20px!important;padding:18px 28px 14px!important;
-  background:#ffffff!important;border-bottom:1px solid #dfe4ea!important;
-  box-shadow:0 2px 10px rgba(20,30,40,.06)!important;
-}
-.song-page-heading{min-width:0;flex:1 1 auto;}
-.song-page-title-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
-.song-page-title-row h1{margin:0!important;font-size:clamp(25px,3vw,40px)!important;line-height:1.08!important;font-weight:850!important;color:#18212b!important;}
-.song-page-key{font-size:18px!important;font-weight:800!important;color:#8a6500!important;}
-.song-page-artist{margin-top:4px!important;font-size:14px!important;color:#66727d!important;font-weight:600!important;}
-.song-passing-chords{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:12px!important;font-size:12px!important;}
-.song-passing-chords .custom-presentation-passing-item{display:inline-flex!important;gap:5px!important;align-items:center!important;}
-.song-passing-chords .custom-presentation-passing-label{font-size:10px!important;color:#7b5a00!important;font-weight:850!important;letter-spacing:.04em!important;}
-.song-passing-chords .custom-presentation-passing-value{font-size:13px!important;color:#17212b!important;font-weight:800!important;}
-.song-passing-chords .custom-presentation-passing-separator{color:#b5bcc4!important;}
-.song-page-rule{height:1px!important;background:#d7dde4!important;margin:13px 0 8px!important;width:100%!important;}
-.song-page-meta{font-size:10px!important;color:#87919b!important;letter-spacing:.02em!important;}
-.song-page-actions{display:flex!important;align-items:center!important;gap:6px!important;flex:0 0 auto!important;flex-wrap:wrap!important;justify-content:flex-end!important;}
-.song-page-actions button{width:36px!important;height:34px!important;padding:0!important;border:1px solid #d5dbe2!important;border-radius:8px!important;background:#fff!important;color:#28333d!important;font-weight:850!important;cursor:pointer!important;}
-.song-page-actions button:hover{background:#f2f5f7!important;}
-.song-page-actions .service-nav-icon{font-size:18px!important;}
-.song-page-actions #saveServiceKeyBtn{color:#14724a!important;}
-.song-page-actions .service-key-save-status{font-size:10px!important;max-width:80px!important;}
-.song-paper{
-  width:min(920px,calc(100vw - 36px))!important;
-  min-height:calc(100vh - 150px)!important;
-  box-sizing:border-box!important;
-  margin:28px auto 60px!important;padding:48px 64px 72px!important;
-  background:#fff!important;border:1px solid #e0e4e8!important;
-  box-shadow:0 10px 35px rgba(20,30,40,.09)!important;
-  border-radius:2px!important;
-}
-.song-paper .section{
-  margin:0 0 30px!important;padding:0!important;background:transparent!important;
-  border:0!important;box-shadow:none!important;border-radius:0!important;
-  break-inside:avoid!important;
-}
-.song-paper .section-title{
-  color:#202832!important;background:transparent!important;padding:0!important;margin:0 0 10px!important;
-  text-transform:uppercase!important;letter-spacing:.10em!important;font-size:13px!important;font-weight:900!important;
-}
-.song-paper .line{margin:0!important;padding:0!important;overflow:visible!important;}
-.song-paper .chord{
-  color:#d22d2d!important;font-weight:800!important;
-  font-family:Consolas,Monaco,"Courier New",monospace!important;
-}
-.song-paper .lyrics{
-  color:#111!important;font-family:Consolas,Monaco,"Courier New",monospace!important;
-}
-.service-note-popup{
-  position:fixed;right:24px;top:76px;z-index:3000;width:min(360px,calc(100vw - 40px));
-  padding:13px;background:#fff;border:1px solid #d7dde4;border-radius:10px;
-  box-shadow:0 15px 45px rgba(20,30,40,.18);display:none;
-}
-.service-note-popup.show{display:block!important;}
-.service-note-popup-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;}
-.service-note-popup-head strong{font-size:13px;color:#25303a;}
-.service-note-popup-head button{border:0;background:transparent;font-size:16px;cursor:pointer;color:#6f7881;}
-.service-note-popup textarea{width:100%;box-sizing:border-box;resize:vertical;border:1px solid #d5dbe2;border-radius:7px;padding:9px;font:13px/1.4 Inter,"Segoe UI",Arial,sans-serif;outline:none;}
-.service-note-popup textarea:focus{border-color:#9aa8b5;box-shadow:0 0 0 2px rgba(80,100,120,.08);}
-.service-song-note-actions{display:flex;align-items:center;gap:8px;margin-top:8px;}
-.service-song-note-actions button{border:1px solid #cfd6dd;border-radius:7px;background:#182a39;color:#fff;padding:7px 10px;font-size:11px;font-weight:800;cursor:pointer;}
-.service-song-note-actions span{font-size:10px;color:#74808b;}
-.service-song-position{display:none;}
-@media(max-width:800px){
- .song-page-header{padding:14px 16px!important;flex-direction:column!important;}
- .song-page-actions{width:100%!important;justify-content:flex-start!important;}
- .song-paper{width:calc(100vw - 20px)!important;margin:12px auto 35px!important;padding:30px 22px 50px!important;}
-}
 </style>

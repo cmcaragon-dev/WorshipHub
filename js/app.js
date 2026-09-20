@@ -1215,8 +1215,9 @@ function renderServices() {
                 <div id="serviceBody${escapeHtml(service.id)}" class="service-body">
                     <div class="service-action-bar">
                         <button type="button" class="edit-service-btn" onclick="editService('${escapeHtml(service.id)}')">✎ Edit Service</button>
+                        <button type="button" onclick="startService('${escapeHtml(service.id)}')">▶ Start Service</button>
                         <button type="button" class="start-multi-screen-service-btn" onclick="startMultiScreenService('${escapeHtml(service.id)}')" title="Open Multi-Screen for this Service Planner">🖥 Multi-Screen</button>
-                        <button type="button" class="service-print-btn" onclick="printServiceSongs('${escapeHtml(service.id)}')"><i class="fas fa-print"></i> Print</button>
+                        <button type="button" onclick="printServiceSongs('${escapeHtml(service.id)}')"><i class="fas fa-print"></i> Print</button>
                         <button type="button" onclick="duplicateService('${escapeHtml(service.id)}')">⧉ Duplicate</button>
                         <button type="button" onclick="renameService('${escapeHtml(service.id)}')">✏ Rename</button>
                         <button type="button" class="danger-action" onclick="deleteService('${escapeHtml(service.id)}')">🗑 Delete</button>
@@ -1650,31 +1651,219 @@ closeSongPicker.onclick = function(){
     songPicker.classList.remove("show");
 };
 
-async function startMultiScreenService(serviceId){
-    const id=String(serviceId||"");
-    const selected=services.find(s=>String(s.id)===id);
-    if(!selected){ alert("Service Planner not found."); return; }
-    const serviceSongs=Array.isArray(selected.songs)?selected.songs:[];
-    if(!serviceSongs.length){ alert("This Service Planner has no songs yet."); return; }
-    // Set the exact planner session before opening the dedicated Multi-Screen
-    // control. The Multi-Screen page reads these values on startup.
-    try{
-        localStorage.setItem("currentServiceId",id);
-        localStorage.setItem("currentServiceName",String(selected.name||"Service Planner"));
-        localStorage.setItem("currentServiceSnapshot",JSON.stringify(selected));
-        localStorage.setItem("currentSongIndex","0");
-        localStorage.setItem("resumePresentation","true");
-        localStorage.setItem("presentationMode","service");
-        localStorage.setItem("startMultiScreenOnLoad","true");
-    }catch(error){ console.warn("Unable to save Multi-Screen service session:",error); }
-    const first=serviceSongs[0]||{};
-    // Always enter the CHORDIO song runtime: it is also the host for the
-    // Multi-Screen controller and can render both Firebase/custom songs from
-    // the Service Planner snapshot.
-    const target=`custom-song.html?id=${encodeURIComponent(first.id||"")}`;
-    window.location.assign(target);
+async function startService(serviceId) {
+
+    let service = services.find(function(s) {
+
+        return String(s.id) === String(serviceId);
+
+    });
+
+
+    if (!service) {
+
+        alert("Service not found.");
+
+        return;
+
+    }
+
+
+    if (
+        !Array.isArray(service.songs) ||
+        service.songs.length === 0
+    ) {
+
+        alert(
+            "This service has no songs."
+        );
+
+        return;
+
+    }
+
+    // Re-read the selected Service Planner from Firebase before opening it.
+    // This guarantees that serviceKey/key values saved by the song page are
+    // not replaced by an older in-memory copy from index.html.
+    try {
+        const freshSnap = await getDoc(
+            doc(db, "users", currentUser.uid, "services", String(serviceId))
+        );
+        if (freshSnap.exists()) {
+            service = { id: freshSnap.id, ...freshSnap.data() };
+            if (!Array.isArray(service.songs)) service.songs = [];
+        }
+    } catch (error) {
+        console.warn("Unable to refresh Service Planner before starting:", error);
+    }
+
+
+    // ======================================
+    // SAVE ACTIVE SERVICE
+    // ======================================
+
+    localStorage.setItem(
+        "currentServiceId",
+        String(service.id)
+    );
+
+    localStorage.setItem(
+        "currentServiceName",
+        String(service.name || service.title || "Service Planner")
+    );
+
+    // Cache the freshly confirmed service so the presentation can render
+    // immediately without waiting for another Firestore round trip.
+    try { localStorage.setItem("currentServiceSnapshot", JSON.stringify(service)); }
+    catch (e) { console.warn("Unable to cache active service:", e); }
+
+
+    localStorage.setItem(
+        "currentSongIndex",
+        "0"
+    );
+
+
+    localStorage.setItem(
+        "resumePresentation",
+        "true"
+    );
+
+
+    console.log(
+        "START SERVICE:"
+    );
+
+    console.log(
+        "ID:",
+        service.id
+    );
+
+    console.log(
+        "NAME:",
+        service.name
+    );
+
+    console.log(
+        "SONGS:",
+        service.songs.length
+    );
+
+
+    // ======================================
+    // OPEN FIRST SONG
+    // ======================================
+
+    const firstSong =
+        service.songs[0];
+
+
+    if (!firstSong || !firstSong.file) {
+        clearActiveServiceState();
+        renderServices();
+        alert("First song file not found.");
+        return;
+    }
+
+
+    // All structured songs use the same song runtime.  Previously only
+    // customSong entries were allowed to open here, which meant a normal
+    // Service Planner song could reach Start Service and then stop with an
+    // "not available" message.  The service snapshot already contains the
+    // structured sections, so route every structured entry through the same
+    // runtime and preserve the selected Service Planner key/transpose.
+    if (firstSong.customSong === true || Array.isArray(firstSong.sections)) {
+        const customUrl =
+            "custom-song.html?id=" +
+            encodeURIComponent(firstSong.id || firstSong.file || "");
+        window.location.assign(customUrl);
+        return;
+    }
+
+    alert("This service contains a song without structured lyrics/chords. Please edit the song and add its sections before starting the service.");
+
 }
+
+
+// Start Multi-Screen directly from the chosen Service Planner.
+// The selected service is cached first so custom-song.html can open the exact
+// service even before Firebase/Auth finishes loading in the destination page.
+async function startMultiScreenService(serviceId) {
+    let selected = services.find(function(s) {
+        return String(s.id) === String(serviceId);
+    });
+
+    if (!selected) {
+        alert("Service not found.");
+        return;
+    }
+
+    if (!Array.isArray(selected.songs) || selected.songs.length === 0) {
+        alert("This Service Planner has no songs.");
+        return;
+    }
+
+    // Open immediately while this function is still inside the button click.
+    // Waiting for Firebase before window.open() can make the browser block the
+    // new Multi-Screen tab as a popup.
+    const initialSong = selected.songs[0];
+    if (!initialSong || !initialSong.id) {
+        alert("The first song in this Service Planner could not be loaded.");
+        return;
+    }
+    const initialUrl = "custom-song.html?id=" + encodeURIComponent(initialSong.id) + "&multiScreenStart=1&ts=" + Date.now();
+    const multiScreenPage = window.open(initialUrl, "_blank");
+
+    // Cache the selected planner immediately so the destination page loads the
+    // correct service even if Firebase takes a moment to respond.
+    try {
+        localStorage.setItem("currentServiceId", String(selected.id));
+        localStorage.setItem("currentServiceName", String(selected.name || selected.title || "Service Planner"));
+        localStorage.setItem("currentServiceSnapshot", JSON.stringify(selected));
+        localStorage.setItem("currentSongIndex", "0");
+        localStorage.setItem("resumePresentation", "true");
+        localStorage.setItem("presentationMode", "service");
+        localStorage.setItem("startMultiScreenOnLoad", "true");
+    } catch (error) {
+        console.warn("Unable to cache Service Planner for Multi-Screen:", error);
+    }
+
+    // Refresh the planner after opening. If the first song changed in Firebase,
+    // move the already-open Multi-Screen tab to the current first song.
+    try {
+        if (auth.currentUser) {
+            const freshSnap = await getDoc(
+                doc(db, "users", currentUser.uid, "services", String(serviceId))
+            );
+            if (freshSnap.exists()) {
+                selected = { id: freshSnap.id, ...freshSnap.data() };
+                if (!Array.isArray(selected.songs)) selected.songs = [];
+                if (selected.songs.length && selected.songs[0]?.id) {
+                    try {
+                        localStorage.setItem("currentServiceSnapshot", JSON.stringify(selected));
+                        localStorage.setItem("currentServiceName", String(selected.name || selected.title || "Service Planner"));
+                        const freshUrl = "custom-song.html?id=" + encodeURIComponent(selected.songs[0].id) + "&multiScreenStart=1&ts=" + Date.now();
+                        if (multiScreenPage && !multiScreenPage.closed && String(selected.songs[0].id) !== String(initialSong.id)) {
+                            multiScreenPage.location.replace(freshUrl);
+                        }
+                    } catch (_) {}
+                }
+            }
+        }
+    } catch (error) {
+        console.warn("Unable to refresh Service Planner before Multi-Screen:", error);
+    }
+
+    if (!multiScreenPage) {
+        // Browser popup blocking fallback: open in the current tab.
+        window.location.assign(initialUrl);
+    }
+}
+
 window.startMultiScreenService = startMultiScreenService;
+
+window.startService =
+    startService;
 
 function displayCurrentServiceName() {
 
@@ -1996,35 +2185,6 @@ async function printServiceSongs(serviceId) {
     `;
     const list = printRoot.querySelector(".service-print-songs");
     document.body.appendChild(printRoot);
-    let servicePrintStyle = document.getElementById("chordioServicePrintStyle");
-    if(servicePrintStyle) servicePrintStyle.remove();
-    servicePrintStyle=document.createElement("style");
-    servicePrintStyle.id="chordioServicePrintStyle";
-    servicePrintStyle.textContent=`
-      #worshipHubServicePrintRoot{display:none;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot{display:block!important;position:static!important;visibility:visible!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{display:flex!important;flex-direction:column!important;position:relative!important;width:297mm!important;height:210mm!important;min-height:210mm!important;box-sizing:border-box!important;padding:12mm 14mm 10mm!important;margin:0 auto!important;background:#fff!important;color:#111!important;overflow:hidden!important;break-after:page!important;page-break-after:always!important;font-family:Arial,Helvetica,sans-serif!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song:last-child{break-after:auto!important;page-break-after:auto!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song h1{margin:0 0 3px!important;font-size:22pt!important;line-height:1.08!important;color:#111!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-artist{font-size:11pt!important;font-weight:600!important;margin-bottom:4px!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-key{font-size:10pt!important;margin-bottom:5px!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing{font-size:8.5pt!important;line-height:1.3!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing-item{display:inline-block!important;margin-right:5px!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-rule,body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer-rule{height:1px!important;background:#222!important;width:100%!important;margin:6px 0 8px!important;flex:0 0 auto!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-content{font-size:9.5pt!important;line-height:1.08!important;column-count:2!important;column-gap:9mm!important;column-fill:auto!important;column-width:auto!important;flex:1 1 auto!important;min-height:0!important;height:auto!important;overflow:hidden!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .song-section{display:block!important;margin:0 0 8px!important;break-inside:avoid!important;page-break-inside:avoid!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .section-title{display:block!important;background:transparent!important;color:#111!important;font-weight:900!important;text-transform:uppercase!important;letter-spacing:.05em!important;margin:0 0 2px!important;padding:0!important;font-size:9.5pt!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .song-line{display:block!important;margin:0 0 2px!important;padding:0!important;white-space:pre-wrap!important;font-family:Consolas,"Courier New",monospace!important;line-height:1.02!important;break-inside:avoid!important;page-break-inside:avoid!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .song-line .chord{display:block!important;color:#d21f2f!important;-webkit-text-fill-color:#d21f2f!important;font-weight:800!important;white-space:pre!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .song-line .print-lyric-text{display:block!important;color:#111!important;-webkit-text-fill-color:#111!important;white-space:pre-wrap!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer-rule{margin:6px 0 4px!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:12px!important;text-align:initial!important;font-size:8pt!important;color:#777!important;font-weight:600!important;letter-spacing:.02em!important;flex:0 0 auto!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer .service-print-footer-left{color:#777!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer .service-print-footer-right{margin-left:auto!important;color:#555!important;white-space:nowrap!important;}
-      @page{size:A4 landscape;margin:0;}
-      @media screen{body.worshiphub-service-printing #worshipHubServicePrintRoot{position:fixed!important;inset:0!important;z-index:999999!important;background:#e9edf2!important;overflow:auto!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{margin:0 auto 18px!important;box-shadow:0 4px 18px rgba(0,0,0,.12)!important;}}
-      @media print{body.worshiphub-service-printing>*:not(#worshipHubServicePrintRoot){display:none!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot{display:block!important;position:static!important;background:#fff!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{box-shadow:none!important;margin:0!important;} }`
-    document.head.appendChild(servicePrintStyle);
     document.body.classList.add("worshiphub-service-printing");
 
     try {
@@ -2066,17 +2226,22 @@ async function printServiceSongs(serviceId) {
             article.className = "service-print-song";
             article.innerHTML = `
                 <header class="service-print-song-header">
-                    <h1>${escPrint(song.title || "Untitled Song")}</h1>
-                    <div class="service-print-artist">${escPrint(song.artist || "")}</div>
-                    <div class="service-print-key"><b>KEY:</b> ${escPrint(normalizePrintKey(song))}</div>
-                    <div class="service-print-passing" aria-label="Auto-generated passing chords">
-                        <b>PASSING CHORDS:</b> ${passing.map(([label, value]) => `<span class="service-print-passing-item"><b>${escPrint(label)}:</b> <span>${escPrint(value)}</span></span>`).join(' <span class="service-print-separator" aria-hidden="true">|</span> ')}
+                    <div class="service-print-song-meta">
+                        <div class="service-print-planner">${escPrint(service.name || service.title || "Service Planner")}</div>
+                        <h1>${escPrint(song.title || "Untitled Song")}</h1>
+                        <div class="service-print-info">
+                            <span><b>Artist:</b> ${escPrint(song.artist || "")}</span>
+                            <span><b>Original Key:</b> ${escPrint(song.originalKey || song.key || "—")}</span>
+                            <span><b>Service Key:</b> ${escPrint(normalizePrintKey(song))}</span>
+                            <span><b>Song:</b> ${i + 1} / ${songs.length}</span>
+                        </div>
                     </div>
-                    <div class="service-print-rule"></div>
+                    <div class="service-print-passing" aria-label="Auto-generated passing chords">
+                        ${passing.map(([label, value]) => `<span class="service-print-passing-item"><b>${escPrint(label)}:</b> <span>${escPrint(value)}</span></span>`).join(' <span class="service-print-separator" aria-hidden="true">|</span> ')}
+                    </div>
                 </header>
                 <div class="service-print-content">${lyricsMarkup}</div>
-                <div class="service-print-footer-rule"></div>
-                <footer class="service-print-footer"><span class="service-print-footer-left">${escPrint(service.name || service.title || "Service Planner")} | ${escPrint(service.date || "Date not set")}</span><span class="service-print-footer-right">Page ${i + 1} / ${songs.length}</span></footer>
+                ${song.presentationNote ? `<div class="service-print-song-note">${escPrint(song.presentationNote)}</div>` : ""}
             `;
 
             article.querySelectorAll("button, input, select, textarea, script, style, .song-toolbar, .presentationScreen, #presentationScreen").forEach(el => el.remove());
@@ -2087,8 +2252,8 @@ async function printServiceSongs(serviceId) {
             });
             article.querySelectorAll(".chord, .song-line, .song-line *:not(.service-print-section-title)").forEach(el => {
                 el.style.background = "transparent";
-                if (!el.classList.contains("chord")) el.style.color = "#111";
-                if (!el.classList.contains("chord")) el.style.webkitTextFillColor = "#111";
+                el.style.color = "#111";
+                el.style.webkitTextFillColor = "#111";
                 el.style.textShadow = "none";
                 el.classList.remove("highlight", "highlighted", "active", "chord-highlight");
             });
@@ -2097,45 +2262,23 @@ async function printServiceSongs(serviceId) {
 
         await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
-        // Keep the requested one-song-per-A4-page format even for longer songs.
-        // Reduce only the song body text when needed; the title/header/footer
-        // remain readable and the page never spills into a second sheet.
-        list.querySelectorAll('.service-print-song').forEach(article=>{
-            const content=article.querySelector('.service-print-content');
-            if(!content) return;
-            let size=9.5;
-            const min=5.8;
-            const fit=()=>{
-                let guard=0;
-                const overflows=()=> content.scrollWidth>content.clientWidth+2 || content.scrollHeight>content.clientHeight+2;
-                while(overflows() && size>min && guard<30){
-                    size=Math.max(min,size-0.25);
-                    content.style.fontSize=`${size}pt`;
-                    content.style.lineHeight=String(Math.max(.88,1.08-(9.5-size)*0.012));
-                    guard++;
-                }
-            };
-            fit();
-        });
-
         const cleanup = () => {
             document.body.classList.remove("worshiphub-service-printing");
             document.getElementById("worshipHubServicePrintRoot")?.remove();
-            document.getElementById("chordioServicePrintStyle")?.remove();
             window.removeEventListener("afterprint", cleanup);
         };
 
-        // Service Planner printing is intentionally a direct A4 browser print.
-        // Do not send it through the multi-column Print Preview: every song must
-        // start on its own A4 page.
-        window.addEventListener("afterprint", cleanup, { once: true });
-        setTimeout(cleanup, 60000);
-        window.print();
+        if (window.WorshipHubPrintPreview) {
+            window.WorshipHubPrintPreview.open(printRoot);
+        } else {
+            window.addEventListener("afterprint", cleanup, { once: true });
+            setTimeout(cleanup, 60000);
+            window.print();
+        }
     } catch (error) {
         console.error("Service print error:", error);
         document.body.classList.remove("worshiphub-service-printing");
         document.getElementById("worshipHubServicePrintRoot")?.remove();
-        document.getElementById("chordioServicePrintStyle")?.remove();
         alert("Unable to prepare the Service Planner print preview. Please try again.");
     }
 }

@@ -7,7 +7,7 @@ import { songs as worshipHubSongs } from "./initial-songs.js";
 
 const SHARP = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
 const FLATS = { Db:"C#", Eb:"D#", Gb:"F#", Ab:"G#", Bb:"A#" };
-let song = null, transposeSteps = 0, fontSize = 3, service = null, index = 0, authResolved = false, loading = false;
+let song = null, transposeSteps = 0, fontSize = 23, service = null, index = 0, authResolved = false, loading = false;
 let transposeSaveTimer = null;
 
 const esc = value => String(value ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
@@ -109,7 +109,7 @@ function sizeSongColumnsToContent(stage) {
         return;
     }
 
-    const measuredFontSize = 20 + fontSize;
+    const measuredFontSize = fontSize;
     const canvas = sizeSongColumnsToContent.canvas || (sizeSongColumnsToContent.canvas = document.createElement("canvas"));
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -194,25 +194,6 @@ function render() {
     document.getElementById("songArtist")?.replaceChildren(document.createTextNode(song.artist || ""));
     const key = document.getElementById("songKey");
     if (key) key.textContent = transposeChord(currentKey(), transposeSteps) || "—";
-    const passingBox=document.getElementById("songPassingChords");
-    if(passingBox){
-        const items=customPassingChords();
-        passingBox.innerHTML=items.map(([label,value],i)=>
-            `${i?'<span class="custom-presentation-passing-separator">|</span>':''}<span class="custom-presentation-passing-item"><span class="custom-presentation-passing-label">${esc(label)}:</span><span class="custom-presentation-passing-value">${esc(value)}</span></span>`
-        ).join("");
-    }
-    const meta=document.getElementById("songMeta");
-    if(meta){
-        const fmtDate=v=>{
-            if(!v) return "—";
-            try{
-                const d=v?.toDate? v.toDate() : new Date(v);
-                if(Number.isNaN(d.getTime())) return String(v);
-                return d.toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"});
-            }catch(_){return String(v);}
-        };
-        meta.textContent=`Song ID: ${song.id||"—"}  |  Date Added: ${fmtDate(song.createdAt||song.dateAdded||song.createdDate)}  |  Last Update: ${fmtDate(song.updatedAt||song.lastUpdated||song.modifiedAt)}`;
-    }
     const stage = document.getElementById("stage");
     if (!stage) return;
     sizeSongColumnsToContent(stage);
@@ -224,8 +205,8 @@ function render() {
             <div class="section-title">${esc(section.type)} ${esc(section.number || "")}</div>
             ${section.lines.map((line, li) => `
                 <div class="line song-line" data-section-index="${si}" data-line-index="${li}">
-                    <span class="chord" style="font-size:${20 + fontSize}px !important;line-height:${20 + fontSize}px !important" data-chord-text="true" data-original-chord="${esc(line.chordText || chordRowFromPositionsNoTranspose(line))}">${esc(transposeChord(line.chordText || chordRowFromPositionsNoTranspose(line), transposeSteps))}</span><br>
-                    <span class="lyrics" style="font-size:${20 + fontSize}px !important">${esc(line.lyrics)}</span>
+                    <span class="chord" style="font-size:${fontSize}px !important;line-height:${fontSize}px !important" data-chord-text="true" data-original-chord="${esc(line.chordText || chordRowFromPositionsNoTranspose(line))}">${esc(transposeChord(line.chordText || chordRowFromPositionsNoTranspose(line), transposeSteps))}</span><br>
+                    <span class="lyrics" style="font-size:${fontSize}px !important">${esc(line.lyrics)}</span>
                 </div>`).join("")}
         </section>`).join("");
 
@@ -661,6 +642,9 @@ async function load(){
                     console.warn("Unable to auto-open Multi-Screen:", error);
                 }
             }, 120);
+        } else if(resumePresentation && service && service.songs?.length){
+            localStorage.setItem("presentationMode","service");
+            setTimeout(() => { void startCustomPresentation(); }, 0);
         }
         return true;
     })();
@@ -892,8 +876,6 @@ function renderCustomPresentation(){
     if(k)k.textContent=`Key: ${authoritativeKey || "—"}`;
     renderCustomPassingChords();
     renderCustomNextPreview();
-    renderCustomPresentationNote();
-    renderServiceSongTools();
     updateCounter();
     updateCustomPresentationSectionButtons();
     // Always show the selected section after re-rendering.
@@ -932,115 +914,13 @@ function currentPresentationNote(){
     return String(service?.songs?.[index]?.presentationNote || "");
 }
 
-function renderCustomPresentationNote(){
-    const panel=document.getElementById("customPresentationNotePanel");
-    const input=document.getElementById("customPresentationNote");
-    const status=document.getElementById("customPresentationNoteStatus");
-    const save=document.getElementById("customPresentationNoteSave");
-    if(!panel||!input) return;
-    const hasService=!!localStorage.getItem("currentServiceId") && !!service?.songs?.[index];
-    panel.style.display=hasService?"block":"none";
-    input.value=hasService?currentPresentationNote():"";
-    input.disabled=!hasService;
-    if(save) save.disabled=!hasService;
-    if(status) status.textContent="";
-}
 
-async function saveCustomPresentationNote(){
-    const serviceId=localStorage.getItem("currentServiceId");
-    const input=document.getElementById("customPresentationNote");
-    const status=document.getElementById("customPresentationNoteStatus");
-    const save=document.getElementById("customPresentationNoteSave");
-    if(!serviceId || !service?.songs?.[index] || !input) return;
-    const note=String(input.value||"").trim();
-    const updatedSongs=service.songs.map((item,i)=>i===index?{...item,presentationNote:note}:item);
-    const updatedService={...service,songs:updatedSongs};
-    if(save) save.disabled=true;
-    if(status) status.textContent="Saving...";
-    try{
-        if(auth.currentUser){
-            await setDoc(doc(db,"users",auth.currentUser.uid,"services",String(serviceId)),{songs:updatedSongs,updatedAt:serverTimestamp()},{merge:true});
-        }
-        // Always keep the current snapshot in sync. In Guest mode this is a
-        // local-only edit; a signed-in user also gets the Firebase save above.
-        service=updatedService;
-        try{localStorage.setItem("currentServiceSnapshot",JSON.stringify(service));}catch(_){}
-        localStorage.setItem("worshipHubServiceNoteUpdate",JSON.stringify({serviceId:String(serviceId),songIndex:index,note,updatedAt:Date.now()}));
-        window.dispatchEvent(new CustomEvent("worshiphub:service-note-updated",{detail:{id:String(serviceId),songIndex:index,note,service:updatedService}}));
-        renderServiceSongTools();
-        renderMultiServiceSongs();
-        multiScreenBroadcast({});
-        if(status) status.textContent="Saved";
-        setTimeout(()=>{if(status) status.textContent="";},1600);
-    }catch(error){
-        console.error("Unable to save presentation note:",error);
-        if(status) status.textContent="Save failed";
-        alert("Unable to save the song note to this Service Planner. Please check your Firebase permissions.");
-    }finally{
-        if(save) save.disabled=false;
-    }
-}
-
-function renderServiceSongTools(){
-    const note=document.getElementById("serviceSongNote");
-    const status=document.getElementById("serviceSongNoteStatus");
-    const prev=document.getElementById("serviceSongPrevious");
-    const next=document.getElementById("serviceSongNext");
-    const pos=document.getElementById("serviceSongPosition");
-    const hasService=!!localStorage.getItem("currentServiceId") && !!service && Array.isArray(service.songs) && !!service.songs[index];
-    if(note){note.value=hasService?String(service.songs[index]?.presentationNote||""):"";note.disabled=!hasService;}
-    const atStart=!hasService||index<=0;
-    const atEnd=!hasService||index>=service.songs.length-1;
-    if(prev)prev.disabled=atStart;
-    if(next)next.disabled=atEnd;
-    if(pos)pos.textContent=hasService?`SONG ${index+1} OF ${service.songs.length}`:"STANDALONE SONG";
-    if(status)status.textContent="";
-    const saved=document.getElementById("savedServiceNote");
-    if(saved){
-        const value=hasService?String(service.songs[index]?.presentationNote||"").trim():"";
-        saved.textContent=value;
-        saved.hidden=!value;
-    }
-}
-
-async function saveServiceSongNote(){
-    const serviceId=localStorage.getItem("currentServiceId");
-    const noteInput=document.getElementById("serviceSongNote");
-    const status=document.getElementById("serviceSongNoteStatus");
-    const save=document.getElementById("serviceSongNoteSave");
-    if(!serviceId||!service?.songs?.[index]||!noteInput)return;
-    const note=String(noteInput.value||"").trim();
-    const updatedSongs=service.songs.map((item,i)=>i===index?{...item,presentationNote:note}:item);
-    const updatedService={...service,songs:updatedSongs};
-    if(save)save.disabled=true;
-    if(status)status.textContent="Saving...";
-    try{
-        if(auth.currentUser){
-            await setDoc(doc(db,"users",auth.currentUser.uid,"services",String(serviceId)),{songs:updatedSongs,updatedAt:serverTimestamp()},{merge:true});
-        }
-        service=updatedService;
-        try{localStorage.setItem("currentServiceSnapshot",JSON.stringify(service));}catch(_){}
-        localStorage.setItem("worshipHubServiceNoteUpdate",JSON.stringify({serviceId:String(serviceId),songIndex:index,note,updatedAt:Date.now()}));
-        window.dispatchEvent(new CustomEvent("worshiphub:service-note-updated",{detail:{id:String(serviceId),songIndex:index,note,service:updatedService}}));
-        renderCustomPresentationNote();
-        renderServiceSongTools();
-        renderMultiServiceSongs();
-        multiScreenBroadcast({});
-        if(status)status.textContent="Saved — available in Multi-Screen";
-        setTimeout(()=>{if(status)status.textContent="";},1800);
-    }catch(error){
-        console.error("Unable to save Service Note:",error);
-        if(status)status.textContent="Save failed";
-        alert("Unable to save the Service Note. Please check your Firebase permissions.");
-    }finally{if(save)save.disabled=false;}
-}
 
 async function goServiceSong(delta){
     if(!service||!Array.isArray(service.songs))return;
     const target=index+Number(delta||0);
     if(target<0||target>=service.songs.length)return;
     await loadServiceIndex(target);
-    renderServiceSongTools();
 }
 
 function renderCustomNextPreview(){
@@ -1086,7 +966,6 @@ async function loadServiceIndex(targetIndex){
     song=applyServiceKeyToSong({...candidate,sections:normalizeSections(candidate.sections)});
     transposeSteps=Number(song.transpose||0);
     render();
-    renderServiceSongTools();
     if(document.getElementById("customPresentationScreen")?.classList.contains("show")) renderCustomPresentation();
     if(candidate.id){
         void refreshMasterSong(candidate.id).then(master=>{
@@ -2742,21 +2621,8 @@ function bindControls(){
     try { initMultiScreen(); } catch(error) { console.error("CHORDIO Multi-Screen init error:", error); }
     document.getElementById("multiScreenOpen")?.addEventListener("click",multiScreenOpenControl);
     bindPresentationLayoutControls();
-    document.getElementById("plus")?.addEventListener("click",()=>{fontSize=Math.min(14,fontSize+1);render();if(document.getElementById("customPresentationScreen")?.classList.contains("show"))renderCustomPresentation();});
-    document.getElementById("minus")?.addEventListener("click",()=>{fontSize=Math.max(0,fontSize-1);render();if(document.getElementById("customPresentationScreen")?.classList.contains("show"))renderCustomPresentation();});
-    // Keep the Song Page +A/-A controls and the runtime renderer on the same font size.
-    // The page-level controls store the size in the CSS variable/session state; this
-    // listener updates the renderer's own inline chord/lyric sizes as well.
-    if (!window.__chordioSongFontSyncBound) {
-        window.__chordioSongFontSyncBound = true;
-        window.addEventListener("chordio:song-font-change", event => {
-            const next = Number(event?.detail?.size);
-            if (!Number.isFinite(next)) return;
-            fontSize = Math.max(0, Math.min(14, next));
-            render();
-            if(document.getElementById("customPresentationScreen")?.classList.contains("show")) renderCustomPresentation();
-        });
-    }
+    document.getElementById("plus")?.addEventListener("click",()=>{fontSize=Math.min(48,fontSize+1);render();if(document.getElementById("customPresentationScreen")?.classList.contains("show"))renderCustomPresentation();});
+    document.getElementById("minus")?.addEventListener("click",()=>{fontSize=Math.max(14,fontSize-1);render();if(document.getElementById("customPresentationScreen")?.classList.contains("show"))renderCustomPresentation();});
     document.getElementById("up")?.addEventListener("click",()=>{setTranspose(1);if(document.getElementById("customPresentationScreen")?.classList.contains("show"))renderCustomPresentation();});
     document.getElementById("down")?.addEventListener("click",()=>{setTranspose(-1);if(document.getElementById("customPresentationScreen")?.classList.contains("show"))renderCustomPresentation();});
     document.getElementById("close")?.addEventListener("click",(event)=>{
@@ -2769,16 +2635,6 @@ function bindControls(){
     document.getElementById("customPresentationClose")?.addEventListener("click",exitCustomPresentation);
     document.getElementById("customPresentationMax")?.addEventListener("click",enterCustomFullscreen);
     document.getElementById("customPresentationStop")?.addEventListener("click",stopCustomService);
-    document.getElementById("customPresentationNoteSave")?.addEventListener("click",()=>void saveCustomPresentationNote());
-    document.getElementById("serviceSongNoteSave")?.addEventListener("click",()=>void saveServiceSongNote());
-    document.getElementById("serviceNoteOpen")?.addEventListener("click",()=>{
-        const p=document.getElementById("serviceNotePopup");
-        if(p){p.classList.add("show");p.setAttribute("aria-hidden","false");document.getElementById("serviceSongNote")?.focus();}
-    });
-    document.getElementById("serviceNoteClose")?.addEventListener("click",()=>{
-        const p=document.getElementById("serviceNotePopup");
-        if(p){p.classList.remove("show");p.setAttribute("aria-hidden","true");}
-    });
     document.getElementById("serviceSongPrevious")?.addEventListener("click",()=>void goServiceSong(-1));
     document.getElementById("serviceSongNext")?.addEventListener("click",()=>void goServiceSong(1));
     document.getElementById("stopServiceBtn")?.addEventListener("click",stopCustomService);

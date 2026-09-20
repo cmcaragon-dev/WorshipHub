@@ -5,6 +5,39 @@
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const toast=(msg,type='success')=>{let st=$('#chordioToastStack');if(!st){st=document.createElement('div');st.id='chordioToastStack';document.body.appendChild(st)}const el=document.createElement('div');el.className='chordio-toast '+type;el.textContent=msg;st.appendChild(el);setTimeout(()=>el.remove(),3200)};
 
+  function buildDashboard(){
+    const content=document.querySelector('.content');
+    const stats=content?.querySelector('.dashboard');
+    if(!content)return;
+    // Remove any dashboard created by an earlier V62/V63 pass so only one Quick Actions panel can exist.
+    document.querySelectorAll('.chordio-v62-dashboard,.chordio-v63-dashboard,#chordioModernLibrary').forEach(el=>el.remove());
+    const box=document.createElement('section');
+    box.className='chordio-v63-dashboard';
+    box.id='chordioQuickActions';
+    box.innerHTML=`<div class="chordio-quick">
+      <div class="chordio-quick-head">
+        <div><span>QUICK ACTIONS</span></div>
+      </div>
+      <div class="chordio-quick-grid">
+        <button type="button" data-quick="service" class="primary"><span class="quick-icon"><i class="fa-solid fa-calendar-plus" aria-hidden="true"></i></span><span>New Service</span></button>
+        <button type="button" data-quick="songs"><span class="quick-icon"><i class="fa-solid fa-music" aria-hidden="true"></i></span><span>Songs</span></button>
+        <button type="button" data-quick="multi"><span class="quick-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span><span>Multi-Screen</span></button>
+      </div>
+    </div>`;
+    // Quick Actions belongs below the four dashboard statistics, not inside the stats grid.
+    if(stats?.parentElement===content) stats.insertAdjacentElement('afterend',box);
+    else content.insertBefore(box,content.firstChild||null);
+    box.addEventListener('click',e=>{
+      const b=e.target.closest('[data-quick]'); if(!b)return;
+      const t=b.dataset.quick;
+      if(t==='service') return openNewService();
+      if(t==='planner') return document.getElementById('servicePlannerBtn')?.click();
+      if(t==='songs') return window.showAllSongs?.();
+      if(t==='addsong') return document.getElementById('addSongBtn')?.click();
+      if(t==='multi') return openMultiPicker();
+    });
+  }
+
   function buildSidebarQuickActions(){
     const side=document.querySelector('.sidebar');
     if(!side || side.dataset.chordioV65Sidebar==='1') return;
@@ -98,6 +131,7 @@
       serviceKey,
       transpose:Number(existing?.transpose ?? s.transpose ?? 0),
       youtube:s.youtube||'',
+      presentationNote:String(existing?.presentationNote||s.presentationNote||''),
       customSong:s.customSong===true,
       sections:Array.isArray(s.sections)?JSON.parse(JSON.stringify(s.sections)):null,
       createdAt:existing?.createdAt||s.createdAt||null,
@@ -116,13 +150,16 @@
       #chordioNewServiceModal .v64-section-title strong{font-size:11px;letter-spacing:.12em;color:#263644}
       #chordioNewServiceModal .v64-section-title span{font-size:11px;color:#7b8791}
       #chordioNewServiceModal .v64-selected-songs{display:flex;flex-direction:column;gap:8px}
-      #chordioNewServiceModal .v64-selected-song{display:grid;grid-template-columns:34px minmax(0,1fr) 112px 38px;align-items:center;gap:12px;padding:12px 13px;border:1px solid #e1e7ec;border-radius:12px;background:linear-gradient(180deg,#fff,#f8fafb);box-shadow:0 2px 7px rgba(15,31,46,.04)}
+      #chordioNewServiceModal .v64-selected-song{display:grid;grid-template-columns:34px minmax(0,1fr) 112px 38px;grid-template-areas:"num info key remove" "num note note remove";align-items:center;gap:8px 12px;padding:12px 13px;border:1px solid #e1e7ec;border-radius:12px;background:linear-gradient(180deg,#fff,#f8fafb);box-shadow:0 2px 7px rgba(15,31,46,.04)}
+      #chordioNewServiceModal .v64-selected-song-num{grid-area:num}
       #chordioNewServiceModal .v64-selected-song-num{width:28px;height:28px;display:grid;place-items:center;border-radius:8px;background:#edf1f4;color:#52616d;font-size:11px;font-weight:900}
-      #chordioNewServiceModal .v64-selected-song-info{min-width:0;display:flex;flex-direction:column;gap:3px}
+      #chordioNewServiceModal .v64-selected-song-info{grid-area:info;min-width:0;display:flex;flex-direction:column;gap:3px}
+      #chordioNewServiceModal .v64-song-note{grid-area:note;width:100%;box-sizing:border-box;min-height:36px;resize:vertical;padding:8px 9px;border:1px solid #d4dde4;border-radius:8px;background:#fff;color:#172635;font:12px/1.35 Inter,"Segoe UI",Arial,sans-serif}
+      #chordioNewServiceModal .v64-song-note::placeholder{color:#9aa4ac}
       #chordioNewServiceModal .v64-selected-song-info strong{font-size:14px;color:#172635;line-height:1.3;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
       #chordioNewServiceModal .v64-selected-song-info small{font-size:11px;color:#7b8791;line-height:1.25;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
-      #chordioNewServiceModal .v64-song-key{width:100%;padding:9px 10px;border:1px solid #d4dde4;border-radius:9px;background:#fff;color:#172635;font-weight:700}
-      #chordioNewServiceModal .v64-remove-song{width:34px;height:34px;border:1px solid #e1cfd0;border-radius:9px;background:#fff;color:#a34747;cursor:pointer;font-size:14px}
+      #chordioNewServiceModal .v64-song-key{grid-area:key;width:100%;padding:9px 10px;border:1px solid #d4dde4;border-radius:9px;background:#fff;color:#172635;font-weight:700}
+      #chordioNewServiceModal .v64-remove-song{grid-area:remove;width:34px;height:34px;border:1px solid #e1cfd0;border-radius:9px;background:#fff;color:#a34747;cursor:pointer;font-size:14px}
       #chordioNewServiceModal .v64-remove-song:hover{background:#fff3f3;border-color:#c98b8b}
       #chordioNewServiceModal .v64-add-song-wrap{padding:12px 0 17px}
       #chordioNewServiceModal .v64-add-song-main{width:100%;min-height:44px;border:1px dashed #c5a33c;border-radius:11px;background:#fffaf0;color:#8c6900;font-weight:900;cursor:pointer;letter-spacing:.01em}
@@ -201,10 +238,12 @@
         <span class="v64-selected-song-num">${i+1}</span>
         <div class="v64-selected-song-info"><strong>${esc(s.title||'Untitled')}</strong><small>${esc(s.artist||'')}</small></div>
         <select class="v64-song-key" data-occurrence-key="${i}" title="Service Key">${keys.map(k=>`<option value="${esc(k.v)}" ${String(k.v)===String(current)?'selected':''}>${esc(k.v)}</option>`).join('')}</select>
+        <textarea class="v64-song-note" data-occurrence-note="${i}" rows="2" placeholder="Service note for this song…">${esc(s.presentationNote||'')}</textarea>
         <button type="button" class="v64-remove-song" data-remove-occurrence="${i}" title="Remove this copy">✕</button>
       </div>`;
     }).join('') : '<div class="v64-empty">No songs added yet.<br>Click <b>＋ ADD SONG</b> below to choose songs.</div>';
     box.querySelectorAll('[data-occurrence-key]').forEach(sel=>sel.onchange=()=>{const i=Number(sel.dataset.occurrenceKey);if(m._draftSongs?.[i]){m._draftSongs[i].serviceKey=sel.value;m._draftSongs[i].key=sel.value;}});
+    box.querySelectorAll('[data-occurrence-note]').forEach(input=>input.oninput=()=>{const i=Number(input.dataset.occurrenceNote);if(m._draftSongs?.[i])m._draftSongs[i].presentationNote=input.value;});
     box.querySelectorAll('[data-remove-occurrence]').forEach(btn=>btn.onclick=()=>{const i=Number(btn.dataset.removeOccurrence);m._draftSongs.splice(i,1);renderSelectedSongs(m);renderSongPicker(m)});
     const n=selected.length;
     $('#v63SongCount').textContent=`${n} song${n===1?'':'s'} selected`;
@@ -248,7 +287,7 @@
     });
   }
   function addEditorDrag(){const root=$('#songEditorSections');if(!root)return;$$('.editor-section',root).forEach((sec,i)=>{sec.draggable=true;sec.classList.add('v63-draggable-section');if(!sec.dataset.v63bound){sec.dataset.v63bound='1';sec.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',String(i));sec.classList.add('v63-dragging')});sec.addEventListener('dragend',()=>sec.classList.remove('v63-dragging'));sec.addEventListener('dragover',e=>e.preventDefault());sec.addEventListener('drop',e=>{e.preventDefault();const from=Number(e.dataTransfer.getData('text/plain'));const to=Number(sec.dataset.sectionIndex);if(from===to||!window.WorshipHubSongEditor?.moveSection)return;window.WorshipHubSongEditor.moveSection(from,to)});}})}
-  function init(){buildSidebarQuickActions();improveScreenPreview();addEditorDrag();}
+  function init(){buildDashboard();buildSidebarQuickActions();improveScreenPreview();addEditorDrag();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
   window.chordioV63={openNewService,openEditService,openMultiPicker};
 })();
@@ -260,7 +299,7 @@ const liveKey='chordioLiveMode';
 function toast(msg,type='success'){let box=document.getElementById('chordioToastStack');if(!box){box=document.createElement('div');box.id='chordioToastStack';document.body.appendChild(box)}const el=document.createElement('div');el.className='chordio-toast '+type;el.textContent=msg;box.appendChild(el);setTimeout(()=>el.remove(),2800)}
 function live(){return localStorage.getItem(liveKey)==='true'}
 function setLive(on){localStorage.setItem(liveKey,on?'true':'false');document.body.classList.toggle('chordio-live-mode',on);document.querySelectorAll('.chordio-live-toggle').forEach(b=>{b.classList.toggle('live',on);b.classList.remove('prepare');b.textContent='● LIVE';});toast(on?'LIVE MODE ON — presentation controls simplified':'LIVE MODE OFF — controls available',on?'success':'info')}
-function bindLive(){const head=document.querySelector('#multiScreenControl .multi-screen-head');if(!head||document.getElementById('chordioLiveToggle'))return;const status=document.createElement('span');status.id='chordioAutosave';status.className='chordio-autosave';status.textContent='✓ Auto-save ready';head.appendChild(status);const b=document.createElement('button');b.id='chordioLiveToggle';b.className='chordio-live-toggle';b.type='button';b.title='Toggle Live Mode';b.onclick=()=>setLive(!live());head.appendChild(b);setLive(live())}
+function bindLive(){const head=document.querySelector('#multiScreenControl .multi-screen-head');if(!head||document.getElementById('chordioLiveToggle'))return;const status=document.createElement('span');status.id='chordioAutosave';status.className='chordio-autosave';status.textContent='✓ Auto-save ready';head.appendChild(status);const b=document.createElement('button');b.id='chordioLiveToggle';b.className='chordio-live-toggle';b.type='button';b.title='Toggle Live Mode';b.onclick=()=>setLive(!live());head.appendChild(b);const close=head.querySelector('#multiScreenClose');if(close){close.title='Close';close.setAttribute('aria-label','Close Multi-Screen');}setLive(live())}
 function shortcuts(){let m=document.getElementById('chordioShortcutHelp');if(!m){m=document.createElement('div');m.id='chordioShortcutHelp';m.className='chordio-modal';m.innerHTML='<div class="chordio-dialog"><div class="chordio-dialog-head"><div><span>KEYBOARD SHORTCUTS</span><h3>CHORDIO Controls</h3></div><button data-close>✕</button></div><div class="chordio-shortcuts"><div><kbd>←</kbd><span>Previous song</span></div><div><kbd>→</kbd><span>Next song</span></div><div><kbd>Space</kbd><span>Next</span></div><div><kbd>↑ / ↓</kbd><span>Previous / next section</span></div><div><kbd>B</kbd><span>Blank all outputs</span></div><div><kbd>L</kbd><span>Toggle Live Mode</span></div><div><kbd>?</kbd><span>Show this help</span></div></div></div>';document.body.appendChild(m);m.querySelector('[data-close]').onclick=()=>m.classList.remove('show')}m.classList.add('show')}
 function bind(){bindLive();const root=document.getElementById('multiScreenControl');if(root&&!root.dataset.v63auto){root.dataset.v63auto='1';root.addEventListener('input',()=>{const s=document.getElementById('chordioAutosave');if(s)s.textContent='• Changes ready to save'});root.addEventListener('click',e=>{if(e.target.closest('button')){const s=document.getElementById('chordioAutosave');if(s)s.textContent='✓ Saved'}})}document.addEventListener('keydown',e=>{if(e.target.matches?.('input,textarea,select'))return;if(e.key==='?'){e.preventDefault();shortcuts();return}if(!document.getElementById('multiScreenControl')?.classList.contains('show'))return;if(e.key.toLowerCase()==='l'){e.preventDefault();setLive(!live());return}if(e.key.toLowerCase()==='b'){e.preventDefault();window.multiScreenBlackAll?.();return}if(live()&&e.key==='ArrowLeft'){e.preventDefault();document.getElementById('serviceSongPrevious')?.click()}if(live()&&(e.key==='ArrowRight'||e.key===' ')){e.preventDefault();document.getElementById('serviceSongNext')?.click()}if(live()&&e.key==='ArrowUp'){e.preventDefault();document.querySelector('#multiSectionButtons button.active')?.previousElementSibling?.click()}if(live()&&e.key==='ArrowDown'){e.preventDefault();document.querySelector('#multiSectionButtons button.active')?.nextElementSibling?.click()}})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind);else bind();setInterval(bindLive,1200);
@@ -282,18 +321,4 @@ function presets(){document.querySelectorAll('[data-lyrics-preset]').forEach(b=>
   ];
   function render(){const now=new Date();const day=Math.floor(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())/86400000);const v=verses[((day%verses.length)+verses.length)%verses.length];const t=document.getElementById('sidebarBibleVerseText'),r=document.getElementById('sidebarBibleVerseRef');if(t)t.textContent=v[0];if(r)r.textContent=v[1];}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render);else render();
-})();
-
-/* CHORDIO V66 — New Service Add Song picker: full, uncropped panel */
-(function(){
-  const css=document.createElement('style');
-  css.id='chordio-v66-add-song-picker-fix';
-  css.textContent=`
-    #chordioNewServiceModal .chordio-service-creator{overflow:visible!important}
-    #chordioNewServiceModal .v64-picker{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;max-height:none!important;z-index:2147483000!important;padding:24px!important;box-sizing:border-box!important;background:rgba(7,15,24,.48)!important}
-    #chordioNewServiceModal .v64-picker-card{width:min(760px,94vw)!important;max-width:760px!important;height:min(78vh,760px)!important;max-height:calc(100vh - 48px)!important;min-height:320px!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;margin:auto!important}
-    #chordioNewServiceModal .v64-picker-list{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;padding:0 18px 18px!important}
-    #chordioNewServiceModal .v64-picker-row{min-height:52px!important}
-  `;
-  document.head.appendChild(css);
 })();

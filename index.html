@@ -45,6 +45,22 @@ body .chordio-modal{z-index:2147483647!important;position:fixed!important;inset:
 body .chordio-modal.show{display:flex!important;}
 body .chordio-modal .chordio-dialog{position:relative!important;z-index:1!important;}
 </style>
+
+<style id="chordio-service-note-print-and-live-close">
+/* Per-song Service Planner note: print it as a highlighted lower-right callout. */
+.service-print-song{position:relative;}
+.service-print-song-note{margin:5mm 0 0 auto;display:block;width:fit-content;max-width:48%;padding:3mm 4mm;background:#fff2a8;color:#000;font-weight:900;font-size:10pt;line-height:1.25;border:1px solid #d6b900;border-radius:2mm;box-sizing:border-box;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left;}
+@media print{
+  .service-print-song-note{break-inside:avoid;page-break-inside:avoid;}
+}
+/* Multi-Screen header: LIVE first, then an X-only Close button at the far right. */
+#multiScreenControl .multi-screen-head{display:flex!important;align-items:center!important;}
+#multiScreenControl .multi-screen-head .multi-screen-head-brand{order:0!important;}
+#multiScreenControl .multi-screen-head #chordioAutosave{order:1!important;}
+#multiScreenControl .multi-screen-head #chordioLiveToggle{order:2!important;margin-left:auto!important;}
+#multiScreenControl .multi-screen-head #multiScreenClose{order:3!important;width:34px!important;min-width:34px!important;height:34px!important;padding:0!important;margin-left:7px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:0!important;background:transparent!important;color:#667085!important;font-size:22px!important;line-height:1!important;border-radius:7px!important;cursor:pointer!important;}
+#multiScreenControl .multi-screen-head #multiScreenClose:hover{background:#eef1f4!important;color:#172635!important;}
+</style>
 </head>
 
 <body>
