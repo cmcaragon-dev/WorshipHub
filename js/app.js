@@ -2003,25 +2003,27 @@ async function printServiceSongs(serviceId) {
     servicePrintStyle.textContent=`
       #worshipHubServicePrintRoot{display:none;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot{display:block!important;position:static!important;visibility:visible!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{display:block!important;position:relative!important;width:210mm!important;min-height:297mm!important;height:297mm!important;box-sizing:border-box!important;padding:20mm!important;margin:0 auto!important;background:#fff!important;color:#111!important;overflow:hidden!important;break-after:page!important;page-break-after:always!important;font-family:Arial,Helvetica,sans-serif!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{display:flex!important;flex-direction:column!important;position:relative!important;width:297mm!important;height:210mm!important;min-height:210mm!important;box-sizing:border-box!important;padding:12mm 14mm 10mm!important;margin:0 auto!important;background:#fff!important;color:#111!important;overflow:hidden!important;break-after:page!important;page-break-after:always!important;font-family:Arial,Helvetica,sans-serif!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song:last-child{break-after:auto!important;page-break-after:auto!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song h1{margin:0 0 4px!important;font-size:24pt!important;line-height:1.15!important;color:#111!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-artist{font-size:12pt!important;font-weight:600!important;margin-bottom:6px!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-key{font-size:11pt!important;margin-bottom:8px!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing{font-size:9pt!important;line-height:1.45!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing-item{display:inline-block!important;margin-right:7px!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-rule,body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer-rule{height:1px!important;background:#222!important;width:100%!important;margin:9px 0 13px!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-content{font-size:10.5pt!important;line-height:1.15!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .song-section{display:block!important;margin:0 0 13px!important;break-inside:avoid!important;page-break-inside:avoid!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .section-title{display:block!important;background:transparent!important;color:#111!important;font-weight:900!important;text-transform:uppercase!important;letter-spacing:.06em!important;margin:0 0 4px!important;padding:0!important;font-size:10.5pt!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .song-line{display:block!important;margin:0 0 4px!important;padding:0!important;white-space:pre-wrap!important;font-family:Consolas,"Courier New",monospace!important;line-height:1.08!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song h1{margin:0 0 3px!important;font-size:22pt!important;line-height:1.08!important;color:#111!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-artist{font-size:11pt!important;font-weight:600!important;margin-bottom:4px!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-key{font-size:10pt!important;margin-bottom:5px!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing{font-size:8.5pt!important;line-height:1.3!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing-item{display:inline-block!important;margin-right:5px!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-rule,body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer-rule{height:1px!important;background:#222!important;width:100%!important;margin:6px 0 8px!important;flex:0 0 auto!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-content{font-size:9.5pt!important;line-height:1.08!important;column-count:2!important;column-gap:9mm!important;column-fill:auto!important;column-width:auto!important;flex:1 1 auto!important;min-height:0!important;height:auto!important;overflow:hidden!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .song-section{display:block!important;margin:0 0 8px!important;break-inside:avoid!important;page-break-inside:avoid!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .section-title{display:block!important;background:transparent!important;color:#111!important;font-weight:900!important;text-transform:uppercase!important;letter-spacing:.05em!important;margin:0 0 2px!important;padding:0!important;font-size:9.5pt!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .song-line{display:block!important;margin:0 0 2px!important;padding:0!important;white-space:pre-wrap!important;font-family:Consolas,"Courier New",monospace!important;line-height:1.02!important;break-inside:avoid!important;page-break-inside:avoid!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .song-line .chord{display:block!important;color:#d21f2f!important;-webkit-text-fill-color:#d21f2f!important;font-weight:800!important;white-space:pre!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .song-line .print-lyric-text{display:block!important;color:#111!important;-webkit-text-fill-color:#111!important;white-space:pre-wrap!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer-rule{margin:10px 0 6px!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer{text-align:center!important;font-size:8.5pt!important;color:#333!important;font-weight:700!important;letter-spacing:.03em!important;}
-      @page{size:A4 portrait;margin:0;}
-      @media screen{body.worshiphub-service-printing #worshipHubServicePrintRoot{position:fixed!important;inset:0!important;z-index:999999!important;background:#fff!important;overflow:auto!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{margin:0 auto 18px!important;box-shadow:0 4px 18px rgba(0,0,0,.12)!important;}}
-      @media print{body.worshiphub-service-printing>*:not(#worshipHubServicePrintRoot){display:none!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot{display:block!important;position:static!important;background:#fff!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{box-shadow:none!important;margin:0!important;} }`;
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer-rule{margin:6px 0 4px!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:12px!important;text-align:initial!important;font-size:8pt!important;color:#777!important;font-weight:600!important;letter-spacing:.02em!important;flex:0 0 auto!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer .service-print-footer-left{color:#777!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer .service-print-footer-right{margin-left:auto!important;color:#555!important;white-space:nowrap!important;}
+      @page{size:A4 landscape;margin:0;}
+      @media screen{body.worshiphub-service-printing #worshipHubServicePrintRoot{position:fixed!important;inset:0!important;z-index:999999!important;background:#e9edf2!important;overflow:auto!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{margin:0 auto 18px!important;box-shadow:0 4px 18px rgba(0,0,0,.12)!important;}}
+      @media print{body.worshiphub-service-printing>*:not(#worshipHubServicePrintRoot){display:none!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot{display:block!important;position:static!important;background:#fff!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{box-shadow:none!important;margin:0!important;} }`
     document.head.appendChild(servicePrintStyle);
     document.body.classList.add("worshiphub-service-printing");
 
@@ -2074,7 +2076,7 @@ async function printServiceSongs(serviceId) {
                 </header>
                 <div class="service-print-content">${lyricsMarkup}</div>
                 <div class="service-print-footer-rule"></div>
-                <footer class="service-print-footer">${escPrint(service.name || service.title || "Service Planner")} | ${escPrint(service.date || "Date not set")}</footer>
+                <footer class="service-print-footer"><span class="service-print-footer-left">${escPrint(service.name || service.title || "Service Planner")} | ${escPrint(service.date || "Date not set")}</span><span class="service-print-footer-right">Page ${i + 1} / ${songs.length}</span></footer>
             `;
 
             article.querySelectorAll("button, input, select, textarea, script, style, .song-toolbar, .presentationScreen, #presentationScreen").forEach(el => el.remove());
@@ -2085,8 +2087,8 @@ async function printServiceSongs(serviceId) {
             });
             article.querySelectorAll(".chord, .song-line, .song-line *:not(.service-print-section-title)").forEach(el => {
                 el.style.background = "transparent";
-                el.style.color = "#111";
-                el.style.webkitTextFillColor = "#111";
+                if (!el.classList.contains("chord")) el.style.color = "#111";
+                if (!el.classList.contains("chord")) el.style.webkitTextFillColor = "#111";
                 el.style.textShadow = "none";
                 el.classList.remove("highlight", "highlighted", "active", "chord-highlight");
             });
@@ -2101,14 +2103,15 @@ async function printServiceSongs(serviceId) {
         list.querySelectorAll('.service-print-song').forEach(article=>{
             const content=article.querySelector('.service-print-content');
             if(!content) return;
-            let size=10.5;
-            const min=6.8;
+            let size=9.5;
+            const min=5.8;
             const fit=()=>{
                 let guard=0;
-                while(article.scrollHeight>article.clientHeight+1 && size>min && guard<20){
-                    size=Math.max(min,size-0.35);
+                const overflows=()=> content.scrollWidth>content.clientWidth+2 || content.scrollHeight>content.clientHeight+2;
+                while(overflows() && size>min && guard<30){
+                    size=Math.max(min,size-0.25);
                     content.style.fontSize=`${size}pt`;
-                    content.style.lineHeight=String(Math.max(1.0,1.15-(10.5-size)*0.015));
+                    content.style.lineHeight=String(Math.max(.88,1.08-(9.5-size)*0.012));
                     guard++;
                 }
             };

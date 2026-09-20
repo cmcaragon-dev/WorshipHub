@@ -2744,6 +2744,19 @@ function bindControls(){
     bindPresentationLayoutControls();
     document.getElementById("plus")?.addEventListener("click",()=>{fontSize=Math.min(14,fontSize+1);render();if(document.getElementById("customPresentationScreen")?.classList.contains("show"))renderCustomPresentation();});
     document.getElementById("minus")?.addEventListener("click",()=>{fontSize=Math.max(0,fontSize-1);render();if(document.getElementById("customPresentationScreen")?.classList.contains("show"))renderCustomPresentation();});
+    // Keep the Song Page +A/-A controls and the runtime renderer on the same font size.
+    // The page-level controls store the size in the CSS variable/session state; this
+    // listener updates the renderer's own inline chord/lyric sizes as well.
+    if (!window.__chordioSongFontSyncBound) {
+        window.__chordioSongFontSyncBound = true;
+        window.addEventListener("chordio:song-font-change", event => {
+            const next = Number(event?.detail?.size);
+            if (!Number.isFinite(next)) return;
+            fontSize = Math.max(0, Math.min(14, next));
+            render();
+            if(document.getElementById("customPresentationScreen")?.classList.contains("show")) renderCustomPresentation();
+        });
+    }
     document.getElementById("up")?.addEventListener("click",()=>{setTranspose(1);if(document.getElementById("customPresentationScreen")?.classList.contains("show"))renderCustomPresentation();});
     document.getElementById("down")?.addEventListener("click",()=>{setTranspose(-1);if(document.getElementById("customPresentationScreen")?.classList.contains("show"))renderCustomPresentation();});
     document.getElementById("close")?.addEventListener("click",(event)=>{

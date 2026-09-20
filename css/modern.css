@@ -1044,3 +1044,11 @@ button,input,select,textarea{max-width:100%;box-sizing:border-box}
   .v63-song-choice{grid-template-columns:minmax(0,1fr)!important}.v63-song-key{width:100%!important}
   .chordio-form-grid{grid-template-columns:1fr!important}.chordio-dialog{max-height:92vh!important;border-radius:12px!important}
 }
+
+
+/* CHORDIO V4 — Add Song editor readability: larger text, compact chord row. */
+#songEditorPanel .editor-chord-input,#songEditorPanel .editor-lyric-input{font-size:16px!important;line-height:1.25!important;}
+#songEditorPanel .editor-chord-input{min-height:36px!important;height:36px!important;padding:5px 12px!important;color:#d21f2f!important;background:#fff7f7!important;font-weight:900!important;}
+#songEditorPanel .editor-lyric-input{min-height:40px!important;height:40px!important;padding:6px 12px!important;color:#172a3a!important;background:#fff!important;}
+#songEditorPanel .editor-line-main:before{padding:3px 10px!important;font-size:8px!important;color:#d21f2f!important;}
+@media(max-width:600px){#songEditorPanel .editor-chord-input,#songEditorPanel .editor-lyric-input{font-size:16px!important;}#songEditorPanel .editor-chord-input{height:36px!important;min-height:36px!important;}#songEditorPanel .editor-lyric-input{height:42px!important;min-height:42px!important;}}

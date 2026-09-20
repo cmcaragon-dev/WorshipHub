@@ -1,0 +1,18 @@
+CHORDIO V4 – Service Planner Landscape Print + Song Font + Add Song Readability
+
+1. Service Planner Print
+- Default print page is A4 Landscape.
+- Each song remains one A4 page.
+- Song body uses two columns; content flows from column 1 to column 2 when the first column reaches its available height.
+- Footer is left aligned in gray with Service Planner name | service date.
+- Footer right shows Page X / Y.
+- Chords remain red and lyrics remain black.
+
+2. Song Page +A / -A
+- Fixed the +A / -A controls so the visible Song Page chord and lyric text changes size together.
+- The renderer and page-level controls now share the same font-size state.
+
+3. Add Song Editor
+- Increased chord/lyrics input text size for easier editing.
+- Chord row is red for clearer identification.
+- Reduced chord and lyric input box heights while keeping the chord row clearly above the lyric row.
