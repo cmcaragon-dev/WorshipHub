@@ -1022,3 +1022,33 @@ body{background:var(--wh-bg)!important;color:var(--wh-ink)!important}
  #chordioNewServiceModal .v63-add-song-btn{min-width:84px!important;padding:8px 8px!important}
  #chordioNewServiceModal .v63-create-footer{padding:10px 14px!important}
 }
+
+/* CHORDIO final responsive pass — dashboard, planners and shared dialogs */
+html,body{max-width:100%;overflow-x:hidden}
+img,video,iframe{max-width:100%}
+button,input,select,textarea{max-width:100%;box-sizing:border-box}
+@media(max-width:900px){
+  .main-content,.content,.dashboard-content{width:100%!important;box-sizing:border-box!important;padding-left:14px!important;padding-right:14px!important}
+  .service-panel,.service-planner-panel,.song-editor-panel,.chordio-dialog{width:min(96vw,100%)!important;max-width:96vw!important}
+  .service-header-main{min-width:0!important}.service-count{flex-wrap:wrap!important}
+  .service-action-bar{flex-wrap:wrap!important}.service-song{min-width:0!important}
+  .chordio-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:600px){
+  .sidebar{width:min(88vw,300px)!important;max-width:88vw!important}
+  .topbar{flex-wrap:wrap!important;height:auto!important;min-height:56px!important}
+  .service-item{border-radius:10px!important}.service-header{padding:10px!important}
+  .service-title{min-width:0!important;flex-wrap:wrap!important}.service-name-text{max-width:calc(100vw - 120px)!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .service-song-info{min-width:0!important}.service-song-title,.service-song-artist{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .service-action-bar button{flex:1 1 auto!important;min-height:38px!important}
+  .v63-song-choice{grid-template-columns:minmax(0,1fr)!important}.v63-song-key{width:100%!important}
+  .chordio-form-grid{grid-template-columns:1fr!important}.chordio-dialog{max-height:92vh!important;border-radius:12px!important}
+}
+
+
+/* CHORDIO V4 — Add Song editor readability: larger text, compact chord row. */
+#songEditorPanel .editor-chord-input,#songEditorPanel .editor-lyric-input{font-size:16px!important;line-height:1.25!important;}
+#songEditorPanel .editor-chord-input{min-height:36px!important;height:36px!important;padding:5px 12px!important;color:#d21f2f!important;background:#fff7f7!important;font-weight:900!important;}
+#songEditorPanel .editor-lyric-input{min-height:40px!important;height:40px!important;padding:6px 12px!important;color:#172a3a!important;background:#fff!important;}
+#songEditorPanel .editor-line-main:before{padding:3px 10px!important;font-size:8px!important;color:#d21f2f!important;}
+@media(max-width:600px){#songEditorPanel .editor-chord-input,#songEditorPanel .editor-lyric-input{font-size:16px!important;}#songEditorPanel .editor-chord-input{height:36px!important;min-height:36px!important;}#songEditorPanel .editor-lyric-input{height:42px!important;min-height:42px!important;}}
