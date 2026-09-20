@@ -541,33 +541,74 @@ body.multi-screen-output-page #multiScreenOutput{position:fixed!important;inset:
 .service-song-navigation{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 0}.service-song-navigation button{border:1px solid #d8dee8;background:#fff;color:#344054;border-radius:7px;padding:8px 14px;font-weight:800;cursor:pointer}.service-song-navigation button:hover:not(:disabled){border-color:#c79d00;background:#fff8d6}.service-song-navigation button:disabled{opacity:.4;cursor:not-allowed}.service-song-navigation span{min-width:125px;text-align:center;font-size:11px;font-weight:900;color:#8b6500}
 @media(max-width:650px){.service-song-tools{padding:0 10px 20px}.service-song-note-head{align-items:flex-start;flex-direction:column;gap:3px}.service-song-navigation{gap:6px}.service-song-navigation button{padding:7px 9px;font-size:11px}.service-song-navigation span{min-width:95px;font-size:10px}}
 </style>
+
+<style id="chordio-song-page-a4-v2">
+html,body{background:#e9edf2!important;color:#151a20!important}
+body{min-height:100vh!important}
+.song-paper{position:relative!important;width:210mm!important;min-height:297mm!important;height:auto!important;margin:28px auto 48px!important;padding:20mm!important;background:#fff!important;border:1px solid #d5d9de!important;border-radius:0!important;box-shadow:0 12px 40px rgba(20,30,40,.14)!important;box-sizing:border-box!important}
+.song-paper-topbar{position:relative!important;display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:18px!important;margin:0 0 14px!important}
+.song-paper-heading{min-width:0!important;flex:1 1 auto!important}
+.song-paper-heading h1{margin:0!important;color:#111827!important;font-size:30px!important;line-height:1.15!important;font-weight:850!important;letter-spacing:-.02em!important}
+.song-page-artist{margin-top:6px!important;color:#475467!important;font-size:15px!important;font-weight:600!important}
+.song-page-key-label{margin-top:9px!important;color:#667085!important;font-size:12px!important;font-weight:850!important;letter-spacing:.05em!important}
+.song-page-key{color:#17212b!important;font-size:16px!important;font-weight:900!important}
+.song-passing-chords{display:flex!important;flex-wrap:wrap!important;gap:6px 15px!important;margin-top:11px!important;font-size:12px!important}
+.song-passing-chords .custom-presentation-passing-label{color:#344054!important;font-size:10px!important;font-weight:850!important}
+.song-passing-chords .custom-presentation-passing-value{color:#17212b!important;font-size:13px!important;font-weight:800!important}
+.song-page-rule,.song-page-footer-rule{height:1px!important;background:#cfd5dc!important;width:100%!important;margin:15px 0 18px!important}
+.song-page-menu-wrap{position:relative!important;flex:0 0 auto!important}
+.song-actions-toggle{width:40px!important;height:40px!important;border:1px solid #cfd5dc!important;border-radius:8px!important;background:#fff!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;cursor:pointer!important}
+.song-actions-toggle span{display:block!important;width:18px!important;height:2px!important;background:#344054!important;border-radius:2px!important}
+.song-actions-menu{position:absolute!important;right:0!important;top:46px!important;z-index:2000!important;display:grid!important;grid-template-columns:repeat(3,40px)!important;gap:6px!important;padding:8px!important;background:#fff!important;border:1px solid #d5dbe2!important;border-radius:10px!important;box-shadow:0 14px 35px rgba(20,30,40,.18)!important}
+.song-actions-menu[hidden]{display:none!important}
+.song-actions-menu button{width:40px!important;height:36px!important;padding:0!important;border:1px solid #d5dbe2!important;border-radius:7px!important;background:#fff!important;color:#28333d!important;font-weight:850!important;cursor:pointer!important}
+.song-actions-menu button:hover{background:#f2f5f7!important}
+.song-actions-menu .service-nav-icon{font-size:18px!important}
+.song-actions-menu #saveServiceKeyBtn{color:#14724a!important}
+#stage{display:block!important;width:100%!important;column-count:1!important}
+#stage .section{margin:0 0 24px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;break-inside:avoid!important}
+#stage .section-title{color:#202832!important;background:transparent!important;padding:0!important;margin:0 0 8px!important;text-transform:uppercase!important;letter-spacing:.10em!important;font-size:13px!important;font-weight:900!important}
+#stage .line.song-line{margin:0 0 9px!important;padding:0!important;overflow:visible!important}
+#stage .line.song-line>.chord{color:#d21f2f!important;font-weight:800!important}
+#stage .line.song-line>.lyrics{color:#111!important}
+.song-page-meta{margin:0!important;color:#667085!important;font-size:10px!important;letter-spacing:.02em!important}
+.saved-service-note{position:absolute!important;right:20mm!important;bottom:14mm!important;max-width:55%!important;padding:8px 10px!important;border-left:3px solid #8b6500!important;background:#faf8ef!important;color:#30353b!important;font:12px/1.35 Inter,"Segoe UI",Arial,sans-serif!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important}
+.saved-service-note::before{content:"SERVICE NOTE";display:block!important;margin-bottom:3px!important;color:#8b6500!important;font-size:9px!important;font-weight:900!important;letter-spacing:.08em!important}
+.service-note-popup{position:fixed!important;right:24px!important;top:76px!important;z-index:3000!important}
+@media(max-width:850px){.song-paper{width:calc(100vw - 20px)!important;min-height:calc(100vh - 30px)!important;margin:10px auto 30px!important;padding:18mm 14mm 22mm!important}.song-actions-menu{grid-template-columns:repeat(3,40px)!important}.saved-service-note{right:14mm!important;bottom:10mm!important;max-width:65%!important}}
+@media print{html,body{background:#fff!important}.song-paper{width:210mm!important;min-height:297mm!important;margin:0!important;border:0!important;box-shadow:none!important;padding:20mm!important}.song-actions-toggle,.song-actions-menu,.service-note-popup{display:none!important}.saved-service-note{position:absolute!important}}
+</style>
 </head>
 <body>
-<header class="song-page-header">
-  <div class="song-page-heading">
-    <div class="song-page-title-row">
+<main class="song-paper" id="songPaper">
+  <div class="song-paper-topbar">
+    <div class="song-paper-heading">
       <h1 id="songTitle">CHORDIO</h1>
-      <span id="songKey" class="song-page-key">—</span>
+      <div id="songArtist" class="song-page-artist"></div>
+      <div class="song-page-key-label">KEY: <span id="songKey" class="song-page-key">—</span></div>
+      <div id="songPassingChords" class="song-passing-chords" aria-label="Passing Chords"></div>
+      <div class="song-page-rule"></div>
     </div>
-    <div id="songArtist" class="song-page-artist"></div>
-    <div id="songPassingChords" class="song-passing-chords" aria-label="Passing Chords"></div>
-    <div class="song-page-rule"></div>
-    <div id="songMeta" class="song-page-meta"></div>
+    <div class="song-page-menu-wrap">
+      <button id="songActionsToggle" class="song-actions-toggle" type="button" aria-label="Song actions" aria-expanded="false" title="Song actions"><span></span><span></span><span></span></button>
+      <div id="songActionsMenu" class="song-actions-menu" hidden>
+        <button id="down" title="Transpose down one semitone" aria-label="Transpose down">−</button>
+        <button id="up" title="Transpose up one semitone" aria-label="Transpose up">+</button>
+        <button id="saveServiceKeyBtn" title="Save the selected key to this Service Planner" aria-label="Save Service Key">✓</button>
+        <button id="serviceNoteOpen" type="button" title="Service Note" aria-label="Service Note">📝</button>
+        <button id="serviceSongPrevious" class="service-nav-icon" type="button" title="Previous Song" aria-label="Previous Song">←</button>
+        <button id="serviceSongNext" class="service-nav-icon" type="button" title="Next Song" aria-label="Next Song">→</button>
+        <button id="multiScreenOpen" title="Control 4 extended HDMI screens" aria-label="Multi-Screen">🖥</button>
+        <button id="printBtn" title="Open Print Preview" aria-label="Print">🖨</button>
+        <button id="close" type="button" onclick="window.chordioGoHome()" aria-label="Home" title="Home">⌂</button>
+      </div>
+    </div>
   </div>
-  <div class="song-page-actions">
-    <button id="down" title="Transpose down one semitone" aria-label="Transpose down">−</button>
-    <button id="up" title="Transpose up one semitone" aria-label="Transpose up">+</button>
-    <button id="saveServiceKeyBtn" title="Save the selected key to this Service Planner" aria-label="Save Service Key">✓</button>
-    <span id="serviceKeySaveStatus" class="service-key-save-status" aria-live="polite"></span>
-    <button id="serviceNoteOpen" type="button" title="Service Note" aria-label="Service Note">📝</button>
-    <button id="serviceSongPrevious" class="service-nav-icon" type="button" title="Previous Song" aria-label="Previous Song">←</button>
-    <button id="serviceSongNext" class="service-nav-icon" type="button" title="Next Song" aria-label="Next Song">→</button>
-    <button id="multiScreenOpen" title="Control 4 extended HDMI screens" aria-label="Multi-Screen">🖥</button>
-    <button id="printBtn" title="Open Print Preview" aria-label="Print">🖨</button>
-    <button id="close" type="button" onclick="window.chordioGoHome()" aria-label="Home" title="Home">⌂</button>
-  </div>
-</header>
-<main class="song-paper" id="stage"><div class="empty">Loading song…</div></main>
+  <div id="stage"><div class="empty">Loading song…</div></div>
+  <div class="song-page-footer-rule"></div>
+  <div id="songMeta" class="song-page-meta"></div>
+  <div id="savedServiceNote" class="saved-service-note" aria-live="polite" hidden></div>
+</main>
 <div id="serviceSongTools" class="service-song-tools" aria-label="Service Planner song controls">
   <div id="serviceNotePopup" class="service-note-popup" aria-hidden="true">
     <div class="service-note-popup-head">
@@ -743,6 +784,35 @@ body.multi-screen-output-page #multiScreenOutput{position:fixed!important;inset:
 <script src="js/chordio-v63-ux.js"></script>
 <script src="js/custom-song-runtime.js" type="module"></script>
 <script src="js/print-preview.js"></script>
+<script>
+(function(){
+  function initSongPageControls(){
+    const toggle=document.getElementById('songActionsToggle');
+    const menu=document.getElementById('songActionsMenu');
+    if(toggle && menu && !toggle.dataset.bound){
+      toggle.dataset.bound='1';
+      toggle.addEventListener('click',function(e){
+        e.stopPropagation();
+        const open=menu.hidden;
+        menu.hidden=!open;
+        toggle.setAttribute('aria-expanded',String(open));
+      });
+      document.addEventListener('click',function(e){
+        if(!menu.hidden && !e.target.closest('.song-page-menu-wrap')){
+          menu.hidden=true;toggle.setAttribute('aria-expanded','false');
+        }
+      });
+      menu.addEventListener('click',function(e){
+        const b=e.target.closest('button');
+        if(b && b.id!=='serviceNoteOpen'){
+          setTimeout(()=>{menu.hidden=true;toggle.setAttribute('aria-expanded','false');},0);
+        }
+      });
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSongPageControls);else initSongPageControls();
+})();
+</script>
 <style>
 /* Final responsive Add Song presentation layout.
    The presentation is intentionally content-sized and scrollable: it never

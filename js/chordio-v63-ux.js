@@ -283,3 +283,17 @@ function presets(){document.querySelectorAll('[data-lyrics-preset]').forEach(b=>
   function render(){const now=new Date();const day=Math.floor(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())/86400000);const v=verses[((day%verses.length)+verses.length)%verses.length];const t=document.getElementById('sidebarBibleVerseText'),r=document.getElementById('sidebarBibleVerseRef');if(t)t.textContent=v[0];if(r)r.textContent=v[1];}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render);else render();
 })();
+
+/* CHORDIO V66 — New Service Add Song picker: full, uncropped panel */
+(function(){
+  const css=document.createElement('style');
+  css.id='chordio-v66-add-song-picker-fix';
+  css.textContent=`
+    #chordioNewServiceModal .chordio-service-creator{overflow:visible!important}
+    #chordioNewServiceModal .v64-picker{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;max-height:none!important;z-index:2147483000!important;padding:24px!important;box-sizing:border-box!important;background:rgba(7,15,24,.48)!important}
+    #chordioNewServiceModal .v64-picker-card{width:min(760px,94vw)!important;max-width:760px!important;height:min(78vh,760px)!important;max-height:calc(100vh - 48px)!important;min-height:320px!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;margin:auto!important}
+    #chordioNewServiceModal .v64-picker-list{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;padding:0 18px 18px!important}
+    #chordioNewServiceModal .v64-picker-row{min-height:52px!important}
+  `;
+  document.head.appendChild(css);
+})();

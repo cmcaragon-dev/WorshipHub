@@ -995,6 +995,12 @@ function renderServiceSongTools(){
     if(next)next.disabled=atEnd;
     if(pos)pos.textContent=hasService?`SONG ${index+1} OF ${service.songs.length}`:"STANDALONE SONG";
     if(status)status.textContent="";
+    const saved=document.getElementById("savedServiceNote");
+    if(saved){
+        const value=hasService?String(service.songs[index]?.presentationNote||"").trim():"";
+        saved.textContent=value;
+        saved.hidden=!value;
+    }
 }
 
 async function saveServiceSongNote(){
@@ -1017,6 +1023,7 @@ async function saveServiceSongNote(){
         localStorage.setItem("worshipHubServiceNoteUpdate",JSON.stringify({serviceId:String(serviceId),songIndex:index,note,updatedAt:Date.now()}));
         window.dispatchEvent(new CustomEvent("worshiphub:service-note-updated",{detail:{id:String(serviceId),songIndex:index,note,service:updatedService}}));
         renderCustomPresentationNote();
+        renderServiceSongTools();
         renderMultiServiceSongs();
         multiScreenBroadcast({});
         if(status)status.textContent="Saved — available in Multi-Screen";
