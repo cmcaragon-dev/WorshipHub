@@ -9,7 +9,7 @@
     const side=document.querySelector('.sidebar');
     if(!side || side.dataset.chordioV65Sidebar==='1') return;
     side.dataset.chordioV65Sidebar='1';
-    side.innerHTML=`<div class="chordio-sidebar-welcome">
+    side.innerHTML=`<button type="button" class="chordio-mobile-sidebar-toggle" aria-label="Open menu" aria-expanded="false">☰</button><div class="chordio-sidebar-welcome">
       <div class="chordio-sidebar-welcome-icon modern-wave-hand" aria-hidden="true">👋</div>
       <div class="chordio-sidebar-welcome-text"><div class="chordio-sidebar-welcome-label">HELLO, WELCOME</div><div id="userName" class="chordio-sidebar-welcome-name">User</div></div>
     </div>
@@ -32,6 +32,7 @@
     </div>`;
     side.addEventListener('click',e=>{
       const b=e.target.closest('[data-sidebar-quick],#settingsBtn'); if(!b)return;
+      if(b.disabled || b.getAttribute('aria-disabled')==='true') return;
       if(b.id==='settingsBtn') return window.location.assign('settings.html');
       const t=b.dataset.sidebarQuick;
       if(t==='service') return openNewService();
@@ -41,6 +42,25 @@
       if(t==='addsong') return document.getElementById('addSongBtn')?.click();
       if(t==='help'){document.dispatchEvent(new KeyboardEvent('keydown',{key:'?',bubbles:true}));return;}
       if(t==='import') return document.getElementById('importSongBtn')?.click();
+    });
+    const mobileToggle=side.querySelector('.chordio-mobile-sidebar-toggle');
+    mobileToggle?.addEventListener('click',()=>{
+      const open=document.body.classList.toggle('chordio-sidebar-open');
+      mobileToggle.setAttribute('aria-expanded',String(open));
+    });
+    side.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+      if(window.matchMedia('(max-width: 700px)').matches && b!==mobileToggle && !b.disabled){
+        document.body.classList.remove('chordio-sidebar-open');
+        mobileToggle?.setAttribute('aria-expanded','false');
+      }
+    }));
+    window.addEventListener('worshiphub:permissions-updated',ev=>{
+      const admin=!!ev.detail?.isAdmin;
+      side.querySelectorAll('[data-sidebar-quick="addsong"],[data-sidebar-quick="import"],#settingsBtn').forEach(b=>{
+        b.disabled=!admin;
+        b.setAttribute('aria-disabled',String(!admin));
+        b.classList.toggle('permission-disabled',!admin);
+      });
     });
     // Keep application hooks available without showing duplicate controls.
     const support=document.createElement('div'); support.className='chordio-hidden-support';

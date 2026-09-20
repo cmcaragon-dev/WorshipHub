@@ -288,6 +288,24 @@ let currentUser = null;
 const ADMIN_EMAILS = new Set(["jfcm.s07@gmail.com", "cmcaragon@gmail.com"]);
 let currentUserProfile = null;
 let canManageSongs = false;
+function updateNormalUserToolState(){
+    const admin = isCurrentAdmin();
+    ['settingsBtn','addSongBtn','importSongBtn'].forEach(id=>{
+        const el=document.getElementById(id);
+        if(!el) return;
+        el.disabled=!admin;
+        el.setAttribute('aria-disabled',String(!admin));
+        el.classList.toggle('permission-disabled',!admin);
+        if(!admin) el.title = id==='settingsBtn' ? 'Settings are available to administrators only' : (id==='addSongBtn' ? 'Add Song is available to administrators only' : 'Import Song is available to administrators only');
+    });
+    document.querySelectorAll('[data-sidebar-quick="addsong"],[data-sidebar-quick="import"],.settings-action').forEach(el=>{
+        el.disabled=!admin;
+        el.setAttribute('aria-disabled',String(!admin));
+        el.classList.toggle('permission-disabled',!admin);
+    });
+    window.dispatchEvent(new CustomEvent('worshiphub:permissions-updated',{detail:{isAdmin:admin}}));
+}
+
 const isCurrentAdmin = () => {
     const email = String(currentUser?.email || "").trim().toLowerCase();
     return ADMIN_EMAILS.has(email) || currentUserProfile?.role === "admin" || currentUserProfile?.isAdmin === true || currentUserProfile?.admin === true;
@@ -304,6 +322,7 @@ async function loadCurrentUserProfile(){
         console.warn("Unable to load current user profile:", error);
     }
     canManageSongs = isCurrentAdmin() || currentUserProfile?.allowEditSongs === true;
+    updateNormalUserToolState();
 }
 
 
@@ -422,6 +441,7 @@ onAuthStateChanged(auth, async function(user) {
         currentUser = null;
         currentUserProfile = { name: "Guest", role: "guest" };
         canManageSongs = false;
+        updateNormalUserToolState();
         songsReady = true;
         filterDeletedSongsFromLibrary();
         removeDuplicateSongTitles();
@@ -445,6 +465,7 @@ onAuthStateChanged(auth, async function(user) {
     ===================================== */
 
     currentUser = user;
+    updateNormalUserToolState();
 
     // FAST HOME LOAD: render the bundled library immediately. Previously the
     // home page waited for several sequential Firestore reads (profile, user

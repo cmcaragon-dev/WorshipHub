@@ -1052,3 +1052,24 @@ button,input,select,textarea{max-width:100%;box-sizing:border-box}
 #songEditorPanel .editor-lyric-input{min-height:40px!important;height:40px!important;padding:6px 12px!important;color:#172a3a!important;background:#fff!important;}
 #songEditorPanel .editor-line-main:before{padding:3px 10px!important;font-size:8px!important;color:#d21f2f!important;}
 @media(max-width:600px){#songEditorPanel .editor-chord-input,#songEditorPanel .editor-lyric-input{font-size:16px!important;}#songEditorPanel .editor-chord-input{height:36px!important;min-height:36px!important;}#songEditorPanel .editor-lyric-input{height:42px!important;min-height:42px!important;}}
+
+
+/* FINAL RESPONSIVE LAYOUT — mobile collapsible sidebar and disabled admin tools */
+.sidebar .permission-disabled{opacity:.42!important;cursor:not-allowed!important;filter:grayscale(.35)!important;transform:none!important;box-shadow:none!important}
+.sidebar .permission-disabled:hover{background:#fff!important;transform:none!important}
+.chordio-mobile-sidebar-toggle{display:none!important}
+@media(max-width:700px){
+  body{overflow-x:hidden!important}
+  .layout{display:block!important;position:relative!important}
+  .sidebar{position:fixed!important;left:0!important;top:56px!important;bottom:0!important;width:min(82vw,300px)!important;max-width:300px!important;height:calc(100dvh - 56px)!important;z-index:2147483000!important;transform:translateX(-105%)!important;transition:transform .22s ease,box-shadow .22s ease!important;overflow-y:auto!important;box-shadow:8px 0 30px rgba(15,23,42,.16)!important}
+  body.chordio-sidebar-open .sidebar{transform:translateX(0)!important}
+  .content{width:100%!important;max-width:100%!important;margin:0!important;padding:14px 10px 24px!important;box-sizing:border-box!important}
+  .chordio-mobile-sidebar-toggle{display:grid!important;place-items:center!important;position:fixed!important;left:10px!important;top:66px!important;width:42px!important;height:42px!important;z-index:2147483001!important;border:1px solid #d7dfe6!important;border-radius:12px!important;background:#fff!important;color:#172a3a!important;font-size:19px!important;box-shadow:0 5px 18px rgba(15,23,42,.13)!important}
+  body.chordio-sidebar-open .chordio-mobile-sidebar-toggle{left:calc(min(82vw,300px) - 52px)!important;background:#172a3a!important;color:#fff!important;border-color:#172a3a!important}
+  .topbar{padding-left:60px!important}
+  .dashboard{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:430px){
+  .dashboard{grid-template-columns:1fr 1fr!important}
+  .topbar .top-actions{width:100%!important}
+}

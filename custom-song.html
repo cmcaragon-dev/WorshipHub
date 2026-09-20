@@ -635,6 +635,55 @@ body{min-height:100vh!important}
  .multi-output-chords #multiOutputNext small{font-size:13px!important}
 }
 </style>
+
+<style id="chordio-final-ui-upgrade">
+/* FINAL UI UPGRADE — modern song controls */
+.song-actions-menu{
+  grid-template-columns:repeat(3,42px)!important;
+  gap:7px!important;
+  padding:9px!important;
+  border-radius:14px!important;
+  background:rgba(255,255,255,.98)!important;
+  box-shadow:0 18px 45px rgba(15,23,42,.20)!important;
+}
+.song-actions-menu button{
+  width:42px!important;height:42px!important;
+  border-radius:11px!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  border:1px solid #d8dee8!important;
+  background:#f8fafc!important;
+  color:#243244!important;
+  transition:transform .14s ease,background .14s ease,box-shadow .14s ease,border-color .14s ease!important;
+}
+.song-actions-menu button:hover{transform:translateY(-1px)!important;background:#fff!important;border-color:#c6a13a!important;box-shadow:0 5px 14px rgba(15,23,42,.10)!important}
+.song-actions-menu #fontDecreaseBtn,.song-actions-menu #fontIncreaseBtn{font-size:13px!important}
+/* +A / -A zoom the complete chord+lyric content together */
+#stage .line.song-line>.chord,#stage .line.song-line>.lyrics{
+  font-size:calc(20px + var(--song-font-extra,3px))!important;
+}
+#stage .line.song-line>.chord{line-height:calc(20px + var(--song-font-extra,3px))!important}
+/* Long song lines remain horizontally scrollable instead of being clipped */
+#stage{overflow-x:auto!important;overflow-y:auto!important;max-width:100%!important}
+#stage .line.song-line{width:max-content!important;min-width:100%!important}
+/* Multi-screen header: LIVE then CLOSE at the upper-right */
+#multiScreenControl .multi-screen-head{position:relative!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:8px!important}
+#multiScreenControl .multi-screen-head-brand{min-width:0!important;flex:1 1 auto!important}
+#multiScreenControl .multi-screen-head .chordio-autosave{order:2!important;margin-left:auto!important;flex:0 0 auto!important}
+#multiScreenControl .multi-screen-head #chordioLiveToggle{order:3!important;margin-left:0!important;flex:0 0 auto!important}
+#multiScreenControl .multi-screen-head #multiScreenClose{order:4!important;margin-left:0!important;flex:0 0 auto!important;width:42px!important;height:42px!important;border-radius:10px!important;background:#fff!important;color:#7f1d1d!important;border:1px solid #e2b5b5!important;font-size:18px!important;font-weight:900!important}
+#multiScreenControl .multi-screen-head #multiScreenClose:hover{background:#fff5f5!important;border-color:#c98b8b!important}
+/* responsive multi-screen */
+@media(max-width:700px){
+  #multiScreenControl .multi-screen-head{gap:5px!important}
+  #multiScreenControl .multi-screen-head-brand p{display:none!important}
+  #multiScreenControl .multi-screen-head-brand h2{font-size:16px!important}
+  #multiScreenControl .multi-screen-head-logo{width:34px!important;height:34px!important;flex-basis:34px!important}
+  #multiScreenControl .multi-screen-head #chordioLiveToggle{font-size:10px!important;padding:0 8px!important}
+  #multiScreenControl .multi-screen-head #multiScreenClose{width:38px!important;height:38px!important}
+}
+</style>
+
 </head>
 <body>
 <main class="song-paper" id="songPaper">
@@ -655,9 +704,6 @@ body{min-height:100vh!important}
         <button id="fontDecreaseBtn" type="button" title="Decrease chord and lyric size" aria-label="Decrease chord and lyric size">−A</button>
         <button id="fontIncreaseBtn" type="button" title="Increase chord and lyric size" aria-label="Increase chord and lyric size">+A</button>
         <button id="lyricsOnlyBtn" type="button" title="Show lyrics only" aria-label="Show lyrics only" aria-pressed="false">♫</button>
-        <button id="serviceNoteOpen" type="button" title="Service Note" aria-label="Service Note">📝</button>
-        <button id="serviceSongPrevious" class="service-nav-icon" type="button" title="Previous Song" aria-label="Previous Song">←</button>
-        <button id="serviceSongNext" class="service-nav-icon" type="button" title="Next Song" aria-label="Next Song">→</button>
         <button id="multiScreenOpen" title="Control 4 extended HDMI screens" aria-label="Multi-Screen">🖥</button>
         <button id="printBtn" title="Open Print Preview" aria-label="Print">🖨</button>
         <button id="close" type="button" onclick="window.chordioGoHome()" aria-label="Home" title="Home">⌂</button>
