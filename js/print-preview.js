@@ -212,6 +212,7 @@
     const songs=root.querySelectorAll('.service-print-song');
     const targets=songs.length?Array.from(songs):[root];
     targets.forEach(song=>{
+      if(root.dataset.printLayout === "flow2" || song.dataset.printLayout === "flow2") return;
       const content=findContent(song);
       const layout=makeLayout(content);
       if(layout) render(layout);

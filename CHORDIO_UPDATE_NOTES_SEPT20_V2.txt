@@ -1,0 +1,21 @@
+CHORDIO UPDATE — SEPTEMBER 20, 2026
+
+1. MULTI-SCREEN CLOSE BUTTON
+- Removed the duplicate CLOSE button at the bottom of Multi-Screen Control.
+- The remaining CLOSE button stays in the upper-right header, immediately to the right of LIVE.
+
+2. SONG PAGE +A / -A
+- Chord and lyric font size now uses one shared zoom value.
+- Chord and lyric line-height/row height scale together so enlarged chords do not overlap lyrics.
+
+3. SONG PAGE PRINT
+- Standalone Song Page Print now uses the same A4 landscape concept as Service Planner printing.
+- Default paper orientation: A4 Landscape.
+- Song content flows continuously through 2 columns; when the first column reaches its available height, the content continues in column 2.
+- Print header fields:
+  SONG TITLE
+  ARTIST
+  SONG KEY
+  PASSING CHORDS
+- A separator line is placed before the chord/lyrics content.
+- Chords remain above lyrics in a fixed monospace character grid.

@@ -1139,25 +1139,51 @@ async function stopCustomService(){
 
 function printCustomSong(){
     if(!song) return;
-    const root=document.createElement("div"); root.id="worshipHubPrintRoot";
-    root.innerHTML=`<div class="print-song-header"><div class="print-song-meta"><div class="print-song-title">${esc(song.title||"Untitled Song")}</div><div class="print-song-info"><span><b>Artist:</b> ${esc(song.artist||"")}</span><span><b>Original Key:</b> ${esc(song.originalKey||song.key||"")}</span><span><b>Service Key:</b> ${esc(song.serviceKey||song.key||song.originalKey||"")}</span></div></div></div><div class="print-song-content"><div class="wh-print-source-content song"></div></div>`;
+    const root=document.createElement("div");
+    root.id="worshipHubPrintRoot";
+    root.dataset.printLayout="flow2";
+
+    const key=customServiceKey();
+    const passing=customPassingChords();
+    root.innerHTML=`
+      <div class="print-song-header">
+        <div class="print-song-meta-grid">
+          <div><span class="print-song-title-label">SONG TITLE:</span> ${esc(song.title||"Untitled Song")}</div>
+          <div><span class="print-song-info-label">ARTIST:</span> ${esc(song.artist||"")}</div>
+          <div><span class="print-song-info-label">SONG KEY:</span> ${esc(key||"")}</div>
+          <div><span class="print-song-info-label">PASSING CHORDS:</span> ${passing.map(([label,value])=>`${esc(label)}: ${esc(value)}`).join("  |  ")}</div>
+        </div>
+        <div class="print-song-rule"></div>
+      </div>
+      <div class="print-song-content"><div class="wh-print-source-content song"></div></div>`;
+
     const source=root.querySelector(".wh-print-source-content.song");
     normalizeSections(song.sections).forEach(section=>{
-        const sec=document.createElement("section"); sec.className="song-section";
-        const title=document.createElement("div"); title.className="section-title"; title.textContent=`${section.type||""} ${section.number||""}`.trim(); sec.appendChild(title);
+        const sec=document.createElement("section");
+        sec.className="song-section";
+        const title=document.createElement("div");
+        title.className="section-title";
+        title.textContent=`${section.type||""} ${section.number||""}`.trim();
+        sec.appendChild(title);
         (section.lines||[]).forEach(line=>{
-            const row=document.createElement("div"); row.className="song-line";
-            const chord=document.createElement("span"); chord.className="chord"; chord.textContent=transposeChord(line.chordText||chordRowFromPositions(line),transposeSteps);
-            const lyric=document.createElement("span"); lyric.className="print-lyric-text"; lyric.textContent=line.lyrics||"";
-            row.appendChild(chord); row.appendChild(document.createElement("br")); row.appendChild(lyric); sec.appendChild(row);
-        }); source.appendChild(sec);
+            const row=document.createElement("div");
+            row.className="song-line";
+            const chord=document.createElement("span");
+            chord.className="chord";
+            chord.textContent=transposeChord(line.chordText||chordRowFromPositions(line),transposeSteps);
+            const lyric=document.createElement("span");
+            lyric.className="print-lyric-text";
+            lyric.textContent=line.lyrics||"";
+            row.append(chord,document.createElement("br"),lyric);
+            sec.appendChild(row);
+        });
+        source.appendChild(sec);
     });
+
     document.getElementById("worshipHubPrintRoot")?.remove();
     document.body.appendChild(root);
-    root.querySelectorAll(".section-title").forEach(t=>{t.style.background="#FFD700";t.style.color="#000";});
     window.WorshipHubPrintPreview?.open(root);
 }
-
 
 // CHORDIO MULTI-SCREEN OUTPUT CONTROL
 let multiScreenChannel = null;

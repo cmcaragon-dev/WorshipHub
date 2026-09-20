@@ -49,16 +49,16 @@ body{overflow-x:hidden}
   display:block!important;
   width:max-content!important;
   max-width:none!important;
-  height:20px!important;
-  min-height:20px!important;
+  height:calc(20px + var(--song-font-extra,3px))!important;
+  min-height:calc(20px + var(--song-font-extra,3px))!important;
   margin:0!important;
   padding:0!important;
   white-space:pre!important;
   overflow:visible!important;
   font-family:Consolas,Monaco,"Courier New",monospace!important;
-  font-size:20px!important;
+  font-size:calc(20px + var(--song-font-extra,3px))!important;
   font-weight:800!important;
-  line-height:20px!important;
+  line-height:calc(20px + var(--song-font-extra,3px))!important;
   letter-spacing:0!important;
   font-variant-ligatures:none!important;
   font-feature-settings:"liga" 0,"clig" 0!important;
@@ -72,8 +72,8 @@ body{overflow-x:hidden}
   padding:0!important;
   white-space:pre!important;
   font-family:Consolas,Monaco,"Courier New",monospace!important;
-  font-size:20px!important;
-  line-height:20px!important;
+  font-size:calc(20px + var(--song-font-extra,3px))!important;
+  line-height:calc(20px + var(--song-font-extra,3px))!important;
   letter-spacing:0!important;
   font-variant-ligatures:none!important;
   font-feature-settings:"liga" 0,"clig" 0!important;
@@ -330,7 +330,60 @@ body.wh-print-preview-open > .nav{visibility:hidden!important}
   body.wh-printing-from-preview .song-line{display:block!important;width:max-content!important;white-space:normal!important;line-height:1!important;margin:0!important;padding:0!important}
   body.wh-printing-from-preview .song-line .chord{display:block!important;position:static!important;width:max-content!important;white-space:pre!important;height:20px!important;line-height:20px!important;font-family:Consolas,Monaco,"Courier New",monospace!important;font-size:20px!important;letter-spacing:0!important}
   body.wh-printing-from-preview .song-line .print-lyric-text{display:block!important;width:max-content!important;white-space:pre!important;line-height:20px!important;font-family:Consolas,Monaco,"Courier New",monospace!important;font-size:20px!important;letter-spacing:0!important}
-  @page{size:landscape;margin:5mm}
+  @page{size:A4 landscape;margin:5mm}
+}
+
+/* SONG PAGE PRINT — A4 LANDSCAPE, TWO-COLUMN CONTINUOUS FLOW */
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"]{
+  width:100%!important; min-height:0!important; padding:8mm 10mm!important;
+  box-sizing:border-box!important; background:#fff!important; color:#111!important;
+}
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"] .print-song-header{
+  display:block!important; width:100%!important; margin:0 0 5mm!important;
+}
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"] .print-song-title-label,
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"] .print-song-info-label{
+  font-weight:900!important;
+}
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"] .print-song-meta-grid{
+  display:grid!important; grid-template-columns:1fr 1fr!important; gap:2mm 10mm!important;
+  font-family:Arial,Helvetica,sans-serif!important; font-size:10pt!important; line-height:1.2!important;
+}
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"] .print-song-rule{
+  height:1px!important; background:#222!important; width:100%!important; margin:4mm 0 5mm!important;
+}
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"] .print-song-content{
+  column-count:2!important; column-gap:10mm!important; column-fill:auto!important;
+  width:100%!important; height:auto!important; min-height:0!important;
+  font-family:Consolas,Monaco,"Courier New",monospace!important;
+}
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"] .song-section{
+  display:block!important; break-inside:auto!important; page-break-inside:auto!important;
+  margin:0 0 4mm!important;
+}
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"] .song-line{
+  break-inside:avoid!important; page-break-inside:avoid!important;
+  display:block!important; width:max-content!important; max-width:100%!important;
+  margin:0!important; padding:0!important; line-height:1!important;
+}
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"] .song-line .chord,
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"] .song-line .print-lyric-text{
+  display:block!important; position:static!important; width:max-content!important;
+  white-space:pre!important; font-family:Consolas,Monaco,"Courier New",monospace!important;
+  font-size:10pt!important; line-height:1.05!important; height:auto!important;
+}
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"] .song-line .chord{color:#b42318!important;font-weight:800!important}
+.wh-print-preview-paper #worshipHubPrintRoot[data-print-layout="flow2"] .section-title{
+  font-family:Arial,Helvetica,sans-serif!important; font-size:9pt!important; font-weight:900!important;
+  margin:0 0 1mm!important; padding:1mm 2mm!important; background:#FFD700!important; color:#000!important;
+  display:inline-block!important;
+}
+@media print{
+  @page{size:A4 landscape;margin:5mm}
+  body.wh-printing-from-preview #whPrintPreview .wh-print-preview-paper{padding:0!important}
+  body.wh-printing-from-preview #worshipHubPrintRoot[data-print-layout="flow2"]{padding:5mm 7mm!important}
+  body.wh-printing-from-preview #worshipHubPrintRoot[data-print-layout="flow2"] .print-song-content{column-count:2!important;column-gap:8mm!important;column-fill:auto!important}
+  body.wh-printing-from-preview #worshipHubPrintRoot[data-print-layout="flow2"] .song-section{break-inside:auto!important;page-break-inside:auto!important}
 }
 </style>
 <style id="chordio-multiscreen-v47-mechanical">
@@ -673,6 +726,8 @@ body{min-height:100vh!important}
 #multiScreenControl .multi-screen-head #chordioLiveToggle{order:3!important;margin-left:0!important;flex:0 0 auto!important}
 #multiScreenControl .multi-screen-head #multiScreenClose{order:4!important;margin-left:0!important;flex:0 0 auto!important;width:42px!important;height:42px!important;border-radius:10px!important;background:#fff!important;color:#7f1d1d!important;border:1px solid #e2b5b5!important;font-size:18px!important;font-weight:900!important}
 #multiScreenControl .multi-screen-head #multiScreenClose:hover{background:#fff5f5!important;border-color:#c98b8b!important}
+/* Keep the single Multi-Screen CLOSE control in the header, beside LIVE. */
+#multiScreenControl .chordio-multi-close-bottom{display:none!important;}
 /* responsive multi-screen */
 @media(max-width:700px){
   #multiScreenControl .multi-screen-head{gap:5px!important}
@@ -862,7 +917,6 @@ body{min-height:100vh!important}
 <textarea id="multiBibleText" aria-hidden="true" tabindex="-1" rows="1"></textarea>
 </div></div>
 </div>
-<button id="multiScreenCloseBottom" type="button" class="chordio-multi-close-bottom">CLOSE</button>
 </div>
 <div id="chordioBackgroundLibraryModal" class="chordio-background-library-modal" aria-hidden="true">
   <div class="chordio-background-library-dialog" role="dialog" aria-modal="true" aria-labelledby="chordioBackgroundLibraryTitle">
