@@ -649,7 +649,10 @@ async function load(){
 
         const paramsAfterLoad = new URLSearchParams(location.search);
         const startMultiScreenOnLoad = paramsAfterLoad.get("multiScreenStart") === "1" || localStorage.getItem("startMultiScreenOnLoad") === "true";
-        if(startMultiScreenOnLoad){
+        let keepMultiScreenOpen=false;
+        try{keepMultiScreenOpen=localStorage.getItem("chordioMultiScreenControlOpen")==="true";}catch(_){}
+        if(startMultiScreenOnLoad || keepMultiScreenOpen){
+            try{localStorage.setItem("chordioMultiScreenControlOpen","true");}catch(_){}
             try{localStorage.removeItem("startMultiScreenOnLoad");}catch(_){}
             localStorage.setItem("presentationMode","service");
             setTimeout(() => {
@@ -1157,7 +1160,6 @@ function printCustomSong(){
         <div class="print-song-key">SONG KEY: ${esc(serviceKey||song.originalKey||song.key||"—")}</div>
         <div class="print-song-passing"><b>PASSING CHORDS:</b> ${esc(passingText||"—")}</div>
         <div class="print-song-rule"></div>
-        <div class="print-song-content-title">LYRICS AND CHORDS</div>
       </div>
       <div class="print-song-content">
         <div class="wh-print-source-content song"></div>
@@ -1471,6 +1473,7 @@ function initMultiPartKeyboard(){
 
 function multiScreenOpenControl(){
     const panel=document.getElementById("multiScreenControl");if(!panel)return;
+    try{localStorage.setItem("chordioMultiScreenControlOpen","true");}catch(_){}
     const existingSongQueueIndex=multiScreenQueueIndexForSong(song?.id,index);if(existingSongQueueIndex>=0)multiScreenQueueIndex=existingSongQueueIndex;
     initMultiScreenPartKeyboard();
     panel.classList.add("show");panel.setAttribute("aria-hidden","false");
@@ -1478,7 +1481,7 @@ function multiScreenOpenControl(){
     [1,2,3,4].forEach(n=>{const el=document.getElementById(`multiMode${n}`);if(el)el.value=multiScreenModes[n]||"lyrics";const cb=document.getElementById(`multiEnabled${n}`);if(cb)cb.checked=multiScreenEnabled[n]!==false;const bgm=document.getElementById(`multiBackgroundMode${n}`);if(bgm)bgm.value=multiScreenBackgroundModes[n]||"common";});
     initMultiFeatureAccordions();renderMultiServiceSongs();renderMultiScreenSectionButtons();renderMultiPartLyricsPreview();renderMultiStructureList();renderMultiBackgroundControls();syncMultiLyricsSettingsControls();syncMultiLyricsEditor();renderMultiSlides();renderMultiScreenPreviews();multiScreenBroadcast({});
 }
-function multiScreenCloseControl(){const panel=document.getElementById("multiScreenControl");if(panel){panel.classList.remove("show");panel.setAttribute("aria-hidden","true");}}
+function multiScreenCloseControl(){try{localStorage.removeItem("chordioMultiScreenControlOpen");}catch(_){} const panel=document.getElementById("multiScreenControl");if(panel){panel.classList.remove("show");panel.setAttribute("aria-hidden","true");}}
 function multiScreenQueue(){
     if(!service)return [];
     const songs=Array.isArray(service.songs)?service.songs:[];
@@ -2135,6 +2138,20 @@ function initUnifiedMultiScreenOutputSettings(){
     }
     drawer.classList.add("chordio-screen-settings-popup");
 
+    // There is one close button for the whole SCREEN OUTPUT SETTINGS panel.
+    // Remove/hide the old per-screen close controls so there can never be four.
+    drawer.querySelectorAll(".multi-popup-close,.multi-screen-settings-close,.multi-preview-settings-close").forEach(el=>el.remove());
+    let globalClose=drawer.querySelector(".chordio-screen-settings-global-close");
+    if(!globalClose){
+        globalClose=document.createElement("button");
+        globalClose.type="button";
+        globalClose.className="chordio-screen-settings-global-close";
+        globalClose.setAttribute("aria-label","Close screen output settings");
+        globalClose.title="Close";
+        globalClose.textContent="✕";
+        drawer.appendChild(globalClose);
+    }
+
     if(btn.dataset.bound==="1")return;
     btn.dataset.bound="1";
 
@@ -2148,11 +2165,9 @@ function initUnifiedMultiScreenOutputSettings(){
     };
 
     btn.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();open();});
+    globalClose.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();close();});
     // Clicking the overlay/backdrop closes the popup.
     drawer.addEventListener("click",ev=>{if(ev.target===drawer)close();});
-    drawer.querySelectorAll(".multi-popup-close,.multi-screen-settings-close").forEach(b=>
-        b.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();close();})
-    );
     document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&drawer.classList.contains("phase16-open"))close();});
 }
 
@@ -2163,8 +2178,11 @@ function renderMultiScreenPreviews(){
     document.querySelectorAll(".multi-preview-card-settings[data-portal='1']").forEach(el=>el.remove());
     box.innerHTML="";
     const visible=multiScreenVisibleSections(),selected=visible[multiScreenCurrentSection]?.section,settings=getMultiLyricsSettings();
-    const count=Math.max(1,Math.min(4,Number(multiScreenPreviewCount)||4));
-    const slots=multiScreenPreviewSlots.slice(0,count);
+    // The preview represents only the outputs currently marked USE.
+    // 1 used screen = 1 preview, 2 used screens = 2 previews, etc.
+    const enabledSlots=[1,2,3,4].filter(n=>multiScreenEnabled[n]!==false);
+    const count=Math.min(4,enabledSlots.length);
+    const slots=enabledSlots.slice(0,count);
     box.classList.remove("preview-count-1","preview-count-2","preview-count-3","preview-count-4","preview-expanded");
     box.classList.add(`preview-count-${count}`);if(multiScreenPreviewExpanded)box.classList.add("preview-expanded");
 
@@ -2172,6 +2190,12 @@ function renderMultiScreenPreviews(){
     // The preview cards themselves remain visible.
     const grid=document.createElement("div");grid.className="multi-screen-preview-layout";box.appendChild(grid);
     const screens=slots;
+    if(!screens.length){
+        const empty=document.createElement("div");
+        empty.className="multi-screen-preview-empty-state";
+        empty.textContent="No screens are currently set to USE.";
+        grid.appendChild(empty);
+    }
     screens.forEach(n=>{
         const card=document.createElement("div");
         card.className="multi-screen-preview-card"+(multiScreenEnabled[n]===false?" disabled":"")+(multiScreenPreviewExpanded===n?" expanded":"");
@@ -2691,14 +2715,6 @@ function initMultiScreen(){
         window.addEventListener("message",e=>{if(e.data?.type==="chordio-multiscreen-request")try{e.source?.postMessage(multiScreenMessage(),"*")}catch(_){} });
         document.getElementById("multiScreenControl")?.addEventListener("click",e=>{if(e.target.id==="multiScreenControl")multiScreenCloseControl();});
         document.getElementById("multiScreenClose")?.addEventListener("click",multiScreenCloseControl);
-        document.getElementById("multiScreenCloseBottom")?.addEventListener("click",()=>{
-            const ok=window.confirm("Are you sure you want to close?");
-            if(!ok)return;
-            multiScreenCloseAll();
-            multiScreenCloseControl();
-            if(typeof window.chordioGoHome==="function") window.chordioGoHome();
-            else window.location.href=new URL("index.html",window.location.href).href;
-        });
         document.getElementById("multiEditServiceButton")?.addEventListener("click",()=>openMultiServicePlannerEditor());
         document.getElementById("multiAddSongClose")?.addEventListener("click",closeMultiAddSong);
         document.getElementById("multiAddSongCancel")?.addEventListener("click",closeMultiAddSong);
@@ -2808,6 +2824,13 @@ function bindControls(){
             const next = Number(event?.detail?.size);
             if (!Number.isFinite(next)) return;
             fontSize = Math.max(0, Math.min(14, next));
+            const paper=document.getElementById("songPaper");
+            if(paper){
+                /* +A/-A is a zoom control, not separate chord/lyric font editing. */
+                const zoom=1 + (fontSize/10);
+                paper.style.setProperty("--song-zoom", String(zoom));
+                paper.classList.add("song-zoom-active");
+            }
             render();
             if(document.getElementById("customPresentationScreen")?.classList.contains("show")) renderCustomPresentation();
         });
