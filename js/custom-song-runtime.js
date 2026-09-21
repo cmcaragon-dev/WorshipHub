@@ -649,7 +649,10 @@ async function load(){
 
         const paramsAfterLoad = new URLSearchParams(location.search);
         const startMultiScreenOnLoad = paramsAfterLoad.get("multiScreenStart") === "1" || localStorage.getItem("startMultiScreenOnLoad") === "true";
-        if(startMultiScreenOnLoad){
+        let keepMultiScreenOpen=false;
+        try{keepMultiScreenOpen=localStorage.getItem("chordioMultiScreenControlOpen")==="true";}catch(_){}
+        if(startMultiScreenOnLoad || keepMultiScreenOpen){
+            try{localStorage.setItem("chordioMultiScreenControlOpen","true");}catch(_){}
             try{localStorage.removeItem("startMultiScreenOnLoad");}catch(_){}
             localStorage.setItem("presentationMode","service");
             setTimeout(() => {
@@ -1157,6 +1160,7 @@ function printCustomSong(){
         <div class="print-song-key">SONG KEY: ${esc(serviceKey||song.originalKey||song.key||"—")}</div>
         <div class="print-song-passing"><b>PASSING CHORDS:</b> ${esc(passingText||"—")}</div>
         <div class="print-song-rule"></div>
+        <div class="print-song-content-title">LYRICS AND CHORDS</div>
       </div>
       <div class="print-song-content">
         <div class="wh-print-source-content song"></div>
@@ -1470,6 +1474,7 @@ function initMultiPartKeyboard(){
 
 function multiScreenOpenControl(){
     const panel=document.getElementById("multiScreenControl");if(!panel)return;
+    try{localStorage.setItem("chordioMultiScreenControlOpen","true");}catch(_){}
     const existingSongQueueIndex=multiScreenQueueIndexForSong(song?.id,index);if(existingSongQueueIndex>=0)multiScreenQueueIndex=existingSongQueueIndex;
     initMultiScreenPartKeyboard();
     panel.classList.add("show");panel.setAttribute("aria-hidden","false");
@@ -1477,7 +1482,7 @@ function multiScreenOpenControl(){
     [1,2,3,4].forEach(n=>{const el=document.getElementById(`multiMode${n}`);if(el)el.value=multiScreenModes[n]||"lyrics";const cb=document.getElementById(`multiEnabled${n}`);if(cb)cb.checked=multiScreenEnabled[n]!==false;const bgm=document.getElementById(`multiBackgroundMode${n}`);if(bgm)bgm.value=multiScreenBackgroundModes[n]||"common";});
     initMultiFeatureAccordions();renderMultiServiceSongs();renderMultiScreenSectionButtons();renderMultiPartLyricsPreview();renderMultiStructureList();renderMultiBackgroundControls();syncMultiLyricsSettingsControls();syncMultiLyricsEditor();renderMultiSlides();renderMultiScreenPreviews();multiScreenBroadcast({});
 }
-function multiScreenCloseControl(){const panel=document.getElementById("multiScreenControl");if(panel){panel.classList.remove("show");panel.setAttribute("aria-hidden","true");}}
+function multiScreenCloseControl(){try{localStorage.removeItem("chordioMultiScreenControlOpen");}catch(_){} const panel=document.getElementById("multiScreenControl");if(panel){panel.classList.remove("show");panel.setAttribute("aria-hidden","true");}}
 function multiScreenQueue(){
     if(!service)return [];
     const songs=Array.isArray(service.songs)?service.songs:[];
@@ -2799,6 +2804,13 @@ function bindControls(){
             const next = Number(event?.detail?.size);
             if (!Number.isFinite(next)) return;
             fontSize = Math.max(0, Math.min(14, next));
+            const paper=document.getElementById("songPaper");
+            if(paper){
+                /* +A/-A is a zoom control, not separate chord/lyric font editing. */
+                const zoom=1 + (fontSize/10);
+                paper.style.setProperty("--song-zoom", String(zoom));
+                paper.classList.add("song-zoom-active");
+            }
             render();
             if(document.getElementById("customPresentationScreen")?.classList.contains("show")) renderCustomPresentation();
         });
