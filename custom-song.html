@@ -435,7 +435,7 @@ body{min-height:100vh!important}
 <style id="chordio-song-page-final-controls">
 .song-paper{--song-font-extra:3px;}
 #stage .line.song-line>.chord,#stage .line.song-line>.lyrics{font-size:calc(20px + var(--song-font-extra)) !important;}
-#stage .line.song-line>.chord{line-height:calc(20px + var(--song-font-extra)) !important;}
+#stage .line.song-line>.chord,#stage .line.song-line>.lyrics{line-height:calc(20px + var(--song-font-extra)) !important;}
 .song-paper.lyrics-only-mode #stage .line.song-line>.chord{display:none!important;}
 .song-paper.lyrics-only-mode #stage .line.song-line>br{display:none!important;}
 #lyricsOnlyBtn.active{background:#172a3a!important;color:#fff!important;border-color:#172a3a!important;box-shadow:0 0 0 2px rgba(23,42,58,.12)!important;}
@@ -515,7 +515,7 @@ body{min-height:100vh!important}
 #stage .line.song-line>.chord,#stage .line.song-line>.lyrics{
   font-size:calc(20px + var(--song-font-extra,3px))!important;
 }
-#stage .line.song-line>.chord{line-height:calc(20px + var(--song-font-extra,3px))!important}
+#stage .line.song-line>.chord,#stage .line.song-line>.lyrics{line-height:calc(20px + var(--song-font-extra,3px))!important;}
 /* Long song lines remain horizontally scrollable instead of being clipped */
 #stage{overflow-x:auto!important;overflow-y:auto!important;max-width:100%!important}
 #stage .line.song-line{width:max-content!important;min-width:100%!important}
@@ -606,16 +606,7 @@ body{min-height:100vh!important}
     height:0!important;
     margin:2mm 0 2mm!important;
   }
-  #worshipHubPrintRoot .print-song-content-title{
-    font-size:9pt!important;
-    line-height:1.2!important;
-    font-weight:900!important;
-    letter-spacing:.04em!important;
-    margin:0!important;
-    color:#111!important;
-  }
-
-  /* Two print columns. The browser fills column 1 from the top and
+    /* Two print columns. The browser fills column 1 from the top and
      continues naturally into column 2 as the first column fills. */
   #worshipHubPrintRoot .print-song-content{
     column-count:2!important;
@@ -946,7 +937,6 @@ body{min-height:100vh!important}
 <textarea id="multiBibleText" aria-hidden="true" tabindex="-1" rows="1"></textarea>
 </div></div>
 </div>
-<button id="multiScreenCloseBottom" type="button" class="chordio-multi-close-bottom">CLOSE</button>
 </div>
 <div id="chordioBackgroundLibraryModal" class="chordio-background-library-modal" aria-hidden="true">
   <div class="chordio-background-library-dialog" role="dialog" aria-modal="true" aria-labelledby="chordioBackgroundLibraryTitle">
@@ -2509,5 +2499,44 @@ body.custom-dark{background:#eef1f5!important;color:#151a20!important;}
  .song-page-header{padding:14px 16px!important;flex-direction:column!important;}
  .song-page-actions{width:100%!important;justify-content:flex-start!important;}
  .song-paper{width:calc(100vw - 20px)!important;margin:12px auto 35px!important;padding:30px 22px 50px!important;}
+}
+</style>
+
+<style id="chordio-v68-final-adjustments">
+/* V68 — requested final adjustments */
+#multiScreenControl #multiScreenCloseBottom{display:none!important;}
+#stage .line.song-line>.chord,#stage .line.song-line>.lyrics{
+  font-size:calc(20px + var(--song-font-extra,3px))!important;
+  line-height:calc(20px + var(--song-font-extra,3px))!important;
+}
+@media print{
+  @page{size:A4 landscape;margin:10mm;}
+  #worshipHubPrintRoot{
+    width:100%!important;
+    box-sizing:border-box!important;
+  }
+  #worshipHubPrintRoot .print-song-content{
+    column-count:2!important;
+    column-width:auto!important;
+    column-gap:8mm!important;
+    column-fill:auto!important;
+    height:170mm!important;
+    max-height:170mm!important;
+    break-after:auto!important;
+    page-break-after:auto!important;
+    overflow:visible!important;
+  }
+  #worshipHubPrintRoot .song-section{
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+  #worshipHubPrintRoot .song-line{
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+  #worshipHubPrintRoot .song-line .chord,
+  #worshipHubPrintRoot .song-line .print-lyric-text{
+    line-height:20px!important;
+  }
 }
 </style>

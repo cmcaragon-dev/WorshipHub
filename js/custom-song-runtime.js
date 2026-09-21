@@ -1157,7 +1157,6 @@ function printCustomSong(){
         <div class="print-song-key">SONG KEY: ${esc(serviceKey||song.originalKey||song.key||"—")}</div>
         <div class="print-song-passing"><b>PASSING CHORDS:</b> ${esc(passingText||"—")}</div>
         <div class="print-song-rule"></div>
-        <div class="print-song-content-title">LYRICS AND CHORDS</div>
       </div>
       <div class="print-song-content">
         <div class="wh-print-source-content song"></div>
@@ -2691,14 +2690,6 @@ function initMultiScreen(){
         window.addEventListener("message",e=>{if(e.data?.type==="chordio-multiscreen-request")try{e.source?.postMessage(multiScreenMessage(),"*")}catch(_){} });
         document.getElementById("multiScreenControl")?.addEventListener("click",e=>{if(e.target.id==="multiScreenControl")multiScreenCloseControl();});
         document.getElementById("multiScreenClose")?.addEventListener("click",multiScreenCloseControl);
-        document.getElementById("multiScreenCloseBottom")?.addEventListener("click",()=>{
-            const ok=window.confirm("Are you sure you want to close?");
-            if(!ok)return;
-            multiScreenCloseAll();
-            multiScreenCloseControl();
-            if(typeof window.chordioGoHome==="function") window.chordioGoHome();
-            else window.location.href=new URL("index.html",window.location.href).href;
-        });
         document.getElementById("multiEditServiceButton")?.addEventListener("click",()=>openMultiServicePlannerEditor());
         document.getElementById("multiAddSongClose")?.addEventListener("click",closeMultiAddSong);
         document.getElementById("multiAddSongCancel")?.addEventListener("click",closeMultiAddSong);
