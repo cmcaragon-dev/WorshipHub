@@ -1160,7 +1160,6 @@ function printCustomSong(){
         <div class="print-song-key">SONG KEY: ${esc(serviceKey||song.originalKey||song.key||"—")}</div>
         <div class="print-song-passing"><b>PASSING CHORDS:</b> ${esc(passingText||"—")}</div>
         <div class="print-song-rule"></div>
-        <div class="print-song-content-title">LYRICS AND CHORDS</div>
       </div>
       <div class="print-song-content">
         <div class="wh-print-source-content song"></div>
@@ -2139,6 +2138,20 @@ function initUnifiedMultiScreenOutputSettings(){
     }
     drawer.classList.add("chordio-screen-settings-popup");
 
+    // There is one close button for the whole SCREEN OUTPUT SETTINGS panel.
+    // Remove/hide the old per-screen close controls so there can never be four.
+    drawer.querySelectorAll(".multi-popup-close,.multi-screen-settings-close,.multi-preview-settings-close").forEach(el=>el.remove());
+    let globalClose=drawer.querySelector(".chordio-screen-settings-global-close");
+    if(!globalClose){
+        globalClose=document.createElement("button");
+        globalClose.type="button";
+        globalClose.className="chordio-screen-settings-global-close";
+        globalClose.setAttribute("aria-label","Close screen output settings");
+        globalClose.title="Close";
+        globalClose.textContent="✕";
+        drawer.appendChild(globalClose);
+    }
+
     if(btn.dataset.bound==="1")return;
     btn.dataset.bound="1";
 
@@ -2152,11 +2165,9 @@ function initUnifiedMultiScreenOutputSettings(){
     };
 
     btn.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();open();});
+    globalClose.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();close();});
     // Clicking the overlay/backdrop closes the popup.
     drawer.addEventListener("click",ev=>{if(ev.target===drawer)close();});
-    drawer.querySelectorAll(".multi-popup-close,.multi-screen-settings-close").forEach(b=>
-        b.addEventListener("click",ev=>{ev.preventDefault();ev.stopPropagation();close();})
-    );
     document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&drawer.classList.contains("phase16-open"))close();});
 }
 
@@ -2167,8 +2178,11 @@ function renderMultiScreenPreviews(){
     document.querySelectorAll(".multi-preview-card-settings[data-portal='1']").forEach(el=>el.remove());
     box.innerHTML="";
     const visible=multiScreenVisibleSections(),selected=visible[multiScreenCurrentSection]?.section,settings=getMultiLyricsSettings();
-    const count=Math.max(1,Math.min(4,Number(multiScreenPreviewCount)||4));
-    const slots=multiScreenPreviewSlots.slice(0,count);
+    // The preview represents only the outputs currently marked USE.
+    // 1 used screen = 1 preview, 2 used screens = 2 previews, etc.
+    const enabledSlots=multiScreenPreviewSlots.filter(n=>multiScreenEnabled[n]!==false);
+    const count=Math.min(4,enabledSlots.length);
+    const slots=enabledSlots.slice(0,count);
     box.classList.remove("preview-count-1","preview-count-2","preview-count-3","preview-count-4","preview-expanded");
     box.classList.add(`preview-count-${count}`);if(multiScreenPreviewExpanded)box.classList.add("preview-expanded");
 
@@ -2176,6 +2190,12 @@ function renderMultiScreenPreviews(){
     // The preview cards themselves remain visible.
     const grid=document.createElement("div");grid.className="multi-screen-preview-layout";box.appendChild(grid);
     const screens=slots;
+    if(!screens.length){
+        const empty=document.createElement("div");
+        empty.className="multi-screen-preview-empty-state";
+        empty.textContent="No screens are currently set to USE.";
+        grid.appendChild(empty);
+    }
     screens.forEach(n=>{
         const card=document.createElement("div");
         card.className="multi-screen-preview-card"+(multiScreenEnabled[n]===false?" disabled":"")+(multiScreenPreviewExpanded===n?" expanded":"");
