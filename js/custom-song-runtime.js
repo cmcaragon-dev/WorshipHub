@@ -1139,23 +1139,78 @@ async function stopCustomService(){
 
 function printCustomSong(){
     if(!song) return;
-    const root=document.createElement("div"); root.id="worshipHubPrintRoot";
-    root.innerHTML=`<div class="print-song-header"><div class="print-song-meta"><div class="print-song-title">${esc(song.title||"Untitled Song")}</div><div class="print-song-info"><span><b>Artist:</b> ${esc(song.artist||"")}</span><span><b>Original Key:</b> ${esc(song.originalKey||song.key||"")}</span><span><b>Service Key:</b> ${esc(song.serviceKey||song.key||song.originalKey||"")}</span></div></div></div><div class="print-song-content"><div class="wh-print-source-content song"></div></div>`;
+
+    // Build a clean print-only document. There is intentionally no preview/modal:
+    // the browser's normal print dialog opens immediately.
+    const root=document.createElement("div");
+    root.id="worshipHubPrintRoot";
+    root.className="chordio-direct-print-root";
+
+    const passingItems=customPassingChords();
+    const passingText=passingItems.map(([label,value])=>`${label}: ${value}`).join("  |  ");
+    const serviceKey=customServiceKey();
+
+    root.innerHTML=`
+      <div class="print-song-header">
+        <div class="print-song-title">${esc(song.title||"Untitled Song")}</div>
+        <div class="print-song-artist">${esc(song.artist||"")}</div>
+        <div class="print-song-key">SONG KEY: ${esc(serviceKey||song.originalKey||song.key||"—")}</div>
+        <div class="print-song-passing"><b>PASSING CHORDS:</b> ${esc(passingText||"—")}</div>
+        <div class="print-song-rule"></div>
+        <div class="print-song-content-title">LYRICS AND CHORDS</div>
+      </div>
+      <div class="print-song-content">
+        <div class="wh-print-source-content song"></div>
+      </div>`;
+
     const source=root.querySelector(".wh-print-source-content.song");
+
     normalizeSections(song.sections).forEach(section=>{
-        const sec=document.createElement("section"); sec.className="song-section";
-        const title=document.createElement("div"); title.className="section-title"; title.textContent=`${section.type||""} ${section.number||""}`.trim(); sec.appendChild(title);
+        const sec=document.createElement("section");
+        sec.className="song-section";
+        const title=document.createElement("div");
+        title.className="section-title";
+        title.textContent=`${section.type||""} ${section.number||""}`.trim();
+        sec.appendChild(title);
+
         (section.lines||[]).forEach(line=>{
-            const row=document.createElement("div"); row.className="song-line";
-            const chord=document.createElement("span"); chord.className="chord"; chord.textContent=transposeChord(line.chordText||chordRowFromPositions(line),transposeSteps);
-            const lyric=document.createElement("span"); lyric.className="print-lyric-text"; lyric.textContent=line.lyrics||"";
-            row.appendChild(chord); row.appendChild(document.createElement("br")); row.appendChild(lyric); sec.appendChild(row);
-        }); source.appendChild(sec);
+            const row=document.createElement("div");
+            row.className="song-line";
+
+            const chord=document.createElement("span");
+            chord.className="chord";
+            chord.textContent=transposeChord(
+                line.chordText||chordRowFromPositions(line),
+                transposeSteps
+            );
+
+            const lyric=document.createElement("span");
+            lyric.className="print-lyric-text";
+            lyric.textContent=line.lyrics||"";
+
+            row.appendChild(chord);
+            row.appendChild(document.createElement("br"));
+            row.appendChild(lyric);
+            sec.appendChild(row);
+        });
+
+        source.appendChild(sec);
     });
+
     document.getElementById("worshipHubPrintRoot")?.remove();
     document.body.appendChild(root);
-    root.querySelectorAll(".section-title").forEach(t=>{t.style.background="#FFD700";t.style.color="#000";});
-    window.WorshipHubPrintPreview?.open(root);
+    document.body.classList.add("chordio-direct-printing");
+
+    const cleanup=()=>{
+        document.body.classList.remove("chordio-direct-printing");
+        root.remove();
+        window.removeEventListener("afterprint",cleanup);
+    };
+    window.addEventListener("afterprint",cleanup);
+
+    // Give the browser one paint so the print stylesheet can measure the
+    // two-column A4 layout before the native print dialog opens.
+    requestAnimationFrame(()=>window.print());
 }
 
 
