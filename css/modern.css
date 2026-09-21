@@ -1073,15 +1073,3 @@ button,input,select,textarea{max-width:100%;box-sizing:border-box}
   .dashboard{grid-template-columns:1fr 1fr!important}
   .topbar .top-actions{width:100%!important}
 }
-
-/* CHORDIO V73 — Bible Verse replaces Total Users dashboard card */
-.chordio-bible-dashboard-card{display:flex!important;flex-direction:column!important;justify-content:center!important;min-width:0!important;}
-.chordio-bible-dashboard-head{display:flex!important;align-items:center!important;gap:7px!important;font-size:9px!important;font-weight:900!important;letter-spacing:.07em!important;color:#a47c00!important;}
-.chordio-bible-dashboard-text{margin-top:9px!important;font-size:12px!important;line-height:1.4!important;font-weight:750!important;color:#253746!important;}
-.chordio-bible-dashboard-ref{margin-top:6px!important;font-size:10px!important;font-weight:900!important;color:#64748b!important;}
-/* Portal settings is appended directly to <body>, so its visibility must not depend on #multiScreenControl. */
-.multi-preview-card-settings[data-portal="1"]{display:none!important;position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;z-index:2147483647!important;box-sizing:border-box!important;align-items:center!important;justify-content:center!important;padding:20px!important;background:rgba(15,23,42,.72)!important;backdrop-filter:blur(7px)!important;}
-.multi-preview-card-settings[data-portal="1"].open{display:flex!important;}
-.multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-dialog{width:min(520px,94vw)!important;max-height:min(720px,92vh)!important;overflow:auto!important;background:#fff!important;border-radius:18px!important;box-shadow:0 30px 100px rgba(0,0,0,.38)!important;}
-.multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-head{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:16px!important;padding:20px!important;border-bottom:1px solid #e6eaf0!important;background:#fff!important;}
-.multi-preview-card-settings[data-portal="1"] .multi-preview-settings-close{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:36px!important;height:36px!important;flex:0 0 36px!important;border:1px solid #d0d5dd!important;border-radius:10px!important;background:#fff!important;color:#667085!important;cursor:pointer!important;font-weight:900!important;font-size:16px!important;}

@@ -768,90 +768,6 @@ body{min-height:100vh!important}
 }
 </style>
 
-
-<style id="chordio-v69-final-adjustments">
-/* V69 — final Multi-Screen controls + true Song Page zoom */
-#multiScreenControl .multi-screen-head{position:relative!important;z-index:50!important;display:flex!important;align-items:center!important;gap:8px!important;}
-#multiScreenControl .multi-screen-head-brand{position:relative!important;z-index:1!important;flex:1 1 auto!important;min-width:0!important;}
-#multiScreenControl .multi-screen-head #chordioLiveToggle{position:relative!important;z-index:100!important;display:inline-flex!important;visibility:visible!important;opacity:1!important;align-items:center!important;justify-content:center!important;}
-#multiScreenControl .multi-screen-head #multiScreenClose{position:relative!important;z-index:101!important;display:inline-flex!important;visibility:visible!important;opacity:1!important;align-items:center!important;justify-content:center!important;width:40px!important;height:40px!important;flex:0 0 40px!important;background:#fff!important;color:#b51d28!important;border:1px solid #d7a0a4!important;border-radius:9px!important;font-size:18px!important;font-weight:900!important;cursor:pointer!important;}
-#multiScreenControl .multi-screen-head #multiScreenClose:hover{background:#fff4f4!important;border-color:#b51d28!important;}
-#multiScreenControl .multi-screen-head #chordioLiveToggle{height:36px!important;min-width:96px!important;font-size:10px!important;}
-#multiScreenControl .multi-screen-live-status{position:relative!important;z-index:30!important;display:inline-flex!important;visibility:visible!important;opacity:1!important;font-size:8px!important;line-height:1!important;min-width:58px!important;padding:3px 5px!important;white-space:nowrap!important;}
-
-/* True zoom: +A/-A scales the complete song content together. */
-#songPaper{--song-zoom:1!important;}
-#songPaper #stage{font-size:16px!important;line-height:1.15!important;}
-#songPaper #stage .line.song-line>.chord,#songPaper #stage .line.song-line>.lyrics{font-size:inherit!important;line-height:inherit!important;}
-#songPaper #stage .line.song-line{transform-origin:top left!important;}
-#songPaper.song-zoom-active #stage{transform:scale(var(--song-zoom))!important;transform-origin:top left!important;width:calc(100% / var(--song-zoom))!important;}
-@media(max-width:700px){
- #multiScreenControl .multi-screen-head #chordioLiveToggle{min-width:82px!important;height:34px!important;font-size:9px!important;}
- #multiScreenControl .multi-screen-head #multiScreenClose{width:36px!important;height:36px!important;flex-basis:36px!important;}
-}
-</style>
-
-<style id="chordio-v70-screen-settings-preview-print">
-/* V70 — print cleanup and USE-driven preview layout */
-@media print{
-  body.chordio-direct-printing{min-height:0!important;height:auto!important;overflow:visible!important;}
-  #worshipHubPrintRoot{min-height:0!important;height:auto!important;}
-  #worshipHubPrintRoot .print-song-content-title{display:none!important;}
-  #worshipHubPrintRoot .print-song-content{
-    break-before:auto!important;
-    break-after:auto!important;
-    page-break-before:auto!important;
-    page-break-after:auto!important;
-    overflow:visible!important;
-  }
-  #worshipHubPrintRoot .song-section,
-  #worshipHubPrintRoot .song-line{
-    break-before:auto!important;
-    break-after:auto!important;
-  }
-}
-
-/* Preview contains exactly the screens marked USE. */
-#multiScreenControl .multi-screen-preview-empty-state{
-  min-height:140px!important;display:flex!important;align-items:center!important;justify-content:center!important;
-  color:#91a0af!important;font-size:11px!important;font-weight:800!important;
-  border:1px dashed #435362!important;border-radius:10px!important;
-}
-
-/* SCREEN OUTPUT SETTINGS: exactly one close control, fixed to the panel's top-left. */
-body .multi-output-settings-in-preview.chordio-screen-settings-popup.phase16-open{
-  position:fixed!important;
-}
-body .multi-output-settings-in-preview.chordio-screen-settings-popup .chordio-screen-settings-global-close{
-  position:fixed!important;left:22px!important;top:22px!important;z-index:2147483647!important;
-  width:38px!important;height:38px!important;padding:0!important;
-  display:none!important;align-items:center!important;justify-content:center!important;
-  border:1px solid #d7a0a4!important;border-radius:9px!important;
-  background:#fff!important;color:#b51d28!important;font-size:18px!important;font-weight:900!important;
-  cursor:pointer!important;box-shadow:0 5px 18px rgba(0,0,0,.28)!important;
-}
-body .multi-output-settings-in-preview.chordio-screen-settings-popup.phase16-open .chordio-screen-settings-global-close{
-  display:inline-flex!important;
-}
-/* The four screen cards form a clean 2x2 grid inside the single settings panel. */
-body .multi-output-settings-in-preview.chordio-screen-settings-popup.phase16-open>.multi-screen-grid .multi-screen-card{
-  grid-column:auto!important;
-}
-/* No per-screen duplicate close buttons in the unified settings panel. */
-body .multi-output-settings-in-preview.chordio-screen-settings-popup .multi-popup-close,
-body .multi-output-settings-in-preview.chordio-screen-settings-popup .multi-screen-settings-close{
-  display:none!important;
-}
-
-/* Header order: Auto-save → LIVE → one CLOSE, with CLOSE immediately to LIVE's right. */
-#multiScreenControl .multi-screen-head{
-  display:flex!important;align-items:center!important;
-}
-#multiScreenControl .multi-screen-head .chordio-autosave{order:2!important;margin-left:auto!important;}
-#multiScreenControl .multi-screen-head #chordioLiveToggle{order:3!important;margin-left:0!important;}
-#multiScreenControl .multi-screen-head #multiScreenClose{order:4!important;margin-left:0!important;}
-</style>
-
 </head>
 <body>
 <main class="song-paper" id="songPaper">
@@ -959,7 +875,7 @@ body .multi-output-settings-in-preview.chordio-screen-settings-popup .multi-scre
 
 <section class="multi-top-center-panel"><div class="multi-section-head"><strong>CHOOSE SONG PART</strong><span id="multiScreenCurrent">No section selected</span></div><div class="multi-section-buttons" id="multiSectionButtons"></div><div class="multi-part-preview-head"><strong>SELECTED PART — LYRICS PREVIEW</strong></div><div class="multi-part-lyrics-preview v53-lyrics-preview" id="multiPartLyricsPreview">
 <div class="multi-preview-empty">Select a song part.</div>
-</div><div class="multi-part-preview-help">Compact preview. Click any part above to move the HDMI display to that section.</div></section></section>
+</div></section></section>
 <aside class="multi-screen-column">
 <div class="multi-screen-preview-panel multi-screen-preview-panel-large">
 <div class="multi-section-head multi-screen-output-preview-head"><strong>SCREEN OUTPUT PREVIEW</strong><button type="button" id="multiScreenOutputSettingsBtn" class="multi-screen-output-settings-btn" aria-label="Open screen output settings">⚙ SETTINGS</button></div>
@@ -1030,6 +946,7 @@ body .multi-output-settings-in-preview.chordio-screen-settings-popup .multi-scre
 <textarea id="multiBibleText" aria-hidden="true" tabindex="-1" rows="1"></textarea>
 </div></div>
 </div>
+<button id="multiScreenCloseBottom" type="button" class="chordio-multi-close-bottom">CLOSE</button>
 </div>
 <div id="chordioBackgroundLibraryModal" class="chordio-background-library-modal" aria-hidden="true">
   <div class="chordio-background-library-dialog" role="dialog" aria-modal="true" aria-labelledby="chordioBackgroundLibraryTitle">
@@ -1094,9 +1011,7 @@ body .multi-output-settings-in-preview.chordio-screen-settings-popup .multi-scre
     size=Math.max(0,Math.min(14,size));
     let lyricsOnlyMode=sessionStorage.getItem('chordioLyricsOnly')==='1';
     const apply=()=>{
-      paper.style.setProperty('--song-font-extra','0px');
-      paper.style.setProperty('--song-zoom',String(1 + (size/10)));
-      paper.classList.add('song-zoom-active');
+      paper.style.setProperty('--song-font-extra',`${size}px`);
       paper.classList.toggle('lyrics-only-mode',lyricsOnlyMode);
       if(lyricsOnly){lyricsOnly.classList.toggle('active',lyricsOnlyMode);lyricsOnly.setAttribute('aria-pressed',String(lyricsOnlyMode));}
     };
@@ -1326,6 +1241,73 @@ body.multi-screen-output-page #multiOutputBackground{inset:0!important}
   #multiScreenControl .multi-bible-grid{grid-template-columns:1fr 1fr!important}
   #multiScreenControl .multi-bible-grid label:first-child{grid-column:1/-1!important}
   #multiScreenControl .multi-bible-actions{grid-column:1/-1!important;grid-template-columns:1fr!important}
+}
+</style>
+
+<style id="chordio-v73-preview-space-final">
+/* CHORDIO V73 — equal-height control panels + maximize Screen Output Preview space. */
+#multiScreenControl .v53-layout{
+  align-items:stretch!important;
+}
+#multiScreenControl .multi-service-column,
+#multiScreenControl .v53-center-panel,
+#multiScreenControl .multi-screen-column{
+  height:700px!important;
+  min-height:0!important;
+  box-sizing:border-box!important;
+}
+#multiScreenControl .multi-song-panel-left,
+#multiScreenControl .v53-center-panel,
+#multiScreenControl .multi-screen-preview-panel-large{
+  height:700px!important;
+  min-height:0!important;
+  max-height:none!important;
+  box-sizing:border-box!important;
+}
+#multiScreenControl .multi-screen-preview-panel-large{
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+}
+#multiScreenControl .multi-screen-preview-panel-large > .multi-screen-output-preview-head{
+  flex:0 0 auto!important;
+}
+#multiScreenControl .multi-screen-preview-panel-large > .multi-screen-previews{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  height:auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+}
+#multiScreenControl .multi-screen-preview-panel-large .multi-screen-preview-toolbar{
+  flex:0 0 38px!important;
+}
+#multiScreenControl .multi-screen-preview-panel-large .multi-screen-preview-layout{
+  flex:1 1 auto!important;
+  height:auto!important;
+  min-height:0!important;
+  width:100%!important;
+  align-content:stretch!important;
+}
+#multiScreenControl .multi-screen-preview-panel-large .multi-screen-preview-layout .multi-screen-preview-card{
+  min-height:0!important;
+  height:auto!important;
+}
+#multiScreenControl .multi-screen-preview-panel-large .multi-screen-preview-layout .multi-screen-preview-stage{
+  flex:1 1 auto!important;
+  height:auto!important;
+  min-height:0!important;
+}
+@media(max-width:950px){
+  #multiScreenControl .multi-service-column,
+  #multiScreenControl .v53-center-panel,
+  #multiScreenControl .multi-screen-column,
+  #multiScreenControl .multi-song-panel-left,
+  #multiScreenControl .v53-center-panel,
+  #multiScreenControl .multi-screen-preview-panel-large{
+    height:auto!important;
+  }
 }
 </style>
 </body>
