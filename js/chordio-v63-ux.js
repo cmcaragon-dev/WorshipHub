@@ -24,11 +24,7 @@
       <button type="button" id="settingsBtn" class="chordio-sidebar-action settings-action"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></button>
       <button type="button" class="chordio-sidebar-action" data-sidebar-quick="help"><span class="quick-icon"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span><span>Help & Shortcuts</span></button>
       <button type="button" class="chordio-sidebar-action" data-sidebar-quick="import"><span class="quick-icon"><i class="fa-solid fa-link" aria-hidden="true"></i></span><span>Import Song</span></button>
-      <div class="chordio-bible-day" aria-label="Bible Verse of the Day">
-        <div class="chordio-bible-day-head"><i class="fa-solid fa-book-bible" aria-hidden="true"></i><span>BIBLE VERSE OF THE DAY</span></div>
-        <div id="sidebarBibleVerseText" class="chordio-bible-day-text">“Trust in the LORD with all your heart.”</div>
-        <div id="sidebarBibleVerseRef" class="chordio-bible-day-ref">Proverbs 3:5</div>
-      </div>
+
     </div>`;
     side.addEventListener('click',e=>{
       const b=e.target.closest('[data-sidebar-quick],#settingsBtn'); if(!b)return;
@@ -305,7 +301,7 @@ function presets(){document.querySelectorAll('[data-lyrics-preset]').forEach(b=>
     ['“Commit thy works unto the LORD.”','Proverbs 16:3'],
     ['“Let all that ye do be done with charity.”','1 Corinthians 16:14']
   ];
-  function render(){const now=new Date();const day=Math.floor(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())/86400000);const v=verses[((day%verses.length)+verses.length)%verses.length];const t=document.getElementById('sidebarBibleVerseText'),r=document.getElementById('sidebarBibleVerseRef');if(t)t.textContent=v[0];if(r)r.textContent=v[1];}
+  function render(){const now=new Date();const day=Math.floor(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())/86400000);const v=verses[((day%verses.length)+verses.length)%verses.length];const t=document.getElementById('dashboardBibleVerseText'),r=document.getElementById('dashboardBibleVerseRef');if(t)t.textContent=v[0];if(r)r.textContent=v[1];}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render);else render();
 })();
 

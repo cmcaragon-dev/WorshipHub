@@ -2180,7 +2180,7 @@ function renderMultiScreenPreviews(){
     const visible=multiScreenVisibleSections(),selected=visible[multiScreenCurrentSection]?.section,settings=getMultiLyricsSettings();
     // The preview represents only the outputs currently marked USE.
     // 1 used screen = 1 preview, 2 used screens = 2 previews, etc.
-    const enabledSlots=multiScreenPreviewSlots.filter(n=>multiScreenEnabled[n]!==false);
+    const enabledSlots=[1,2,3,4].filter(n=>multiScreenEnabled[n]!==false);
     const count=Math.min(4,enabledSlots.length);
     const slots=enabledSlots.slice(0,count);
     box.classList.remove("preview-count-1","preview-count-2","preview-count-3","preview-count-4","preview-expanded");

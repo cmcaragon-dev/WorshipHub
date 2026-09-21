@@ -384,19 +384,6 @@ const STORAGE_KEYS = {
 ===================================== */
 
 
-async function loadTotalUsersCount(){
-    const target=document.getElementById("totalUsers");
-    if(!target) return;
-    try{
-        const snap=await getDocs(collection(db,"users"));
-        window.chordioTotalUsers=snap.size;
-        target.textContent=snap.size.toLocaleString();
-    }catch(error){
-        console.warn("Unable to load total users count:",error);
-        if(!Number.isFinite(window.chordioTotalUsers)) target.textContent="—";
-    }
-}
-window.loadTotalUsersCount=loadTotalUsersCount;
 
 async function recordSiteVisit(){
     const countedKey='chordioSiteVisitCounted';
@@ -451,7 +438,6 @@ onAuthStateChanged(auth, async function(user) {
         if (typeof renderAllSongsTable === "function") renderAllSongsTable(songs);
         if (typeof renderServices === "function") renderServices();
         if (typeof updateDashboard === "function") updateDashboard();
-        await loadTotalUsersCount();
         await loadSiteVisitCount();
         await recordSiteVisit();
         return;
@@ -482,7 +468,6 @@ onAuthStateChanged(auth, async function(user) {
     // These operations update the page as their results arrive.
     Promise.allSettled([
         loadCurrentUserProfile(),
-        loadTotalUsersCount(),
         loadSiteVisitCount(),
         recordSiteVisit()
     ]);
@@ -996,8 +981,6 @@ function updateDashboard(){
     if(totalServices){
         totalServices.textContent = services.length;
     }
-    const totalUsers=document.getElementById("totalUsers");
-    if(totalUsers && Number.isFinite(window.chordioTotalUsers)) totalUsers.textContent=Number(window.chordioTotalUsers).toLocaleString();
 
     const current =
         document.getElementById("currentService");
