@@ -683,105 +683,67 @@ window.printSong = function printSong() {
     const song = normalizeSong(getSongFromPage());
     const title = song?.title || document.querySelector(".song-title")?.textContent?.trim() || "CHORDIO";
     const artist = song?.artist || document.querySelector(".song-meta .meta-row:nth-child(1) .meta-value")?.textContent?.trim() || "";
+    const originalKey = song?.originalKey || song?.key || document.querySelector(".song-meta .meta-row:nth-child(2) .meta-value")?.textContent?.trim() || "";
     const serviceKey = getServiceKey(song);
     const passing = buildPrintPassingChords(song);
 
     document.getElementById("worshipHubPrintRoot")?.remove();
-    document.getElementById("chordioSongDirectPrintStyle")?.remove();
-
     const root = document.createElement("div");
     root.id = "worshipHubPrintRoot";
-    root.className = "chordio-song-direct-print";
     root.innerHTML = `
-        <article class="song-direct-print-page">
-            <header class="song-direct-print-header">
-                <h1>${esc(title)}</h1>
-                <div class="song-direct-print-artist"><b>ARTIST:</b> ${esc(artist)}</div>
-                <div class="song-direct-print-key"><b>SONG KEY:</b> ${esc(serviceKey || "—")}</div>
-                <div class="song-direct-print-passing"><b>PASSING CHORDS:</b>
-                    ${passing.map(([label, value]) => `<span class="song-direct-print-passing-item"><b>${esc(label)}:</b> ${esc(value)}</span>`).join(' <span class="song-direct-print-separator">|</span> ')}
+        <div class="print-song-header">
+            <div class="print-song-meta">
+                <div class="print-song-title">${esc(title)}</div>
+                <div class="print-song-info">
+                    <span><b>Artist:</b> ${esc(artist)}</span>
+                    <span><b>Original Key:</b> ${esc(originalKey)}</span>
+                    <span><b>Service Key:</b> ${esc(serviceKey)}</span>
                 </div>
-                <div class="song-direct-print-rule"></div>
-            </header>
-            <div class="song-direct-print-content"></div>
-        </article>
+            </div>
+            <div class="print-passing" aria-label="Auto-generated passing chords">
+                ${passing.map(([label, value]) => `
+                    <span class="print-passing-item">
+                        <span class="print-passing-label">${esc(label)}:</span>
+                        <span class="print-passing-value">${esc(value)}</span>
+                    </span>
+                `).join(' <span class="print-passing-separator" aria-hidden="true">|</span> ')}
+            </div>
+        </div>
+        <div class="print-song-content"></div>
     `;
-
-    const content = root.querySelector(".song-direct-print-content");
-    const clone = source.cloneNode(true);
-    clone.removeAttribute("id");
-    clone.classList.add("wh-print-source-content");
-    clone.style.cssText = "display:block!important;visibility:visible!important;height:auto!important;max-height:none!important;overflow:visible!important;position:static!important;transform:none!important;";
-
-    clone.querySelectorAll("button,input,select,textarea,script,style,.song-toolbar,.presentationScreen,#presentationScreen,.service-note-popup,.saved-service-note").forEach(el => el.remove());
-    clone.querySelectorAll(".section-title").forEach(el => {
-        el.style.background = "transparent";
-        el.style.color = "#111";
-        el.style.fontWeight = "900";
+    const printContent = root.querySelector(".print-song-content");
+    const printClone = source.cloneNode(true);
+    printClone.removeAttribute("id");
+    printClone.classList.add("wh-print-source-content");
+    printClone.style.display = "block";
+    printClone.style.visibility = "visible";
+    printClone.style.height = "auto";
+    printClone.style.maxHeight = "none";
+    printClone.style.overflow = "visible";
+    printClone.querySelectorAll(".section-title").forEach((title) => {
+        const label = String(title.textContent || "").trim();
+        const shouldHighlight = /^(VERSE|CHORUS|BRIDGE|INTERLUDE)\b/i.test(label);
+        title.classList.toggle("print-highlight-section", shouldHighlight);
+        title.style.background = shouldHighlight ? "#FFD700" : "transparent";
+        title.style.color = shouldHighlight ? "#000" : "#111";
     });
-    clone.querySelectorAll(".song-line,.song-line *,.chord").forEach(el => {
-        el.classList.remove("highlight","highlighted","active","chord-highlight");
-        el.style.background = "transparent";
-        el.style.boxShadow = "none";
-        el.style.textShadow = "none";
-        if (!el.classList.contains("chord")) {
-            el.style.color = "#111";
-            el.style.webkitTextFillColor = "#111";
-        }
+    // Absolutely no highlight on lyrics/chords. Only section headings may be yellow.
+    printClone.querySelectorAll(".song-line, .song-line *, .chord").forEach((node) => {
+        node.classList.remove("highlight", "highlighted", "active", "chord-highlight");
+        node.style.background = "transparent";
+        node.style.boxShadow = "none";
+        node.style.textShadow = "none";
+        node.style.color = "#111";
+        node.style.webkitTextFillColor = "#111";
     });
-    content.appendChild(clone);
+    printContent.appendChild(printClone);
     document.body.appendChild(root);
-
-    const style = document.createElement("style");
-    style.id = "chordioSongDirectPrintStyle";
-    style.textContent = `
-      #worshipHubPrintRoot{display:none!important;}
-      body.chordio-song-direct-printing{background:#fff!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot{display:block!important;position:static!important;visibility:visible!important;background:#fff!important;color:#111!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-direct-print-page{
-        display:flex!important;flex-direction:column!important;position:relative!important;
-        width:297mm!important;height:210mm!important;min-height:210mm!important;
-        box-sizing:border-box!important;padding:12mm 14mm 10mm!important;margin:0 auto!important;
-        background:#fff!important;color:#111!important;overflow:hidden!important;
-        break-after:page!important;page-break-after:always!important;font-family:Arial,Helvetica,sans-serif!important;
-      }
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-direct-print-page:last-child{break-after:auto!important;page-break-after:auto!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-direct-print-header{flex:0 0 auto!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot h1{margin:0 0 3px!important;font-size:22pt!important;line-height:1.08!important;color:#111!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-direct-print-artist{font-size:11pt!important;font-weight:600!important;margin-bottom:4px!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-direct-print-key{font-size:10pt!important;margin-bottom:5px!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-direct-print-passing{font-size:8.5pt!important;line-height:1.3!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-direct-print-passing-item{display:inline-block!important;margin-right:5px!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-direct-print-rule{height:1px!important;background:#222!important;width:100%!important;margin:6px 0 8px!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-direct-print-content{
-        font-size:9.5pt!important;line-height:1.08!important;column-count:2!important;column-gap:9mm!important;
-        column-fill:auto!important;column-width:auto!important;flex:1 1 auto!important;min-height:0!important;height:auto!important;overflow:hidden!important;
-      }
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-section{display:block!important;margin:0 0 8px!important;break-inside:avoid!important;page-break-inside:avoid!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot .section-title{display:block!important;background:transparent!important;color:#111!important;font-weight:900!important;text-transform:uppercase!important;letter-spacing:.05em!important;margin:0 0 2px!important;padding:0!important;font-size:9.5pt!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-line{display:block!important;margin:0 0 2px!important;padding:0!important;white-space:pre-wrap!important;font-family:Consolas,"Courier New",monospace!important;line-height:1.02!important;break-inside:avoid!important;page-break-inside:avoid!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-line .chord{display:block!important;color:#d21f2f!important;-webkit-text-fill-color:#d21f2f!important;font-weight:800!important;white-space:pre!important;}
-      body.chordio-song-direct-printing #worshipHubPrintRoot .song-line .print-lyric-text{display:block!important;color:#111!important;-webkit-text-fill-color:#111!important;white-space:pre-wrap!important;}
-      @media screen{body.chordio-song-direct-printing #worshipHubPrintRoot{position:fixed!important;inset:0!important;z-index:999999!important;background:#e9edf2!important;overflow:auto!important;}body.chordio-song-direct-printing #worshipHubPrintRoot .song-direct-print-page{margin:0 auto 18px!important;box-shadow:0 4px 18px rgba(0,0,0,.12)!important;}}
-      @media print{
-        @page{size:A4 landscape;margin:0;}
-        body.chordio-song-direct-printing>*:not(#worshipHubPrintRoot){display:none!important;}
-        body.chordio-song-direct-printing #worshipHubPrintRoot{display:block!important;position:static!important;background:#fff!important;}
-        body.chordio-song-direct-printing #worshipHubPrintRoot .song-direct-print-page{box-shadow:none!important;margin:0!important;}
-      }
-    `;
-    document.head.appendChild(style);
-
-    document.body.classList.add("chordio-song-direct-printing");
-    const cleanup = () => {
-        document.body.classList.remove("chordio-song-direct-printing");
-        document.getElementById("worshipHubPrintRoot")?.remove();
-        document.getElementById("chordioSongDirectPrintStyle")?.remove();
-        window.removeEventListener("afterprint", cleanup);
-    };
-    window.addEventListener("afterprint", cleanup, { once:true });
-    setTimeout(cleanup, 60000);
-    setTimeout(() => window.print(), 50);
+    if (window.WorshipHubPrintPreview) {
+        window.WorshipHubPrintPreview.open(root);
+    } else {
+        document.body.classList.add("worshiphub-printing");
+        setTimeout(() => window.print(), 50);
+    }
 };
 
 function bindPresentationButtons() {
