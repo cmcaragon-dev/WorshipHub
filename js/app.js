@@ -20,7 +20,8 @@ import {
     setDoc,
     deleteDoc,
     serverTimestamp,
-    increment
+    increment,
+    writeBatch
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
@@ -50,6 +51,128 @@ function syncCustomSongsIntoLibrary() {
     } catch (error) {
         console.warn("Unable to sync custom songs:", error);
     }
+}
+
+
+// =====================================
+// SONG LIBRARY QUALITY / SELAH REPAIR
+// =====================================
+const SONG_LIBRARY_REPAIR_VERSION = "2026-09-24-v2";
+const TAGALOG_WORDS = ["ang","ng","mga","ako","ikaw","siya","atin","ating","aming","mo","ko","ka","sa","kay","para","hindi","wala","may","ito","iyon","bawat","lahat","puso","pag","panginoon","hesus","salamat","pag-ibig","kanya","inyong","aking","buhay","ganda","umaawit","awit","puri","magpuri","dakila","banal","kamay","umawit","ligaya","ngiti","ginawa","pag-ibig"];
+const PRAISE_WORDS = ["praise","praising","rejoice","celebrate","celebration","shout","dance","hallelujah","glory","victory","joy"];
+const WORSHIP_WORDS = ["worship","holy","presence","surrender","adore","adoration","bow","kneel","majesty","faithful","lord","jesus","savior","saviour","cross","sacrifice","love"];
+function repairClean(v){return String(v??"").replace(/\u00a0/g," ").replace(/\r/g,"").trim();}
+function repairChordOnly(v){
+    const t=repairClean(v); if(!t)return false;
+    const tokens=t.split(/\s+/).filter(Boolean); if(!tokens.length||tokens.length>28)return false;
+    const re=/^(?:[A-G](?:#|b)?(?:m|maj|min|sus|add|dim|aug|7|9|11|13|6|4|5|2|\+|-)*(?:\/[A-G](?:#|b)?)?|N\.?C\.?|\(\d+x\)|\((?:break|repeat)\)|[–—-])$/i;
+    return tokens.every(x=>re.test(x));
+}
+function repairChordTokens(text){
+    return repairClean(text).split(/\s+/).filter(Boolean).map((chord,i)=>({id:`repair-chord-${Date.now()}-${i}-${Math.random().toString(36).slice(2,6)}`,chord:chord.replace(/[–—]/g,"-"),originalChord:chord.replace(/[–—]/g,"-"),position:0}));
+}
+function repairHeading(v){
+    const t=repairClean(v).replace(/^\[|\]$/g,"").replace(/[:\-]+$/g,"").trim();
+    const m=t.match(/^(intro(?:duction)?|verse|v\.?\s*\d*|chorus|koro|pre[- ]?(?:chorus|koro)|bridge|tag|instrumental|interlude|outro|ending|end|coda|refrain|ending chorus)\s*(?:#|[- ]*)?(\d+)?$/i);
+    if(!m)return null;
+    const raw=m[1].toLowerCase().replace(/\s+/g," "); let type="Verse";
+    if(/^intro/.test(raw))type="Intro"; else if(/^chorus$|^koro$|^refrain$|ending chorus/.test(raw))type="Chorus"; else if(/^pre/.test(raw))type="Pre-Chorus"; else if(/^bridge/.test(raw))type="Bridge"; else if(/^tag/.test(raw))type="Tag"; else if(/^instrumental/.test(raw))type="Instrumental"; else if(/^interlude/.test(raw))type="Interlude"; else if(/^outro|^ending|^end|^coda/.test(raw))type="Outro";
+    return {type,number:Number(m[2])||1};
+}
+function rebuildSectionsFromSource(song){
+    const html=String(song?.sourceHtmlPreserved||""); if(!html||!/<(?:p|br)\b/i.test(html))return null;
+    const doc=new DOMParser().parseFromString(html,"text/html");
+    const nodes=[...doc.querySelectorAll("p")]; const blocks=nodes.length?nodes:[...doc.body.children]; const lines=[];
+    for(const el of blocks){
+        const clone=el.cloneNode(true); clone.querySelectorAll("br").forEach(br=>br.replaceWith("\n"));
+        String(clone.textContent||"").replace(/\u00a0/g," ").replace(/\r/g,"").split("\n").forEach(raw=>{const v=raw.trimEnd(); if(repairClean(v))lines.push(v);});
+    }
+    const sections=[]; let current=null; const counts={};
+    const add=(type,num)=>{counts[type]=(counts[type]||0)+1; current={id:`repair-section-${Date.now()}-${sections.length}`,type,number:num||counts[type],lines:[]};sections.push(current);};
+    for(let i=0;i<lines.length;i++){
+        let line=lines[i], heading=repairHeading(line); if(heading){add(heading.type,heading.number);continue;}
+        if(!current)add("Verse",1);
+        if(/^\(?no\s+lyrics\)?$/i.test(repairClean(line))||/^\(?no\s+chords\)?$/i.test(repairClean(line)))continue;
+        // Common bad import pattern: a chord row was stored as lyrics, followed by a placeholder.
+        if(repairChordOnly(line) && i+1<lines.length && !repairChordOnly(lines[i+1]) && !/^\(?no\s+(?:lyrics|chords)\)?$/i.test(repairClean(lines[i+1]))){
+            const lyric=lines[++i].trim(); current.lines.push({id:`repair-line-${Date.now()}-${i}`,lyrics:lyric,chordText:line,chords:repairChordTokens(line)}); continue;
+        }
+        // If a chord-only row is followed by NO LYRICS and then a real lyric, keep the chord row and pair it.
+        if(repairChordOnly(line) && i+2<lines.length && /^\(?no\s+lyrics\)?$/i.test(repairClean(lines[i+1])) && !repairChordOnly(lines[i+2])){
+            const lyric=lines[i+2].trim(); i+=2; current.lines.push({id:`repair-line-${Date.now()}-${i}`,lyrics:lyric,chordText:line,chords:repairChordTokens(line)}); continue;
+        }
+        // If the imported lyric field itself contains only chords, move it to chordText.
+        if(repairChordOnly(line)) current.lines.push({id:`repair-line-${Date.now()}-${i}`,lyrics:"",chordText:line,chords:repairChordTokens(line)});
+        else current.lines.push({id:`repair-line-${Date.now()}-${i}`,lyrics:line,chordText:"",chords:[]});
+    }
+    const cleaned=sections.filter(sec=>sec.lines.some(l=>repairClean(l.lyrics)||repairClean(l.chordText)));
+    return cleaned.length?cleaned:null;
+}
+function detectSongLanguage(song,pageHtml=""){
+    const page=String(pageHtml||"").toLowerCase();
+    if(/song-category-tagalog|\btagalog\b|\bfilipino\b/.test(page))return "Tagalog";
+    if(/song-category-english|\benglish\b/.test(page))return "English";
+    const text=[song?.title,song?.sourceHtmlPreserved,...(song?.sections||[]).flatMap(s=>(s.lines||[]).map(l=>l?.lyrics||""))].join(" ").toLowerCase();
+    const words=(text.match(/[a-záéíóúñ'-]+/g)||[]); let score=0;
+    words.forEach(w=>{if(TAGALOG_WORDS.includes(w))score++;});
+    return score>=2?"Tagalog":"English";
+}
+function detectSongCategory(song,pageHtml=""){
+    const page=String(pageHtml||"").toLowerCase();
+    if(/(?:category|class|tag)[^\n]{0,80}\bpraise\b|song-category-praise|\bpraise\b/.test(page))return "Praise";
+    if(/(?:category|class|tag)[^\n]{0,80}\bworship\b|song-category-worship|\bworship\b/.test(page))return "Worship";
+    const text=[song?.title,song?.sourceHtmlPreserved,...(song?.sections||[]).flatMap(s=>(s.lines||[]).map(l=>l?.lyrics||""))].join(" ").toLowerCase();
+    const p=PRAISE_WORDS.reduce((n,w)=>n+(text.match(new RegExp(`\\b${w}\\b`,"g"))||[]).length,0);
+    const w=WORSHIP_WORDS.reduce((n,x)=>n+(text.match(new RegExp(`\\b${x}\\b`,"g"))||[]).length,0);
+    return p>w?"Praise":"Worship";
+}
+function extractArtistFromSelahHtml(pageHtml,title){
+    if(!pageHtml)return ""; const doc=new DOMParser().parseFromString(String(pageHtml),"text/html");
+    const cleanArtist=v=>{let x=repairClean(v).replace(/^(?:by|artist|singer|performed\s+by|song\s+by)\s*[:\-]?\s*/i,"").trim(); if(!x||x.length>120)return ""; if(/^(?:selah|songs?|lyrics?|chords?|key|home|menu|search|share|copyright|admin|login|register)$/i.test(x))return ""; return x;};
+    const target=repairClean(title).toLowerCase();
+    for(const sel of ['[data-artist]','[itemprop="byArtist"]','[itemprop="artist"]','[class*="song-artist"]','[class*="artist-name"]','[class*="artist"]','[id*="artist"]'])for(const el of [...doc.querySelectorAll(sel)]){const v=cleanArtist(el.getAttribute("data-artist")||el.textContent||"");if(v&&v.toLowerCase()!==target)return v;}
+    const hs=[...doc.querySelectorAll("h1,h2,h3")]; const h=hs.find(el=>repairClean(el.textContent).toLowerCase()===target)||hs.find(el=>repairClean(el.textContent).toLowerCase().includes(target));
+    if(h){let n=h;for(let d=0;d<3&&n;d++,n=n.parentElement){for(const el of [...n.children]){const v=cleanArtist(el.textContent||"");if(v&&v.toLowerCase()!==target&&!/^(?:key|verse|chorus|bridge|intro|outro|lyrics|chords)\b/i.test(v))return v;}}}
+    return "";
+}
+async function fetchRepairPage(url){
+    for(const target of [url,`https://r.jina.ai/${url}`]){try{const r=await fetch(target,{mode:"cors",credentials:"omit",cache:"no-store"});if(r.ok){const t=await r.text();if(t&&t.length>200)return t;}}catch(_){} }
+    return "";
+}
+async function repairSongLibrary(records){
+    const source=Array.isArray(records)?records:[]; let changed=0; const updated=[];
+    for(const original of source){
+        const s={...original}; let page="";
+        const isSelah=s?.source==="Selah"||String(s?.id||"").startsWith("selah-");
+        if(isSelah&&s.sourceUrl)page=await fetchRepairPage(String(s.sourceUrl));
+        const rebuilt=rebuildSectionsFromSource(s); if(rebuilt){s.sections=rebuilt;s.structuredVersion=2;s.contentVersion=2;}
+        if(isSelah){
+            const artist=extractArtistFromSelahHtml(page,s.title); if(artist)s.artist=artist;
+            s.language=detectSongLanguage(s,page);
+            s.category=detectSongCategory(s,page);
+        }else if(!["English","Tagalog"].includes(String(s.language||""))) s.language=detectSongLanguage(s,"");
+        updated.push(s);
+    }
+    const sorted=[...updated].sort((a,b)=>String(a.title||"").localeCompare(String(b.title||""),undefined,{sensitivity:"base",numeric:true}));
+    const numberById=new Map(sorted.map((s,i)=>[String(s.id),i+1]));
+    updated.forEach(s=>{const n=numberById.get(String(s.id));if(n)s.songNumber=n;});
+    changed=updated.length;
+    return {songs:updated,changed,total:updated.length};
+}
+async function runSongLibraryRepairIfNeeded(){
+    if(localStorage.getItem("chordioSongLibraryRepairVersion")==SONG_LIBRARY_REPAIR_VERSION)return;
+    try{
+        const repaired=await repairSongLibrary(songs);
+        repaired.songs.forEach(s=>{const i=songs.findIndex(x=>String(x.id)===String(s.id));if(i>=0)songs[i]=s;});
+        try{localStorage.setItem("worshipHubCustomSongs",JSON.stringify(songs.filter(s=>s.customSong)));}catch(_){}
+        if(auth.currentUser && repaired.songs.length){
+            for(let start=0;start<repaired.songs.length;start+=400){const batch=writeBatch(db);for(const s of repaired.songs.slice(start,start+400))batch.set(doc(collection(db,"songs"),String(s.id)),{...s,updatedAt:serverTimestamp()},{merge:true});await batch.commit();}
+        }
+        localStorage.setItem("chordioSongLibraryRepairVersion",SONG_LIBRARY_REPAIR_VERSION);
+        if(typeof renderSongs==="function")renderSongs(songs);
+        if(typeof renderAllSongsTable==="function")renderAllSongsTable(songs);
+        console.info(`CHORDIO Song Library repair complete: ${repaired.total} songs normalized and numbered.`);
+    }catch(error){console.warn("CHORDIO Song Library repair skipped/failed:",error);}
 }
 
 function hasStructuredLyrics(song){
@@ -436,6 +559,7 @@ onAuthStateChanged(auth, async function(user) {
         if (guestName) guestName.textContent = "Guest";
         renderSongs(songs);
         if (typeof renderAllSongsTable === "function") renderAllSongsTable(songs);
+        await runSongLibraryRepairIfNeeded();
         if (typeof renderServices === "function") renderServices();
         if (typeof updateDashboard === "function") updateDashboard();
         await loadSiteVisitCount();
@@ -476,6 +600,7 @@ onAuthStateChanged(auth, async function(user) {
         try {
             await migrateLocalDeletedTitlesToFirebase();
             await syncAllSongDocumentsIntoLibrary();
+            await runSongLibraryRepairIfNeeded();
             filterDeletedSongsFromLibrary();
             removeDuplicateSongTitles();
             songsReady = true;
@@ -1036,6 +1161,7 @@ function renderSongs(songList) {
         <div class="song-card" data-song-id="${escapeHtml(song.id)}">
             <h3>${escapeHtml(song.title || "Untitled Song")}</h3>
             <p><strong>Artist:</strong> ${escapeHtml(song.artist || "—")}</p>
+            <p><strong>ID:</strong> ${escapeHtml(song.songNumber ?? "—")}</p>
             <p><strong>Key:</strong> ${escapeHtml(song.key || song.originalKey || "—")}</p>
             <p><strong>Category:</strong> ${escapeHtml(song.category || "—")}</p>
             <div class="song-card-actions ${canManageSongs ? "song-card-actions-managed" : "song-card-actions-basic"}">

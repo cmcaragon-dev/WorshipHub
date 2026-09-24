@@ -71,15 +71,30 @@ function chordRowFromPositionsNoTranspose(line) {
 }
 
 function normalizeSections(raw) {
-    return (Array.isArray(raw) ? raw : []).map(section => ({
-        ...section,
-        lines:(Array.isArray(section?.lines) ? section.lines : []).map(line => ({
-            ...line,
-            lyrics:String(line?.lyrics || ""),
-            chordText: typeof line?.chordText === "string" ? line.chordText : chordRowFromPositionsNoTranspose(line),
-            chords:(Array.isArray(line?.chords) ? line.chords : []).map(normalizeChord)
-        }))
-    }));
+    const isChordOnly = value => {
+        const t=String(value||"").trim(); if(!t)return false;
+        const tokens=t.split(/\s+/).filter(Boolean); if(!tokens.length||tokens.length>28)return false;
+        const re=/^(?:[A-G](?:#|b)?(?:m|maj|min|sus|add|dim|aug|7|9|11|13|6|4|5|2|\+|-)*(?:\/[A-G](?:#|b)?)?|N\.?C\.?|[–—-]|\((?:break|repeat|\d+x)\))$/i;
+        return tokens.every(x=>re.test(x));
+    };
+    const isPlaceholder = value => /^\(?no\s+(?:lyrics|chords)\)?$/i.test(String(value||"").trim());
+    return (Array.isArray(raw) ? raw : []).map(section => {
+        const source=(Array.isArray(section?.lines) ? section.lines : []).map(line => ({
+            ...line, lyrics:String(line?.lyrics || ""), chordText:typeof line?.chordText === "string" ? line.chordText : chordRowFromPositionsNoTranspose(line), chords:(Array.isArray(line?.chords) ? line.chords : []).map(normalizeChord)
+        }));
+        const repaired=[];
+        for(let i=0;i<source.length;i++){
+            const line=source[i];
+            if(isPlaceholder(line.lyrics)&&!String(line.chordText||"").trim())continue;
+            if(isChordOnly(line.lyrics)&&!String(line.chordText||"").trim()){line.chordText=line.lyrics;line.lyrics="";line.chords=line.chords?.length?line.chords:[];}
+            if(String(line.chordText||"").trim() && (isPlaceholder(line.lyrics)||!String(line.lyrics||"").trim())){
+                let j=i+1; while(j<source.length&&isPlaceholder(source[j].lyrics)&&!String(source[j].chordText||"").trim())j++;
+                if(j<source.length && String(source[j].lyrics||"").trim() && !String(source[j].chordText||"").trim()){line.lyrics=source[j].lyrics;i=j;}
+            }
+            if(!isPlaceholder(line.lyrics)||String(line.chordText||"").trim())repaired.push(line);
+        }
+        return {...section,lines:repaired};
+    });
 }
 
 
@@ -211,7 +226,7 @@ function render() {
                 return d.toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"});
             }catch(_){return String(v);}
         };
-        meta.textContent=`Song ID: ${song.id||"—"}  |  Date Added: ${fmtDate(song.createdAt||song.dateAdded||song.createdDate)}  |  Last Update: ${fmtDate(song.updatedAt||song.lastUpdated||song.modifiedAt)}`;
+        meta.textContent=`Song ID: ${song.songNumber ?? song.id ?? "—"}  |  Date Added: ${fmtDate(song.createdAt||song.dateAdded||song.createdDate)}  |  Last Update: ${fmtDate(song.updatedAt||song.lastUpdated||song.modifiedAt)}`;
     }
     const stage = document.getElementById("stage");
     if (!stage) return;
@@ -1158,10 +1173,9 @@ function printCustomSong(){
         <div class="print-song-title">${esc(song.title||"Untitled Song")}</div>
         <div class="print-song-artist">${esc(song.artist||"")}</div>
         <div class="print-song-key">SONG KEY: ${esc(serviceKey||song.originalKey||song.key||"—")}</div>
-        <div class="print-song-passing"><b>PASSING CHORDS:</b> ${esc(passingText||"—")}</div>
+        <div class="print-song-passing"><b>PASSING CHORDS:</b> <span class="print-passing-value">${esc(passingText||"—")}</span></div>
         <div class="print-song-rule"></div>
       </div>
-      <div class="print-song-content-title">LYRICS AND CHORDS</div>
       <div class="print-song-content">
         <div class="wh-print-source-content song"></div>
       </div>`;

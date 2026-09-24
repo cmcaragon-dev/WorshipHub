@@ -8,6 +8,16 @@
 <link rel="icon" type="image/png" href="images/chordio-favicon.png">
 <title>CHORDIO — Song</title>
 <link href="css/modern.css" rel="stylesheet"/>
+<style id="chordio-song-format-v20260924">
+.song-page-artist,.song-page-content,.song-line,.lyrics,.chord{font-family:Roboto,Arial,"Segoe UI",sans-serif!important;}
+.section-title{background:#e9ecef!important;color:#30343a!important;border-radius:4px!important;padding:5px 9px!important;font-weight:800!important;}
+.song-passing-chords .custom-presentation-passing-value,.custom-presentation-passing-value{color:#c00000!important;font-weight:800!important;}
+#songKey{color:#c00000!important;font-weight:900!important;}
+#worshipHubPrintRoot .print-song-key{color:#c00000!important;font-weight:900!important;}
+#worshipHubPrintRoot .print-song-passing{color:#111!important;}
+#worshipHubPrintRoot .print-song-passing .print-passing-value{color:#c00000!important;font-weight:900!important;}
+#worshipHubPrintRoot .section-title{background:#e9ecef!important;color:#30343a!important;padding:4px 7px!important;border-radius:3px!important;}
+</style>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#05070c;color:#fff;font-family:Inter,"Segoe UI",Arial,sans-serif}button{cursor:pointer}.top{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;padding:14px 18px;background:#10182a;border-bottom:1px solid #26334d}.title{flex:1}.title h1{margin:0;font-size:20px}.title small{color:#9fb0ca}.key{font-weight:800;color:#D4AF37}.controls button{border:1px solid #D4AF37;background:#182238;color:#fff;border-radius:8px;padding:8px 12px}.controls button:hover{background:#3a3117;color:#FFD966}.stage{max-width:1400px;margin:0 auto;padding:36px 5vw}.section{margin-bottom:44px}.section-title{text-transform:uppercase;letter-spacing:.12em;color:#D4AF37;font-size:18px;font-weight:800;margin-bottom:22px}.line{font-family:Consolas,Monaco,"Courier New",monospace;margin-bottom:22px;overflow-x:auto}.chords{position:relative;height:32px;white-space:pre;color:#D4AF37 !important;font-size:clamp(18px,2vw,27px);font-weight:800}.chord{position:absolute;white-space:nowrap;color:#D4AF37 !important}.lyrics{white-space:pre;font-size:clamp(22px,3vw,40px);line-height:1.35}.nav{display:flex;justify-content:center;gap:10px;padding:14px;background:#0c1220;border-top:1px solid #26334d;position:sticky;bottom:0}.nav button{border:1px solid #35435e;background:#182238;color:#fff;border-radius:8px;padding:10px 16px;font-weight:800}.nav span{padding:10px 14px;color:#aebbd0}.nav button:disabled{opacity:.35;cursor:not-allowed}.chord{color:#D4AF37 !important}.empty{padding:80px;text-align:center;color:#9fb0ca}
 </style>
@@ -606,7 +616,7 @@ body{min-height:100vh!important}
     height:0!important;
     margin:2mm 0 2mm!important;
   }
-  #worshipHubPrintRoot .print-song-content-title{
+  #worshipHubPrintRoot .print-song-content-title{display:none!important;
     font-size:9pt!important;
     line-height:1.2!important;
     font-weight:900!important;
@@ -796,7 +806,7 @@ body{min-height:100vh!important}
 @media print{
   body.chordio-direct-printing{min-height:0!important;height:auto!important;overflow:visible!important;}
   #worshipHubPrintRoot{min-height:0!important;height:auto!important;}
-  #worshipHubPrintRoot .print-song-content-title{display:none!important;}
+  #worshipHubPrintRoot .print-song-content-title{display:none!important;display:none!important;}
   #worshipHubPrintRoot .print-song-content{
     break-before:auto!important;
     break-after:auto!important;
@@ -994,6 +1004,16 @@ body .multi-output-settings-in-preview.chordio-screen-settings-popup .multi-scre
     display:none!important;
   }
 }
+</style>
+<style id="chordio-song-format-final">
+/* Final CHORDIO song-page formatting overrides */
+.song-passing-chords .custom-presentation-passing-value,.custom-presentation-passing-value{color:#c00000!important;font-weight:900!important;}
+#songKey{color:#c00000!important;font-weight:900!important;}
+.section-title{background:#e9ecef!important;color:#30343a!important;border-radius:4px!important;padding:5px 9px!important;font-weight:800!important;}
+body.chordio-direct-printing #worshipHubPrintRoot .section-title{background:#e9ecef!important;color:#30343a!important;border-radius:3px!important;padding:4px 7px!important;}
+body.chordio-direct-printing #worshipHubPrintRoot .print-song-key{color:#c00000!important;font-weight:900!important;}
+body.chordio-direct-printing #worshipHubPrintRoot .print-song-passing .print-passing-value{color:#c00000!important;font-weight:900!important;}
+body.chordio-direct-printing #worshipHubPrintRoot .print-song-content-title{display:none!important;}
 </style>
 </head>
 <body>

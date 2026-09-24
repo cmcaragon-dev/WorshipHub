@@ -365,7 +365,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 1
   },
   {
     "title": "Ako'y Nananabik",
@@ -990,7 +991,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 2
   },
   {
     "title": "Alay Sa Pagsamba",
@@ -1267,7 +1269,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 3
   },
   {
     "title": "Always",
@@ -1712,7 +1715,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 7
   },
   {
     "title": "Amazing Grace",
@@ -1996,7 +2000,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 8
   },
   {
     "title": "Awit ng Pasasalamat",
@@ -2500,7 +2505,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 13
   },
   {
     "title": "Awiting May Galak",
@@ -3005,7 +3011,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 15
   },
   {
     "title": "Beautiful Saviour",
@@ -3555,7 +3562,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 17
   },
   {
     "title": "Blessed Be The Name Of The Lord",
@@ -4259,7 +4267,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 22
   },
   {
     "title": "Diyos Ka Sa Amin",
@@ -4819,7 +4828,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 37
   },
   {
     "title": "For the Lord is my Tower",
@@ -4936,7 +4946,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 47
   },
   {
     "title": "For You Alone",
@@ -5243,7 +5254,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 50
   },
   {
     "title": "Forever",
@@ -5741,7 +5753,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 52
   },
   {
     "title": "Freely Forgiven",
@@ -6029,7 +6042,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 55
   },
   {
     "title": "Give Thanks",
@@ -6271,7 +6285,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 58
   },
   {
     "title": "Great Is The Lord",
@@ -6578,7 +6593,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 64
   },
   {
     "title": "Happy Day",
@@ -7041,7 +7057,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 67
   },
   {
     "title": "Holy Forever",
@@ -7725,7 +7742,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 75
   },
   {
     "title": "Holy, Holy, Holy",
@@ -8004,7 +8022,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 77
   },
   {
     "title": "How Good It Is",
@@ -8514,7 +8533,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 80
   },
   {
     "title": "How Great is our God",
@@ -8845,7 +8865,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 83
   },
   {
     "title": "I Give You Glory",
@@ -9067,7 +9088,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 91
   },
   {
     "title": "I Love This Family",
@@ -9230,7 +9252,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 95
   },
   {
     "title": "I Sing Praises To Your Name",
@@ -9413,7 +9436,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 97
   },
   {
     "title": "Ikaw Lamang",
@@ -9631,7 +9655,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 110
   },
   {
     "title": "It's Your Blood",
@@ -9826,7 +9851,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 118
   },
   {
     "title": "Itatanghal",
@@ -10432,7 +10458,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 120
   },
   {
     "title": "Kahanga Hanga",
@@ -10914,7 +10941,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 129
   },
   {
     "title": "Kamusta Ka Na",
@@ -11275,7 +11303,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 134
   },
   {
     "title": "Magpakailanman",
@@ -11637,7 +11666,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 145
   },
   {
     "title": "Mahal na Mahal Kita Panginoon",
@@ -11878,7 +11908,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 146
   },
   {
     "title": "Mga Pangako Mo",
@@ -12311,7 +12342,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 150
   },
   {
     "title": "My Life is in you Lord",
@@ -12498,7 +12530,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 153
   },
   {
     "title": "Napakabuti Mo",
@@ -13015,7 +13048,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 156
   },
   {
     "title": "Ngalan Mo'y Itataas",
@@ -13107,7 +13141,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 158
   },
   {
     "title": "O Kay Saya at Kay Ganda",
@@ -13518,7 +13553,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 165
   },
   {
     "title": "Papuri Kay Yahweh",
@@ -14028,7 +14064,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 174
   },
   {
     "title": "Sa Biyaya",
@@ -14707,7 +14744,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 182
   },
   {
     "title": "Sabik Sa Presensya",
@@ -15008,7 +15046,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 186
   },
   {
     "title": "Sama Samang Nagpupuri",
@@ -15431,7 +15470,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 188
   },
   {
     "title": "Sukdulang Biyaya",
@@ -15888,7 +15928,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 200
   },
   {
     "title": "Sumigaw sa Galak",
@@ -16075,7 +16116,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 201
   },
   {
     "title": "Tayo Na Sama Sama",
@@ -16669,7 +16711,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 203
   },
   {
     "title": "Tinapay ng Buhay",
@@ -17236,7 +17279,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 216
   },
   {
     "title": "Wala Kang Katulad",
@@ -17628,7 +17672,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 224
   },
   {
     "title": "Worthy is the Lamb",
@@ -18074,7 +18119,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 235
   },
   {
     "title": "You Are God Alone",
@@ -18513,7 +18559,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 239
   },
   {
     "title": "You, You Are God",
@@ -19011,7 +19058,8 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 246
   },
   {
     "title": "Your Grace Is Enough",
@@ -19367,14 +19415,15 @@ export const songs = [
       }
     ],
     "contentVersion": 2,
-    "sourceMigratedFromHtml": true
+    "sourceMigratedFromHtml": true,
+    "songNumber": 247
   },
   {
     "title": "Such Love",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-13321",
     "id": "selah-13321",
     "customSong": true,
@@ -19932,13 +19981,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: </strong> D</p>\n<p><strong>Intro:</strong><br />\nD &#8211; Bm7 &#8211; Em7 &#8211; A7 &#8211; D &#8211; A7&#8230;</p>\n<p><strong>Verse 1:</strong><br />\n      D    Bm7                Em7        A7<br />\nSuch love,     pure as the whitest snow<br />\n      Em7 &#8211; A7                 G       D    F#7<br />\nSuch love,      weeps for the shame I know<br />\n     Bm7  &#8211; /A              G          Gaug<br />\nSuch love,      paying the debt I owe<br />\n   D-  Bm7-Em7   A7   D      A7<br />\nO  Je sus,      such love</p>\n<p><strong>Verse 2:</strong><br />\n      D    Bm7              Em7            A7<br />\nSuch love,      stilling my restlessness<br />\n      Em7 &#8211; A7               G    D    F#7<br />\nSuch love,       filling my emptiness<br />\n     Bm7  &#8211; /A              G          Gaug<br />\nSuch love,       showing me holiness<br />\n   D-  Bm7-Em7   A7   D      A7<br />\nO Je   sus,     such love</p>\n<p><strong> Verse 3:</strong><br />\n      E    C#m7               F#m7     B7<br />\nSuch love,      springs from eternity<br />\n      F#m7 &#8211; B7                     A &#8211; E    G#7<br />\nSuch love,       streaming through history<br />\n     C#m7 &#8211; /B                A          Aug<br />\nSuch love,       fountain of life to me<br />\n   E &#8211; C#m7 &#8211; F#m7    B7   E<br />\nO Je   sus,          such love</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: </strong> D</p>\n<p><strong>Intro:</strong><br />\nD &#8211; Bm7 &#8211; Em7 &#8211; A7 &#8211; D &#8211; A7&#8230;</p>\n<p><strong>Verse 1:</strong><br />\n      D    Bm7                Em7        A7<br />\nSuch love,     pure as the whitest snow<br />\n      Em7 &#8211; A7                 G       D    F#7<br />\nSuch love,      weeps for the shame I know<br />\n     Bm7  &#8211; /A              G          Gaug<br />\nSuch love,      paying the debt I owe<br />\n   D-  Bm7-Em7   A7   D      A7<br />\nO  Je sus,      such love</p>\n<p><strong>Verse 2:</strong><br />\n      D    Bm7              Em7            A7<br />\nSuch love,      stilling my restlessness<br />\n      Em7 &#8211; A7               G    D    F#7<br />\nSuch love,       filling my emptiness<br />\n     Bm7  &#8211; /A              G          Gaug<br />\nSuch love,       showing me holiness<br />\n   D-  Bm7-Em7   A7   D      A7<br />\nO Je   sus,     such love</p>\n<p><strong> Verse 3:</strong><br />\n      E    C#m7               F#m7     B7<br />\nSuch love,      springs from eternity<br />\n      F#m7 &#8211; B7                     A &#8211; E    G#7<br />\nSuch love,       streaming through history<br />\n     C#m7 &#8211; /B                A          Aug<br />\nSuch love,       fountain of life to me<br />\n   E &#8211; C#m7 &#8211; F#m7    B7   E<br />\nO Je   sus,          such love</p>\n",
+    "songNumber": 198
   },
   {
     "title": "No More Night",
     "artist": "Selah",
     "key": "",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-13317",
     "id": "selah-13317",
@@ -20118,13 +20168,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: </strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong></p>\n<p>The timeless theme, earth and heaven will pass away</p>\n<p>It&#8217;s not a dream, God will make all things new that day</p>\n<p>Gone is the curse from which I stumbled and fell</p>\n<p>Evil is banished to eternal hell</p>\n<p><strong>Chorus 1:</strong></p>\n<p>No more night, no more pain</p>\n<p>No more tears, never crying again</p>\n<p>And praises to the great &#8220;I AM&#8221;</p>\n<p>We will live in the light of The Risen Lamb</p>\n<p><strong>Verse 2:</strong></p>\n<p>See all around, now the nations bow down to sing</p>\n<p>The only sound is the praises to Christ, my King</p>\n<p>Slowly the names from the book are read</p>\n<p>I know the King, so there&#8217;s no need, no need to dread</p>\n<p><strong>Chorus 2:</strong></p>\n<p>No more night, no more pain</p>\n<p>No more tears, never crying again</p>\n<p>And praises to the great &#8220;I AM&#8221;</p>\n<p>We will live in the light of The Risen Lamb</p>\n<p><strong>Bridge:</strong></p>\n<p>See over there, there&#8217;s a mansion</p>\n<p>Oh that&#8217;s prepared just for me</p>\n<p>Where I will live with my Savior eternally</p>\n<p><strong>Chorus 3:</strong></p>\n<p>No more night, no more pain</p>\n<p>No more tears, never crying again</p>\n<p>And praises to the great &#8220;I AM&#8221;</p>\n<p>We&#8217;re gonna live in the light of The Risen Lamb</p>\n<p><strong>Ending :</strong></p>\n<p>Yes&#8230;. We&#8217;re gonna live in the light of The Risen Lamb!</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: </strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong></p>\n<p>The timeless theme, earth and heaven will pass away</p>\n<p>It&#8217;s not a dream, God will make all things new that day</p>\n<p>Gone is the curse from which I stumbled and fell</p>\n<p>Evil is banished to eternal hell</p>\n<p><strong>Chorus 1:</strong></p>\n<p>No more night, no more pain</p>\n<p>No more tears, never crying again</p>\n<p>And praises to the great &#8220;I AM&#8221;</p>\n<p>We will live in the light of The Risen Lamb</p>\n<p><strong>Verse 2:</strong></p>\n<p>See all around, now the nations bow down to sing</p>\n<p>The only sound is the praises to Christ, my King</p>\n<p>Slowly the names from the book are read</p>\n<p>I know the King, so there&#8217;s no need, no need to dread</p>\n<p><strong>Chorus 2:</strong></p>\n<p>No more night, no more pain</p>\n<p>No more tears, never crying again</p>\n<p>And praises to the great &#8220;I AM&#8221;</p>\n<p>We will live in the light of The Risen Lamb</p>\n<p><strong>Bridge:</strong></p>\n<p>See over there, there&#8217;s a mansion</p>\n<p>Oh that&#8217;s prepared just for me</p>\n<p>Where I will live with my Savior eternally</p>\n<p><strong>Chorus 3:</strong></p>\n<p>No more night, no more pain</p>\n<p>No more tears, never crying again</p>\n<p>And praises to the great &#8220;I AM&#8221;</p>\n<p>We&#8217;re gonna live in the light of The Risen Lamb</p>\n<p><strong>Ending :</strong></p>\n<p>Yes&#8230;. We&#8217;re gonna live in the light of The Risen Lamb!</p>\n",
+    "songNumber": 159
   },
   {
     "title": "Pasasalamat",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-12864",
     "id": "selah-12864",
@@ -20895,13 +20946,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\n Bb &#8211; C/Bb &#8211; Am7 &#8211; Dm7 &#8211; Gm7 &#8211; C &#8211; F &#8211; Bb/C</p>\n<p><strong>Verse:</strong><br />\n    F2                      Dm7<br />\nPupurihin namin ang Iyong pangalan<br />\n   Gm7                 C<br />\nAawitan nang may kadakilaan<br />\n           Am7             Dm7<br />\nIkaw ang Diyos na aming kanlungan<br />\n         Gm7           C   Bbm/C<br />\nPag-asa nami&#8217;t kaligtasan<br />\n       F              Dm7<br />\nPasasalamat ang aming alay<br />\n      Gm7              C    C/Bb<br />\nPasasalamat, alay mong buhay<br />\n       Am7            Dm7<br />\nKadakilaan mo&#8217;y pasalamatan<br />\n              Gm7             C<br />\nAng pag ibig Mo&#8217;y wagas kailanman</p>\n<p><strong>Chorus:</strong><br />\n        Bb &#8211; C/Bb   Am7 &#8211; Dm7<br />\nSa&#8217;Yo&#8217;y alay aming buhay<br />\n Gm7               C     Cm7 &#8211; F7<br />\nIkaw ang Diyos na aming gabay<br />\n      Bb &#8211; C/Bb  Am7 &#8211; Dm7<br />\nSa dalangin, aawitin<br />\n   Gm7     C      F2    (Modulation: C/D&#8230;)<br />\nKadakilaan Mo sa amin </p>\n<p><strong>Chorus:</strong><br />\n        C &#8211; D/C     Bm7 &#8211; Em7<br />\nSa&#8217;Yo&#8217;y alay aming buhay<br />\n Am7     C/D             Dm7 &#8211; G7<br />\nIkaw ang Diyos na aming gabay<br />\n     C &#8211; D/C   Bm7 &#8211; Em7<br />\nSa dalangin, aawitin<br />\n Am7       C/D    G<br />\nKadakilaan Mo sa amin<br />\n        C &#8211; D/C     Bm7 &#8211; Em7<br />\nSa&#8217;Yo&#8217;y alay aming buhay<br />\n Am7     C/D             Dm7 &#8211; G7<br />\nIkaw ang Diyos na aming gabay<br />\n     C &#8211; D/C   Bm7 &#8211; Em7<br />\nSa dalangin, aawitin</p>\n<p><strong>Ending:</strong><br />\n Am7       C/D    G /F Em<br />\nKadakilaan Mo sa amin<br />\n Am7       C/D    G /F Em<br />\nKadakilaan Mo sa amin<br />\n Am7       C/D    G  (Outro: C2 &#8211; D/C &#8211; Bm7 &#8211; Em7 &#8211; Am7 &#8211; C/D &#8211; Cm &#8211; G)<br />\nKadakilaan Mo sa amin</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\n Bb &#8211; C/Bb &#8211; Am7 &#8211; Dm7 &#8211; Gm7 &#8211; C &#8211; F &#8211; Bb/C</p>\n<p><strong>Verse:</strong><br />\n    F2                      Dm7<br />\nPupurihin namin ang Iyong pangalan<br />\n   Gm7                 C<br />\nAawitan nang may kadakilaan<br />\n           Am7             Dm7<br />\nIkaw ang Diyos na aming kanlungan<br />\n         Gm7           C   Bbm/C<br />\nPag-asa nami&#8217;t kaligtasan<br />\n       F              Dm7<br />\nPasasalamat ang aming alay<br />\n      Gm7              C    C/Bb<br />\nPasasalamat, alay mong buhay<br />\n       Am7            Dm7<br />\nKadakilaan mo&#8217;y pasalamatan<br />\n              Gm7             C<br />\nAng pag ibig Mo&#8217;y wagas kailanman</p>\n<p><strong>Chorus:</strong><br />\n        Bb &#8211; C/Bb   Am7 &#8211; Dm7<br />\nSa&#8217;Yo&#8217;y alay aming buhay<br />\n Gm7               C     Cm7 &#8211; F7<br />\nIkaw ang Diyos na aming gabay<br />\n      Bb &#8211; C/Bb  Am7 &#8211; Dm7<br />\nSa dalangin, aawitin<br />\n   Gm7     C      F2    (Modulation: C/D&#8230;)<br />\nKadakilaan Mo sa amin </p>\n<p><strong>Chorus:</strong><br />\n        C &#8211; D/C     Bm7 &#8211; Em7<br />\nSa&#8217;Yo&#8217;y alay aming buhay<br />\n Am7     C/D             Dm7 &#8211; G7<br />\nIkaw ang Diyos na aming gabay<br />\n     C &#8211; D/C   Bm7 &#8211; Em7<br />\nSa dalangin, aawitin<br />\n Am7       C/D    G<br />\nKadakilaan Mo sa amin<br />\n        C &#8211; D/C     Bm7 &#8211; Em7<br />\nSa&#8217;Yo&#8217;y alay aming buhay<br />\n Am7     C/D             Dm7 &#8211; G7<br />\nIkaw ang Diyos na aming gabay<br />\n     C &#8211; D/C   Bm7 &#8211; Em7<br />\nSa dalangin, aawitin</p>\n<p><strong>Ending:</strong><br />\n Am7       C/D    G /F Em<br />\nKadakilaan Mo sa amin<br />\n Am7       C/D    G /F Em<br />\nKadakilaan Mo sa amin<br />\n Am7       C/D    G  (Outro: C2 &#8211; D/C &#8211; Bm7 &#8211; Em7 &#8211; Am7 &#8211; C/D &#8211; Cm &#8211; G)<br />\nKadakilaan Mo sa amin</p>\n",
+    "songNumber": 175
   },
   {
     "title": "Blessed Be Your Name (Maranatha! Music)",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-12440",
     "id": "selah-12440",
@@ -21291,14 +21343,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG  D/F#  Em7  C</p>\n<p><strong>Verse 1:</strong><br />\nG       D                    Em7          C<br />\nBlessed be Your name, in the land that is plentiful<br />\n            G            D               C<br />\nWhere Your streams of abundance flow, blessed be Your name<br />\nG       D                       Em7            C<br />\nBlessed be Your name, when I’m found in the desert place<br />\n         G                 D             C<br />\nThough I walk through the wilderness, blessed be Your name</p>\n<p><strong>Pre-Chorus:</strong><br />\nG               D/F#        Em7                 C<br />\nEvery blessing You pour out, I’ll turn back to praise<br />\nG                      D/F#           Em7           C<br />\nAnd when the darkness closes in, Lord, still I will say</p>\n<p><strong>Chorus:</strong><br />\n               G              D                 Em7   C<br />\nBlessed be the Name of the Lord, blessed be Your name<br />\n               G (/D)         D                  Em7 &#8211; D &#8211; C<br />\nBlessed be the Name of the Lord, blessed be Your glorious name</p>\n<p><strong>Verse 2:</strong><br />\nG       D                      Em7            C<br />\nBlessed be Your name, when the sun is shining down on me<br />\n         G                D               C<br />\nWhen the world is all as it should be, blessed be Your name<br />\nG       D                    Em7               C<br />\nBlessed be Your name, on the road marked with suffering<br />\n               G              D         C<br />\nThough there’s pain in the offering, blessed be Your name</p>\n<p><strong>Bridge:</strong><br />\n    G               D/F#    Em7             C<br />\nYou give and take away, You give and take away<br />\n    G                    D/F#      Em7              C<br />\nMy heart will choose to say, Lord, blessed be Your Name<br />\n    G               D/F#    Em7             C<br />\nYou give and take away, You give and take away<br />\n    G/D                  D         Em7              C<br />\nMy heart will choose to say, Lord, blessed be Your Name</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG  D/F#  Em7  C</p>\n<p><strong>Verse 1:</strong><br />\nG       D                    Em7          C<br />\nBlessed be Your name, in the land that is plentiful<br />\n            G            D               C<br />\nWhere Your streams of abundance flow, blessed be Your name<br />\nG       D                       Em7            C<br />\nBlessed be Your name, when I’m found in the desert place<br />\n         G                 D             C<br />\nThough I walk through the wilderness, blessed be Your name</p>\n<p><strong>Pre-Chorus:</strong><br />\nG               D/F#        Em7                 C<br />\nEvery blessing You pour out, I’ll turn back to praise<br />\nG                      D/F#           Em7           C<br />\nAnd when the darkness closes in, Lord, still I will say</p>\n<p><strong>Chorus:</strong><br />\n               G              D                 Em7   C<br />\nBlessed be the Name of the Lord, blessed be Your name<br />\n               G (/D)         D                  Em7 &#8211; D &#8211; C<br />\nBlessed be the Name of the Lord, blessed be Your glorious name</p>\n<p><strong>Verse 2:</strong><br />\nG       D                      Em7            C<br />\nBlessed be Your name, when the sun is shining down on me<br />\n         G                D               C<br />\nWhen the world is all as it should be, blessed be Your name<br />\nG       D                    Em7               C<br />\nBlessed be Your name, on the road marked with suffering<br />\n               G              D         C<br />\nThough there’s pain in the offering, blessed be Your name</p>\n<p><strong>Bridge:</strong><br />\n    G               D/F#    Em7             C<br />\nYou give and take away, You give and take away<br />\n    G                    D/F#      Em7              C<br />\nMy heart will choose to say, Lord, blessed be Your Name<br />\n    G               D/F#    Em7             C<br />\nYou give and take away, You give and take away<br />\n    G/D                  D         Em7              C<br />\nMy heart will choose to say, Lord, blessed be Your Name</p>\n",
+    "songNumber": 23
   },
   {
     "title": "I Could Sing of Your Love Forever (House of Worship)",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-12425",
     "id": "selah-12425",
     "customSong": true,
@@ -21691,13 +21744,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE  A2/F#  A2  B</p>\n<p><strong>Verse 1:</strong><br />\nE                               A2/F#<br />\nOver the mountains and the sea, Your river runs with love for me<br />\nA2                     B<br />\nAnd I will open up my heart and let the Healer set me free<br />\nE                             A2/F#<br />\nI’m happy to be in the truth, and I will daily lift my hands<br />\nA2                         B<br />\nFor I will always sing of when Your love came down</p>\n<p><strong>Chorus 1:</strong><br />\nE                     A2/F#<br />\nI could sing of Your love forever<br />\nA2                     B<br />\nI could sing of Your love forever<br />\nE                     A2/F#<br />\nI could sing of Your love forever<br />\nA2                     B<br />\nI could sing of Your love forever</p>\n<p><strong>Chorus 2:</strong><br />\nC#m                      G#m7<br />\nI could sing of Your love forever<br />\nA2                     B<br />\nI could sing of Your love forever<br />\nC#m                      G#m7<br />\nI could sing of Your love forever<br />\nA2                     B<br />\nI could sing of Your love forever</p>\n<p><strong>Verse 2:</strong><br />\nC#m7                           B<br />\nOver the mountains and the sea, Your river runs with love for me<br />\nA2                     B<br />\nAnd I will open up my heart and let the Healer set me free<br />\nC#m7                           B<br />\nI’m happy to be in the truth, and I will daily lift my hands<br />\nA2                         B<br />\nFor I will always sing of when Your love came down</p>\n<p><strong>Bridge:</strong><br />\nF#m7            E/G#<br />\nOh, I feel like dancing<br />\nA2                   B<br />\nit’s foolishness, I know<br />\nF#m7                   E/G#<br />\nBut when the world has seen the light<br />\n          A2                          B<br />\nThey will dance with joy like we’re dancing now<br />\n          A2                          B<br />\nThey will dance with joy like we’re dancing now<br />\n          A2/C#                      B/D#<br />\nThey will dance with joy like we’re dancing now </p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE  A2/F#  A2  B</p>\n<p><strong>Verse 1:</strong><br />\nE                               A2/F#<br />\nOver the mountains and the sea, Your river runs with love for me<br />\nA2                     B<br />\nAnd I will open up my heart and let the Healer set me free<br />\nE                             A2/F#<br />\nI’m happy to be in the truth, and I will daily lift my hands<br />\nA2                         B<br />\nFor I will always sing of when Your love came down</p>\n<p><strong>Chorus 1:</strong><br />\nE                     A2/F#<br />\nI could sing of Your love forever<br />\nA2                     B<br />\nI could sing of Your love forever<br />\nE                     A2/F#<br />\nI could sing of Your love forever<br />\nA2                     B<br />\nI could sing of Your love forever</p>\n<p><strong>Chorus 2:</strong><br />\nC#m                      G#m7<br />\nI could sing of Your love forever<br />\nA2                     B<br />\nI could sing of Your love forever<br />\nC#m                      G#m7<br />\nI could sing of Your love forever<br />\nA2                     B<br />\nI could sing of Your love forever</p>\n<p><strong>Verse 2:</strong><br />\nC#m7                           B<br />\nOver the mountains and the sea, Your river runs with love for me<br />\nA2                     B<br />\nAnd I will open up my heart and let the Healer set me free<br />\nC#m7                           B<br />\nI’m happy to be in the truth, and I will daily lift my hands<br />\nA2                         B<br />\nFor I will always sing of when Your love came down</p>\n<p><strong>Bridge:</strong><br />\nF#m7            E/G#<br />\nOh, I feel like dancing<br />\nA2                   B<br />\nit’s foolishness, I know<br />\nF#m7                   E/G#<br />\nBut when the world has seen the light<br />\n          A2                          B<br />\nThey will dance with joy like we’re dancing now<br />\n          A2                          B<br />\nThey will dance with joy like we’re dancing now<br />\n          A2/C#                      B/D#<br />\nThey will dance with joy like we’re dancing now </p>\n",
+    "songNumber": 88
   },
   {
     "title": "Di Mag-iisa V2",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-12417",
     "id": "selah-12417",
@@ -21919,13 +21973,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nG &#8211; D/F# &#8211; A</p>\n<p><strong>Verse1:</strong><br />\nD<br />\nDiyos na Makapangyarihan<br />\nF#/Bb &#8211; Bm<br />\n     Haring Kataas- taasan<br />\nG  D/F#  Em   D-Em7      A<br />\nSa  a    king  puso ay nananahan</p>\n<p><strong>Verse2:</strong><br />\nD<br />\nPagpapala Mo&#8217;t pagsama<br />\nF#/Bb &#8211; Bm<br />\n       Ay laging nararanasan<br />\nG-D/F#  Em    D-Em7     A  D<br />\nKailan  ma&#8217;y  hindi mag-iisa</p>\n<p><strong>Chorus:</strong><br />\n        G            A/G      F#m   Bm<br />\nPangako Mo sa ki&#8217;y hindi ako iiwan<br />\n         Em7         A        DM7<br />\nSa bawat sandali ay laging sasamahan<br />\n  F#7      Bm          /A         A/G      D/F#<br />\nBanal na Espirito&#8217;ng hatid ay kalakasan<br />\n        Em9          Em7  A<br />\nUpang lahat ng bagay ay mapagtagumpayan</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nG &#8211; D/F# &#8211; A</p>\n<p><strong>Verse1:</strong><br />\nD<br />\nDiyos na Makapangyarihan<br />\nF#/Bb &#8211; Bm<br />\n     Haring Kataas- taasan<br />\nG  D/F#  Em   D-Em7      A<br />\nSa  a    king  puso ay nananahan</p>\n<p><strong>Verse2:</strong><br />\nD<br />\nPagpapala Mo&#8217;t pagsama<br />\nF#/Bb &#8211; Bm<br />\n       Ay laging nararanasan<br />\nG-D/F#  Em    D-Em7     A  D<br />\nKailan  ma&#8217;y  hindi mag-iisa</p>\n<p><strong>Chorus:</strong><br />\n        G            A/G      F#m   Bm<br />\nPangako Mo sa ki&#8217;y hindi ako iiwan<br />\n         Em7         A        DM7<br />\nSa bawat sandali ay laging sasamahan<br />\n  F#7      Bm          /A         A/G      D/F#<br />\nBanal na Espirito&#8217;ng hatid ay kalakasan<br />\n        Em9          Em7  A<br />\nUpang lahat ng bagay ay mapagtagumpayan</p>\n",
+    "songNumber": 36
   },
   {
     "title": "Living Hope",
     "artist": "Selah",
     "key": "",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-12405",
     "id": "selah-12405",
@@ -22195,13 +22250,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: </strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong></p>\n<p>How great the chasm that lay between us</p>\n<p>How high the mountain I could not climb</p>\n<p>In desperation, I turned to heaven</p>\n<p>And spoke Your name into the night</p>\n<p>Then through the darkness, Your loving kindness</p>\n<p>Tore through the shadows of my soul</p>\n<p>The work is finished, the end is written</p>\n<p>Jesus Christ, my living hope</p>\n<p><strong>Verse 2:</strong></p>\n<p>Who could imagine so great a mercy?</p>\n<p>What heart could fathom such boundless grace?</p>\n<p>The God of ages stepped down from glory</p>\n<p>To wear my sin and bear my shame</p>\n<p>The cross has spoken, I am forgiven</p>\n<p>The King of kings calls me His own</p>\n<p>Beautiful Savior, I&#8217;m Yours forever</p>\n<p>Jesus Christ, my living hope</p>\n<p><strong> Chorus 1:</strong></p>\n<p>Hallelujah, praise The One who set me free</p>\n<p>Hallelujah, death has lost its grip on me</p>\n<p>You have broken every chain</p>\n<p>There&#8217;s salvation in Your Name</p>\n<p>Jesus Christ my living hope</p>\n<p><strong>Verse 3:</strong></p>\n<p>Then came the morning that sealed the promise</p>\n<p>Your buried body began to breathe</p>\n<p>Out of the silence, The Roaring Lion</p>\n<p>Declared the grave has no claim on me</p>\n<p>Then came the morning that sealed the promise</p>\n<p>Your buried body began to breathe</p>\n<p>Out of the silence, The Roaring Lion</p>\n<p>Declared the grave has no claim on me</p>\n<p>Jesus, Yours is the victory, whoooaa</p>\n<p><strong> Chorus 2:</strong></p>\n<p>Hallelujah, praise The One who set me free</p>\n<p>Hallelujah, death has lost its grip on me</p>\n<p>You have broken every chain</p>\n<p>There&#8217;s salvation in Your Name</p>\n<p>Jesus Christ my living hope</p>\n<p><strong> Chorus 3:</strong></p>\n<p>Hallelujah, praise The One who set me free</p>\n<p>Hallelujah, death has lost its grip on me</p>\n<p>You have broken every chain</p>\n<p>There&#8217;s salvation in Your Name</p>\n<p>Jesus Christ my living hope</p>\n<p><strong> Ending:</strong></p>\n<p>Jesus Christ my living hope</p>\n<p>Oh God, You are my living hope</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: </strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong></p>\n<p>How great the chasm that lay between us</p>\n<p>How high the mountain I could not climb</p>\n<p>In desperation, I turned to heaven</p>\n<p>And spoke Your name into the night</p>\n<p>Then through the darkness, Your loving kindness</p>\n<p>Tore through the shadows of my soul</p>\n<p>The work is finished, the end is written</p>\n<p>Jesus Christ, my living hope</p>\n<p><strong>Verse 2:</strong></p>\n<p>Who could imagine so great a mercy?</p>\n<p>What heart could fathom such boundless grace?</p>\n<p>The God of ages stepped down from glory</p>\n<p>To wear my sin and bear my shame</p>\n<p>The cross has spoken, I am forgiven</p>\n<p>The King of kings calls me His own</p>\n<p>Beautiful Savior, I&#8217;m Yours forever</p>\n<p>Jesus Christ, my living hope</p>\n<p><strong> Chorus 1:</strong></p>\n<p>Hallelujah, praise The One who set me free</p>\n<p>Hallelujah, death has lost its grip on me</p>\n<p>You have broken every chain</p>\n<p>There&#8217;s salvation in Your Name</p>\n<p>Jesus Christ my living hope</p>\n<p><strong>Verse 3:</strong></p>\n<p>Then came the morning that sealed the promise</p>\n<p>Your buried body began to breathe</p>\n<p>Out of the silence, The Roaring Lion</p>\n<p>Declared the grave has no claim on me</p>\n<p>Then came the morning that sealed the promise</p>\n<p>Your buried body began to breathe</p>\n<p>Out of the silence, The Roaring Lion</p>\n<p>Declared the grave has no claim on me</p>\n<p>Jesus, Yours is the victory, whoooaa</p>\n<p><strong> Chorus 2:</strong></p>\n<p>Hallelujah, praise The One who set me free</p>\n<p>Hallelujah, death has lost its grip on me</p>\n<p>You have broken every chain</p>\n<p>There&#8217;s salvation in Your Name</p>\n<p>Jesus Christ my living hope</p>\n<p><strong> Chorus 3:</strong></p>\n<p>Hallelujah, praise The One who set me free</p>\n<p>Hallelujah, death has lost its grip on me</p>\n<p>You have broken every chain</p>\n<p>There&#8217;s salvation in Your Name</p>\n<p>Jesus Christ my living hope</p>\n<p><strong> Ending:</strong></p>\n<p>Jesus Christ my living hope</p>\n<p>Oh God, You are my living hope</p>\n",
+    "songNumber": 139
   },
   {
     "title": "Siya",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-12396",
     "id": "selah-12396",
@@ -22799,13 +22855,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: </strong> D</p>\n<p><strong>Intro:</strong>  D&#8230; G&#8230; D&#8230; G&#8230;</p>\n<p><strong>Verse 1:</strong><br />\n       D           Am7    D7<br />\nBuhay ko&#8217;y may kaguluhan<br />\n       G                Gm<br />\nAng landas walang patutunguhan<br />\n   F#m          Bm              E7     A7<br />\nKaibigan, ano kaya ang kahahantungan?</p>\n<p>         D     A/C#         Am7     D7<br />\nNgunit salamat      ako&#8217;y natagpuan<br />\n     G               Gm<br />\nBinigyan Niya ng kapayapaan<br />\n        D/F#           Gm   A7      D     (Am7-D7)<br />\nTanging kay Hesus mayroong    tagumpay</p>\n<p><strong>Chorus 1:</strong><br />\n         G        G#dim   &#8211; /C#<br />\nSiya ang aking patnubay<br />\n         F#m     Bsus &#8211; B<br />\nSiya ang aking gabay<br />\n        Em7        A7    D    (Am7-D7)<br />\nSiya sa aki&#8217;y nagbigay buhay</p>\n<p>      G            G#dim  &#8211; /C#<br />\nSi Hesus ang katotohanan<br />\n     F#m       Bsus &#8211; b<br />\nSi Hesus ang daan<br />\n         Em7            A7              D<br />\nSiya ang tanging Panginoon magpakailanpaman</p>\n<p><strong>Verse 2:</strong><br />\n      D            Am7 &#8211; D7<br />\nAt ngayon sa aking buhay<br />\n      G             Gm<br />\nSa tuwina Siya&#8217;y nagbabantay<br />\n         F#m          Bm                 Em7  &#8211; A7<br />\nAng pag-ibig Niya&#8217;s tunay na walang kapantay<br />\n           D     A/C#         Am7      D7<br />\nHinding-hindi na       ako mangangamba<br />\n     G            Gm<br />\nSi Hesus laging kasama<br />\n        D/F#     Gm    A7       D     (Am7-D7)<br />\nSiya ay akin at ako&#8217;y     sa Kanya</p>\n<p><strong>Modulation:</strong>  Bb7 &#8211; Eb7\n</p><p>         G#       G#dim &#8211; /D<br />\nSiya ang aking patnubay<br />\n         Gm      Csus &#8211; C<br />\nSiya ang aking gabay<br />\n        Fm7        Bb    Eb   (Bbm7 &#8211; Eb7)<br />\nSiya sa aki&#8217;y nagbigay buhay<br />\n     G#            G#dim  &#8211; /D<br />\nSi Hesus ang katotohanan<br />\n     Gm        Csus &#8211; C<br />\nSi Hesus ang daan<br />\n         Fm             Bb              Cm&#8230;.. (Eb)<br />\nSiya ang tanging Panginoon magpakailanpaman</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: </strong> D</p>\n<p><strong>Intro:</strong>  D&#8230; G&#8230; D&#8230; G&#8230;</p>\n<p><strong>Verse 1:</strong><br />\n       D           Am7    D7<br />\nBuhay ko&#8217;y may kaguluhan<br />\n       G                Gm<br />\nAng landas walang patutunguhan<br />\n   F#m          Bm              E7     A7<br />\nKaibigan, ano kaya ang kahahantungan?</p>\n<p>         D     A/C#         Am7     D7<br />\nNgunit salamat      ako&#8217;y natagpuan<br />\n     G               Gm<br />\nBinigyan Niya ng kapayapaan<br />\n        D/F#           Gm   A7      D     (Am7-D7)<br />\nTanging kay Hesus mayroong    tagumpay</p>\n<p><strong>Chorus 1:</strong><br />\n         G        G#dim   &#8211; /C#<br />\nSiya ang aking patnubay<br />\n         F#m     Bsus &#8211; B<br />\nSiya ang aking gabay<br />\n        Em7        A7    D    (Am7-D7)<br />\nSiya sa aki&#8217;y nagbigay buhay</p>\n<p>      G            G#dim  &#8211; /C#<br />\nSi Hesus ang katotohanan<br />\n     F#m       Bsus &#8211; b<br />\nSi Hesus ang daan<br />\n         Em7            A7              D<br />\nSiya ang tanging Panginoon magpakailanpaman</p>\n<p><strong>Verse 2:</strong><br />\n      D            Am7 &#8211; D7<br />\nAt ngayon sa aking buhay<br />\n      G             Gm<br />\nSa tuwina Siya&#8217;y nagbabantay<br />\n         F#m          Bm                 Em7  &#8211; A7<br />\nAng pag-ibig Niya&#8217;s tunay na walang kapantay<br />\n           D     A/C#         Am7      D7<br />\nHinding-hindi na       ako mangangamba<br />\n     G            Gm<br />\nSi Hesus laging kasama<br />\n        D/F#     Gm    A7       D     (Am7-D7)<br />\nSiya ay akin at ako&#8217;y     sa Kanya</p>\n<p><strong>Modulation:</strong>  Bb7 &#8211; Eb7\n</p><p>         G#       G#dim &#8211; /D<br />\nSiya ang aking patnubay<br />\n         Gm      Csus &#8211; C<br />\nSiya ang aking gabay<br />\n        Fm7        Bb    Eb   (Bbm7 &#8211; Eb7)<br />\nSiya sa aki&#8217;y nagbigay buhay<br />\n     G#            G#dim  &#8211; /D<br />\nSi Hesus ang katotohanan<br />\n     Gm        Csus &#8211; C<br />\nSi Hesus ang daan<br />\n         Fm             Bb              Cm&#8230;.. (Eb)<br />\nSiya ang tanging Panginoon magpakailanpaman</p>\n",
+    "songNumber": 197
   },
   {
     "title": "Sambahin Ka",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-11507",
     "id": "selah-11507",
@@ -23100,13 +23157,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D </strong></p>\n<p><strong>Intro:</strong><br />\nD &#8211; /F#, G, Em7 (2x)</p>\n<p><strong>Verse:</strong><br />\nD                D/F#<br />\nIka&#8217;y sadyang kahanga-hanga<br />\n               GM7           Em7<br />\nKahit na ulit-ulitin ko&#8230; sabihin ko<br />\nD                D/F#<br />\nMahirap man isalarawan ang damdamin<br />\n  G              A11/C#       /F#<br />\nAawitin ko &#8230; O aking Diyos</p>\n<p><strong> PreChorus:</strong><br />\n           Bm          F#m7/A      G    D/F#<br />\nKung ang laman ng puso ko&#8217;y naawit na<br />\n          Em7                 C<br />\nMaging sa kahuli-hulihang hininga<br />\n    Em7<br />\nAng nais ko ay &#8230;</p>\n<p><strong>Chorus:</strong><br />\nD        A/D   B11     B/Eb<br />\nSambahin Ka,  sambahin Ka<br />\nEm7             D/F#    GM7        A<br />\nAng aking katugunan sa &#8216;Yong kadakilaan ay<br />\nD        A/D  B11     B/Eb<br />\nSambahin Ka, sambahin Ka<br />\nEm7                D/F# G             A<br />\nAng tanging kadahilanan ng buhay ko&#8217;t kalakasan<br />\nG                      A<br />\n&#8216;Di man sapat lahat ng nalalamang himig<br />\nG/B                 Em7          Gm<br />\nNgunit sa &#8216;Yo ay aawitin ang pag-ibig ko</p>\n<p><strong>Bridge:</strong><br />\nG            A<br />\nWo-oh, luwalhati sa &#8216;Yong pangalan<br />\nG/B          A/C#            D/F#<br />\nWo-oh, pagsambang walang hangganan<br />\nG              A         F@m7    B<br />\nWo&#8217;oh banal at makapangyarihang Diyos</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D </strong></p>\n<p><strong>Intro:</strong><br />\nD &#8211; /F#, G, Em7 (2x)</p>\n<p><strong>Verse:</strong><br />\nD                D/F#<br />\nIka&#8217;y sadyang kahanga-hanga<br />\n               GM7           Em7<br />\nKahit na ulit-ulitin ko&#8230; sabihin ko<br />\nD                D/F#<br />\nMahirap man isalarawan ang damdamin<br />\n  G              A11/C#       /F#<br />\nAawitin ko &#8230; O aking Diyos</p>\n<p><strong> PreChorus:</strong><br />\n           Bm          F#m7/A      G    D/F#<br />\nKung ang laman ng puso ko&#8217;y naawit na<br />\n          Em7                 C<br />\nMaging sa kahuli-hulihang hininga<br />\n    Em7<br />\nAng nais ko ay &#8230;</p>\n<p><strong>Chorus:</strong><br />\nD        A/D   B11     B/Eb<br />\nSambahin Ka,  sambahin Ka<br />\nEm7             D/F#    GM7        A<br />\nAng aking katugunan sa &#8216;Yong kadakilaan ay<br />\nD        A/D  B11     B/Eb<br />\nSambahin Ka, sambahin Ka<br />\nEm7                D/F# G             A<br />\nAng tanging kadahilanan ng buhay ko&#8217;t kalakasan<br />\nG                      A<br />\n&#8216;Di man sapat lahat ng nalalamang himig<br />\nG/B                 Em7          Gm<br />\nNgunit sa &#8216;Yo ay aawitin ang pag-ibig ko</p>\n<p><strong>Bridge:</strong><br />\nG            A<br />\nWo-oh, luwalhati sa &#8216;Yong pangalan<br />\nG/B          A/C#            D/F#<br />\nWo-oh, pagsambang walang hangganan<br />\nG              A         F@m7    B<br />\nWo&#8217;oh banal at makapangyarihang Diyos</p>\n",
+    "songNumber": 189
   },
   {
     "title": "I’d Rather Have Jesus",
     "artist": "Selah",
     "key": "",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-11503",
     "id": "selah-11503",
@@ -23315,13 +23373,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: </strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\nA         D      E<br />\nI&#8217;d rather have Jesus than silver or gold</p>\n<p>I&#8217;d rather be His than have riches untold</p>\n<p>I&#8217;d rather have Jesus than houses or lands</p>\n<p>I&#8217;d rather be led by His nail-pierced hand</p>\n<p><strong>Chorus 1:</strong></p>\n<p>Than to be the king of a vast domain</p>\n<p>And be held in sin&#8217;s dread sway</p>\n<p>I&#8217;d rather have Jesus than anything</p>\n<p>This world affords today</p>\n<p><strong>Verse 2:</strong></p>\n<p>I&#8217;d rather have Jesus than men&#8217;s applause</p>\n<p>I&#8217;d rather be faithful to His dear cause</p>\n<p>I&#8217;d rather have Jesus than worldwide fame</p>\n<p>I&#8217;d rather be true to His Holy Name</p>\n<p><strong>Chorus 2:</strong></p>\n<p>Than to be the king of a vast domain</p>\n<p>And be held in sin&#8217;s dread sway</p>\n<p>I&#8217;d rather have Jesus than anything</p>\n<p>This world affords today</p>\n<p><strong>Verse 3:</strong></p>\n<p>He&#8217;s fairer than lilies of rarest bloom</p>\n<p>He&#8217;s sweeter than honey from out the comb</p>\n<p>He&#8217;s all that my hungry spirit needs</p>\n<p>I&#8217;d rather have Jesus and let Him lead</p>\n<p><strong>Chorus 3:</strong></p>\n<p>Than to be the king of a vast domain</p>\n<p>And be held in sin&#8217;s dread sway</p>\n<p>I&#8217;d rather have Jesus than anything</p>\n<p>This world affords today</p>\n<p><strong> Ending :</strong></p>\n<p>I&#8217;d rather have Jesus than anything</p>\n<p>This world affords today</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: </strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\nA         D      E<br />\nI&#8217;d rather have Jesus than silver or gold</p>\n<p>I&#8217;d rather be His than have riches untold</p>\n<p>I&#8217;d rather have Jesus than houses or lands</p>\n<p>I&#8217;d rather be led by His nail-pierced hand</p>\n<p><strong>Chorus 1:</strong></p>\n<p>Than to be the king of a vast domain</p>\n<p>And be held in sin&#8217;s dread sway</p>\n<p>I&#8217;d rather have Jesus than anything</p>\n<p>This world affords today</p>\n<p><strong>Verse 2:</strong></p>\n<p>I&#8217;d rather have Jesus than men&#8217;s applause</p>\n<p>I&#8217;d rather be faithful to His dear cause</p>\n<p>I&#8217;d rather have Jesus than worldwide fame</p>\n<p>I&#8217;d rather be true to His Holy Name</p>\n<p><strong>Chorus 2:</strong></p>\n<p>Than to be the king of a vast domain</p>\n<p>And be held in sin&#8217;s dread sway</p>\n<p>I&#8217;d rather have Jesus than anything</p>\n<p>This world affords today</p>\n<p><strong>Verse 3:</strong></p>\n<p>He&#8217;s fairer than lilies of rarest bloom</p>\n<p>He&#8217;s sweeter than honey from out the comb</p>\n<p>He&#8217;s all that my hungry spirit needs</p>\n<p>I&#8217;d rather have Jesus and let Him lead</p>\n<p><strong>Chorus 3:</strong></p>\n<p>Than to be the king of a vast domain</p>\n<p>And be held in sin&#8217;s dread sway</p>\n<p>I&#8217;d rather have Jesus than anything</p>\n<p>This world affords today</p>\n<p><strong> Ending :</strong></p>\n<p>I&#8217;d rather have Jesus than anything</p>\n<p>This world affords today</p>\n",
+    "songNumber": 122
   },
   {
     "title": "More Than Wonderful",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-11422",
     "id": "selah-11422",
@@ -23539,13 +23598,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nF#m E D E (2x), Bm F#m D E (2x)</p>\n<p><strong>Verse 1:</strong><br />\nA         D      E<br />\nHe promised us that He would be a counselor</p>\n<p>The mighty God and the Prince of Peace</p>\n<p>He promised us that He would be a Father</p>\n<p>And that He would love us with a love that would not cease</p>\n<p><strong>Verse 2:</strong></p>\n<p>Well, I tried Him and I found His promises are true</p>\n<p>He&#8217;s everything He said that He would be</p>\n<p>The finest words I know could not begin to tell</p>\n<p>Just how much Jesus really means to me</p>\n<p><strong>Chorus 1:</strong></p>\n<p>For He&#8217;s more than wonderful than my mind can conceive</p>\n<p>He&#8217;s more wonderful than my heart can believe</p>\n<p>He goes beyond my highest hopes and fondest dreams</p>\n<p>He&#8217;s everything that my soul ever longed for</p>\n<p>Everything He&#8217;s promised, and so much more</p>\n<p>More than amazing, more than marvelous</p>\n<p>More than miraculous could ever be</p>\n<p>He&#8217;s more than wonderful, that&#8217;s what Jesus is to me</p>\n<p><strong>Verse 3:</strong></p>\n<p>I stand amazed when I think that the King of Glory</p>\n<p>Would come to live within the heart of man</p>\n<p>I marvel just to know He really loves me</p>\n<p>When I think of who He is, and who I am</p>\n<p><strong>Chorus 2:</strong></p>\n<p>For He&#8217;s more than wonderful than my mind can conceive</p>\n<p>He&#8217;s more wonderful than my heart can believe</p>\n<p>He goes beyond my highest hopes and fondest dreams</p>\n<p>He&#8217;s everything that my soul&#8217;s ever longed for</p>\n<p>Everything He&#8217;s promised, and so much more</p>\n<p>More than amazing, more than marvelous</p>\n<p>More than miraculous could ever be</p>\n<p>He&#8217;s more than wonderful, that&#8217;s what Jesus is to me</p>\n<p>&#8230; He&#8217;s more than wonderful, that&#8217;s what Jesus is to me</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nF#m E D E (2x), Bm F#m D E (2x)</p>\n<p><strong>Verse 1:</strong><br />\nA         D      E<br />\nHe promised us that He would be a counselor</p>\n<p>The mighty God and the Prince of Peace</p>\n<p>He promised us that He would be a Father</p>\n<p>And that He would love us with a love that would not cease</p>\n<p><strong>Verse 2:</strong></p>\n<p>Well, I tried Him and I found His promises are true</p>\n<p>He&#8217;s everything He said that He would be</p>\n<p>The finest words I know could not begin to tell</p>\n<p>Just how much Jesus really means to me</p>\n<p><strong>Chorus 1:</strong></p>\n<p>For He&#8217;s more than wonderful than my mind can conceive</p>\n<p>He&#8217;s more wonderful than my heart can believe</p>\n<p>He goes beyond my highest hopes and fondest dreams</p>\n<p>He&#8217;s everything that my soul ever longed for</p>\n<p>Everything He&#8217;s promised, and so much more</p>\n<p>More than amazing, more than marvelous</p>\n<p>More than miraculous could ever be</p>\n<p>He&#8217;s more than wonderful, that&#8217;s what Jesus is to me</p>\n<p><strong>Verse 3:</strong></p>\n<p>I stand amazed when I think that the King of Glory</p>\n<p>Would come to live within the heart of man</p>\n<p>I marvel just to know He really loves me</p>\n<p>When I think of who He is, and who I am</p>\n<p><strong>Chorus 2:</strong></p>\n<p>For He&#8217;s more than wonderful than my mind can conceive</p>\n<p>He&#8217;s more wonderful than my heart can believe</p>\n<p>He goes beyond my highest hopes and fondest dreams</p>\n<p>He&#8217;s everything that my soul&#8217;s ever longed for</p>\n<p>Everything He&#8217;s promised, and so much more</p>\n<p>More than amazing, more than marvelous</p>\n<p>More than miraculous could ever be</p>\n<p>He&#8217;s more than wonderful, that&#8217;s what Jesus is to me</p>\n<p>&#8230; He&#8217;s more than wonderful, that&#8217;s what Jesus is to me</p>\n",
+    "songNumber": 151
   },
   {
     "title": "Sa Lahat ng Panahon",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-11413",
     "id": "selah-11413",
@@ -23882,13 +23942,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD DM7 D7 D G Gm D</p>\n<p><strong>Verse:</strong><br />\n     D          DM7<br />\nSa lahat ng panahon<br />\nD7<br />\nPuso ko&#8217;y magpupuri<br />\n        G    Gm      D   G A<br />\nAawit sa&#8217;Yo, magmamahal sa&#8217;Yo<br />\n         D      DM7<br />\nAt sa bawat sandali<br />\n      D7           D<br />\nako&#8217;y nasasabik sa&#8217;Yo<br />\n    G    Gm      D   G A<br />\nO Hesus, Ikaw ang buhay ko</p>\n<p><strong>Chorus:</strong><br />\nBm         Bm/Bb<br />\nKailanman, saanman<br />\nG  A    D     G A<br />\nAko&#8217;y di Mo iiwan<br />\nBm         Bm/Bb<br />\nKailanman, saanman<br />\nG      A      D<br />\n&#8216;Di Mo pababayaan<br />\n G     A      D<br />\nMagpakailanpaman</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD DM7 D7 D G Gm D</p>\n<p><strong>Verse:</strong><br />\n     D          DM7<br />\nSa lahat ng panahon<br />\nD7<br />\nPuso ko&#8217;y magpupuri<br />\n        G    Gm      D   G A<br />\nAawit sa&#8217;Yo, magmamahal sa&#8217;Yo<br />\n         D      DM7<br />\nAt sa bawat sandali<br />\n      D7           D<br />\nako&#8217;y nasasabik sa&#8217;Yo<br />\n    G    Gm      D   G A<br />\nO Hesus, Ikaw ang buhay ko</p>\n<p><strong>Chorus:</strong><br />\nBm         Bm/Bb<br />\nKailanman, saanman<br />\nG  A    D     G A<br />\nAko&#8217;y di Mo iiwan<br />\nBm         Bm/Bb<br />\nKailanman, saanman<br />\nG      A      D<br />\n&#8216;Di Mo pababayaan<br />\n G     A      D<br />\nMagpakailanpaman</p>\n",
+    "songNumber": 183
   },
   {
     "title": "Luwalhatiin Ka",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-11403",
     "id": "selah-11403",
@@ -24263,13 +24324,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE  Esus  E  Esus</p>\n<p><strong>Verse:</strong><br />\nE    Esus<br />\nDiyos<br />\nE           Esus       E  Esus<br />\nNa walang kaparis at banal<br />\nE             Esus        F#7<br />\nIka&#8217;y noon at magpakailan man<br />\n  A2                      E    Esus<br />\nDakila&#8217;t makapangyarihang Diyos<br />\n   E           Esus          E  Esus<br />\nMagpugay ang lahat Mong nilikha<br />\n  E            Esus       F#7<br />\nLahat ng may buhay at hininga<br />\n        A2<br />\nAy sumamba</p>\n<p><strong>Chorus:</strong><br />\n            A<br />\nLuwalhatiin Ka<br />\n            E/G#<br />\nLuwalhatiin Ka<br />\n              F#m7      A/B<br />\nSa kalawakan, sa kalangitan<br />\n               E        E7<br />\nMaging sa lupa at karagatan<br />\n            A<br />\nLuwalhatiin Ka<br />\n            E/G#<br />\nLuwalhatiin Ka<br />\n            F#m         A2/E       DM7<br />\nSa puso at isipan, sa kilos at salita<br />\n     A/B       E  Esus  E  Esus<br />\nAy luwalhatiin Ka</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE  Esus  E  Esus</p>\n<p><strong>Verse:</strong><br />\nE    Esus<br />\nDiyos<br />\nE           Esus       E  Esus<br />\nNa walang kaparis at banal<br />\nE             Esus        F#7<br />\nIka&#8217;y noon at magpakailan man<br />\n  A2                      E    Esus<br />\nDakila&#8217;t makapangyarihang Diyos<br />\n   E           Esus          E  Esus<br />\nMagpugay ang lahat Mong nilikha<br />\n  E            Esus       F#7<br />\nLahat ng may buhay at hininga<br />\n        A2<br />\nAy sumamba</p>\n<p><strong>Chorus:</strong><br />\n            A<br />\nLuwalhatiin Ka<br />\n            E/G#<br />\nLuwalhatiin Ka<br />\n              F#m7      A/B<br />\nSa kalawakan, sa kalangitan<br />\n               E        E7<br />\nMaging sa lupa at karagatan<br />\n            A<br />\nLuwalhatiin Ka<br />\n            E/G#<br />\nLuwalhatiin Ka<br />\n            F#m         A2/E       DM7<br />\nSa puso at isipan, sa kilos at salita<br />\n     A/B       E  Esus  E  Esus<br />\nAy luwalhatiin Ka</p>\n",
+    "songNumber": 144
   },
   {
     "title": "My Tribute",
     "artist": "Selah",
     "key": "Original is in Bb",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-11340",
     "id": "selah-11340",
@@ -24696,13 +24758,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Original is in Bb</strong></p>\n<p><strong>Intro:</strong><br />\nC.. /B&#8230; /Bb&#8230; F&#8230; Fm&#8230; C/E&#8230; D&#8230; D/F#&#8230; G<br />\n&#8230;.ooohh ohhh&#8230;</p>\n<p><strong>Verse:</strong><br />\nC              /B<br />\nHow can I say thanks<br />\n         /Bb             /A         /C#<br />\nFor the things You have done for me<br />\n     Dm           /C#<br />\nThe things so undeserved<br />\n             /C                Fm<br />\nAnd yet You give to prove Your love for me<br />\n     C/E                 Am7<br />\nThe voices of a million angels<br />\n            D/F#          Dm/F<br />\nCould not express my gratitude<br />\n           C/E    Am7          A/C# &#8211; Dm7 &#8211; G<br />\nAll that I am and ever hope to be<br />\n                 C     (F/G)<br />\nI owe it all to Thee</p>\n<p><strong>Chorus 1:</strong><br />\n   C          Em7-A7 &#8211; (/C#)<br />\nTo God be the glory<br />\n   Dm7        Fm-G<br />\nTo God be the glory<br />\n   E7 &#8211; (/G#)       Am7-/G<br />\nTo God       be the glory<br />\n        Dm7            G7<br />\nFor the things He has done<br />\n          C           Em7-A7 &#8211;  (/C#)<br />\nWith His blood He has saved me<br />\n         Dm7          Fm     G<br />\nWith His pow&#8217;r He has raised me<br />\n   E7  &#8211; (/G#)        Am7-/G<br />\nTo God         be the glory<br />\n         Dm7   G       C<br />\nFor the things He has done</p>\n<p><strong>Bridge :</strong><br />\n            Bm7     E7<br />\nJust let me live my life<br />\n          Am        Am7/G#   Am6/G<br />\nLet it be pleasing, Lord, to Thee<br />\n         F        Dm7<br />\nAnd if I gain any praise<br />\n             D/F# &#8211; G<br />\nLet it go to calva..ry</p>\n<p><strong>Chorus 2:</strong><br />\n         C            Em7   A7  (/C#)<br />\nWith His blood He has saved me<br />\n         Dm7          Fm     G<br />\nWith His pow&#8217;r He has raised me<br />\n   E7 &#8211; (/G#)        Am7-G<br />\nTo God        be the glory<br />\n        Dm7    G       C<br />\nFor the things He has done</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Original is in Bb</strong></p>\n<p><strong>Intro:</strong><br />\nC.. /B&#8230; /Bb&#8230; F&#8230; Fm&#8230; C/E&#8230; D&#8230; D/F#&#8230; G<br />\n&#8230;.ooohh ohhh&#8230;</p>\n<p><strong>Verse:</strong><br />\nC              /B<br />\nHow can I say thanks<br />\n         /Bb             /A         /C#<br />\nFor the things You have done for me<br />\n     Dm           /C#<br />\nThe things so undeserved<br />\n             /C                Fm<br />\nAnd yet You give to prove Your love for me<br />\n     C/E                 Am7<br />\nThe voices of a million angels<br />\n            D/F#          Dm/F<br />\nCould not express my gratitude<br />\n           C/E    Am7          A/C# &#8211; Dm7 &#8211; G<br />\nAll that I am and ever hope to be<br />\n                 C     (F/G)<br />\nI owe it all to Thee</p>\n<p><strong>Chorus 1:</strong><br />\n   C          Em7-A7 &#8211; (/C#)<br />\nTo God be the glory<br />\n   Dm7        Fm-G<br />\nTo God be the glory<br />\n   E7 &#8211; (/G#)       Am7-/G<br />\nTo God       be the glory<br />\n        Dm7            G7<br />\nFor the things He has done<br />\n          C           Em7-A7 &#8211;  (/C#)<br />\nWith His blood He has saved me<br />\n         Dm7          Fm     G<br />\nWith His pow&#8217;r He has raised me<br />\n   E7  &#8211; (/G#)        Am7-/G<br />\nTo God         be the glory<br />\n         Dm7   G       C<br />\nFor the things He has done</p>\n<p><strong>Bridge :</strong><br />\n            Bm7     E7<br />\nJust let me live my life<br />\n          Am        Am7/G#   Am6/G<br />\nLet it be pleasing, Lord, to Thee<br />\n         F        Dm7<br />\nAnd if I gain any praise<br />\n             D/F# &#8211; G<br />\nLet it go to calva..ry</p>\n<p><strong>Chorus 2:</strong><br />\n         C            Em7   A7  (/C#)<br />\nWith His blood He has saved me<br />\n         Dm7          Fm     G<br />\nWith His pow&#8217;r He has raised me<br />\n   E7 &#8211; (/G#)        Am7-G<br />\nTo God        be the glory<br />\n        Dm7    G       C<br />\nFor the things He has done</p>\n",
+    "songNumber": 154
   },
   {
     "title": "The Joy",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-11328",
     "id": "selah-11328",
@@ -25042,13 +25105,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG Am C (2x)</p>\n<p><strong>Verse 1:</strong><br />\n G<br />\nThis is the day You made<br />\n          Em<br />\nSo I’ll rejoice and be glad<br />\n   C                   G<br />\nRejoice and be glad in it<br />\n G<br />\nThis is where I believe<br />\n         Em<br />\nYou are more than enough<br />\n C                    G<br />\nMore than enough for me</p>\n<p><strong>Pre-chorus:</strong><br />\n         C<br />\nYou are faithful to Your promise<br />\n         D               G<br />\nYou are strong when I am weak<br />\n          C<br />\nWhen I’m standing in Your presence<br />\n        D<br />\nI have everything I need</p>\n<p><strong>Chorus:</strong><br />\n     G<br />\nThe joy of the Lord<br />\n     Am                     C<br />\nThe joy of the Lord is my strength<br />\n     G<br />\nThe joy of the Lord<br />\n     Am                     C<br />\nThe joy of the Lord is my strength<br />\nEm          D/F#<br />\nO my soul, bless His Name<br />\nG/B             Am<br />\nAll that is within me say<br />\n     G<br />\nThe joy of the Lord<br />\n     Am<br />\nThe joy of the Lord is my strength</p>\n<p><strong>Verse 2:</strong><br />\nG<br />\nJesus, come what may<br />\n         Em<br />\nYou are worthy of all<br />\n C                G<br />\nWorthy of all my praise</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG Am C (2x)</p>\n<p><strong>Verse 1:</strong><br />\n G<br />\nThis is the day You made<br />\n          Em<br />\nSo I’ll rejoice and be glad<br />\n   C                   G<br />\nRejoice and be glad in it<br />\n G<br />\nThis is where I believe<br />\n         Em<br />\nYou are more than enough<br />\n C                    G<br />\nMore than enough for me</p>\n<p><strong>Pre-chorus:</strong><br />\n         C<br />\nYou are faithful to Your promise<br />\n         D               G<br />\nYou are strong when I am weak<br />\n          C<br />\nWhen I’m standing in Your presence<br />\n        D<br />\nI have everything I need</p>\n<p><strong>Chorus:</strong><br />\n     G<br />\nThe joy of the Lord<br />\n     Am                     C<br />\nThe joy of the Lord is my strength<br />\n     G<br />\nThe joy of the Lord<br />\n     Am                     C<br />\nThe joy of the Lord is my strength<br />\nEm          D/F#<br />\nO my soul, bless His Name<br />\nG/B             Am<br />\nAll that is within me say<br />\n     G<br />\nThe joy of the Lord<br />\n     Am<br />\nThe joy of the Lord is my strength</p>\n<p><strong>Verse 2:</strong><br />\nG<br />\nJesus, come what may<br />\n         Em<br />\nYou are worthy of all<br />\n C                G<br />\nWorthy of all my praise</p>\n",
+    "songNumber": 206
   },
   {
     "title": "I Surrender All",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-11314",
     "id": "selah-11314",
@@ -25929,13 +25993,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG   C/G<br />\nG   C/G</p>\n<p><strong>Verse 1:</strong><br />\nG            D/F#<br />\nAll to Jesus I surrender<br />\nEm9    CM7   D/F#   G<br />\nAll to Him I freely give<br />\nG           D/F#<br />\nI will ever love and trust Him<br />\nEm9    CM7      D/F#  G<br />\nIn His presence daily live</p>\n<p><strong>Verse 2:</strong><br />\nG            D/F#<br />\nAll to Jesus I surrender<br />\nEm9    CM7    D/F#  G<br />\nHumbly at His feet I bow<br />\nG                 D/F#<br />\nWorldly pleasures all forsaken<br />\nEm9     CM7    D/F#    G<br />\nTake me Jesus, take me now</p>\n<p><strong>Verse 3:</strong><br />\nG            D/F#<br />\nAll to Jesus I surrender<br />\nEm9     CM7     D/F#   G<br />\nMake me Savior, wholly Thine<br />\nG               D/F#<br />\nLet me feel Thy Holy Spirit<br />\nEm9   CM7       D/F#     G<br />\nTruly know that Thou art mine</p>\n<p><strong>Chorus 1:</strong><br />\nG           Am<br />\nI surrender all<br />\nD    D/F#   G   Gsus<br />\nI surrender all<br />\nG      C &#8211; G    G/B     G/B &#8211; CM7<br />\nAll to Thee, my blessed Savior<br />\nAm   Dsus &#8211; D  G<br />\nI surrender all</p>\n<p><strong>Instrumental:</strong><br />\nG    C/G<br />\nG    C/G<br />\nEm   Am &#8211; Am11   C   G<br />\nAm   G/B    D</p>\n<p><strong>Verse 4:</strong><br />\nG            D/F#<br />\nAll to Jesus I surrender<br />\nEm9     CM7    D/F#    G<br />\nLord, I give myself to Thee<br />\nG                D/F#<br />\nFill me with Thy love and power<br />\nEm9     CM7      D/F#    G<br />\nLet Thy blessing fall on me</p>\n<p><strong>Chorus 2:</strong><br />\nG           Am<br />\nI surrender all<br />\nD    D/F#   G   Gsus<br />\nI surrender all<br />\nG      C &#8211; G    G/B     G/B &#8211; CM7<br />\nAll to Thee, my blessed Savior<br />\nAm   Dsus &#8211; D  G  D<br />\nI surrender all</p>\n<p><strong>Chorus 3:</strong><br />\nG           Am<br />\nI surrender all<br />\nD    D/F#   G   Gsus<br />\nI surrender all<br />\nG      C &#8211; G    G/B     G/B &#8211; CM7<br />\nAll to Thee, my blessed Savior<br />\nAm   Dsus &#8211; D  G<br />\nI surrender all</p>\n<p>G    C &#8211; G    G/B   G/B &#8211; CM7</p>\n<p>Am   Dsus &#8211; D  G<br />\nI surrender all</p>\n<p><strong>Ending:</strong><br />\nG    C/G<br />\nG    C/G<br />\nG    C &#8211; G    D/F#   Em9<br />\nC/D  D    G</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG   C/G<br />\nG   C/G</p>\n<p><strong>Verse 1:</strong><br />\nG            D/F#<br />\nAll to Jesus I surrender<br />\nEm9    CM7   D/F#   G<br />\nAll to Him I freely give<br />\nG           D/F#<br />\nI will ever love and trust Him<br />\nEm9    CM7      D/F#  G<br />\nIn His presence daily live</p>\n<p><strong>Verse 2:</strong><br />\nG            D/F#<br />\nAll to Jesus I surrender<br />\nEm9    CM7    D/F#  G<br />\nHumbly at His feet I bow<br />\nG                 D/F#<br />\nWorldly pleasures all forsaken<br />\nEm9     CM7    D/F#    G<br />\nTake me Jesus, take me now</p>\n<p><strong>Verse 3:</strong><br />\nG            D/F#<br />\nAll to Jesus I surrender<br />\nEm9     CM7     D/F#   G<br />\nMake me Savior, wholly Thine<br />\nG               D/F#<br />\nLet me feel Thy Holy Spirit<br />\nEm9   CM7       D/F#     G<br />\nTruly know that Thou art mine</p>\n<p><strong>Chorus 1:</strong><br />\nG           Am<br />\nI surrender all<br />\nD    D/F#   G   Gsus<br />\nI surrender all<br />\nG      C &#8211; G    G/B     G/B &#8211; CM7<br />\nAll to Thee, my blessed Savior<br />\nAm   Dsus &#8211; D  G<br />\nI surrender all</p>\n<p><strong>Instrumental:</strong><br />\nG    C/G<br />\nG    C/G<br />\nEm   Am &#8211; Am11   C   G<br />\nAm   G/B    D</p>\n<p><strong>Verse 4:</strong><br />\nG            D/F#<br />\nAll to Jesus I surrender<br />\nEm9     CM7    D/F#    G<br />\nLord, I give myself to Thee<br />\nG                D/F#<br />\nFill me with Thy love and power<br />\nEm9     CM7      D/F#    G<br />\nLet Thy blessing fall on me</p>\n<p><strong>Chorus 2:</strong><br />\nG           Am<br />\nI surrender all<br />\nD    D/F#   G   Gsus<br />\nI surrender all<br />\nG      C &#8211; G    G/B     G/B &#8211; CM7<br />\nAll to Thee, my blessed Savior<br />\nAm   Dsus &#8211; D  G  D<br />\nI surrender all</p>\n<p><strong>Chorus 3:</strong><br />\nG           Am<br />\nI surrender all<br />\nD    D/F#   G   Gsus<br />\nI surrender all<br />\nG      C &#8211; G    G/B     G/B &#8211; CM7<br />\nAll to Thee, my blessed Savior<br />\nAm   Dsus &#8211; D  G<br />\nI surrender all</p>\n<p>G    C &#8211; G    G/B   G/B &#8211; CM7</p>\n<p>Am   Dsus &#8211; D  G<br />\nI surrender all</p>\n<p><strong>Ending:</strong><br />\nG    C/G<br />\nG    C/G<br />\nG    C &#8211; G    D/F#   Em9<br />\nC/D  D    G</p>\n",
+    "songNumber": 99
   },
   {
     "title": "Through It All",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-11307",
     "id": "selah-11307",
@@ -26603,13 +26668,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong></p>\n<p>C-G7-C<br />\n I&#8217;ve had many tears and sorrows</p>\n<p>I&#8217;ve had questions for tomorrow<br />\nGm7                     C7                    F<br />\n There&#8217;ve been times I didn&#8217;t know right from wrong<br />\n       Fm7<br />\nBut in every situation<br />\n        C-B-Am7<br />\nHe gave blessed consolation<br />\n          Dm7        G7<br />\nThat the trials come to only make me strong<br />\n     G<br />\n&#8230; so we&#8217;re singing</p>\n<p><strong>Chorus 1:</strong><br />\nC                F             Dm7<br />\n Through it all, through it all<br />\n      G<br />\nI&#8217;ve learned to trust in Jesus,<br />\nC                    G<br />\nLearned to trust in God<br />\nC      Gm7-C-F                Dm7<br />\n  Through it all, through it all<br />\n      G                         C          Em   A<br />\nI&#8217;ve learned to depend upon His word</p>\n<p><strong>Verse 2:</strong><br />\nD<br />\n I&#8217;ve been to lots of places<br />\n    Dmaj7<br />\nAnd I&#8217;ve seen a lot of faces<br />\nAm7                      D7             G<br />\n  There&#8217;ve been times I felt so all alone<br />\nGm7                 Gm<br />\n  But in my lonely hours<br />\n       D-C#m-Bm7<br />\nThose precious lonely hours<br />\nEm7             A7             D<br />\n  Jesus let me know I was His own</p>\n<p><strong>Chorus2 :</strong></p>\n<p>D-D7           G              Em7<br />\n Through it all, through it all<br />\n      A<br />\nI&#8217;ve learned to trust in Jesus,<br />\nD                   A<br />\nLearned to trust in God<br />\nD      A7-D-G                Em7<br />\n  Through it all, through it all<br />\n      A                         D<br />\nI&#8217;ve learned to depend upon His word</p>\n<p><strong>Verse 3:</strong><br />\nD<br />\n I thank God for the mountains</p>\n<p>And I thank Him for the valleys<br />\nAm7                   D7                     G<br />\n I thank Him for the storms He brought me through<br />\n       Gm<br />\n&#8216;Cause if I never had a problem<br />\nD                   Bm<br />\n I wouldn&#8217;t know my God could solve it<br />\nEm<br />\n I wouldn&#8217;t know<br />\n      A                      D<br />\nWhat faith in His word could do<br />\n          G     A<br />\n&#8230; that&#8217;s why I&#8217;m singing</p>\n<p><strong>Chorus 3 :</strong></p>\n<p>D-D7           G              Em7<br />\n Through it all, through it all<br />\n      A<br />\nI&#8217;ve learned to trust in Jesus,<br />\nD                   A<br />\nLearned to trust in God<br />\nD      A7-D-G                Em7<br />\n  Through it all, through it all<br />\n      A                         D<br />\nI&#8217;ve learned to depend upon His word</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong></p>\n<p>C-G7-C<br />\n I&#8217;ve had many tears and sorrows</p>\n<p>I&#8217;ve had questions for tomorrow<br />\nGm7                     C7                    F<br />\n There&#8217;ve been times I didn&#8217;t know right from wrong<br />\n       Fm7<br />\nBut in every situation<br />\n        C-B-Am7<br />\nHe gave blessed consolation<br />\n          Dm7        G7<br />\nThat the trials come to only make me strong<br />\n     G<br />\n&#8230; so we&#8217;re singing</p>\n<p><strong>Chorus 1:</strong><br />\nC                F             Dm7<br />\n Through it all, through it all<br />\n      G<br />\nI&#8217;ve learned to trust in Jesus,<br />\nC                    G<br />\nLearned to trust in God<br />\nC      Gm7-C-F                Dm7<br />\n  Through it all, through it all<br />\n      G                         C          Em   A<br />\nI&#8217;ve learned to depend upon His word</p>\n<p><strong>Verse 2:</strong><br />\nD<br />\n I&#8217;ve been to lots of places<br />\n    Dmaj7<br />\nAnd I&#8217;ve seen a lot of faces<br />\nAm7                      D7             G<br />\n  There&#8217;ve been times I felt so all alone<br />\nGm7                 Gm<br />\n  But in my lonely hours<br />\n       D-C#m-Bm7<br />\nThose precious lonely hours<br />\nEm7             A7             D<br />\n  Jesus let me know I was His own</p>\n<p><strong>Chorus2 :</strong></p>\n<p>D-D7           G              Em7<br />\n Through it all, through it all<br />\n      A<br />\nI&#8217;ve learned to trust in Jesus,<br />\nD                   A<br />\nLearned to trust in God<br />\nD      A7-D-G                Em7<br />\n  Through it all, through it all<br />\n      A                         D<br />\nI&#8217;ve learned to depend upon His word</p>\n<p><strong>Verse 3:</strong><br />\nD<br />\n I thank God for the mountains</p>\n<p>And I thank Him for the valleys<br />\nAm7                   D7                     G<br />\n I thank Him for the storms He brought me through<br />\n       Gm<br />\n&#8216;Cause if I never had a problem<br />\nD                   Bm<br />\n I wouldn&#8217;t know my God could solve it<br />\nEm<br />\n I wouldn&#8217;t know<br />\n      A                      D<br />\nWhat faith in His word could do<br />\n          G     A<br />\n&#8230; that&#8217;s why I&#8217;m singing</p>\n<p><strong>Chorus 3 :</strong></p>\n<p>D-D7           G              Em7<br />\n Through it all, through it all<br />\n      A<br />\nI&#8217;ve learned to trust in Jesus,<br />\nD                   A<br />\nLearned to trust in God<br />\nD      A7-D-G                Em7<br />\n  Through it all, through it all<br />\n      A                         D<br />\nI&#8217;ve learned to depend upon His word</p>\n",
+    "songNumber": 215
   },
   {
     "title": "Ating Purihin Ang Diyos",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-10590",
     "id": "selah-10590",
@@ -27251,13 +27317,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nD&#8230; /C&#8230; /B&#8230; /Bb&#8230; D/A&#8230; A&#8230; D&#8230; (A7)</p>\n<p><strong>Verse 1:</strong><br />\nD       /A      DM7<br />\nHuni ng ibon at daloy ng alon<br />\n   DM7/F#   /F   Em7  A7   (A7)<br />\nNagpa-   paalala sa  atin<br />\nEm7     A7        Em7      A7<br />\nIhip ng hangin sa ating damdamin<br />\n   Em7      A7   D    (A7)<br />\nAy may nais ipahatid<br />\nD       /A       DM7   /A<br />\nAng kalawakan sa katahimikan<br />\n   Am7      D7   G<br />\nAy may nais ipabatid<br />\nG       E/G#     D/F#       B7<br />\nLupa at langit sabay sa pag-awit<br />\n   E/G#-A7-D<br />\nNg luwalhati</p>\n<p><strong>Chorus 1:</strong><br />\nA7      D        /C#      Bm        /A<br />\nAting purihin, purihin, purihin ang Diyos<br />\n/Eb    Em       /Eb      E/G#       A7<br />\nO    purihin, purihin, purihin ang Diyos<br />\n      D       /C       /B       /Bb<br />\nAting puso at isip, sa salmo at awit<br />\n  D/A      A          D     (/C&#8230;/B&#8230;/Bb&#8230;E/G#&#8230;A7)<br />\nPurihin, purihin ang Diyos</p>\n<p><strong>Verse 2:</strong><br />\nD        /A     DM7<br />\nSikat ng araw tila pumupukaw<br />\n   DM7/F#  /F      Em7-A7<br />\nSa atin  upang manalangin<br />\nEm7       A7    Em7        A7<br />\nUpang ang ating sarili&#8217;y limutin<br />\n   Em7      A7    D  (A7)<br />\nAt si Hesus dakilain<br />\nD        /A      DM7   /A<br />\nUpang sa diwa at katotohanan<br />\n    Am7        D7       G<br />\nAng Diyos ay ating sambahin<br />\n          E/G#      D/F#      B7<br />\nLalo na&#8217;t kung tayo ay   magkatipon<br />\n       E/G#  A7  D<br />\nSiya&#8217;y pu    ri  hin</p>\n<p><strong>Chorus 2:</strong><br />\nA7      D        /C#      Bm         /A<br />\nAting purihin, purihin, purihin ang Diyos<br />\n/Eb   Em       /Eb      E/G#       A7<br />\nO   purihin, purihin, purihin ang Diyos<br />\n      D       /C       /B       /Bb<br />\nAting puso at isip, sa salmo at awit<br />\n  D/A      A<br />\nPurihin, purihin ang Diyos</p>\n<p><strong>Chorus 3:</strong><br />\nBb7/Bb7sus)   Eb       /D       C#m       /Bb<br />\nAting       purihin, purihin, purihin ang Diyos<br />\n/F   F#m      /F       F#/Ab      Bb7<br />\nO  purihin, purihin, purihin ang Diyos<br />\n      Eb      /C#      /C       /B<br />\nAting puso at isip, sa salmo at awit<br />\n  Eb/Ab    Ab         Eb&#8230; /C#&#8230; /C&#8230; /B&#8230; F/A&#8230;Bb&#8230; Eb<br />\nPurihin, purihin ang Diyos</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nD&#8230; /C&#8230; /B&#8230; /Bb&#8230; D/A&#8230; A&#8230; D&#8230; (A7)</p>\n<p><strong>Verse 1:</strong><br />\nD       /A      DM7<br />\nHuni ng ibon at daloy ng alon<br />\n   DM7/F#   /F   Em7  A7   (A7)<br />\nNagpa-   paalala sa  atin<br />\nEm7     A7        Em7      A7<br />\nIhip ng hangin sa ating damdamin<br />\n   Em7      A7   D    (A7)<br />\nAy may nais ipahatid<br />\nD       /A       DM7   /A<br />\nAng kalawakan sa katahimikan<br />\n   Am7      D7   G<br />\nAy may nais ipabatid<br />\nG       E/G#     D/F#       B7<br />\nLupa at langit sabay sa pag-awit<br />\n   E/G#-A7-D<br />\nNg luwalhati</p>\n<p><strong>Chorus 1:</strong><br />\nA7      D        /C#      Bm        /A<br />\nAting purihin, purihin, purihin ang Diyos<br />\n/Eb    Em       /Eb      E/G#       A7<br />\nO    purihin, purihin, purihin ang Diyos<br />\n      D       /C       /B       /Bb<br />\nAting puso at isip, sa salmo at awit<br />\n  D/A      A          D     (/C&#8230;/B&#8230;/Bb&#8230;E/G#&#8230;A7)<br />\nPurihin, purihin ang Diyos</p>\n<p><strong>Verse 2:</strong><br />\nD        /A     DM7<br />\nSikat ng araw tila pumupukaw<br />\n   DM7/F#  /F      Em7-A7<br />\nSa atin  upang manalangin<br />\nEm7       A7    Em7        A7<br />\nUpang ang ating sarili&#8217;y limutin<br />\n   Em7      A7    D  (A7)<br />\nAt si Hesus dakilain<br />\nD        /A      DM7   /A<br />\nUpang sa diwa at katotohanan<br />\n    Am7        D7       G<br />\nAng Diyos ay ating sambahin<br />\n          E/G#      D/F#      B7<br />\nLalo na&#8217;t kung tayo ay   magkatipon<br />\n       E/G#  A7  D<br />\nSiya&#8217;y pu    ri  hin</p>\n<p><strong>Chorus 2:</strong><br />\nA7      D        /C#      Bm         /A<br />\nAting purihin, purihin, purihin ang Diyos<br />\n/Eb   Em       /Eb      E/G#       A7<br />\nO   purihin, purihin, purihin ang Diyos<br />\n      D       /C       /B       /Bb<br />\nAting puso at isip, sa salmo at awit<br />\n  D/A      A<br />\nPurihin, purihin ang Diyos</p>\n<p><strong>Chorus 3:</strong><br />\nBb7/Bb7sus)   Eb       /D       C#m       /Bb<br />\nAting       purihin, purihin, purihin ang Diyos<br />\n/F   F#m      /F       F#/Ab      Bb7<br />\nO  purihin, purihin, purihin ang Diyos<br />\n      Eb      /C#      /C       /B<br />\nAting puso at isip, sa salmo at awit<br />\n  Eb/Ab    Ab         Eb&#8230; /C#&#8230; /C&#8230; /B&#8230; F/A&#8230;Bb&#8230; Eb<br />\nPurihin, purihin ang Diyos</p>\n",
+    "songNumber": 12
   },
   {
     "title": "Lead Me To Calvary",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-10502",
     "id": "selah-10502",
@@ -28233,14 +28300,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nBm7 &#8211; /A &#8211; /G &#8211; /F# &#8211; F &#8211; Asus &#8211;  A  </p>\n<p><strong>Verse 1:</strong><br />\nD                 Dsus        D<br />\nKing of my life I crown Thee now<br />\nD                      A<br />\nThine shall the glory be<br />\nD                   D/G         D/F#<br />\nLest I forget Thy thorn-crowned brow<br />\nEm7         G/A   D<br />\nLead me to  Calvary </p>\n<p><strong>Chorus 1:</strong><br />\nA                  D<br />\nLest I forget Gethsemane<br />\nA                   D      F#7<br />\nLest I forget Thine agony<br />\nBm7       /A       /G      /F#<br />\nLest I forget Thy love for me<br />\nEm7        G/A   D     D &#8211; /C# &#8211; /B &#8211; A<br />\nLead me to Calvary</p>\n<p><strong>Verse 2:</strong><br />\nD                Dsus     D<br />\nMay I be willing Lord to bear<br />\nD                   A<br />\nDaily my cross for Thee<br />\nD                D/G         D/F#<br />\nEven Thy cup of grief to share<br />\nEm7              G/A     D<br />\nThou hast borne all for me</p>\n<p><strong>Chorus 2:</strong><br />\nA                  D<br />\nLest I forget Gethsemane<br />\nA                   D  C#m7b5 &#8211; F#7b9<br />\nLest I forget Thine agony<br />\nBm7       /A      /G       /F#<br />\nLest I forget Thy love for me<br />\nEm7        G/A  D<br />\nLead me to Calvary</p>\n<p><strong>Verse 1: Higher Key </strong><br />\nE                 Esus        E<br />\nKing of my life I crown Thee now<br />\nE                      B<br />\nThine shall the glory be<br />\nE                   E/A         E/G#<br />\nLest I forget Thy thorn-crowned brow<br />\nF#m7         A/B  E<br />\nLead me to  Calvary </p>\n<p><strong>Chorus 1:</strong><br />\nB                  E<br />\nLest I forget Gethsemane<br />\nB                   E     G#7<br />\nLest I forget Thine agony<br />\nC#m7      /B       /A     /G#<br />\nLest I forget Thy love for me<br />\nF#m7        A/B   E     E &#8211; /Eb &#8211; /C# &#8211; B<br />\nLead me to Calvary</p>\n<p><strong>Verse 2:</strong><br />\nE                Esus     E<br />\nMay I be willing Lord to bear<br />\nE                   B<br />\nDaily my cross for Thee<br />\nE                E/A         E/G#<br />\nEven Thy cup of grief to share<br />\nF#m7        A/B          E<br />\nThou hast borne all for me </p>\n<p><strong>Chorus:</strong><br />\nE/B    /A          E<br />\nLest I forget Gethsemane<br />\nE/B    /A           E  Ebm7b5 &#8211; G#7b9<br />\nLest I forget Thine agony<br />\nC#m7      /B      /A       /G#<br />\nLest I forget Thy love for me<br />\nF#m7       A/B  E   End &#8211; E<br />\nLead me to Calvary</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nBm7 &#8211; /A &#8211; /G &#8211; /F# &#8211; F &#8211; Asus &#8211;  A  </p>\n<p><strong>Verse 1:</strong><br />\nD                 Dsus        D<br />\nKing of my life I crown Thee now<br />\nD                      A<br />\nThine shall the glory be<br />\nD                   D/G         D/F#<br />\nLest I forget Thy thorn-crowned brow<br />\nEm7         G/A   D<br />\nLead me to  Calvary </p>\n<p><strong>Chorus 1:</strong><br />\nA                  D<br />\nLest I forget Gethsemane<br />\nA                   D      F#7<br />\nLest I forget Thine agony<br />\nBm7       /A       /G      /F#<br />\nLest I forget Thy love for me<br />\nEm7        G/A   D     D &#8211; /C# &#8211; /B &#8211; A<br />\nLead me to Calvary</p>\n<p><strong>Verse 2:</strong><br />\nD                Dsus     D<br />\nMay I be willing Lord to bear<br />\nD                   A<br />\nDaily my cross for Thee<br />\nD                D/G         D/F#<br />\nEven Thy cup of grief to share<br />\nEm7              G/A     D<br />\nThou hast borne all for me</p>\n<p><strong>Chorus 2:</strong><br />\nA                  D<br />\nLest I forget Gethsemane<br />\nA                   D  C#m7b5 &#8211; F#7b9<br />\nLest I forget Thine agony<br />\nBm7       /A      /G       /F#<br />\nLest I forget Thy love for me<br />\nEm7        G/A  D<br />\nLead me to Calvary</p>\n<p><strong>Verse 1: Higher Key </strong><br />\nE                 Esus        E<br />\nKing of my life I crown Thee now<br />\nE                      B<br />\nThine shall the glory be<br />\nE                   E/A         E/G#<br />\nLest I forget Thy thorn-crowned brow<br />\nF#m7         A/B  E<br />\nLead me to  Calvary </p>\n<p><strong>Chorus 1:</strong><br />\nB                  E<br />\nLest I forget Gethsemane<br />\nB                   E     G#7<br />\nLest I forget Thine agony<br />\nC#m7      /B       /A     /G#<br />\nLest I forget Thy love for me<br />\nF#m7        A/B   E     E &#8211; /Eb &#8211; /C# &#8211; B<br />\nLead me to Calvary</p>\n<p><strong>Verse 2:</strong><br />\nE                Esus     E<br />\nMay I be willing Lord to bear<br />\nE                   B<br />\nDaily my cross for Thee<br />\nE                E/A         E/G#<br />\nEven Thy cup of grief to share<br />\nF#m7        A/B          E<br />\nThou hast borne all for me </p>\n<p><strong>Chorus:</strong><br />\nE/B    /A          E<br />\nLest I forget Gethsemane<br />\nE/B    /A           E  Ebm7b5 &#8211; G#7b9<br />\nLest I forget Thine agony<br />\nC#m7      /B      /A       /G#<br />\nLest I forget Thy love for me<br />\nF#m7       A/B  E   End &#8211; E<br />\nLead me to Calvary</p>\n",
+    "songNumber": 137
   },
   {
     "title": "It Was For Me",
     "artist": "Selah",
     "key": "Eb",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-10489",
     "id": "selah-10489",
     "customSong": true,
@@ -28914,14 +28982,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Eb</strong></p>\n<p><strong>Intro:</strong><br />\nFm   C#  C#m9   Fm</p>\n<p><strong>Verse 1:</strong><br />\nFm               /E<br />\n   To the silent garden came<br />\n/Eb                   /D<br />\n   Jesus with His disciples<br />\n/C#                /C           Fm  (Fm&#8230; C#)<br />\n   To the garden of  Gethsemane<br />\nFm              /E             /Eb<br />\n   Said He then,   sit ye here<br />\n                 /D<br />\n   Yonder will I go to pray<br />\n/C#                /C                    Fm<br />\n   Tarry here and watch with me one hour<br />\n/Bb                    Cm   (/Bb &#8211; G#)<br />\n   Watch with me one hour<br />\n              /G      Fm     (Fm2-Gm2-G#m2-Bb2)<br />\n   Watch with me one hour</p>\n<p><strong>Chorus 1:</strong><br />\n        Eb<br />\nIn dark Gethsemane<br />\n                  /D<br />\nThere prayed the Son of God<br />\n                /C#<br />\nWho said, &#8220;Thy will be done&#8221;,<br />\n     Csus   C/E              Fm<br />\nAnd dared receive the bitter cup<br />\n             G#m<br />\nAnd He, the sinless One<br />\n          Eb-/D              Cm  (G#m)<br />\nSuffered all     for sinful man<br />\n         Eb<br />\nAnd His grief and pain<br />\n   G#m/Eb<br />\nIt was   for me,<br />\n            /G#     (Eb-/D-C#-Csus-C/E-Fm)<br />\nIn dark Gethsemane</p>\n<p><strong>Verse 2:</strong><br />\nFm             /E                  /Eb<br />\n   Said He then,  the hour is come<br />\n                    /D<br />\nHe is near who betrayeth me<br />\n   /C#        Csus        /E       Fm      (C#)<br />\nBetrayeth me into   the sinners&#8217; hands<br />\nFm               /E                     /Eb<br />\n   Taken, mocked,   crowned with thorns<br />\n                  /D<br />\nLeft alone and forsaken<br />\nC#                   Csus             Fm<br />\n   Left alone the heavy cross He bore<br />\nBb                         Cm  (/Bb &#8211; G#)<br />\n   The heavy cross He bore<br />\n           /G       Fm  (Fm2-Gm2-G#m2-Bb2)<br />\nThe heavy cross He bore</p>\n<p><strong>Chorus 2:</strong><br />\n           Eb                      /D<br />\nAlong the weary road, the way to calvary<br />\n                  /C#<br />\nThere walked the Lord of all<br />\n    Csus     C           Fm<br />\nBy death to heal the wounded heart<br />\n               G#m<br />\nAnd save the anguished soul<br />\n         Eb-/D              Cm (G#m)<br />\nFor the love of man to die<br />\n         Eb<br />\nAnd the cross He bore<br />\n   G#m/Eb                     /G       (Eb-/D-C#-Csus-C/E-Fm-G#m)<br />\nIt was   for me, the cross of calvary</p>\n<p><strong>Chorus 3:</strong><br />\n            Eb                   /D<br />\nIn dark Gethsemane, the cross at calvary<br />\n              /C#                 Csus-C<br />\nThere won the Lord of all, the victory<br />\n      Fm<br />\nO&#8217;er death and hell<br />\n                G#m<br />\nTrangression&#8217;s captive freed<br />\n       Eb   /D       Cm  (G#m)<br />\nBy the sacrifice of love<br />\n         Eb                 G#m<br />\nAnd the price He paid so willingly<br />\n    Eb          G#m<br />\nIt was for me<br />\n    Eb         G#m     Eb<br />\nIt was&#8230;. for me</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Eb</strong></p>\n<p><strong>Intro:</strong><br />\nFm   C#  C#m9   Fm</p>\n<p><strong>Verse 1:</strong><br />\nFm               /E<br />\n   To the silent garden came<br />\n/Eb                   /D<br />\n   Jesus with His disciples<br />\n/C#                /C           Fm  (Fm&#8230; C#)<br />\n   To the garden of  Gethsemane<br />\nFm              /E             /Eb<br />\n   Said He then,   sit ye here<br />\n                 /D<br />\n   Yonder will I go to pray<br />\n/C#                /C                    Fm<br />\n   Tarry here and watch with me one hour<br />\n/Bb                    Cm   (/Bb &#8211; G#)<br />\n   Watch with me one hour<br />\n              /G      Fm     (Fm2-Gm2-G#m2-Bb2)<br />\n   Watch with me one hour</p>\n<p><strong>Chorus 1:</strong><br />\n        Eb<br />\nIn dark Gethsemane<br />\n                  /D<br />\nThere prayed the Son of God<br />\n                /C#<br />\nWho said, &#8220;Thy will be done&#8221;,<br />\n     Csus   C/E              Fm<br />\nAnd dared receive the bitter cup<br />\n             G#m<br />\nAnd He, the sinless One<br />\n          Eb-/D              Cm  (G#m)<br />\nSuffered all     for sinful man<br />\n         Eb<br />\nAnd His grief and pain<br />\n   G#m/Eb<br />\nIt was   for me,<br />\n            /G#     (Eb-/D-C#-Csus-C/E-Fm)<br />\nIn dark Gethsemane</p>\n<p><strong>Verse 2:</strong><br />\nFm             /E                  /Eb<br />\n   Said He then,  the hour is come<br />\n                    /D<br />\nHe is near who betrayeth me<br />\n   /C#        Csus        /E       Fm      (C#)<br />\nBetrayeth me into   the sinners&#8217; hands<br />\nFm               /E                     /Eb<br />\n   Taken, mocked,   crowned with thorns<br />\n                  /D<br />\nLeft alone and forsaken<br />\nC#                   Csus             Fm<br />\n   Left alone the heavy cross He bore<br />\nBb                         Cm  (/Bb &#8211; G#)<br />\n   The heavy cross He bore<br />\n           /G       Fm  (Fm2-Gm2-G#m2-Bb2)<br />\nThe heavy cross He bore</p>\n<p><strong>Chorus 2:</strong><br />\n           Eb                      /D<br />\nAlong the weary road, the way to calvary<br />\n                  /C#<br />\nThere walked the Lord of all<br />\n    Csus     C           Fm<br />\nBy death to heal the wounded heart<br />\n               G#m<br />\nAnd save the anguished soul<br />\n         Eb-/D              Cm (G#m)<br />\nFor the love of man to die<br />\n         Eb<br />\nAnd the cross He bore<br />\n   G#m/Eb                     /G       (Eb-/D-C#-Csus-C/E-Fm-G#m)<br />\nIt was   for me, the cross of calvary</p>\n<p><strong>Chorus 3:</strong><br />\n            Eb                   /D<br />\nIn dark Gethsemane, the cross at calvary<br />\n              /C#                 Csus-C<br />\nThere won the Lord of all, the victory<br />\n      Fm<br />\nO&#8217;er death and hell<br />\n                G#m<br />\nTrangression&#8217;s captive freed<br />\n       Eb   /D       Cm  (G#m)<br />\nBy the sacrifice of love<br />\n         Eb                 G#m<br />\nAnd the price He paid so willingly<br />\n    Eb          G#m<br />\nIt was for me<br />\n    Eb         G#m     Eb<br />\nIt was&#8230;. for me</p>\n",
+    "songNumber": 117
   },
   {
     "title": "Gethsemane",
     "artist": "Selah",
     "key": "Em",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-10406",
     "id": "selah-10406",
     "customSong": true,
@@ -29645,13 +29714,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Em</strong></p>\n<p><strong>Intro:</strong><br />\nEm &#8211; C &#8211; G &#8211; F/Dm &#8211; Em &#8211; Cm  B7   Em7</p>\n<p><strong>Verse 1:</strong><br />\n     Em          Am<br />\nGethsemane lay still and dark<br />\n   B                       Em<br />\nCreation watched in silent awe<br />\n   Am                           Em<br />\nAs Jesus suffered His Father&#8217;s will<br />\n    Am-B7             Em<br />\nTo satisfy unyielding law<br />\n    Em                Am<br />\nHe knelt in earnest prayer alone<br />\n     B                             Em<br />\nHis friends o&#8217;ercome with sorrow, slept<br />\n   Am                  Em<br />\nBeneath the burden of grief, He groaned<br />\n   Am           B7             Em<br />\nBeneath the weight of sin, He wept</p>\n<p><strong>Chorus 1:</strong><br />\n              Am               Em<br />\nAnd with His blood so freely spent<br />\n              B                Em &#8211; E7<br />\nHe bought my soul; He paid my debt<br />\n              Am                  G<br />\nWhat work of love was wrought for me!<br />\n         F/     /Em-Dm     B7      Em<br />\nIn the stillness of Gethsemane</p>\n<p>Em &#8211; C &#8211; G &#8211; F/Dm &#8211; Em &#8211; Cm  B7   Em7</p>\n<p><strong>Verse 2:</strong><br />\n       Em              Am<br />\n&#8220;This bitter cup wilt Thou remove?<br />\n     B                         Em<br />\nYet not my will, but Thine be done. &#8221;<br />\n   Am                   Em<br />\nBehold His anguish and weep anew<br />\n     Am            B7              Em<br />\nFor love of Christ,   the sinless One<br />\n Em                 Am<br />\nWith His wounds my own are healed<br />\n    B                         Em<br />\nMy every pain o&#8217;ercome in His<br />\n    Am                      Em<br />\nMy shame, my weakness, my grief untold<br />\n      Am       B7                  Em<br />\nFind ransom in  His priceless Gift</p>\n<p><strong>Chorus 2:</strong><br />\n              Am               Em<br />\nFor with His blood so freely spent<br />\n              B                Em &#8211; E7<br />\nHe bought my soul; He paid my debt<br />\n              Am                  G<br />\nWhat work of love was wrought for me!<br />\n         F       /Em-Dm &#8211; B7    Em  (to chorus, E7)<br />\nIn the stillness of Gethsemane<br />\n             F       /Em-Dm &#8211; B7    Em<br />\n&#8230; In the stillness of Gethsemane</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Em</strong></p>\n<p><strong>Intro:</strong><br />\nEm &#8211; C &#8211; G &#8211; F/Dm &#8211; Em &#8211; Cm  B7   Em7</p>\n<p><strong>Verse 1:</strong><br />\n     Em          Am<br />\nGethsemane lay still and dark<br />\n   B                       Em<br />\nCreation watched in silent awe<br />\n   Am                           Em<br />\nAs Jesus suffered His Father&#8217;s will<br />\n    Am-B7             Em<br />\nTo satisfy unyielding law<br />\n    Em                Am<br />\nHe knelt in earnest prayer alone<br />\n     B                             Em<br />\nHis friends o&#8217;ercome with sorrow, slept<br />\n   Am                  Em<br />\nBeneath the burden of grief, He groaned<br />\n   Am           B7             Em<br />\nBeneath the weight of sin, He wept</p>\n<p><strong>Chorus 1:</strong><br />\n              Am               Em<br />\nAnd with His blood so freely spent<br />\n              B                Em &#8211; E7<br />\nHe bought my soul; He paid my debt<br />\n              Am                  G<br />\nWhat work of love was wrought for me!<br />\n         F/     /Em-Dm     B7      Em<br />\nIn the stillness of Gethsemane</p>\n<p>Em &#8211; C &#8211; G &#8211; F/Dm &#8211; Em &#8211; Cm  B7   Em7</p>\n<p><strong>Verse 2:</strong><br />\n       Em              Am<br />\n&#8220;This bitter cup wilt Thou remove?<br />\n     B                         Em<br />\nYet not my will, but Thine be done. &#8221;<br />\n   Am                   Em<br />\nBehold His anguish and weep anew<br />\n     Am            B7              Em<br />\nFor love of Christ,   the sinless One<br />\n Em                 Am<br />\nWith His wounds my own are healed<br />\n    B                         Em<br />\nMy every pain o&#8217;ercome in His<br />\n    Am                      Em<br />\nMy shame, my weakness, my grief untold<br />\n      Am       B7                  Em<br />\nFind ransom in  His priceless Gift</p>\n<p><strong>Chorus 2:</strong><br />\n              Am               Em<br />\nFor with His blood so freely spent<br />\n              B                Em &#8211; E7<br />\nHe bought my soul; He paid my debt<br />\n              Am                  G<br />\nWhat work of love was wrought for me!<br />\n         F       /Em-Dm &#8211; B7    Em  (to chorus, E7)<br />\nIn the stillness of Gethsemane<br />\n             F       /Em-Dm &#8211; B7    Em<br />\n&#8230; In the stillness of Gethsemane</p>\n",
+    "songNumber": 57
   },
   {
     "title": "Yahweh",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-10339",
     "id": "selah-10339",
@@ -30322,13 +30392,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nF/A<br />\nBb (add9)</p>\n<p><strong>Verse 1:</strong><br />\nF/A<br />\nSi Yahweh ang aking pastol<br />\nBb (add9)<br />\n&#8216;Di ako magkukulang<br />\nF/A<br />\nPinahihimlay Niya ako sa<br />\nBb (add9)<br />\nLuntiang pastulan</p>\n<p><strong>Pre-chorus 1:</strong><br />\n  Dm7   C         Bb         F<br />\nInaakay Niya sa tahimik na batisan<br />\n  Dm7    C           Bb<br />\nPinanunumbalik Niya, aking kalakasan<br />\n  Dm7    C         Bb       F<br />\nPinapatnubayan ang bawat hakbang<br />\n    Gm7       C<br />\n&#8216;Di ako nag-iisa</p>\n<p><strong>Chorus:</strong><br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, pag-ibig Mo&#8217;y walang-hanggan<br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, sa &#8216;Yo, ako&#8217;y mananahan</p>\n<p><strong>Verse 2:</strong><br />\nF/A<br />\nSi Yahweh ang aking pastol<br />\nBb (add9)<br />\nSiya&#8217;ng aking kalakasan<br />\nF/A<br />\nAng aking patnubay sa<br />\nBb (add9)<br />\nLandas ng katuwiran</p>\n<p><strong>Pre-chorus 2:</strong><br />\nDm7       C             Bb        F<br />\nUpang ang ngalan Niya&#8217;y aking papurihan<br />\nDm7      C         Bb<br />\nKaluwalhatian Niya ang itataas<br />\nDm7               C          Bb      F<br />\nTungkod Niya&#8217;t baston ay ang aking matibay<br />\nGm7      C<br />\nNa sanggalang</p>\n<p><strong>Chorus:</strong><br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, pag-ibig Mo&#8217;y walang-hanggan<br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, sa &#8216;Yo, ako&#8217;y mananahan</p>\n<p><strong>Chorus:</strong><br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, pag-ibig Mo&#8217;y walang-hanggan<br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, sa &#8216;Yo, ako&#8217;y mananahan</p>\n<p><strong>Bridge:</strong><br />\n    Gm7    F/A      Bb (add9)<br />\nDumaan man ako sa libis ng kamatayan<br />\nGm7        F/A           Bb (add9)<br />\nTakot ay walang lugar sa pusong may tiwala<br />\nGm7       F/A      Bb (add9)<br />\nIkaw ang aking Tagapagligtas<br />\nGm7     F/A      G/B         Gm7 &#8211; C<br />\nIkaw sa akin ang lahat-lahat</p>\n<p><strong>Chorus 2:</strong><br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, kabutihan Mo&#8217;y walang-hanggan<br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, sa &#8216;Yo, ako&#8217;y mananahan</p>\n<p><strong>Chorus:</strong><br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, pag-ibig Mo&#8217;y walang-hanggan<br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, sa &#8216;Yo, ako&#8217;y mananahan</p>\n<p><strong>Ending:</strong><br />\nF/A           Bb (add9)<br />\nSi Yahweh ang aking pastol</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nF/A<br />\nBb (add9)</p>\n<p><strong>Verse 1:</strong><br />\nF/A<br />\nSi Yahweh ang aking pastol<br />\nBb (add9)<br />\n&#8216;Di ako magkukulang<br />\nF/A<br />\nPinahihimlay Niya ako sa<br />\nBb (add9)<br />\nLuntiang pastulan</p>\n<p><strong>Pre-chorus 1:</strong><br />\n  Dm7   C         Bb         F<br />\nInaakay Niya sa tahimik na batisan<br />\n  Dm7    C           Bb<br />\nPinanunumbalik Niya, aking kalakasan<br />\n  Dm7    C         Bb       F<br />\nPinapatnubayan ang bawat hakbang<br />\n    Gm7       C<br />\n&#8216;Di ako nag-iisa</p>\n<p><strong>Chorus:</strong><br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, pag-ibig Mo&#8217;y walang-hanggan<br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, sa &#8216;Yo, ako&#8217;y mananahan</p>\n<p><strong>Verse 2:</strong><br />\nF/A<br />\nSi Yahweh ang aking pastol<br />\nBb (add9)<br />\nSiya&#8217;ng aking kalakasan<br />\nF/A<br />\nAng aking patnubay sa<br />\nBb (add9)<br />\nLandas ng katuwiran</p>\n<p><strong>Pre-chorus 2:</strong><br />\nDm7       C             Bb        F<br />\nUpang ang ngalan Niya&#8217;y aking papurihan<br />\nDm7      C         Bb<br />\nKaluwalhatian Niya ang itataas<br />\nDm7               C          Bb      F<br />\nTungkod Niya&#8217;t baston ay ang aking matibay<br />\nGm7      C<br />\nNa sanggalang</p>\n<p><strong>Chorus:</strong><br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, pag-ibig Mo&#8217;y walang-hanggan<br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, sa &#8216;Yo, ako&#8217;y mananahan</p>\n<p><strong>Chorus:</strong><br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, pag-ibig Mo&#8217;y walang-hanggan<br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, sa &#8216;Yo, ako&#8217;y mananahan</p>\n<p><strong>Bridge:</strong><br />\n    Gm7    F/A      Bb (add9)<br />\nDumaan man ako sa libis ng kamatayan<br />\nGm7        F/A           Bb (add9)<br />\nTakot ay walang lugar sa pusong may tiwala<br />\nGm7       F/A      Bb (add9)<br />\nIkaw ang aking Tagapagligtas<br />\nGm7     F/A      G/B         Gm7 &#8211; C<br />\nIkaw sa akin ang lahat-lahat</p>\n<p><strong>Chorus 2:</strong><br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, kabutihan Mo&#8217;y walang-hanggan<br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, sa &#8216;Yo, ako&#8217;y mananahan</p>\n<p><strong>Chorus:</strong><br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, pag-ibig Mo&#8217;y walang-hanggan<br />\nF       Bb (add9)<br />\nYahweh, Yahweh<br />\nF           Bb (add9)<br />\nYahweh, sa &#8216;Yo, ako&#8217;y mananahan</p>\n<p><strong>Ending:</strong><br />\nF/A           Bb (add9)<br />\nSi Yahweh ang aking pastol</p>\n",
+    "songNumber": 237
   },
   {
     "title": "Kahanga-hanga Ka",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-10322",
     "id": "selah-10322",
@@ -30514,13 +30585,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nEm D Em D (E &#8211; A) A &#8211; A &#8211; B</p>\n<p><strong>Verse:</strong><br />\n        E            G#m<br />\nKahanga-hanga Ka O Diyos Ama<br />\n   F#m        B<br />\nSa&#8217;Yong mga gawa<br />\n        E                G#m<br />\nKapangyarihan Mo&#8217;y kamangha-mangha<br />\nF#m          B<br />\nTunay Kang dakila</p>\n<p><strong>Chorus:</strong></p>\n<p>      Bm7         E<br />\nKapuri-puri Ka Panginoon<br />\n  A            Am<br />\nNoon, bukas, ngayon<br />\n        E     G#m        F#m<br />\nKarapat-dapat Kang sambahin<br />\n     B         E<br />\nSa habang panahon</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nEm D Em D (E &#8211; A) A &#8211; A &#8211; B</p>\n<p><strong>Verse:</strong><br />\n        E            G#m<br />\nKahanga-hanga Ka O Diyos Ama<br />\n   F#m        B<br />\nSa&#8217;Yong mga gawa<br />\n        E                G#m<br />\nKapangyarihan Mo&#8217;y kamangha-mangha<br />\nF#m          B<br />\nTunay Kang dakila</p>\n<p><strong>Chorus:</strong></p>\n<p>      Bm7         E<br />\nKapuri-puri Ka Panginoon<br />\n  A            Am<br />\nNoon, bukas, ngayon<br />\n        E     G#m        F#m<br />\nKarapat-dapat Kang sambahin<br />\n     B         E<br />\nSa habang panahon</p>\n",
+    "songNumber": 131
   },
   {
     "title": "Hesus, Aking Musika",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-10313",
     "id": "selah-10313",
@@ -31036,13 +31108,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nA &#8211; /G# &#8211; /G &#8211; /F# -Bm7 &#8211; /A -E7</p>\n<p><strong>Verse1:</strong><br />\n   A      /G#      /G<br />\nAko&#8217;y umaawit noon<br />\n   F#     /Bb  Bm           /Bb     /A<br />\nNgunit hindi para sa Iyo, Panginoon<br />\n    E     /D  C#m      /F           F#m &#8211; /E &#8211; /Eb<br />\nPagkat di ko alam kung ano&#8217;ng kahulugan<br />\n   Bm7           /A         E7<br />\nSa kin man din walang kabuluhan</p>\n<p><strong>Verse2:</strong><br />\n    A          /G#         /G<br />\nNgayon ang musikang hatid<br />\n   F# &#8211; /Bb     Bm        /Bb       /A<br />\nNagmu  mula  sa puso ko, itong awit<br />\n  E    /D      C#m        /F      F#m &#8211; /E &#8211; /Eb<br />\nPapuri ko&#8217;y sa Iyo pagkat tinubos ako<br />\nBm        /A             G    Bm/E &#8211; E7<br />\n   Kaya&#8217;t awitin ko&#8217;y sa Iyo</p>\n<p><strong>Chorus1 :</strong><br />\nDM7     E7           C#m7   F#m7<br />\nSi Hesus   ang aking musika<br />\n   Bm7        /E          Em7        A7<br />\nNagbibigay sigla sa bawat titik at nota<br />\nDM7     E7           C#m7 F#7 &#8211; /Bb<br />\nSi Hesus   ang aking musi ka<br />\n   Bm7                C#m7     F#7 &#8211; /Bb<br />\nSa ki&#8217;y nagsasaad ang bawat awitin<br />\n   Bm7           E7      A<br />\nNa si Kristo&#8217;y buhay sa akin</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nA &#8211; /G# &#8211; /G &#8211; /F# -Bm7 &#8211; /A -E7</p>\n<p><strong>Verse1:</strong><br />\n   A      /G#      /G<br />\nAko&#8217;y umaawit noon<br />\n   F#     /Bb  Bm           /Bb     /A<br />\nNgunit hindi para sa Iyo, Panginoon<br />\n    E     /D  C#m      /F           F#m &#8211; /E &#8211; /Eb<br />\nPagkat di ko alam kung ano&#8217;ng kahulugan<br />\n   Bm7           /A         E7<br />\nSa kin man din walang kabuluhan</p>\n<p><strong>Verse2:</strong><br />\n    A          /G#         /G<br />\nNgayon ang musikang hatid<br />\n   F# &#8211; /Bb     Bm        /Bb       /A<br />\nNagmu  mula  sa puso ko, itong awit<br />\n  E    /D      C#m        /F      F#m &#8211; /E &#8211; /Eb<br />\nPapuri ko&#8217;y sa Iyo pagkat tinubos ako<br />\nBm        /A             G    Bm/E &#8211; E7<br />\n   Kaya&#8217;t awitin ko&#8217;y sa Iyo</p>\n<p><strong>Chorus1 :</strong><br />\nDM7     E7           C#m7   F#m7<br />\nSi Hesus   ang aking musika<br />\n   Bm7        /E          Em7        A7<br />\nNagbibigay sigla sa bawat titik at nota<br />\nDM7     E7           C#m7 F#7 &#8211; /Bb<br />\nSi Hesus   ang aking musi ka<br />\n   Bm7                C#m7     F#7 &#8211; /Bb<br />\nSa ki&#8217;y nagsasaad ang bawat awitin<br />\n   Bm7           E7      A<br />\nNa si Kristo&#8217;y buhay sa akin</p>\n",
+    "songNumber": 74
   },
   {
     "title": "All Along",
     "artist": "Selah",
     "key": "F#",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-10149",
     "id": "selah-10149",
@@ -31946,13 +32019,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F#</strong> </p>\n<p><strong>Intro:</strong><br />\nA/B &#8211; B/Eb &#8211; E &#8211; /A-B- G#m7-A/C# &#8211; G#m7 &#8211; F#m7 &#8211; A/B-B7</p>\n<p><strong>Verse 1:</strong><br />\nE          Esus<br />\nTime just drifts away<br />\n          B/E<br />\nAnd as I look back on the years<br />\n     C#m7        /G#           A/B           (Bsus)<br />\nWith memories of happiness and bitter tears<br />\n           D<br />\nThrough it all there is a common thread<br />\n      A<br />\nThat cannot be ignored<br />\n         C#m7<br />\nYou were there<br />\nB/Eb                   E &#8211; F#m/A   B7<br />\nTeaching me to be Your servant,    Lord</p>\n<p><strong>Chorus 1:</strong><br />\nA/B  B/Eb   E         /A             B<br />\nAll  a &#8211;   long, Your hand has been guiding me<br />\nG#m7    /C   C#m7         /B         A<br />\nShaping my  life  to be a beautiful song<br />\nA/B B/Eb    E     /A             B<br />\nAll a &#8211;    long, You&#8217;ve led me through<br />\nG#m7   /C       C#m7       /B       A      (A-E/G#)<br />\nThings that You knew would make me strong<br />\n     F#m7          A/B        (E &#8211; /A &#8211; /B &#8211; B7)<br />\nYour love has been there all along</p>\n<p><strong>Verse 2:</strong><br />\nE     Esus    E          B/E<br />\nEvery joy and pain had a reason of its own<br />\nC#m7     /G#             A/B       (Bsus)<br />\nNow I realize that I was not alone<br />\n     D<br />\nThe changing seasons of my life<br />\n          A<br />\nWere not left up to chance<br />\n       C#m7           B/Eb          E    F#m7/A   B7<br />\nLord I know, You were working to fulfill Your    plan</p>\n<p><strong>Chorus 2:</strong><br />\nA/B  B/Eb   E         /A             B<br />\nAll  a &#8211;   long, Your hand has been guiding me<br />\nG#m7    /C   C#m7         /B         A<br />\nShaping my  life  to be a beautiful song<br />\nA/B B/Eb    E     /A             B<br />\nAll a &#8211;    long, You&#8217;ve led me through<br />\nG#m7   /C       C#m7       /B       A      (A-E/G#)<br />\nThings that You knew would make me strong<br />\n     F#m7          A/B        (Esus &#8211; E)<br />\nYour love has been there all along</p>\n<p><strong>Bridge :</strong><br />\n  A             B/A<br />\nTomorrow when I turn around<br />\n    G#m7      /C   C#m7<br />\nAnd look back at  today<br />\n       F#m7            G#m7<br />\nI will understand Your purpose<br />\n        A                  Bsus &#8211; B<br />\nAnd my thankful heart will say</p>\n<p><strong>Chorus 3:</strong><br />\nB   /A   G          C             D<br />\nAll a   long, Your hand has been guiding me<br />\nB       /Eb     Em          /D         C<br />\nShaping  my    life to be a beautiful song<br />\nC/D D/F#    G     C             D<br />\nAll  a &#8211;   long, You&#8217;ve led me through<br />\nB      /Eb      Em          /D       C<br />\nThings that You knew would make me strong<br />\nAm7                 /D        Em7    &#8211; /D &#8211; C &#8211; G/B<br />\nYour love has been there all along<br />\n     Am7                C/D             G &#8211; /C &#8211; D &#8211; Bm &#8211; C &#8211; Am7 &#8211; D7 &#8211; G<br />\n&#8230; Your love has been there all along</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F#</strong> </p>\n<p><strong>Intro:</strong><br />\nA/B &#8211; B/Eb &#8211; E &#8211; /A-B- G#m7-A/C# &#8211; G#m7 &#8211; F#m7 &#8211; A/B-B7</p>\n<p><strong>Verse 1:</strong><br />\nE          Esus<br />\nTime just drifts away<br />\n          B/E<br />\nAnd as I look back on the years<br />\n     C#m7        /G#           A/B           (Bsus)<br />\nWith memories of happiness and bitter tears<br />\n           D<br />\nThrough it all there is a common thread<br />\n      A<br />\nThat cannot be ignored<br />\n         C#m7<br />\nYou were there<br />\nB/Eb                   E &#8211; F#m/A   B7<br />\nTeaching me to be Your servant,    Lord</p>\n<p><strong>Chorus 1:</strong><br />\nA/B  B/Eb   E         /A             B<br />\nAll  a &#8211;   long, Your hand has been guiding me<br />\nG#m7    /C   C#m7         /B         A<br />\nShaping my  life  to be a beautiful song<br />\nA/B B/Eb    E     /A             B<br />\nAll a &#8211;    long, You&#8217;ve led me through<br />\nG#m7   /C       C#m7       /B       A      (A-E/G#)<br />\nThings that You knew would make me strong<br />\n     F#m7          A/B        (E &#8211; /A &#8211; /B &#8211; B7)<br />\nYour love has been there all along</p>\n<p><strong>Verse 2:</strong><br />\nE     Esus    E          B/E<br />\nEvery joy and pain had a reason of its own<br />\nC#m7     /G#             A/B       (Bsus)<br />\nNow I realize that I was not alone<br />\n     D<br />\nThe changing seasons of my life<br />\n          A<br />\nWere not left up to chance<br />\n       C#m7           B/Eb          E    F#m7/A   B7<br />\nLord I know, You were working to fulfill Your    plan</p>\n<p><strong>Chorus 2:</strong><br />\nA/B  B/Eb   E         /A             B<br />\nAll  a &#8211;   long, Your hand has been guiding me<br />\nG#m7    /C   C#m7         /B         A<br />\nShaping my  life  to be a beautiful song<br />\nA/B B/Eb    E     /A             B<br />\nAll a &#8211;    long, You&#8217;ve led me through<br />\nG#m7   /C       C#m7       /B       A      (A-E/G#)<br />\nThings that You knew would make me strong<br />\n     F#m7          A/B        (Esus &#8211; E)<br />\nYour love has been there all along</p>\n<p><strong>Bridge :</strong><br />\n  A             B/A<br />\nTomorrow when I turn around<br />\n    G#m7      /C   C#m7<br />\nAnd look back at  today<br />\n       F#m7            G#m7<br />\nI will understand Your purpose<br />\n        A                  Bsus &#8211; B<br />\nAnd my thankful heart will say</p>\n<p><strong>Chorus 3:</strong><br />\nB   /A   G          C             D<br />\nAll a   long, Your hand has been guiding me<br />\nB       /Eb     Em          /D         C<br />\nShaping  my    life to be a beautiful song<br />\nC/D D/F#    G     C             D<br />\nAll  a &#8211;   long, You&#8217;ve led me through<br />\nB      /Eb      Em          /D       C<br />\nThings that You knew would make me strong<br />\nAm7                 /D        Em7    &#8211; /D &#8211; C &#8211; G/B<br />\nYour love has been there all along<br />\n     Am7                C/D             G &#8211; /C &#8211; D &#8211; Bm &#8211; C &#8211; Am7 &#8211; D7 &#8211; G<br />\n&#8230; Your love has been there all along</p>\n",
+    "songNumber": 5
   },
   {
     "title": "Mary, Did You Know?",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-10138",
     "id": "selah-10138",
@@ -32164,13 +32238,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse1:</strong></p>\n<p>Mary, did you know</p>\n<p>That your baby boy would one day walk on water?</p>\n<p>Mary, did you know</p>\n<p>That your baby boy would save our sons and daughters?</p>\n<p>Did you know </p>\n<p>That your baby boy has come to make you new?</p>\n<p>This child that you delivered</p>\n<p>Will soon deliver you?</p>\n<p><strong>Verse2:</strong></p>\n<p>Mary, did you know</p>\n<p>That your baby boy would give sight to the blind man?</p>\n<p>Mary did you know</p>\n<p>That your baby boy would calm a storm with His hand?</p>\n<p>Did you know that your baby boy</p>\n<p>Has walked where angels trod?</p>\n<p>And when you kiss your little baby</p>\n<p>You&#8217;ve kissed the face of God?</p>\n<p>Mary, did you know?</p>\n<p>Oooh, Mary did you know?</p>\n<p><strong>Chorus:</strong></p>\n<p>The blind will see</p>\n<p>The deaf will hear</p>\n<p>The dead will live again!</p>\n<p>The lame will leap</p>\n<p>The dumb will speak</p>\n<p>The praises of the Lamb!</p>\n<p><strong>Verse3:</strong></p>\n<p>Mary, did you know</p>\n<p>That your baby boy</p>\n<p>Is Lord of all creation?</p>\n<p>Mary, did you know</p>\n<p>That your baby boy will one day rule the nations?</p>\n<p>Did you know </p>\n<p>That your baby boy is heaven&#8217;s perfect lamb?</p>\n<p>And the sleeping child you&#8217;re holding</p>\n<p>Is the great I Am!</p>\n<p>&#8230; Mary, did you know?</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse1:</strong></p>\n<p>Mary, did you know</p>\n<p>That your baby boy would one day walk on water?</p>\n<p>Mary, did you know</p>\n<p>That your baby boy would save our sons and daughters?</p>\n<p>Did you know </p>\n<p>That your baby boy has come to make you new?</p>\n<p>This child that you delivered</p>\n<p>Will soon deliver you?</p>\n<p><strong>Verse2:</strong></p>\n<p>Mary, did you know</p>\n<p>That your baby boy would give sight to the blind man?</p>\n<p>Mary did you know</p>\n<p>That your baby boy would calm a storm with His hand?</p>\n<p>Did you know that your baby boy</p>\n<p>Has walked where angels trod?</p>\n<p>And when you kiss your little baby</p>\n<p>You&#8217;ve kissed the face of God?</p>\n<p>Mary, did you know?</p>\n<p>Oooh, Mary did you know?</p>\n<p><strong>Chorus:</strong></p>\n<p>The blind will see</p>\n<p>The deaf will hear</p>\n<p>The dead will live again!</p>\n<p>The lame will leap</p>\n<p>The dumb will speak</p>\n<p>The praises of the Lamb!</p>\n<p><strong>Verse3:</strong></p>\n<p>Mary, did you know</p>\n<p>That your baby boy</p>\n<p>Is Lord of all creation?</p>\n<p>Mary, did you know</p>\n<p>That your baby boy will one day rule the nations?</p>\n<p>Did you know </p>\n<p>That your baby boy is heaven&#8217;s perfect lamb?</p>\n<p>And the sleeping child you&#8217;re holding</p>\n<p>Is the great I Am!</p>\n<p>&#8230; Mary, did you know?</p>\n",
+    "songNumber": 149
   },
   {
     "title": "I Just Want To Praise You/I Sing Praises",
     "artist": "Selah",
     "key": "",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-10133",
     "id": "selah-10133",
@@ -32600,13 +32675,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: </strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\nD              Bm7<br />\nI just want to praise You<br />\nEm7               A7    /G<br />\nLift my hands and say I love You<br />\nF#m7           /B     B/Eb<br />\nYou are everything to me<br />\n    Em7          A7            G     (D-A7)<br />\nAnd I exalt Your Holy Name on high</p>\n<p><strong>Verse 2 :</strong><br />\nD              Bm7<br />\nI just want to praise You<br />\nEm7               A7    /G<br />\nLift my hands and say I love You<br />\nF#m7           /B     B/Eb<br />\nYou are everything to me<br />\n    Em7          A7            G     (D-A/B)<br />\nAnd I exalt Your Holy Name on high</p>\n<p><strong>Verse 3 :</strong><br />\nE  /Eb         C#m7   /B<br />\nI just want to praise You<br />\nF#m7 &#8211; /E                  B/Eb   /B  /A<br />\nLift          my hands and say I love You<br />\nG#m7          C#7     /F<br />\nYou are everything to me<br />\nF#m7 &#8211; /E               B/Eb  /B &#8211; /A<br />\nAnd        I exalt Your Holy  Name<br />\nG#m7         C#7  /F<br />\nI exalt Your Holy Name<br />\nF#m7 &#8211; /E             B/Eb          E     (D/E)<br />\nI          exalt Your Holy Name on high</p>\n<p><strong>Verse 4 :</strong><br />\n                       AM7     B/A<br />\nI sing praises to Your Name, O Lord<br />\nG#m7                    C#m7<br />\nPraises to Your Name, O Lord<br />\n         F#m7<br />\nFor Your Name is great<br />\n    B/A-B   B/A B    E       (D/E)<br />\nAnd greatly to  be praised</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: </strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\nD              Bm7<br />\nI just want to praise You<br />\nEm7               A7    /G<br />\nLift my hands and say I love You<br />\nF#m7           /B     B/Eb<br />\nYou are everything to me<br />\n    Em7          A7            G     (D-A7)<br />\nAnd I exalt Your Holy Name on high</p>\n<p><strong>Verse 2 :</strong><br />\nD              Bm7<br />\nI just want to praise You<br />\nEm7               A7    /G<br />\nLift my hands and say I love You<br />\nF#m7           /B     B/Eb<br />\nYou are everything to me<br />\n    Em7          A7            G     (D-A/B)<br />\nAnd I exalt Your Holy Name on high</p>\n<p><strong>Verse 3 :</strong><br />\nE  /Eb         C#m7   /B<br />\nI just want to praise You<br />\nF#m7 &#8211; /E                  B/Eb   /B  /A<br />\nLift          my hands and say I love You<br />\nG#m7          C#7     /F<br />\nYou are everything to me<br />\nF#m7 &#8211; /E               B/Eb  /B &#8211; /A<br />\nAnd        I exalt Your Holy  Name<br />\nG#m7         C#7  /F<br />\nI exalt Your Holy Name<br />\nF#m7 &#8211; /E             B/Eb          E     (D/E)<br />\nI          exalt Your Holy Name on high</p>\n<p><strong>Verse 4 :</strong><br />\n                       AM7     B/A<br />\nI sing praises to Your Name, O Lord<br />\nG#m7                    C#m7<br />\nPraises to Your Name, O Lord<br />\n         F#m7<br />\nFor Your Name is great<br />\n    B/A-B   B/A B    E       (D/E)<br />\nAnd greatly to  be praised</p>\n",
+    "songNumber": 94
   },
   {
     "title": "O Holy Night",
     "artist": "Selah",
     "key": "F",
-    "category": "Christmas Song",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-10088",
     "id": "selah-10088",
@@ -33537,14 +33613,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nF</p>\n<p><strong>Verse 1:</strong><br />\nF      F/A        Bb                  F<br />\nO holy night, the stars are brightly shining,<br />\n                       C7            F<br />\nIt is the night of our dear Savior’s birth!<br />\nF            F/A      Bb            F<br />\nLong lay the world in sin and error pining,<br />\n          Am             E7            Am<br />\n&#8216;Til He appeared and the soul felt its worth.<br />\n  C7                  F<br />\nA thrill of hope, the weary world rejoices,<br />\n    C7              F                    C/E<br />\nFor yonder breaks a new and glorious morn.<br />\nDm           Am<br />\nFall on your knees,<br />\n  Gm             Dm<br />\nO hear the angel voices!<br />\n  F/C C7/Bb F/A Bb<br />\nO night divine,<br />\n  F/C  C7           F       F/A<br />\nO night when Christ was born!<br />\n  F/C C7/Bb F/A Bb<br />\nO night divine,<br />\n  F/C   C7         F<br />\nO night, O night divine!</p>\n<p><strong>Verse 2:</strong><br />\nF          F/A      Bb             F<br />\nLed by the light of faith serenely beaming,<br />\n                           C7        F<br />\nWith glowing hearts by His cradle we stand.<br />\nF         F/A        Bb           F<br />\nSo led by light of a star sweetly gleaming,<br />\n              Am            E7     Am<br />\nHere came the wise men from Orient land.<br />\n    C7                F<br />\nThe King of kings lay thus in lowly manger,<br />\n   C7             F                    C/E<br />\nIn all our trials born to be our Friend!<br />\nDm           Am<br />\nHe knows our need,<br />\n       Gm             Dm<br />\nTo our weakness is no stranger<br />\n  F/C C7/Bb F/A Bb<br />\nBehold your King,<br />\n  F/C C7         F   F/A<br />\nBefore Him lowly bend!<br />\n  F/C C7/Bb F/A Bb<br />\nBehold your King,<br />\n  F/C C7         F<br />\nBefore Him lowly bend.</p>\n<p><strong>Verse 3:</strong><br />\nF        F/A          Bb        F<br />\nTruly He taught us to love one another,<br />\n                        C7        F<br />\nHis law is love and His Gospel is peace.<br />\nF               F/A           Bb           F<br />\nChains shall He break for the slave is our brother<br />\n           Am         E7             Am<br />\nAnd in His Name all oppression shall cease.<br />\n      C7              F<br />\nSweet hymns of joy in grateful chorus raise we,<br />\n    C7            F                   C/E<br />\nLet all within us praise His holy Name!<br />\nDm            Am<br />\nChrist is the Lord,<br />\n  Gm                 Dm<br />\nO praise His name forever!<br />\n    F/C C7/Bb F/A Bb<br />\nHis power and glory<br />\nF/C C7   F       F/A<br />\nEvermore proclaim<br />\n    F/C C7/Bb F/A Bb<br />\nHis pow&#8217;r and glory<br />\nF/C C7   F<br />\nEvermore proclaim.</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nF</p>\n<p><strong>Verse 1:</strong><br />\nF      F/A        Bb                  F<br />\nO holy night, the stars are brightly shining,<br />\n                       C7            F<br />\nIt is the night of our dear Savior’s birth!<br />\nF            F/A      Bb            F<br />\nLong lay the world in sin and error pining,<br />\n          Am             E7            Am<br />\n&#8216;Til He appeared and the soul felt its worth.<br />\n  C7                  F<br />\nA thrill of hope, the weary world rejoices,<br />\n    C7              F                    C/E<br />\nFor yonder breaks a new and glorious morn.<br />\nDm           Am<br />\nFall on your knees,<br />\n  Gm             Dm<br />\nO hear the angel voices!<br />\n  F/C C7/Bb F/A Bb<br />\nO night divine,<br />\n  F/C  C7           F       F/A<br />\nO night when Christ was born!<br />\n  F/C C7/Bb F/A Bb<br />\nO night divine,<br />\n  F/C   C7         F<br />\nO night, O night divine!</p>\n<p><strong>Verse 2:</strong><br />\nF          F/A      Bb             F<br />\nLed by the light of faith serenely beaming,<br />\n                           C7        F<br />\nWith glowing hearts by His cradle we stand.<br />\nF         F/A        Bb           F<br />\nSo led by light of a star sweetly gleaming,<br />\n              Am            E7     Am<br />\nHere came the wise men from Orient land.<br />\n    C7                F<br />\nThe King of kings lay thus in lowly manger,<br />\n   C7             F                    C/E<br />\nIn all our trials born to be our Friend!<br />\nDm           Am<br />\nHe knows our need,<br />\n       Gm             Dm<br />\nTo our weakness is no stranger<br />\n  F/C C7/Bb F/A Bb<br />\nBehold your King,<br />\n  F/C C7         F   F/A<br />\nBefore Him lowly bend!<br />\n  F/C C7/Bb F/A Bb<br />\nBehold your King,<br />\n  F/C C7         F<br />\nBefore Him lowly bend.</p>\n<p><strong>Verse 3:</strong><br />\nF        F/A          Bb        F<br />\nTruly He taught us to love one another,<br />\n                        C7        F<br />\nHis law is love and His Gospel is peace.<br />\nF               F/A           Bb           F<br />\nChains shall He break for the slave is our brother<br />\n           Am         E7             Am<br />\nAnd in His Name all oppression shall cease.<br />\n      C7              F<br />\nSweet hymns of joy in grateful chorus raise we,<br />\n    C7            F                   C/E<br />\nLet all within us praise His holy Name!<br />\nDm            Am<br />\nChrist is the Lord,<br />\n  Gm                 Dm<br />\nO praise His name forever!<br />\n    F/C C7/Bb F/A Bb<br />\nHis power and glory<br />\nF/C C7   F       F/A<br />\nEvermore proclaim<br />\n    F/C C7/Bb F/A Bb<br />\nHis pow&#8217;r and glory<br />\nF/C C7   F<br />\nEvermore proclaim.</p>\n",
+    "songNumber": 164
   },
   {
     "title": "I Speak Jesus",
     "artist": "Selah",
     "key": "Bb",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-10005",
     "id": "selah-10005",
     "customSong": true,
@@ -33960,13 +34037,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Bb</strong></p>\n<p><strong>Intro:</strong><br />\nBb Gm Eb Bb</p>\n<p><strong>Verse 1:</strong><br />\nBb Gm Eb Bb<br />\nI just wanna speak the name of Jesus</p>\n<p>Over every heart and every mind</p>\n<p>&#8216;Cause I know there is peace within Your presence</p>\n<p>I speak Jesus</p>\n<p><strong>Verse 2:</strong><br />\nBb Gm Eb Bb<br />\nI just wanna speak the name of Jesus</p>\n<p>&#8216;Til every dark addiction starts to break</p>\n<p>Declaring there is hope and there is freedom</p>\n<p>I speak Jesus</p>\n<p><strong>Chorus 1:</strong><br />\nF Eb Bb Bb  (2x)<br />\n&#8216;Cause Your name is power</p>\n<p>Your name is healing, Your name is life</p>\n<p>Break every stronghold, shine through the shadows</p>\n<p>Burn like a fire</p>\n<p><strong>Verse 3:</strong><br />\nBb Gm Eb Bb<br />\nI just wanna speak the name of Jesus</p>\n<p>Over fear and all anxiety</p>\n<p>To every soul held captive by depression</p>\n<p>I speak Jesus</p>\n<p><strong>Chorus 2:</strong><br />\nF Eb Bb Bb  (2x)<br />\n&#8216;Cause Your name is power</p>\n<p>Your name is healing, Your name is life</p>\n<p>Break every stronghold, shine through the shadows</p>\n<p>Burn like a fire</p>\n<p>(Repeat)</p>\n<p><strong>Bridge 1:</strong><br />\nBb Gm Eb Bb<br />\nShout Jesus from the mountains</p>\n<p>And Jesus in the streets</p>\n<p>Jesus in the darkness, over every enemy</p>\n<p>Jesus for my family, I speak the Holy Name</p>\n<p>Jesus</p>\n<p>(Repeat 3x)</p>\n<p><strong>Chorus 2:</strong><br />\nF Eb Bb Bb  (2x)<br />\n&#8216;Cause Your name is power</p>\n<p>Your name is healing, Your name is life</p>\n<p>Break every stronghold, shine through the shadows</p>\n<p>Burn like a fire</p>\n<p>(Repeat)</p>\n<p><strong>Verse 4:</strong><br />\nBb Gm Eb Bb<br />\nI just wanna speak the name of Jesus</p>\n<p>Over every heart and every mind</p>\n<p>&#8216;Cause I know there is peace within His presence</p>\n<p>I speak Jesus</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Bb</strong></p>\n<p><strong>Intro:</strong><br />\nBb Gm Eb Bb</p>\n<p><strong>Verse 1:</strong><br />\nBb Gm Eb Bb<br />\nI just wanna speak the name of Jesus</p>\n<p>Over every heart and every mind</p>\n<p>&#8216;Cause I know there is peace within Your presence</p>\n<p>I speak Jesus</p>\n<p><strong>Verse 2:</strong><br />\nBb Gm Eb Bb<br />\nI just wanna speak the name of Jesus</p>\n<p>&#8216;Til every dark addiction starts to break</p>\n<p>Declaring there is hope and there is freedom</p>\n<p>I speak Jesus</p>\n<p><strong>Chorus 1:</strong><br />\nF Eb Bb Bb  (2x)<br />\n&#8216;Cause Your name is power</p>\n<p>Your name is healing, Your name is life</p>\n<p>Break every stronghold, shine through the shadows</p>\n<p>Burn like a fire</p>\n<p><strong>Verse 3:</strong><br />\nBb Gm Eb Bb<br />\nI just wanna speak the name of Jesus</p>\n<p>Over fear and all anxiety</p>\n<p>To every soul held captive by depression</p>\n<p>I speak Jesus</p>\n<p><strong>Chorus 2:</strong><br />\nF Eb Bb Bb  (2x)<br />\n&#8216;Cause Your name is power</p>\n<p>Your name is healing, Your name is life</p>\n<p>Break every stronghold, shine through the shadows</p>\n<p>Burn like a fire</p>\n<p>(Repeat)</p>\n<p><strong>Bridge 1:</strong><br />\nBb Gm Eb Bb<br />\nShout Jesus from the mountains</p>\n<p>And Jesus in the streets</p>\n<p>Jesus in the darkness, over every enemy</p>\n<p>Jesus for my family, I speak the Holy Name</p>\n<p>Jesus</p>\n<p>(Repeat 3x)</p>\n<p><strong>Chorus 2:</strong><br />\nF Eb Bb Bb  (2x)<br />\n&#8216;Cause Your name is power</p>\n<p>Your name is healing, Your name is life</p>\n<p>Break every stronghold, shine through the shadows</p>\n<p>Burn like a fire</p>\n<p>(Repeat)</p>\n<p><strong>Verse 4:</strong><br />\nBb Gm Eb Bb<br />\nI just wanna speak the name of Jesus</p>\n<p>Over every heart and every mind</p>\n<p>&#8216;Cause I know there is peace within His presence</p>\n<p>I speak Jesus</p>\n",
+    "songNumber": 98
   },
   {
     "title": "Tupang Ligaw",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-9916",
     "id": "selah-9916",
@@ -34410,14 +34488,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\nC                         Cmaj7   C<br />\nMalapit na namang lumubog  ang araw<br />\nCmaj7       C         Dm       G<br />\nDilim ng gabi&#8217;y darating na naman<br />\nF             G         C          C/B  Am<br />\nSa paghimlay mo, isip mo&#8217;y naglalakbay<br />\n     Dm              G<br />\nNakatanaw sa kawalan</p>\n<p><strong>Verse 2:</strong><br />\nC                          Cmaj7      C<br />\nLumipas na naman ang isang  araw sa buhay<br />\nCmaj7            C          Dm         G<br />\nTakbo ng buhay mo&#8217;y di mo namamalayan<br />\nF               G         C     C/B     Am<br />\nSa bawat sandaling darating at papanaw<br />\n       Dm                G<br />\nBuhay mo&#8217;y tila parang kulang </p>\n<p><strong>Chorus:</strong><br />\nF               G            C  C/B  Am<br />\nKayamanan at lahat ng kalayawan<br />\nDm          G           C<br />\nWala pala itong kabuluhan<br />\nF               G            C    C/B     Am<br />\nKung si Kristo ay wala pa sa iyong     buhay<br />\nDm         G              C<br />\nPara kang isang tupang ligaw</p>\n<p><strong>Ending:</strong><br />\nAm   F        G              C     C/B Am<br />\n  Para kang isang tupang ligaw<br />\nF           G              C<br />\nPara kang isang tupang ligaw</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\nC                         Cmaj7   C<br />\nMalapit na namang lumubog  ang araw<br />\nCmaj7       C         Dm       G<br />\nDilim ng gabi&#8217;y darating na naman<br />\nF             G         C          C/B  Am<br />\nSa paghimlay mo, isip mo&#8217;y naglalakbay<br />\n     Dm              G<br />\nNakatanaw sa kawalan</p>\n<p><strong>Verse 2:</strong><br />\nC                          Cmaj7      C<br />\nLumipas na naman ang isang  araw sa buhay<br />\nCmaj7            C          Dm         G<br />\nTakbo ng buhay mo&#8217;y di mo namamalayan<br />\nF               G         C     C/B     Am<br />\nSa bawat sandaling darating at papanaw<br />\n       Dm                G<br />\nBuhay mo&#8217;y tila parang kulang </p>\n<p><strong>Chorus:</strong><br />\nF               G            C  C/B  Am<br />\nKayamanan at lahat ng kalayawan<br />\nDm          G           C<br />\nWala pala itong kabuluhan<br />\nF               G            C    C/B     Am<br />\nKung si Kristo ay wala pa sa iyong     buhay<br />\nDm         G              C<br />\nPara kang isang tupang ligaw</p>\n<p><strong>Ending:</strong><br />\nAm   F        G              C     C/B Am<br />\n  Para kang isang tupang ligaw<br />\nF           G              C<br />\nPara kang isang tupang ligaw</p>\n",
+    "songNumber": 221
   },
   {
     "title": "Thank You Jesus For The  Blood",
     "artist": "Selah",
     "key": "Bb",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-9699",
     "id": "selah-9699",
     "customSong": true,
@@ -35868,13 +35947,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Bb</strong></p>\n<p><strong>Intro:</strong><br />\nBb &#8211; F/A &#8211; Gm7 &#8211; Eb &#8211; Bb/D &#8211; Fsus &#8211; F</p>\n<p><strong>Verse 1 :</strong><br />\nBb           F/A<br />\nI was wretch<br />\n     Gm7<br />\nI remember who I was<br />\n      Eb          Bb/D<br />\nI was lost, I was blind<br />\n      Fsus           F<br />\nI was running out of time<br />\nBb            F/A<br />\nSin separated<br />\n     Gm7<br />\nThe breach was far too wide<br />\n             Eb               Bb/D<br />\nBut form the far side of the chasm<br />\n    Fsus             F<br />\nYou held me in your sight</p>\n<p><strong>Verse 2 :</strong><br />\n   Bb             F/A<br />\nSo You made a way<br />\n  Gm7<br />\nAcross the great divide<br />\n       Eb             Bb/D<br />\nLeft behind Heaven&#8217;s throne<br />\n   Fsus            F<br />\nTo build it here inside<br />\n     Bb                F/A<br />\nAnd there at the cross<br />\n     Gm7<br />\nYou paid the debt I owe<br />\n          Eb              Bb/D<br />\nBroke my chains, freed my soul<br />\n         Fsus             F<br />\nFor the first time I had hope</p>\n<p><strong>Chorus:</strong><br />\nBb    F/A   Bb<br />\nThank You, Jesus<br />\nBb/D     Eb      Bb<br />\nFor the blood applied<br />\nGm    F/A  Bb<br />\nThank You, Jesus<br />\n       Gm7        Fsus &#8211; F<br />\nIt has washed me white<br />\nGm    F    Eb<br />\nThank You, Jesus<br />\nBb/D      Eb   F   Gm<br />\nYou have saved my life<br />\nEb                  Bb<br />\nBrought me from the darkness<br />\n     Fsus-F    Bb<br />\nInto glorious light</p>\n<p><strong>Turnaround Chords:</strong><br />\nEb &#8211; Bb &#8211; Bb&#8230;</p>\n<p><strong>Verse 3 :</strong><br />\nBb                F/A<br />\nYou took my place<br />\n        Gm7<br />\nLaid inside my tomb of sin<br />\n         Eb               Bb/D<br />\nYou were buried for three days<br />\n             Fsus               F<br />\nBut then you walked right out again<br />\n         Bb                F/A<br />\nAnd now death has no sting<br />\n    Gm7<br />\nAnd life has no end<br />\n    Eb                Bb/D<br />\nFor I have been transformed<br />\n       Fsus         F<br />\nBy the blood of the Lamb</p>\n<p><strong>Chorus:</strong><br />\nBb    F/A   Bb<br />\nThank You, Jesus<br />\nBb/D     Eb      Bb<br />\nFor the blood applied<br />\nGm    F/A  Bb<br />\nThank You, Jesus<br />\n       Gm7        Fsus &#8211; F<br />\nIt has washed me white<br />\nGm    F    Eb<br />\nThank You, Jesus<br />\nBb/D      Eb   F   Gm<br />\nYou have saved my life<br />\nEb                  Bb<br />\nBrought me from the darkness<br />\n     Fsus-F    Bb<br />\nInto glorious light</p>\n<p><strong>Bridge:</strong><br />\nEb<br />\nThere is nothing stronger<br />\n         F<br />\nThan the wonder-working power<br />\n        Gm        Dm7<br />\nOf the blood, the blood<br />\n      Eb<br />\nThat calls us sons and daughters<br />\n        F<br />\nWe are ransomed by our Father<br />\n             Gm         Dm7<br />\nThrough the blood, the blood<br />\nEb<br />\nThere is nothing stronger<br />\n         F<br />\nThan the wonder-working power<br />\n        Gm        Dm7<br />\nOf the blood, the blood<br />\n      Eb<br />\nThat calls us sons and daughters<br />\n        F<br />\nWe are ransomed by our Father<br />\n             Gm         Dm7<br />\nThrough the blood, the blood</p>\n<p><strong>Chorus:</strong><br />\nBb    F/A   Bb<br />\nThank You, Jesus<br />\nBb/D     Eb      Bb<br />\nFor the blood applied<br />\nGm    F/A  Bb<br />\nThank You, Jesus<br />\n       Gm7        Fsus &#8211; F<br />\nIt has washed me white<br />\nGm    F    Eb<br />\nThank You, Jesus<br />\nBb/D      Eb   F   Gm<br />\nYou have saved my life<br />\nEb                  Bb<br />\nBrought me from the darkness<br />\n     Fsus-F    Bb<br />\nInto glorious light</p>\n<p><strong>Ending:</strong></p>\n<p>Bb    Eb/G   Bb/F<br />\nGlory to His Name<br />\nBb/F  Gm7  Gm/E   F<br />\nGlory to   His   Name<br />\nBb          Bb/D<br />\nThere to my heart<br />\n        Eb      Bb/F<br />\nWas the blood applied<br />\nBb/F  Fsus  F    Bb<br />\nGlory to    His Name</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Bb</strong></p>\n<p><strong>Intro:</strong><br />\nBb &#8211; F/A &#8211; Gm7 &#8211; Eb &#8211; Bb/D &#8211; Fsus &#8211; F</p>\n<p><strong>Verse 1 :</strong><br />\nBb           F/A<br />\nI was wretch<br />\n     Gm7<br />\nI remember who I was<br />\n      Eb          Bb/D<br />\nI was lost, I was blind<br />\n      Fsus           F<br />\nI was running out of time<br />\nBb            F/A<br />\nSin separated<br />\n     Gm7<br />\nThe breach was far too wide<br />\n             Eb               Bb/D<br />\nBut form the far side of the chasm<br />\n    Fsus             F<br />\nYou held me in your sight</p>\n<p><strong>Verse 2 :</strong><br />\n   Bb             F/A<br />\nSo You made a way<br />\n  Gm7<br />\nAcross the great divide<br />\n       Eb             Bb/D<br />\nLeft behind Heaven&#8217;s throne<br />\n   Fsus            F<br />\nTo build it here inside<br />\n     Bb                F/A<br />\nAnd there at the cross<br />\n     Gm7<br />\nYou paid the debt I owe<br />\n          Eb              Bb/D<br />\nBroke my chains, freed my soul<br />\n         Fsus             F<br />\nFor the first time I had hope</p>\n<p><strong>Chorus:</strong><br />\nBb    F/A   Bb<br />\nThank You, Jesus<br />\nBb/D     Eb      Bb<br />\nFor the blood applied<br />\nGm    F/A  Bb<br />\nThank You, Jesus<br />\n       Gm7        Fsus &#8211; F<br />\nIt has washed me white<br />\nGm    F    Eb<br />\nThank You, Jesus<br />\nBb/D      Eb   F   Gm<br />\nYou have saved my life<br />\nEb                  Bb<br />\nBrought me from the darkness<br />\n     Fsus-F    Bb<br />\nInto glorious light</p>\n<p><strong>Turnaround Chords:</strong><br />\nEb &#8211; Bb &#8211; Bb&#8230;</p>\n<p><strong>Verse 3 :</strong><br />\nBb                F/A<br />\nYou took my place<br />\n        Gm7<br />\nLaid inside my tomb of sin<br />\n         Eb               Bb/D<br />\nYou were buried for three days<br />\n             Fsus               F<br />\nBut then you walked right out again<br />\n         Bb                F/A<br />\nAnd now death has no sting<br />\n    Gm7<br />\nAnd life has no end<br />\n    Eb                Bb/D<br />\nFor I have been transformed<br />\n       Fsus         F<br />\nBy the blood of the Lamb</p>\n<p><strong>Chorus:</strong><br />\nBb    F/A   Bb<br />\nThank You, Jesus<br />\nBb/D     Eb      Bb<br />\nFor the blood applied<br />\nGm    F/A  Bb<br />\nThank You, Jesus<br />\n       Gm7        Fsus &#8211; F<br />\nIt has washed me white<br />\nGm    F    Eb<br />\nThank You, Jesus<br />\nBb/D      Eb   F   Gm<br />\nYou have saved my life<br />\nEb                  Bb<br />\nBrought me from the darkness<br />\n     Fsus-F    Bb<br />\nInto glorious light</p>\n<p><strong>Bridge:</strong><br />\nEb<br />\nThere is nothing stronger<br />\n         F<br />\nThan the wonder-working power<br />\n        Gm        Dm7<br />\nOf the blood, the blood<br />\n      Eb<br />\nThat calls us sons and daughters<br />\n        F<br />\nWe are ransomed by our Father<br />\n             Gm         Dm7<br />\nThrough the blood, the blood<br />\nEb<br />\nThere is nothing stronger<br />\n         F<br />\nThan the wonder-working power<br />\n        Gm        Dm7<br />\nOf the blood, the blood<br />\n      Eb<br />\nThat calls us sons and daughters<br />\n        F<br />\nWe are ransomed by our Father<br />\n             Gm         Dm7<br />\nThrough the blood, the blood</p>\n<p><strong>Chorus:</strong><br />\nBb    F/A   Bb<br />\nThank You, Jesus<br />\nBb/D     Eb      Bb<br />\nFor the blood applied<br />\nGm    F/A  Bb<br />\nThank You, Jesus<br />\n       Gm7        Fsus &#8211; F<br />\nIt has washed me white<br />\nGm    F    Eb<br />\nThank You, Jesus<br />\nBb/D      Eb   F   Gm<br />\nYou have saved my life<br />\nEb                  Bb<br />\nBrought me from the darkness<br />\n     Fsus-F    Bb<br />\nInto glorious light</p>\n<p><strong>Ending:</strong></p>\n<p>Bb    Eb/G   Bb/F<br />\nGlory to His Name<br />\nBb/F  Gm7  Gm/E   F<br />\nGlory to   His   Name<br />\nBb          Bb/D<br />\nThere to my heart<br />\n        Eb      Bb/F<br />\nWas the blood applied<br />\nBb/F  Fsus  F    Bb<br />\nGlory to    His Name</p>\n",
+    "songNumber": 205
   },
   {
     "title": "Tribes (Live from Victory Conference)",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-9547",
     "id": "selah-9547",
@@ -36432,13 +36512,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nG/B &#8211; C .. C/E &#8211; F .. G &#8211; Am .. C/E &#8211; F </p>\n<p><strong>Verse 1:</strong><br />\nC                          F<br />\n Every tribe will see Your glory<br />\nC                     F<br />\n Every nation bow before You<br />\nC                           F<br />\n All our treasure turned to ashes<br />\n(/F &#8211; /E &#8211; /D &#8211; /C)  C/E  F<br />\n     In the light of You</p>\n<p><strong>Pre-Chorus:</strong><br />\n(F-C/E-Dm-C)  G                  Am<br />\nAs we’re singing holy is the Lord Almighty<br />\n              G                   F<br />\nOnly You are worthy, worthy of it all</p>\n<p><strong>Chorus:</strong><br />\nC                                      F<br />\nPraise and glory, honor and strength, unto our God, unto our God<br />\nAm                                      F<br />\nMatchless, endless, love that prevails, this is our God, every tribe sing</p>\n<p><strong>Verse 2:</strong><br />\nDm7                         CM7 &#8211; A7<br />\n Every tribe will see Your glory<br />\nDm7                         CM7 &#8211; A7<br />\n Every nation bow before You<br />\nDm7                         CM7 &#8211; F<br />\n All our treasure turned to ashes<br />\n(/F &#8211; /E &#8211; /D &#8211; /C)  C/E  F<br />\n     In the light of You</p>\n<p><strong>Bridge:</strong><br />\nG/B &#8211; C                       C/E &#8211; F<br />\nThere is no one like our God, there is no one like our God<br />\nG &#8211; Am                        C/E &#8211; F<br />\nThere is no one like our God, there is no one like our God<br />\nC                             F<br />\nThere is no one like our God, there is no one like our God<br />\nAm                            F<br />\nThere is no one like our God, there is no one like our God<br />\n  C                           F<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos<br />\n  Am                           F<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos<br />\n  C/E                          F/A<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos<br />\n  C/G                          F<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos</p>\n<p><strong>End:</strong><br />\nC                             F<br />\nThere is no one like our God, there is no one like our God<br />\nAm                            F<br />\nThere is no one like our God, there is no one like our God<br />\n  C                           F<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos<br />\n  Am                           F<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nG/B &#8211; C .. C/E &#8211; F .. G &#8211; Am .. C/E &#8211; F </p>\n<p><strong>Verse 1:</strong><br />\nC                          F<br />\n Every tribe will see Your glory<br />\nC                     F<br />\n Every nation bow before You<br />\nC                           F<br />\n All our treasure turned to ashes<br />\n(/F &#8211; /E &#8211; /D &#8211; /C)  C/E  F<br />\n     In the light of You</p>\n<p><strong>Pre-Chorus:</strong><br />\n(F-C/E-Dm-C)  G                  Am<br />\nAs we’re singing holy is the Lord Almighty<br />\n              G                   F<br />\nOnly You are worthy, worthy of it all</p>\n<p><strong>Chorus:</strong><br />\nC                                      F<br />\nPraise and glory, honor and strength, unto our God, unto our God<br />\nAm                                      F<br />\nMatchless, endless, love that prevails, this is our God, every tribe sing</p>\n<p><strong>Verse 2:</strong><br />\nDm7                         CM7 &#8211; A7<br />\n Every tribe will see Your glory<br />\nDm7                         CM7 &#8211; A7<br />\n Every nation bow before You<br />\nDm7                         CM7 &#8211; F<br />\n All our treasure turned to ashes<br />\n(/F &#8211; /E &#8211; /D &#8211; /C)  C/E  F<br />\n     In the light of You</p>\n<p><strong>Bridge:</strong><br />\nG/B &#8211; C                       C/E &#8211; F<br />\nThere is no one like our God, there is no one like our God<br />\nG &#8211; Am                        C/E &#8211; F<br />\nThere is no one like our God, there is no one like our God<br />\nC                             F<br />\nThere is no one like our God, there is no one like our God<br />\nAm                            F<br />\nThere is no one like our God, there is no one like our God<br />\n  C                           F<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos<br />\n  Am                           F<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos<br />\n  C/E                          F/A<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos<br />\n  C/G                          F<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos</p>\n<p><strong>End:</strong><br />\nC                             F<br />\nThere is no one like our God, there is no one like our God<br />\nAm                            F<br />\nThere is no one like our God, there is no one like our God<br />\n  C                           F<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos<br />\n  Am                           F<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos</p>\n",
+    "songNumber": 220
   },
   {
     "title": "My God is Greater",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-9435",
     "id": "selah-9435",
@@ -37093,13 +37174,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG &#8211; G/E &#8211; G/D &#8211; C &#8211; Cm/D</p>\n<p><strong>Verse 1:</strong><br />\n               G      G/E           Am7                 D<br />\nWhen troubles pile up, just like a mountain you can&#8217;t climb<br />\n                G      G/E                 Am7              D<br />\nWhen you&#8217;re discouraged, seems like you&#8217;re falling all the time<br />\n             Em7     Bm7           C         G<br />\nWhen you&#8217;re down and out, and you start to doubt<br />\n            Am7             /G                  D    C    D<br />\nThat&#8217;s the time to find a place to raise your hands and shout</p>\n<p><strong>Verse 2:</strong><br />\n             G     G/E           Am7             D<br />\nWhen others fail you, when disillusionment sets in<br />\n                  G   G/E             Am7            D<br />\nWhen you&#8217;re downhearted, feeling like you can never win<br />\n        Em7       Bm7           C         G<br />\nWhen it all seems lost, is it worth the cost?<br />\n            Am7              /G                D    C   D<br />\nThat&#8217;s the time to turn your mind and face the mighty cross</p>\n<p><strong>Chorus:</strong><br />\n           G /F Em  D               C   /B  /A<br />\nMy God is greater than all these things<br />\n          Am7                C/D            G       C  D<br />\nHe&#8217;s in control, He lifts my soul until my spirit sings<br />\n           G /F Em     D       C       /B<br />\nMy God is greater! Wonderful, Mighty, King of Kings<br />\n            Am7          C/D<br />\nHe holds forever in His hands<br />\n            D/C  C/D<br />\nMy God is greater</p>\n<p><strong>Ending:</strong><br />\n           G /F Em     D       C       /B<br />\nMy God is greater! Wonderful, Mighty, King of Kings<br />\n            Am7          C/D<br />\nHe holds forever in His hands&#8230;<br />\n            D/C  C/D  G<br />\nMy God is greater<br />\nC         /B Am7 C/D<br />\n  My God is greater<br />\n            D/C  C/D  G<br />\nMy God is greater</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG &#8211; G/E &#8211; G/D &#8211; C &#8211; Cm/D</p>\n<p><strong>Verse 1:</strong><br />\n               G      G/E           Am7                 D<br />\nWhen troubles pile up, just like a mountain you can&#8217;t climb<br />\n                G      G/E                 Am7              D<br />\nWhen you&#8217;re discouraged, seems like you&#8217;re falling all the time<br />\n             Em7     Bm7           C         G<br />\nWhen you&#8217;re down and out, and you start to doubt<br />\n            Am7             /G                  D    C    D<br />\nThat&#8217;s the time to find a place to raise your hands and shout</p>\n<p><strong>Verse 2:</strong><br />\n             G     G/E           Am7             D<br />\nWhen others fail you, when disillusionment sets in<br />\n                  G   G/E             Am7            D<br />\nWhen you&#8217;re downhearted, feeling like you can never win<br />\n        Em7       Bm7           C         G<br />\nWhen it all seems lost, is it worth the cost?<br />\n            Am7              /G                D    C   D<br />\nThat&#8217;s the time to turn your mind and face the mighty cross</p>\n<p><strong>Chorus:</strong><br />\n           G /F Em  D               C   /B  /A<br />\nMy God is greater than all these things<br />\n          Am7                C/D            G       C  D<br />\nHe&#8217;s in control, He lifts my soul until my spirit sings<br />\n           G /F Em     D       C       /B<br />\nMy God is greater! Wonderful, Mighty, King of Kings<br />\n            Am7          C/D<br />\nHe holds forever in His hands<br />\n            D/C  C/D<br />\nMy God is greater</p>\n<p><strong>Ending:</strong><br />\n           G /F Em     D       C       /B<br />\nMy God is greater! Wonderful, Mighty, King of Kings<br />\n            Am7          C/D<br />\nHe holds forever in His hands&#8230;<br />\n            D/C  C/D  G<br />\nMy God is greater<br />\nC         /B Am7 C/D<br />\n  My God is greater<br />\n            D/C  C/D  G<br />\nMy God is greater</p>\n",
+    "songNumber": 152
   },
   {
     "title": "Let Us Exalt (CFNI)",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-9396",
     "id": "selah-9396",
@@ -37414,13 +37496,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Verse:</strong><br />\nEm<br />\nLet us exalt His name together<br />\nAm<br />\nLet us exalt His name together<br />\n   Bsus<br />\nIn one accord<br />\n   B7 (-/A -/G -/F#) Em    (/B &#8211; /D &#8211; /D#)<br />\nWe lift our hands in praise<br />\nEm<br />\nLet us exalt His name together<br />\nAm<br />\nLet us exalt His name together<br />\n   Bsus<br />\nIn one accord<br />\n   B7 (-/A -/G -/F#) Em    (Em &#8211; Em/G &#8211; E/G#)<br />\nWe lift our hands in praise<br />\n                End: Em   Am   Em &#8211; B7 &#8211; Em</p>\n<p><strong>Chorus:</strong><br />\n    Am                  D<br />\nFor You are the Lord of all creation<br />\n   G               C<br />\nWe bow our heads in adoration<br />\n   F#7<br />\nWe lift our hands<br />\n   B7              E7sus &#8211; E7<br />\nTo bless Your Holy Name<br />\n    Am                  D<br />\nFor You are the Lord of all creation<br />\n   G               C<br />\nWe bow our heads in adoration<br />\n   F#7<br />\nWe lift our hands<br />\n   B7              Em<br />\nTo bless Your Holy Name</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Verse:</strong><br />\nEm<br />\nLet us exalt His name together<br />\nAm<br />\nLet us exalt His name together<br />\n   Bsus<br />\nIn one accord<br />\n   B7 (-/A -/G -/F#) Em    (/B &#8211; /D &#8211; /D#)<br />\nWe lift our hands in praise<br />\nEm<br />\nLet us exalt His name together<br />\nAm<br />\nLet us exalt His name together<br />\n   Bsus<br />\nIn one accord<br />\n   B7 (-/A -/G -/F#) Em    (Em &#8211; Em/G &#8211; E/G#)<br />\nWe lift our hands in praise<br />\n                End: Em   Am   Em &#8211; B7 &#8211; Em</p>\n<p><strong>Chorus:</strong><br />\n    Am                  D<br />\nFor You are the Lord of all creation<br />\n   G               C<br />\nWe bow our heads in adoration<br />\n   F#7<br />\nWe lift our hands<br />\n   B7              E7sus &#8211; E7<br />\nTo bless Your Holy Name<br />\n    Am                  D<br />\nFor You are the Lord of all creation<br />\n   G               C<br />\nWe bow our heads in adoration<br />\n   F#7<br />\nWe lift our hands<br />\n   B7              Em<br />\nTo bless Your Holy Name</p>\n",
+    "songNumber": 138
   },
   {
     "title": "PINTONG MAHIWAGA",
     "artist": "Selah",
     "key": "F#",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-9372",
     "id": "selah-9372",
@@ -38144,13 +38227,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F#</strong></p>\n<p><strong>Intro:</strong><br />\nF#   G#m   DM7   E/D   C   G#m   C#</p>\n<p><strong>Verse 1:</strong><br />\nF#            G#m7        F#/Bb      (G#m7 &#8211; F4, 6/G)<br />\n    Isang pintong   mahiwaga<br />\nF#             G#m7       F#/Bb   (C#m &#8211; F#)<br />\n    Di bubukas       na kusa<br />\nBM7    C#/B        Bbm7              Ebm7<br />\n    Si Hesus ang doo&#8217;y    tumutuktok<br />\nG#m          C#       F#         (G#m   DM7   C#)<br />\n    Naghihintay ng sagot</p>\n<p><strong>Verse 2:</strong><br />\nF#                 G#m7        F#/Bb      (G#m7 &#8211; F4, 6/G)<br />\n    Sumagot ka na ba sa Kanya?<br />\nF#M7       G#m7       F#/Bb   (C#m &#8211; F#)<br />\n    O ayaw mong paabala?<br />\nBM7          C#/B   Bbm7              Ebm7<br />\n    Ang buhay mo ay laging gugulo<br />\nG#m               C#sus4-C     F#<br />\n    Kung wala si Kristo sa    &#8216;yo</p>\n<p><strong>Chorus 1:</strong><br />\nB      G#m7          Bb          Eb/G            G#m7<br />\nPag-isipan    kung anong ligaya ang    iyong malalasap<br />\nC#                 F#      F#7<br />\nDoon sa kaluwalhatian<br />\nBM7       /Bb &#8211; G#m7        Bbm7        Eb7<br />\nPuso mo&#8217;y buk   san  at si Kristo&#8217;y anyayahan<br />\n     G#m7         C#        DM7   CM7   DM7   D7<br />\nKaligtasa&#8217;y tunay na makakamtan</p>\n<p><strong>Verse 3:</strong><br />\nGM7          Am7         Bm       (Am7 – F#6/G#)<br />\n    Isang pintong mahiwaga<br />\nGM7         Am7    Bm7    (Dm7 – G)<br />\n    Di bubukas na kusa<br />\nCM7      D/C          Bm7              E7<br />\n    Si Hesus ang doo’y tumutuktok<br />\nAm7         D         G      (Dm7 – G7)  or (Am7 – C/D)<br />\n    Naghihintay ng sagot</p>\n<p><strong>Verse 4:</strong><br />\nGM7               Am7      Bm       (Am7 – F#6/G#)<br />\n    Sumagot ka na ba sa Kanya?<br />\nGM7         Am7     Bm7    Dm7 – G<br />\n    O ayaw mong paabala?<br />\nCM7           D/C      Bm7        E7<br />\n    Ang buhay mo ay laging gugulo<br />\nAm7               D            G      (Dm7 – G7)<br />\n    Kung wala si Kristo sa ‘yo</p>\n<p>Chorus 2:<br />\nCM7     Am7       B             E            Am7<br />\nPag-isipan kung anong ligaya ang iyong malalasap<br />\nC/D                   GM7  (Dm7 – G)<br />\nDoon sa kaluwalhatian<br />\nCM7          Am7        Bm7               E<br />\nPuso mo’y buksan at si Kristo’y anyayahan<br />\n        Am7               D        … 4,5,6,7,8     or    (…E – E/D… to end)<br />\nKaligtasa’y tunay na makakamtan</p>\n<p>(Repeat Chorus 2:)</p>\n<p>CM7          Am7        Bm7                    E7<br />\nPuso mo’y buksan at si Kristo’y anyayahan<br />\n        Am7       C/D                       G…  Am7/G… Ebm7… F<br />\nKaligtasa’y tunay na makakamtan…</p>\n<p>Ending:<br />\nGM7                Am7                     GM7<br />\n        Isang pintong mahiwaga…</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F#</strong></p>\n<p><strong>Intro:</strong><br />\nF#   G#m   DM7   E/D   C   G#m   C#</p>\n<p><strong>Verse 1:</strong><br />\nF#            G#m7        F#/Bb      (G#m7 &#8211; F4, 6/G)<br />\n    Isang pintong   mahiwaga<br />\nF#             G#m7       F#/Bb   (C#m &#8211; F#)<br />\n    Di bubukas       na kusa<br />\nBM7    C#/B        Bbm7              Ebm7<br />\n    Si Hesus ang doo&#8217;y    tumutuktok<br />\nG#m          C#       F#         (G#m   DM7   C#)<br />\n    Naghihintay ng sagot</p>\n<p><strong>Verse 2:</strong><br />\nF#                 G#m7        F#/Bb      (G#m7 &#8211; F4, 6/G)<br />\n    Sumagot ka na ba sa Kanya?<br />\nF#M7       G#m7       F#/Bb   (C#m &#8211; F#)<br />\n    O ayaw mong paabala?<br />\nBM7          C#/B   Bbm7              Ebm7<br />\n    Ang buhay mo ay laging gugulo<br />\nG#m               C#sus4-C     F#<br />\n    Kung wala si Kristo sa    &#8216;yo</p>\n<p><strong>Chorus 1:</strong><br />\nB      G#m7          Bb          Eb/G            G#m7<br />\nPag-isipan    kung anong ligaya ang    iyong malalasap<br />\nC#                 F#      F#7<br />\nDoon sa kaluwalhatian<br />\nBM7       /Bb &#8211; G#m7        Bbm7        Eb7<br />\nPuso mo&#8217;y buk   san  at si Kristo&#8217;y anyayahan<br />\n     G#m7         C#        DM7   CM7   DM7   D7<br />\nKaligtasa&#8217;y tunay na makakamtan</p>\n<p><strong>Verse 3:</strong><br />\nGM7          Am7         Bm       (Am7 – F#6/G#)<br />\n    Isang pintong mahiwaga<br />\nGM7         Am7    Bm7    (Dm7 – G)<br />\n    Di bubukas na kusa<br />\nCM7      D/C          Bm7              E7<br />\n    Si Hesus ang doo’y tumutuktok<br />\nAm7         D         G      (Dm7 – G7)  or (Am7 – C/D)<br />\n    Naghihintay ng sagot</p>\n<p><strong>Verse 4:</strong><br />\nGM7               Am7      Bm       (Am7 – F#6/G#)<br />\n    Sumagot ka na ba sa Kanya?<br />\nGM7         Am7     Bm7    Dm7 – G<br />\n    O ayaw mong paabala?<br />\nCM7           D/C      Bm7        E7<br />\n    Ang buhay mo ay laging gugulo<br />\nAm7               D            G      (Dm7 – G7)<br />\n    Kung wala si Kristo sa ‘yo</p>\n<p>Chorus 2:<br />\nCM7     Am7       B             E            Am7<br />\nPag-isipan kung anong ligaya ang iyong malalasap<br />\nC/D                   GM7  (Dm7 – G)<br />\nDoon sa kaluwalhatian<br />\nCM7          Am7        Bm7               E<br />\nPuso mo’y buksan at si Kristo’y anyayahan<br />\n        Am7               D        … 4,5,6,7,8     or    (…E – E/D… to end)<br />\nKaligtasa’y tunay na makakamtan</p>\n<p>(Repeat Chorus 2:)</p>\n<p>CM7          Am7        Bm7                    E7<br />\nPuso mo’y buksan at si Kristo’y anyayahan<br />\n        Am7       C/D                       G…  Am7/G… Ebm7… F<br />\nKaligtasa’y tunay na makakamtan…</p>\n<p>Ending:<br />\nGM7                Am7                     GM7<br />\n        Isang pintong mahiwaga…</p>\n",
+    "songNumber": 177
   },
   {
     "title": "Were It Not For Grace",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-9318",
     "id": "selah-9318",
@@ -38736,13 +38820,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG&#8230; C&#8230; G/B&#8230;. C&#8230;. C/D</p>\n<p><strong>Verse 1:</strong><br />\n                      G2    C/G<br />\nTime measured out my days<br />\n                  G2    C/G<br />\nLife carried me along<br />\nD/F#             C                 B   -/Eb<br />\nIn    my soul I yearned to follow God<br />\n             Em           /D<br />\nBut knew I&#8217;d never be so strong<br />\n                       Eb<br />\nI looked hard at this world<br />\n             F     -/A               Bb     -/D<br />\nTo know how heaven        should be gained<br />\n                     Eb<br />\nJust to end where I began<br />\n       /D   Cm     -/Bb            Dsus &#8211; D<br />\nWhere human effort       is all in vain</p>\n<p><strong>Chorus 1:</strong></p>\n<p>G                C      D/C<br />\nWere it not for grace<br />\n                G     D/F#   Em<br />\nI can tell you where  I&#8217;d    be<br />\n/D                  Am7                C/D    (/D-/E-D/F#)<br />\nWandering down some pointless road to nowhere<br />\n           G         D/F#     Em7<br />\nWith my salvation up       to me<br />\n       /D                  C    D/C<br />\nAnd I know how that would go<br />\n                    Ddim &#8211; Esus &#8211; E/G#<br />\nThe battles I would face<br />\n         Am7         G/B        C<br />\nForever running but losing the race<br />\n/D               G      C/G&#8230; D/F#&#8230; Em&#8230; C/D<br />\nWere it not for grace</p>\n<p><strong>Verse 2:</strong><br />\n                    G2      C/G<br />\nSo here is all my praise<br />\n                      G2     C/G<br />\nExpressed with all my heart<br />\nG       /B       C                 B   -/Eb<br />\nOffered to the Friend who took my place (ooohhh)<br />\n           Em                 /D<br />\nAnd ran a course I could not start<br />\n                    Eb<br />\nAnd when He saw in full<br />\n          F     -/A                  Bb     -/D<br />\nJust how much         His love would cost<br />\n                        Eb<br />\nHe still went the final mile<br />\n    /D         Cm     -/Bb                     Dsus &#8211; D<br />\nBetween me and heaven        so I would not be lost</p>\n<p><strong>Verse 2:</strong><br />\nG                C      D/C<br />\nWere it not for grace<br />\n                G     D/F#     Em<br />\nI can tell you where       I&#8217;d be<br />\n/D                  Am7                C/D    (/D-/E-D/F#)<br />\nWandering down some pointless road to nowhere<br />\n           G      D/F#     Em7<br />\nWith my salvation  up   to me<br />\n       /D                 C    D/C<br />\nAnd I know how that would go<br />\n                    Ddim &#8211; Esus &#8211; E/G#<br />\nThe battles I would face (ooohhh)<br />\n         Am7         G/B        C<br />\nForever running but losing the race<br />\n                 Em    G/D<br />\nWere it not for grace<br />\n         Am7         G/B        C<br />\nForever running but losing the race<br />\n                  G    C/G&#8230;D/F#&#8230;Em&#8230;Am7/D&#8230;C/D&#8230;G<br />\nWere it not for grace</p>\n<p>(ooohhh, mm-mm, mm-mm, mm-mm)</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG&#8230; C&#8230; G/B&#8230;. C&#8230;. C/D</p>\n<p><strong>Verse 1:</strong><br />\n                      G2    C/G<br />\nTime measured out my days<br />\n                  G2    C/G<br />\nLife carried me along<br />\nD/F#             C                 B   -/Eb<br />\nIn    my soul I yearned to follow God<br />\n             Em           /D<br />\nBut knew I&#8217;d never be so strong<br />\n                       Eb<br />\nI looked hard at this world<br />\n             F     -/A               Bb     -/D<br />\nTo know how heaven        should be gained<br />\n                     Eb<br />\nJust to end where I began<br />\n       /D   Cm     -/Bb            Dsus &#8211; D<br />\nWhere human effort       is all in vain</p>\n<p><strong>Chorus 1:</strong></p>\n<p>G                C      D/C<br />\nWere it not for grace<br />\n                G     D/F#   Em<br />\nI can tell you where  I&#8217;d    be<br />\n/D                  Am7                C/D    (/D-/E-D/F#)<br />\nWandering down some pointless road to nowhere<br />\n           G         D/F#     Em7<br />\nWith my salvation up       to me<br />\n       /D                  C    D/C<br />\nAnd I know how that would go<br />\n                    Ddim &#8211; Esus &#8211; E/G#<br />\nThe battles I would face<br />\n         Am7         G/B        C<br />\nForever running but losing the race<br />\n/D               G      C/G&#8230; D/F#&#8230; Em&#8230; C/D<br />\nWere it not for grace</p>\n<p><strong>Verse 2:</strong><br />\n                    G2      C/G<br />\nSo here is all my praise<br />\n                      G2     C/G<br />\nExpressed with all my heart<br />\nG       /B       C                 B   -/Eb<br />\nOffered to the Friend who took my place (ooohhh)<br />\n           Em                 /D<br />\nAnd ran a course I could not start<br />\n                    Eb<br />\nAnd when He saw in full<br />\n          F     -/A                  Bb     -/D<br />\nJust how much         His love would cost<br />\n                        Eb<br />\nHe still went the final mile<br />\n    /D         Cm     -/Bb                     Dsus &#8211; D<br />\nBetween me and heaven        so I would not be lost</p>\n<p><strong>Verse 2:</strong><br />\nG                C      D/C<br />\nWere it not for grace<br />\n                G     D/F#     Em<br />\nI can tell you where       I&#8217;d be<br />\n/D                  Am7                C/D    (/D-/E-D/F#)<br />\nWandering down some pointless road to nowhere<br />\n           G      D/F#     Em7<br />\nWith my salvation  up   to me<br />\n       /D                 C    D/C<br />\nAnd I know how that would go<br />\n                    Ddim &#8211; Esus &#8211; E/G#<br />\nThe battles I would face (ooohhh)<br />\n         Am7         G/B        C<br />\nForever running but losing the race<br />\n                 Em    G/D<br />\nWere it not for grace<br />\n         Am7         G/B        C<br />\nForever running but losing the race<br />\n                  G    C/G&#8230;D/F#&#8230;Em&#8230;Am7/D&#8230;C/D&#8230;G<br />\nWere it not for grace</p>\n<p>(ooohhh, mm-mm, mm-mm, mm-mm)</p>\n",
+    "songNumber": 232
   },
   {
     "title": "Undivided Heart",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-9296",
     "id": "selah-9296",
@@ -39513,13 +39598,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nA &#8211; B/A &#8211; G#m7 &#8211; C#m7, F#m7 &#8211; B &#8211; E</p>\n<p><strong>Verse 1:</strong><br />\n   E              D/E<br />\nIf I&#8217;m to be whom You desire<br />\nA                 F#m7 &#8211; B<br />\nAll throughout my life<br />\n   E           D/E           A     F#m7-B<br />\nA vessel unto honor Lord to Thee<br />\n       E                   D/E<br />\nAnd before Your throne to hear You say<br />\n     A              Am7<br />\nThat I have done my part<br />\nF#m7            B          E<br />\nLord, I need an undivided heart</p>\n<p><strong>Chorus 1:</strong><br />\nA/F#               B         B/A<br />\n     That I might know You<br />\nG#m7               C#m7<br />\n     That I might serve You<br />\nF#m7              B               E    Bn7-E7<br />\n     That I might worship You as King<br />\n   A/C#            Am/C<br />\nTo see the Morning Star<br />\n   E/B                C#m7<br />\nTo know how great You are<br />\nF#m7            B          E<br />\nLord, I need an undivided heart</p>\n<p><strong>Verse 2:</strong><br />\n    E              D/E<br />\nIf I&#8217;m to live in truth and love<br />\n    A           F#m7 &#8211; B<br />\nTo glorify Your Name<br />\n    E            D/E         A   F#m7-B<br />\nIf for a living sacrifice to be<br />\n        E                  D/E<br />\nAnd to share the joy, the grace and peace<br />\n      A             Am7<br />\nYour Spirit does impart<br />\nF#m7            B          E<br />\nLord, I need an undivided heart</p>\n<p><strong>Chorus 2:</strong><br />\nA/F#               B        B/A<br />\n     That I might know You<br />\nG#m7               C#m7<br />\n     That I might serve You<br />\nF#m7               B              E     Bn7-E7<br />\n     That I might worship You as King<br />\n   A/C#            Am/C<br />\nTo see the Morning Star<br />\n   E/B                C#m7<br />\nTo know how great You are<br />\nF#m7            B          E      Bm7-E7<br />\nLord, I need an undivided heart<br />\n       A/C#            Am/C<br />\n&#8230; To see the morning star<br />\n   E/B                C#m7<br />\nTo know how great You are<br />\nF#m7            B          C#m7  &#8211; F#7<br />\nLord, I need an undivided heart<br />\n    F#m7            B          C/D &#8211; /C# &#8211; E/C &#8211; C#m/B<br />\n&#8230; Lord, I need an undivided heart<br />\n    F#m7            B          E<br />\n&#8230; Lord, I need an undivided heart</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nA &#8211; B/A &#8211; G#m7 &#8211; C#m7, F#m7 &#8211; B &#8211; E</p>\n<p><strong>Verse 1:</strong><br />\n   E              D/E<br />\nIf I&#8217;m to be whom You desire<br />\nA                 F#m7 &#8211; B<br />\nAll throughout my life<br />\n   E           D/E           A     F#m7-B<br />\nA vessel unto honor Lord to Thee<br />\n       E                   D/E<br />\nAnd before Your throne to hear You say<br />\n     A              Am7<br />\nThat I have done my part<br />\nF#m7            B          E<br />\nLord, I need an undivided heart</p>\n<p><strong>Chorus 1:</strong><br />\nA/F#               B         B/A<br />\n     That I might know You<br />\nG#m7               C#m7<br />\n     That I might serve You<br />\nF#m7              B               E    Bn7-E7<br />\n     That I might worship You as King<br />\n   A/C#            Am/C<br />\nTo see the Morning Star<br />\n   E/B                C#m7<br />\nTo know how great You are<br />\nF#m7            B          E<br />\nLord, I need an undivided heart</p>\n<p><strong>Verse 2:</strong><br />\n    E              D/E<br />\nIf I&#8217;m to live in truth and love<br />\n    A           F#m7 &#8211; B<br />\nTo glorify Your Name<br />\n    E            D/E         A   F#m7-B<br />\nIf for a living sacrifice to be<br />\n        E                  D/E<br />\nAnd to share the joy, the grace and peace<br />\n      A             Am7<br />\nYour Spirit does impart<br />\nF#m7            B          E<br />\nLord, I need an undivided heart</p>\n<p><strong>Chorus 2:</strong><br />\nA/F#               B        B/A<br />\n     That I might know You<br />\nG#m7               C#m7<br />\n     That I might serve You<br />\nF#m7               B              E     Bn7-E7<br />\n     That I might worship You as King<br />\n   A/C#            Am/C<br />\nTo see the Morning Star<br />\n   E/B                C#m7<br />\nTo know how great You are<br />\nF#m7            B          E      Bm7-E7<br />\nLord, I need an undivided heart<br />\n       A/C#            Am/C<br />\n&#8230; To see the morning star<br />\n   E/B                C#m7<br />\nTo know how great You are<br />\nF#m7            B          C#m7  &#8211; F#7<br />\nLord, I need an undivided heart<br />\n    F#m7            B          C/D &#8211; /C# &#8211; E/C &#8211; C#m/B<br />\n&#8230; Lord, I need an undivided heart<br />\n    F#m7            B          E<br />\n&#8230; Lord, I need an undivided heart</p>\n",
+    "songNumber": 223
   },
   {
     "title": "Itataas Kita",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-9276",
     "id": "selah-9276",
@@ -39786,13 +39872,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG  Am7  Bm  C<br />\nG  Am7  C   D</p>\n<p><strong>Chorus:</strong><br />\n G   D/F# Em D   C  D    G G7<br />\nItataas Kita, itataas Kita<br />\n  C     D    Bm     Em<br />\nSa buhay ko, sa puso ko<br />\n  Am7    D    (Am7  F   D if chorus to chorus)<br />\nItataas Kita</p>\n<p><strong>Verse:</strong><br />\n  G              D/F#              Em   D<br />\nHabang may hininga, Sa&#8217;yo ako ay sasamba<br />\n  C               D             G  G7<br />\nHabang mayroong lakas, pupurihin Kita<br />\n  C          D      Bm       Em<br />\nPanginoong Hesus, minamahal Kita<br />\n  C                    Am7<br />\nTunay na Diyos, pag-ibig Mo&#8217;y<br />\n        F    D<br />\nkahanga-hanga</p>\n<p>* Lyrics change in chorus</p>\n<p>Sinasamba Kita<br />\nLuwalhatiin Ka<br />\nMinamahal Kita</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG  Am7  Bm  C<br />\nG  Am7  C   D</p>\n<p><strong>Chorus:</strong><br />\n G   D/F# Em D   C  D    G G7<br />\nItataas Kita, itataas Kita<br />\n  C     D    Bm     Em<br />\nSa buhay ko, sa puso ko<br />\n  Am7    D    (Am7  F   D if chorus to chorus)<br />\nItataas Kita</p>\n<p><strong>Verse:</strong><br />\n  G              D/F#              Em   D<br />\nHabang may hininga, Sa&#8217;yo ako ay sasamba<br />\n  C               D             G  G7<br />\nHabang mayroong lakas, pupurihin Kita<br />\n  C          D      Bm       Em<br />\nPanginoong Hesus, minamahal Kita<br />\n  C                    Am7<br />\nTunay na Diyos, pag-ibig Mo&#8217;y<br />\n        F    D<br />\nkahanga-hanga</p>\n<p>* Lyrics change in chorus</p>\n<p>Sinasamba Kita<br />\nLuwalhatiin Ka<br />\nMinamahal Kita</p>\n",
+    "songNumber": 119
   },
   {
     "title": "Praise The Lord",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-9271",
     "id": "selah-9271",
@@ -40528,14 +40615,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nG</p>\n<p><strong>Verse 1:</strong><br />\nG2<br />\nWhen you&#8217;re up against the struggle<br />\n      C/G<br />\nThat shatters all your dreams<br />\n           G2<br />\nWhen your hopes have been cruelly crushed<br />\n    C/G<br />\nAt Satan&#8217;s manifested schemes<br />\n              G2                          C/G<br />\nAnd when you feel the urge within you to submit to earthly fears<br />\n         G2                                      C/G<br />\nAnd the faith that you&#8217;ve been standin&#8217; in just seems to disappear</p>\n<p><strong>Chorus 1:</strong><br />\n            Am &#8211; /G# &#8211;       /G                      C/D<br />\nPraise the Lord,      He can work through those who praise Him<br />\n            G   -D            Bm7           E7<br />\nPraise the Lord,      for our God inhabits praise<br />\n           Am7 &#8211; /G#           Am7                 D<br />\nPraise the Lord,      for the chains that seem to bind you<br />\n      Am7        D<br />\nServe only to remind you<br />\n               C/E         D/F#<br />\nThat they drop powerless behind you<br />\n          C/G   G<br />\nWhen you praise Him</p>\n<p><strong>Verse 2:</strong><br />\nC/D        G2                     C/G<br />\n     Now, Satan is a liar and he wants to make us think<br />\n             G2<br />\nThat we are paupers, when he knows himself<br />\n        C/G<br />\nWe are children of the King<br />\n    G<br />\nSo lift up the mighty shield of faith<br />\n         Am7<br />\nFor the battle must be won<br />\n              Bm7<br />\nWe know that Jesus Christ is risen<br />\n        C<br />\nSo the work&#8217;s already done</p>\n<p><strong>Chorus 2:</strong><br />\n            Am &#8211; /G# &#8211;       /G                      C/D<br />\nPraise the Lord,      He can work through those who praise Him<br />\n            G   -D            Bm7           E7<br />\nPraise the Lord,      for our God inhabits praise<br />\n           Am7 &#8211; /G#           Am7                 D<br />\nPraise the Lord,      for the chains that seem to bind you<br />\n      Am7        D<br />\nServe only to remind you<br />\n               C/E         D/F#<br />\nThat they drop powerless behind you<br />\n          C/G   G<br />\nWhen you praise Him</p>\n<p><strong> Instrumental :</strong><br />\nChords same as chorus</p>\n<p><strong>Chorus 3:</strong></p>\n<p>            Am &#8211; /G# &#8211;       /G                      C/D<br />\nPraise the Lord,      He can work through those who praise Him<br />\n            G   -D            Bm7           E7<br />\nPraise the Lord,      for our God inhabits praise<br />\n           Am7 &#8211; /G#           Am7                 D<br />\nPraise the Lord,      for the chains that seem to bind you<br />\n      Am7        D<br />\nServe only to remind you<br />\n               C/E         D/F#<br />\nThat they drop powerless behind you<br />\n          C/G   G<br />\nWhen you praise Him<br />\n  F<br />\nPraise Him<br />\n C/E<br />\nPraise Him<br />\n         Cm/Eb<br />\nWhen you praise Him<br />\n         G/D  &#8211; A7/C#<br />\nWhen you praise        Him<br />\n          Am7     C/D       Gsus &#8211; G<br />\nWhen you praise&#8230;      the Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nG</p>\n<p><strong>Verse 1:</strong><br />\nG2<br />\nWhen you&#8217;re up against the struggle<br />\n      C/G<br />\nThat shatters all your dreams<br />\n           G2<br />\nWhen your hopes have been cruelly crushed<br />\n    C/G<br />\nAt Satan&#8217;s manifested schemes<br />\n              G2                          C/G<br />\nAnd when you feel the urge within you to submit to earthly fears<br />\n         G2                                      C/G<br />\nAnd the faith that you&#8217;ve been standin&#8217; in just seems to disappear</p>\n<p><strong>Chorus 1:</strong><br />\n            Am &#8211; /G# &#8211;       /G                      C/D<br />\nPraise the Lord,      He can work through those who praise Him<br />\n            G   -D            Bm7           E7<br />\nPraise the Lord,      for our God inhabits praise<br />\n           Am7 &#8211; /G#           Am7                 D<br />\nPraise the Lord,      for the chains that seem to bind you<br />\n      Am7        D<br />\nServe only to remind you<br />\n               C/E         D/F#<br />\nThat they drop powerless behind you<br />\n          C/G   G<br />\nWhen you praise Him</p>\n<p><strong>Verse 2:</strong><br />\nC/D        G2                     C/G<br />\n     Now, Satan is a liar and he wants to make us think<br />\n             G2<br />\nThat we are paupers, when he knows himself<br />\n        C/G<br />\nWe are children of the King<br />\n    G<br />\nSo lift up the mighty shield of faith<br />\n         Am7<br />\nFor the battle must be won<br />\n              Bm7<br />\nWe know that Jesus Christ is risen<br />\n        C<br />\nSo the work&#8217;s already done</p>\n<p><strong>Chorus 2:</strong><br />\n            Am &#8211; /G# &#8211;       /G                      C/D<br />\nPraise the Lord,      He can work through those who praise Him<br />\n            G   -D            Bm7           E7<br />\nPraise the Lord,      for our God inhabits praise<br />\n           Am7 &#8211; /G#           Am7                 D<br />\nPraise the Lord,      for the chains that seem to bind you<br />\n      Am7        D<br />\nServe only to remind you<br />\n               C/E         D/F#<br />\nThat they drop powerless behind you<br />\n          C/G   G<br />\nWhen you praise Him</p>\n<p><strong> Instrumental :</strong><br />\nChords same as chorus</p>\n<p><strong>Chorus 3:</strong></p>\n<p>            Am &#8211; /G# &#8211;       /G                      C/D<br />\nPraise the Lord,      He can work through those who praise Him<br />\n            G   -D            Bm7           E7<br />\nPraise the Lord,      for our God inhabits praise<br />\n           Am7 &#8211; /G#           Am7                 D<br />\nPraise the Lord,      for the chains that seem to bind you<br />\n      Am7        D<br />\nServe only to remind you<br />\n               C/E         D/F#<br />\nThat they drop powerless behind you<br />\n          C/G   G<br />\nWhen you praise Him<br />\n  F<br />\nPraise Him<br />\n C/E<br />\nPraise Him<br />\n         Cm/Eb<br />\nWhen you praise Him<br />\n         G/D  &#8211; A7/C#<br />\nWhen you praise        Him<br />\n          Am7     C/D       Gsus &#8211; G<br />\nWhen you praise&#8230;      the Lord</p>\n",
+    "songNumber": 178
   },
   {
     "title": "Pupurihin Ka Sa Awit V2",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-9262",
     "id": "selah-9262",
     "customSong": true,
@@ -40888,13 +40976,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD &#8211; D/G &#8211; A/C# &#8211; D</p>\n<p><strong>Verse:</strong><br />\nD                D/G<br />\nWalang hanggang katapatan<br />\n   A               D<br />\nSa buhay ko&#8217;y lagi Mong laan<br />\nD                 D/G<br />\nNarito dahil sa biyaya Mo<br />\nA/C#                D<br />\nHabang buhay magpupuri sa &#8216;Yo</p>\n<p><strong>Chorus:</strong><br />\nD/F# &#8211; G<br />\n   Pupurihin Ka sa awit<br />\n   D/F#<br />\nItataas ang aking tinig<br />\n       Em<br />\nItatanghal sa buhay ko&#8217;y<br />\n         Bm     A<br />\nTanging Ikaw, O Diyos<br />\nD/F# &#8211; G<br />\n Higit pa sa kalangitan<br />\n     D/F#          Bm<br />\nAng Iyong kaluwalhatian<br />\n   Em<br />\nKadakilaan Mo&#8217;y<br />\n             A<br />\n&#8216;Di mapapantayan<br />\n  D/G<br />\nHesus</p>\n<p><strong>Bridge:</strong><br />\n  D<br />\nHesus sa Iyo ang kapurihan</p>\n<p>Kaluwalhatian ngayon</p>\n<p>At magpakilanman</p>\n<p>Hesus sa Iyo ang karangalan</p>\n<p>Kapangyarihan ngayon<br />\n   C         A<br />\nAt magpakailanman<br />\n  D              Em    D/F#<br />\nHesus sa Iyo ang kapurihan<br />\n   G       Bm<br />\nKaluwalhatian ngayon<br />\n   C        A<br />\nAt magpakilanman<br />\n  Bm             A/C#   D<br />\nHesus sa Iyo ang karangalan<br />\n  Em      Bm<br />\nKapangyarihan ngayon<br />\n   C         A<br />\nAt magpakailanman</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD &#8211; D/G &#8211; A/C# &#8211; D</p>\n<p><strong>Verse:</strong><br />\nD                D/G<br />\nWalang hanggang katapatan<br />\n   A               D<br />\nSa buhay ko&#8217;y lagi Mong laan<br />\nD                 D/G<br />\nNarito dahil sa biyaya Mo<br />\nA/C#                D<br />\nHabang buhay magpupuri sa &#8216;Yo</p>\n<p><strong>Chorus:</strong><br />\nD/F# &#8211; G<br />\n   Pupurihin Ka sa awit<br />\n   D/F#<br />\nItataas ang aking tinig<br />\n       Em<br />\nItatanghal sa buhay ko&#8217;y<br />\n         Bm     A<br />\nTanging Ikaw, O Diyos<br />\nD/F# &#8211; G<br />\n Higit pa sa kalangitan<br />\n     D/F#          Bm<br />\nAng Iyong kaluwalhatian<br />\n   Em<br />\nKadakilaan Mo&#8217;y<br />\n             A<br />\n&#8216;Di mapapantayan<br />\n  D/G<br />\nHesus</p>\n<p><strong>Bridge:</strong><br />\n  D<br />\nHesus sa Iyo ang kapurihan</p>\n<p>Kaluwalhatian ngayon</p>\n<p>At magpakilanman</p>\n<p>Hesus sa Iyo ang karangalan</p>\n<p>Kapangyarihan ngayon<br />\n   C         A<br />\nAt magpakailanman<br />\n  D              Em    D/F#<br />\nHesus sa Iyo ang kapurihan<br />\n   G       Bm<br />\nKaluwalhatian ngayon<br />\n   C        A<br />\nAt magpakilanman<br />\n  Bm             A/C#   D<br />\nHesus sa Iyo ang karangalan<br />\n  Em      Bm<br />\nKapangyarihan ngayon<br />\n   C         A<br />\nAt magpakailanman</p>\n",
+    "songNumber": 179
   },
   {
     "title": "Give Them All To Jesus",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-9230",
     "id": "selah-9230",
@@ -41667,13 +41756,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nOriginal Key in Eb</p>\n<p>D &#8211; E/D &#8211; F &#8211; G  &#8230;. D&#8230;</p>\n<p><strong>Verse 1:</strong><br />\n                 F#m7            G         Em7 &#8211; A7<br />\nAre you tired of chasing pretty rainbows?<br />\n                           /G        D      A7 &#8211; D<br />\nAre you tired of spinning round and round?<br />\n        Em7     F#m7                Em7         A7<br />\nWrap up all the shattered dreams of your life<br />\n                                   D      A7<br />\nAnd at the feet of Jesus lay them down</p>\n<p><strong>Chorus 1:</strong><br />\n           D             F#m7 &#8211; G<br />\nGive them all, give them all<br />\n                 /A<br />\nGive them all to Jesus<br />\n           Em7             A7             D     A7<br />\nShattered dreams, wounded hearts, broken toys<br />\n           D             /F#   &#8211;  G<br />\nGive them all, give them all<br />\n                  /A<br />\nGive them all to Jesus<br />\n    Em7                A7           D     &#8211;  A7  &#8211;  D&#8230;<br />\nAnd He will turn your sorrows into joy</p>\n<p><strong>Verse 2:</strong><br />\n          /F#                Em7        A7<br />\nHe never said you&#8217;d only see sunshine<br />\n                             D     A7 &#8211; D<br />\nHe never said there&#8217;d be no rain<br />\n          /F#                     Em7      A7<br />\nHe only promised a heart full of singing<br />\n                                         D     A7<br />\nAbout the very things that once brought pain</p>\n<p><strong>Chorus 2:</strong><br />\n          D              F#m7  &#8211;  G<br />\nGive them all, give them all<br />\n                  A7<br />\nGive them all to Jesus<br />\n           Em7             A7            D        A7<br />\nShattered dreams, wounded hearts, broken toys<br />\n           D             /F#   &#8211;  G<br />\nGive them all, give them all<br />\n                  A7<br />\nGive them all to Jesus<br />\n    Em7                A7           D     A/B<br />\nAnd He will turn your sorrows into joy</p>\n<p><strong>Chorus 3:</strong><br />\n           E             G#m7 &#8211; F#m7<br />\nGive them all, give them all<br />\n                  A/B<br />\nGive them all to Jesus<br />\n           F#m7           A/B            E     &#8211;  A/B<br />\nShattered dreams, wounded hearts, broken toys<br />\n           E             G#m7  &#8211;  F#m7<br />\nGive them all, give them all<br />\n                  A/B<br />\nGive them all to Jesus<br />\n    F#m7              A/B<br />\nAnd He will turn your sorrows<br />\n    G#m7              C#m7 &#8211; C#7/F<br />\nYes He will turn your sorrow<br />\n      F#m7              A/B         E<br />\nOh-oh He will turn your sorrow into joy</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nOriginal Key in Eb</p>\n<p>D &#8211; E/D &#8211; F &#8211; G  &#8230;. D&#8230;</p>\n<p><strong>Verse 1:</strong><br />\n                 F#m7            G         Em7 &#8211; A7<br />\nAre you tired of chasing pretty rainbows?<br />\n                           /G        D      A7 &#8211; D<br />\nAre you tired of spinning round and round?<br />\n        Em7     F#m7                Em7         A7<br />\nWrap up all the shattered dreams of your life<br />\n                                   D      A7<br />\nAnd at the feet of Jesus lay them down</p>\n<p><strong>Chorus 1:</strong><br />\n           D             F#m7 &#8211; G<br />\nGive them all, give them all<br />\n                 /A<br />\nGive them all to Jesus<br />\n           Em7             A7             D     A7<br />\nShattered dreams, wounded hearts, broken toys<br />\n           D             /F#   &#8211;  G<br />\nGive them all, give them all<br />\n                  /A<br />\nGive them all to Jesus<br />\n    Em7                A7           D     &#8211;  A7  &#8211;  D&#8230;<br />\nAnd He will turn your sorrows into joy</p>\n<p><strong>Verse 2:</strong><br />\n          /F#                Em7        A7<br />\nHe never said you&#8217;d only see sunshine<br />\n                             D     A7 &#8211; D<br />\nHe never said there&#8217;d be no rain<br />\n          /F#                     Em7      A7<br />\nHe only promised a heart full of singing<br />\n                                         D     A7<br />\nAbout the very things that once brought pain</p>\n<p><strong>Chorus 2:</strong><br />\n          D              F#m7  &#8211;  G<br />\nGive them all, give them all<br />\n                  A7<br />\nGive them all to Jesus<br />\n           Em7             A7            D        A7<br />\nShattered dreams, wounded hearts, broken toys<br />\n           D             /F#   &#8211;  G<br />\nGive them all, give them all<br />\n                  A7<br />\nGive them all to Jesus<br />\n    Em7                A7           D     A/B<br />\nAnd He will turn your sorrows into joy</p>\n<p><strong>Chorus 3:</strong><br />\n           E             G#m7 &#8211; F#m7<br />\nGive them all, give them all<br />\n                  A/B<br />\nGive them all to Jesus<br />\n           F#m7           A/B            E     &#8211;  A/B<br />\nShattered dreams, wounded hearts, broken toys<br />\n           E             G#m7  &#8211;  F#m7<br />\nGive them all, give them all<br />\n                  A/B<br />\nGive them all to Jesus<br />\n    F#m7              A/B<br />\nAnd He will turn your sorrows<br />\n    G#m7              C#m7 &#8211; C#7/F<br />\nYes He will turn your sorrow<br />\n      F#m7              A/B         E<br />\nOh-oh He will turn your sorrow into joy</p>\n",
+    "songNumber": 59
   },
   {
     "title": "Tribes",
     "artist": "Selah",
     "key": "Eb",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-9162",
     "id": "selah-9162",
@@ -42050,14 +42140,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Eb</strong></p>\n<p><strong>Intro:</strong><br />\nEb &#8211; Ebsus2 &#8211; Ebsus4 &#8211; Eb    Eb/Ab &#8211; Ebsus2/Ab &#8211; Ebsus4/Ab &#8211; Eb/Ab</p>\n<p><strong>Verse 1:</strong><br />\nEb                         Ab<br />\n Every tribe will see Your glory<br />\nEb                    Ab<br />\n Every nation bow before You<br />\nEb                          Ab<br />\n All our treasure turned to ashes<br />\n                Eb/G  Ab<br />\nIn the light of You</p>\n<p><strong>Pre-Chorus:</strong><br />\n(Ab-Eb/G-Fm-Eb)  Bb                 Cm<br />\nAs we’re singing holy is the Lord Almighty<br />\n             Bb                   Ab<br />\nOnly You are worthy, worthy of it all</p>\n<p><strong>Chorus:</strong><br />\nEb                                    Ab<br />\nPraise and glory, honor and strength, unto our God, unto our God<br />\nCm                                      Ab<br />\nMatchless, endless, love that prevails, this is our God, every tribe sing<br />\nEb                            Ab<br />\nThere is no one like our God, there is no one like our God<br />\nEb                            Ab<br />\nThere is no one like our God, there is no one like our God</p>\n<p><strong>Bridge:</strong><br />\n  Eb                          Ab<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos<br />\n  Eb                          Ab<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos<br />\nEb                            Ab<br />\nThere is no one like our God, there is no one like our God<br />\nCm                            Ab<br />\nThere is no one like our God, there is no one like our God</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Eb</strong></p>\n<p><strong>Intro:</strong><br />\nEb &#8211; Ebsus2 &#8211; Ebsus4 &#8211; Eb    Eb/Ab &#8211; Ebsus2/Ab &#8211; Ebsus4/Ab &#8211; Eb/Ab</p>\n<p><strong>Verse 1:</strong><br />\nEb                         Ab<br />\n Every tribe will see Your glory<br />\nEb                    Ab<br />\n Every nation bow before You<br />\nEb                          Ab<br />\n All our treasure turned to ashes<br />\n                Eb/G  Ab<br />\nIn the light of You</p>\n<p><strong>Pre-Chorus:</strong><br />\n(Ab-Eb/G-Fm-Eb)  Bb                 Cm<br />\nAs we’re singing holy is the Lord Almighty<br />\n             Bb                   Ab<br />\nOnly You are worthy, worthy of it all</p>\n<p><strong>Chorus:</strong><br />\nEb                                    Ab<br />\nPraise and glory, honor and strength, unto our God, unto our God<br />\nCm                                      Ab<br />\nMatchless, endless, love that prevails, this is our God, every tribe sing<br />\nEb                            Ab<br />\nThere is no one like our God, there is no one like our God<br />\nEb                            Ab<br />\nThere is no one like our God, there is no one like our God</p>\n<p><strong>Bridge:</strong><br />\n  Eb                          Ab<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos<br />\n  Eb                          Ab<br />\nWala Kang katulad, O Diyos, wala Kang katulad, O Diyos<br />\nEb                            Ab<br />\nThere is no one like our God, there is no one like our God<br />\nCm                            Ab<br />\nThere is no one like our God, there is no one like our God</p>\n",
+    "songNumber": 219
   },
   {
     "title": "Have All of Me",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-9160",
     "id": "selah-9160",
     "customSong": true,
@@ -42699,13 +42790,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nDm7 &#8211; C &#8211; Am7 &#8211; Bb</p>\n<p><strong>Verse 1:</strong><br />\nDm7          C<br />\n I’ve set my eyes on You<br />\n     Am7           Bb<br />\nYour love draws me closer and closer<br />\nDm7 C<br />\n My life I give to You<br />\n     Am7               Bb<br />\nYour heart is all I’m after</p>\n<p><strong>Verse 2:</strong><br />\nDm7        C<br />\n I’ve made up my mind<br />\n   Am7                  Bb<br />\nMy God, there’s no one else I’ll follow<br />\nDm7        C<br />\n You have made me new<br />\n  Am7            Bb<br />\nJesus, it’s only You I’ll pursue</p>\n<p><strong>Verse 3:</strong><br />\nDm7        C<br />\n In Your presence I bow down<br />\n   Am7                  Bb<br />\nO Lord, there’s freedom in surrender<br />\nDm7        C<br />\n You’ve broken every chain<br />\n  Am7             Bb<br />\nSavior, You’re my one desire</p>\n<p><strong>Chorus:</strong><br />\nBb     C      Dm7<br />\nHere I am, O Lord<br />\nAm7                  Bb<br />\nYou can have all of me<br />\n   C         Dm<br />\nBefore Your throne<br />\nAm7                   Bb<br />\nLaying it all at Your feet<br />\n     C                Dm7<br />\nYour grace has set me free<br />\nAm7                 Bb<br />\nJesus have all of me</p>\n<p><strong>Bridge:</strong><br />\nBb              C   Dm7<br />\nJesus, You’re all I see<br />\n   Bb        C          Dm7<br />\nI know that You’re with me<br />\n    Gm7<br />\nNo turning back<br />\n     Dm7   C<br />\nNo turning back<br />\n     Bb    C    Dm7<br />\nMy cross, I’ll carry<br />\n       Bb      C        Dm7<br />\nThough no one goes with me<br />\n    Gm7<br />\nNo turning back<br />\n      Dm7    C<br />\nNo turning back</p>\n<p><strong>Ending:</strong><br />\nAm7               Bb<br />\nJesus have all of me<br />\n   C                 Bb/D<br />\nSo Jesus have all of me<br />\n   C                  F<br />\nSo Jesus have all of me</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nDm7 &#8211; C &#8211; Am7 &#8211; Bb</p>\n<p><strong>Verse 1:</strong><br />\nDm7          C<br />\n I’ve set my eyes on You<br />\n     Am7           Bb<br />\nYour love draws me closer and closer<br />\nDm7 C<br />\n My life I give to You<br />\n     Am7               Bb<br />\nYour heart is all I’m after</p>\n<p><strong>Verse 2:</strong><br />\nDm7        C<br />\n I’ve made up my mind<br />\n   Am7                  Bb<br />\nMy God, there’s no one else I’ll follow<br />\nDm7        C<br />\n You have made me new<br />\n  Am7            Bb<br />\nJesus, it’s only You I’ll pursue</p>\n<p><strong>Verse 3:</strong><br />\nDm7        C<br />\n In Your presence I bow down<br />\n   Am7                  Bb<br />\nO Lord, there’s freedom in surrender<br />\nDm7        C<br />\n You’ve broken every chain<br />\n  Am7             Bb<br />\nSavior, You’re my one desire</p>\n<p><strong>Chorus:</strong><br />\nBb     C      Dm7<br />\nHere I am, O Lord<br />\nAm7                  Bb<br />\nYou can have all of me<br />\n   C         Dm<br />\nBefore Your throne<br />\nAm7                   Bb<br />\nLaying it all at Your feet<br />\n     C                Dm7<br />\nYour grace has set me free<br />\nAm7                 Bb<br />\nJesus have all of me</p>\n<p><strong>Bridge:</strong><br />\nBb              C   Dm7<br />\nJesus, You’re all I see<br />\n   Bb        C          Dm7<br />\nI know that You’re with me<br />\n    Gm7<br />\nNo turning back<br />\n     Dm7   C<br />\nNo turning back<br />\n     Bb    C    Dm7<br />\nMy cross, I’ll carry<br />\n       Bb      C        Dm7<br />\nThough no one goes with me<br />\n    Gm7<br />\nNo turning back<br />\n      Dm7    C<br />\nNo turning back</p>\n<p><strong>Ending:</strong><br />\nAm7               Bb<br />\nJesus have all of me<br />\n   C                 Bb/D<br />\nSo Jesus have all of me<br />\n   C                  F<br />\nSo Jesus have all of me</p>\n",
+    "songNumber": 68
   },
   {
     "title": "It Is Well With My Soul",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-9154",
     "id": "selah-9154",
@@ -43402,13 +43494,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nDm G Csus C</p>\n<p><strong>Verse 1:</strong><br />\n     C             Am9      F  G       C<br />\nWhen peace, like a river, attendeth my way<br />\n     Am  /B  /C   Dsus   D    Gsus  G<br />\nWhen sorrows like sea billows roll<br />\n    C  /E   F    /E        D      /E /F# G<br />\nWhatever my lot, Thou hast taught me to say<br />\nF     C/E   Am    Dm   G       Csus C<br />\nIt is well, it is well with my soul</p>\n<p><strong>Chorus:</strong><br />\n      FM7  G/F     Em   Am9<br />\nIt is well with my soul<br />\n      Dm         FM7/G  G      Csus C<br />\nIt is well, it is well with my soul</p>\n<p><strong>Verse 2:</strong><br />\n   C             Am9           F  G     C<br />\nMy sin &#8211; oh, the bliss of this glorious thought! &#8211;<br />\n   Am   /B  /C Dsus D       Gsus  G<br />\nMy sin, not in part but the whole<br />\n   C      /E     F      /E    D    /E /F# G<br />\nIs nailed to the cross, and I bear it no more<br />\nF           C/E  Am          Dm   G    Csus C<br />\nPraise the Lord, praise the Lord, O my soul!</p>\n<p><strong>Verse 3:</strong><br />\n    C               Am9          F      G       C<br />\nAnd Lord, haste the day when the faith shall be sight<br />\n    Am     /B /C     Dsus D    Gsus  G<br />\nThe clouds be rolled back as a scroll<br />\n    C      /E      F      /E     D    /E    /F# G<br />\nThe trump shall resound, and the Lord shall descend<br />\nF   C/E  Am    Dm   G       Csus C<br />\nEven so, it is well with my soul</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nDm G Csus C</p>\n<p><strong>Verse 1:</strong><br />\n     C             Am9      F  G       C<br />\nWhen peace, like a river, attendeth my way<br />\n     Am  /B  /C   Dsus   D    Gsus  G<br />\nWhen sorrows like sea billows roll<br />\n    C  /E   F    /E        D      /E /F# G<br />\nWhatever my lot, Thou hast taught me to say<br />\nF     C/E   Am    Dm   G       Csus C<br />\nIt is well, it is well with my soul</p>\n<p><strong>Chorus:</strong><br />\n      FM7  G/F     Em   Am9<br />\nIt is well with my soul<br />\n      Dm         FM7/G  G      Csus C<br />\nIt is well, it is well with my soul</p>\n<p><strong>Verse 2:</strong><br />\n   C             Am9           F  G     C<br />\nMy sin &#8211; oh, the bliss of this glorious thought! &#8211;<br />\n   Am   /B  /C Dsus D       Gsus  G<br />\nMy sin, not in part but the whole<br />\n   C      /E     F      /E    D    /E /F# G<br />\nIs nailed to the cross, and I bear it no more<br />\nF           C/E  Am          Dm   G    Csus C<br />\nPraise the Lord, praise the Lord, O my soul!</p>\n<p><strong>Verse 3:</strong><br />\n    C               Am9          F      G       C<br />\nAnd Lord, haste the day when the faith shall be sight<br />\n    Am     /B /C     Dsus D    Gsus  G<br />\nThe clouds be rolled back as a scroll<br />\n    C      /E      F      /E     D    /E    /F# G<br />\nThe trump shall resound, and the Lord shall descend<br />\nF   C/E  Am    Dm   G       Csus C<br />\nEven so, it is well with my soul</p>\n",
+    "songNumber": 116
   },
   {
     "title": "In Christ Alone (Natashia Midori)",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-9123",
     "id": "selah-9123",
@@ -44071,13 +44164,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nAm7  G/B  D</p>\n<p><strong>Verse1:</strong><br />\nG<br />\nIn Christ alone will I glory<br />\n       D/F#            G                C<br />\nThough I could pride myself in battles won<br />\n              G<br />\nFor I&#8217;ve been blessed beyond measure<br />\n    D/F#             G           D<br />\nAnd by His strength alone I overcome<br />\nAm7          D/F#            C/G   G<br />\nOh, I could stop and count successes<br />\n C/G          G      Em<br />\nLike diamonds in my hands<br />\n          Am                 G/B<br />\nBut those trophies could not equal<br />\n       C               D<br />\nTo the grace by which I stand </p>\n<p><strong>Chorus 1:</strong><br />\n     G/B  C                 G/B<br />\nIn Christ alone, I place my trust<br />\n              Am7         D/F#          C/G   G   G/B<br />\nAnd find my glory in the power of the cross<br />\n         C     D              G  D/F#      Em7<br />\nIn every victory, let it be said       of me<br />\n      Am7             G/B      C               D<br />\nMy source of strength,     my source of hope<br />\n             G     G/B   C   Em7   D<br />\nIs Christ alone</p>\n<p><strong>Verse2:</strong><br />\n          G                C/E<br />\nIn Christ alone do I glory<br />\n      D/F#           G  G/B   C<br />\nFor only by His grace I am redeemed<br />\n         G              C/E<br />\nFor only His tender mercy<br />\n        D/F#             G             D<br />\nCould reach beyond my weakness to my need<br />\n    Am7      D/F#           G     G/B<br />\nAnd now I seek no greater honor<br />\n    C               Em7<br />\nThan just to know Him more<br />\n       Am                 G/B<br />\nAnd to count my gains but losses<br />\n     C  D/C       D<br />\nTo the glory of my Lord</p>\n<p><strong>Chorus 2:</strong><br />\n    G/B   C                 G/B<br />\nIn Christ alone, I place my trust<br />\n              Am7         D/F#         C/G   G   G/B<br />\nAnd find my glory in the power of the cross<br />\n         C      D             G  D/F#    Em7<br />\nIn every victory, let it be said      of me<br />\n       Am7                  C/D           D<br />\nMy source of strength, my source of hope</p>\n<p><strong>Chorus 3:</strong><br />\n     G/B  C                  G/B<br />\nIn Christ alone, I place my trust<br />\n             Am7          D/F#         C/G    G   G/B<br />\nAnd find my glory in the power of the cross<br />\n         C   D/C             Bm7    Em7<br />\nIn every victory, let it be said of me<br />\n      Am7             G/B     Dsus4           D<br />\nMy source of strength,     my source of hope<br />\n            Em     Em/D   Cmaj7   G/B<br />\nIs Christ alone<br />\n            Am7     Dsus4    D<br />\nIs Christ alone<br />\n             G      C        G<br />\nIs Christ alone</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nAm7  G/B  D</p>\n<p><strong>Verse1:</strong><br />\nG<br />\nIn Christ alone will I glory<br />\n       D/F#            G                C<br />\nThough I could pride myself in battles won<br />\n              G<br />\nFor I&#8217;ve been blessed beyond measure<br />\n    D/F#             G           D<br />\nAnd by His strength alone I overcome<br />\nAm7          D/F#            C/G   G<br />\nOh, I could stop and count successes<br />\n C/G          G      Em<br />\nLike diamonds in my hands<br />\n          Am                 G/B<br />\nBut those trophies could not equal<br />\n       C               D<br />\nTo the grace by which I stand </p>\n<p><strong>Chorus 1:</strong><br />\n     G/B  C                 G/B<br />\nIn Christ alone, I place my trust<br />\n              Am7         D/F#          C/G   G   G/B<br />\nAnd find my glory in the power of the cross<br />\n         C     D              G  D/F#      Em7<br />\nIn every victory, let it be said       of me<br />\n      Am7             G/B      C               D<br />\nMy source of strength,     my source of hope<br />\n             G     G/B   C   Em7   D<br />\nIs Christ alone</p>\n<p><strong>Verse2:</strong><br />\n          G                C/E<br />\nIn Christ alone do I glory<br />\n      D/F#           G  G/B   C<br />\nFor only by His grace I am redeemed<br />\n         G              C/E<br />\nFor only His tender mercy<br />\n        D/F#             G             D<br />\nCould reach beyond my weakness to my need<br />\n    Am7      D/F#           G     G/B<br />\nAnd now I seek no greater honor<br />\n    C               Em7<br />\nThan just to know Him more<br />\n       Am                 G/B<br />\nAnd to count my gains but losses<br />\n     C  D/C       D<br />\nTo the glory of my Lord</p>\n<p><strong>Chorus 2:</strong><br />\n    G/B   C                 G/B<br />\nIn Christ alone, I place my trust<br />\n              Am7         D/F#         C/G   G   G/B<br />\nAnd find my glory in the power of the cross<br />\n         C      D             G  D/F#    Em7<br />\nIn every victory, let it be said      of me<br />\n       Am7                  C/D           D<br />\nMy source of strength, my source of hope</p>\n<p><strong>Chorus 3:</strong><br />\n     G/B  C                  G/B<br />\nIn Christ alone, I place my trust<br />\n             Am7          D/F#         C/G    G   G/B<br />\nAnd find my glory in the power of the cross<br />\n         C   D/C             Bm7    Em7<br />\nIn every victory, let it be said of me<br />\n      Am7             G/B     Dsus4           D<br />\nMy source of strength,     my source of hope<br />\n            Em     Em/D   Cmaj7   G/B<br />\nIs Christ alone<br />\n            Am7     Dsus4    D<br />\nIs Christ alone<br />\n             G      C        G<br />\nIs Christ alone</p>\n",
+    "songNumber": 112
   },
   {
     "title": "Salamat, Panginoon",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-9107",
     "id": "selah-9107",
@@ -44710,13 +44804,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE &#8211; F#m7 &#8211; AM7 &#8211; DM7 &#8211; A/G &#8211; F#m7 &#8211; A6/B<br />\nE &#8211; F#m7 &#8211; Aadd9 &#8211; C#add9 &#8211; C#m7 &#8211; B11<br />\nE &#8211; F#m7/E &#8211; E &#8211; F#m7/E</p>\n<p><strong>Verse 1:</strong><br />\nE         F#m7     E/G#<br />\nIkaw ay mabuti bawat sandali<br />\n      C#m7      F#/Bb   F#m7   B11<br />\nAt sa habang buhay ay mananatili<br />\n   E      F#m7    E/G#<br />\nHindi mapapawi o maikukubli<br />\n   C#m7      F#/Bb   B11<br />\nMaging sa dilim ng gabi</p>\n<p><strong>Verse 2:</strong><br />\n   E         F#m7     E/G#<br />\nSandigang matibay ang &#8216;Yong pangako<br />\n  C#m7       F#/Bb   F#m7   B11<br />\nLakas at pag-asa ng aking puso<br />\n   E      F#m7         E/G#<br />\nHindi na mabilang, pagkakataon<br />\n   C#m7      F#/Bb   B11<br />\nPatunay ng katapatan Mo</p>\n<p><strong>Chorus:</strong><br />\n        E            Bsus/E  A2/E<br />\nSa dalamhati at sa kabigu  &#8211;  an<br />\n        A/C#     B11   EM7  E<br />\nSa pagluha ng pusong nasugatan<br />\n G#7aug     C#m7     /B       B/A    E/G#<br />\nSa     pagsubok na Iyong pinahihintulutan<br />\n  F#m7   /E     DM7   B11<br />\nSalamat, Panginoon<br />\n        E             Bsus/E    A2/E<br />\nSa katugunan sa aking dala    &#8211; ngin<br />\n       A/C#      B11     EM7  E<br />\nSa kalakasang sa &#8216;Yo nanggagaling<br />\nG#7aug   C#m7   /B     B/A    E/G#<br />\nSa pagtuturo at pagtutuwid Mo sa &#8216;kin<br />\n   F#m7    /E   DM7   B11<br />\nSalamat, Panginoon<br />\n      E &#8230;<br />\n&#8230; Salamat</p>\n<p><strong>Bridge:</strong><br />\n          Aadd9             E/G#<br />\nIkaw ay mabuti,    Ikaw ay tapat<br />\n            F#m7     /E   DM7    B11<br />\nSa &#8216;Yo ang papuri at pasasalamat<br />\n          Aadd9             E/G#<br />\nIkaw ay mabuti,    Ikaw ay tapat   (O, Diyos)<br />\n             F#m7    /E    DM7   B11<br />\nSa &#8216;Yo ang papuri at pasasalamat</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE &#8211; F#m7 &#8211; AM7 &#8211; DM7 &#8211; A/G &#8211; F#m7 &#8211; A6/B<br />\nE &#8211; F#m7 &#8211; Aadd9 &#8211; C#add9 &#8211; C#m7 &#8211; B11<br />\nE &#8211; F#m7/E &#8211; E &#8211; F#m7/E</p>\n<p><strong>Verse 1:</strong><br />\nE         F#m7     E/G#<br />\nIkaw ay mabuti bawat sandali<br />\n      C#m7      F#/Bb   F#m7   B11<br />\nAt sa habang buhay ay mananatili<br />\n   E      F#m7    E/G#<br />\nHindi mapapawi o maikukubli<br />\n   C#m7      F#/Bb   B11<br />\nMaging sa dilim ng gabi</p>\n<p><strong>Verse 2:</strong><br />\n   E         F#m7     E/G#<br />\nSandigang matibay ang &#8216;Yong pangako<br />\n  C#m7       F#/Bb   F#m7   B11<br />\nLakas at pag-asa ng aking puso<br />\n   E      F#m7         E/G#<br />\nHindi na mabilang, pagkakataon<br />\n   C#m7      F#/Bb   B11<br />\nPatunay ng katapatan Mo</p>\n<p><strong>Chorus:</strong><br />\n        E            Bsus/E  A2/E<br />\nSa dalamhati at sa kabigu  &#8211;  an<br />\n        A/C#     B11   EM7  E<br />\nSa pagluha ng pusong nasugatan<br />\n G#7aug     C#m7     /B       B/A    E/G#<br />\nSa     pagsubok na Iyong pinahihintulutan<br />\n  F#m7   /E     DM7   B11<br />\nSalamat, Panginoon<br />\n        E             Bsus/E    A2/E<br />\nSa katugunan sa aking dala    &#8211; ngin<br />\n       A/C#      B11     EM7  E<br />\nSa kalakasang sa &#8216;Yo nanggagaling<br />\nG#7aug   C#m7   /B     B/A    E/G#<br />\nSa pagtuturo at pagtutuwid Mo sa &#8216;kin<br />\n   F#m7    /E   DM7   B11<br />\nSalamat, Panginoon<br />\n      E &#8230;<br />\n&#8230; Salamat</p>\n<p><strong>Bridge:</strong><br />\n          Aadd9             E/G#<br />\nIkaw ay mabuti,    Ikaw ay tapat<br />\n            F#m7     /E   DM7    B11<br />\nSa &#8216;Yo ang papuri at pasasalamat<br />\n          Aadd9             E/G#<br />\nIkaw ay mabuti,    Ikaw ay tapat   (O, Diyos)<br />\n             F#m7    /E    DM7   B11<br />\nSa &#8216;Yo ang papuri at pasasalamat</p>\n",
+    "songNumber": 187
   },
   {
     "title": "Di Mag-Iisa (Paul Armesin)",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-9087",
     "id": "selah-9087",
@@ -45124,13 +45219,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nG &#8211; D/F# &#8211; Em &#8211; D &#8211; C9<br />\nGm7 &#8211; Gm7/D &#8211; Gm7/C &#8211; DM7 &#8211; F<br />\nGM7 &#8211; Cm9 &#8211; G#M7 &#8211; Bbm7b13 &#8211; Edim7 &#8211; Bm7 &#8211; Am7 &#8211; A7 -D</p>\n<p><strong>Verse1:</strong><br />\nD                  A-Bb<br />\nDiyos na Makapangyarihan<br />\nBm9              A -D/F#<br />\nHaring Kataas- taa  san<br />\nG  D/F#  Em   D-Em7        A  Aadd9   A7<br />\nSa  a    king  puso ay na na   na     han</p>\n<p><strong>Verse2:</strong><br />\nD                 A-Bb<br />\nPagpapala Mo&#8217;t pagsama<br />\nBm9             A &#8211; D/F#<br />\nAy laging nararana  san<br />\nG-D/F#  Em    D-Em7       Bb  C<br />\nKailan  ma&#8217;y  hindi mag-iisa</p>\n<p><strong>Verse2 (2nd pass):</strong><br />\nD                 C#Dim &#8211; F#7<br />\nPagpapala Mo&#8217;t pagsa      ma<br />\nBm9          Am7 &#8211; Bm/G# &#8211; A7/G &#8211; D/F#<br />\nAy laging na ra     ra     na     san<br />\nG-D/F#  Em    D-C9         DM7<br />\nKailan  ma&#8217;y  hindi mag-ii sa</p>\n<p><strong>Chorus:</strong><br />\n  Em7-F#m7-GM7          A/G      F#m   Bm<br />\nPanga  ko  Mo sa ki&#8217;y hindi ako iiwan<br />\n   C#dim &#8211; D  Em7         A        DM7      C#dim<br />\nSa  ba    wat sandali ay laging sasamahan<br />\n  F#7      Bm          /A         A/G      D/F#<br />\nBanal na Espirito&#8217;ng hatid ay kalakasan<br />\n        Em9          Em7  A               C9<br />\nUpang lahat ng bagay ay mapagtagumpayan</p>\n<p>Scale:</p>\n<p>D# &#8211; G# &#8211; C#<br />\nF# &#8211; B &#8211; E</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nG &#8211; D/F# &#8211; Em &#8211; D &#8211; C9<br />\nGm7 &#8211; Gm7/D &#8211; Gm7/C &#8211; DM7 &#8211; F<br />\nGM7 &#8211; Cm9 &#8211; G#M7 &#8211; Bbm7b13 &#8211; Edim7 &#8211; Bm7 &#8211; Am7 &#8211; A7 -D</p>\n<p><strong>Verse1:</strong><br />\nD                  A-Bb<br />\nDiyos na Makapangyarihan<br />\nBm9              A -D/F#<br />\nHaring Kataas- taa  san<br />\nG  D/F#  Em   D-Em7        A  Aadd9   A7<br />\nSa  a    king  puso ay na na   na     han</p>\n<p><strong>Verse2:</strong><br />\nD                 A-Bb<br />\nPagpapala Mo&#8217;t pagsama<br />\nBm9             A &#8211; D/F#<br />\nAy laging nararana  san<br />\nG-D/F#  Em    D-Em7       Bb  C<br />\nKailan  ma&#8217;y  hindi mag-iisa</p>\n<p><strong>Verse2 (2nd pass):</strong><br />\nD                 C#Dim &#8211; F#7<br />\nPagpapala Mo&#8217;t pagsa      ma<br />\nBm9          Am7 &#8211; Bm/G# &#8211; A7/G &#8211; D/F#<br />\nAy laging na ra     ra     na     san<br />\nG-D/F#  Em    D-C9         DM7<br />\nKailan  ma&#8217;y  hindi mag-ii sa</p>\n<p><strong>Chorus:</strong><br />\n  Em7-F#m7-GM7          A/G      F#m   Bm<br />\nPanga  ko  Mo sa ki&#8217;y hindi ako iiwan<br />\n   C#dim &#8211; D  Em7         A        DM7      C#dim<br />\nSa  ba    wat sandali ay laging sasamahan<br />\n  F#7      Bm          /A         A/G      D/F#<br />\nBanal na Espirito&#8217;ng hatid ay kalakasan<br />\n        Em9          Em7  A               C9<br />\nUpang lahat ng bagay ay mapagtagumpayan</p>\n<p>Scale:</p>\n<p>D# &#8211; G# &#8211; C#<br />\nF# &#8211; B &#8211; E</p>\n",
+    "songNumber": 35
   },
   {
     "title": "Dakilang Katapatan",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-9059",
     "id": "selah-9059",
@@ -45943,13 +46039,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nC</p>\n<p><strong>Verse 1:</strong><br />\n    C       G/B      Am7         /G<br />\nSadyang kay buti Mo, aking Panginoon<br />\nF             G/F        Em7   Am7<br />\nMagtatapat sa habang panahon<br />\n   F        E     /G#     Am7    /G    D/F#<br />\nMaging sa kabila     ng aking pagkukulang<br />\n  Dm7    C/E    FM7        F/G<br />\nBiyaya   Mo&#8217;y patuloy na laan</p>\n<p><strong>Verse 2:</strong><br />\n   C    G/B         Am7      /G<br />\nKatulad ng pagsinag ng gintong araw<br />\nF               G/F            Em7    Am7<br />\nPatuloy Kang   nagbibigay tanglaw<br />\n  F       E     /G#     Am7     /G    D/F#<br />\nKaya sa puso    ko&#8217;t damdamin<br />\n  Dm7      C/E   FM7        F/G<br />\nKatapatan  Mo&#8217;y aking pupurihin</p>\n<p><strong>Chorus 1:</strong><br />\nC2     /E<br />\nDakila Ka, O Diyos<br />\n  F                   C/E<br />\nTapat Ka ngang tunay<br />\nDm7            F/G             C    Bb/C-C<br />\nMagmula pa sa ugat  ng aming lahi<br />\nF               G/F      C/E          Am7<br />\nMundo&#8217;y magunaw man  maaasahan Kang lagi<br />\nDm7              F/G            C2   (F/G)<br />\nMaging hanggang wakas nitong buhay</p>\n<p><strong>Verse 3:</strong><br />\nC         G/B<br />\nKaya, O Diyos,<br />\n        Am7        /G<br />\nKita&#8217;y laging pupurihin<br />\n    F             G/7      Em7   Am7<br />\nSa buong mundo&#8217;y aking aawitin<br />\nF           E    /G     Am7-/G    D/F#<br />\nDakila ang Iyong    Katapatan<br />\nDm7  C/E  FM7          F/G<br />\nPag-ibig Mo&#8217;y walang hanggan</p>\n<p><strong>Chorus 1:</strong><br />\nC2     /E<br />\nDakila Ka, O Diyos<br />\nF                     C/E<br />\nTapat Ka ngang tunay<br />\nDm7            F/G          C    Bb/C<br />\nMagmula pa sa ugat ng aming lahi<br />\nF               G/F       C/E       Am7<br />\nMundo&#8217;y magunaw man maaasahan Kang lagi<br />\nDm7              F/G            C2    (F/G)<br />\nMaging hanggang wakas nitong buhay</p>\n<p><strong>Chorus 2:</strong><br />\nC2     /E<br />\nDakila Ka, O Diyos<br />\nF                  C/E<br />\nSa habang panahon<br />\nDm7              F/G          C    Bb/C<br />\nKatapatan Mo&#8217;y matibay na sandigan<br />\n    F          G/F          Em7       Am7<br />\nSa bawat pighati&#8217;t tagumpay man ay naroon<br />\nFM7            G/F         Em7        Am7<br />\nDaluyan ng pag-asa  kung kailanga&#8217;y hinahon<br />\nFM7            G/F<br />\nPag-ibig Mo&#8217;y alay sa &#8216;min<br />\nEm7            Am7<br />\nNoon hanggang ngayon<br />\n  FM7  C/E   Dm7 F/G       C<br />\nDa ki  la    Ka,      O Diyos<br />\n  FM7   C/F  Dm7     C<br />\nDaki    la   Ka, O Diyos</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nC</p>\n<p><strong>Verse 1:</strong><br />\n    C       G/B      Am7         /G<br />\nSadyang kay buti Mo, aking Panginoon<br />\nF             G/F        Em7   Am7<br />\nMagtatapat sa habang panahon<br />\n   F        E     /G#     Am7    /G    D/F#<br />\nMaging sa kabila     ng aking pagkukulang<br />\n  Dm7    C/E    FM7        F/G<br />\nBiyaya   Mo&#8217;y patuloy na laan</p>\n<p><strong>Verse 2:</strong><br />\n   C    G/B         Am7      /G<br />\nKatulad ng pagsinag ng gintong araw<br />\nF               G/F            Em7    Am7<br />\nPatuloy Kang   nagbibigay tanglaw<br />\n  F       E     /G#     Am7     /G    D/F#<br />\nKaya sa puso    ko&#8217;t damdamin<br />\n  Dm7      C/E   FM7        F/G<br />\nKatapatan  Mo&#8217;y aking pupurihin</p>\n<p><strong>Chorus 1:</strong><br />\nC2     /E<br />\nDakila Ka, O Diyos<br />\n  F                   C/E<br />\nTapat Ka ngang tunay<br />\nDm7            F/G             C    Bb/C-C<br />\nMagmula pa sa ugat  ng aming lahi<br />\nF               G/F      C/E          Am7<br />\nMundo&#8217;y magunaw man  maaasahan Kang lagi<br />\nDm7              F/G            C2   (F/G)<br />\nMaging hanggang wakas nitong buhay</p>\n<p><strong>Verse 3:</strong><br />\nC         G/B<br />\nKaya, O Diyos,<br />\n        Am7        /G<br />\nKita&#8217;y laging pupurihin<br />\n    F             G/7      Em7   Am7<br />\nSa buong mundo&#8217;y aking aawitin<br />\nF           E    /G     Am7-/G    D/F#<br />\nDakila ang Iyong    Katapatan<br />\nDm7  C/E  FM7          F/G<br />\nPag-ibig Mo&#8217;y walang hanggan</p>\n<p><strong>Chorus 1:</strong><br />\nC2     /E<br />\nDakila Ka, O Diyos<br />\nF                     C/E<br />\nTapat Ka ngang tunay<br />\nDm7            F/G          C    Bb/C<br />\nMagmula pa sa ugat ng aming lahi<br />\nF               G/F       C/E       Am7<br />\nMundo&#8217;y magunaw man maaasahan Kang lagi<br />\nDm7              F/G            C2    (F/G)<br />\nMaging hanggang wakas nitong buhay</p>\n<p><strong>Chorus 2:</strong><br />\nC2     /E<br />\nDakila Ka, O Diyos<br />\nF                  C/E<br />\nSa habang panahon<br />\nDm7              F/G          C    Bb/C<br />\nKatapatan Mo&#8217;y matibay na sandigan<br />\n    F          G/F          Em7       Am7<br />\nSa bawat pighati&#8217;t tagumpay man ay naroon<br />\nFM7            G/F         Em7        Am7<br />\nDaluyan ng pag-asa  kung kailanga&#8217;y hinahon<br />\nFM7            G/F<br />\nPag-ibig Mo&#8217;y alay sa &#8216;min<br />\nEm7            Am7<br />\nNoon hanggang ngayon<br />\n  FM7  C/E   Dm7 F/G       C<br />\nDa ki  la    Ka,      O Diyos<br />\n  FM7   C/F  Dm7     C<br />\nDaki    la   Ka, O Diyos</p>\n",
+    "songNumber": 33
   },
   {
     "title": "Walang Katapusan",
     "artist": "Selah",
     "key": "C",
-    "category": "Manda Originals",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-9056",
     "id": "selah-9056",
@@ -46310,13 +46407,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nCM7 FM7/C CM7 FM7/C CM7   C </p>\n<p><strong>Verse :</strong><br />\n           Dm7    F/G<br />\nNababatid kaya?<br />\n            CM7   Am7<br />\nNalalaman kaya?<br />\n          Dm7<br />\nNg mga nagmamasid<br />\n    F/G                 CM7   Bb/C<br />\nna ang  pag-ibig Mo&#8217;y wagas?<br />\n   FM7          G/F<br />\nO Diyos, dakila Ka<br />\n    Em7         Am7<br />\nSa &#8216;Yong pagmamahal<br />\n      Dm7          F/G             CM7<br />\nKatapata&#8217;y walang kupas , walang wakas</p>\n<p><strong>Chorus :</strong><br />\nGm7  Bb/C   FM7           G/F<br />\n            O,  ang pagmasdan<br />\n     Em7        Am7<br />\nAng &#8216;Yong kagandahan<br />\n   Dm7          F/G           CM7<br />\nAt ang liwanag Mo&#8217;t kaluwalhatian<br />\nGm7  Bb/C       FM7       G/F<br />\n           Ang &#8216;Yong kaharian<br />\n Em7             Am7<br />\nIto&#8217;y walang hanggan<br />\n  Dm7            F/G        Dm7  F/G        CM7<br />\nO Diyos, purihin Ka  nang walang      katapusan</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nCM7 FM7/C CM7 FM7/C CM7   C </p>\n<p><strong>Verse :</strong><br />\n           Dm7    F/G<br />\nNababatid kaya?<br />\n            CM7   Am7<br />\nNalalaman kaya?<br />\n          Dm7<br />\nNg mga nagmamasid<br />\n    F/G                 CM7   Bb/C<br />\nna ang  pag-ibig Mo&#8217;y wagas?<br />\n   FM7          G/F<br />\nO Diyos, dakila Ka<br />\n    Em7         Am7<br />\nSa &#8216;Yong pagmamahal<br />\n      Dm7          F/G             CM7<br />\nKatapata&#8217;y walang kupas , walang wakas</p>\n<p><strong>Chorus :</strong><br />\nGm7  Bb/C   FM7           G/F<br />\n            O,  ang pagmasdan<br />\n     Em7        Am7<br />\nAng &#8216;Yong kagandahan<br />\n   Dm7          F/G           CM7<br />\nAt ang liwanag Mo&#8217;t kaluwalhatian<br />\nGm7  Bb/C       FM7       G/F<br />\n           Ang &#8216;Yong kaharian<br />\n Em7             Am7<br />\nIto&#8217;y walang hanggan<br />\n  Dm7            F/G        Dm7  F/G        CM7<br />\nO Diyos, purihin Ka  nang walang      katapusan</p>\n",
+    "songNumber": 226
   },
   {
     "title": "Oh, I Want To Know You More",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-9042",
     "id": "selah-9042",
@@ -47031,13 +47129,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD Em F#m Gm D/A Asus-A</p>\n<p><strong>Verse 1:</strong><br />\nD2       A/C#   Bm7<br />\nJust the time I feel<br />\n      /A        G2           D/F#    Em7<br />\nThat I&#8217;ve been caught in the mire of self<br />\n A2             /G<br />\nJust the time I feel<br />\n               D/F#      Em7- A    D    G/A<br />\nMy mind&#8217;s been bought by worldly wealth<br />\n        D        A/C#   Bm7      /A<br />\nThat&#8217;s when the breeze begins to blow<br />\n   G2      D/F#     Em7<br />\nI know the Spirit&#8217;s call<br />\n     A2            /G<br />\nAnd all my worldly wanderings<br />\n     D/F#   G      G/A   (1 and 3 of G-A-Bm-C#m)<br />\nJust melt into His love</p>\n<p><strong>Chorus 1:</strong><br />\nD2    A/C#             Bm7<br />\nOh, I want to know You more<br />\n/A              G2            D/F#<br />\nDeep within my soul I want to know You<br />\nEm7           G/A &#8211; A<br />\nOh, I want to know You<br />\n    D2        A/C# &#8211;   /Bb       Bm7<br />\nTo feel Your heart and know Your mind<br />\n/A               G2             D/F#<br />\nLooking in Your eyes stirs up within me<br />\nEm7               A &#8211; /Bb Bm7  /A<br />\nCries that say &#8220;I want to know You&#8221;<br />\nEm7           G/A- A/G  D   E7/G#<br />\nOh, I want to know You more<br />\nEm7           G/A      D    (Em-F#m-Gm-D/A-A&#8230;)<br />\nOh, I want to know You more</p>\n<p><strong>Verse 2:</strong><br />\nD2       A/C#  Bm7      /A  G2<br />\nWhen my daily deeds ordinarily<br />\n     D/F#     Em7  (Em7-F#m-G)<br />\nLose life and song<br />\n    A2              /G<br />\nMy heart begins to bleed<br />\n        D/F#   Em7-/A  D   (G-A)<br />\nSensitivity to Him is gone<br />\n      D2     A/C#-/Bb Bm7    /A<br />\nI&#8217;ve ran the race but set my pace<br />\n     G2    D/F#      Em7  (Em7-F#m-G)<br />\nAnd face a shattered soul<br />\n         A2            /G<br />\nNow the gentle arms of Jesus<br />\n         D/F#   G    G/A  (1 and 3 A-Bm-C#m)<br />\nWarms my hunger to behold</p>\n<p><strong>Chorus 2:</strong><br />\nD2    A/C#             Bm7<br />\nOh, I want to know You more<br />\n/A              G2             D/F#<br />\nDeep within my soul I want to know You<br />\nEm7           G/A- A<br />\nOh, I want to know You<br />\n    D       A/C# &#8211;  /Bb    Bm7<br />\nAnd I would give my final breath<br />\n   /A                G2            D/F#<br />\nTo know You in Your death and resurrection<br />\nEm7           A &#8211;  /Bb Bm7   /A<br />\nOh, I want to know You more<br />\nEm7           A        D/A   (G/A-A/C#)<br />\nOh, I want to know You more</p>\n<p><strong>Chorus 3:</strong><br />\nD2    A/C# &#8211;   /Bb      Bm7<br />\nOh, I want to know You more<br />\n/A &#8211;    D/F#   G2             D/F#<br />\nDeep within my soul I want to know You<br />\nEm7           G/A- A<br />\nOh, I want to know You<br />\n    D2        A/Bb               Bm7 &#8211; A/Bb<br />\nTo feel Your heart and know Your mind<br />\n/A &#8211;    /G#     G             D/F#<br />\nLooking in Your eyes stirs up within me<br />\nEm7               A &#8211;  /Bb Bm7  /A<br />\nCries that say &#8220;I want to  know You&#8221;<br />\nEm7           A &#8211;  /Bb  Bm7    /A<br />\nOh, I want to know You more<br />\nEm7            A             (Bm-/A-G-A&#8230;BM7)<br />\nOh, I want to know You more</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD Em F#m Gm D/A Asus-A</p>\n<p><strong>Verse 1:</strong><br />\nD2       A/C#   Bm7<br />\nJust the time I feel<br />\n      /A        G2           D/F#    Em7<br />\nThat I&#8217;ve been caught in the mire of self<br />\n A2             /G<br />\nJust the time I feel<br />\n               D/F#      Em7- A    D    G/A<br />\nMy mind&#8217;s been bought by worldly wealth<br />\n        D        A/C#   Bm7      /A<br />\nThat&#8217;s when the breeze begins to blow<br />\n   G2      D/F#     Em7<br />\nI know the Spirit&#8217;s call<br />\n     A2            /G<br />\nAnd all my worldly wanderings<br />\n     D/F#   G      G/A   (1 and 3 of G-A-Bm-C#m)<br />\nJust melt into His love</p>\n<p><strong>Chorus 1:</strong><br />\nD2    A/C#             Bm7<br />\nOh, I want to know You more<br />\n/A              G2            D/F#<br />\nDeep within my soul I want to know You<br />\nEm7           G/A &#8211; A<br />\nOh, I want to know You<br />\n    D2        A/C# &#8211;   /Bb       Bm7<br />\nTo feel Your heart and know Your mind<br />\n/A               G2             D/F#<br />\nLooking in Your eyes stirs up within me<br />\nEm7               A &#8211; /Bb Bm7  /A<br />\nCries that say &#8220;I want to know You&#8221;<br />\nEm7           G/A- A/G  D   E7/G#<br />\nOh, I want to know You more<br />\nEm7           G/A      D    (Em-F#m-Gm-D/A-A&#8230;)<br />\nOh, I want to know You more</p>\n<p><strong>Verse 2:</strong><br />\nD2       A/C#  Bm7      /A  G2<br />\nWhen my daily deeds ordinarily<br />\n     D/F#     Em7  (Em7-F#m-G)<br />\nLose life and song<br />\n    A2              /G<br />\nMy heart begins to bleed<br />\n        D/F#   Em7-/A  D   (G-A)<br />\nSensitivity to Him is gone<br />\n      D2     A/C#-/Bb Bm7    /A<br />\nI&#8217;ve ran the race but set my pace<br />\n     G2    D/F#      Em7  (Em7-F#m-G)<br />\nAnd face a shattered soul<br />\n         A2            /G<br />\nNow the gentle arms of Jesus<br />\n         D/F#   G    G/A  (1 and 3 A-Bm-C#m)<br />\nWarms my hunger to behold</p>\n<p><strong>Chorus 2:</strong><br />\nD2    A/C#             Bm7<br />\nOh, I want to know You more<br />\n/A              G2             D/F#<br />\nDeep within my soul I want to know You<br />\nEm7           G/A- A<br />\nOh, I want to know You<br />\n    D       A/C# &#8211;  /Bb    Bm7<br />\nAnd I would give my final breath<br />\n   /A                G2            D/F#<br />\nTo know You in Your death and resurrection<br />\nEm7           A &#8211;  /Bb Bm7   /A<br />\nOh, I want to know You more<br />\nEm7           A        D/A   (G/A-A/C#)<br />\nOh, I want to know You more</p>\n<p><strong>Chorus 3:</strong><br />\nD2    A/C# &#8211;   /Bb      Bm7<br />\nOh, I want to know You more<br />\n/A &#8211;    D/F#   G2             D/F#<br />\nDeep within my soul I want to know You<br />\nEm7           G/A- A<br />\nOh, I want to know You<br />\n    D2        A/Bb               Bm7 &#8211; A/Bb<br />\nTo feel Your heart and know Your mind<br />\n/A &#8211;    /G#     G             D/F#<br />\nLooking in Your eyes stirs up within me<br />\nEm7               A &#8211;  /Bb Bm7  /A<br />\nCries that say &#8220;I want to  know You&#8221;<br />\nEm7           A &#8211;  /Bb  Bm7    /A<br />\nOh, I want to know You more<br />\nEm7            A             (Bm-/A-G-A&#8230;BM7)<br />\nOh, I want to know You more</p>\n",
+    "songNumber": 167
   },
   {
     "title": "People Need The Lord",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-9035",
     "id": "selah-9035",
@@ -47754,14 +47853,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD    A/D   G/D    D/F#    D/G   G6/A</p>\n<p><strong>Verse 1:</strong><br />\nD                A/D     G/D<br />\n   Ev&#8217;ryday they pass  me by,<br />\nD               A/D           G/D<br />\n   I can see it      in their eyes<br />\nF#m7            Bm<br />\n   Empty people filled with care,<br />\nEm7           Asus4          A<br />\n   Headed who knows   where<br />\nD                    A/D            G/D<br />\n   On they go through      private pain<br />\nC/D       D/F#     Gsus4     G<br />\n   Living fear           to fear<br />\nEm7b5                  D/F#<br />\n   Laughter hides their silent cries<br />\nG              G/A     A   G/A   A<br />\n   Only Jesus hears</p>\n<p><strong>Chorus:</strong><br />\nD                   Em7<br />\n   People need the Lord,<br />\nD/F#                G<br />\n   People need the Lord<br />\nA         A/G    D/F#         G<br />\n   At the end of       broken dreams<br />\nEm7              G/A    A   G/A   A<br />\n   He&#8217;s the open door<br />\nD                  Em7<br />\n   People need the Lord<br />\nD/F#               G<br />\n   People need the Lord<br />\nA            A/G   D/F#     G<br />\n   When will we         realize<br />\nEm7       Asus4    A       D<br />\n   People need        the Lord?</p>\n<p><strong>Verse 2:</strong><br />\nD                   A/D       G/D<br />\n   We are called to take His light<br />\nD                  A/D        G/D<br />\n   To a world where    wrong seems right<br />\nF#m7                 Bm<br />\n   What could be too great a cost<br />\nEm7                      Asus4         A<br />\n   For sharing life with one    who&#8217;s lost?<br />\nD                   A/D         G/D<br />\n   Through His love our hearts can  feel<br />\nC/D        D/F#   Gsus4      G<br />\n   All the grief        they bear<br />\nEm7b5                 D/F#<br />\n   They must hear the words of life<br />\nG              G/A     A   G/A   A<br />\n   Only we can share</p>\n<p><strong>Chorus:</strong><br />\nD                   Em7<br />\n   People need the Lord,<br />\nD/F#                G<br />\n   People need the Lord<br />\nA         A/G    D/F#         G<br />\n   At the end of       broken dreams<br />\nEm7              G/A    A   G/A   A<br />\n   He&#8217;s the open door<br />\nD                  Em7<br />\n   People need the Lord<br />\nD/F#               G<br />\n   People need the Lord<br />\nA            A/G   D/F#     G<br />\n   When will we         realize<br />\nA       A/G      D/F#           G<br />\n   That we  must      give our lives?<br />\n       Em     A         Bm    E9<br />\n   For people need the Lord<br />\nEm    G   A7       D<br />\n   People need the Lord</p>\n<p>D   A/D     G/D   D/F#   D/G   G6/A    D</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD    A/D   G/D    D/F#    D/G   G6/A</p>\n<p><strong>Verse 1:</strong><br />\nD                A/D     G/D<br />\n   Ev&#8217;ryday they pass  me by,<br />\nD               A/D           G/D<br />\n   I can see it      in their eyes<br />\nF#m7            Bm<br />\n   Empty people filled with care,<br />\nEm7           Asus4          A<br />\n   Headed who knows   where<br />\nD                    A/D            G/D<br />\n   On they go through      private pain<br />\nC/D       D/F#     Gsus4     G<br />\n   Living fear           to fear<br />\nEm7b5                  D/F#<br />\n   Laughter hides their silent cries<br />\nG              G/A     A   G/A   A<br />\n   Only Jesus hears</p>\n<p><strong>Chorus:</strong><br />\nD                   Em7<br />\n   People need the Lord,<br />\nD/F#                G<br />\n   People need the Lord<br />\nA         A/G    D/F#         G<br />\n   At the end of       broken dreams<br />\nEm7              G/A    A   G/A   A<br />\n   He&#8217;s the open door<br />\nD                  Em7<br />\n   People need the Lord<br />\nD/F#               G<br />\n   People need the Lord<br />\nA            A/G   D/F#     G<br />\n   When will we         realize<br />\nEm7       Asus4    A       D<br />\n   People need        the Lord?</p>\n<p><strong>Verse 2:</strong><br />\nD                   A/D       G/D<br />\n   We are called to take His light<br />\nD                  A/D        G/D<br />\n   To a world where    wrong seems right<br />\nF#m7                 Bm<br />\n   What could be too great a cost<br />\nEm7                      Asus4         A<br />\n   For sharing life with one    who&#8217;s lost?<br />\nD                   A/D         G/D<br />\n   Through His love our hearts can  feel<br />\nC/D        D/F#   Gsus4      G<br />\n   All the grief        they bear<br />\nEm7b5                 D/F#<br />\n   They must hear the words of life<br />\nG              G/A     A   G/A   A<br />\n   Only we can share</p>\n<p><strong>Chorus:</strong><br />\nD                   Em7<br />\n   People need the Lord,<br />\nD/F#                G<br />\n   People need the Lord<br />\nA         A/G    D/F#         G<br />\n   At the end of       broken dreams<br />\nEm7              G/A    A   G/A   A<br />\n   He&#8217;s the open door<br />\nD                  Em7<br />\n   People need the Lord<br />\nD/F#               G<br />\n   People need the Lord<br />\nA            A/G   D/F#     G<br />\n   When will we         realize<br />\nA       A/G      D/F#           G<br />\n   That we  must      give our lives?<br />\n       Em     A         Bm    E9<br />\n   For people need the Lord<br />\nEm    G   A7       D<br />\n   People need the Lord</p>\n<p>D   A/D     G/D   D/F#   D/G   G6/A    D</p>\n",
+    "songNumber": 176
   },
   {
     "title": "I Will Sing",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-8988",
     "id": "selah-8988",
     "customSong": true,
@@ -48088,13 +48188,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\n  G              D/F#              Em             Em7/D<br />\nI long to be the bride that You&#8217;re returning for<br />\nC                   D                 G      D<br />\nDressed in garments white and wrinkle free<br />\n  C                D             Em<br />\nI have no earthly love that I am holding to<br />\n    Am                                     Em7/D   D<br />\nFor You&#8217;re the one who means everything to me</p>\n<p><strong>Chorus:</strong><br />\n        G<br />\nI will sing<br />\n       GM7<br />\nI will worship You<br />\n       G7                             C<br />\nI will bow myself down humbly at Your throne<br />\n            G/D<br />\nI will give anything<br />\n            D        D7        G     C  G  D<br />\nI will give everything to You alone</p>\n<p><strong>Verse 2:</strong><br />\n    G                D                  Em        Em7<br />\nYou are the faithful God who keeps Your covenant<br />\n        C                    D                G     D<br />\nThere&#8217;s not one thing You&#8217;ve said You haven&#8217;t done<br />\n    C              D                Em<br />\nAnd someday when I see You standing face to face<br />\n    Am                           Em7/D  D<br />\nMy praise for you will only have begun</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\n  G              D/F#              Em             Em7/D<br />\nI long to be the bride that You&#8217;re returning for<br />\nC                   D                 G      D<br />\nDressed in garments white and wrinkle free<br />\n  C                D             Em<br />\nI have no earthly love that I am holding to<br />\n    Am                                     Em7/D   D<br />\nFor You&#8217;re the one who means everything to me</p>\n<p><strong>Chorus:</strong><br />\n        G<br />\nI will sing<br />\n       GM7<br />\nI will worship You<br />\n       G7                             C<br />\nI will bow myself down humbly at Your throne<br />\n            G/D<br />\nI will give anything<br />\n            D        D7        G     C  G  D<br />\nI will give everything to You alone</p>\n<p><strong>Verse 2:</strong><br />\n    G                D                  Em        Em7<br />\nYou are the faithful God who keeps Your covenant<br />\n        C                    D                G     D<br />\nThere&#8217;s not one thing You&#8217;ve said You haven&#8217;t done<br />\n    C              D                Em<br />\nAnd someday when I see You standing face to face<br />\n    Am                           Em7/D  D<br />\nMy praise for you will only have begun</p>\n",
+    "songNumber": 106
   },
   {
     "title": "Great Is Your Mercy",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-8917",
     "id": "selah-8917",
@@ -48701,14 +48802,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE F#m7-5/E<br />\nE E7 F#m7-5/E<br />\nE5 F#m7-5/E<br />\nE E7 F#m7-5/E</p>\n<p><strong>Verse 1:</strong><br />\nE                  F#m7-5/E    E<br />\nThank You for Your  mer      &#8211; cy<br />\nB/D#               C#m7<br />\nThank You for Your grace<br />\nAadd9              E/G#<br />\nThank You for Your blood<br />\n       F#m7    B7sus<br />\nThat&#8217;s made a way<br />\n    E              F#m7-5/E      E<br />\nTo come into Your pre    &#8211;     sence<br />\n     E7sus        Amaj7 E/G#<br />\nAnd glorify Your Name<br />\nF#m7                 B7sus      E<br />\nLord, I stand amazed at what I see</p>\n<p><strong>Chorus:</strong><br />\n      F#m7-5/E  E7sus  G/A    Am7         D<br />\nGreat is        Your   mer  &#8211; cy  toward me<br />\n            Gadd9     G          Cmaj7<br />\nYour loving kind  &#8211;  ness toward me<br />\nG/B          G/A    Am7     D<br />\nYour tender mer  &#8211;  cies I see<br />\n           E<br />\nDay after day<br />\nF#m7-5/E   E7  G/A      Am7    D<br />\nFore  &#8211;   ver faith  &#8211;  ful to me<br />\n           G         Cmaj7<br />\nAlways providing for me<br />\nG/B            G/A   Am7        D<br />\nGreat is Your mer  &#8211; cy toward me<br />\n                E  F#m7-5/E  E  E7  F#m7-5/E<br />\nGreat is Your grace</p>\n<p><strong>Verse 2:</strong><br />\n      E            F#m7-5/E    E<br />\nYour promises are age      &#8211;  less<br />\n     B/D#            C#m7<br />\nYour love will never end<br />\n     Aadd9        E/G#<br />\nFor a thousand generations<br />\n      F#m7            B7sus<br />\nYour covenant will stand<br />\nE                  F#m7-5/E    E<br />\nShowing grace and mer     &#8211;   cy<br />\n   E7sus                 Amaj7    E/G#<br />\nTo those who fear Your Name<br />\n  F#m7              B7sus              E<br />\nEstablishing Your righteousness and praise</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE F#m7-5/E<br />\nE E7 F#m7-5/E<br />\nE5 F#m7-5/E<br />\nE E7 F#m7-5/E</p>\n<p><strong>Verse 1:</strong><br />\nE                  F#m7-5/E    E<br />\nThank You for Your  mer      &#8211; cy<br />\nB/D#               C#m7<br />\nThank You for Your grace<br />\nAadd9              E/G#<br />\nThank You for Your blood<br />\n       F#m7    B7sus<br />\nThat&#8217;s made a way<br />\n    E              F#m7-5/E      E<br />\nTo come into Your pre    &#8211;     sence<br />\n     E7sus        Amaj7 E/G#<br />\nAnd glorify Your Name<br />\nF#m7                 B7sus      E<br />\nLord, I stand amazed at what I see</p>\n<p><strong>Chorus:</strong><br />\n      F#m7-5/E  E7sus  G/A    Am7         D<br />\nGreat is        Your   mer  &#8211; cy  toward me<br />\n            Gadd9     G          Cmaj7<br />\nYour loving kind  &#8211;  ness toward me<br />\nG/B          G/A    Am7     D<br />\nYour tender mer  &#8211;  cies I see<br />\n           E<br />\nDay after day<br />\nF#m7-5/E   E7  G/A      Am7    D<br />\nFore  &#8211;   ver faith  &#8211;  ful to me<br />\n           G         Cmaj7<br />\nAlways providing for me<br />\nG/B            G/A   Am7        D<br />\nGreat is Your mer  &#8211; cy toward me<br />\n                E  F#m7-5/E  E  E7  F#m7-5/E<br />\nGreat is Your grace</p>\n<p><strong>Verse 2:</strong><br />\n      E            F#m7-5/E    E<br />\nYour promises are age      &#8211;  less<br />\n     B/D#            C#m7<br />\nYour love will never end<br />\n     Aadd9        E/G#<br />\nFor a thousand generations<br />\n      F#m7            B7sus<br />\nYour covenant will stand<br />\nE                  F#m7-5/E    E<br />\nShowing grace and mer     &#8211;   cy<br />\n   E7sus                 Amaj7    E/G#<br />\nTo those who fear Your Name<br />\n  F#m7              B7sus              E<br />\nEstablishing Your righteousness and praise</p>\n",
+    "songNumber": 66
   },
   {
     "title": "This Blood",
     "artist": "Selah",
     "key": "",
-    "category": "Selah",
-    "language": "",
+    "category": "Praise",
+    "language": "English",
     "file": "custom-song.html?id=selah-8886",
     "id": "selah-8886",
     "customSong": true,
@@ -49623,13 +49725,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p>Key: F</p>\n<p><strong>Intro:</strong><br />\nF2 C Dm Bb</p>\n<p><strong>Verse 1:</strong><br />\n            F2        Bb/F    F2<br />\nThere is a blood that cost a life<br />\n             Csus-C             F2<br />\nThat paid my way,    death its price<br />\nBb/F      F2         /A       Bb<br />\nWhen it flowed down from the cross<br />\n              F2             Csus-C<br />\nMy sins were gone, my sins forgot</p>\n<p><strong>Verse 2:</strong><br />\n             F2        Bb/F     F2<br />\nThere is a grave that tried to hide<br />\n               Csus-C             F2<br />\nThis precious blood that gave me life<br />\nBb/C         F2          /A     Bb<br />\nIn    three days, He breathed again<br />\n             F2             Csus-C<br />\nAnd rose to stand in my defense </p>\n<p><strong>Chorus 1:</strong><br />\n      F2              Bb/F    F2<br />\nSo I come to tell you He&#8217;s alive<br />\n             C/E    Dm7     /C              Bb<br />\nTo tell you that He dries  every tear that falls<br />\n      F2              Bb/F     F2<br />\nSo I come to tell you that He saves<br />\n             C/E     Dm7            /C              Bb<br />\nTo shout and to proclaim that He&#8217;s coming back for you</p>\n<p><strong>Verse 3:</strong><br />\n            F2           Bb/F       F2<br />\nThere is a blood and it sights the blind<br />\n              Csus-C            F2<br />\nIt heals the sick,  the lonely finds<br />\nBb/F          F2       /A       Bb<br />\nIt   has the power to free the bound<br />\n                 F2             Csus-C<br />\nAs chains, they fall upon the ground</p>\n<p><strong>Verse 4:</strong><br />\n            F2       Bb/F      F2<br />\nSo pour it out and cleanse my soul<br />\n             Csus-C        F2<br />\nAnd let His blood, glory flow<br />\nBb/F        F2       /A      Bb<br />\nBecause He lives to make me whole<br />\n          F2             Csus-C<br />\nI owe my life, I owe my all</p>\n<p><strong>Chorus 2:</strong><br />\n      F2              Bb/F    F2<br />\nSo I come to tell you He&#8217;s alive<br />\n             C/E    Dm7     /C              Bb<br />\nTo tell you that He dries  every tear that falls<br />\n      F2              Bb/F     F2<br />\nSo I come to tell you that He saves<br />\n             C/E     Dm7            /C              Bb<br />\nTo shout and to proclaim that He&#8217;s coming back for you</p>\n<p><strong>Bridge:</strong><br />\nF                           F-C/E-Dm<br />\nWhat can wash away my sin?<br />\nDm        Bb<br />\nNothing, nothing !<br />\nF                             C/E<br />\nWhat can make me whole again?<br />\nDm                      Bb<br />\nNothing but the blood, nothing but the blood !</p>\n<p><strong>Verse 5:</strong><br />\n             F        Bb/F      F<br />\nThere is a grave that tried to hide<br />\n              Csus-C              F<br />\nThis precious blood that gave me life<br />\n               F               Bb<br />\nBut in three days He breathed again<br />\n             F/A           C<br />\nAnd rose to stand in my defense</p>\n<p><strong>Chorus 3:</strong><br />\n          G<br />\nSo I come   to tell you He&#8217;s alive<br />\n                     Em &#8211;    /D              C<br />\nTo tell you that He dries  every tear that falls<br />\n      G<br />\nSo I come to tell you that He saves<br />\n             D/F#-    Em           /D               C<br />\nTo shout and to proclaim that He&#8217;s coming back for you<br />\n         G<br />\nWe have come to tell you He&#8217;s alive!</p>\n"
+    "sourceHtmlPreserved": "<p>Key: F</p>\n<p><strong>Intro:</strong><br />\nF2 C Dm Bb</p>\n<p><strong>Verse 1:</strong><br />\n            F2        Bb/F    F2<br />\nThere is a blood that cost a life<br />\n             Csus-C             F2<br />\nThat paid my way,    death its price<br />\nBb/F      F2         /A       Bb<br />\nWhen it flowed down from the cross<br />\n              F2             Csus-C<br />\nMy sins were gone, my sins forgot</p>\n<p><strong>Verse 2:</strong><br />\n             F2        Bb/F     F2<br />\nThere is a grave that tried to hide<br />\n               Csus-C             F2<br />\nThis precious blood that gave me life<br />\nBb/C         F2          /A     Bb<br />\nIn    three days, He breathed again<br />\n             F2             Csus-C<br />\nAnd rose to stand in my defense </p>\n<p><strong>Chorus 1:</strong><br />\n      F2              Bb/F    F2<br />\nSo I come to tell you He&#8217;s alive<br />\n             C/E    Dm7     /C              Bb<br />\nTo tell you that He dries  every tear that falls<br />\n      F2              Bb/F     F2<br />\nSo I come to tell you that He saves<br />\n             C/E     Dm7            /C              Bb<br />\nTo shout and to proclaim that He&#8217;s coming back for you</p>\n<p><strong>Verse 3:</strong><br />\n            F2           Bb/F       F2<br />\nThere is a blood and it sights the blind<br />\n              Csus-C            F2<br />\nIt heals the sick,  the lonely finds<br />\nBb/F          F2       /A       Bb<br />\nIt   has the power to free the bound<br />\n                 F2             Csus-C<br />\nAs chains, they fall upon the ground</p>\n<p><strong>Verse 4:</strong><br />\n            F2       Bb/F      F2<br />\nSo pour it out and cleanse my soul<br />\n             Csus-C        F2<br />\nAnd let His blood, glory flow<br />\nBb/F        F2       /A      Bb<br />\nBecause He lives to make me whole<br />\n          F2             Csus-C<br />\nI owe my life, I owe my all</p>\n<p><strong>Chorus 2:</strong><br />\n      F2              Bb/F    F2<br />\nSo I come to tell you He&#8217;s alive<br />\n             C/E    Dm7     /C              Bb<br />\nTo tell you that He dries  every tear that falls<br />\n      F2              Bb/F     F2<br />\nSo I come to tell you that He saves<br />\n             C/E     Dm7            /C              Bb<br />\nTo shout and to proclaim that He&#8217;s coming back for you</p>\n<p><strong>Bridge:</strong><br />\nF                           F-C/E-Dm<br />\nWhat can wash away my sin?<br />\nDm        Bb<br />\nNothing, nothing !<br />\nF                             C/E<br />\nWhat can make me whole again?<br />\nDm                      Bb<br />\nNothing but the blood, nothing but the blood !</p>\n<p><strong>Verse 5:</strong><br />\n             F        Bb/F      F<br />\nThere is a grave that tried to hide<br />\n              Csus-C              F<br />\nThis precious blood that gave me life<br />\n               F               Bb<br />\nBut in three days He breathed again<br />\n             F/A           C<br />\nAnd rose to stand in my defense</p>\n<p><strong>Chorus 3:</strong><br />\n          G<br />\nSo I come   to tell you He&#8217;s alive<br />\n                     Em &#8211;    /D              C<br />\nTo tell you that He dries  every tear that falls<br />\n      G<br />\nSo I come to tell you that He saves<br />\n             D/F#-    Em           /D               C<br />\nTo shout and to proclaim that He&#8217;s coming back for you<br />\n         G<br />\nWe have come to tell you He&#8217;s alive!</p>\n",
+    "songNumber": 212
   },
   {
     "title": "There Is Nothing Greater Than Grace",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-8871",
     "id": "selah-8871",
@@ -50328,13 +50431,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD  Bm  G Asus A</p>\n<p><strong>Verse 1:</strong><br />\nD                              A/C#<br />\nWhat do you say to someone who feels like they&#8217;ve lost it all<br />\nBm                 A                G<br />\nOver the edge with no one there to break their fall<br />\n    D                              A/C#<br />\nAnd what do you say to someone who feels so unloved<br />\nBm                        A                    G<br />\nGiving themselves away a little bit every day just to be good enough<br />\n    Em                   D/F#              G              Bm        A<br />\nAnd what do you say to a hopeless soul who can&#8217;t remember their way home<br />\n    Em            D/F#         Asus   A<br />\nAnd everything is out of their control</p>\n<p><strong>Chorus 1:</strong><br />\n            D                   Bm<br />\nThere is no valley, there is no darkness<br />\n            G       Em                        Asus   A<br />\nThere is no sorrow greater than the grace of Jesus.<br />\n            D                   Bm<br />\nThere is no moment, there is no distance,<br />\n            G          Em                Asus   A<br />\nThere is no heartbreak He can&#8217;t take you through.<br />\n     Em                  D/F#               A<br />\nSo before you think that you&#8217;re too lost to save,<br />\n         G &#8211; F#m &#8211; Em     A            D      (A/G &#8211; Asus &#8211; A)<br />\nRemember there is nothing greater than grace</p>\n<p><strong>Verse 2:</strong><br />\nD                                A/C#<br />\nWhat do you say to someone whose life is on the line<br />\n    Bm                  A                   G<br />\nAnd they&#8217;re unsure what happens after their last breath in time<br />\nEm                   D/F#        G                 Bm         A<br />\nWhat do you say to someone whose built a wall you can&#8217;t break through<br />\n    Em                D/F#             Asus   A<br />\nAnd it&#8217;s so hard for them to hear the truth</p>\n<p><strong>Bridge:</strong><br />\n   F#m        Bm    G       A<br />\nSo don&#8217;t lose hope, don&#8217;t let go<br />\nF#m        Bm     G           G/A<br />\nDon&#8217;t give up, &#8212; you are not alone<br />\n            A<br />\nYou are not alone</p>\n<p><strong>Chorus 2 (Eb):</strong><br />\n            D                   Bm<br />\nThere is no valley, there is no darkness<br />\n            G        Em                       A    Bb<br />\nThere is no sorrow greater than the grace of Jesus.<br />\n            Eb                   Cm<br />\nThere is no moment, there is no distance,<br />\n            G#         Fm              Bbsus   Bb<br />\nThere is no heartbreak He can&#8217;t take you through.<br />\n     Fm                  Eb/G               Bb<br />\nSo before you think that you&#8217;re too lost to save,<br />\n     Fm                  Eb/G               Bb<br />\nSo before you think that you&#8217;re too lost to save,<br />\n         G# &#8211; Gm &#8211; Fm     Bb           Eb    (Eb &#8211; Ebsus/C &#8211; Eb)<br />\nRemember there is nothing greater than grace.</p>\n<p><strong>Chorus 2 (E):</strong><br />\n            D                   Bm<br />\nThere is no valley, there is no darkness<br />\n            G        Em                       A    B<br />\nThere is no sorrow greater than the grace of Jesus.<br />\n            E                   C#m<br />\nThere is no moment, there is no distance,<br />\n            A          F#m               Bsus   B<br />\nThere is no heartbreak He can&#8217;t take you through.<br />\n     F#m                 E/G#               B<br />\nSo before you think that you&#8217;re too lost to save,<br />\n     F#m                 E/G#               B<br />\nSo before you think that you&#8217;re too lost to save,<br />\n         A &#8211; G#m &#8211; F#m    B            E     (E &#8211; Esus/C# &#8211; E)<br />\nRemember there is nothing greater than grace.</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD  Bm  G Asus A</p>\n<p><strong>Verse 1:</strong><br />\nD                              A/C#<br />\nWhat do you say to someone who feels like they&#8217;ve lost it all<br />\nBm                 A                G<br />\nOver the edge with no one there to break their fall<br />\n    D                              A/C#<br />\nAnd what do you say to someone who feels so unloved<br />\nBm                        A                    G<br />\nGiving themselves away a little bit every day just to be good enough<br />\n    Em                   D/F#              G              Bm        A<br />\nAnd what do you say to a hopeless soul who can&#8217;t remember their way home<br />\n    Em            D/F#         Asus   A<br />\nAnd everything is out of their control</p>\n<p><strong>Chorus 1:</strong><br />\n            D                   Bm<br />\nThere is no valley, there is no darkness<br />\n            G       Em                        Asus   A<br />\nThere is no sorrow greater than the grace of Jesus.<br />\n            D                   Bm<br />\nThere is no moment, there is no distance,<br />\n            G          Em                Asus   A<br />\nThere is no heartbreak He can&#8217;t take you through.<br />\n     Em                  D/F#               A<br />\nSo before you think that you&#8217;re too lost to save,<br />\n         G &#8211; F#m &#8211; Em     A            D      (A/G &#8211; Asus &#8211; A)<br />\nRemember there is nothing greater than grace</p>\n<p><strong>Verse 2:</strong><br />\nD                                A/C#<br />\nWhat do you say to someone whose life is on the line<br />\n    Bm                  A                   G<br />\nAnd they&#8217;re unsure what happens after their last breath in time<br />\nEm                   D/F#        G                 Bm         A<br />\nWhat do you say to someone whose built a wall you can&#8217;t break through<br />\n    Em                D/F#             Asus   A<br />\nAnd it&#8217;s so hard for them to hear the truth</p>\n<p><strong>Bridge:</strong><br />\n   F#m        Bm    G       A<br />\nSo don&#8217;t lose hope, don&#8217;t let go<br />\nF#m        Bm     G           G/A<br />\nDon&#8217;t give up, &#8212; you are not alone<br />\n            A<br />\nYou are not alone</p>\n<p><strong>Chorus 2 (Eb):</strong><br />\n            D                   Bm<br />\nThere is no valley, there is no darkness<br />\n            G        Em                       A    Bb<br />\nThere is no sorrow greater than the grace of Jesus.<br />\n            Eb                   Cm<br />\nThere is no moment, there is no distance,<br />\n            G#         Fm              Bbsus   Bb<br />\nThere is no heartbreak He can&#8217;t take you through.<br />\n     Fm                  Eb/G               Bb<br />\nSo before you think that you&#8217;re too lost to save,<br />\n     Fm                  Eb/G               Bb<br />\nSo before you think that you&#8217;re too lost to save,<br />\n         G# &#8211; Gm &#8211; Fm     Bb           Eb    (Eb &#8211; Ebsus/C &#8211; Eb)<br />\nRemember there is nothing greater than grace.</p>\n<p><strong>Chorus 2 (E):</strong><br />\n            D                   Bm<br />\nThere is no valley, there is no darkness<br />\n            G        Em                       A    B<br />\nThere is no sorrow greater than the grace of Jesus.<br />\n            E                   C#m<br />\nThere is no moment, there is no distance,<br />\n            A          F#m               Bsus   B<br />\nThere is no heartbreak He can&#8217;t take you through.<br />\n     F#m                 E/G#               B<br />\nSo before you think that you&#8217;re too lost to save,<br />\n     F#m                 E/G#               B<br />\nSo before you think that you&#8217;re too lost to save,<br />\n         A &#8211; G#m &#8211; F#m    B            E     (E &#8211; Esus/C# &#8211; E)<br />\nRemember there is nothing greater than grace.</p>\n",
+    "songNumber": 211
   },
   {
     "title": "Sa’Yo",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-8864",
     "id": "selah-8864",
@@ -50675,14 +50779,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE  B2/E  A/E  B/E<br />\nE  B2/E  A/E  B/E</p>\n<p><strong>Verse:</strong><br />\n  E   B2/E         A/E        B/E          E  B2/E<br />\nO Diyos, sa&#8217;Yong lahat ang pagsamba&#8217;t luwalhati<br />\n           A/E     Cdim       C#m7  C#m7sus2<br />\nMaging ang pinakamainam kong awit<br />\n      A2/F#     B<br />\nAy aawitin sa&#8217;Yo<br />\n  E   B2/E         A/E    B/E          E  B2/E<br />\nO Diyos, ang aking isipan ay pagharian Mo<br />\n           A/E        Cdim       C#m7  C#m7sus2<br />\nAt sa&#8217;king puso ay hindi na maglaho<br />\n            A2/F#    F#m/B  B<br />\nTanging pag-ibig sa&#8217;Yo</p>\n<p><strong>Chorus:</strong><br />\n       A                   G#  G#7 (/C)<br />\nAno pa ba ang maihahandog ko<br />\n         C#m                       A<br />\nLiban sa buhay kong nanggaling sa&#8217;Yo<br />\n        E/B                    B2<br />\nKung anuman sa sandali nito&#8217;y tangan<br />\n       E/B                   Cdim<br />\nAt mga bagay na tinuri kong yaman<br />\n         A            E/G#       F#m      B<br />\nIto&#8217;y hindi pa rin sapat sa alay na nararapat<br />\n    E<br />\nSa&#8217;Yo</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE  B2/E  A/E  B/E<br />\nE  B2/E  A/E  B/E</p>\n<p><strong>Verse:</strong><br />\n  E   B2/E         A/E        B/E          E  B2/E<br />\nO Diyos, sa&#8217;Yong lahat ang pagsamba&#8217;t luwalhati<br />\n           A/E     Cdim       C#m7  C#m7sus2<br />\nMaging ang pinakamainam kong awit<br />\n      A2/F#     B<br />\nAy aawitin sa&#8217;Yo<br />\n  E   B2/E         A/E    B/E          E  B2/E<br />\nO Diyos, ang aking isipan ay pagharian Mo<br />\n           A/E        Cdim       C#m7  C#m7sus2<br />\nAt sa&#8217;king puso ay hindi na maglaho<br />\n            A2/F#    F#m/B  B<br />\nTanging pag-ibig sa&#8217;Yo</p>\n<p><strong>Chorus:</strong><br />\n       A                   G#  G#7 (/C)<br />\nAno pa ba ang maihahandog ko<br />\n         C#m                       A<br />\nLiban sa buhay kong nanggaling sa&#8217;Yo<br />\n        E/B                    B2<br />\nKung anuman sa sandali nito&#8217;y tangan<br />\n       E/B                   Cdim<br />\nAt mga bagay na tinuri kong yaman<br />\n         A            E/G#       F#m      B<br />\nIto&#8217;y hindi pa rin sapat sa alay na nararapat<br />\n    E<br />\nSa&#8217;Yo</p>\n",
+    "songNumber": 191
   },
   {
     "title": "Ang Pasko ay Sumapit",
     "artist": "Selah",
     "key": "Dm",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-8862",
     "id": "selah-8862",
     "customSong": true,
@@ -51033,13 +51138,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Dm</strong></p>\n<p><strong>Intro:</strong><br />\nGm7 &#8211; Dm7 &#8211; A7 &#8211; Dm7</p>\n<p><strong>Verse 1:</strong><br />\n Dm                                            A<br />\nAng pasko ay sumapit, tayo ay mangagsiawit<br />\n                      A7<br />\nng magagandang himig,<br />\n                                Dm<br />\ndahil sa ang Diyos ay pag-ibig</p>\n<p>Nang si kristo ay isilang,<br />\nD          D7             Gm<br />\nMay mga magong nagsidalaw<br />\n                   Dm<br />\nat ang bawat isa ay<br />\n               A7                 Dm<br />\nnagsipaghandong ng tanging alay</p>\n<p><strong>Chorus:</strong><br />\n  C                     F<br />\nBagong taon ay magbagong buhya<br />\n A7                         Dm<br />\nNang lumigaya ang ating bayan<br />\n Gm                 Dm                      E7<br />\nTayo&#8217;y magikap upang makamtam natin<br />\n    A7<br />\nang kasaganaan</p>\n<p><strong>Verse 2:</strong><br />\nDm<br />\nTayo ay mangagsiawit,<br />\n                                    A7<br />\nhabang ang mundo&#8217;y tahimik</p>\n<p>Ang araw ay sumapit,<br />\n                                   Dm<br />\nnang sanggol na dulot ng langit</p>\n<p>Tayo may magmahalan,<br />\n    D                           Gm<br />\nating sundin ang gintong aral<br />\n                    Dm<br />\nAt magbuhay ngayon<br />\n                     A7                  D<br />\nKahit hindi Pasko ay magbigayan</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Dm</strong></p>\n<p><strong>Intro:</strong><br />\nGm7 &#8211; Dm7 &#8211; A7 &#8211; Dm7</p>\n<p><strong>Verse 1:</strong><br />\n Dm                                            A<br />\nAng pasko ay sumapit, tayo ay mangagsiawit<br />\n                      A7<br />\nng magagandang himig,<br />\n                                Dm<br />\ndahil sa ang Diyos ay pag-ibig</p>\n<p>Nang si kristo ay isilang,<br />\nD          D7             Gm<br />\nMay mga magong nagsidalaw<br />\n                   Dm<br />\nat ang bawat isa ay<br />\n               A7                 Dm<br />\nnagsipaghandong ng tanging alay</p>\n<p><strong>Chorus:</strong><br />\n  C                     F<br />\nBagong taon ay magbagong buhya<br />\n A7                         Dm<br />\nNang lumigaya ang ating bayan<br />\n Gm                 Dm                      E7<br />\nTayo&#8217;y magikap upang makamtam natin<br />\n    A7<br />\nang kasaganaan</p>\n<p><strong>Verse 2:</strong><br />\nDm<br />\nTayo ay mangagsiawit,<br />\n                                    A7<br />\nhabang ang mundo&#8217;y tahimik</p>\n<p>Ang araw ay sumapit,<br />\n                                   Dm<br />\nnang sanggol na dulot ng langit</p>\n<p>Tayo may magmahalan,<br />\n    D                           Gm<br />\nating sundin ang gintong aral<br />\n                    Dm<br />\nAt magbuhay ngayon<br />\n                     A7                  D<br />\nKahit hindi Pasko ay magbigayan</p>\n",
+    "songNumber": 11
   },
   {
     "title": "Sa Piling Mo",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-8859",
     "id": "selah-8859",
@@ -51327,13 +51433,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD       G<br />\nBm7 /A  G</p>\n<p><strong>Verse:</strong><br />\nD     G<br />\nKapayapaan<br />\n            D    G<br />\nNagmumula sa &#8216;Yo<br />\nD     G<br />\nKaligayahan<br />\n           Bm7  /A  G  A<br />\nNakamit sa piling Mo</p>\n<p><strong>Chorus:</strong><br />\nA/G       D/F#      G<br />\nWala nang hahanapin pa<br />\n          Bm7 /A   G<br />\nWala nang nanaisin pa<br />\nD/F#      Em9    D/F#    G<br />\nKundi mamalagi sa piling Mo<br />\n      A<br />\nAming Ama<br />\n           D    D/F#    G<br />\nWala ngang papantay sa &#8216;Yo<br />\n      Bm7    /A   G<br />\nNag-iisang Panginoon<br />\nD/F#      Em9      D/F#   G<br />\nKaya ang naisin ng puso ko&#8217;y<br />\n   A      D<br />\nSa piling Mo</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD       G<br />\nBm7 /A  G</p>\n<p><strong>Verse:</strong><br />\nD     G<br />\nKapayapaan<br />\n            D    G<br />\nNagmumula sa &#8216;Yo<br />\nD     G<br />\nKaligayahan<br />\n           Bm7  /A  G  A<br />\nNakamit sa piling Mo</p>\n<p><strong>Chorus:</strong><br />\nA/G       D/F#      G<br />\nWala nang hahanapin pa<br />\n          Bm7 /A   G<br />\nWala nang nanaisin pa<br />\nD/F#      Em9    D/F#    G<br />\nKundi mamalagi sa piling Mo<br />\n      A<br />\nAming Ama<br />\n           D    D/F#    G<br />\nWala ngang papantay sa &#8216;Yo<br />\n      Bm7    /A   G<br />\nNag-iisang Panginoon<br />\nD/F#      Em9      D/F#   G<br />\nKaya ang naisin ng puso ko&#8217;y<br />\n   A      D<br />\nSa piling Mo</p>\n",
+    "songNumber": 184
   },
   {
     "title": "Sufficient",
     "artist": "Selah",
     "key": "Eb",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-8836",
     "id": "selah-8836",
@@ -52189,13 +52296,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Eb</strong></p>\n<p><strong>Intro:</strong><br />\nEb &#8211; Ebsus4</p>\n<p><strong>Verse 1 :</strong><br />\n             Eb<br />\nIn the beginning was The Word<br />\n            Fm7<br />\nAnd when He chose to make the world<br />\n    Eb      Ab                           Bb    Eb<br />\nHe didn&#8217;t have to leave His throne or lift  a hand</p>\n<p>To make the light shine in the dark<br />\n           Fm7<br />\nCreate the sun, the moon, the stars<br />\n     Gm     Ab             Bb     Gm  Cm<br />\nAnd every creature in the sea and on land<br />\n           Bb       Ab<br />\nHe said, &#8220;Let there be!&#8221;<br />\n        Bb           Eb        Ebsus4<br />\nAnd His word was sufficient</p>\n<p><strong>Verse 2 :</strong><br />\n             Eb<br />\nWhen Jesus walked upon the earth<br />\n            Fm7<br />\nHis power showed through mighty works<br />\n    Eb         Ab                   Bb             Eb<br />\nHe healed the sick, and caused the blind to see again</p>\n<p>Sometimes He touched, sometimes He prayed<br />\n           Fm<br />\nBut when a man was brought one day<br />\n    Eb    Ab                   Bb   Gm       Cm<br />\nTo ask for  healing, that his body would be cleansed<br />\n       Bb      Ab<br />\nJesus said, &#8220;Alright&#8221;,<br />\n         Bb          Eb         E<br />\nAnd His word was sufficient</p>\n<p><strong>Verse 3 :</strong><br />\nE<br />\nInside a garden full of bloom<br />\n          F#m7<br />\nTwo women wept before a tomb<br />\n        E      A        B                 E<br />\nTheir brother Lazarus, had now been dead for days<br />\n   B          E<br />\nJesus said, &#8220;Take that stone away&#8221;<br />\n            F#m<br />\nLifting His eyes began to pray<br />\n      E           A          B      Ab               C#m<br />\nThen spoke three words that echoed through that place<br />\n  B              A<br />\n&#8220;Lazarus, come forth! &#8221;<br />\n         B           E          Esus4   E<br />\nAnd His word was sufficient</p>\n<p><strong>Verse 4 :</strong><br />\n             F<br />\nThree roman crosses on a hill<br />\n               Gm<br />\nThree men were tortured, nailed and killed<br />\nAm           Bb                  C             F<br />\n Jesus, The Word made flesh was buried in the ground</p>\n<p>Would God accept this sacrifice?<br />\n           Gm7<br />\nWould His atoning blood suffice?<br />\n    Am       Bb                   C        A          Dm<br />\nHe left no doubt when three days later He walked out<br />\n          C      Bb<br />\nHe&#8217;s The Living Word<br />\n        C            F<br />\nAnd The Word is sufficient</p>\n<p><strong>Chorus:</strong><br />\n           Dm              C<br />\nFor every question, every trial<br />\n        F<br />\nEvery mountain, every mile<br />\n     Bb               C<br />\nFor correction, for reproof<br />\n      F<br />\nFor instruction, and for truth<br />\n         Bb         C<br />\nIt will never pass away<br />\n         A<br />\nAnd it&#8217;s better then today<br />\nC           Bb<br />\nIt&#8217;s God&#8217;s Word<br />\n         C         F        Fsus   F<br />\nAnd The Word is sufficient<br />\n     Bb        F<br />\nThe Word is sufficient!<br />\n     C         F<br />\nThe Word is sufficient!</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Eb</strong></p>\n<p><strong>Intro:</strong><br />\nEb &#8211; Ebsus4</p>\n<p><strong>Verse 1 :</strong><br />\n             Eb<br />\nIn the beginning was The Word<br />\n            Fm7<br />\nAnd when He chose to make the world<br />\n    Eb      Ab                           Bb    Eb<br />\nHe didn&#8217;t have to leave His throne or lift  a hand</p>\n<p>To make the light shine in the dark<br />\n           Fm7<br />\nCreate the sun, the moon, the stars<br />\n     Gm     Ab             Bb     Gm  Cm<br />\nAnd every creature in the sea and on land<br />\n           Bb       Ab<br />\nHe said, &#8220;Let there be!&#8221;<br />\n        Bb           Eb        Ebsus4<br />\nAnd His word was sufficient</p>\n<p><strong>Verse 2 :</strong><br />\n             Eb<br />\nWhen Jesus walked upon the earth<br />\n            Fm7<br />\nHis power showed through mighty works<br />\n    Eb         Ab                   Bb             Eb<br />\nHe healed the sick, and caused the blind to see again</p>\n<p>Sometimes He touched, sometimes He prayed<br />\n           Fm<br />\nBut when a man was brought one day<br />\n    Eb    Ab                   Bb   Gm       Cm<br />\nTo ask for  healing, that his body would be cleansed<br />\n       Bb      Ab<br />\nJesus said, &#8220;Alright&#8221;,<br />\n         Bb          Eb         E<br />\nAnd His word was sufficient</p>\n<p><strong>Verse 3 :</strong><br />\nE<br />\nInside a garden full of bloom<br />\n          F#m7<br />\nTwo women wept before a tomb<br />\n        E      A        B                 E<br />\nTheir brother Lazarus, had now been dead for days<br />\n   B          E<br />\nJesus said, &#8220;Take that stone away&#8221;<br />\n            F#m<br />\nLifting His eyes began to pray<br />\n      E           A          B      Ab               C#m<br />\nThen spoke three words that echoed through that place<br />\n  B              A<br />\n&#8220;Lazarus, come forth! &#8221;<br />\n         B           E          Esus4   E<br />\nAnd His word was sufficient</p>\n<p><strong>Verse 4 :</strong><br />\n             F<br />\nThree roman crosses on a hill<br />\n               Gm<br />\nThree men were tortured, nailed and killed<br />\nAm           Bb                  C             F<br />\n Jesus, The Word made flesh was buried in the ground</p>\n<p>Would God accept this sacrifice?<br />\n           Gm7<br />\nWould His atoning blood suffice?<br />\n    Am       Bb                   C        A          Dm<br />\nHe left no doubt when three days later He walked out<br />\n          C      Bb<br />\nHe&#8217;s The Living Word<br />\n        C            F<br />\nAnd The Word is sufficient</p>\n<p><strong>Chorus:</strong><br />\n           Dm              C<br />\nFor every question, every trial<br />\n        F<br />\nEvery mountain, every mile<br />\n     Bb               C<br />\nFor correction, for reproof<br />\n      F<br />\nFor instruction, and for truth<br />\n         Bb         C<br />\nIt will never pass away<br />\n         A<br />\nAnd it&#8217;s better then today<br />\nC           Bb<br />\nIt&#8217;s God&#8217;s Word<br />\n         C         F        Fsus   F<br />\nAnd The Word is sufficient<br />\n     Bb        F<br />\nThe Word is sufficient!<br />\n     C         F<br />\nThe Word is sufficient!</p>\n",
+    "songNumber": 199
   },
   {
     "title": "How Great You Are",
     "artist": "Selah",
     "key": "Eb",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-8807",
     "id": "selah-8807",
@@ -52959,14 +53067,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Eb</strong></p>\n<p><strong>Intro:</strong><br />\nEb &#8211; Gm &#8211; Ab &#8211; Bb (2x)</p>\n<p><strong>Verse 1:</strong><br />\n    Eb                Gm           Ab                 Gm<br />\nA thousand sparkling stars upon a midnight summer sky<br />\n    Fm                  Gm    Ab              Eb<br />\nThe majesty and wonder of the ocean&#8217;s endless tide<br />\n         Gm             Ab          Bbsus-Bb<br />\nAnd the more I see the more I can&#8217;t explain<br />\n         Gm              Ab<br />\nHow the one who set the world in place<br />\n       Bbsus        Bb       Fm                 Bbsus-Bb<br />\nCould even know my name and I&#8217;m amazed, I&#8217;m so amazed</p>\n<p><strong>Chorus:</strong><br />\n     Gm        Ab              Gm<br />\nHow great You are, how small I am<br />\n            Fm      Bb      Eb<br />\nHow awesome is Your mighty hand<br />\n    Gm   Ab               Adim/F      Bbsus-Bb<br />\nAnd I am captured by the wonder of it all<br />\n    Gm     Ab            Gm                Fm        Bb     Csus<br />\nAnd I will offer all my praise with all my heart for all my days<br />\n              Fm                 Bb                (Intro)<br />\nHow great You are, how great You are, how great You are</p>\n<p><strong>Verse 2:</strong><br />\n    Eb                Gm               Ab                  Gm<br />\nA million snow flakes gently fall, yet no two are the same<br />\n    Fm                   Gm       Ab                 Eb<br />\nAnd colors fill the canvas of the seasons as they change<br />\n     Gm           Ab             Bbsus-Bb<br />\nAnd everywhere I look I see Your hand<br />\n     Gm                Ab<br />\nWhy You would love someone like me<br />\n     Bbsus       Bb            Fm         Bbsus-Bb<br />\nI&#8217;ll never understand and I&#8217;m amazed, I&#8217;m so amazed</p>\n<p><strong>Chorus 2:</strong><br />\n     Gm        Ab              Gm<br />\nHow great You are, how small I am<br />\n            Fm      Bb      Eb<br />\nHow awesome is Your mighty hand<br />\n    Gm   Ab               Adim/F      Bbsus-Bb<br />\nAnd I am captured by the wonder of it all<br />\n    Gm     Ab            Gm                Fm        Bb      Csus<br />\nAnd I will offer all my praise with all my heart for all my days<br />\n              Fm                 Bb                 Eb &#8211; Gm<br />\nHow great You are, how great You are, how great You are</p>\n<p><strong>Chorus 3:</strong><br />\n              Ab               Gm<br />\nHow great You are, how small I am<br />\n            Fm       Bb     Eb<br />\nHow awesome is Your mighty hand<br />\n    Gm   Ab              Adim/F       Bbsus-Bb<br />\nAnd I am captured by the wonder of it all<br />\n    Gm     Ab            Gm                 Bb               Csus<br />\nAnd I will offer all my praise with all my heart for all my days</p>\n<p><strong>Ending:</strong><br />\n              Fm                  Bb                 Cm &#8211; Bb<br />\nHow great You are, how great You are, how great You are<br />\n              Fm                 Bbsus-Bb (Intro)<br />\nHow great You are, how great you are</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Eb</strong></p>\n<p><strong>Intro:</strong><br />\nEb &#8211; Gm &#8211; Ab &#8211; Bb (2x)</p>\n<p><strong>Verse 1:</strong><br />\n    Eb                Gm           Ab                 Gm<br />\nA thousand sparkling stars upon a midnight summer sky<br />\n    Fm                  Gm    Ab              Eb<br />\nThe majesty and wonder of the ocean&#8217;s endless tide<br />\n         Gm             Ab          Bbsus-Bb<br />\nAnd the more I see the more I can&#8217;t explain<br />\n         Gm              Ab<br />\nHow the one who set the world in place<br />\n       Bbsus        Bb       Fm                 Bbsus-Bb<br />\nCould even know my name and I&#8217;m amazed, I&#8217;m so amazed</p>\n<p><strong>Chorus:</strong><br />\n     Gm        Ab              Gm<br />\nHow great You are, how small I am<br />\n            Fm      Bb      Eb<br />\nHow awesome is Your mighty hand<br />\n    Gm   Ab               Adim/F      Bbsus-Bb<br />\nAnd I am captured by the wonder of it all<br />\n    Gm     Ab            Gm                Fm        Bb     Csus<br />\nAnd I will offer all my praise with all my heart for all my days<br />\n              Fm                 Bb                (Intro)<br />\nHow great You are, how great You are, how great You are</p>\n<p><strong>Verse 2:</strong><br />\n    Eb                Gm               Ab                  Gm<br />\nA million snow flakes gently fall, yet no two are the same<br />\n    Fm                   Gm       Ab                 Eb<br />\nAnd colors fill the canvas of the seasons as they change<br />\n     Gm           Ab             Bbsus-Bb<br />\nAnd everywhere I look I see Your hand<br />\n     Gm                Ab<br />\nWhy You would love someone like me<br />\n     Bbsus       Bb            Fm         Bbsus-Bb<br />\nI&#8217;ll never understand and I&#8217;m amazed, I&#8217;m so amazed</p>\n<p><strong>Chorus 2:</strong><br />\n     Gm        Ab              Gm<br />\nHow great You are, how small I am<br />\n            Fm      Bb      Eb<br />\nHow awesome is Your mighty hand<br />\n    Gm   Ab               Adim/F      Bbsus-Bb<br />\nAnd I am captured by the wonder of it all<br />\n    Gm     Ab            Gm                Fm        Bb      Csus<br />\nAnd I will offer all my praise with all my heart for all my days<br />\n              Fm                 Bb                 Eb &#8211; Gm<br />\nHow great You are, how great You are, how great You are</p>\n<p><strong>Chorus 3:</strong><br />\n              Ab               Gm<br />\nHow great You are, how small I am<br />\n            Fm       Bb     Eb<br />\nHow awesome is Your mighty hand<br />\n    Gm   Ab              Adim/F       Bbsus-Bb<br />\nAnd I am captured by the wonder of it all<br />\n    Gm     Ab            Gm                 Bb               Csus<br />\nAnd I will offer all my praise with all my heart for all my days</p>\n<p><strong>Ending:</strong><br />\n              Fm                  Bb                 Cm &#8211; Bb<br />\nHow great You are, how great You are, how great You are<br />\n              Fm                 Bbsus-Bb (Intro)<br />\nHow great You are, how great you are</p>\n",
+    "songNumber": 84
   },
   {
     "title": "I Could Sing of Your Love Forever V2",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-8791",
     "id": "selah-8791",
     "customSong": true,
@@ -53224,14 +53333,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE   B  C#m  A2</p>\n<p><strong>Verse 1:</strong><br />\nE                               B<br />\nOver the mountains and the sea, Your river runs with love for me<br />\nC#m                    A2<br />\nAnd I will open up my heart and let the Healer set me free<br />\nE                            B/D#<br />\nI’m happy to be in the truth, and I will daily lift my hands<br />\nC#m                       A2<br />\nFor I will always sing of when Your love came down</p>\n<p><strong>Chorus:</strong><br />\nE                     B<br />\nI could sing of Your love forever<br />\nC#m                   A2<br />\nI could sing of Your love forever<br />\nE                     B<br />\nI could sing of Your love forever<br />\nC#m                   A2<br />\nI could sing of Your love forever</p>\n<p><strong>Bridge:</strong><br />\nF#m7            E/G#<br />\nOh, I feel like dancing<br />\nA2                   B<br />\nit’s foolishness, I know<br />\nF#m7                   E/G#<br />\nBut when the world has seen the light<br />\n          A2                          B<br />\nThey will dance with joy like we’re dancing now </p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE   B  C#m  A2</p>\n<p><strong>Verse 1:</strong><br />\nE                               B<br />\nOver the mountains and the sea, Your river runs with love for me<br />\nC#m                    A2<br />\nAnd I will open up my heart and let the Healer set me free<br />\nE                            B/D#<br />\nI’m happy to be in the truth, and I will daily lift my hands<br />\nC#m                       A2<br />\nFor I will always sing of when Your love came down</p>\n<p><strong>Chorus:</strong><br />\nE                     B<br />\nI could sing of Your love forever<br />\nC#m                   A2<br />\nI could sing of Your love forever<br />\nE                     B<br />\nI could sing of Your love forever<br />\nC#m                   A2<br />\nI could sing of Your love forever</p>\n<p><strong>Bridge:</strong><br />\nF#m7            E/G#<br />\nOh, I feel like dancing<br />\nA2                   B<br />\nit’s foolishness, I know<br />\nF#m7                   E/G#<br />\nBut when the world has seen the light<br />\n          A2                          B<br />\nThey will dance with joy like we’re dancing now </p>\n",
+    "songNumber": 89
   },
   {
     "title": "Jesus Never Fails",
     "artist": "Selah",
     "key": "",
-    "category": "No Chords Provided",
-    "language": "",
+    "category": "Worship",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-8781",
     "id": "selah-8781",
     "customSong": true,
@@ -53799,13 +53909,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p>INTRO :</p>\n<p>Eb -G#/Eb-Fm-Eb-Dm-Cm-Bb-(/F-/Bb)</p>\n<p><verse 1><br />\n    Eb<br />\nSo many souls have tested Him<br />\n      G#/Eb<br />\nThroughout   the course of time<br />\n   Eb         Bb/D<br />\nSo many still reach out to Him<br />\n     G#/C<br />\nWith broken hearts and minds<br />\n          Gm               G#<br />\nAnd every one of them will say<br />\n          Gm/Bb              G#/C<br />\nWit no    exception that they find<br />\n     Fm-Gm &#8211; G#    Bbsus-Bb<br />\nThat Jesus   never fails<br />\n</verse><verse 2\n Eb  \nEven in the days of old \n   G#/Eb \nHe brought His people through\n    Eb               Bb/D  \nAnd then He came to show  His love \n    G#/C \nAnd died for me and you\n       Gm             G# \nAnd He rose again to prove\n           Gm/Bb           G#/C \nThat every story  had been true\n     Fm-Gm  G#    Bbsus-B \nThat Jesus  never fails\n\n<Chorus 1></verse></p>\n<p>Eb           Fm    Bb           Eb     (Bb)<br />\nJesus never fails, Jesus never fails<br />\n              Eb              /G<br />\nYou might as well get thee behind me, Satan<br />\nG#         /G-Fm<br />\nYou cannot prevail<br />\nFm-Gm   G#    Bb     Eb      (G#/Eb)<br />\nBecause Jesus never fails</p>\n<p><verse 3><br />\n    Eb<br />\nSometimes this world brings trouble<br />\n  G#/Eb<br />\nI find   so hard to bear<br />\n   Eb              Bb/D<br />\nI know I could not make  it<br />\n        G#/C<br />\nWithout Jesus being there<br />\n         Gm            G#<br />\nIt&#8217;s so encouraging to know<br />\n        Gm/Bb           G#/C<br />\nHowever deep  we&#8217;re in despair<br />\n     Fm-Gm G#    Bbsus   (C)<br />\nThat Jesus never fails</verse></p>\n<p><verse 4><br />\n       F<br />\nOh, so what can I do to prove to you<br />\n         Bb/F<br />\nTell me, how  can you deny?<br />\n   F                C/E<br />\nNo untold facts, no mysteries<br />\n     Bb/D<br />\nIt&#8217;s all  so cut and dried<br />\n           Am                    Bb<br />\nAnd on the witness stand of your life,<br />\n            Am/C          Bb/D<br />\nI&#8217;ll be the first to testify<br />\nBb-/A -/G     Csus<br />\nJesus never fails</verse></p>\n<p><chorus 2><br />\nF             Gm   C             F      (C)<br />\nJesus never fails, Jesus never fails<br />\n              F               /A<br />\nYou might as well get thee behind me, Satan<br />\nBb          /A-Gm<br />\nYou cannot prevail<br />\nGm-Am    Bb   /C     F      (Bb/C)<br />\nBecause Jesus never fails</chorus></p>\n<p><bridge></bridge></p>\n<p>F       Dm<br />\nJesus, Jesus<br />\nGm           G/B    (Bb)<br />\nHow I trust Him<br />\nDm    Am/C        G/B      Gm/Bb  (C#/Eb &#8211; Eb7)<br />\nHow I proved Him  more and more</p>\n<p><chorus 3></chorus></p>\n<p>         G#          Bbm    Eb           G#  (Eb)<br />\nI know, Jesus never fails, Jesus never fails<br />\n              G#              /F#<br />\nYou might as well get thee behind  me, Satan<br />\nC#/F         /Eb-/C#<br />\nYou cannot prevail<br />\nBbm-Cm   C#-Cm-Bbm &#8211;   G#    (Eb)<br />\nBecause Jesus  never  fails</p>\n<p>    Bbm-Cm  C#-Cm-Bbm  Eb    G#      (C#m)<br />\n&#8230; Because Jesus&#8230;.. never fails<br />\n             G#<br />\nJesus never fails!</p>\n"
+    "sourceHtmlPreserved": "<p>INTRO :</p>\n<p>Eb -G#/Eb-Fm-Eb-Dm-Cm-Bb-(/F-/Bb)</p>\n<p><verse 1><br />\n    Eb<br />\nSo many souls have tested Him<br />\n      G#/Eb<br />\nThroughout   the course of time<br />\n   Eb         Bb/D<br />\nSo many still reach out to Him<br />\n     G#/C<br />\nWith broken hearts and minds<br />\n          Gm               G#<br />\nAnd every one of them will say<br />\n          Gm/Bb              G#/C<br />\nWit no    exception that they find<br />\n     Fm-Gm &#8211; G#    Bbsus-Bb<br />\nThat Jesus   never fails<br />\n</verse><verse 2\n Eb  \nEven in the days of old \n   G#/Eb \nHe brought His people through\n    Eb               Bb/D  \nAnd then He came to show  His love \n    G#/C \nAnd died for me and you\n       Gm             G# \nAnd He rose again to prove\n           Gm/Bb           G#/C \nThat every story  had been true\n     Fm-Gm  G#    Bbsus-B \nThat Jesus  never fails\n\n<Chorus 1></verse></p>\n<p>Eb           Fm    Bb           Eb     (Bb)<br />\nJesus never fails, Jesus never fails<br />\n              Eb              /G<br />\nYou might as well get thee behind me, Satan<br />\nG#         /G-Fm<br />\nYou cannot prevail<br />\nFm-Gm   G#    Bb     Eb      (G#/Eb)<br />\nBecause Jesus never fails</p>\n<p><verse 3><br />\n    Eb<br />\nSometimes this world brings trouble<br />\n  G#/Eb<br />\nI find   so hard to bear<br />\n   Eb              Bb/D<br />\nI know I could not make  it<br />\n        G#/C<br />\nWithout Jesus being there<br />\n         Gm            G#<br />\nIt&#8217;s so encouraging to know<br />\n        Gm/Bb           G#/C<br />\nHowever deep  we&#8217;re in despair<br />\n     Fm-Gm G#    Bbsus   (C)<br />\nThat Jesus never fails</verse></p>\n<p><verse 4><br />\n       F<br />\nOh, so what can I do to prove to you<br />\n         Bb/F<br />\nTell me, how  can you deny?<br />\n   F                C/E<br />\nNo untold facts, no mysteries<br />\n     Bb/D<br />\nIt&#8217;s all  so cut and dried<br />\n           Am                    Bb<br />\nAnd on the witness stand of your life,<br />\n            Am/C          Bb/D<br />\nI&#8217;ll be the first to testify<br />\nBb-/A -/G     Csus<br />\nJesus never fails</verse></p>\n<p><chorus 2><br />\nF             Gm   C             F      (C)<br />\nJesus never fails, Jesus never fails<br />\n              F               /A<br />\nYou might as well get thee behind me, Satan<br />\nBb          /A-Gm<br />\nYou cannot prevail<br />\nGm-Am    Bb   /C     F      (Bb/C)<br />\nBecause Jesus never fails</chorus></p>\n<p><bridge></bridge></p>\n<p>F       Dm<br />\nJesus, Jesus<br />\nGm           G/B    (Bb)<br />\nHow I trust Him<br />\nDm    Am/C        G/B      Gm/Bb  (C#/Eb &#8211; Eb7)<br />\nHow I proved Him  more and more</p>\n<p><chorus 3></chorus></p>\n<p>         G#          Bbm    Eb           G#  (Eb)<br />\nI know, Jesus never fails, Jesus never fails<br />\n              G#              /F#<br />\nYou might as well get thee behind  me, Satan<br />\nC#/F         /Eb-/C#<br />\nYou cannot prevail<br />\nBbm-Cm   C#-Cm-Bbm &#8211;   G#    (Eb)<br />\nBecause Jesus  never  fails</p>\n<p>    Bbm-Cm  C#-Cm-Bbm  Eb    G#      (C#m)<br />\n&#8230; Because Jesus&#8230;.. never fails<br />\n             G#<br />\nJesus never fails!</p>\n",
+    "songNumber": 123
   },
   {
     "title": "The Old Rugged Cross",
     "artist": "Selah",
     "key": "",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-8776",
     "id": "selah-8776",
@@ -53924,13 +54035,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><verse 1><br />\nOn a hill far away, stood an old rugged cross<br />\nThe emblem of suff&#8217;ring and shame<br />\nAnd I love that old cross, where the Dearest and Best<br />\nFor a world of lost sinners was slain</verse></p>\n<p><chorus><br />\nSo I&#8217;ll cherish the old rugged cross<br />\nTill my trophies at last I lay down<br />\nI will cling to the old rugged cross<br />\nAnd exchange it someday for a crown</chorus></p>\n<p><verse 2><br />\nOh, that old rugged cross, so despised by the world<br />\nHas a wondrous attraction for me<br />\nFor the dear Lamb of God, left His glory above<br />\nTo bear it to dark calvary</verse></p>\n<p><verse 3><br />\nIn that old rugged cross, stained with blood so divine<br />\nA wondrous beauty I see<br />\nFor &#8217;twas on that old cross, Jesus suffered and died<br />\nTo pardon and sanctify me</verse></p>\n<p><verse 4><br />\nTo the old rugged cross, I will ever be true<br />\nIts shame and reproach gladly bear<br />\nThe He&#8217;ll call me someday, to my home far away<br />\nWhere His glory forever I&#8217;ll share</verse></p>\n"
+    "sourceHtmlPreserved": "<p><verse 1><br />\nOn a hill far away, stood an old rugged cross<br />\nThe emblem of suff&#8217;ring and shame<br />\nAnd I love that old cross, where the Dearest and Best<br />\nFor a world of lost sinners was slain</verse></p>\n<p><chorus><br />\nSo I&#8217;ll cherish the old rugged cross<br />\nTill my trophies at last I lay down<br />\nI will cling to the old rugged cross<br />\nAnd exchange it someday for a crown</chorus></p>\n<p><verse 2><br />\nOh, that old rugged cross, so despised by the world<br />\nHas a wondrous attraction for me<br />\nFor the dear Lamb of God, left His glory above<br />\nTo bear it to dark calvary</verse></p>\n<p><verse 3><br />\nIn that old rugged cross, stained with blood so divine<br />\nA wondrous beauty I see<br />\nFor &#8217;twas on that old cross, Jesus suffered and died<br />\nTo pardon and sanctify me</verse></p>\n<p><verse 4><br />\nTo the old rugged cross, I will ever be true<br />\nIts shame and reproach gladly bear<br />\nThe He&#8217;ll call me someday, to my home far away<br />\nWhere His glory forever I&#8217;ll share</verse></p>\n",
+    "songNumber": 208
   },
   {
     "title": "Tapat Kailan Pa Man",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-8727",
     "id": "selah-8727",
@@ -54674,14 +54786,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nE7#9<br />\nA  F#m7  Bm7  E  A  F#m7  Bm7 E</p>\n<p><strong>Verse 1:</strong><br />\n     Aadd2            F#m<br />\nLagi Kang   pasasalamatan<br />\n     A                F#m<br />\nSa lahat ng &#8216;Yong kabutihan<br />\n   D       E/D    C#m      F#m<br />\nPupurihin Kita, sasayawan Kita<br />\nBm               A/E         A7<br />\nSa presensya Mo ako&#8217;y magsasaya<br />\nD            C#m<br />\nSa puso ko wala  namang iba<br />\n   Bsus   B7   E<br />\nO  Diyos,  O Diyos</p>\n<p><strong>Chorus 1:</strong><br />\n       D           E/D       C#m<br />\nPagkat lagi kong nararanasan ang<br />\n         F#m           Bm        E<br />\nPag-ibig Mong hindi kayang tumbasan<br />\n         A           Em   A7<br />\nNg kahit na sino pa man<br />\nD               E/D          C#m<br />\nWala na ngang hihigit pa sa Iyong<br />\n       F#m           Bm<br />\nPagmamahal O Ama, pagkat<br />\n          E                 A            E  A   F#m7  Bm7  E<br />\nIkaw ang Diyos na tapat kailan pa man</p>\n<p><strong>Instrumental:</strong></p>\n<p>D  E/D  C#m  F#m  Bm  E    A  Em  A7<br />\nD  E/D  C#m  F#m  Bm  E    A</p>\n<p><strong>Chorus 2:</strong><br />\n       D           E/D       C#m<br />\nPagkat lagi kong nararanasan ang<br />\n         F#m           Bm        E<br />\nPag-ibig Mong hindi kayang tumbasan<br />\n         A           Em   A7<br />\nNg kahit na sino pa man<br />\nD               E/D          C#m<br />\nWala na ngang hihigit pa sa Iyong<br />\n       F#m           Bm<br />\nPagmamahal O Ama, pagkat<br />\n          E                 A              F#m  Bm<br />\nIkaw ang Diyos na tapat kailan pa man<br />\n          E                 A              F#m  Bm<br />\nIkaw ang Diyos na tapat kailan pa man<br />\n          E                 A<br />\nIkaw ang Diyos na tapat kailan pa man<br />\n    Fmaj7<br />\nKailan   pa man<br />\n    A<br />\nKailan pa man<br />\n    Fmaj7<br />\nKailan   pa man<br />\n    A<br />\nKailan pa man</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nE7#9<br />\nA  F#m7  Bm7  E  A  F#m7  Bm7 E</p>\n<p><strong>Verse 1:</strong><br />\n     Aadd2            F#m<br />\nLagi Kang   pasasalamatan<br />\n     A                F#m<br />\nSa lahat ng &#8216;Yong kabutihan<br />\n   D       E/D    C#m      F#m<br />\nPupurihin Kita, sasayawan Kita<br />\nBm               A/E         A7<br />\nSa presensya Mo ako&#8217;y magsasaya<br />\nD            C#m<br />\nSa puso ko wala  namang iba<br />\n   Bsus   B7   E<br />\nO  Diyos,  O Diyos</p>\n<p><strong>Chorus 1:</strong><br />\n       D           E/D       C#m<br />\nPagkat lagi kong nararanasan ang<br />\n         F#m           Bm        E<br />\nPag-ibig Mong hindi kayang tumbasan<br />\n         A           Em   A7<br />\nNg kahit na sino pa man<br />\nD               E/D          C#m<br />\nWala na ngang hihigit pa sa Iyong<br />\n       F#m           Bm<br />\nPagmamahal O Ama, pagkat<br />\n          E                 A            E  A   F#m7  Bm7  E<br />\nIkaw ang Diyos na tapat kailan pa man</p>\n<p><strong>Instrumental:</strong></p>\n<p>D  E/D  C#m  F#m  Bm  E    A  Em  A7<br />\nD  E/D  C#m  F#m  Bm  E    A</p>\n<p><strong>Chorus 2:</strong><br />\n       D           E/D       C#m<br />\nPagkat lagi kong nararanasan ang<br />\n         F#m           Bm        E<br />\nPag-ibig Mong hindi kayang tumbasan<br />\n         A           Em   A7<br />\nNg kahit na sino pa man<br />\nD               E/D          C#m<br />\nWala na ngang hihigit pa sa Iyong<br />\n       F#m           Bm<br />\nPagmamahal O Ama, pagkat<br />\n          E                 A              F#m  Bm<br />\nIkaw ang Diyos na tapat kailan pa man<br />\n          E                 A              F#m  Bm<br />\nIkaw ang Diyos na tapat kailan pa man<br />\n          E                 A<br />\nIkaw ang Diyos na tapat kailan pa man<br />\n    Fmaj7<br />\nKailan   pa man<br />\n    A<br />\nKailan pa man<br />\n    Fmaj7<br />\nKailan   pa man<br />\n    A<br />\nKailan pa man</p>\n",
+    "songNumber": 202
   },
   {
     "title": "Lord I lift Your name on high | J-US | [BREAKTHROUGH]",
     "artist": "Selah",
     "key": "A",
-    "category": "Gate Song",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-8721",
     "id": "selah-8721",
     "customSong": true,
@@ -54908,14 +55021,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nE/D-D    E/D-D    Asus-A    Asus-A   (x2)</p>\n<p><strong>Verse:</strong><br />\n                          E/D-D    E/D-D<br />\nLord, I lift Your Name on high<br />\n                          Asus-A    Asus-A<br />\nLord, I love to sing Your praises<br />\n                         E/D-D    E/D-D<br />\nI&#8217;m so glad You&#8217;re in my life<br />\n                        Asus-A    Asus-A<br />\nI&#8217;m so glad You came to save us</p>\n<p><strong>Chorus:</strong><br />\nD                       A/C#              D<br />\nYou came from heaven to earth to show the way<br />\n                      F#m               Bm<br />\nFrom the earth to the cross, my debt to pay<br />\n         D            A/C#            F#m          Bm<br />\nFrom the cross to the grave, from the grave to the sky<br />\n        /D                (A)<br />\nLord, I lift Your Name on high</p>\n<p><strong>Bridge:</strong><br />\nD    A                   F#m<br />\n     Everyone praise the Lord<br />\nE                D<br />\nName above every name<br />\nA                   F#m    E<br />\nEveryone praise the Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nE/D-D    E/D-D    Asus-A    Asus-A   (x2)</p>\n<p><strong>Verse:</strong><br />\n                          E/D-D    E/D-D<br />\nLord, I lift Your Name on high<br />\n                          Asus-A    Asus-A<br />\nLord, I love to sing Your praises<br />\n                         E/D-D    E/D-D<br />\nI&#8217;m so glad You&#8217;re in my life<br />\n                        Asus-A    Asus-A<br />\nI&#8217;m so glad You came to save us</p>\n<p><strong>Chorus:</strong><br />\nD                       A/C#              D<br />\nYou came from heaven to earth to show the way<br />\n                      F#m               Bm<br />\nFrom the earth to the cross, my debt to pay<br />\n         D            A/C#            F#m          Bm<br />\nFrom the cross to the grave, from the grave to the sky<br />\n        /D                (A)<br />\nLord, I lift Your Name on high</p>\n<p><strong>Bridge:</strong><br />\nD    A                   F#m<br />\n     Everyone praise the Lord<br />\nE                D<br />\nName above every name<br />\nA                   F#m    E<br />\nEveryone praise the Lord</p>\n",
+    "songNumber": 141
   },
   {
     "title": "Blessed Be Your Name (Worship Initiative)",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-8713",
     "id": "selah-8713",
     "customSong": true,
@@ -55471,13 +55585,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG  D  Em7  C<br />\nG  D/F#  Em7 &#8211; D &#8211; C</p>\n<p><strong>Verse 1:</strong><br />\nG       D                    Em7          C<br />\nBlessed be Your name, in the land that is plentiful<br />\n            G            D             Em7              C<br />\nWhere Your streams of abundance flow, blessed be Your name<br />\nG       D                       Em7            C<br />\nBlessed be Your name, when I’m found in the desert place<br />\n         G                 D           Em7              C<br />\nThough I walk through the wilderness, blessed be Your name</p>\n<p><strong>Pre-Chorus:</strong><br />\nG               D             Em7                 C<br />\nEvery blessing You pour out, I’ll turn back to praise<br />\nG                      D              Em7           C<br />\nAnd when the darkness closes in, Lord, still I will say</p>\n<p><strong>Chorus:</strong><br />\n               G              D                 Em7   C<br />\nBlessed be the Name of the Lord, blessed be Your name<br />\n               G              D                  Em7 &#8211; D &#8211; C<br />\nBlessed be the Name of the Lord, blessed be Your glorious name</p>\n<p><strong>Verse 2:</strong><br />\nG       D                      Em7            C<br />\nBlessed be Your name, when the sun is shining down on me<br />\n         G                D            Em7              C<br />\nWhen the world is all as it should be, blessed be Your name<br />\nG       D                    Em7                    C<br />\nBlessed be Your name, on the road marked with suffering<br />\n               G              D       Em7              C<br />\nThough there’s pain in the offering, blessed be Your name</p>\n<p><strong>Bridge:</strong><br />\n    G               D       Em7             C<br />\nYou give and take away, You give and take away<br />\n    G                    D/F#       Em7              C<br />\nMy heart will choose to say, Lord, blessed be Your Name<br />\n    G               Am       G/B             C<br />\nYou give and take away, You give and take away<br />\n    G                    Am         G/B              C<br />\nMy heart will choose to say, Lord, blessed be Your Name</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG  D  Em7  C<br />\nG  D/F#  Em7 &#8211; D &#8211; C</p>\n<p><strong>Verse 1:</strong><br />\nG       D                    Em7          C<br />\nBlessed be Your name, in the land that is plentiful<br />\n            G            D             Em7              C<br />\nWhere Your streams of abundance flow, blessed be Your name<br />\nG       D                       Em7            C<br />\nBlessed be Your name, when I’m found in the desert place<br />\n         G                 D           Em7              C<br />\nThough I walk through the wilderness, blessed be Your name</p>\n<p><strong>Pre-Chorus:</strong><br />\nG               D             Em7                 C<br />\nEvery blessing You pour out, I’ll turn back to praise<br />\nG                      D              Em7           C<br />\nAnd when the darkness closes in, Lord, still I will say</p>\n<p><strong>Chorus:</strong><br />\n               G              D                 Em7   C<br />\nBlessed be the Name of the Lord, blessed be Your name<br />\n               G              D                  Em7 &#8211; D &#8211; C<br />\nBlessed be the Name of the Lord, blessed be Your glorious name</p>\n<p><strong>Verse 2:</strong><br />\nG       D                      Em7            C<br />\nBlessed be Your name, when the sun is shining down on me<br />\n         G                D            Em7              C<br />\nWhen the world is all as it should be, blessed be Your name<br />\nG       D                    Em7                    C<br />\nBlessed be Your name, on the road marked with suffering<br />\n               G              D       Em7              C<br />\nThough there’s pain in the offering, blessed be Your name</p>\n<p><strong>Bridge:</strong><br />\n    G               D       Em7             C<br />\nYou give and take away, You give and take away<br />\n    G                    D/F#       Em7              C<br />\nMy heart will choose to say, Lord, blessed be Your Name<br />\n    G               Am       G/B             C<br />\nYou give and take away, You give and take away<br />\n    G                    Am         G/B              C<br />\nMy heart will choose to say, Lord, blessed be Your Name</p>\n",
+    "songNumber": 24
   },
   {
     "title": "Naisin ng Puso",
     "artist": "Selah",
     "key": "C",
-    "category": "Manda Originals",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-8699",
     "id": "selah-8699",
@@ -55762,13 +55877,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nC         G/B<br />\nAm7  /G   F   Dm7-/G</p>\n<p><strong>Verse:</strong><br />\nC          G/B<br />\nNais kong awitan Ka<br />\nAm7        F<br />\nPagsuyo&#8217;y ipadama<br />\nC          G/B<br />\nNais kong alayan Ka<br />\n   Am7         F<br />\nAt mabigyang lugod Kita</p>\n<p><strong>Bridge</strong><br />\nAm7       Em9      F<br />\nDahil sa Ikaw ay Diyos<br />\nAm7       Em9           F<br />\nAt sa pag-ibig Mong lubos<br />\n     Bb                 G<br />\nSa kasalanan, ako&#8217;y natubos</p>\n<p><strong>Chorus:</strong><br />\nF           F/G  G/F<br />\nMinamahal Kita<br />\nEm9    E7 Am7 -/G<br />\nSinasamba Kita<br />\n    F           /E<br />\nPag-ibig Mo Yahweh<br />\nDm7  /G      C   (to chorus: Fm-C)<br />\nAy walang katulad</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nC         G/B<br />\nAm7  /G   F   Dm7-/G</p>\n<p><strong>Verse:</strong><br />\nC          G/B<br />\nNais kong awitan Ka<br />\nAm7        F<br />\nPagsuyo&#8217;y ipadama<br />\nC          G/B<br />\nNais kong alayan Ka<br />\n   Am7         F<br />\nAt mabigyang lugod Kita</p>\n<p><strong>Bridge</strong><br />\nAm7       Em9      F<br />\nDahil sa Ikaw ay Diyos<br />\nAm7       Em9           F<br />\nAt sa pag-ibig Mong lubos<br />\n     Bb                 G<br />\nSa kasalanan, ako&#8217;y natubos</p>\n<p><strong>Chorus:</strong><br />\nF           F/G  G/F<br />\nMinamahal Kita<br />\nEm9    E7 Am7 -/G<br />\nSinasamba Kita<br />\n    F           /E<br />\nPag-ibig Mo Yahweh<br />\nDm7  /G      C   (to chorus: Fm-C)<br />\nAy walang katulad</p>\n",
+    "songNumber": 155
   },
   {
     "title": "All We Like Sheep",
     "artist": "Selah",
     "key": "Bb",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-7144",
     "id": "selah-7144",
@@ -56381,13 +56497,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Bb</strong></p>\n<p><strong>Intro:</strong><br />\nBb2/D Cm7 Eb/F F Eb/F F</p>\n<p><strong>Verse 1:</strong><br />\nBb                     F2/A<br />\nAll we like sheep have gone astray<br />\nGm                     Dsus Dm<br />\nEach of us turning our own separate way<br />\nCm7<br />\nWe have all sinned and<br />\nEb/F F           Eb/F Eb/Bb   Bb     Am11  D<br />\nFallen short of Your   glo    ry<br />\n           Dm                 Dsus Dm<br />\nBut Your glory is what we desire to see<br />\n   F/G      Cm<br />\nAnd in Your presence is where<br />\n   Eb/F F<br />\nWe long to be</p>\n<p><strong>Chorus:</strong><br />\nCm Bb   Bb/D<br />\nOh Lord,<br />\nEbmaj7        Eb/F          Bbmaj7 Bb2/D<br />\nShow us Your mercy and grace<br />\nEbmaj7     Eb/F      F/G<br />\nTake us to Your Holy Place<br />\n              Ebmaj7              Bb2/D<br />\nForgive our sin and heal our land<br />\n                Cm7<br />\nWe long to live<br />\n        Eb/F F     Eb/F F     Ebmaj7<br />\nIn Your pre  sence once again<br />\nBb2/D Cm7 Eb/F F Eb/F F</p>\n<p><strong>Verse 2:</strong><br />\nBb<br />\nTaking our sickness<br />\nF2/A<br />\nTaking our pain<br />\nGm.                 Dsus Dm             F/G<br />\nJesus, the Sacrificed Lamb, has been slain<br />\nCm7                Eb/F F<br />\nHe was despised, rejected by men<br />\nEb/F Eb/Bb  Bb      Am D<br />\nHe   took   our sins<br />\n             Gm<br />\nDraw us near    to You, Father<br />\n     Dsus   Dm<br />\nThrough Je-sus, Your son<br />\nF/G       Cm7<br />\nLet us worship before You<br />\n        Eb/F F            Cm7/F<br />\nCleansed     by Your Blood</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Bb</strong></p>\n<p><strong>Intro:</strong><br />\nBb2/D Cm7 Eb/F F Eb/F F</p>\n<p><strong>Verse 1:</strong><br />\nBb                     F2/A<br />\nAll we like sheep have gone astray<br />\nGm                     Dsus Dm<br />\nEach of us turning our own separate way<br />\nCm7<br />\nWe have all sinned and<br />\nEb/F F           Eb/F Eb/Bb   Bb     Am11  D<br />\nFallen short of Your   glo    ry<br />\n           Dm                 Dsus Dm<br />\nBut Your glory is what we desire to see<br />\n   F/G      Cm<br />\nAnd in Your presence is where<br />\n   Eb/F F<br />\nWe long to be</p>\n<p><strong>Chorus:</strong><br />\nCm Bb   Bb/D<br />\nOh Lord,<br />\nEbmaj7        Eb/F          Bbmaj7 Bb2/D<br />\nShow us Your mercy and grace<br />\nEbmaj7     Eb/F      F/G<br />\nTake us to Your Holy Place<br />\n              Ebmaj7              Bb2/D<br />\nForgive our sin and heal our land<br />\n                Cm7<br />\nWe long to live<br />\n        Eb/F F     Eb/F F     Ebmaj7<br />\nIn Your pre  sence once again<br />\nBb2/D Cm7 Eb/F F Eb/F F</p>\n<p><strong>Verse 2:</strong><br />\nBb<br />\nTaking our sickness<br />\nF2/A<br />\nTaking our pain<br />\nGm.                 Dsus Dm             F/G<br />\nJesus, the Sacrificed Lamb, has been slain<br />\nCm7                Eb/F F<br />\nHe was despised, rejected by men<br />\nEb/F Eb/Bb  Bb      Am D<br />\nHe   took   our sins<br />\n             Gm<br />\nDraw us near    to You, Father<br />\n     Dsus   Dm<br />\nThrough Je-sus, Your son<br />\nF/G       Cm7<br />\nLet us worship before You<br />\n        Eb/F F            Cm7/F<br />\nCleansed     by Your Blood</p>\n",
+    "songNumber": 6
   },
   {
     "title": "Diyos na Walang Kagaya",
     "artist": "Selah",
     "key": "G",
-    "category": "Manda Originals",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-8308",
     "id": "selah-8308",
@@ -56820,13 +56937,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG Bm7 Am7 D</p>\n<p><strong>Verse:</strong><br />\nG                      Bm7<br />\nIkaw ang simula&#8217;t kawakasan<br />\n    Am7         C/D             G  Am7-Bm7<br />\nAng may akda ng buhay at hangganan<br />\nC                D     Em<br />\nWala sa &#8216;Yong makapapantay<br />\nC                Am7         D<br />\nSa &#8216;Yong taglay dakila Kang tunay</p>\n<p><strong>Verse:</strong><br />\nG                            Bm7<br />\nIkaw ang Diyos na walang hangganan<br />\n    Am7         C/D              G  Am7-Bm7<br />\nAng lumikha ng langit at sandaigdigan<br />\nC                D         Em<br />\nKaya&#8217;t lahat ng &#8216;Yong mga lalang<br />\nC             Am7         D<br />\nMagpupuri sa &#8216;Yo magpakailanman</p>\n<p><strong>Chorus:</strong><br />\n  G/B-C          D     Bm7        Em<br />\nAleluya, purihin Ka, O aming Manlilikha<br />\n     Am7       Bm7          C           D<br />\nAng &#8216;Yong mga gawa&#8217;y kamangha-manghang tunay<br />\n  G/B-C          D    Bm7              Em<br />\nAleluya, purihin Ka, Diyos na walang kagaya<br />\nAm7         Bm7           C            D<br />\nHari ng mga hari, sa mga diyos Ika&#8217;y tangi<br />\n  C            D     B7        Em<br />\nWalang katulad Mo, walang maipapantay sa &#8216;Yo<br />\n  Am7          D         G<br />\nPapuri&#8217;t pagsamba&#8217;y alay sa &#8216;Yo</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG Bm7 Am7 D</p>\n<p><strong>Verse:</strong><br />\nG                      Bm7<br />\nIkaw ang simula&#8217;t kawakasan<br />\n    Am7         C/D             G  Am7-Bm7<br />\nAng may akda ng buhay at hangganan<br />\nC                D     Em<br />\nWala sa &#8216;Yong makapapantay<br />\nC                Am7         D<br />\nSa &#8216;Yong taglay dakila Kang tunay</p>\n<p><strong>Verse:</strong><br />\nG                            Bm7<br />\nIkaw ang Diyos na walang hangganan<br />\n    Am7         C/D              G  Am7-Bm7<br />\nAng lumikha ng langit at sandaigdigan<br />\nC                D         Em<br />\nKaya&#8217;t lahat ng &#8216;Yong mga lalang<br />\nC             Am7         D<br />\nMagpupuri sa &#8216;Yo magpakailanman</p>\n<p><strong>Chorus:</strong><br />\n  G/B-C          D     Bm7        Em<br />\nAleluya, purihin Ka, O aming Manlilikha<br />\n     Am7       Bm7          C           D<br />\nAng &#8216;Yong mga gawa&#8217;y kamangha-manghang tunay<br />\n  G/B-C          D    Bm7              Em<br />\nAleluya, purihin Ka, Diyos na walang kagaya<br />\nAm7         Bm7           C            D<br />\nHari ng mga hari, sa mga diyos Ika&#8217;y tangi<br />\n  C            D     B7        Em<br />\nWalang katulad Mo, walang maipapantay sa &#8216;Yo<br />\n  Am7          D         G<br />\nPapuri&#8217;t pagsamba&#8217;y alay sa &#8216;Yo</p>\n",
+    "songNumber": 38
   },
   {
     "title": "You Are My King",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-8277",
     "id": "selah-8277",
@@ -57256,13 +57374,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG    Em &#8211; CM7    D    (x2)</p>\n<p><strong>Verse:</strong><br />\n  G                      C/G<br />\nEnthroned in Your glory, clothed in raiment white<br />\n     D/G            C/G          G       F &#8211;<br />\nYour eyes burn with fire shining bright<br />\n    G                      C/G<br />\nThe four and twenty elders kneel around Your throne<br />\nD/G                 C/G            C/G &#8211; G   G/E &#8211;<br />\nCasting forth their crowns at Your feet</p>\n<p><strong>Pre-chorus:</strong><br />\n   D                             C             G/B      G/E &#8211;<br />\nIn awe at Your splendour and the glory of Your throne<br />\n  D                           Am &#8211;      Em &#8211;    D<br />\nI lift my voice in worship to make Your glories known</p>\n<p><strong>Chorus:</strong><br />\n           G         C/G    G<br />\nYou are my King (You are my King)<br />\n    Bm     CM7              Am<br />\nYou are my Lord (You are my Lord)<br />\n          D<br />\nYou are Jehovah (You are Jehovah)<br />\n           G         Em     D<br />\nThe Living Word (The Living Word)<br />\n         G      C/G    G<br />\nAlmighty God (Almighty God)<br />\n    Bm        CM7                  Am<br />\nThe Prince of Peace (The Prince of Peace)<br />\n            C/D     D<br />\nYou are the Great I am<br />\n        G    (D)<br />\nMy Victory</p>\n<p><strong>Ending:</strong><br />\n           C/G  Cm/G  G<br />\n&#8230;My Victory</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG    Em &#8211; CM7    D    (x2)</p>\n<p><strong>Verse:</strong><br />\n  G                      C/G<br />\nEnthroned in Your glory, clothed in raiment white<br />\n     D/G            C/G          G       F &#8211;<br />\nYour eyes burn with fire shining bright<br />\n    G                      C/G<br />\nThe four and twenty elders kneel around Your throne<br />\nD/G                 C/G            C/G &#8211; G   G/E &#8211;<br />\nCasting forth their crowns at Your feet</p>\n<p><strong>Pre-chorus:</strong><br />\n   D                             C             G/B      G/E &#8211;<br />\nIn awe at Your splendour and the glory of Your throne<br />\n  D                           Am &#8211;      Em &#8211;    D<br />\nI lift my voice in worship to make Your glories known</p>\n<p><strong>Chorus:</strong><br />\n           G         C/G    G<br />\nYou are my King (You are my King)<br />\n    Bm     CM7              Am<br />\nYou are my Lord (You are my Lord)<br />\n          D<br />\nYou are Jehovah (You are Jehovah)<br />\n           G         Em     D<br />\nThe Living Word (The Living Word)<br />\n         G      C/G    G<br />\nAlmighty God (Almighty God)<br />\n    Bm        CM7                  Am<br />\nThe Prince of Peace (The Prince of Peace)<br />\n            C/D     D<br />\nYou are the Great I am<br />\n        G    (D)<br />\nMy Victory</p>\n<p><strong>Ending:</strong><br />\n           C/G  Cm/G  G<br />\n&#8230;My Victory</p>\n",
+    "songNumber": 242
   },
   {
     "title": "I Was Made To Praise You",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-8192",
     "id": "selah-8192",
@@ -58056,14 +58175,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE      F#m7     E/G#      G/A<br />\nAm     F#m/B    Bsus &#8211; B</p>\n<p><strong>Verse 1:</strong><br />\nE             F#m/E<br />\nI was made to praise You<br />\nB/D# &#8211; B      A/E  E &#8211; B/D# &#8211; C#m<br />\nI was made to glorify Your name<br />\n         E/F#  F#m<br />\nIn every circumstance<br />\n   A/B  B  A/B &#8211; B &#8211; A/B &#8211; B<br />\nTo find a chance to thank You<br />\nE             F#m/E<br />\nI was made to love You<br />\nB/D# &#8211; B      A/E     E &#8211; G# &#8211; C#m  Caug<br />\nI was made to worship at Your feet<br />\n        E/F#     F#<br />\nAnd to obey You, Lord<br />\nA/B   B        Cmaj7 &#8211; Bm7<br />\nI was made for You<br />\nCmaj7 &#8211; Bm7<br />\nI was made for You</p>\n<p><strong>Verse 2:</strong><br />\nE             F#m7<br />\nI was made to praise You<br />\nB             A/E  E &#8211; G#7 &#8211; C#m<br />\nI was made to glorify Your name<br />\n         E/F#  F#m<br />\nIn every circumstance<br />\n   A/B  B  F#m7 &#8211; G#m7 &#8211; Amaj7 &#8211; A/B<br />\nTo find a chance to thank You<br />\nE             F#m7<br />\nI was made to love You<br />\nB &#8211; B/D#      A/E     E &#8211; G#7 &#8211; C#m  Caug<br />\nI was made to worship at Your feet<br />\n        E/F#     F#<br />\nAnd to obey You, Lord<br />\nA/B   B        Cmaj7 &#8211; Bm7<br />\nI was made for You<br />\nAm7 &#8211; G/B &#8211; C &#8211; D<br />\nI was made for You</p>\n<p><strong>Verse 3:</strong><br />\nG             Am7<br />\nI will always praise You<br />\nD             C/G  G &#8211; B7 &#8211; Em<br />\nI will always glorify Your name<br />\n         G/A    Am<br />\nIn every circumstance<br />\n     C/D  D  Am7 &#8211; Bm7 &#8211; Cmaj7 &#8211; C/D<br />\nI&#8217;ll find a chance to thank You<br />\nG             Am7<br />\nI will always love You<br />\nD &#8211; D/F#      C/G     G &#8211; B7 &#8211; Em  D#aug<br />\nI will always worship at Your feet<br />\n          G/A      A<br />\nAnd I&#8217;ll obey You, Lord<br />\nC/D   D        D#maj7 &#8211; Dm7   Cm7 &#8211; A#maj7<br />\nI was made for You<br />\nDsus7          G<br />\nI was made for You</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE      F#m7     E/G#      G/A<br />\nAm     F#m/B    Bsus &#8211; B</p>\n<p><strong>Verse 1:</strong><br />\nE             F#m/E<br />\nI was made to praise You<br />\nB/D# &#8211; B      A/E  E &#8211; B/D# &#8211; C#m<br />\nI was made to glorify Your name<br />\n         E/F#  F#m<br />\nIn every circumstance<br />\n   A/B  B  A/B &#8211; B &#8211; A/B &#8211; B<br />\nTo find a chance to thank You<br />\nE             F#m/E<br />\nI was made to love You<br />\nB/D# &#8211; B      A/E     E &#8211; G# &#8211; C#m  Caug<br />\nI was made to worship at Your feet<br />\n        E/F#     F#<br />\nAnd to obey You, Lord<br />\nA/B   B        Cmaj7 &#8211; Bm7<br />\nI was made for You<br />\nCmaj7 &#8211; Bm7<br />\nI was made for You</p>\n<p><strong>Verse 2:</strong><br />\nE             F#m7<br />\nI was made to praise You<br />\nB             A/E  E &#8211; G#7 &#8211; C#m<br />\nI was made to glorify Your name<br />\n         E/F#  F#m<br />\nIn every circumstance<br />\n   A/B  B  F#m7 &#8211; G#m7 &#8211; Amaj7 &#8211; A/B<br />\nTo find a chance to thank You<br />\nE             F#m7<br />\nI was made to love You<br />\nB &#8211; B/D#      A/E     E &#8211; G#7 &#8211; C#m  Caug<br />\nI was made to worship at Your feet<br />\n        E/F#     F#<br />\nAnd to obey You, Lord<br />\nA/B   B        Cmaj7 &#8211; Bm7<br />\nI was made for You<br />\nAm7 &#8211; G/B &#8211; C &#8211; D<br />\nI was made for You</p>\n<p><strong>Verse 3:</strong><br />\nG             Am7<br />\nI will always praise You<br />\nD             C/G  G &#8211; B7 &#8211; Em<br />\nI will always glorify Your name<br />\n         G/A    Am<br />\nIn every circumstance<br />\n     C/D  D  Am7 &#8211; Bm7 &#8211; Cmaj7 &#8211; C/D<br />\nI&#8217;ll find a chance to thank You<br />\nG             Am7<br />\nI will always love You<br />\nD &#8211; D/F#      C/G     G &#8211; B7 &#8211; Em  D#aug<br />\nI will always worship at Your feet<br />\n          G/A      A<br />\nAnd I&#8217;ll obey You, Lord<br />\nC/D   D        D#maj7 &#8211; Dm7   Cm7 &#8211; A#maj7<br />\nI was made for You<br />\nDsus7          G<br />\nI was made for You</p>\n",
+    "songNumber": 101
   },
   {
     "title": "Great Are You Lord",
     "artist": "Selah",
     "key": "A",
-    "category": "Gate Song",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-8182",
     "id": "selah-8182",
     "customSong": true,
@@ -58232,14 +58352,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nKeyboard</p>\n<p><strong>Verse:</strong><br />\nA     F#m7       Bm7   Bm7/E<br />\nHoly Lord, most Holy Lord,<br />\nE/D   C#m7     F#m7    Bm7    E   D/F#   E/G#<br />\nYou alone are worthy of my praise<br />\n  A     F#m7     Bm7   Bm7/E<br />\nO Holy Lord, most Holy Lord<br />\nE#dim7 F#m       B7     Bm7/E   E  D/F#  E/G#<br />\nWith   all of my heart I sing</p>\n<p><strong>Chorus:</strong><br />\nA     E/G#     F#m    C#m/E<br />\nGreat are You, Lord<br />\nDM7  C#m7   Bm7    E  D/F#  E/G#<br />\nWorthy of praise<br />\nA C#7/G#  F#m       C#m7          Bm7<br />\nHoly and true, great are You, Lord<br />\n BM7/E D/A    A<br />\nMost Holy  Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nKeyboard</p>\n<p><strong>Verse:</strong><br />\nA     F#m7       Bm7   Bm7/E<br />\nHoly Lord, most Holy Lord,<br />\nE/D   C#m7     F#m7    Bm7    E   D/F#   E/G#<br />\nYou alone are worthy of my praise<br />\n  A     F#m7     Bm7   Bm7/E<br />\nO Holy Lord, most Holy Lord<br />\nE#dim7 F#m       B7     Bm7/E   E  D/F#  E/G#<br />\nWith   all of my heart I sing</p>\n<p><strong>Chorus:</strong><br />\nA     E/G#     F#m    C#m/E<br />\nGreat are You, Lord<br />\nDM7  C#m7   Bm7    E  D/F#  E/G#<br />\nWorthy of praise<br />\nA C#7/G#  F#m       C#m7          Bm7<br />\nHoly and true, great are You, Lord<br />\n BM7/E D/A    A<br />\nMost Holy  Lord</p>\n",
+    "songNumber": 62
   },
   {
     "title": "Sa ‘Yo",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-8176",
     "id": "selah-8176",
     "customSong": true,
@@ -58540,14 +58661,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE  B/E  A/E  B/E (2x)</p>\n<p><strong>Verse 1:</strong><br />\n  E   B/E           A/E               E     B/E<br />\nO Diyos, sa&#8217;Yong lahat ang pagsamba&#8217;t luwalhati<br />\n            A/E     CDim         C#m7     A2      F#m7 A/B<br />\nMaging ang pinakamainam kong awit ay aawitin sa&#8217;Yo</p>\n<p><strong>Verse 2:</strong><br />\n  E   B/E          A/E                 E    B/E<br />\nO Diyos, ang aking isipan ay pagharian Mo<br />\n             A/E         CDim       C#m7<br />\nAt sa &#8216;king puso ay hindi na maglaho<br />\n          A2 F#m7     A/B<br />\nTanging pag-ibig sa &#8216;Yo.</p>\n<p><strong>Chorus:</strong><br />\n       A2                 G#7sus G#7     C#m7<br />\nAno pa ba ang maihahandog ko liban sa buhay<br />\n              /B  A2<br />\nkong nanggaling sa &#8216;Yo<br />\n        E/B                     A2/B<br />\nKung anuman sa sandaling ito&#8217;y tangan<br />\n        E/B                    F#/C (or Am)<br />\nAt mga bagay na tinuri kong yaman<br />\n       A2           E/G#           F#m       A/B<br />\nIto&#8217;y hindi pa rin sapat sa alay na nararapat<br />\n    E<br />\nsa &#8216;Yo</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE  B/E  A/E  B/E (2x)</p>\n<p><strong>Verse 1:</strong><br />\n  E   B/E           A/E               E     B/E<br />\nO Diyos, sa&#8217;Yong lahat ang pagsamba&#8217;t luwalhati<br />\n            A/E     CDim         C#m7     A2      F#m7 A/B<br />\nMaging ang pinakamainam kong awit ay aawitin sa&#8217;Yo</p>\n<p><strong>Verse 2:</strong><br />\n  E   B/E          A/E                 E    B/E<br />\nO Diyos, ang aking isipan ay pagharian Mo<br />\n             A/E         CDim       C#m7<br />\nAt sa &#8216;king puso ay hindi na maglaho<br />\n          A2 F#m7     A/B<br />\nTanging pag-ibig sa &#8216;Yo.</p>\n<p><strong>Chorus:</strong><br />\n       A2                 G#7sus G#7     C#m7<br />\nAno pa ba ang maihahandog ko liban sa buhay<br />\n              /B  A2<br />\nkong nanggaling sa &#8216;Yo<br />\n        E/B                     A2/B<br />\nKung anuman sa sandaling ito&#8217;y tangan<br />\n        E/B                    F#/C (or Am)<br />\nAt mga bagay na tinuri kong yaman<br />\n       A2           E/G#           F#m       A/B<br />\nIto&#8217;y hindi pa rin sapat sa alay na nararapat<br />\n    E<br />\nsa &#8216;Yo</p>\n",
+    "songNumber": 185
   },
   {
     "title": "Itatanghal Kita",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-8166",
     "id": "selah-8166",
     "customSong": true,
@@ -58731,13 +58853,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD &#8211; D/G</p>\n<p><strong>Verse:</strong><br />\nD                           Bm7    /A<br />\nNawa ay tanggapin ang buhay na laan<br />\n    G           Em9      A7sus<br />\nNakalulugod sa &#8216;Yong harapan</p>\n<p><strong>Chorus:</strong><br />\n      A/G F#m7 Bm7     G             A/G<br />\nSa bawat paghinga at pagpintig ng puso&#8217;y<br />\n    F#7sus-F#7 Bm7 /A        G &#8211; Gm7<br />\nMag-aalay sa &#8216;Yo&#8230; ng pagsamba<br />\n   D    Bm7  G     A7sus D<br />\nBuong lakas itatanghal Kita</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD &#8211; D/G</p>\n<p><strong>Verse:</strong><br />\nD                           Bm7    /A<br />\nNawa ay tanggapin ang buhay na laan<br />\n    G           Em9      A7sus<br />\nNakalulugod sa &#8216;Yong harapan</p>\n<p><strong>Chorus:</strong><br />\n      A/G F#m7 Bm7     G             A/G<br />\nSa bawat paghinga at pagpintig ng puso&#8217;y<br />\n    F#7sus-F#7 Bm7 /A        G &#8211; Gm7<br />\nMag-aalay sa &#8216;Yo&#8230; ng pagsamba<br />\n   D    Bm7  G     A7sus D<br />\nBuong lakas itatanghal Kita</p>\n",
+    "songNumber": 121
   },
   {
     "title": "Ikaw Ang Kasapatan",
     "artist": "Selah",
     "key": "C",
-    "category": "Manda Originals",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-8164",
     "id": "selah-8164",
@@ -58993,13 +59116,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nC &#8211; G/B &#8211; Am7 -/G &#8211; F &#8211; G &#8211; Em9-F-G (2x)</p>\n<p><strong>Verse:</strong><br />\nC           G/B     Am7               F<br />\nIkaw lamang Hesus, ninanais ng aking puso<br />\nC           G/B     Am7               F<br />\nIkaw lamang Hesus, tanging hangad sa buhay ko</p>\n<p><strong>Bridge:</strong><br />\nAm7       /G      F    G<br />\n&#8216;Pagkat walang ibang sasapat (hooohhh&#8230; hooohhh&#8230;)<br />\nAm7    /G           Bb     G  (Em9-F-G)<br />\nSa akin ay Ikaw ang lahat-lahat</p>\n<p><strong>Chorus:</strong><br />\nC        G/B           Am7   F<br />\nIkaw O Diyos ang aking kalakasan<br />\nC        G/B           Am7   F<br />\nIkaw O Diyos ang aking kagalakan<br />\nC        G/B           Am7   /G<br />\nIkaw O Diyos ang aking kasapatan<br />\n    F     G      C<br />\nO Diyos Ikaw lamang</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nC &#8211; G/B &#8211; Am7 -/G &#8211; F &#8211; G &#8211; Em9-F-G (2x)</p>\n<p><strong>Verse:</strong><br />\nC           G/B     Am7               F<br />\nIkaw lamang Hesus, ninanais ng aking puso<br />\nC           G/B     Am7               F<br />\nIkaw lamang Hesus, tanging hangad sa buhay ko</p>\n<p><strong>Bridge:</strong><br />\nAm7       /G      F    G<br />\n&#8216;Pagkat walang ibang sasapat (hooohhh&#8230; hooohhh&#8230;)<br />\nAm7    /G           Bb     G  (Em9-F-G)<br />\nSa akin ay Ikaw ang lahat-lahat</p>\n<p><strong>Chorus:</strong><br />\nC        G/B           Am7   F<br />\nIkaw O Diyos ang aking kalakasan<br />\nC        G/B           Am7   F<br />\nIkaw O Diyos ang aking kagalakan<br />\nC        G/B           Am7   /G<br />\nIkaw O Diyos ang aking kasapatan<br />\n    F     G      C<br />\nO Diyos Ikaw lamang</p>\n",
+    "songNumber": 109
   },
   {
     "title": "Sa’Yo, O Diyos",
     "artist": "Selah",
     "key": "D",
-    "category": "Manda Originals",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-8156",
     "id": "selah-8156",
@@ -59344,13 +59468,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD A/C# Bm A<br />\nG D/F# Em A</p>\n<p><strong>Verse 1:</strong><br />\n  D   A/C#        Bm          A<br />\nO Yahweh, Ikaw ang aking kaligtasan<br />\n  G       D/F#        Em      A<br />\nMoog at kanlungan, laging maaasahan<br />\n  D   A/C#        Bm            A<br />\nO Yahweh, pangako Mo&#8217;y panghahawakan<br />\n  G       D/F#        Em        A<br />\nNa ako&#8217;y di Mo iiwan, ni pababayaan</p>\n<p><strong>Pre Koro:</strong><br />\n     F#m                 Bm<br />\nAno mang pagsubok ang magdaan<br />\n     C          Em      A<br />\nSa &#8216;Yo&#8217;y hindi mag-aalinlangan</p>\n<p><strong>Koro:</strong><br />\n        D/F#                G<br />\nSa&#8217;Yo, O Diyos, ang awit ng papuri<br />\n        D/F#                G<br />\nSa&#8217;Yo, O Diyos, ang awit ng pagsamba<br />\n        D/F#           G<br />\nBuong puso, isip, at kaluluwa<br />\n        D/F#              G<br />\nMinamahal kita&#8217;t wala na ngang iba<br />\n           F#m  &#8211;  Bm<br />\nSa lungkot o kasiyahan<br />\n         Em  &#8211;  A<br />\nTagumpay o kabiguan<br />\n         F#m   &#8211;    Bm<br />\nTiwala ko&#8217;y sa&#8217;Yo lamang<br />\n         Em       A       D<br />\nIka&#8217;y paglilingkuran kailanman</p>\n<p><strong>Verse 2:</strong><br />\n      D  A/C#       Bm        A<br />\nO Yahweh, Ikaw ang aking katuwiran<br />\n      G        D/F#<br />\nLandas ng kabanalan<br />\n      Em        A<br />\nS&#8217;yang aking lalakaran<br />\n      D  A/C#     Bm         A<br />\nO Yahweh, buhay man ay mahirapan<br />\n      G       D/F#<br />\nSa &#8216;Yo&#8217;y maninindigan,<br />\n      Em      A<br />\nKaligtasa&#8217;y iingatan</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD A/C# Bm A<br />\nG D/F# Em A</p>\n<p><strong>Verse 1:</strong><br />\n  D   A/C#        Bm          A<br />\nO Yahweh, Ikaw ang aking kaligtasan<br />\n  G       D/F#        Em      A<br />\nMoog at kanlungan, laging maaasahan<br />\n  D   A/C#        Bm            A<br />\nO Yahweh, pangako Mo&#8217;y panghahawakan<br />\n  G       D/F#        Em        A<br />\nNa ako&#8217;y di Mo iiwan, ni pababayaan</p>\n<p><strong>Pre Koro:</strong><br />\n     F#m                 Bm<br />\nAno mang pagsubok ang magdaan<br />\n     C          Em      A<br />\nSa &#8216;Yo&#8217;y hindi mag-aalinlangan</p>\n<p><strong>Koro:</strong><br />\n        D/F#                G<br />\nSa&#8217;Yo, O Diyos, ang awit ng papuri<br />\n        D/F#                G<br />\nSa&#8217;Yo, O Diyos, ang awit ng pagsamba<br />\n        D/F#           G<br />\nBuong puso, isip, at kaluluwa<br />\n        D/F#              G<br />\nMinamahal kita&#8217;t wala na ngang iba<br />\n           F#m  &#8211;  Bm<br />\nSa lungkot o kasiyahan<br />\n         Em  &#8211;  A<br />\nTagumpay o kabiguan<br />\n         F#m   &#8211;    Bm<br />\nTiwala ko&#8217;y sa&#8217;Yo lamang<br />\n         Em       A       D<br />\nIka&#8217;y paglilingkuran kailanman</p>\n<p><strong>Verse 2:</strong><br />\n      D  A/C#       Bm        A<br />\nO Yahweh, Ikaw ang aking katuwiran<br />\n      G        D/F#<br />\nLandas ng kabanalan<br />\n      Em        A<br />\nS&#8217;yang aking lalakaran<br />\n      D  A/C#     Bm         A<br />\nO Yahweh, buhay man ay mahirapan<br />\n      G       D/F#<br />\nSa &#8216;Yo&#8217;y maninindigan,<br />\n      Em      A<br />\nKaligtasa&#8217;y iingatan</p>\n",
+    "songNumber": 192
   },
   {
     "title": "Hesus Sa’Yo lamang",
     "artist": "Selah",
     "key": "G",
-    "category": "Manda Originals",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-8148",
     "id": "selah-8148",
@@ -59709,13 +59834,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG  C, G/B  C</p>\n<p><strong>Verse:</strong><br />\n       G          C<br />\nAming Diyos at Panginoon<br />\n       G/B           C<br />\nDakila Ka sa habang panahon<br />\n     G               C<br />\nInaasam ang Ika&#8217;y makita<br />\n              G/B             C<br />\nSa walang hangga&#8217;y makapiling Ka</p>\n<p><strong>Pre Koro:</strong><br />\n         C            Bm       Em<br />\nKaya&#8217;t nananabik sa &#8216;Yong pagbabalik<br />\n         Am        C       D<br />\nAt maghari Ka sa buong daigdig</p>\n<p><strong>Koro:</strong><br />\n        G          Em<br />\nKapangyarihan, kayamanan<br />\n        Am     C     D<br />\nKarunungan at kalakasan<br />\n           G           Em<br />\nLahat ng papuri at paggalang<br />\n        Am      C      D<br />\nKaluwalhatian, karangalan<br />\n              G<br />\nHesus Sa &#8216;Yo lamang</p>\n<p><strong>Bridge:</strong><br />\n       Em          Bm<br />\nBawat luha at pagdurusa<br />\n       C           Cm<br />\nPapawiin Mo itong lahat<br />\n  Em              Bm<br />\nIkaw ang Alpha at Omega<br />\n  C                    D<br />\nIkaw ang simula at ang wakas</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG  C, G/B  C</p>\n<p><strong>Verse:</strong><br />\n       G          C<br />\nAming Diyos at Panginoon<br />\n       G/B           C<br />\nDakila Ka sa habang panahon<br />\n     G               C<br />\nInaasam ang Ika&#8217;y makita<br />\n              G/B             C<br />\nSa walang hangga&#8217;y makapiling Ka</p>\n<p><strong>Pre Koro:</strong><br />\n         C            Bm       Em<br />\nKaya&#8217;t nananabik sa &#8216;Yong pagbabalik<br />\n         Am        C       D<br />\nAt maghari Ka sa buong daigdig</p>\n<p><strong>Koro:</strong><br />\n        G          Em<br />\nKapangyarihan, kayamanan<br />\n        Am     C     D<br />\nKarunungan at kalakasan<br />\n           G           Em<br />\nLahat ng papuri at paggalang<br />\n        Am      C      D<br />\nKaluwalhatian, karangalan<br />\n              G<br />\nHesus Sa &#8216;Yo lamang</p>\n<p><strong>Bridge:</strong><br />\n       Em          Bm<br />\nBawat luha at pagdurusa<br />\n       C           Cm<br />\nPapawiin Mo itong lahat<br />\n  Em              Bm<br />\nIkaw ang Alpha at Omega<br />\n  C                    D<br />\nIkaw ang simula at ang wakas</p>\n",
+    "songNumber": 73
   },
   {
     "title": "Dalangin",
     "artist": "Selah",
     "key": "A",
-    "category": "Manda Originals",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-8133",
     "id": "selah-8133",
@@ -60056,13 +60182,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Verse:</strong><br />\n          A2   -A<br />\nO aking Diyos<br />\n     AM7                    Bm7 &#8211; E<br />\nHeto ako muling lumalapit sa &#8216;Yo<br />\n          Bm7 &#8211;   /A   /E                       A2  (D/E)<br />\nTaglay ko sa puso ko ang pagsambang laan sa &#8216;Yo<br />\n      A2  A       AM7         /C#          D &#8211; /C#<br />\nAraw-araw, sa paglipas ng panahon sa buhay ko<br />\n        Bm7         E7<br />\nSa tagumpay at sa ligaya<br />\n      C#m7       F#  &#8211; F#7 / Bb<br />\nSa pighati at pagdurusa<br />\n    Bm7           E7          A2       (G/A)<br />\nLuwalhatiin Ka sa aking pagsamba</p>\n<p><strong>Chorus:</strong><br />\n          D<br />\nO aking Diyos<br />\n        E/D                  C#m7      F#sus<br />\nSambahin ang pangalan Mo sa habang buhay<br />\n   F#7          Bm7 &#8211; /A  E7<br />\nSa lahat ng panaho&#8217;y maihayag<br />\n                 Em   (G/A &#8211; A/C#)<br />\nAng &#8216;Yong karangalan<br />\n        D              E/D             C#m7     F#7sus<br />\nAking kahapon, pati ngayon, maging ang bukas<br />\n F#7           Bm7    /A        E7         A2<br />\nNawa&#8217;y hawakan Mo, sa mga palad Mong mapagpala</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Verse:</strong><br />\n          A2   -A<br />\nO aking Diyos<br />\n     AM7                    Bm7 &#8211; E<br />\nHeto ako muling lumalapit sa &#8216;Yo<br />\n          Bm7 &#8211;   /A   /E                       A2  (D/E)<br />\nTaglay ko sa puso ko ang pagsambang laan sa &#8216;Yo<br />\n      A2  A       AM7         /C#          D &#8211; /C#<br />\nAraw-araw, sa paglipas ng panahon sa buhay ko<br />\n        Bm7         E7<br />\nSa tagumpay at sa ligaya<br />\n      C#m7       F#  &#8211; F#7 / Bb<br />\nSa pighati at pagdurusa<br />\n    Bm7           E7          A2       (G/A)<br />\nLuwalhatiin Ka sa aking pagsamba</p>\n<p><strong>Chorus:</strong><br />\n          D<br />\nO aking Diyos<br />\n        E/D                  C#m7      F#sus<br />\nSambahin ang pangalan Mo sa habang buhay<br />\n   F#7          Bm7 &#8211; /A  E7<br />\nSa lahat ng panaho&#8217;y maihayag<br />\n                 Em   (G/A &#8211; A/C#)<br />\nAng &#8216;Yong karangalan<br />\n        D              E/D             C#m7     F#7sus<br />\nAking kahapon, pati ngayon, maging ang bukas<br />\n F#7           Bm7    /A        E7         A2<br />\nNawa&#8217;y hawakan Mo, sa mga palad Mong mapagpala</p>\n",
+    "songNumber": 34
   },
   {
     "title": "Great is The Lord (Maranatha)",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-8111",
     "id": "selah-8111",
@@ -60405,13 +60532,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nA   G   (x2)</p>\n<p><strong>Alt Intro:</strong><br />\nA   C   F &#8211; G &#8211; A  (x2)</p>\n<p><strong>Verse:</strong><br />\nA            D/F#          E/G#      A<br />\nGreat is the Lord and most worthy of praise<br />\n    D/F#        E             F#m7<br />\nThe city of our God, the holy place<br />\n    A/E              Bm7    D/E &#8211; E<br />\nThe joy of the whole earth<br />\nA            D/F#            E/G#     A<br />\nGreat is the Lord in whom we have the victory<br />\n   D/F#     E          F#m7<br />\nHe aids us against the enemy<br />\n   A/E             Bm7    D &#8211; E<br />\nWe bow down on our knees</p>\n<p><strong>Chorus:</strong><br />\n    A                                  C#m7<br />\nAnd Lord we want to lift Your name on high<br />\n    F#m<br />\nAnd Lord we want to thank You<br />\n      Bm7                      D/E<br />\n  For the works You&#8217;ve done in our lives<br />\n    A                                C#m7<br />\nAnd Lord we trust in Your unfailing love<br />\n    D             A/C#<br />\nFor You alone are God eternal<br />\n  Bm7                  D/E &#8211; E  A  (Top: G)<br />\n  Throughout earth and heaven above<br />\n                                   (Alt top: F &#8211; G)</p>\n<p><strong>Ending:</strong><br />\n   Bm7                  D/E &#8211; E  F#m  E<br />\n&#8230;Throughout earth and heaven above<br />\n    D             A/C#<br />\nFor You alone are God eternal<br />\n  Bm7                  D/E &#8211; E  A<br />\n  Throughout earth and heaven above</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nA   G   (x2)</p>\n<p><strong>Alt Intro:</strong><br />\nA   C   F &#8211; G &#8211; A  (x2)</p>\n<p><strong>Verse:</strong><br />\nA            D/F#          E/G#      A<br />\nGreat is the Lord and most worthy of praise<br />\n    D/F#        E             F#m7<br />\nThe city of our God, the holy place<br />\n    A/E              Bm7    D/E &#8211; E<br />\nThe joy of the whole earth<br />\nA            D/F#            E/G#     A<br />\nGreat is the Lord in whom we have the victory<br />\n   D/F#     E          F#m7<br />\nHe aids us against the enemy<br />\n   A/E             Bm7    D &#8211; E<br />\nWe bow down on our knees</p>\n<p><strong>Chorus:</strong><br />\n    A                                  C#m7<br />\nAnd Lord we want to lift Your name on high<br />\n    F#m<br />\nAnd Lord we want to thank You<br />\n      Bm7                      D/E<br />\n  For the works You&#8217;ve done in our lives<br />\n    A                                C#m7<br />\nAnd Lord we trust in Your unfailing love<br />\n    D             A/C#<br />\nFor You alone are God eternal<br />\n  Bm7                  D/E &#8211; E  A  (Top: G)<br />\n  Throughout earth and heaven above<br />\n                                   (Alt top: F &#8211; G)</p>\n<p><strong>Ending:</strong><br />\n   Bm7                  D/E &#8211; E  F#m  E<br />\n&#8230;Throughout earth and heaven above<br />\n    D             A/C#<br />\nFor You alone are God eternal<br />\n  Bm7                  D/E &#8211; E  A<br />\n  Throughout earth and heaven above</p>\n",
+    "songNumber": 65
   },
   {
     "title": "From the Rising of the Sun (PJ Arranged)",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-8098",
     "id": "selah-8098",
@@ -60814,13 +60942,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro</strong><br />\n(A7)  D    Bm7   Em7   A7    D    G    D<br />\nD &#8211; A7&#8230;</p>\n<p><strong>Verse:</strong><br />\n(&#8230;A7)                 D<br />\nFrom the rising of the sun<br />\n         A7    D          Bm7<br />\nTo the going down of the same<br />\n             Em7    A7<br />\nThe  Lord&#8217;s name<br />\n            D   G   D<br />\nIs to be praised<br />\n(A7)                   D<br />\nFrom the rising of the sun<br />\n           A7    D         Bm7<br />\nTo the going down of the same<br />\n           Em7    A7<br />\nThe Lord&#8217;s name<br />\n            D   G   D<br />\nIs to be praised</p>\n<p><strong>Chorus:</strong><br />\n  G<br />\nPraise ye the Lord<br />\n  D                               F#7<br />\nPraise Him all ye servants of the Lord<br />\n G        A7       D-D7sus-D7<br />\nPraise the name  of the Lord<br />\n                 G<br />\nBlessed be the name of the Lord<br />\n  D             F#7<br />\nFrom this time forth<br />\nG        A7     D    G<br />\nAnd forevermore</p>\n<p><strong>Outro:</strong><br />\nG  A7  D Bm7 2x<br />\nG  A7&#8230;<br />\nD-F#-G-G#-A<br />\nD D# D &#8211; D D# D</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro</strong><br />\n(A7)  D    Bm7   Em7   A7    D    G    D<br />\nD &#8211; A7&#8230;</p>\n<p><strong>Verse:</strong><br />\n(&#8230;A7)                 D<br />\nFrom the rising of the sun<br />\n         A7    D          Bm7<br />\nTo the going down of the same<br />\n             Em7    A7<br />\nThe  Lord&#8217;s name<br />\n            D   G   D<br />\nIs to be praised<br />\n(A7)                   D<br />\nFrom the rising of the sun<br />\n           A7    D         Bm7<br />\nTo the going down of the same<br />\n           Em7    A7<br />\nThe Lord&#8217;s name<br />\n            D   G   D<br />\nIs to be praised</p>\n<p><strong>Chorus:</strong><br />\n  G<br />\nPraise ye the Lord<br />\n  D                               F#7<br />\nPraise Him all ye servants of the Lord<br />\n G        A7       D-D7sus-D7<br />\nPraise the name  of the Lord<br />\n                 G<br />\nBlessed be the name of the Lord<br />\n  D             F#7<br />\nFrom this time forth<br />\nG        A7     D    G<br />\nAnd forevermore</p>\n<p><strong>Outro:</strong><br />\nG  A7  D Bm7 2x<br />\nG  A7&#8230;<br />\nD-F#-G-G#-A<br />\nD D# D &#8211; D D# D</p>\n",
+    "songNumber": 56
   },
   {
     "title": "Jesus We Enthrone You",
     "artist": "Selah",
     "key": "Bb",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-8092",
     "id": "selah-8092",
@@ -61037,14 +61166,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Bb</strong></p>\n<p><strong>Verse:</strong><br />\nBb          Gm<br />\nJesus, we enthrone You<br />\nEb                        Bb<br />\nWe proclaim You, our King<br />\nGm                   Dm<br />\nStanding here, in the midst of us<br />\nEb                         F<br />\nWe raise You up with our praise</p>\n<p><strong>Chorus:</strong><br />\nBb         Dm              Gm<br />\nAnd as we worship, build a throne<br />\nEb          F               Bb  Bb/A Gm<br />\nAnd as we worship, build a throne<br />\nEb          F               Bb  Bb/A Gm<br />\nAnd as we worship, build a throne<br />\n            Eb          F             Bb<br />\nCome, Lord Jesus, and take Your place</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Bb</strong></p>\n<p><strong>Verse:</strong><br />\nBb          Gm<br />\nJesus, we enthrone You<br />\nEb                        Bb<br />\nWe proclaim You, our King<br />\nGm                   Dm<br />\nStanding here, in the midst of us<br />\nEb                         F<br />\nWe raise You up with our praise</p>\n<p><strong>Chorus:</strong><br />\nBb         Dm              Gm<br />\nAnd as we worship, build a throne<br />\nEb          F               Bb  Bb/A Gm<br />\nAnd as we worship, build a throne<br />\nEb          F               Bb  Bb/A Gm<br />\nAnd as we worship, build a throne<br />\n            Eb          F             Bb<br />\nCome, Lord Jesus, and take Your place</p>\n",
+    "songNumber": 124
   },
   {
     "title": "Lord I Lift Your Name (J-US)",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-8090",
     "id": "selah-8090",
     "customSong": true,
@@ -61470,13 +61600,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG/B C2 D Em<br />\nG/B C2 D<br />\nG/B C2 D Em (Am7)       </p>\n<p><strong>Verse:</strong><br />\nG/B         C2                D   C2<br />\n Lord, I lift Your name on high<br />\nG/B         C2                D    Em<br />\n Lord, I love to sing Your praises<br />\nG/B        C2                 D    C2<br />\n I&#8217;m so glad You&#8217;re in my life<br />\nG/B        C                D        (C/E   D/F#)<br />\n I&#8217;m so glad You came to save us</p>\n<p><strong>Midtro:</strong><br />\nG/B C2 D Em<br />\nG/B C2 D</p>\n<p><strong>Chorus:</strong><br />\nG               C         D        C      G<br />\n You came from Heaven to earth to show the way<br />\n            C             D       C   G/B<br />\n From the earth to the cross my debt to pay<br />\n            C            D<br />\n From the cross to the grave<br />\n           Em7    Am7<br />\n From the grave to the sky<br />\n      Dsus                 (G/B)<br />\n Lord, I lift Your name on high</p>\n<p><strong>Outtro:</strong><br />\nG/B C2 D Em<br />\nD  C  D Em  C</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG/B C2 D Em<br />\nG/B C2 D<br />\nG/B C2 D Em (Am7)       </p>\n<p><strong>Verse:</strong><br />\nG/B         C2                D   C2<br />\n Lord, I lift Your name on high<br />\nG/B         C2                D    Em<br />\n Lord, I love to sing Your praises<br />\nG/B        C2                 D    C2<br />\n I&#8217;m so glad You&#8217;re in my life<br />\nG/B        C                D        (C/E   D/F#)<br />\n I&#8217;m so glad You came to save us</p>\n<p><strong>Midtro:</strong><br />\nG/B C2 D Em<br />\nG/B C2 D</p>\n<p><strong>Chorus:</strong><br />\nG               C         D        C      G<br />\n You came from Heaven to earth to show the way<br />\n            C             D       C   G/B<br />\n From the earth to the cross my debt to pay<br />\n            C            D<br />\n From the cross to the grave<br />\n           Em7    Am7<br />\n From the grave to the sky<br />\n      Dsus                 (G/B)<br />\n Lord, I lift Your name on high</p>\n<p><strong>Outtro:</strong><br />\nG/B C2 D Em<br />\nD  C  D Em  C</p>\n",
+    "songNumber": 140
   },
   {
     "title": "Everlasting God (The Worship Initiative)",
     "artist": "Selah",
     "key": "B",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-7983",
     "id": "selah-7983",
@@ -61961,13 +62092,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: B </strong></p>\n<p><strong>Intro:</strong><br />\nB</p>\n<p><strong>Verse:</strong><br />\nB<br />\nStrength will rise as we wait upon the Lord<br />\nWait upon the Lord, we will wait upon the Lord</p>\n<p><strong>Pre-chorus:</strong><br />\nB/D# &#8211; E<br />\nOur God<br />\nB/D# &#8211; E &#8211; F#  G#m  F#<br />\nYou reign forever<br />\nB/D# &#8211; E<br />\nOur hope<br />\nB/D# &#8211; E &#8211; F#  G#m  F#<br />\nOur strong deliverer</p>\n<p><strong>Chorus:</strong><br />\nB                  /D#   E<br />\nYou are the everlasting God<br />\n            /F#  G#m<br />\nThe everlasting God<br />\nYou do not faint<br />\n    E<br />\nYou won&#8217;t grow weary<br />\nB                      /D#  E<br />\nYou&#8217;re the defender of the weak<br />\n                  /F#  G#m<br />\nYou comfort those in need<br />\n     B/D#<br />\nYou lift us up<br />\n   E     E/F#  G#m7  F#/A#<br />\nOn wings like eagles</p>\n<p><strong>Interlude:</strong><br />\nB          /D# &#8211;<br />\nE          /F# &#8211;<br />\nG#m<br />\nE   E/F#  G#m7  F#/A#</p>\n<p><strong>Pre-chorus 2:</strong><br />\nB/D# &#8211; E<br />\nOur God<br />\nB/D# &#8211; E &#8211; F#  G#m  F#<br />\nYou reign forever<br />\nB/D# &#8211; E<br />\nOur hope<br />\nB/D# &#8211; E &#8211; F#  G#m  F#/A# (break)<br />\nOur strong deliverer</p>\n<p><strong>Ending:</strong><br />\nB          /D# &#8211;<br />\nE          /F# &#8211;<br />\nG#m<br />\nStrength will rise as we wait upon the Lord<br />\nE<br />\nWait upon the Lord, wait upon the Lord<br />\nB                                           /D# &#8211;<br />\nStrength will rise as we wait upon the Lord<br />\nE                                     /F# &#8211;<br />\nWait upon the Lord, wait upon the Lord<br />\nG#m                      B/D#<br />\nStrength will rise as we wait upon the Lord<br />\nE             E/F#  G#m7          F#/A#     B<br />\nWait upon the Lord, wait upon the Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: B </strong></p>\n<p><strong>Intro:</strong><br />\nB</p>\n<p><strong>Verse:</strong><br />\nB<br />\nStrength will rise as we wait upon the Lord<br />\nWait upon the Lord, we will wait upon the Lord</p>\n<p><strong>Pre-chorus:</strong><br />\nB/D# &#8211; E<br />\nOur God<br />\nB/D# &#8211; E &#8211; F#  G#m  F#<br />\nYou reign forever<br />\nB/D# &#8211; E<br />\nOur hope<br />\nB/D# &#8211; E &#8211; F#  G#m  F#<br />\nOur strong deliverer</p>\n<p><strong>Chorus:</strong><br />\nB                  /D#   E<br />\nYou are the everlasting God<br />\n            /F#  G#m<br />\nThe everlasting God<br />\nYou do not faint<br />\n    E<br />\nYou won&#8217;t grow weary<br />\nB                      /D#  E<br />\nYou&#8217;re the defender of the weak<br />\n                  /F#  G#m<br />\nYou comfort those in need<br />\n     B/D#<br />\nYou lift us up<br />\n   E     E/F#  G#m7  F#/A#<br />\nOn wings like eagles</p>\n<p><strong>Interlude:</strong><br />\nB          /D# &#8211;<br />\nE          /F# &#8211;<br />\nG#m<br />\nE   E/F#  G#m7  F#/A#</p>\n<p><strong>Pre-chorus 2:</strong><br />\nB/D# &#8211; E<br />\nOur God<br />\nB/D# &#8211; E &#8211; F#  G#m  F#<br />\nYou reign forever<br />\nB/D# &#8211; E<br />\nOur hope<br />\nB/D# &#8211; E &#8211; F#  G#m  F#/A# (break)<br />\nOur strong deliverer</p>\n<p><strong>Ending:</strong><br />\nB          /D# &#8211;<br />\nE          /F# &#8211;<br />\nG#m<br />\nStrength will rise as we wait upon the Lord<br />\nE<br />\nWait upon the Lord, wait upon the Lord<br />\nB                                           /D# &#8211;<br />\nStrength will rise as we wait upon the Lord<br />\nE                                     /F# &#8211;<br />\nWait upon the Lord, wait upon the Lord<br />\nG#m                      B/D#<br />\nStrength will rise as we wait upon the Lord<br />\nE             E/F#  G#m7          F#/A#     B<br />\nWait upon the Lord, wait upon the Lord</p>\n",
+    "songNumber": 43
   },
   {
     "title": "You Are My Song",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-7900",
     "id": "selah-7900",
@@ -62651,13 +62783,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nG &#8211; G/A &#8211; D/F# &#8211; Bm &#8211; Em &#8211; A &#8211; Dsus &#8211; D</p>\n<p><strong>Verse 1:</strong><br />\nG/A  D                             F#m (-Bm)<br />\n     Early will I rise and worship You<br />\nEm<br />\nGiving You thanks<br />\n     A             F#/A<br />\nFor all that You do<br />\n    D                          F#m &#8211; Bm (Bsus7 &#8211; B)<br />\nMy sacrifice of praise I offer You<br />\n     Em<br />\nAnd You bring to me<br />\n     A          D7 &#8211; F#dim<br />\nThat sweet melody</p>\n<p><strong>Chorus 1:</strong><br />\n            G   G/A (or C#dim)<br />\nYou are my song<br />\n            F#m  Bm<br />\nYou are my song<br />\n              Em        Asus &#8211; A<br />\nYou are the reason I sing<br />\n      D    Em F#m D7/G# (F#dim &#8211; D7)<br />\nThis song to You<br />\n             G  C#dim<br />\nYou are my song<br />\n            F#m Bm<br />\nYou are my song<br />\n              Em<br />\nYou are the reason<br />\n   A  Asus D  (To verse: G/A)<br />\nI sing to You</p>\n<p><strong>Verse 2:</strong><br />\nE                           G#m<br />\nI will sing a new song unto You<br />\nF#m<br />\nWords from a heart<br />\nBsus    B<br />\nBroken apart<br />\nE<br />\nThere is nothing<br />\n               G#m C#sus7 &#8211; C#7<br />\nI would rather do<br />\n     F#m<br />\nFor You are my joy<br />\n   Bm7       E7 &#8211; G#dim<br />\nTo You I employ</p>\n<p><strong>Chorus 2:</strong><br />\n            A   A/B<br />\nYou are my song<br />\n            G#m  C#m<br />\nYou are my song<br />\n              F#m        Bsus &#8211; B<br />\nYou are the reason I sing<br />\n      E    F#m G#dim E7/Bb<br />\nThis song to You<br />\n             A Ebdim<br />\nYou are my song<br />\n            G#m C#m<br />\nYou are my song<br />\n              F#m<br />\nYou are the reason<br />\n   Bsus B  E  (To verse: A/B)<br />\nI sing to You</p>\n<p><strong>Ending:</strong><br />\nG#m &#8211; C#m              F#m<br />\n      You are the reason<br />\n   Bsus B  E<br />\nI sing to You<br />\nG#m &#8211; C#m              F#m<br />\n      You are the reason<br />\n   Bsus Cdim/B E<br />\nI sing to You </p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nG &#8211; G/A &#8211; D/F# &#8211; Bm &#8211; Em &#8211; A &#8211; Dsus &#8211; D</p>\n<p><strong>Verse 1:</strong><br />\nG/A  D                             F#m (-Bm)<br />\n     Early will I rise and worship You<br />\nEm<br />\nGiving You thanks<br />\n     A             F#/A<br />\nFor all that You do<br />\n    D                          F#m &#8211; Bm (Bsus7 &#8211; B)<br />\nMy sacrifice of praise I offer You<br />\n     Em<br />\nAnd You bring to me<br />\n     A          D7 &#8211; F#dim<br />\nThat sweet melody</p>\n<p><strong>Chorus 1:</strong><br />\n            G   G/A (or C#dim)<br />\nYou are my song<br />\n            F#m  Bm<br />\nYou are my song<br />\n              Em        Asus &#8211; A<br />\nYou are the reason I sing<br />\n      D    Em F#m D7/G# (F#dim &#8211; D7)<br />\nThis song to You<br />\n             G  C#dim<br />\nYou are my song<br />\n            F#m Bm<br />\nYou are my song<br />\n              Em<br />\nYou are the reason<br />\n   A  Asus D  (To verse: G/A)<br />\nI sing to You</p>\n<p><strong>Verse 2:</strong><br />\nE                           G#m<br />\nI will sing a new song unto You<br />\nF#m<br />\nWords from a heart<br />\nBsus    B<br />\nBroken apart<br />\nE<br />\nThere is nothing<br />\n               G#m C#sus7 &#8211; C#7<br />\nI would rather do<br />\n     F#m<br />\nFor You are my joy<br />\n   Bm7       E7 &#8211; G#dim<br />\nTo You I employ</p>\n<p><strong>Chorus 2:</strong><br />\n            A   A/B<br />\nYou are my song<br />\n            G#m  C#m<br />\nYou are my song<br />\n              F#m        Bsus &#8211; B<br />\nYou are the reason I sing<br />\n      E    F#m G#dim E7/Bb<br />\nThis song to You<br />\n             A Ebdim<br />\nYou are my song<br />\n            G#m C#m<br />\nYou are my song<br />\n              F#m<br />\nYou are the reason<br />\n   Bsus B  E  (To verse: A/B)<br />\nI sing to You</p>\n<p><strong>Ending:</strong><br />\nG#m &#8211; C#m              F#m<br />\n      You are the reason<br />\n   Bsus B  E<br />\nI sing to You<br />\nG#m &#8211; C#m              F#m<br />\n      You are the reason<br />\n   Bsus Cdim/B E<br />\nI sing to You </p>\n",
+    "songNumber": 244
   },
   {
     "title": "Blessings",
     "artist": "Selah",
     "key": "B",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-7891",
     "id": "selah-7891",
@@ -63940,13 +64073,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: B</strong></p>\n<p><strong>Intro:</strong><br />\nC#m  B    F#/Bb<br />\nE    F#   D#m<br />\nC#m  B    F#/Bb<br />\nE</p>\n<p><strong>Verse 1:</strong><br />\nE     F#     G#m<br />\nWe pray for blessings<br />\nE     F#     D#m<br />\nWe pray for peace<br />\nE     F#     G#m<br />\nComfort for family<br />\n      A              E<br />\nProtection while we sleep</p>\n<p>E     F#     G#m<br />\nWe pray for healing<br />\nE      F#    D#m<br />\nFor prosperity<br />\nE       F#      G#m<br />\nWe pray for Your mighty hand<br />\n    C#m          F#/Bb<br />\nTo ease our suffering</p>\n<p><strong>Pre-chorus 1:</strong><br />\nB        E<br />\nAll the while<br />\n    F#               G#m<br />\nYou hear each spoken need<br />\n     C#m             B/D#<br />\nYet love us way too much<br />\n           F#<br />\nTo give us lesser things</p>\n<p><strong>Chorus 1:</strong><br />\n              B<br />\nWhat if Your blessings come through raindrops?<br />\n              F#/Bb<br />\nWhat if Your healing comes through tears?<br />\n             G#m                F#<br />\nWhat if the thousand sleepless nights<br />\n             E<br />\nAre what it takes to know You&#8217;re near?<br />\nC#m         B/D#<br />\n   What if trials of this life<br />\nE         F#<br />\n Are Your mercies in disguise?</p>\n<p>C#m  B    F#/Bb<br />\nE    F#   D#m</p>\n<p><strong>Verse 2:</strong><br />\nE     F#     G#m<br />\nWe pray for wisdom<br />\nE      F#      D#m<br />\nYour voice to hear<br />\nE     F#     G#m<br />\nWe cry in anger<br />\n          A              E<br />\nWhen we cannot feel You near</p>\n<p>E   F#          G#m<br />\nWe doubt Your goodness<br />\nE    F#        D#m<br />\nWe doubt Your love<br />\nE       F#    G#m<br />\nAs if every promise<br />\n           C#m          F#/Bb<br />\nFrom Your Word is not enough</p>\n<p><strong>Pre-chorus 2:</strong><br />\n     B        E<br />\nAnd all the while<br />\n     F#                  G#m<br />\nYou hear each desperate plea<br />\n     C#m                 B/D#<br />\nAnd long that we&#8217;d have faith<br />\n      F#<br />\nTo believe</p>\n<p><strong>Chorus 2:</strong><br />\n              B<br />\nWhat if Your blessings come through raindrops?<br />\n              F#/Bb<br />\nWhat if Your healing comes through tears?<br />\n             G#m                F#<br />\nWhat if the thousand sleepless nights<br />\n             E<br />\nAre what it takes to know You&#8217;re near?<br />\nC#m         B/D#<br />\n   What if trials of this life<br />\nE         F#<br />\n Are Your mercies in disguise?<br />\nBsus B</p>\n<p><strong>Bridge:</strong><br />\nC#m             B/D#<br />\nWhen friends betray us<br />\nE              F#<br />\nWhen darkness seems to win<br />\n   C#m             B/D#<br />\nWe know the pain reminds this heart<br />\n     E            F#<br />\nThat this is not, this is not our home<br />\nC#m  B    F#/Bb<br />\nE    F#   D#m<br />\n               It&#8217;s not our home<br />\nE    F#   G#m<br />\nA<br />\nE</p>\n<p><strong>Chorus 3:</strong><br />\n              B<br />\nWhat if Your blessings come through raindrops?<br />\n              F#/Bb<br />\nWhat if Your healing comes through tears?<br />\n             G#m                F#<br />\nWhat if the thousand sleepless nights<br />\n             E<br />\nAre what it takes to know You&#8217;re near?</p>\n<p>              B<br />\nWhat if my greatest disappointments<br />\n        F#/Bb<br />\nOr the aching of this life<br />\n         G#m            F#<br />\nIs the revealing of a greater thirst<br />\n      E<br />\nThis world can&#8217;t satisfy?</p>\n<p>C#m         B/D#<br />\n   What if trials of this life<br />\nE         F#<br />\n The rain, the storms, the hardest nights<br />\nG#m          F#/Bb<br />\n   Are Your mercies in disguise?</p>\n<p>C#m  B    F#/Bb<br />\nE    F#   D#m<br />\nC#m  B    F#/Bb<br />\nE    F#   B</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: B</strong></p>\n<p><strong>Intro:</strong><br />\nC#m  B    F#/Bb<br />\nE    F#   D#m<br />\nC#m  B    F#/Bb<br />\nE</p>\n<p><strong>Verse 1:</strong><br />\nE     F#     G#m<br />\nWe pray for blessings<br />\nE     F#     D#m<br />\nWe pray for peace<br />\nE     F#     G#m<br />\nComfort for family<br />\n      A              E<br />\nProtection while we sleep</p>\n<p>E     F#     G#m<br />\nWe pray for healing<br />\nE      F#    D#m<br />\nFor prosperity<br />\nE       F#      G#m<br />\nWe pray for Your mighty hand<br />\n    C#m          F#/Bb<br />\nTo ease our suffering</p>\n<p><strong>Pre-chorus 1:</strong><br />\nB        E<br />\nAll the while<br />\n    F#               G#m<br />\nYou hear each spoken need<br />\n     C#m             B/D#<br />\nYet love us way too much<br />\n           F#<br />\nTo give us lesser things</p>\n<p><strong>Chorus 1:</strong><br />\n              B<br />\nWhat if Your blessings come through raindrops?<br />\n              F#/Bb<br />\nWhat if Your healing comes through tears?<br />\n             G#m                F#<br />\nWhat if the thousand sleepless nights<br />\n             E<br />\nAre what it takes to know You&#8217;re near?<br />\nC#m         B/D#<br />\n   What if trials of this life<br />\nE         F#<br />\n Are Your mercies in disguise?</p>\n<p>C#m  B    F#/Bb<br />\nE    F#   D#m</p>\n<p><strong>Verse 2:</strong><br />\nE     F#     G#m<br />\nWe pray for wisdom<br />\nE      F#      D#m<br />\nYour voice to hear<br />\nE     F#     G#m<br />\nWe cry in anger<br />\n          A              E<br />\nWhen we cannot feel You near</p>\n<p>E   F#          G#m<br />\nWe doubt Your goodness<br />\nE    F#        D#m<br />\nWe doubt Your love<br />\nE       F#    G#m<br />\nAs if every promise<br />\n           C#m          F#/Bb<br />\nFrom Your Word is not enough</p>\n<p><strong>Pre-chorus 2:</strong><br />\n     B        E<br />\nAnd all the while<br />\n     F#                  G#m<br />\nYou hear each desperate plea<br />\n     C#m                 B/D#<br />\nAnd long that we&#8217;d have faith<br />\n      F#<br />\nTo believe</p>\n<p><strong>Chorus 2:</strong><br />\n              B<br />\nWhat if Your blessings come through raindrops?<br />\n              F#/Bb<br />\nWhat if Your healing comes through tears?<br />\n             G#m                F#<br />\nWhat if the thousand sleepless nights<br />\n             E<br />\nAre what it takes to know You&#8217;re near?<br />\nC#m         B/D#<br />\n   What if trials of this life<br />\nE         F#<br />\n Are Your mercies in disguise?<br />\nBsus B</p>\n<p><strong>Bridge:</strong><br />\nC#m             B/D#<br />\nWhen friends betray us<br />\nE              F#<br />\nWhen darkness seems to win<br />\n   C#m             B/D#<br />\nWe know the pain reminds this heart<br />\n     E            F#<br />\nThat this is not, this is not our home<br />\nC#m  B    F#/Bb<br />\nE    F#   D#m<br />\n               It&#8217;s not our home<br />\nE    F#   G#m<br />\nA<br />\nE</p>\n<p><strong>Chorus 3:</strong><br />\n              B<br />\nWhat if Your blessings come through raindrops?<br />\n              F#/Bb<br />\nWhat if Your healing comes through tears?<br />\n             G#m                F#<br />\nWhat if the thousand sleepless nights<br />\n             E<br />\nAre what it takes to know You&#8217;re near?</p>\n<p>              B<br />\nWhat if my greatest disappointments<br />\n        F#/Bb<br />\nOr the aching of this life<br />\n         G#m            F#<br />\nIs the revealing of a greater thirst<br />\n      E<br />\nThis world can&#8217;t satisfy?</p>\n<p>C#m         B/D#<br />\n   What if trials of this life<br />\nE         F#<br />\n The rain, the storms, the hardest nights<br />\nG#m          F#/Bb<br />\n   Are Your mercies in disguise?</p>\n<p>C#m  B    F#/Bb<br />\nE    F#   D#m<br />\nC#m  B    F#/Bb<br />\nE    F#   B</p>\n",
+    "songNumber": 25
   },
   {
     "title": "Doon Mamalagi",
     "artist": "Selah",
     "key": "D",
-    "category": "Manda Originals",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-7873",
     "id": "selah-7873",
@@ -64309,13 +64443,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse:</strong><br />\n     D        DM7        Em7  A7<br />\nAng buhay ko noon ay magulo<br />\n  Em7             A7              D  A7<br />\nKadilima’y bumabalot sa &#8216;king mundo<br />\n       D         /F#  G            /B     Gm/Bb<br />\nNgunit ako’y niligtas Mo, ako&#8217;y pinatawad Mo<br />\n          D/F#        A7/C#     D  (Am7-D7)<br />\nKaya ang buhay ko&#8217;y, inaalay sa &#8216;Yo</p>\n<p><strong>Chorus:</strong><br />\n             G   A7/G      F#m               Bm<br />\n(Pagka&#8217;t)  Malaya ako upang Ikaw ay aking purihin<br />\n    Em7       A7         D           Am7   D7<br />\nMalaya rin naman upang Ikaw ay aking sambahin<br />\n  G         A7/G          F#m             Bm<br />\nPasasalamat ko O Diyos nawa’y Iyong dinggin<br />\nEm7          A7         D<br />\nHayaan mong Ika’y dakilain</p>\n<p><strong>Bridge:</strong><br />\n        G          A7/G<br />\nPurihin Ka, Panginoon<br />\n       F#m          Bm<br />\nDakila Ka  sa buhay ko<br />\n      Em7            A7           D-Em-D/F#<br />\nKatapatan Mo ang tanging sandigan ko<br />\n     G          A7/G<br />\nItataas Kitang lagi<br />\n     F#m         Bm<br />\nSa lahat ng sandali<br />\n           Em7      A7        D<br />\nUpang sa piling Mo doon mamalagi</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse:</strong><br />\n     D        DM7        Em7  A7<br />\nAng buhay ko noon ay magulo<br />\n  Em7             A7              D  A7<br />\nKadilima’y bumabalot sa &#8216;king mundo<br />\n       D         /F#  G            /B     Gm/Bb<br />\nNgunit ako’y niligtas Mo, ako&#8217;y pinatawad Mo<br />\n          D/F#        A7/C#     D  (Am7-D7)<br />\nKaya ang buhay ko&#8217;y, inaalay sa &#8216;Yo</p>\n<p><strong>Chorus:</strong><br />\n             G   A7/G      F#m               Bm<br />\n(Pagka&#8217;t)  Malaya ako upang Ikaw ay aking purihin<br />\n    Em7       A7         D           Am7   D7<br />\nMalaya rin naman upang Ikaw ay aking sambahin<br />\n  G         A7/G          F#m             Bm<br />\nPasasalamat ko O Diyos nawa’y Iyong dinggin<br />\nEm7          A7         D<br />\nHayaan mong Ika’y dakilain</p>\n<p><strong>Bridge:</strong><br />\n        G          A7/G<br />\nPurihin Ka, Panginoon<br />\n       F#m          Bm<br />\nDakila Ka  sa buhay ko<br />\n      Em7            A7           D-Em-D/F#<br />\nKatapatan Mo ang tanging sandigan ko<br />\n     G          A7/G<br />\nItataas Kitang lagi<br />\n     F#m         Bm<br />\nSa lahat ng sandali<br />\n           Em7      A7        D<br />\nUpang sa piling Mo doon mamalagi</p>\n",
+    "songNumber": 40
   },
   {
     "title": "O Diyos, Ikaw",
     "artist": "Selah",
     "key": "C",
-    "category": "Manda Originals",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-7866",
     "id": "selah-7866",
@@ -64647,13 +64782,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse:</strong><br />\n  C9             /E              /F   /E<br />\nO Diyos pagsamba ko&#8217;y sadyang sa&#8217;Yo lamang<br />\n  Dm            /C           /F &#8211; G &#8211; Dm/F<br />\nKahit ang buhay minsan may kabiguan<br />\n    Em7        Am7<br />\nAng puso ma&#8217;y sawi<br />\n   Em7          A7/C#<br />\nDamdamin ma&#8217;y pagod<br />\n   Dm7          /C       F/G   C<br />\nAt ang pangarap tila nga kay layo</p>\n<p><strong>Pre-Chorus:</strong><br />\n         Dm7\t\tC/E<br />\nGayon pa man, sa&#8217;Yo ay aawit<br />\n         F<br />\nLalong lalapit<br />\n          C9<br />\nHigit na kakapit</p>\n<p>(Repeat)</p>\n<p><strong>Chorus:</strong><br />\n  F/G  C       /E          FM7<br />\nDahil Ikaw ang pag-asa sa kalungkutan<br />\n   C/E  Dm7      F/G        F/C   F/G<br />\nO Diyos, Ikaw ang liwanag sa kadiliman<br />\n  FM7   Em7  A/C#            Dm7<br />\nO Diyos, Ikaw aking gabay sa kaguluhan<br />\n    C/F     /E          Dm7<br />\nAng puso ng aking pagsamba<br />\nF/G  C<br />\nAy Ikaw </p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse:</strong><br />\n  C9             /E              /F   /E<br />\nO Diyos pagsamba ko&#8217;y sadyang sa&#8217;Yo lamang<br />\n  Dm            /C           /F &#8211; G &#8211; Dm/F<br />\nKahit ang buhay minsan may kabiguan<br />\n    Em7        Am7<br />\nAng puso ma&#8217;y sawi<br />\n   Em7          A7/C#<br />\nDamdamin ma&#8217;y pagod<br />\n   Dm7          /C       F/G   C<br />\nAt ang pangarap tila nga kay layo</p>\n<p><strong>Pre-Chorus:</strong><br />\n         Dm7\t\tC/E<br />\nGayon pa man, sa&#8217;Yo ay aawit<br />\n         F<br />\nLalong lalapit<br />\n          C9<br />\nHigit na kakapit</p>\n<p>(Repeat)</p>\n<p><strong>Chorus:</strong><br />\n  F/G  C       /E          FM7<br />\nDahil Ikaw ang pag-asa sa kalungkutan<br />\n   C/E  Dm7      F/G        F/C   F/G<br />\nO Diyos, Ikaw ang liwanag sa kadiliman<br />\n  FM7   Em7  A/C#            Dm7<br />\nO Diyos, Ikaw aking gabay sa kaguluhan<br />\n    C/F     /E          Dm7<br />\nAng puso ng aking pagsamba<br />\nF/G  C<br />\nAy Ikaw </p>\n",
+    "songNumber": 163
   },
   {
     "title": "Makapangyarihang Diyos",
     "artist": "Selah",
     "key": "A",
-    "category": "Manda Originals",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-7876",
     "id": "selah-7876",
@@ -64897,14 +65033,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Verse:</strong><br />\n          A<br />\nSa bawat bagong araw na binibigay<br />\n     Bm                E<br />\nNa kalakip ng Iyong pagmamahal<br />\n         A         Aaug       A6 Aaug<br />\nPurihin Ka, Panginoong Mapagpala<br />\n         A<br />\nSa bawat suliraning dumaraan<br />\n         Bm          E<br />\nAng kalakasan Mo’y laging laan<br />\n          A          Aaug        A6      D/E<br />\nO aking Diyos, mga pangako Mo’y ilaw at tanglaw</p>\n<p><strong>Chorus:</strong><br />\n      D                  E/D<br />\nMga isda sa dagat, mga bituin sa langit<br />\n        A/C#       F#m<br />\nMaging buong sanlibutan<br />\n         D                      E/D<br />\nLahat ay &#8216;Yong ginawa, lahat ay &#8216;Yong nilikha<br />\n         A/C#    F#m           Bm           D/E<br />\nKalooban Mo’y dakila, Kay buti Mo o aking Diyos<br />\n      A<br />\nKailanman</p>\n<p><strong>Bridge:</strong><br />\n(E7) A             F#m     Bm            D/E<br />\nItataas ang Ngalan Mo, Makapangyarihang Diyos<br />\n    C#m            F#sus-F# Bm           E7sus-E7<br />\nItataas ang Ngalan Mo, Makapangyarihang Diyos</p>\n<p>(Repeat)</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Verse:</strong><br />\n          A<br />\nSa bawat bagong araw na binibigay<br />\n     Bm                E<br />\nNa kalakip ng Iyong pagmamahal<br />\n         A         Aaug       A6 Aaug<br />\nPurihin Ka, Panginoong Mapagpala<br />\n         A<br />\nSa bawat suliraning dumaraan<br />\n         Bm          E<br />\nAng kalakasan Mo’y laging laan<br />\n          A          Aaug        A6      D/E<br />\nO aking Diyos, mga pangako Mo’y ilaw at tanglaw</p>\n<p><strong>Chorus:</strong><br />\n      D                  E/D<br />\nMga isda sa dagat, mga bituin sa langit<br />\n        A/C#       F#m<br />\nMaging buong sanlibutan<br />\n         D                      E/D<br />\nLahat ay &#8216;Yong ginawa, lahat ay &#8216;Yong nilikha<br />\n         A/C#    F#m           Bm           D/E<br />\nKalooban Mo’y dakila, Kay buti Mo o aking Diyos<br />\n      A<br />\nKailanman</p>\n<p><strong>Bridge:</strong><br />\n(E7) A             F#m     Bm            D/E<br />\nItataas ang Ngalan Mo, Makapangyarihang Diyos<br />\n    C#m            F#sus-F# Bm           E7sus-E7<br />\nItataas ang Ngalan Mo, Makapangyarihang Diyos</p>\n<p>(Repeat)</p>\n",
+    "songNumber": 148
   },
   {
     "title": "I Bow My Knee",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-7861",
     "id": "selah-7861",
     "customSong": true,
@@ -65293,13 +65430,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\n  E      B7       A      B7<br />\nI bow my knee before Your throne<br />\nC#m               A       B7<br />\nI know my life is not my own<br />\n  E     B7      A        B7<br />\nI offer up this song of praise<br />\nA            B7       E<br />\nTo bring You pleasure Lord</p>\n<p><strong>Verse 2:</strong></p>\n<p> E         B7    A        B7<br />\nI seek the Giver not the gift<br />\nC#m               A       B7<br />\nMy heart&#8217;s desire is to lift You<br />\n  E     B7      A        B7<br />\nHigh above all earthly kings<br />\nA             B7      E<br />\nTo bring You pleasure Lord</p>\n<p><strong>Chorus:</strong><br />\n      B7  E         B7  E<br />\nHalle-lu-jah, Halle-lu-jah<br />\n      A   E     F#m        B7  E<br />\nHalle-lu-jah, glory to the King<br />\nC#m     B7  E         B7  E<br />\nHal- le-lu-jah, Halle-lu-jah<br />\n      A   E     F#m        B7  E<br />\nHalle-lu-jah, glory to the King</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\n  E      B7       A      B7<br />\nI bow my knee before Your throne<br />\nC#m               A       B7<br />\nI know my life is not my own<br />\n  E     B7      A        B7<br />\nI offer up this song of praise<br />\nA            B7       E<br />\nTo bring You pleasure Lord</p>\n<p><strong>Verse 2:</strong></p>\n<p> E         B7    A        B7<br />\nI seek the Giver not the gift<br />\nC#m               A       B7<br />\nMy heart&#8217;s desire is to lift You<br />\n  E     B7      A        B7<br />\nHigh above all earthly kings<br />\nA             B7      E<br />\nTo bring You pleasure Lord</p>\n<p><strong>Chorus:</strong><br />\n      B7  E         B7  E<br />\nHalle-lu-jah, Halle-lu-jah<br />\n      A   E     F#m        B7  E<br />\nHalle-lu-jah, glory to the King<br />\nC#m     B7  E         B7  E<br />\nHal- le-lu-jah, Halle-lu-jah<br />\n      A   E     F#m        B7  E<br />\nHalle-lu-jah, glory to the King</p>\n",
+    "songNumber": 87
   },
   {
     "title": "God is the Strength of My Heart (J-US)",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-7854",
     "id": "selah-7854",
@@ -66086,13 +66224,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nDmaj7       C#m7<br />\nBm7   E7    Amaj7   Amaj7-Bm7-C#m7<br />\nDmaj7       C#m7    F#m7<br />\nBm7   C#m7 &#8211; Dmaj7 &#8211; E7<br />\nAmaj7       Dmaj7/A<br />\nAsus2       Dmaj7/A</p>\n<p><strong>Verse:</strong><br />\nAmaj7           Dmaj7/A<br />\nWhom have I in heaven<br />\n     Amaj7  Dmaj7/A<br />\nBut You<br />\n         Amaj7                Dmaj7/A<br />\nThere is nothing on earth I desire<br />\n       Em7/A  Amaj7<br />\nBesides You</p>\n<p><strong>Pre-chorus:</strong><br />\nDmaj7         C#m7<br />\nMy heart and my strength<br />\nBm7             Amaj7<br />\nMany times they fail<br />\nDmaj7         C#m7<br />\nBut there is one truth<br />\n     Bm7    C#m7 &#8211; Dmaj7 &#8211; E7<br />\nThat always will prevail</p>\n<p><strong>Chorus:</strong><br />\n              Dmaj7        C#m7<br />\nGod is the strength of my heart<br />\n              Bm7  E7      Amaj7<br />\nGod is the strength of my heart<br />\nAmaj7-Bm7-C#m7  Dmaj7      C#m7<br />\nGod is the strength of my heart<br />\n        F#m7      Bm7   C#m7 &#8211; Dmaj7 &#8211; E7<br />\nAnd my portion forever<br />\n   Amaj7  Dmaj7/A<br />\nForever<br />\nAsus2  Dmaj7/A</p>\n<p><strong>Chorus (Bb):</strong><br />\n(F7)          Ebmaj7       Dm7<br />\nGod is the strength of my heart<br />\n              Cm7  F7      Bbmaj7<br />\nGod is the strength of my heart<br />\nBbmaj7-Cm7-Dm7  Ebmaj7     Dm7<br />\nGod is the strength of my heart<br />\n        Gm7       Cm7   Dm7 &#8211; Ebmaj7 &#8211; F7<br />\nAnd my portion forever</p>\n<p><strong>Ending (Bb):</strong><br />\n   Ebmaj7  Dm7<br />\nForever<br />\n   Cm7  F7  Bbmaj7  Bbmaj7-Cm7-Dm7<br />\nForever<br />\n   Ebmaj7  Dm7 Gm7<br />\nForever<br />\nCm7   Dm7 &#8211; Ebmaj7 &#8211; F7<br />\nBbmaj7  Ebmaj7/Bb<br />\nBbsus2  Ebmaj7/Bb<br />\nBbmaj7</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nDmaj7       C#m7<br />\nBm7   E7    Amaj7   Amaj7-Bm7-C#m7<br />\nDmaj7       C#m7    F#m7<br />\nBm7   C#m7 &#8211; Dmaj7 &#8211; E7<br />\nAmaj7       Dmaj7/A<br />\nAsus2       Dmaj7/A</p>\n<p><strong>Verse:</strong><br />\nAmaj7           Dmaj7/A<br />\nWhom have I in heaven<br />\n     Amaj7  Dmaj7/A<br />\nBut You<br />\n         Amaj7                Dmaj7/A<br />\nThere is nothing on earth I desire<br />\n       Em7/A  Amaj7<br />\nBesides You</p>\n<p><strong>Pre-chorus:</strong><br />\nDmaj7         C#m7<br />\nMy heart and my strength<br />\nBm7             Amaj7<br />\nMany times they fail<br />\nDmaj7         C#m7<br />\nBut there is one truth<br />\n     Bm7    C#m7 &#8211; Dmaj7 &#8211; E7<br />\nThat always will prevail</p>\n<p><strong>Chorus:</strong><br />\n              Dmaj7        C#m7<br />\nGod is the strength of my heart<br />\n              Bm7  E7      Amaj7<br />\nGod is the strength of my heart<br />\nAmaj7-Bm7-C#m7  Dmaj7      C#m7<br />\nGod is the strength of my heart<br />\n        F#m7      Bm7   C#m7 &#8211; Dmaj7 &#8211; E7<br />\nAnd my portion forever<br />\n   Amaj7  Dmaj7/A<br />\nForever<br />\nAsus2  Dmaj7/A</p>\n<p><strong>Chorus (Bb):</strong><br />\n(F7)          Ebmaj7       Dm7<br />\nGod is the strength of my heart<br />\n              Cm7  F7      Bbmaj7<br />\nGod is the strength of my heart<br />\nBbmaj7-Cm7-Dm7  Ebmaj7     Dm7<br />\nGod is the strength of my heart<br />\n        Gm7       Cm7   Dm7 &#8211; Ebmaj7 &#8211; F7<br />\nAnd my portion forever</p>\n<p><strong>Ending (Bb):</strong><br />\n   Ebmaj7  Dm7<br />\nForever<br />\n   Cm7  F7  Bbmaj7  Bbmaj7-Cm7-Dm7<br />\nForever<br />\n   Ebmaj7  Dm7 Gm7<br />\nForever<br />\nCm7   Dm7 &#8211; Ebmaj7 &#8211; F7<br />\nBbmaj7  Ebmaj7/Bb<br />\nBbsus2  Ebmaj7/Bb<br />\nBbmaj7</p>\n",
+    "songNumber": 61
   },
   {
     "title": "Everlasting God (Nexus ICA)",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-7792",
     "id": "selah-7792",
@@ -67247,13 +67386,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F </strong></p>\n<p><strong>Intro:</strong><br />\nF<br />\nF/Eb  Gm/D  C/G   Eb<br />\nF     F6    F6    Eb<br />\nF     F6    F6    Eb</p>\n<p><strong>Verse:</strong><br />\nF<br />\nStrength will rise<br />\n        F6<br />\n  As we wait upon the Lord<br />\n        F6<br />\nWe will wait upon the Lord<br />\n          F/Eb<br />\n  We will wait upon the Lord</p>\n<p><strong>Pre-chorus:</strong><br />\nF/A &#8211; Bb<br />\nOur God<br />\nF/A &#8211; Bb &#8211; C  Dm  F/A<br />\nYou reign forever<br />\nF/A &#8211; Bb<br />\nOur hope<br />\nF/A &#8211; Bb &#8211; C  Dm  Eb<br />\nOur strong deliverer</p>\n<p><strong>Chorus:</strong><br />\nF                  F/A &#8211; Bb<br />\nYou are the everlasting God<br />\n           C &#8211; Dm<br />\nThe everlasting God</p>\n<p>You do not faint<br />\nF/A  Gm   Am   Bb  C<br />\nYou won&#8217;t grow weary<br />\nF                      F/A &#8211; Bb<br />\nYou&#8217;re the defender of the weak<br />\n                  C &#8211; Dm<br />\nYou comfort those in need</p>\n<p>You lift us up<br />\nF/A  Gm  Am   Bb  C<br />\nOn wings like eagles</p>\n<p><strong>Chorus 2:</strong><br />\nF                  F/A &#8211; Bb<br />\nYou are the everlasting God<br />\n           C &#8211; Dm<br />\nThe everlasting God<br />\nYou do not faint<br />\nF/A  Gm   Am   Bb  C<br />\nYou won&#8217;t grow weary<br />\nBb                     C &#8211; Dm<br />\nYou&#8217;re the defender of the weak<br />\n                  C &#8211; Bb<br />\nYou comfort those in need<br />\nYou lift us up<br />\nF/A  Gm  Am   Bb  C<br />\nOn wings like eagles</p>\n<p><strong>Interlude:</strong><br />\nF          F &#8211; Eb<br />\nEb &#8211; Dm    Dm &#8211; C#    Eb &#8211;</p>\n<p><strong>Bridge:</strong><br />\nF                           Eb<br />\nStrength will rise as we&#8217;re waiting<br />\n         Dm               C#                   Eb &#8211;<br />\nAs we&#8217;re waiting, as we&#8217;re waiting on the Lord</p>\n<p><strong>Pre-chorus 2:</strong><br />\nF/A &#8211; Bb<br />\nOur God<br />\nF/A &#8211; Bb &#8211; C  Dm  F/A<br />\nYou reign forever<br />\nF/A &#8211; Bb<br />\nOur hope<br />\nF/A &#8211; Bb &#8211; C  Dm  F/A<br />\nOur strong deliverer<br />\nF/A &#8211; Bb<br />\nOur God<br />\nF/A &#8211; Bb &#8211; C  Dm  F/A<br />\nYou reign forever<br />\nF/A &#8211; Gm<br />\nOur hope<br />\nF/A &#8211; Bb &#8211; C  Dm  Eb<br />\nOur strong deliverer</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F </strong></p>\n<p><strong>Intro:</strong><br />\nF<br />\nF/Eb  Gm/D  C/G   Eb<br />\nF     F6    F6    Eb<br />\nF     F6    F6    Eb</p>\n<p><strong>Verse:</strong><br />\nF<br />\nStrength will rise<br />\n        F6<br />\n  As we wait upon the Lord<br />\n        F6<br />\nWe will wait upon the Lord<br />\n          F/Eb<br />\n  We will wait upon the Lord</p>\n<p><strong>Pre-chorus:</strong><br />\nF/A &#8211; Bb<br />\nOur God<br />\nF/A &#8211; Bb &#8211; C  Dm  F/A<br />\nYou reign forever<br />\nF/A &#8211; Bb<br />\nOur hope<br />\nF/A &#8211; Bb &#8211; C  Dm  Eb<br />\nOur strong deliverer</p>\n<p><strong>Chorus:</strong><br />\nF                  F/A &#8211; Bb<br />\nYou are the everlasting God<br />\n           C &#8211; Dm<br />\nThe everlasting God</p>\n<p>You do not faint<br />\nF/A  Gm   Am   Bb  C<br />\nYou won&#8217;t grow weary<br />\nF                      F/A &#8211; Bb<br />\nYou&#8217;re the defender of the weak<br />\n                  C &#8211; Dm<br />\nYou comfort those in need</p>\n<p>You lift us up<br />\nF/A  Gm  Am   Bb  C<br />\nOn wings like eagles</p>\n<p><strong>Chorus 2:</strong><br />\nF                  F/A &#8211; Bb<br />\nYou are the everlasting God<br />\n           C &#8211; Dm<br />\nThe everlasting God<br />\nYou do not faint<br />\nF/A  Gm   Am   Bb  C<br />\nYou won&#8217;t grow weary<br />\nBb                     C &#8211; Dm<br />\nYou&#8217;re the defender of the weak<br />\n                  C &#8211; Bb<br />\nYou comfort those in need<br />\nYou lift us up<br />\nF/A  Gm  Am   Bb  C<br />\nOn wings like eagles</p>\n<p><strong>Interlude:</strong><br />\nF          F &#8211; Eb<br />\nEb &#8211; Dm    Dm &#8211; C#    Eb &#8211;</p>\n<p><strong>Bridge:</strong><br />\nF                           Eb<br />\nStrength will rise as we&#8217;re waiting<br />\n         Dm               C#                   Eb &#8211;<br />\nAs we&#8217;re waiting, as we&#8217;re waiting on the Lord</p>\n<p><strong>Pre-chorus 2:</strong><br />\nF/A &#8211; Bb<br />\nOur God<br />\nF/A &#8211; Bb &#8211; C  Dm  F/A<br />\nYou reign forever<br />\nF/A &#8211; Bb<br />\nOur hope<br />\nF/A &#8211; Bb &#8211; C  Dm  F/A<br />\nOur strong deliverer<br />\nF/A &#8211; Bb<br />\nOur God<br />\nF/A &#8211; Bb &#8211; C  Dm  F/A<br />\nYou reign forever<br />\nF/A &#8211; Gm<br />\nOur hope<br />\nF/A &#8211; Bb &#8211; C  Dm  Eb<br />\nOur strong deliverer</p>\n",
+    "songNumber": 42
   },
   {
     "title": "Lord, I Lift Your Name on High",
     "artist": "Selah",
     "key": "G",
-    "category": "Gate Song",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-7779",
     "id": "selah-7779",
@@ -67569,13 +67709,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG/B C D C</p>\n<p><strong>Verse:</strong><br />\nG/B     C                 D    C<br />\nLord, I lift Your name on high<br />\nG/B     C                 D       C<br />\nLord, I love to sing Your praises<br />\nG/B    C                 D    C<br />\nI&#8217;m so glad You&#8217;re in my life<br />\nG/B    C                D       C (- D)<br />\nI&#8217;m so glad You came to save us</p>\n<p><strong>Chorus:</strong><br />\nG             C         D        C        G<br />\nYou came from Heaven to earth to show the way<br />\n         C            D        C          G<br />\nFrom the earth to the cross my debt to pay<br />\n         C            D               Em7 &#8211; G/B    Am7<br />\nFrom the cross to the grave, from the grave to the sky<br />\n        Dsus      D          G/B  C  D  C<br />\nLord, I lift Your name on high<br />\n                  To Chorus: G  (C &#8211; D)</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG/B C D C</p>\n<p><strong>Verse:</strong><br />\nG/B     C                 D    C<br />\nLord, I lift Your name on high<br />\nG/B     C                 D       C<br />\nLord, I love to sing Your praises<br />\nG/B    C                 D    C<br />\nI&#8217;m so glad You&#8217;re in my life<br />\nG/B    C                D       C (- D)<br />\nI&#8217;m so glad You came to save us</p>\n<p><strong>Chorus:</strong><br />\nG             C         D        C        G<br />\nYou came from Heaven to earth to show the way<br />\n         C            D        C          G<br />\nFrom the earth to the cross my debt to pay<br />\n         C            D               Em7 &#8211; G/B    Am7<br />\nFrom the cross to the grave, from the grave to the sky<br />\n        Dsus      D          G/B  C  D  C<br />\nLord, I lift Your name on high<br />\n                  To Chorus: G  (C &#8211; D)</p>\n",
+    "songNumber": 142
   },
   {
     "title": "We Give You Glory (Version 2)",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-7757",
     "id": "selah-7757",
@@ -68126,13 +68267,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Verse 1:</strong><br />\n      F2                 EbM7<br />\nWe&#8217;re here to bless your name<br />\nBb               Dm7 &#8211; C<br />\nGathered as your family<br />\n   F2                EbM7<br />\nTo praise you and proclaim<br />\n     Bb               Dm7 &#8211; C &#8211; C7<br />\nYour faithfulness and mercy</p>\n<p><strong>Chorus:</strong><br />\n            Am7 &#8211; Dm7 &#8211; Gm7 &#8211; C7<br />\nWe give you glory<br />\n            Am7 &#8211; Dm7 &#8211; Gm7 &#8211; C7<br />\nWe give you honor<br />\n            F             Dm7<br />\nWe give you everything we are<br />\n             Gm7<br />\nLifting our hearts<br />\n             Gm7/C &#8211; C7  F     (Gm7/C &#8211; C/Bb)<br />\nAnd hands before You&#8230; Lord   (Repeat Chorus)</p>\n<p><strong>Verse 2:</strong><br />\n      F2                EbM7<br />\nWe&#8217;re here to seek your face<br />\n   Bb             Dm7 &#8211; C<br />\nTo gather in your presence<br />\n   F2             EbM7<br />\nTo celebrate your grace<br />\n   Bb                  Dm7 &#8211; C &#8211; C7<br />\nTo praise you for your blessing</p>\n<p><strong>Verse 3:</strong><br />\n         C        Gm7            C<br />\nThere is no other reason why we came<br />\n        Gm7  C       F<br />\nThan to glorify your name<br />\n            Bb Am7 Gm7 F  C<br />\nFor you are worthy to be praised<br />\n       Gm7           C<br />\nNow we offer up our lives<br />\n     Gm7     C    F<br />\nAs A living sacrifice<br />\n      Bb Am7 Gm7 F  C<br />\nHoly acceptable to you</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Verse 1:</strong><br />\n      F2                 EbM7<br />\nWe&#8217;re here to bless your name<br />\nBb               Dm7 &#8211; C<br />\nGathered as your family<br />\n   F2                EbM7<br />\nTo praise you and proclaim<br />\n     Bb               Dm7 &#8211; C &#8211; C7<br />\nYour faithfulness and mercy</p>\n<p><strong>Chorus:</strong><br />\n            Am7 &#8211; Dm7 &#8211; Gm7 &#8211; C7<br />\nWe give you glory<br />\n            Am7 &#8211; Dm7 &#8211; Gm7 &#8211; C7<br />\nWe give you honor<br />\n            F             Dm7<br />\nWe give you everything we are<br />\n             Gm7<br />\nLifting our hearts<br />\n             Gm7/C &#8211; C7  F     (Gm7/C &#8211; C/Bb)<br />\nAnd hands before You&#8230; Lord   (Repeat Chorus)</p>\n<p><strong>Verse 2:</strong><br />\n      F2                EbM7<br />\nWe&#8217;re here to seek your face<br />\n   Bb             Dm7 &#8211; C<br />\nTo gather in your presence<br />\n   F2             EbM7<br />\nTo celebrate your grace<br />\n   Bb                  Dm7 &#8211; C &#8211; C7<br />\nTo praise you for your blessing</p>\n<p><strong>Verse 3:</strong><br />\n         C        Gm7            C<br />\nThere is no other reason why we came<br />\n        Gm7  C       F<br />\nThan to glorify your name<br />\n            Bb Am7 Gm7 F  C<br />\nFor you are worthy to be praised<br />\n       Gm7           C<br />\nNow we offer up our lives<br />\n     Gm7     C    F<br />\nAs A living sacrifice<br />\n      Bb Am7 Gm7 F  C<br />\nHoly acceptable to you</p>\n",
+    "songNumber": 230
   },
   {
     "title": "I Surrender All",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-7729",
     "id": "selah-7729",
@@ -68961,13 +69103,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro</strong><br />\nG   C-G   D7<br />\nG   C-G   D7   G</p>\n<p><strong>Verse 1</strong></p>\n<p>G      C &#8211; G  D7<br />\nAll to Jesus I surrender<br />\nG      C &#8211; G  D7    G<br />\nAll to Him I freely give<br />\nG      C &#8211; G  D7<br />\nI will ever love and trust Him<br />\nG      C &#8211; G    D7    G<br />\nIn His presence daily live</p>\n<p><strong>Chorus</strong></p>\n<p>G           Am<br />\nI surrender all<br />\nD7          G<br />\nI surrender all<br />\nG      C &#8211; G    Em      C<br />\nAll to Thee, my blessed Savior<br />\nG    D7     G<br />\nI surrender all</p>\n<p><strong>Verse 2</strong></p>\n<p>G      C &#8211; G  D7<br />\nAll to Jesus I surrender<br />\nG      C &#8211; G  D7     G<br />\nHumbly at His feet I bow<br />\nG       C &#8211; G     D7<br />\nWorldly pleasures all forsaken<br />\nG        C &#8211; G  D7      G<br />\nTake me, Jesus, take me now</p>\n<p><strong>Verse 3</strong></p>\n<p>G      C &#8211; G  D7<br />\nAll to Jesus I surrender<br />\nG        C &#8211; G   D7     G<br />\nMake me, Savior, wholly Thine<br />\nG      C &#8211; G    D7<br />\nLet me feel the Holy Spirit<br />\nG     C &#8211; G     D7       G<br />\nTruly know that Thou art mine</p>\n<p><strong>Verse 4</strong></p>\n<p>G      C &#8211; G  D7<br />\nAll to Jesus I surrender<br />\nG       C &#8211; G  D7      G<br />\nLord, I give myself to Thee<br />\nG       C &#8211; G    D7<br />\nFill me with Thy love and power<br />\nG       C &#8211; G    D7      G<br />\nLet Thy blessing fall on me</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro</strong><br />\nG   C-G   D7<br />\nG   C-G   D7   G</p>\n<p><strong>Verse 1</strong></p>\n<p>G      C &#8211; G  D7<br />\nAll to Jesus I surrender<br />\nG      C &#8211; G  D7    G<br />\nAll to Him I freely give<br />\nG      C &#8211; G  D7<br />\nI will ever love and trust Him<br />\nG      C &#8211; G    D7    G<br />\nIn His presence daily live</p>\n<p><strong>Chorus</strong></p>\n<p>G           Am<br />\nI surrender all<br />\nD7          G<br />\nI surrender all<br />\nG      C &#8211; G    Em      C<br />\nAll to Thee, my blessed Savior<br />\nG    D7     G<br />\nI surrender all</p>\n<p><strong>Verse 2</strong></p>\n<p>G      C &#8211; G  D7<br />\nAll to Jesus I surrender<br />\nG      C &#8211; G  D7     G<br />\nHumbly at His feet I bow<br />\nG       C &#8211; G     D7<br />\nWorldly pleasures all forsaken<br />\nG        C &#8211; G  D7      G<br />\nTake me, Jesus, take me now</p>\n<p><strong>Verse 3</strong></p>\n<p>G      C &#8211; G  D7<br />\nAll to Jesus I surrender<br />\nG        C &#8211; G   D7     G<br />\nMake me, Savior, wholly Thine<br />\nG      C &#8211; G    D7<br />\nLet me feel the Holy Spirit<br />\nG     C &#8211; G     D7       G<br />\nTruly know that Thou art mine</p>\n<p><strong>Verse 4</strong></p>\n<p>G      C &#8211; G  D7<br />\nAll to Jesus I surrender<br />\nG       C &#8211; G  D7      G<br />\nLord, I give myself to Thee<br />\nG       C &#8211; G    D7<br />\nFill me with Thy love and power<br />\nG       C &#8211; G    D7      G<br />\nLet Thy blessing fall on me</p>\n",
+    "songNumber": 100
   },
   {
     "title": "Worthy Of It All",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-7702",
     "id": "selah-7702",
@@ -69222,14 +69365,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nG2 A, G2 A</p>\n<p><strong>Verse:</strong><br />\nG2                 A<br />\nAll the saints and angels<br />\nG2                   A<br />\nThey bow before Your throne<br />\nG2             A          D/F#<br />\nAll the elders cast their crowns<br />\n            G2     A       D<br />\nBefore the Lamb of God and sing</p>\n<p><strong>Chorus:</strong><br />\n                     D<br />\nYou’re worthy of it all<br />\n                     A<br />\nYou’re worthy of it all<br />\n             D/F# &#8211;  G                  Bm &#8211;    A<br />\nFor from You are all things, and to You are all things<br />\n                D<br />\nYou deserve the glory</p>\n<p><strong>Bridge:</strong><br />\nD                               F#m7<br />\nDay and night night and day let praises arise<br />\nBm7                             G2<br />\nDay and night night and day let praises arise<br />\nD/A                             A<br />\nDay and night night and day let praises arise<br />\nEm7                             G2<br />\nDay and night night and day let praises arise</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nG2 A, G2 A</p>\n<p><strong>Verse:</strong><br />\nG2                 A<br />\nAll the saints and angels<br />\nG2                   A<br />\nThey bow before Your throne<br />\nG2             A          D/F#<br />\nAll the elders cast their crowns<br />\n            G2     A       D<br />\nBefore the Lamb of God and sing</p>\n<p><strong>Chorus:</strong><br />\n                     D<br />\nYou’re worthy of it all<br />\n                     A<br />\nYou’re worthy of it all<br />\n             D/F# &#8211;  G                  Bm &#8211;    A<br />\nFor from You are all things, and to You are all things<br />\n                D<br />\nYou deserve the glory</p>\n<p><strong>Bridge:</strong><br />\nD                               F#m7<br />\nDay and night night and day let praises arise<br />\nBm7                             G2<br />\nDay and night night and day let praises arise<br />\nD/A                             A<br />\nDay and night night and day let praises arise<br />\nEm7                             G2<br />\nDay and night night and day let praises arise</p>\n",
+    "songNumber": 236
   },
   {
     "title": "Pagsamba",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-7696",
     "id": "selah-7696",
     "customSong": true,
@@ -69571,13 +69715,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Verse:</strong><br />\nG           Bm      C         D<br />\nAng aking papuri ay alay sa’Yo<br />\nG           Bm         C               D<br />\nAng aking pagsamba’y tanging laan sa’Yo</p>\n<p><strong>Pre-Chorus:</strong><br />\nC          G/B     C          G/B<br />\nKung aking iisipin, Iyong ginawa sa akin<br />\nAm          Bm         C         D<br />\nWalang makapipigil sa aking gagawin, na</p>\n<p><strong>Chorus 1:</strong><br />\n      G  Bm     C  D<br />\nPagsamba, pagsamba<br />\n      G  Bm     C  D<br />\nPagsamba, pagsamba</p>\n<p><strong>Chorus 2:</strong><br />\n        G  Bm       C  D<br />\nPurihin Ka, purihin Ka<br />\n        G  Bm       C  D<br />\nPurihin Ka, purihin Ka</p>\n<p><strong>Chorus 3:</strong><br />\n        Em  Bm       C  D<br />\nMahal Kita, mahal Kita<br />\n        Em  Bm       C  D<br />\nMahal Kita, mahal Kita</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Verse:</strong><br />\nG           Bm      C         D<br />\nAng aking papuri ay alay sa’Yo<br />\nG           Bm         C               D<br />\nAng aking pagsamba’y tanging laan sa’Yo</p>\n<p><strong>Pre-Chorus:</strong><br />\nC          G/B     C          G/B<br />\nKung aking iisipin, Iyong ginawa sa akin<br />\nAm          Bm         C         D<br />\nWalang makapipigil sa aking gagawin, na</p>\n<p><strong>Chorus 1:</strong><br />\n      G  Bm     C  D<br />\nPagsamba, pagsamba<br />\n      G  Bm     C  D<br />\nPagsamba, pagsamba</p>\n<p><strong>Chorus 2:</strong><br />\n        G  Bm       C  D<br />\nPurihin Ka, purihin Ka<br />\n        G  Bm       C  D<br />\nPurihin Ka, purihin Ka</p>\n<p><strong>Chorus 3:</strong><br />\n        Em  Bm       C  D<br />\nMahal Kita, mahal Kita<br />\n        Em  Bm       C  D<br />\nMahal Kita, mahal Kita</p>\n",
+    "songNumber": 173
   },
   {
     "title": "Sing for Joy",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-7665",
     "id": "selah-7665",
@@ -70138,13 +70283,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE A E B (x2)</p>\n<p><strong>Verse 1:</strong><br />\nE                A<br />\nIf we call to Him, He will answer us<br />\nE               B<br />\nIf we run to Him, He will run to us<br />\nE                   A<br />\nIf we lift our hands, He will lift us up<br />\nE                       B                 E-A E-A<br />\nCome now praise His name all ye saints of God</p>\n<p><strong>Chorus:</strong><br />\n  E        A<br />\nO sing for joy<br />\n   E       B<br />\nTo God our strength<br />\n  E        A<br />\nO sing for joy<br />\n   E       B             E-A E-A<br />\nTo God our strength, our strength</p>\n<p><strong>Verse 2:</strong><br />\nE               A<br />\nDraw near to Him, He is here with us<br />\nE                 B<br />\nGive Him your love, He&#8217;s in love with us<br />\nE                      A<br />\nHe will heal our hearts, He will cleanse our hands<br />\nE                    B                  E-A E-A<br />\nIf we rend our hearts, He will heal our land</p>\n<p><strong>Verse 1 (G):</strong><br />\nG                C<br />\nIf we call to Him, He will answer us<br />\nG               D<br />\nIf we run to Him, He will run to us<br />\nG                   C<br />\nIf we lift our hands, He will lift us up<br />\nG                       D                 G-C G-C<br />\nCome now praise His name all ye saints of God</p>\n<p><strong>Verse 2 (G):</strong><br />\nG               C<br />\nDraw near to Him, He is here with us<br />\nG                 D<br />\nGive Him your love, He&#8217;s in love with us<br />\nG                      C<br />\nHe will heal our hearts, He will cleanse our hands<br />\nG                    D                  G-C G-C<br />\nIf we rend our hearts, He will heal our land</p>\n<p><strong>Chorus (G):</strong><br />\n  G        C<br />\nO sing for joy<br />\n   G       D<br />\nTo God our strength<br />\n  G        C<br />\nO sing for joy<br />\n   G       D             G-C G-C<br />\nTo God our strength, our strength</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE A E B (x2)</p>\n<p><strong>Verse 1:</strong><br />\nE                A<br />\nIf we call to Him, He will answer us<br />\nE               B<br />\nIf we run to Him, He will run to us<br />\nE                   A<br />\nIf we lift our hands, He will lift us up<br />\nE                       B                 E-A E-A<br />\nCome now praise His name all ye saints of God</p>\n<p><strong>Chorus:</strong><br />\n  E        A<br />\nO sing for joy<br />\n   E       B<br />\nTo God our strength<br />\n  E        A<br />\nO sing for joy<br />\n   E       B             E-A E-A<br />\nTo God our strength, our strength</p>\n<p><strong>Verse 2:</strong><br />\nE               A<br />\nDraw near to Him, He is here with us<br />\nE                 B<br />\nGive Him your love, He&#8217;s in love with us<br />\nE                      A<br />\nHe will heal our hearts, He will cleanse our hands<br />\nE                    B                  E-A E-A<br />\nIf we rend our hearts, He will heal our land</p>\n<p><strong>Verse 1 (G):</strong><br />\nG                C<br />\nIf we call to Him, He will answer us<br />\nG               D<br />\nIf we run to Him, He will run to us<br />\nG                   C<br />\nIf we lift our hands, He will lift us up<br />\nG                       D                 G-C G-C<br />\nCome now praise His name all ye saints of God</p>\n<p><strong>Verse 2 (G):</strong><br />\nG               C<br />\nDraw near to Him, He is here with us<br />\nG                 D<br />\nGive Him your love, He&#8217;s in love with us<br />\nG                      C<br />\nHe will heal our hearts, He will cleanse our hands<br />\nG                    D                  G-C G-C<br />\nIf we rend our hearts, He will heal our land</p>\n<p><strong>Chorus (G):</strong><br />\n  G        C<br />\nO sing for joy<br />\n   G       D<br />\nTo God our strength<br />\n  G        C<br />\nO sing for joy<br />\n   G       D             G-C G-C<br />\nTo God our strength, our strength</p>\n",
+    "songNumber": 194
   },
   {
     "title": "God is Good (Chorus)",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-7644",
     "id": "selah-7644",
@@ -70475,13 +70621,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE  A    B</p>\n<p><strong>Chorus 1:</strong><br />\nE                   C#m<br />\nGod is good all the time<br />\n         A                      B<br />\nHe put a song of praise in this heart of mine<br />\nE                   C#m<br />\nGod is good all the time<br />\n            A                  B<br />\nThrough the darkest night, His light will shine<br />\n       A            B             E  A    B<br />\nGod is good, God is good, all the time</p>\n<p><strong>Chorus 2:</strong><br />\nE                   C#m<br />\nGod is good all the time<br />\n         A                      B<br />\nHe put a song of praise in this heart of mine<br />\nE                   C#m<br />\nGod is good all the time<br />\n            A                  B<br />\nThrough the darkest night, His light will shine<br />\n       A            B<br />\nGod is good, God is good<br />\n       A            B<br />\nGod is good, God is good<br />\n       F#m          B             E  A  E &#8211; B &#8211; E<br />\nGod is good, God is good, all the time</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE  A    B</p>\n<p><strong>Chorus 1:</strong><br />\nE                   C#m<br />\nGod is good all the time<br />\n         A                      B<br />\nHe put a song of praise in this heart of mine<br />\nE                   C#m<br />\nGod is good all the time<br />\n            A                  B<br />\nThrough the darkest night, His light will shine<br />\n       A            B             E  A    B<br />\nGod is good, God is good, all the time</p>\n<p><strong>Chorus 2:</strong><br />\nE                   C#m<br />\nGod is good all the time<br />\n         A                      B<br />\nHe put a song of praise in this heart of mine<br />\nE                   C#m<br />\nGod is good all the time<br />\n            A                  B<br />\nThrough the darkest night, His light will shine<br />\n       A            B<br />\nGod is good, God is good<br />\n       A            B<br />\nGod is good, God is good<br />\n       F#m          B             E  A  E &#8211; B &#8211; E<br />\nGod is good, God is good, all the time</p>\n",
+    "songNumber": 60
   },
   {
     "title": "For Unto Us A Child is Born / Open the Eyes of my Heart",
     "artist": "Selah",
     "key": "F",
-    "category": "Christmas Song",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-7611",
     "id": "selah-7611",
@@ -70860,13 +71007,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nF   Fsus   F<br />\nF   Fsus   Gm7/F</p>\n<p><strong>Verse:</strong><br />\nF        Bb/F          F<br />\nFor unto us a child is born<br />\n         Bb<br />\nA son is given<br />\n         Csus4<br />\nA son is given</p>\n<p><strong>Pre-Chorus:</strong><br />\n       Bb/D<br />\nThe Messiah<br />\n      C/E<br />\nOh to see Him</p>\n<p><strong>Chorus:</strong><br />\n           C               Dm<br />\nTo see Him high and lifted up<br />\nBb                           Csus<br />\nShining in the light of Your glory<br />\nC                       Dm<br />\nPour out Your power and love<br />\n           Gm7         Csus C<br />\nAs we sing holy, holy, holy</p>\n<p><strong>Bridge 1:</strong><br />\nBb<br />\nHoly, holy, holy<br />\nGm7<br />\nHoly, holy, holy<br />\nDm7<br />\nHoly, holy, holy<br />\nCsus<br />\nHoly, holy, holy</p>\n<p><strong>Bridge 2:</strong><br />\nF        Bb/F          F<br />\nFor unto us a child is born<br />\nBb          Csus4<br />\nHoly, holy, holy<br />\nF        Bb/F          F<br />\nFor unto us a child is born<br />\nBb          Csus4<br />\nHoly, holy, holy</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nF   Fsus   F<br />\nF   Fsus   Gm7/F</p>\n<p><strong>Verse:</strong><br />\nF        Bb/F          F<br />\nFor unto us a child is born<br />\n         Bb<br />\nA son is given<br />\n         Csus4<br />\nA son is given</p>\n<p><strong>Pre-Chorus:</strong><br />\n       Bb/D<br />\nThe Messiah<br />\n      C/E<br />\nOh to see Him</p>\n<p><strong>Chorus:</strong><br />\n           C               Dm<br />\nTo see Him high and lifted up<br />\nBb                           Csus<br />\nShining in the light of Your glory<br />\nC                       Dm<br />\nPour out Your power and love<br />\n           Gm7         Csus C<br />\nAs we sing holy, holy, holy</p>\n<p><strong>Bridge 1:</strong><br />\nBb<br />\nHoly, holy, holy<br />\nGm7<br />\nHoly, holy, holy<br />\nDm7<br />\nHoly, holy, holy<br />\nCsus<br />\nHoly, holy, holy</p>\n<p><strong>Bridge 2:</strong><br />\nF        Bb/F          F<br />\nFor unto us a child is born<br />\nBb          Csus4<br />\nHoly, holy, holy<br />\nF        Bb/F          F<br />\nFor unto us a child is born<br />\nBb          Csus4<br />\nHoly, holy, holy</p>\n",
+    "songNumber": 49
   },
   {
     "title": "Knowing You",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-7606",
     "id": "selah-7606",
@@ -71671,13 +71819,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro: </strong><br />\nF/A  F  C/E, F  G  C<br />\nF/A  F  C/E, F/A  F  C/E</p>\n<p><strong>Verse 1:</strong><br />\n      F/A   F   C/E             F   G  C<br />\nAll I once held dear, built my life upon<br />\n          F/A  F  C/E       Am     Gsus<br />\nAll this world reveres and wars to own<br />\n       F    G      C             F  G  C<br />\nAll I once thought gain I have counted loss<br />\n          Am  F     C/E    Am7       Gsus G<br />\nSpent and worthless now compared to this</p>\n<p> <strong>Chorus:</strong><br />\n        F  G   C      F  G       C<br />\nKnowing You,   Jesus,    knowing You<br />\n      Am     Em      F<br />\nThere is no greater thing<br />\n          C/E             F/A<br />\nYou&#8217;re my all, You&#8217;re the best<br />\n          C/G              F<br />\nYou&#8217;re my joy, my Righteousness<br />\n      C/E      F2/A   Gsus G<br />\nAnd I love You Lord</p>\n<p><strong>Interlude: </strong><br />\nF/A  F  C/E, F/A  F  C</p>\n<p><strong>Verse 2:</strong><br />\n        F/A    F   C/E       F   G   C<br />\nNow my heart&#8217;s desire is to know You more<br />\n       F/A  F  C/E       Am      Gsus<br />\nTo be found in You and known as Yours<br />\nC/E   F    G   C/E          F    G   C<br />\nTo possess by faith what I could not earn<br />\n     Am  F     C/E     Am7       Gsus G<br />\nAll surpassing gift of righteousness</p>\n<p><strong>Verse 3:</strong><br />\n       F/A  F   C/E          F  G  C<br />\nOh to know the power of Your risen life<br />\n       F/A  F  C/E      Am    Gsus<br />\nAnd to know You in Your suffering<br />\nC/E    F   G   C/E          F      G  C<br />\nTo become like You in Your death, my Lord<br />\n        Am  F   C/E     Am7   Gsus G<br />\nSo with You to live and never die.</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro: </strong><br />\nF/A  F  C/E, F  G  C<br />\nF/A  F  C/E, F/A  F  C/E</p>\n<p><strong>Verse 1:</strong><br />\n      F/A   F   C/E             F   G  C<br />\nAll I once held dear, built my life upon<br />\n          F/A  F  C/E       Am     Gsus<br />\nAll this world reveres and wars to own<br />\n       F    G      C             F  G  C<br />\nAll I once thought gain I have counted loss<br />\n          Am  F     C/E    Am7       Gsus G<br />\nSpent and worthless now compared to this</p>\n<p> <strong>Chorus:</strong><br />\n        F  G   C      F  G       C<br />\nKnowing You,   Jesus,    knowing You<br />\n      Am     Em      F<br />\nThere is no greater thing<br />\n          C/E             F/A<br />\nYou&#8217;re my all, You&#8217;re the best<br />\n          C/G              F<br />\nYou&#8217;re my joy, my Righteousness<br />\n      C/E      F2/A   Gsus G<br />\nAnd I love You Lord</p>\n<p><strong>Interlude: </strong><br />\nF/A  F  C/E, F/A  F  C</p>\n<p><strong>Verse 2:</strong><br />\n        F/A    F   C/E       F   G   C<br />\nNow my heart&#8217;s desire is to know You more<br />\n       F/A  F  C/E       Am      Gsus<br />\nTo be found in You and known as Yours<br />\nC/E   F    G   C/E          F    G   C<br />\nTo possess by faith what I could not earn<br />\n     Am  F     C/E     Am7       Gsus G<br />\nAll surpassing gift of righteousness</p>\n<p><strong>Verse 3:</strong><br />\n       F/A  F   C/E          F  G  C<br />\nOh to know the power of Your risen life<br />\n       F/A  F  C/E      Am    Gsus<br />\nAnd to know You in Your suffering<br />\nC/E    F   G   C/E          F      G  C<br />\nTo become like You in Your death, my Lord<br />\n        Am  F   C/E     Am7   Gsus G<br />\nSo with You to live and never die.</p>\n",
+    "songNumber": 136
   },
   {
     "title": "Hesus sa buhay ko",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-7454",
     "id": "selah-7454",
@@ -72148,13 +72297,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG D Em C (2x)</p>\n<p><strong>Verse:</strong><br />\n G       D              Em<br />\nSa bawat umagang kay ganda<br />\n             C        G<br />\nSimulang magpuri sa Kanya<br />\n            D        Em   C<br />\nItaas ang kamay at umawit na<br />\n G       D             Em<br />\nSa bawat araw na dumaraan<br />\n       C               G<br />\nPanginoon, Ikaw ang dahilan<br />\n              D       Em     C<br />\nSa lahat ng ligaya at bawat ngiti</p>\n<p><strong>Pre-Koro:</strong><br />\n  Em     D           C<br />\nMula sa labi kong nagpupuri<br />\n  Em     D           C<br />\nMula sa labi kong nagpupuri</p>\n<p><strong>Chorus:</strong><br />\n G        D           Em<br />\nHesus sa buhay ko Ikaw<br />\n          C<br />\nAng nagbigay ng kulay<br />\n  G       D            C<br />\nWala sa Iyong makapapantay<br />\n  G       D            Em<br />\nHesus sa buhay ko Ika’y<br />\n         C<br />\nKumilos at gumabay<br />\n  G      D             C    G (break)  Em (break)<br />\nWala sa Iyong makapapantay</p>\n<p><strong>Coda:</strong><br />\n  G       D<br />\nSalamat, salamat<br />\n  Em         C<br />\nSa &#8216;Yong ginawa<br />\n  G         D        C<br />\nSalamat sa &#8216;Yong ginawa</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG D Em C (2x)</p>\n<p><strong>Verse:</strong><br />\n G       D              Em<br />\nSa bawat umagang kay ganda<br />\n             C        G<br />\nSimulang magpuri sa Kanya<br />\n            D        Em   C<br />\nItaas ang kamay at umawit na<br />\n G       D             Em<br />\nSa bawat araw na dumaraan<br />\n       C               G<br />\nPanginoon, Ikaw ang dahilan<br />\n              D       Em     C<br />\nSa lahat ng ligaya at bawat ngiti</p>\n<p><strong>Pre-Koro:</strong><br />\n  Em     D           C<br />\nMula sa labi kong nagpupuri<br />\n  Em     D           C<br />\nMula sa labi kong nagpupuri</p>\n<p><strong>Chorus:</strong><br />\n G        D           Em<br />\nHesus sa buhay ko Ikaw<br />\n          C<br />\nAng nagbigay ng kulay<br />\n  G       D            C<br />\nWala sa Iyong makapapantay<br />\n  G       D            Em<br />\nHesus sa buhay ko Ika’y<br />\n         C<br />\nKumilos at gumabay<br />\n  G      D             C    G (break)  Em (break)<br />\nWala sa Iyong makapapantay</p>\n<p><strong>Coda:</strong><br />\n  G       D<br />\nSalamat, salamat<br />\n  Em         C<br />\nSa &#8216;Yong ginawa<br />\n  G         D        C<br />\nSalamat sa &#8216;Yong ginawa</p>\n",
+    "songNumber": 72
   },
   {
     "title": "Love Came Down",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-7329",
     "id": "selah-7329",
@@ -72740,13 +72890,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse 1:</strong></p>\n<p>D                 A<br />\nEverybody&#8217;s got a story<br />\nF#m               G<br />\nEverybody&#8217;s got a song<br />\nD                   A<br />\nEveryone&#8217;s a little different<br />\nF#m                G<br />\nBut we&#8217;ve all gone wrong<br />\n           D                     A<br />\nThen the Savior came and He took the blame<br />\n           G<br />\nHe changed everything<br />\n          D                     A<br />\nAnd the Savior came and He took the blame<br />\n           G<br />\nIt changed everything</p>\n<p><strong>Chorus:</strong></p>\n<p>(G)<br />\n(Now I can sing)<br />\nD                  A<br />\nI could sing about His forgiveness<br />\nEm7                       G<br />\nI can praise Him &#8217;til the sun goes down<br />\nD              A<br />\nI can say that I am a witness<br />\nEm7                  G<br />\nI was there when His love came down<br />\nD         A          Em7<br />\nLove came down on me<br />\n      G                        D<br />\nI was there when His love came down<br />\n          A          Em7     G<br />\nLove came down on me</p>\n<p><strong>Verse 2:</strong></p>\n<p>D                     A<br />\nLove broke through my darkness<br />\nF#m                 G<br />\nNow I can finally see<br />\nD                     A<br />\nHe paid the price for my freedom<br />\nF#m                G<br />\nNo more chains on me<br />\n             D                     A<br />\n&#8216;Cause the Savior came and He took the blame<br />\n           G<br />\nIt changed everything<br />\n          D                     A<br />\nAnd the Savior came and He took the blame,<br />\n           G<br />\nIt changed everything (Oh, it changed everything)</p>\n<p><strong>Bridge:</strong></p>\n<p>      (G)                      D<br />\nI was there when His love came down<br />\n          A          Em7     G<br />\nLove came down on me</p>\n<p><strong>Ending:</strong><br />\n           D                     A<br />\nThen the Savior came and He took the blame<br />\n           G<br />\nHe changed everything (changed my heart and changed my mind)<br />\n          D                     A<br />\nAnd the Savior came and He took the blame<br />\n           G<br />\nIt changed every (little) thing<br />\n          D                     A<br />\nAnd the Savior came and He took the blame<br />\n           G<br />\nIt changed everything</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse 1:</strong></p>\n<p>D                 A<br />\nEverybody&#8217;s got a story<br />\nF#m               G<br />\nEverybody&#8217;s got a song<br />\nD                   A<br />\nEveryone&#8217;s a little different<br />\nF#m                G<br />\nBut we&#8217;ve all gone wrong<br />\n           D                     A<br />\nThen the Savior came and He took the blame<br />\n           G<br />\nHe changed everything<br />\n          D                     A<br />\nAnd the Savior came and He took the blame<br />\n           G<br />\nIt changed everything</p>\n<p><strong>Chorus:</strong></p>\n<p>(G)<br />\n(Now I can sing)<br />\nD                  A<br />\nI could sing about His forgiveness<br />\nEm7                       G<br />\nI can praise Him &#8217;til the sun goes down<br />\nD              A<br />\nI can say that I am a witness<br />\nEm7                  G<br />\nI was there when His love came down<br />\nD         A          Em7<br />\nLove came down on me<br />\n      G                        D<br />\nI was there when His love came down<br />\n          A          Em7     G<br />\nLove came down on me</p>\n<p><strong>Verse 2:</strong></p>\n<p>D                     A<br />\nLove broke through my darkness<br />\nF#m                 G<br />\nNow I can finally see<br />\nD                     A<br />\nHe paid the price for my freedom<br />\nF#m                G<br />\nNo more chains on me<br />\n             D                     A<br />\n&#8216;Cause the Savior came and He took the blame<br />\n           G<br />\nIt changed everything<br />\n          D                     A<br />\nAnd the Savior came and He took the blame,<br />\n           G<br />\nIt changed everything (Oh, it changed everything)</p>\n<p><strong>Bridge:</strong></p>\n<p>      (G)                      D<br />\nI was there when His love came down<br />\n          A          Em7     G<br />\nLove came down on me</p>\n<p><strong>Ending:</strong><br />\n           D                     A<br />\nThen the Savior came and He took the blame<br />\n           G<br />\nHe changed everything (changed my heart and changed my mind)<br />\n          D                     A<br />\nAnd the Savior came and He took the blame<br />\n           G<br />\nIt changed every (little) thing<br />\n          D                     A<br />\nAnd the Savior came and He took the blame<br />\n           G<br />\nIt changed everything</p>\n",
+    "songNumber": 143
   },
   {
     "title": "How Good It Is",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-1019",
     "id": "selah-1019",
@@ -73166,13 +73317,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nF  D#/F  F  D#/F<br />\nF  D#/F  F  C</p>\n<p><strong>Verse:</strong><br />\n(C7)        F<br />\nHow good it is<br />\n        Bb/F             F (Fsus-F)  C7<br />\nTo give thanks unto the Lord<br />\n            F<br />\nHow good it is<br />\n        Dm              Gm   C7<br />\nTo give thanks unto our God<br />\n       Gm               C      &#8211; /Db<br />\nFor He heals the broken hearted<br />\nDm         C   &#8211; Bb        Am<br />\nBinding up their wounds<br />\n      Gm      C              F<br />\nIt is good to bless His Holy Name<br />\n           D#/F       F<br />\n(I&#8217;m gonna bless His Name)</p>\n<p><strong>Chorus:</strong><br />\n            C (Csus-C)<br />\nAnd we give thanks<br />\n         Bb &#8211; F<br />\nUnto our Savior<br />\n           C<br />\nAnd with a heart of gratitude<br />\n            F (Fsus-F)<br />\nWe give Him praise<br />\n          C<br />\nHis mercy shall<br />\n          Dm<br />\nEndure forever<br />\n    Gm<br />\nAnd I will worship Him<br />\n          C &#8211; C &#8211; C<br />\nAll of my days</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nF  D#/F  F  D#/F<br />\nF  D#/F  F  C</p>\n<p><strong>Verse:</strong><br />\n(C7)        F<br />\nHow good it is<br />\n        Bb/F             F (Fsus-F)  C7<br />\nTo give thanks unto the Lord<br />\n            F<br />\nHow good it is<br />\n        Dm              Gm   C7<br />\nTo give thanks unto our God<br />\n       Gm               C      &#8211; /Db<br />\nFor He heals the broken hearted<br />\nDm         C   &#8211; Bb        Am<br />\nBinding up their wounds<br />\n      Gm      C              F<br />\nIt is good to bless His Holy Name<br />\n           D#/F       F<br />\n(I&#8217;m gonna bless His Name)</p>\n<p><strong>Chorus:</strong><br />\n            C (Csus-C)<br />\nAnd we give thanks<br />\n         Bb &#8211; F<br />\nUnto our Savior<br />\n           C<br />\nAnd with a heart of gratitude<br />\n            F (Fsus-F)<br />\nWe give Him praise<br />\n          C<br />\nHis mercy shall<br />\n          Dm<br />\nEndure forever<br />\n    Gm<br />\nAnd I will worship Him<br />\n          C &#8211; C &#8211; C<br />\nAll of my days</p>\n",
+    "songNumber": 81
   },
   {
     "title": "The Name of the Lord",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-6400",
     "id": "selah-6400",
@@ -73649,13 +73801,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\n G<br />\nBlessed be the Name of the Lord<br />\n C/G                            D/G<br />\nBlessed be the Name of the Lord<br />\n G             G/B         C<br />\nBlessed be the Name of the Lord<br />\n  Am7   D   Dsus D Gsus/D<br />\nThe Most High.</p>\n<p> G                              G/B<br />\nBlessed be the Name of the Lord<br />\n C                              D/C<br />\nBlessed be the Name of the Lord<br />\n G/B            G7         C<br />\nBlessed be the Name of the Lord<br />\n  Am7/D G   F/G C/G<br />\nThe Most High.</p>\n<p><strong>Chorus:</strong><br />\n                 G     C/G<br />\nThe Name of the Lord is<br />\nAm/G     G     Am/G G<br />\na strong tower<br />\n                  D<br />\nThe righteous run into it<br />\n     C/D     G     Am/G<br />\nand they are saved.</p>\n<p>G                       C/G<br />\nThe Name of the Lord is<br />\nAm/G     G     Am/G G<br />\na strong tower<br />\n                  D<br />\nThe righteous run into it<br />\n     Am/D G/D D7 G     F/G C/G G Am/G<br />\nand they are saved.</p>\n<p><strong>Verse:</strong><br />\nHoly is the name of the Lord<br />\nHoly is the name of the Lord<br />\nHoly is the name of the Lord Most High</p>\n<p>Holy is the name of the Lord<br />\nHoly is the name of the Lord<br />\nHoly is the name of the Lord Most High</p>\n<p><strong>Verse:</strong><br />\nGlory to the name of the Lord<br />\nGlory to the name of the Lord<br />\nGlory to the name of the Lord Most High </p>\n<p>Glory to the name of the Lord<br />\nGlory to the name of the Lord<br />\nGlory to the name of the Lord Most High</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\n G<br />\nBlessed be the Name of the Lord<br />\n C/G                            D/G<br />\nBlessed be the Name of the Lord<br />\n G             G/B         C<br />\nBlessed be the Name of the Lord<br />\n  Am7   D   Dsus D Gsus/D<br />\nThe Most High.</p>\n<p> G                              G/B<br />\nBlessed be the Name of the Lord<br />\n C                              D/C<br />\nBlessed be the Name of the Lord<br />\n G/B            G7         C<br />\nBlessed be the Name of the Lord<br />\n  Am7/D G   F/G C/G<br />\nThe Most High.</p>\n<p><strong>Chorus:</strong><br />\n                 G     C/G<br />\nThe Name of the Lord is<br />\nAm/G     G     Am/G G<br />\na strong tower<br />\n                  D<br />\nThe righteous run into it<br />\n     C/D     G     Am/G<br />\nand they are saved.</p>\n<p>G                       C/G<br />\nThe Name of the Lord is<br />\nAm/G     G     Am/G G<br />\na strong tower<br />\n                  D<br />\nThe righteous run into it<br />\n     Am/D G/D D7 G     F/G C/G G Am/G<br />\nand they are saved.</p>\n<p><strong>Verse:</strong><br />\nHoly is the name of the Lord<br />\nHoly is the name of the Lord<br />\nHoly is the name of the Lord Most High</p>\n<p>Holy is the name of the Lord<br />\nHoly is the name of the Lord<br />\nHoly is the name of the Lord Most High</p>\n<p><strong>Verse:</strong><br />\nGlory to the name of the Lord<br />\nGlory to the name of the Lord<br />\nGlory to the name of the Lord Most High </p>\n<p>Glory to the name of the Lord<br />\nGlory to the name of the Lord<br />\nGlory to the name of the Lord Most High</p>\n",
+    "songNumber": 207
   },
   {
     "title": "King-Priest",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-5823",
     "id": "selah-5823",
@@ -74068,13 +74221,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong><br />\n<strong>Intro:</strong> G D/F# Em9 -/D C9</p>\n<p><strong>Verse:</strong><br />\nG           /B                 C9<br />\nYou our King,died for us<br />\n         G/D                  Em9<br />\nNo other love is greater than Yours<br />\n  G/D                         C9    Dsus<br />\nLove You showed through the cross </p>\n<p>G                    /B                     C9<br />\nOur High Priest, shed blood for our sins<br />\n                    G/D           Em9<br />\nThrough Your death, God&#8217;s grace abounds<br />\n    G/D              C9         G/D<br />\nNow we can enter Most Holy Place </p>\n<p><strong>Bridge:</strong><br />\nC9                      G/B<br />\nThrough Your cross, the veil was torn<br />\n  Am7             G/B                 C9        Dsus<br />\nBecause You live, we can approach the Father&#8217;s throne </p>\n<p><strong>Chorus:</strong><br />\n    G            D/F#<br />\nO blessed be the Lord<br />\n  Em9          Dsus<br />\nRedeemer of my soul<br />\nC9             G/B<br />\nKing of kings, Son of God<br />\nAm7                Dsus<br />\nSaviour and hope of all </p>\n<p>   G             D/F#<br />\nO blessed be the Lord<br />\n    Em9           Dsus<br />\nThe rock of my salvation<br />\nC9                 G/B<br />\nGreat High Priest, Mighty God<br />\nAm7<br />\nThe hope of all nation<br />\nDsus               G<br />\nI will bless Your name</p>\n<p><strong>Turn Around:</strong><br />\nAm7                  G/B<br />\nThe hope of all nation<br />\n    C9               G/B<br />\nThe hope of all nation<br />\n    Am7<br />\nThe hope of all nation<br />\nDsus               G<br />\nI will bless Your name</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong><br />\n<strong>Intro:</strong> G D/F# Em9 -/D C9</p>\n<p><strong>Verse:</strong><br />\nG           /B                 C9<br />\nYou our King,died for us<br />\n         G/D                  Em9<br />\nNo other love is greater than Yours<br />\n  G/D                         C9    Dsus<br />\nLove You showed through the cross </p>\n<p>G                    /B                     C9<br />\nOur High Priest, shed blood for our sins<br />\n                    G/D           Em9<br />\nThrough Your death, God&#8217;s grace abounds<br />\n    G/D              C9         G/D<br />\nNow we can enter Most Holy Place </p>\n<p><strong>Bridge:</strong><br />\nC9                      G/B<br />\nThrough Your cross, the veil was torn<br />\n  Am7             G/B                 C9        Dsus<br />\nBecause You live, we can approach the Father&#8217;s throne </p>\n<p><strong>Chorus:</strong><br />\n    G            D/F#<br />\nO blessed be the Lord<br />\n  Em9          Dsus<br />\nRedeemer of my soul<br />\nC9             G/B<br />\nKing of kings, Son of God<br />\nAm7                Dsus<br />\nSaviour and hope of all </p>\n<p>   G             D/F#<br />\nO blessed be the Lord<br />\n    Em9           Dsus<br />\nThe rock of my salvation<br />\nC9                 G/B<br />\nGreat High Priest, Mighty God<br />\nAm7<br />\nThe hope of all nation<br />\nDsus               G<br />\nI will bless Your name</p>\n<p><strong>Turn Around:</strong><br />\nAm7                  G/B<br />\nThe hope of all nation<br />\n    C9               G/B<br />\nThe hope of all nation<br />\n    Am7<br />\nThe hope of all nation<br />\nDsus               G<br />\nI will bless Your name</p>\n",
+    "songNumber": 135
   },
   {
     "title": "Ang Mananakay Sa Mga Ulap",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-5801",
     "id": "selah-5801",
@@ -74548,13 +74702,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong><br />\n<strong>Intro:</strong> A &#8211; Asus (Capo on 1st Fret)</p>\n<p><strong>Verse 1:</strong><br />\nA                      D<br />\nTayo nang magpuri sa Panginoon<br />\nA<br />\nItaas ang Ngalan Niya<br />\n   D<br />\nIbigay ang kaluwalhatian</p>\n<p><strong>Verse 2:</strong><br />\nA                       D<br />\nTayo nang magpuri sa Panginoon<br />\nA<br />\nSambahin ang Ngalan Niya<br />\n   D               E<br />\nIbigay ang karangalan</p>\n<p><strong>Chorus:</strong><br />\nA (Break)              D                  E<br />\nSiya si Hesus, Ang Mananakay sa mga ulap<br />\nA                          D                    E<br />\nDumarating na taglay ang dakilang kapangyarihan<br />\nA                       D                      E<br />\nAting kat&#8217;wang taglay babaguhin sa isang iglap<br />\nA                         D<br />\nUpang makasama Siya sa Kanyang kaharian<br />\nF#m        E    D<br />\nPurihin natin Siya<br />\nF#m          E     D<br />\nItaas ang Kanyang Ngalan<br />\nF#m               E   D<br />\nIbigay ang kaluwalhatian<br />\nBm7        E          A   (To Chorus: D E / To Verse 1 or Bridge: A)<br />\nSa ating Diyos na dakila</p>\n<p><strong>Bridge:</strong><br />\n D                    E<br />\nGagapiin Niya ang Kanyang mga kaaway<br />\n D                      E<br />\nAt ililigtas ang sa Kanya’y naghihintay<br />\n D                  E                F#m &#8211; E<br />\nPupurihin Siya ng lahat ng mga bansa<br />\n D                          Bm7           E<br />\nPinagpala ang dumarating sa Ngalan ng Panginoon</p>\n<p><strong>Turn Around:</strong> A<br />\nA                      D<br />\nTayo nang magpuri sa Panginoon (2x)<br />\nA            D         E    A<br />\nTayo nang magpuri sa Panginoon</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong><br />\n<strong>Intro:</strong> A &#8211; Asus (Capo on 1st Fret)</p>\n<p><strong>Verse 1:</strong><br />\nA                      D<br />\nTayo nang magpuri sa Panginoon<br />\nA<br />\nItaas ang Ngalan Niya<br />\n   D<br />\nIbigay ang kaluwalhatian</p>\n<p><strong>Verse 2:</strong><br />\nA                       D<br />\nTayo nang magpuri sa Panginoon<br />\nA<br />\nSambahin ang Ngalan Niya<br />\n   D               E<br />\nIbigay ang karangalan</p>\n<p><strong>Chorus:</strong><br />\nA (Break)              D                  E<br />\nSiya si Hesus, Ang Mananakay sa mga ulap<br />\nA                          D                    E<br />\nDumarating na taglay ang dakilang kapangyarihan<br />\nA                       D                      E<br />\nAting kat&#8217;wang taglay babaguhin sa isang iglap<br />\nA                         D<br />\nUpang makasama Siya sa Kanyang kaharian<br />\nF#m        E    D<br />\nPurihin natin Siya<br />\nF#m          E     D<br />\nItaas ang Kanyang Ngalan<br />\nF#m               E   D<br />\nIbigay ang kaluwalhatian<br />\nBm7        E          A   (To Chorus: D E / To Verse 1 or Bridge: A)<br />\nSa ating Diyos na dakila</p>\n<p><strong>Bridge:</strong><br />\n D                    E<br />\nGagapiin Niya ang Kanyang mga kaaway<br />\n D                      E<br />\nAt ililigtas ang sa Kanya’y naghihintay<br />\n D                  E                F#m &#8211; E<br />\nPupurihin Siya ng lahat ng mga bansa<br />\n D                          Bm7           E<br />\nPinagpala ang dumarating sa Ngalan ng Panginoon</p>\n<p><strong>Turn Around:</strong> A<br />\nA                      D<br />\nTayo nang magpuri sa Panginoon (2x)<br />\nA            D         E    A<br />\nTayo nang magpuri sa Panginoon</p>\n",
+    "songNumber": 10
   },
   {
     "title": "Alipin",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-5797",
     "id": "selah-5797",
@@ -74959,13 +75114,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong><br />\n<strong>Intro:</strong> E &#8211; E/A</p>\n<p><strong>Verse:</strong><br />\n  E         C#m7<br />\nO Diyos, na aking sandigan<br />\n  A          E/G#          F#m       Bsus<br />\nKatiyakan sa buhay, sa &#8216;Yo lang natagpuan</p>\n<p>   E -/Eb C#m7            E/G#<br />\nPanginoon, aking kaligtasan<br />\n   A     E/G#  F#m   B    E  B/A<br />\nSa &#8216;Yo ang buhay ko&#8217;y ilalaan</p>\n<p><strong>CHORUS:</strong><br />\nG#m7            C#m7<br />\nO Diyos, tunay Kang mapagkalinga<br />\n   F#m                    A        B  B/A<br />\nDi man karapat-dapat, pag-ibig Mo&#8217;y nadama</p>\n<p>G#m7        C#m7<br />\nO Diyos, maglilingkod sa &#8216;Yo<br />\n  F#m                 A     Bsus      E<br />\nBuhay ko ma&#8217;y iaalay,   ako ay alipin Mo</p>\n<p><strong>BRIDGE:</strong><br />\nA            G#m7<br />\nAko&#8217;y sa &#8216;Yo,     sa Iyo lamang<br />\n  F#m              Bsus          B/C#   C#/B<br />\nBuhay ko&#8217;y sa &#8216;Yo ilalaan    (ilalaan)</p>\n<p><strong>Turn Around:</strong><br />\n G#m                   B    B/C#      Eb7 /C#  B B/Bb<br />\nBuhay ko ma&#8217;y iaalay,   ako ay alipin Mo (2x)<br />\n G#m                   B    B/C#      F#<br />\nBuhay ko ma&#8217;y iaalay,   ako ay alipin Mo</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong><br />\n<strong>Intro:</strong> E &#8211; E/A</p>\n<p><strong>Verse:</strong><br />\n  E         C#m7<br />\nO Diyos, na aking sandigan<br />\n  A          E/G#          F#m       Bsus<br />\nKatiyakan sa buhay, sa &#8216;Yo lang natagpuan</p>\n<p>   E -/Eb C#m7            E/G#<br />\nPanginoon, aking kaligtasan<br />\n   A     E/G#  F#m   B    E  B/A<br />\nSa &#8216;Yo ang buhay ko&#8217;y ilalaan</p>\n<p><strong>CHORUS:</strong><br />\nG#m7            C#m7<br />\nO Diyos, tunay Kang mapagkalinga<br />\n   F#m                    A        B  B/A<br />\nDi man karapat-dapat, pag-ibig Mo&#8217;y nadama</p>\n<p>G#m7        C#m7<br />\nO Diyos, maglilingkod sa &#8216;Yo<br />\n  F#m                 A     Bsus      E<br />\nBuhay ko ma&#8217;y iaalay,   ako ay alipin Mo</p>\n<p><strong>BRIDGE:</strong><br />\nA            G#m7<br />\nAko&#8217;y sa &#8216;Yo,     sa Iyo lamang<br />\n  F#m              Bsus          B/C#   C#/B<br />\nBuhay ko&#8217;y sa &#8216;Yo ilalaan    (ilalaan)</p>\n<p><strong>Turn Around:</strong><br />\n G#m                   B    B/C#      Eb7 /C#  B B/Bb<br />\nBuhay ko ma&#8217;y iaalay,   ako ay alipin Mo (2x)<br />\n G#m                   B    B/C#      F#<br />\nBuhay ko ma&#8217;y iaalay,   ako ay alipin Mo</p>\n",
+    "songNumber": 4
   },
   {
     "title": "Dahil Sa Iyong Kabutihan",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-5787",
     "id": "selah-5787",
@@ -75459,14 +75615,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong><br />\n<strong>Intro:</strong> F Em9 Bb G</p>\n<p><strong>Verse:</strong><br />\nC         C/E         F                                D   D/F#   G<br />\nWala nang ibang dahilan<br />\n       C             C/E   F  G/F                      D   D/F#   G<br />\nKaya&#8217;t sa &#8216;Yo ako&#8217;y sumasamba<br />\n              Em9         Am7 &#8211; Am7/G                  F#m7    Bm7 &#8211; /A<br />\nKung di ang ’Yong kabutihan<br />\n     F              F/G                                G       G/A<br />\nNa sa &#8216;kin ay pinadama</p>\n<p><strong>CHORUS:</strong><br />\n                  F               F/G       G/F        GM7    G/A   A/G<br />\nKaya&#8217;t ang aking puso&#8217;y tigib ng pasasalamat<br />\n   Em9                 Am7     /G                      F#m7   Bm7   /A<br />\nLaman ng damdamin ay sinisiwalat<br />\n   F                      Em9 Am7                      G      D/F# Bm7<br />\nPapuri&#8217;t, paggalang, parangal ay sa &#8216;Yo<br />\n         Bb             Gsus-G              C          C9     A7sus  D2<br />\nO Diyos ako ay yuyukod      sa pagsamba sa &#8216;Yo         </p>\n<p><strong>Turn Around:</strong><br />\n        F            C/E                               G    D/F#<br />\nO Diyos ako ay yuyukod<br />\n Dm7             C/E                                   Em9      D/F#<br />\nAko ay yuyukod<br />\n         Bb            Gsus-G               C          C9     A7sus<br />\nO Diyos ako ay yuyukod      sa pagsamba sa &#8216;Yo         </p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong><br />\n<strong>Intro:</strong> F Em9 Bb G</p>\n<p><strong>Verse:</strong><br />\nC         C/E         F                                D   D/F#   G<br />\nWala nang ibang dahilan<br />\n       C             C/E   F  G/F                      D   D/F#   G<br />\nKaya&#8217;t sa &#8216;Yo ako&#8217;y sumasamba<br />\n              Em9         Am7 &#8211; Am7/G                  F#m7    Bm7 &#8211; /A<br />\nKung di ang ’Yong kabutihan<br />\n     F              F/G                                G       G/A<br />\nNa sa &#8216;kin ay pinadama</p>\n<p><strong>CHORUS:</strong><br />\n                  F               F/G       G/F        GM7    G/A   A/G<br />\nKaya&#8217;t ang aking puso&#8217;y tigib ng pasasalamat<br />\n   Em9                 Am7     /G                      F#m7   Bm7   /A<br />\nLaman ng damdamin ay sinisiwalat<br />\n   F                      Em9 Am7                      G      D/F# Bm7<br />\nPapuri&#8217;t, paggalang, parangal ay sa &#8216;Yo<br />\n         Bb             Gsus-G              C          C9     A7sus  D2<br />\nO Diyos ako ay yuyukod      sa pagsamba sa &#8216;Yo         </p>\n<p><strong>Turn Around:</strong><br />\n        F            C/E                               G    D/F#<br />\nO Diyos ako ay yuyukod<br />\n Dm7             C/E                                   Em9      D/F#<br />\nAko ay yuyukod<br />\n         Bb            Gsus-G               C          C9     A7sus<br />\nO Diyos ako ay yuyukod      sa pagsamba sa &#8216;Yo         </p>\n",
+    "songNumber": 32
   },
   {
     "title": "Joy to the World (Joyful, Joyful)",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
-    "language": "",
+    "category": "Praise",
+    "language": "English",
     "file": "custom-song.html?id=selah-5728",
     "id": "selah-5728",
     "customSong": true,
@@ -76066,14 +76223,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG   C</p>\n<p><strong>Verse 1:</strong><br />\nG<br />\nJoy to the world the Lord is come<br />\n      C     D         Em<br />\nLet earth receive her King<br />\n      G<br />\nLet every heart prepare Him room<br />\n      Em<br />\nAnd heaven and nature sing<br />\n      D<br />\nAnd heaven and nature sing<br />\n      C         Em         D     G<br />\nAnd heaven and heaven and nature sing<br />\n                    C                 G<br />\nWe will sing, sing, sing, joy to the world!<br />\n                    C<br />\nWe will sing, sing, sing</p>\n<p><strong>Verse 2:</strong><br />\nG<br />\nJoy to the world the Savior reigns<br />\n    C         D       Em<br />\nLet men their songs employ<br />\n       G<br />\nWhile fields and floods, rocks, hills and plains<br />\n   Em<br />\nRepeat the sounding joy<br />\n   D<br />\nRepeat the sounding joy<br />\n   C      Em         D       G<br />\nRepeat, repeat the sounding joy<br />\n                    C                 G<br />\nWe will sing, sing, sing, joy to the world!<br />\n                    C<br />\nWe will sing, sing, sing</p>\n<p><strong>Verse 3:</strong><br />\nG<br />\nHe rules the world with truth and grace<br />\n     C        D        Em<br />\nAnd makes the nations prove<br />\n    G<br />\nThe glories of His righteousness<br />\n       Em<br />\nAnd wonders of His love<br />\n       D<br />\nAnd wonders of His love<br />\n       C      Em     D      G<br />\nAnd wonders, wonders of His love<br />\n                    C                 G<br />\nWe will sing, sing, sing, joy to the world!<br />\n                    C<br />\nWe will sing, sing, sing</p>\n<p><strong>Chorus 2:</strong><br />\nG<br />\nJoyful, joyful we adore Thee<br />\nC<br />\nGod of Glory, Lord of love<br />\nG<br />\nHearts unfold like flowers before Thee<br />\nC<br />\nOpening to the sun above</p>\n<p>Em             G/B<br />\nJoyful, joyful we adore Thee<br />\nC             Em      D<br />\nGod of Glory, Lord of Love<br />\nG                  Am<br />\nHearts unfold like flowers before Thee<br />\nEm             D   G<br />\nOpening to the sun above<br />\n                    C                          G<br />\nWe will sing, sing, sing&#8230;&#8230;joy to the world!</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG   C</p>\n<p><strong>Verse 1:</strong><br />\nG<br />\nJoy to the world the Lord is come<br />\n      C     D         Em<br />\nLet earth receive her King<br />\n      G<br />\nLet every heart prepare Him room<br />\n      Em<br />\nAnd heaven and nature sing<br />\n      D<br />\nAnd heaven and nature sing<br />\n      C         Em         D     G<br />\nAnd heaven and heaven and nature sing<br />\n                    C                 G<br />\nWe will sing, sing, sing, joy to the world!<br />\n                    C<br />\nWe will sing, sing, sing</p>\n<p><strong>Verse 2:</strong><br />\nG<br />\nJoy to the world the Savior reigns<br />\n    C         D       Em<br />\nLet men their songs employ<br />\n       G<br />\nWhile fields and floods, rocks, hills and plains<br />\n   Em<br />\nRepeat the sounding joy<br />\n   D<br />\nRepeat the sounding joy<br />\n   C      Em         D       G<br />\nRepeat, repeat the sounding joy<br />\n                    C                 G<br />\nWe will sing, sing, sing, joy to the world!<br />\n                    C<br />\nWe will sing, sing, sing</p>\n<p><strong>Verse 3:</strong><br />\nG<br />\nHe rules the world with truth and grace<br />\n     C        D        Em<br />\nAnd makes the nations prove<br />\n    G<br />\nThe glories of His righteousness<br />\n       Em<br />\nAnd wonders of His love<br />\n       D<br />\nAnd wonders of His love<br />\n       C      Em     D      G<br />\nAnd wonders, wonders of His love<br />\n                    C                 G<br />\nWe will sing, sing, sing, joy to the world!<br />\n                    C<br />\nWe will sing, sing, sing</p>\n<p><strong>Chorus 2:</strong><br />\nG<br />\nJoyful, joyful we adore Thee<br />\nC<br />\nGod of Glory, Lord of love<br />\nG<br />\nHearts unfold like flowers before Thee<br />\nC<br />\nOpening to the sun above</p>\n<p>Em             G/B<br />\nJoyful, joyful we adore Thee<br />\nC             Em      D<br />\nGod of Glory, Lord of Love<br />\nG                  Am<br />\nHearts unfold like flowers before Thee<br />\nEm             D   G<br />\nOpening to the sun above<br />\n                    C                          G<br />\nWe will sing, sing, sing&#8230;&#8230;joy to the world!</p>\n",
+    "songNumber": 127
   },
   {
     "title": "The Steadfast Love of the Lord",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-5726",
     "id": "selah-5726",
     "customSong": true,
@@ -76621,13 +76779,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD &#8211; Dsus</p>\n<p><strong>Verse:</strong><br />\n    D         D/F#        G          Asus &#8211; A<br />\nThe steadfast love of the Lord never ceases<br />\n   D  A/C#  Bm  A  G         Asus &#8211; A<br />\nHis mercies never come to an end</p>\n<p><strong>Chorus:</strong><br />\n         G         A<br />\nThey are new every morning<br />\nD/F#      Bm<br />\nNew every morning<br />\nG             A      D  A/C#  Bm  A<br />\nGreat is Thy faithfulness, Oh Lord<br />\nG             A      D<br />\nGreat is Thy faithfulness<br />\n               Top:  D/F#  G, D/F#  Asus &#8211; A<br />\n         Transpose:  D/F#  G, D/F#  Bsus &#8211; B</p>\n<p><strong>Verse:</strong><br />\n    E         E/G#       A          Bsus &#8211; B<br />\nThe steadfast love of the Lord never ceases<br />\n   E  B/D#  C#m  B  A         Bsus &#8211; B<br />\nHis mercies never come to an end</p>\n<p><strong>Chorus:</strong><br />\n         A         B<br />\nThey are new every morning<br />\nE/G#      C#m<br />\nNew every morning<br />\nA             B      E  B/D#  C#m  B<br />\nGreat is Thy faithfulness, Oh Lord<br />\nA             B      E<br />\nGreat is Thy faithfulness</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD &#8211; Dsus</p>\n<p><strong>Verse:</strong><br />\n    D         D/F#        G          Asus &#8211; A<br />\nThe steadfast love of the Lord never ceases<br />\n   D  A/C#  Bm  A  G         Asus &#8211; A<br />\nHis mercies never come to an end</p>\n<p><strong>Chorus:</strong><br />\n         G         A<br />\nThey are new every morning<br />\nD/F#      Bm<br />\nNew every morning<br />\nG             A      D  A/C#  Bm  A<br />\nGreat is Thy faithfulness, Oh Lord<br />\nG             A      D<br />\nGreat is Thy faithfulness<br />\n               Top:  D/F#  G, D/F#  Asus &#8211; A<br />\n         Transpose:  D/F#  G, D/F#  Bsus &#8211; B</p>\n<p><strong>Verse:</strong><br />\n    E         E/G#       A          Bsus &#8211; B<br />\nThe steadfast love of the Lord never ceases<br />\n   E  B/D#  C#m  B  A         Bsus &#8211; B<br />\nHis mercies never come to an end</p>\n<p><strong>Chorus:</strong><br />\n         A         B<br />\nThey are new every morning<br />\nE/G#      C#m<br />\nNew every morning<br />\nA             B      E  B/D#  C#m  B<br />\nGreat is Thy faithfulness, Oh Lord<br />\nA             B      E<br />\nGreat is Thy faithfulness</p>\n",
+    "songNumber": 209
   },
   {
     "title": "Beautiful Saviour (Acoustic Version)",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-5717",
     "id": "selah-5717",
@@ -77152,13 +77311,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nAm7  C  (2X)</p>\n<p><strong>Verse:</strong><br />\nG      D/F#      Em7<br />\nJesus, beautiful Saviour<br />\nD          C        G/B   Am7<br />\nGod of all majesty, Risen King<br />\n        G    D/F#     Em7<br />\nLamb of God, Holy and Righteous<br />\nD         C       G/B          Am7<br />\nBlessed Redeemer, bright Morning Star</p>\n<p><strong>Pre-Chorus:</strong><br />\n        D       G/B        C<br />\nAll the Heavens shout Your praise<br />\n       D     G/B     C  Em   D<br />\nAll creation bows to worship You</p>\n<p><strong>Chorus:</strong><br />\n    G        D/F#  Em7<br />\nHow wonderful, how beautiful<br />\nD          C           G/B Am7 C/E D/F#<br />\nName above every name, exalted high<br />\n    G        D/F#  Em7<br />\nHow wonderful, how beautiful<br />\nD          C  Am            C Em  D<br />\nJesus Your Name, Name above every name<br />\n  Am  C    Am  C<br />\nJesus,   Jesus</p>\n<p><strong>Interlude:</strong><br />\nAm  C  Em  D  (x2)</p>\n<p><strong>Bridge 1:</strong><br />\nAm         C               Em        D<br />\nSaviour, Redeemer, You are God, You are God</p>\n<p><strong>Bridge 2:</strong><br />\nG              Em7<br />\nI will sing forever<br />\n        C                 Am7  D<br />\nJesus I love You, Jesus I love You</p>\n<p><strong>End:</strong><br />\n  Am  C  Em  D<br />\nJesus, Jesus</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nAm7  C  (2X)</p>\n<p><strong>Verse:</strong><br />\nG      D/F#      Em7<br />\nJesus, beautiful Saviour<br />\nD          C        G/B   Am7<br />\nGod of all majesty, Risen King<br />\n        G    D/F#     Em7<br />\nLamb of God, Holy and Righteous<br />\nD         C       G/B          Am7<br />\nBlessed Redeemer, bright Morning Star</p>\n<p><strong>Pre-Chorus:</strong><br />\n        D       G/B        C<br />\nAll the Heavens shout Your praise<br />\n       D     G/B     C  Em   D<br />\nAll creation bows to worship You</p>\n<p><strong>Chorus:</strong><br />\n    G        D/F#  Em7<br />\nHow wonderful, how beautiful<br />\nD          C           G/B Am7 C/E D/F#<br />\nName above every name, exalted high<br />\n    G        D/F#  Em7<br />\nHow wonderful, how beautiful<br />\nD          C  Am            C Em  D<br />\nJesus Your Name, Name above every name<br />\n  Am  C    Am  C<br />\nJesus,   Jesus</p>\n<p><strong>Interlude:</strong><br />\nAm  C  Em  D  (x2)</p>\n<p><strong>Bridge 1:</strong><br />\nAm         C               Em        D<br />\nSaviour, Redeemer, You are God, You are God</p>\n<p><strong>Bridge 2:</strong><br />\nG              Em7<br />\nI will sing forever<br />\n        C                 Am7  D<br />\nJesus I love You, Jesus I love You</p>\n<p><strong>End:</strong><br />\n  Am  C  Em  D<br />\nJesus, Jesus</p>\n",
+    "songNumber": 19
   },
   {
     "title": "Kailanman",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-5668",
     "id": "selah-5668",
@@ -77438,13 +77598,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG Em Am D  (2x)</p>\n<p><strong>Verse:</strong><br />\n     G             Em<br />\nPanginoong Hesus, Ikaw ang dahilan<br />\n     Am            D<br />\nNg aking ligaya at kapayapaan<br />\n     G             Em<br />\nMagpakailanma&#8217;y paglilingkuran<br />\n     Am                  D<br />\nSa &#8216;Yo ang aking buhay at kalakasan</p>\n<p><strong>Pre-Koro:</strong><br />\n  Em            D<br />\nSaan pa ba kami pupunta<br />\n  C<br />\nKundi sa piling Mo, Hesus<br />\n      D<br />\nAng aming pag-asa</p>\n<p><strong>Chorus:</strong><br />\n      G<br />\nKailanman ay pupurihin<br />\n      Em<br />\nKailanman ay sasambahin<br />\n      Am                     C      D<br />\nNawa ay tanggapin ang alay naming awitin<br />\n      G<br />\nNasa &#8216;Yo ang kaligtasan<br />\n      Em<br />\nAt buhay na walang hanggan<br />\n      Am<br />\nKarapat-dapat Ka, Hesus<br />\n C       D       G<br />\nDakila Ka, Panginoon</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG Em Am D  (2x)</p>\n<p><strong>Verse:</strong><br />\n     G             Em<br />\nPanginoong Hesus, Ikaw ang dahilan<br />\n     Am            D<br />\nNg aking ligaya at kapayapaan<br />\n     G             Em<br />\nMagpakailanma&#8217;y paglilingkuran<br />\n     Am                  D<br />\nSa &#8216;Yo ang aking buhay at kalakasan</p>\n<p><strong>Pre-Koro:</strong><br />\n  Em            D<br />\nSaan pa ba kami pupunta<br />\n  C<br />\nKundi sa piling Mo, Hesus<br />\n      D<br />\nAng aming pag-asa</p>\n<p><strong>Chorus:</strong><br />\n      G<br />\nKailanman ay pupurihin<br />\n      Em<br />\nKailanman ay sasambahin<br />\n      Am                     C      D<br />\nNawa ay tanggapin ang alay naming awitin<br />\n      G<br />\nNasa &#8216;Yo ang kaligtasan<br />\n      Em<br />\nAt buhay na walang hanggan<br />\n      Am<br />\nKarapat-dapat Ka, Hesus<br />\n C       D       G<br />\nDakila Ka, Panginoon</p>\n",
+    "songNumber": 132
   },
   {
     "title": "Trading My Sorrows",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-5658",
     "id": "selah-5658",
@@ -78121,13 +78282,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nA   D         F#m    E<br />\nA   D         F#m    E/G#<br />\nA   D         F#m    E<br />\nA   D         F#m    E</p>\n<p><strong>Verse 1:</strong><br />\nA   D         F#m    E<br />\nI&#8217;m trading my sorrows<br />\nA   D         F#m   E/G#<br />\nI&#8217;m trading my shame<br />\nA    D          F#m  E<br />\nI&#8217;m laying them down<br />\n                    A D F#m  E<br />\nFor the joy of the Lord<br />\nA   D         F#m    E<br />\nI&#8217;m trading my sickness<br />\nA   D         F#m  E/G#<br />\nI&#8217;m trading my pain<br />\nA    D          F#m  E<br />\nI&#8217;m laying them down<br />\n                    A D F#m  E<br />\nFor the joy of the Lord</p>\n<p><strong>Chorus:</strong><br />\n      A          D         F#m      E<br />\nWe say yes Lord, yes Lord, yes, yes Lord<br />\nA         D         F#m      E/G#<br />\nYes Lord, yes Lord, yes, yes Lord<br />\nA         D         F#m      E<br />\nYes Lord, yes Lord, yes, yes Lord<br />\n    A  D  F#m  E<br />\nAmen</p>\n<p><strong>Verse 2:</strong><br />\nA                    D           F#m        E<br />\nI&#8217;m pressed but not crushed persecuted not abandoned<br />\nA       D           F#m    E/G#<br />\nStruck down but not destroyed<br />\n     A                  D             F#m            E<br />\nI am blessed beyond the curse for his promise will endure<br />\n        A           D     F#m    E<br />\nThat his joy&#8217;s gonna be my strength<br />\nE                      Esus4       E<br />\nThough the sorrow may last for the night<br />\n   G                  D<br />\nHis joy comes with the morning</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nA   D         F#m    E<br />\nA   D         F#m    E/G#<br />\nA   D         F#m    E<br />\nA   D         F#m    E</p>\n<p><strong>Verse 1:</strong><br />\nA   D         F#m    E<br />\nI&#8217;m trading my sorrows<br />\nA   D         F#m   E/G#<br />\nI&#8217;m trading my shame<br />\nA    D          F#m  E<br />\nI&#8217;m laying them down<br />\n                    A D F#m  E<br />\nFor the joy of the Lord<br />\nA   D         F#m    E<br />\nI&#8217;m trading my sickness<br />\nA   D         F#m  E/G#<br />\nI&#8217;m trading my pain<br />\nA    D          F#m  E<br />\nI&#8217;m laying them down<br />\n                    A D F#m  E<br />\nFor the joy of the Lord</p>\n<p><strong>Chorus:</strong><br />\n      A          D         F#m      E<br />\nWe say yes Lord, yes Lord, yes, yes Lord<br />\nA         D         F#m      E/G#<br />\nYes Lord, yes Lord, yes, yes Lord<br />\nA         D         F#m      E<br />\nYes Lord, yes Lord, yes, yes Lord<br />\n    A  D  F#m  E<br />\nAmen</p>\n<p><strong>Verse 2:</strong><br />\nA                    D           F#m        E<br />\nI&#8217;m pressed but not crushed persecuted not abandoned<br />\nA       D           F#m    E/G#<br />\nStruck down but not destroyed<br />\n     A                  D             F#m            E<br />\nI am blessed beyond the curse for his promise will endure<br />\n        A           D     F#m    E<br />\nThat his joy&#8217;s gonna be my strength<br />\nE                      Esus4       E<br />\nThough the sorrow may last for the night<br />\n   G                  D<br />\nHis joy comes with the morning</p>\n",
+    "songNumber": 218
   },
   {
     "title": "Be Magnified",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-5606",
     "id": "selah-5606",
@@ -78905,13 +79067,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong> Em D C   Em Bm Am9</p>\n<p><strong>Verse 1:</strong><br />\n       Em           D            Am9<br />\nI have made You too small in my eyes<br />\nG/B- C  D      Em<br />\nO Lord, forgive me<br />\n    Em         D         Am9<br />\nAnd I have believed in a lie<br />\nG/B- C          D           Em<br />\nThat You were unable to help me</p>\n<p><strong>Pre-Chorus:</strong><br />\nD/F#- G     D       Am           G/B-<br />\nBut now, O Lord, I see my wrong<br />\nC       D           G              D<br />\nHeal my heart and show Yourself strong<br />\nG         D         Am<br />\nAnd in my eyes and with my song<br />\nG/B- C     D    Em<br />\nO Lord, be magnified<br />\n  C        C/D  G   (D)<br />\nO Lord, be magnified</p>\n<p><strong>Verse 2:</strong><br />\n       Em            D         Am9<br />\nI have leaned on the wisdom of men<br />\nG/B- C  D      Em<br />\nO Lord, forgive me<br />\n    Em         D         Am9<br />\nAnd I have responded to them<br />\nG/B- C          D               Em<br />\nInstead of Your light and Your mercy</p>\n<p><strong>Chorus:</strong><br />\n   G      D    Am    G/B-<br />\nBe magnified, O Lord<br />\nC       G/B      F     Dsus &#8211; D/C<br />\nYou are highly exalted<br />\nBm            Em     C            G/B-<br />\nAnd there is nothing You can’t do<br />\nAm    D    Em          D<br />\nO Lord, my eyes are on You<br />\n   C &#8211; D &#8211; Em<br />\nBe magnified<br />\n  Am       D     G   (D)<br />\nO Lord, be magnified</p>\n<p><strong>Ending:</strong><br />\n  C        D     Em<br />\nO Lord, be magnified<br />\n  C        D     Em<br />\nO Lord, be magnified<br />\n  Am       D     Gsus G<br />\nO Lord, be magnified</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong> Em D C   Em Bm Am9</p>\n<p><strong>Verse 1:</strong><br />\n       Em           D            Am9<br />\nI have made You too small in my eyes<br />\nG/B- C  D      Em<br />\nO Lord, forgive me<br />\n    Em         D         Am9<br />\nAnd I have believed in a lie<br />\nG/B- C          D           Em<br />\nThat You were unable to help me</p>\n<p><strong>Pre-Chorus:</strong><br />\nD/F#- G     D       Am           G/B-<br />\nBut now, O Lord, I see my wrong<br />\nC       D           G              D<br />\nHeal my heart and show Yourself strong<br />\nG         D         Am<br />\nAnd in my eyes and with my song<br />\nG/B- C     D    Em<br />\nO Lord, be magnified<br />\n  C        C/D  G   (D)<br />\nO Lord, be magnified</p>\n<p><strong>Verse 2:</strong><br />\n       Em            D         Am9<br />\nI have leaned on the wisdom of men<br />\nG/B- C  D      Em<br />\nO Lord, forgive me<br />\n    Em         D         Am9<br />\nAnd I have responded to them<br />\nG/B- C          D               Em<br />\nInstead of Your light and Your mercy</p>\n<p><strong>Chorus:</strong><br />\n   G      D    Am    G/B-<br />\nBe magnified, O Lord<br />\nC       G/B      F     Dsus &#8211; D/C<br />\nYou are highly exalted<br />\nBm            Em     C            G/B-<br />\nAnd there is nothing You can’t do<br />\nAm    D    Em          D<br />\nO Lord, my eyes are on You<br />\n   C &#8211; D &#8211; Em<br />\nBe magnified<br />\n  Am       D     G   (D)<br />\nO Lord, be magnified</p>\n<p><strong>Ending:</strong><br />\n  C        D     Em<br />\nO Lord, be magnified<br />\n  C        D     Em<br />\nO Lord, be magnified<br />\n  Am       D     Gsus G<br />\nO Lord, be magnified</p>\n",
+    "songNumber": 16
   },
   {
     "title": "You Are Exalted",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-5589",
     "id": "selah-5589",
@@ -79579,13 +79742,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nF       C/F     F       C/F<br />\nDm7     C/E     F   F/A-Bb<br />\nDm7     C/E-F   Eb      Bb</p>\n<p><strong>Verse:</strong><br />\nF         C             Dm7          F/C         Bb<br />\nI will declare to the nations and to every generation<br />\n          F/A           Gm7      Bb &#8211; C<br />\nYou are exalted above everything<br />\nF         C              Dm7         F/C            Bb<br />\nNo one compares to Your glory and no other god is worthy<br />\n              F/A               Gm7     Dm7 &#8211; C<br />\nCause You are exalted above everything</p>\n<p><strong>Pre-Chorus:</strong><br />\n         Gm7                  F/A<br />\nLet the seas resound, let the fields rejoice<br />\n           Bb                  C/A &#8211; Dm7<br />\n  Let the earth declare You reign<br />\n      Gm7                F/A<br />\nLet creation sing, and let everything<br />\n         Bb              C<br />\n  That has breath now proclaim</p>\n<p><strong>Chorus:</strong><br />\nF          C       Dm7     F/A<br />\nYou are exalted, You are exalted<br />\nBb                F/A     Gm7       C<br />\nAnd I will sing praises forever, forever<br />\nF          C       Dm7     F/A<br />\nYou are exalted, You are exalted<br />\nBb                F/A     Gm7       C<br />\nAnd I will sing praises forever, forever</p>\n<p><strong>Adlib:</strong><br />\nDm7     C/E     F   F/A-Bb</p>\n<p><strong>Chorus (G):</strong><br />\n(D) G          D       Em7     G/B<br />\n    You are exalted, You are exalted<br />\nC                 G/B     Am7       D<br />\nAnd I will sing praises forever, forever<br />\nG          D       Em7     G/B<br />\nYou are exalted, You are exalted<br />\nC                 G/B     Am7       D<br />\nAnd I will sing praises forever, forever</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nF       C/F     F       C/F<br />\nDm7     C/E     F   F/A-Bb<br />\nDm7     C/E-F   Eb      Bb</p>\n<p><strong>Verse:</strong><br />\nF         C             Dm7          F/C         Bb<br />\nI will declare to the nations and to every generation<br />\n          F/A           Gm7      Bb &#8211; C<br />\nYou are exalted above everything<br />\nF         C              Dm7         F/C            Bb<br />\nNo one compares to Your glory and no other god is worthy<br />\n              F/A               Gm7     Dm7 &#8211; C<br />\nCause You are exalted above everything</p>\n<p><strong>Pre-Chorus:</strong><br />\n         Gm7                  F/A<br />\nLet the seas resound, let the fields rejoice<br />\n           Bb                  C/A &#8211; Dm7<br />\n  Let the earth declare You reign<br />\n      Gm7                F/A<br />\nLet creation sing, and let everything<br />\n         Bb              C<br />\n  That has breath now proclaim</p>\n<p><strong>Chorus:</strong><br />\nF          C       Dm7     F/A<br />\nYou are exalted, You are exalted<br />\nBb                F/A     Gm7       C<br />\nAnd I will sing praises forever, forever<br />\nF          C       Dm7     F/A<br />\nYou are exalted, You are exalted<br />\nBb                F/A     Gm7       C<br />\nAnd I will sing praises forever, forever</p>\n<p><strong>Adlib:</strong><br />\nDm7     C/E     F   F/A-Bb</p>\n<p><strong>Chorus (G):</strong><br />\n(D) G          D       Em7     G/B<br />\n    You are exalted, You are exalted<br />\nC                 G/B     Am7       D<br />\nAnd I will sing praises forever, forever<br />\nG          D       Em7     G/B<br />\nYou are exalted, You are exalted<br />\nC                 G/B     Am7       D<br />\nAnd I will sing praises forever, forever</p>\n",
+    "songNumber": 238
   },
   {
     "title": "Only By Grace",
     "artist": "Selah",
     "key": "",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-5436",
     "id": "selah-5436",
@@ -79989,13 +80153,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: </strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nC                    G/C  C<br />\nOnly by grace can we enter<br />\nDm7                         Gsus  G<br />\nOnly by grace can we stand<br />\nC                G/C   C<br />\nNot by our human endeavor<br />\nDm7                          Gsus  G G/F<br />\nBut by the blood of the lamb</p>\n<p><strong>Refrain:</strong><br />\nEm7                    G/A  Am7<br />\nInto Your presence You call us<br />\nAm7/G FM7            Gsus G<br />\nYou call us to come<br />\nC                      G/A  Am7<br />\nInto Your presence You draw us<br />\n    Dm7             F/G       C Am7<br />\nAnd now by Your grace we come<br />\nDm7             F/G       C  G/B<br />\nNow by Your grace we come </p>\n<p><strong>Chorus:</strong><br />\nAm             Am/G        G   F<br />\nLord if You mark our transgressions<br />\nF/G G     C2  C     Bm E7<br />\nWho would stand<br />\nAm                 Am/G<br />\nThanks to Your grace<br />\n        G/F     F          Am/G         Am<br />\nWe are cleansed by the blood of the Lamb</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: </strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nC                    G/C  C<br />\nOnly by grace can we enter<br />\nDm7                         Gsus  G<br />\nOnly by grace can we stand<br />\nC                G/C   C<br />\nNot by our human endeavor<br />\nDm7                          Gsus  G G/F<br />\nBut by the blood of the lamb</p>\n<p><strong>Refrain:</strong><br />\nEm7                    G/A  Am7<br />\nInto Your presence You call us<br />\nAm7/G FM7            Gsus G<br />\nYou call us to come<br />\nC                      G/A  Am7<br />\nInto Your presence You draw us<br />\n    Dm7             F/G       C Am7<br />\nAnd now by Your grace we come<br />\nDm7             F/G       C  G/B<br />\nNow by Your grace we come </p>\n<p><strong>Chorus:</strong><br />\nAm             Am/G        G   F<br />\nLord if You mark our transgressions<br />\nF/G G     C2  C     Bm E7<br />\nWho would stand<br />\nAm                 Am/G<br />\nThanks to Your grace<br />\n        G/F     F          Am/G         Am<br />\nWe are cleansed by the blood of the Lamb</p>\n",
+    "songNumber": 168
   },
   {
     "title": "Celebrate the Lord of Love (Paul Baloche)",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-5382",
     "id": "selah-5382",
@@ -80802,13 +80967,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Chorus</strong><br />\nG            C      D          C        G<br />\nTrade your heavy heart for a heart of joy<br />\n     C          D<br />\nCelebrate what God has done<br />\nG            C      D          C        G<br />\nJoin the song of praise as we gather here<br />\n    C          D       G<br />\nCelebrate the Lord of Love<br />\nG      C      D            C        G<br />\nJesus is our Lord, He is reigning here<br />\n     C            D<br />\nWe declare His kingdom&#8217;s come<br />\nG         C      D           C      G<br />\nDarkness has to flee in His holy light<br />\n    C          D       G<br />\nCelebrate the Lord of Love</p>\n<p><strong>Verse</strong><br />\n  C            G/B     C             Em7<br />\n All creation sings, hear the oceans roar<br />\nE/G#            Am7                   G/B &#8211; C &#8211; Em &#8211; D (To Chorus)<br />\n Let the earth proclaim  that Christ is Lord<br />\n                                      G/B &#8211; G/B &#8211; C (To Adlib)</p>\n<p><strong>Adlib</strong><br />\nG/B &#8211; C &#8211; D &#8211; Em7 (7x)<br />\nG/B &#8211; C &#8211; D &#8211; E7</p>\n<p><strong>Chorus</strong><br />\nA            D      E          D        A<br />\nTrade your heavy heart for a heart of joy<br />\n     D          E<br />\nCelebrate what God has done<br />\nA            D      E          D        A<br />\nJoin the song of praise as we gather here<br />\n    D          E       A<br />\nCelebrate the Lord of Love<br />\nA      D      E            D        A<br />\nJesus is our Lord, He is reigning here<br />\n     D            E<br />\nWe declare His kingdom&#8217;s come<br />\nA         D      E           D      A<br />\nDarkness has to flee in His holy light<br />\n    D          E       A<br />\nCelebrate the Lord of Love</p>\n<p><strong>End</strong><br />\nA/C# &#8211; D       E       F#m<br />\nCelebrate the Lord of Love<br />\nA/C# &#8211; D       E       A<br />\nCelebrate the Lord of Love               </p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Chorus</strong><br />\nG            C      D          C        G<br />\nTrade your heavy heart for a heart of joy<br />\n     C          D<br />\nCelebrate what God has done<br />\nG            C      D          C        G<br />\nJoin the song of praise as we gather here<br />\n    C          D       G<br />\nCelebrate the Lord of Love<br />\nG      C      D            C        G<br />\nJesus is our Lord, He is reigning here<br />\n     C            D<br />\nWe declare His kingdom&#8217;s come<br />\nG         C      D           C      G<br />\nDarkness has to flee in His holy light<br />\n    C          D       G<br />\nCelebrate the Lord of Love</p>\n<p><strong>Verse</strong><br />\n  C            G/B     C             Em7<br />\n All creation sings, hear the oceans roar<br />\nE/G#            Am7                   G/B &#8211; C &#8211; Em &#8211; D (To Chorus)<br />\n Let the earth proclaim  that Christ is Lord<br />\n                                      G/B &#8211; G/B &#8211; C (To Adlib)</p>\n<p><strong>Adlib</strong><br />\nG/B &#8211; C &#8211; D &#8211; Em7 (7x)<br />\nG/B &#8211; C &#8211; D &#8211; E7</p>\n<p><strong>Chorus</strong><br />\nA            D      E          D        A<br />\nTrade your heavy heart for a heart of joy<br />\n     D          E<br />\nCelebrate what God has done<br />\nA            D      E          D        A<br />\nJoin the song of praise as we gather here<br />\n    D          E       A<br />\nCelebrate the Lord of Love<br />\nA      D      E            D        A<br />\nJesus is our Lord, He is reigning here<br />\n     D            E<br />\nWe declare His kingdom&#8217;s come<br />\nA         D      E           D      A<br />\nDarkness has to flee in His holy light<br />\n    D          E       A<br />\nCelebrate the Lord of Love</p>\n<p><strong>End</strong><br />\nA/C# &#8211; D       E       F#m<br />\nCelebrate the Lord of Love<br />\nA/C# &#8211; D       E       A<br />\nCelebrate the Lord of Love               </p>\n",
+    "songNumber": 28
   },
   {
     "title": "Pupurihin Ka, Panginoon",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-5352",
     "id": "selah-5352",
@@ -81179,13 +81345,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\n  E     G#m          C#m       C#m/B<br />\nO aming Diyos, sa Iyo lumalapit<br />\n      A              F#m            A       B<br />\nAng dalangin ko&#8217;t hiling tanging sa Iyo makakamit<br />\nC#m         C#m/B       A           G#m<br />\nSa Pangalan Mo ako&#8217;y tunay na mananalig<br />\n        F#m           B<br />\nSa kapangyarihan Mo&#8217;y walang makadadaig</p>\n<p><strong>Verse 2:</strong><br />\n E               C#m       C#m/B<br />\nO aming Diyos, sa Iyo umaawit<br />\n A              F#m         A       B<br />\nKami&#8217;y sumasamba sa diwa ng Iyong kabanalan<br />\n  C#m         C#m/B       A           G#m<br />\nIaalay sa Iyo buong karangalan<br />\n    F#m                  B<br />\nAng lahat ng kapurihan sa Iyo nakalaan</p>\n<p><strong>Chorus:</strong><br />\nE         G#m A         B<br />\nPupurihin Ka, Panginoon<br />\nE            G#m  A           B<br />\nKaluwalhatian Mo&#8217;y sa habang panahon<br />\n     G#m      C#m     G#m         C#m<br />\nAng Iyong mga gawa ay aming isasaysay<br />\n      F#m           G#m<br />\nAng dakilang Ngalan Mo, Hesus<br />\n A          B7      E<br />\nItataas sa aming buhay</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\n  E     G#m          C#m       C#m/B<br />\nO aming Diyos, sa Iyo lumalapit<br />\n      A              F#m            A       B<br />\nAng dalangin ko&#8217;t hiling tanging sa Iyo makakamit<br />\nC#m         C#m/B       A           G#m<br />\nSa Pangalan Mo ako&#8217;y tunay na mananalig<br />\n        F#m           B<br />\nSa kapangyarihan Mo&#8217;y walang makadadaig</p>\n<p><strong>Verse 2:</strong><br />\n E               C#m       C#m/B<br />\nO aming Diyos, sa Iyo umaawit<br />\n A              F#m         A       B<br />\nKami&#8217;y sumasamba sa diwa ng Iyong kabanalan<br />\n  C#m         C#m/B       A           G#m<br />\nIaalay sa Iyo buong karangalan<br />\n    F#m                  B<br />\nAng lahat ng kapurihan sa Iyo nakalaan</p>\n<p><strong>Chorus:</strong><br />\nE         G#m A         B<br />\nPupurihin Ka, Panginoon<br />\nE            G#m  A           B<br />\nKaluwalhatian Mo&#8217;y sa habang panahon<br />\n     G#m      C#m     G#m         C#m<br />\nAng Iyong mga gawa ay aming isasaysay<br />\n      F#m           G#m<br />\nAng dakilang Ngalan Mo, Hesus<br />\n A          B7      E<br />\nItataas sa aming buhay</p>\n",
+    "songNumber": 180
   },
   {
     "title": "Build My Life",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-4246",
     "id": "selah-4246",
@@ -81560,14 +81727,15 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG C2 G/B C2 (2x)</p>\n<p><strong>Verse1:</strong><br />\nG                C2<br />\nWorthy of every song we could ever sing<br />\nG/B                                  C2<br />\nWorthy of all the praise we could ever bring<br />\nG                 C2<br />\nWorthy of every breath we could ever breathe<br />\nG/B                C2<br />\nWe live for You</p>\n<p><strong>Verse2:</strong><br />\nG                 C2<br />\nJesus the Name above every other Name<br />\nG/B             C2<br />\nJesus the only one who could ever save<br />\nG                 C2<br />\nWorthy of every breath we could ever breathe<br />\nG/B<br />\nWe live for You<br />\n             C2<br />\nOh, we live for You</p>\n<p><strong>Chorus:</strong><br />\nC2                     Am<br />\nHoly, there is no one like You<br />\n          G/D<br />\nThere is none besides You<br />\n            Em<br />\nOpen up my eyes in wonder<br />\nC2<br />\nShow me who You are<br />\n     Am<br />\nAnd fill me with Your heart<br />\n     G/D<br />\nAnd lead me in Your love<br />\n     Em<br />\nTo those around me</p>\n<p><strong>Bridge:</strong><br />\nC2              D             Em<br />\nI will build my life upon Your love<br />\n         G/B<br />\nIt is a firm foundation<br />\nC2                D            Em<br />\nAnd I will put my trust in You alone<br />\n           G/B                &#8230;C<br />\nAnd I will not be shaken</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG C2 G/B C2 (2x)</p>\n<p><strong>Verse1:</strong><br />\nG                C2<br />\nWorthy of every song we could ever sing<br />\nG/B                                  C2<br />\nWorthy of all the praise we could ever bring<br />\nG                 C2<br />\nWorthy of every breath we could ever breathe<br />\nG/B                C2<br />\nWe live for You</p>\n<p><strong>Verse2:</strong><br />\nG                 C2<br />\nJesus the Name above every other Name<br />\nG/B             C2<br />\nJesus the only one who could ever save<br />\nG                 C2<br />\nWorthy of every breath we could ever breathe<br />\nG/B<br />\nWe live for You<br />\n             C2<br />\nOh, we live for You</p>\n<p><strong>Chorus:</strong><br />\nC2                     Am<br />\nHoly, there is no one like You<br />\n          G/D<br />\nThere is none besides You<br />\n            Em<br />\nOpen up my eyes in wonder<br />\nC2<br />\nShow me who You are<br />\n     Am<br />\nAnd fill me with Your heart<br />\n     G/D<br />\nAnd lead me in Your love<br />\n     Em<br />\nTo those around me</p>\n<p><strong>Bridge:</strong><br />\nC2              D             Em<br />\nI will build my life upon Your love<br />\n         G/B<br />\nIt is a firm foundation<br />\nC2                D            Em<br />\nAnd I will put my trust in You alone<br />\n           G/B                &#8230;C<br />\nAnd I will not be shaken</p>\n",
+    "songNumber": 26
   },
   {
     "title": "Your Grace Is Enough (Matt Maher version)",
     "artist": "Selah",
     "key": "G#",
-    "category": "Selah",
-    "language": "",
+    "category": "Worship",
+    "language": "English",
     "file": "custom-song.html?id=selah-4231",
     "id": "selah-4231",
     "customSong": true,
@@ -82119,13 +82287,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G#</strong></p>\n<p><strong>Intro:</strong><br />\nG# &#8230;&#8230;&#8230;.<br />\nG#  G#/C  C#2  </p>\n<p><strong>Verse 1:</strong><br />\nG#             G#/C            C#2<br />\nGreat is your faithfulness oh God<br />\nFm         D#                C#2<br />\nAnd You convict the sinners heart<br />\nG#             G#/C            C#2<br />\nYou lead us by still waters and to mercy<br />\nFm         D#/G       /G#           C#2<br />\nAnd nothing can keep us apart</p>\n<p><strong>Pre-Chorus:</strong><br />\n     Bbm7         G#/C<br />\nSo remember your people<br />\n  C#2          D#<br />\nRemember your children<br />\n  Fm          D#-G#/C (D#/G- /G#)<br />\nRemember your promise<br />\n   C#2<br />\nOh God</p>\n<p><strong>Chorus 1:</strong><br />\n     G#         D#<br />\nYour grace is enough<br />\n     Fm       C#2<br />\nYour grace is enough<br />\n     G#         D#         C#2<br />\nYour grace is enough for me</p>\n<p><strong>Verse 2:</strong><br />\nG#             G#/C            C#2<br />\nGreat is your love and justice God<br />\nFm         D#                C#2<br />\nYou use the weak to lead the strong<br />\nG#             G#/C            C#2<br />\nYou lead us in the song of your salvation<br />\nFm         D#/G       /G#           C#2<br />\nAnd all your people sing along</p>\n<p><strong>Chorus 2:</strong><br />\n     G#         D#<br />\nYour grace is enough<br />\n     Fm       C#2<br />\nHeaven reaching down to us<br />\n     G#         D#         C#2<br />\nYour grace is enough for me<br />\n                G#         D#<br />\nGod, I see Your grace is enough<br />\n      Fm           C#2<br />\nI&#8217;m covered in your love<br />\n     G#         D#         C#2<br />\nYour grace is enough for me</p>\n<p><strong>Outro :</strong><br />\n G# D# Fm C#2 X2</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G#</strong></p>\n<p><strong>Intro:</strong><br />\nG# &#8230;&#8230;&#8230;.<br />\nG#  G#/C  C#2  </p>\n<p><strong>Verse 1:</strong><br />\nG#             G#/C            C#2<br />\nGreat is your faithfulness oh God<br />\nFm         D#                C#2<br />\nAnd You convict the sinners heart<br />\nG#             G#/C            C#2<br />\nYou lead us by still waters and to mercy<br />\nFm         D#/G       /G#           C#2<br />\nAnd nothing can keep us apart</p>\n<p><strong>Pre-Chorus:</strong><br />\n     Bbm7         G#/C<br />\nSo remember your people<br />\n  C#2          D#<br />\nRemember your children<br />\n  Fm          D#-G#/C (D#/G- /G#)<br />\nRemember your promise<br />\n   C#2<br />\nOh God</p>\n<p><strong>Chorus 1:</strong><br />\n     G#         D#<br />\nYour grace is enough<br />\n     Fm       C#2<br />\nYour grace is enough<br />\n     G#         D#         C#2<br />\nYour grace is enough for me</p>\n<p><strong>Verse 2:</strong><br />\nG#             G#/C            C#2<br />\nGreat is your love and justice God<br />\nFm         D#                C#2<br />\nYou use the weak to lead the strong<br />\nG#             G#/C            C#2<br />\nYou lead us in the song of your salvation<br />\nFm         D#/G       /G#           C#2<br />\nAnd all your people sing along</p>\n<p><strong>Chorus 2:</strong><br />\n     G#         D#<br />\nYour grace is enough<br />\n     Fm       C#2<br />\nHeaven reaching down to us<br />\n     G#         D#         C#2<br />\nYour grace is enough for me<br />\n                G#         D#<br />\nGod, I see Your grace is enough<br />\n      Fm           C#2<br />\nI&#8217;m covered in your love<br />\n     G#         D#         C#2<br />\nYour grace is enough for me</p>\n<p><strong>Outro :</strong><br />\n G# D# Fm C#2 X2</p>\n",
+    "songNumber": 249
   },
   {
     "title": "Behold Him",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-4178",
     "id": "selah-4178",
@@ -82563,13 +82732,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD, G</p>\n<p><strong>Verse 1:</strong><br />\nD                           G<br />\nHe who was before there was light<br />\n                           D/A<br />\nWalked across the pages of time<br />\n                         G<br />\nHe who made every living thing, behold Him<br />\nD                       G<br />\nHe who heard humanity&#8217;s cry<br />\n                             D/A<br />\nLeft His throne to wake as a child<br />\n                            G<br />\nHe became like the least of us, behold Him</p>\n<p><strong>Chorus 1:</strong><br />\nD                     G<br />\nJesus, Son of God, Messiah<br />\n                      A<br />\nThe Lamb, the roaring Lion<br />\n       G<br />\nOh, be still and behold Him</p>\n<p><strong>Verse 2:</strong><br />\nD                             G<br />\nHe who dined with sinners and saints<br />\n                                   D/A<br />\nHealed the blind, the lost and the lame<br />\n                      G<br />\nEven now He is in our midst, behold Him<br />\nD                         G<br />\nHe who chose a criminal&#8217;s end<br />\n                              D/A<br />\nPaid with blood to settle our debt<br />\n                           G<br />\nBuried death as He rose to life, behold Him</p>\n<p><strong>Chorus 2:</strong><br />\nD                    G<br />\nJesus, Son of God, Messiah<br />\n                      A<br />\nThe Lamb, the roaring Lion<br />\n        G<br />\nOh, be still and behold Him<br />\nD                  G<br />\nJesus, Alpha and Omega<br />\n                   A<br />\nOur God, the Risen Savior<br />\n        G<br />\nOh, be still and behold Him</p>\n<p><strong>Instrumental:</strong><br />\nA  Bm &#8211; G  D</p>\n<p><strong>Bridge:</strong><br />\nA                        G          D<br />\nHoly, holy, holy, is the Lord God Almighty<br />\nA                           G          D<br />\nWorthy, worthy, worthy, to receive all praise</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD, G</p>\n<p><strong>Verse 1:</strong><br />\nD                           G<br />\nHe who was before there was light<br />\n                           D/A<br />\nWalked across the pages of time<br />\n                         G<br />\nHe who made every living thing, behold Him<br />\nD                       G<br />\nHe who heard humanity&#8217;s cry<br />\n                             D/A<br />\nLeft His throne to wake as a child<br />\n                            G<br />\nHe became like the least of us, behold Him</p>\n<p><strong>Chorus 1:</strong><br />\nD                     G<br />\nJesus, Son of God, Messiah<br />\n                      A<br />\nThe Lamb, the roaring Lion<br />\n       G<br />\nOh, be still and behold Him</p>\n<p><strong>Verse 2:</strong><br />\nD                             G<br />\nHe who dined with sinners and saints<br />\n                                   D/A<br />\nHealed the blind, the lost and the lame<br />\n                      G<br />\nEven now He is in our midst, behold Him<br />\nD                         G<br />\nHe who chose a criminal&#8217;s end<br />\n                              D/A<br />\nPaid with blood to settle our debt<br />\n                           G<br />\nBuried death as He rose to life, behold Him</p>\n<p><strong>Chorus 2:</strong><br />\nD                    G<br />\nJesus, Son of God, Messiah<br />\n                      A<br />\nThe Lamb, the roaring Lion<br />\n        G<br />\nOh, be still and behold Him<br />\nD                  G<br />\nJesus, Alpha and Omega<br />\n                   A<br />\nOur God, the Risen Savior<br />\n        G<br />\nOh, be still and behold Him</p>\n<p><strong>Instrumental:</strong><br />\nA  Bm &#8211; G  D</p>\n<p><strong>Bridge:</strong><br />\nA                        G          D<br />\nHoly, holy, holy, is the Lord God Almighty<br />\nA                           G          D<br />\nWorthy, worthy, worthy, to receive all praise</p>\n",
+    "songNumber": 20
   },
   {
     "title": "Forever V3",
     "artist": "Selah",
     "key": "Bb",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-4168",
     "id": "selah-4168",
@@ -82862,13 +83032,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Bb</strong></p>\n<p><strong>Intro:</strong><br />\nBb  Eb  Gm  F .. Bb</p>\n<p><strong>Verse 1:</strong><br />\n      Bb<br />\nGive thanks to the Lord our God and King<br />\n                    Bb<br />\nHis love endures forever<br />\n Eb<br />\nFor He is good, He is above all things<br />\n                    Bb<br />\nHis love endures forever</p>\n<p><strong>Verse 2:</strong><br />\nBb<br />\nWith a mighty hand and outstretched arm<br />\n                    Bb<br />\nHis love endures forever<br />\nEb<br />\nFor the life that&#8217;s been reborn<br />\n                    Bb<br />\nHis love endures forever</p>\n<p><strong>Pre-Chorus:</strong><br />\n     F             Eb/G<br />\nSing praise, sing praise<br />\n     F             Eb<br />\nSing praise, sing praise (Yeah)</p>\n<p><strong>Chorus:</strong><br />\nBb                          Gm<br />\nForever God is faithful, forever God is strong<br />\n   F                      Eb<br />\nForever God is with us forever</p>\n<p><strong>Verse 3:</strong><br />\nBb<br />\nFrom the rising to the setting sun<br />\n                    Bb<br />\nHis love endures forever<br />\nEb<br />\nBy the grace of God we will carry on<br />\n                    Bb<br />\nHis love endures forever</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Bb</strong></p>\n<p><strong>Intro:</strong><br />\nBb  Eb  Gm  F .. Bb</p>\n<p><strong>Verse 1:</strong><br />\n      Bb<br />\nGive thanks to the Lord our God and King<br />\n                    Bb<br />\nHis love endures forever<br />\n Eb<br />\nFor He is good, He is above all things<br />\n                    Bb<br />\nHis love endures forever</p>\n<p><strong>Verse 2:</strong><br />\nBb<br />\nWith a mighty hand and outstretched arm<br />\n                    Bb<br />\nHis love endures forever<br />\nEb<br />\nFor the life that&#8217;s been reborn<br />\n                    Bb<br />\nHis love endures forever</p>\n<p><strong>Pre-Chorus:</strong><br />\n     F             Eb/G<br />\nSing praise, sing praise<br />\n     F             Eb<br />\nSing praise, sing praise (Yeah)</p>\n<p><strong>Chorus:</strong><br />\nBb                          Gm<br />\nForever God is faithful, forever God is strong<br />\n   F                      Eb<br />\nForever God is with us forever</p>\n<p><strong>Verse 3:</strong><br />\nBb<br />\nFrom the rising to the setting sun<br />\n                    Bb<br />\nHis love endures forever<br />\nEb<br />\nBy the grace of God we will carry on<br />\n                    Bb<br />\nHis love endures forever</p>\n",
+    "songNumber": 54
   },
   {
     "title": "Kabanal banalang Diyos",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-3982",
     "id": "selah-3982",
@@ -84257,13 +84428,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD       G/D         A/C#      Bm7<br />\nG       D/F# &#8211; Bm7  Em &#8211; A<br />\nD &#8211; Dsus   D &#8211; Dsus</p>\n<p><strong>Verse:</strong><br />\n          D      G        A            D<br />\nKabanal-banalang Diyos, walang katulad Mo<br />\n         G         D/F#      Em   A<br />\nLahat ng tuhod sa Iyo ay luluhod</p>\n<p><strong>Chorus</strong><br />\n      G &#8211; A/G      F#m7  Bm7<br />\nLahat ng labi&#8217;y magsasabing<br />\n       Em           Em7/D    C    A<br />\nIkaw lamang, Hesus, ang Panginoon</p>\n<p><strong>Verse:</strong><br />\n          D &#8211;    G/D      A/C#         Bm<br />\nKabanal-banalang Diyos, walang katulad Mo<br />\n         G         D/F#      Em   A<br />\nLahat ng tuhod sa Iyo ay luluhod</p>\n<p><strong>Chorus:</strong><br />\n      G &#8211; A/G      F#m7  Bm7<br />\nLahat ng labi&#8217;y magsasabing<br />\n       Em7          A          D<br />\nIkaw lamang, Hesus, ang Panginoon</p>\n<p><strong>Adlib:</strong><br />\nD       G/D         A/C#      Bm7<br />\nG       D/F# &#8211; Bm7  C</p>\n<p><strong>Verse</strong><br />\n(Bsus &#8211; B)<br />\nE      A      B      E<br />\nA      E/G#   F#m    B</p>\n<p><strong>Chorus</strong><br />\nA &#8211; B/A       G#m7   C#m7<br />\nF#m   F#m7/E  D      B</p>\n<p><strong>Verse</strong><br />\nE &#8211; A         B      E<br />\nA      E/G#   F#m    B</p>\n<p><strong>Chorus</strong><br />\nA &#8211; B/A       G#m7   C#m7<br />\nF#m7   B      E</p>\n<p><strong>Verse (F):</strong><br />\n(C)<br />\nF      Bb     C      F<br />\nBb     F/A    Gm     C</p>\n<p><strong>Chorus (F):</strong><br />\nBb &#8211; C/Bb     Am7    Dm7<br />\nGm     Gm7/F  Eb     C</p>\n<p>F &#8211; Bb        C      F<br />\nBb     F/A    Gm     C<br />\nBb &#8211; C/Bb     Am7    Dm7<br />\nGm7    C      F</p>\n<p><strong>End:</strong><br />\n(F/A) Bb &#8211; C/Bb    Am7  Dm7<br />\nLahat ng labi&#8217;y magsasabing<br />\n       Gm7          C          F   F/A<br />\nIkaw lamang, Hesus, ang Panginoon<br />\n      Bb &#8211; C/Bb    Am7  Dm7<br />\nLahat ng labi&#8217;y magsasabing<br />\n       Gm7        Gm7 &#8211; Am7 &#8211; Bb &#8211; C<br />\nIkaw lamang, Hesus<br />\n       Am7        Dsus &#8211; D<br />\nIkaw lamang, Hesus<br />\n       Gm7        C<br />\nIkaw lamang, Hesus<br />\n           F    Bb/F    C/E   Dm7<br />\nAng Panginoon<br />\nBb     F/A &#8211; Dm7    Gm &#8211; C<br />\nF &#8211; Fsus   F &#8211; Fsus</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD       G/D         A/C#      Bm7<br />\nG       D/F# &#8211; Bm7  Em &#8211; A<br />\nD &#8211; Dsus   D &#8211; Dsus</p>\n<p><strong>Verse:</strong><br />\n          D      G        A            D<br />\nKabanal-banalang Diyos, walang katulad Mo<br />\n         G         D/F#      Em   A<br />\nLahat ng tuhod sa Iyo ay luluhod</p>\n<p><strong>Chorus</strong><br />\n      G &#8211; A/G      F#m7  Bm7<br />\nLahat ng labi&#8217;y magsasabing<br />\n       Em           Em7/D    C    A<br />\nIkaw lamang, Hesus, ang Panginoon</p>\n<p><strong>Verse:</strong><br />\n          D &#8211;    G/D      A/C#         Bm<br />\nKabanal-banalang Diyos, walang katulad Mo<br />\n         G         D/F#      Em   A<br />\nLahat ng tuhod sa Iyo ay luluhod</p>\n<p><strong>Chorus:</strong><br />\n      G &#8211; A/G      F#m7  Bm7<br />\nLahat ng labi&#8217;y magsasabing<br />\n       Em7          A          D<br />\nIkaw lamang, Hesus, ang Panginoon</p>\n<p><strong>Adlib:</strong><br />\nD       G/D         A/C#      Bm7<br />\nG       D/F# &#8211; Bm7  C</p>\n<p><strong>Verse</strong><br />\n(Bsus &#8211; B)<br />\nE      A      B      E<br />\nA      E/G#   F#m    B</p>\n<p><strong>Chorus</strong><br />\nA &#8211; B/A       G#m7   C#m7<br />\nF#m   F#m7/E  D      B</p>\n<p><strong>Verse</strong><br />\nE &#8211; A         B      E<br />\nA      E/G#   F#m    B</p>\n<p><strong>Chorus</strong><br />\nA &#8211; B/A       G#m7   C#m7<br />\nF#m7   B      E</p>\n<p><strong>Verse (F):</strong><br />\n(C)<br />\nF      Bb     C      F<br />\nBb     F/A    Gm     C</p>\n<p><strong>Chorus (F):</strong><br />\nBb &#8211; C/Bb     Am7    Dm7<br />\nGm     Gm7/F  Eb     C</p>\n<p>F &#8211; Bb        C      F<br />\nBb     F/A    Gm     C<br />\nBb &#8211; C/Bb     Am7    Dm7<br />\nGm7    C      F</p>\n<p><strong>End:</strong><br />\n(F/A) Bb &#8211; C/Bb    Am7  Dm7<br />\nLahat ng labi&#8217;y magsasabing<br />\n       Gm7          C          F   F/A<br />\nIkaw lamang, Hesus, ang Panginoon<br />\n      Bb &#8211; C/Bb    Am7  Dm7<br />\nLahat ng labi&#8217;y magsasabing<br />\n       Gm7        Gm7 &#8211; Am7 &#8211; Bb &#8211; C<br />\nIkaw lamang, Hesus<br />\n       Am7        Dsus &#8211; D<br />\nIkaw lamang, Hesus<br />\n       Gm7        C<br />\nIkaw lamang, Hesus<br />\n           F    Bb/F    C/E   Dm7<br />\nAng Panginoon<br />\nBb     F/A &#8211; Dm7    Gm &#8211; C<br />\nF &#8211; Fsus   F &#8211; Fsus</p>\n",
+    "songNumber": 128
   },
   {
     "title": "Your Grace Is Enough",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3920",
     "id": "selah-3920",
@@ -84784,13 +84956,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nA     A/C#  D2<br />\nF#m   E     D2 </p>\n<p><strong>Verse 1:</strong><br />\nA             A/C#            D2<br />\nGreat is Your faithfulness oh God<br />\nF#m7        Esus             D2<br />\nAnd You convict the sinners heart<br />\nA           A/C#            D2<br />\nYou lead us by still waters and to mercy<br />\nF#m7        Esus         D2<br />\nAnd nothing can keep us apart</p>\n<p><strong>Pre-Chorus:</strong><br />\n     Bm7         A/C#      D2          Esus<br />\nSo remember Your people, remember Your children<br />\n  Bm7/F#      C#m/G#-/A   D2<br />\nRemember Your promise, oh God</p>\n<p><strong>Chorus 1:</strong><br />\n     A         Esus        F#m7      D2<br />\nYour grace is enough, Your grace is enough<br />\n     A         Esus      D2<br />\nYour grace is enough for me</p>\n<p><strong>Verse 2:</strong><br />\nA             A/C#             D2<br />\nGreat is your love and justice God<br />\nF#m7        Esus             D2<br />\nYou use the weak to lead the strong<br />\nA           A/C#           D2<br />\nYou lead us in the song of Your salvation<br />\nF#m7         Esus         D2<br />\nAnd all Your people sing along</p>\n<p><strong>Chorus 2:</strong><br />\n     A         Esus             F#m7          D2<br />\nYour grace is enough, heaven reaching down to us<br />\n     A         Esus      D2<br />\nYour grace is enough for me<br />\n                A         Esus         F#m7          D2<br />\nGod, I see Your grace is enough, I&#8217;m covered in Your love<br />\n     A         Esus      D2<br />\nYour grace is enough for me</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nA     A/C#  D2<br />\nF#m   E     D2 </p>\n<p><strong>Verse 1:</strong><br />\nA             A/C#            D2<br />\nGreat is Your faithfulness oh God<br />\nF#m7        Esus             D2<br />\nAnd You convict the sinners heart<br />\nA           A/C#            D2<br />\nYou lead us by still waters and to mercy<br />\nF#m7        Esus         D2<br />\nAnd nothing can keep us apart</p>\n<p><strong>Pre-Chorus:</strong><br />\n     Bm7         A/C#      D2          Esus<br />\nSo remember Your people, remember Your children<br />\n  Bm7/F#      C#m/G#-/A   D2<br />\nRemember Your promise, oh God</p>\n<p><strong>Chorus 1:</strong><br />\n     A         Esus        F#m7      D2<br />\nYour grace is enough, Your grace is enough<br />\n     A         Esus      D2<br />\nYour grace is enough for me</p>\n<p><strong>Verse 2:</strong><br />\nA             A/C#             D2<br />\nGreat is your love and justice God<br />\nF#m7        Esus             D2<br />\nYou use the weak to lead the strong<br />\nA           A/C#           D2<br />\nYou lead us in the song of Your salvation<br />\nF#m7         Esus         D2<br />\nAnd all Your people sing along</p>\n<p><strong>Chorus 2:</strong><br />\n     A         Esus             F#m7          D2<br />\nYour grace is enough, heaven reaching down to us<br />\n     A         Esus      D2<br />\nYour grace is enough for me<br />\n                A         Esus         F#m7          D2<br />\nGod, I see Your grace is enough, I&#8217;m covered in Your love<br />\n     A         Esus      D2<br />\nYour grace is enough for me</p>\n",
+    "songNumber": 248
   },
   {
     "title": "Sing, Sing, Sing",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3918",
     "id": "selah-3918",
@@ -85107,13 +85280,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Chorus:</strong><br />\nE<br />\nSing, sing, sing<br />\n         E<br />\nAnd make music with the heavens<br />\n        C#m7<br />\nWe will sing, sing, sing<br />\nC#m7<br />\nGrateful that You hear us<br />\n        Bsus<br />\nWhen we shout Your praise<br />\n     A2<br />\nLift high the name<br />\n   E<br />\nOf Jesus</p>\n<p><strong>Verse 1:</strong><br />\nE<br />\nWhat&#8217;s not to love about You<br />\nE<br />\nHeaven and earth adore You<br />\nC#m7<br />\nKings and kingdoms bow down<br />\nC#m7<br />\nSon of God<br />\n            Bsus<br />\nYou are the one<br />\n            A2<br />\nYou are the one</p>\n<p><strong>Verse 2:</strong><br />\nE<br />\nYou are the love that frees us<br />\nE<br />\nYou are the light that leads us<br />\nC#m7<br />\nLike a fire burning<br />\nC#m7<br />\nSon of God<br />\n            Bsus<br />\nYou are the one<br />\n            A2<br />\nYou are the one<br />\n             C#m7 &#8211; Bsus<br />\nWe&#8217;re living for</p>\n<p><strong>Interlude:</strong><br />\nE   D   A/C#   A</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Chorus:</strong><br />\nE<br />\nSing, sing, sing<br />\n         E<br />\nAnd make music with the heavens<br />\n        C#m7<br />\nWe will sing, sing, sing<br />\nC#m7<br />\nGrateful that You hear us<br />\n        Bsus<br />\nWhen we shout Your praise<br />\n     A2<br />\nLift high the name<br />\n   E<br />\nOf Jesus</p>\n<p><strong>Verse 1:</strong><br />\nE<br />\nWhat&#8217;s not to love about You<br />\nE<br />\nHeaven and earth adore You<br />\nC#m7<br />\nKings and kingdoms bow down<br />\nC#m7<br />\nSon of God<br />\n            Bsus<br />\nYou are the one<br />\n            A2<br />\nYou are the one</p>\n<p><strong>Verse 2:</strong><br />\nE<br />\nYou are the love that frees us<br />\nE<br />\nYou are the light that leads us<br />\nC#m7<br />\nLike a fire burning<br />\nC#m7<br />\nSon of God<br />\n            Bsus<br />\nYou are the one<br />\n            A2<br />\nYou are the one<br />\n             C#m7 &#8211; Bsus<br />\nWe&#8217;re living for</p>\n<p><strong>Interlude:</strong><br />\nE   D   A/C#   A</p>\n",
+    "songNumber": 196
   },
   {
     "title": "Walang Hanggang Sasambahin",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-3898",
     "id": "selah-3898",
@@ -85414,13 +85588,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nA-Asus&#8230;</p>\n<p><strong>Verse:</strong><br />\nA               Bm<br />\nNais kong Ika’y maranasan<br />\nD             E      A   /G#<br />\nPagkilos Mo’y aking inaasam<br />\n       F#m                    B<br />\nPagkat sa Iyo ko lang natagpuan<br />\n  D         E Esus<br />\nAng tunay na kagalakan<br />\nA                   Bm<br />\nNais kong Ika’y maranasan<br />\nD     E   A       /G#<br />\nTibok ng puso ko’y Ikaw lamang<br />\n       F#m              B<br />\nKaya’t ngayon, bukas, at kailanman<br />\nD       E E7<br />\nPagsamba ko’y iaalay</p>\n<p><strong>Chorus:</strong><br />\nD                     D/E<br />\nWalang hanggang Kitang pupurihin<br />\n    C#m           F#m<br />\nWalang hanggang sasambahin<br />\n      Bm       A/C# &#8211; C#/F &#8211; F#m<br />\nBuong laman ng puso kong ito<br />\n      D           E     To verse: D-E-A<br />\nAng mamalagi sa Iyo</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nA-Asus&#8230;</p>\n<p><strong>Verse:</strong><br />\nA               Bm<br />\nNais kong Ika’y maranasan<br />\nD             E      A   /G#<br />\nPagkilos Mo’y aking inaasam<br />\n       F#m                    B<br />\nPagkat sa Iyo ko lang natagpuan<br />\n  D         E Esus<br />\nAng tunay na kagalakan<br />\nA                   Bm<br />\nNais kong Ika’y maranasan<br />\nD     E   A       /G#<br />\nTibok ng puso ko’y Ikaw lamang<br />\n       F#m              B<br />\nKaya’t ngayon, bukas, at kailanman<br />\nD       E E7<br />\nPagsamba ko’y iaalay</p>\n<p><strong>Chorus:</strong><br />\nD                     D/E<br />\nWalang hanggang Kitang pupurihin<br />\n    C#m           F#m<br />\nWalang hanggang sasambahin<br />\n      Bm       A/C# &#8211; C#/F &#8211; F#m<br />\nBuong laman ng puso kong ito<br />\n      D           E     To verse: D-E-A<br />\nAng mamalagi sa Iyo</p>\n",
+    "songNumber": 225
   },
   {
     "title": "Great are You, Lord",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3854",
     "id": "selah-3854",
@@ -85753,13 +85928,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD    F#m7    E</p>\n<p><strong>Verse</strong><br />\n         D            F#m7            E<br />\nYou give life, You are love, You bring light to the darkness<br />\n         D           F#m7       E<br />\nYou give hope, You restore every heart that is broken<br />\nD    F#m7           E   Esus2   E<br />\n      Great are You, Lord</p>\n<p><strong>Chorus</strong><br />\n          D            F#m7<br />\nIt&#8217;s Your breath in our lungs<br />\n      E<br />\nSo we pour out our praise, we pour out our praise<br />\n          D            F#m7         E<br />\nIt&#8217;s Your breath in our lungs, so we pour out our praise to You only</p>\n<p><strong>Instrumental</strong><br />\nA       Asus2       D         A</p>\n<p><strong>Bridge</strong><br />\nA<br />\nAll the earth will shout Your praise<br />\n    Asus2<br />\nOur hearts will cry these bones will sing<br />\nD             A<br />\nGreat are You, Lord</p>\n<p><strong>Outro</strong><br />\nD       F#m7      E         D   F#m7  E<br />\nWe pour out our praise to You only<br />\n                              D   F#m7  E<br />\nWe pour out our praise to You only</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD    F#m7    E</p>\n<p><strong>Verse</strong><br />\n         D            F#m7            E<br />\nYou give life, You are love, You bring light to the darkness<br />\n         D           F#m7       E<br />\nYou give hope, You restore every heart that is broken<br />\nD    F#m7           E   Esus2   E<br />\n      Great are You, Lord</p>\n<p><strong>Chorus</strong><br />\n          D            F#m7<br />\nIt&#8217;s Your breath in our lungs<br />\n      E<br />\nSo we pour out our praise, we pour out our praise<br />\n          D            F#m7         E<br />\nIt&#8217;s Your breath in our lungs, so we pour out our praise to You only</p>\n<p><strong>Instrumental</strong><br />\nA       Asus2       D         A</p>\n<p><strong>Bridge</strong><br />\nA<br />\nAll the earth will shout Your praise<br />\n    Asus2<br />\nOur hearts will cry these bones will sing<br />\nD             A<br />\nGreat are You, Lord</p>\n<p><strong>Outro</strong><br />\nD       F#m7      E         D   F#m7  E<br />\nWe pour out our praise to You only<br />\n                              D   F#m7  E<br />\nWe pour out our praise to You only</p>\n",
+    "songNumber": 63
   },
   {
     "title": "Majesty",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3805",
     "id": "selah-3805",
@@ -86172,13 +86348,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Verse 1:</strong><br />\nG       G/B<br />\nMajesty<br />\n            C2      Am<br />\nWorship His majesty<br />\n     G   D/F#     Em<br />\nUnto Jesus be all glory<br />\n          F      C &#8211; D<br />\nHonor and praise<br />\nG       G/B<br />\nMajesty<br />\n          C2      Am<br />\nKingdom authority<br />\n               G                D<br />\nFlows from His throne, unto His own<br />\n             G<br />\nHis anthem raise</p>\n<p><strong>Chorus:</strong><br />\n    D<br />\nSo exalt, lift up on high<br />\n            G<br />\nThe name of Jesus<br />\n     D<br />\nMagnify, come glorify<br />\n                 B7 &#8211; C &#8211; D<br />\nChrist Jesus the King<br />\nG       G/B<br />\nMajesty<br />\n            C2      Am<br />\nWorship His majesty<br />\n          G                D<br />\nJesus who died is now glorified<br />\n            G<br />\nKing of all kings</p>\n<p><strong>Ending:</strong><br />\n          G                 D<br />\nJesus who died, is now glorified<br />\n            Em &#8211; D &#8211; C<br />\nKing of all kings<br />\n          G                 D<br />\nJesus who died, is now glorified<br />\n            C     G<br />\nKing of all kings</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Verse 1:</strong><br />\nG       G/B<br />\nMajesty<br />\n            C2      Am<br />\nWorship His majesty<br />\n     G   D/F#     Em<br />\nUnto Jesus be all glory<br />\n          F      C &#8211; D<br />\nHonor and praise<br />\nG       G/B<br />\nMajesty<br />\n          C2      Am<br />\nKingdom authority<br />\n               G                D<br />\nFlows from His throne, unto His own<br />\n             G<br />\nHis anthem raise</p>\n<p><strong>Chorus:</strong><br />\n    D<br />\nSo exalt, lift up on high<br />\n            G<br />\nThe name of Jesus<br />\n     D<br />\nMagnify, come glorify<br />\n                 B7 &#8211; C &#8211; D<br />\nChrist Jesus the King<br />\nG       G/B<br />\nMajesty<br />\n            C2      Am<br />\nWorship His majesty<br />\n          G                D<br />\nJesus who died is now glorified<br />\n            G<br />\nKing of all kings</p>\n<p><strong>Ending:</strong><br />\n          G                 D<br />\nJesus who died, is now glorified<br />\n            Em &#8211; D &#8211; C<br />\nKing of all kings<br />\n          G                 D<br />\nJesus who died, is now glorified<br />\n            C     G<br />\nKing of all kings</p>\n",
+    "songNumber": 147
   },
   {
     "title": "We Lift Up Our Eyes (Father We Declare)",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-1093",
     "id": "selah-1093",
@@ -86661,13 +86838,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Verse 1:</strong><br />\n   G           Gmaj7<br />\nWe lift up our eyes<br />\nG9  G/B   Cmaj7<br />\nAbove the troubles<br />\n  -Bm7-Em<br />\nIn our land<br />\n    Em/D        C<br />\nAnd together we stand<br />\n     D            G   C/G  D/G  C/G<br />\nTo declare You as King</p>\n<p><strong>Verse 2:</strong><br />\n   G          Gmaj7<br />\nIn times like these<br />\n   G9-G/B    Cmaj7<br />\nWe choose to praise You<br />\n   -Bm7 -Em<br />\nFor it&#8217;s You,<br />\n     Em/D             Cmaj7<br />\nIt&#8217;s You who really matters<br />\n        Am7/D         G<br />\nYou are worthy of all praise</p>\n<p><strong>Pre-chorus:</strong><br />\nC/E   D/F#<br />\n               &#8211; G<br />\nAnd we will say<br />\n                 &#8211; Em<br />\nThat You are good<br />\n            Am7<br />\nAnd all the miracles<br />\n       Am7/D                G/B<br />\nYou&#8217;ve done have brought us joy<br />\n           Em<br />\nFor we are changed<br />\n            Am7<br />\nAnd all the Hopes we have<br />\n   D                  G   Am7  G/B<br />\nWe place in You right now</p>\n<p><strong>Chorus:</strong><br />\nC           D             G-D/F#-Em<br />\nFather we declare that we love   You<br />\n     Am7           C/D               G  F/G  G7<br />\nWe declare our everlasting love for  You<br />\nC           D     /F#     B-B7/Eb-Em<br />\nFather we declare that we love    You<br />\n     Am7           C/D              G<br />\nWe declare our everlasting love for you</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Verse 1:</strong><br />\n   G           Gmaj7<br />\nWe lift up our eyes<br />\nG9  G/B   Cmaj7<br />\nAbove the troubles<br />\n  -Bm7-Em<br />\nIn our land<br />\n    Em/D        C<br />\nAnd together we stand<br />\n     D            G   C/G  D/G  C/G<br />\nTo declare You as King</p>\n<p><strong>Verse 2:</strong><br />\n   G          Gmaj7<br />\nIn times like these<br />\n   G9-G/B    Cmaj7<br />\nWe choose to praise You<br />\n   -Bm7 -Em<br />\nFor it&#8217;s You,<br />\n     Em/D             Cmaj7<br />\nIt&#8217;s You who really matters<br />\n        Am7/D         G<br />\nYou are worthy of all praise</p>\n<p><strong>Pre-chorus:</strong><br />\nC/E   D/F#<br />\n               &#8211; G<br />\nAnd we will say<br />\n                 &#8211; Em<br />\nThat You are good<br />\n            Am7<br />\nAnd all the miracles<br />\n       Am7/D                G/B<br />\nYou&#8217;ve done have brought us joy<br />\n           Em<br />\nFor we are changed<br />\n            Am7<br />\nAnd all the Hopes we have<br />\n   D                  G   Am7  G/B<br />\nWe place in You right now</p>\n<p><strong>Chorus:</strong><br />\nC           D             G-D/F#-Em<br />\nFather we declare that we love   You<br />\n     Am7           C/D               G  F/G  G7<br />\nWe declare our everlasting love for  You<br />\nC           D     /F#     B-B7/Eb-Em<br />\nFather we declare that we love    You<br />\n     Am7           C/D              G<br />\nWe declare our everlasting love for you</p>\n",
+    "songNumber": 231
   },
   {
     "title": "Beautiful Saviour",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3725",
     "id": "selah-3725",
@@ -87238,13 +87416,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG   D/F#  Em7   D<br />\nC2  G/B   Am7</p>\n<p><strong>Verse:</strong><br />\nG      D/F#      Em7<br />\nJesus, beautiful Saviour<br />\nD          C        G/B   Am7<br />\nGod of all majesty, Risen King<br />\n        G    D/F#     Em7<br />\nLamb of God, Holy and Righteous<br />\nD         C       G/B          Am7<br />\nBlessed Redeemer, bright Morning Star</p>\n<p><strong>Pre-Chorus:</strong><br />\n        D       G/B        C<br />\nAll the Heavens shout Your praise<br />\n       D     G/B     C  Em   D<br />\nAll creation bows to worship You</p>\n<p><strong>Chorus:</strong><br />\n    G        D/F#  Em7<br />\nHow wonderful, how beautiful<br />\nD          C           G/B Am7 C/E D/F#<br />\nName above every name, exalted high<br />\n    G        D/F#  Em7<br />\nHow wonderful, how beautiful<br />\nD          C  Am            C Em  D<br />\nJesus Your Name, Name above every name<br />\n      Gsus  G  Gsus  G<br />\nJesus</p>\n<p><strong>Bridge:</strong><br />\nG              Em7<br />\nI will sing forever<br />\n        C                 Am7  D<br />\nJesus I love You, Jesus I love You</p>\n<p><strong>Outro:</strong><br />\nGsus  G          Gsus  G<br />\nJesus, beautiful Saviour<br />\nGsus  G          Gsus  G  ( C &#8211; D &#8211; C/E &#8211; D/F# )<br />\nJesus, beautiful Saviour</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG   D/F#  Em7   D<br />\nC2  G/B   Am7</p>\n<p><strong>Verse:</strong><br />\nG      D/F#      Em7<br />\nJesus, beautiful Saviour<br />\nD          C        G/B   Am7<br />\nGod of all majesty, Risen King<br />\n        G    D/F#     Em7<br />\nLamb of God, Holy and Righteous<br />\nD         C       G/B          Am7<br />\nBlessed Redeemer, bright Morning Star</p>\n<p><strong>Pre-Chorus:</strong><br />\n        D       G/B        C<br />\nAll the Heavens shout Your praise<br />\n       D     G/B     C  Em   D<br />\nAll creation bows to worship You</p>\n<p><strong>Chorus:</strong><br />\n    G        D/F#  Em7<br />\nHow wonderful, how beautiful<br />\nD          C           G/B Am7 C/E D/F#<br />\nName above every name, exalted high<br />\n    G        D/F#  Em7<br />\nHow wonderful, how beautiful<br />\nD          C  Am            C Em  D<br />\nJesus Your Name, Name above every name<br />\n      Gsus  G  Gsus  G<br />\nJesus</p>\n<p><strong>Bridge:</strong><br />\nG              Em7<br />\nI will sing forever<br />\n        C                 Am7  D<br />\nJesus I love You, Jesus I love You</p>\n<p><strong>Outro:</strong><br />\nGsus  G          Gsus  G<br />\nJesus, beautiful Saviour<br />\nGsus  G          Gsus  G  ( C &#8211; D &#8211; C/E &#8211; D/F# )<br />\nJesus, beautiful Saviour</p>\n",
+    "songNumber": 18
   },
   {
     "title": "Our Father",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3592",
     "id": "selah-3592",
@@ -87867,13 +88046,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\nD<br />\nHear our prayer<br />\nG           D<br />\nWe are Your children<br />\n          G         A     Bm<br />\nAnd we&#8217;ve gathered here today<br />\n       G        A       D<br />\nWe&#8217;ve gathered here to pray</p>\n<p>         D<br />\nHear our cry<br />\n        G            D<br />\nO Lord, we need Your mercy<br />\n    G             A     Bm<br />\nAnd we need Your grace today<br />\nG        A     D<br />\nHear us as we pray</p>\n<p><strong>Chorus:</strong><br />\n    A  Bm  G<br />\nOur Father who art in heaven<br />\nD        A      D<br />\nHallowed be Thy name<br />\n    A  Bm  G<br />\nOur Father hear us from heaven<br />\nD           A       D<br />\nForgive our sins we pray</p>\n<p><strong>Verse 2:</strong><br />\nD<br />\nHear our song<br />\nG           D<br />\nAs it rises to heaven<br />\n          G         A     Bm<br />\nMay Your glory fill the earth<br />\n       G        A       D<br />\nAs the waters cover the sea</p>\n<p>         D<br />\nSee our hearts<br />\n    G            D<br />\nAnd remove anything<br />\n    G             A     Bm<br />\nThat is standing in the way<br />\nG         A      D<br />\nOf coming to You today</p>\n<p><strong>Bridge:</strong><br />\nD                 A<br />\nAnd though we are few<br />\n          Bm          G<br />\nWe&#8217;re surrounded by many<br />\n         D            A      D<br />\nWho have crossed that river before<br />\n                A             Bm         G<br />\nAnd this is the song we&#8217;ll be singing forever</p>\n<p>D    A      Bm<br />\nHoly is the Lord<br />\nG    A      D<br />\nHoly is the Lord<br />\nD    A      Bm<br />\nHoly is the Lord<br />\nG    A      D<br />\nHoly is the Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\nD<br />\nHear our prayer<br />\nG           D<br />\nWe are Your children<br />\n          G         A     Bm<br />\nAnd we&#8217;ve gathered here today<br />\n       G        A       D<br />\nWe&#8217;ve gathered here to pray</p>\n<p>         D<br />\nHear our cry<br />\n        G            D<br />\nO Lord, we need Your mercy<br />\n    G             A     Bm<br />\nAnd we need Your grace today<br />\nG        A     D<br />\nHear us as we pray</p>\n<p><strong>Chorus:</strong><br />\n    A  Bm  G<br />\nOur Father who art in heaven<br />\nD        A      D<br />\nHallowed be Thy name<br />\n    A  Bm  G<br />\nOur Father hear us from heaven<br />\nD           A       D<br />\nForgive our sins we pray</p>\n<p><strong>Verse 2:</strong><br />\nD<br />\nHear our song<br />\nG           D<br />\nAs it rises to heaven<br />\n          G         A     Bm<br />\nMay Your glory fill the earth<br />\n       G        A       D<br />\nAs the waters cover the sea</p>\n<p>         D<br />\nSee our hearts<br />\n    G            D<br />\nAnd remove anything<br />\n    G             A     Bm<br />\nThat is standing in the way<br />\nG         A      D<br />\nOf coming to You today</p>\n<p><strong>Bridge:</strong><br />\nD                 A<br />\nAnd though we are few<br />\n          Bm          G<br />\nWe&#8217;re surrounded by many<br />\n         D            A      D<br />\nWho have crossed that river before<br />\n                A             Bm         G<br />\nAnd this is the song we&#8217;ll be singing forever</p>\n<p>D    A      Bm<br />\nHoly is the Lord<br />\nG    A      D<br />\nHoly is the Lord<br />\nD    A      Bm<br />\nHoly is the Lord<br />\nG    A      D<br />\nHoly is the Lord</p>\n",
+    "songNumber": 170
   },
   {
     "title": "You Are My King (Amazing Love)",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3582",
     "id": "selah-3582",
@@ -88130,13 +88310,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD G A </p>\n<p><strong>Verse:</strong><br />\nD/F#     G      Bm                  A<br />\nI’m forgiven, because You were forsaken<br />\nD/F#    G      Bm      A<br />\nI’m accepted, You were condemned<br />\nD     G                  Bm             A<br />\nI’m alive and well, Your Spirit is within me<br />\nG             A             D<br />\nBecause You died and rose again</p>\n<p><strong>Chorus:</strong><br />\nD              G<br />\nAmazing love, how can it be<br />\n  D                            A<br />\nThat You my king would die for me<br />\n   D/F#        G<br />\nAmazing love, I know it’s true<br />\n  Bm                  A<br />\nIt’s my joy to honor You<br />\n          G    A     D<br />\nIn all I do I honor you</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong><br />\nD G A </p>\n<p><strong>Verse:</strong><br />\nD/F#     G      Bm                  A<br />\nI’m forgiven, because You were forsaken<br />\nD/F#    G      Bm      A<br />\nI’m accepted, You were condemned<br />\nD     G                  Bm             A<br />\nI’m alive and well, Your Spirit is within me<br />\nG             A             D<br />\nBecause You died and rose again</p>\n<p><strong>Chorus:</strong><br />\nD              G<br />\nAmazing love, how can it be<br />\n  D                            A<br />\nThat You my king would die for me<br />\n   D/F#        G<br />\nAmazing love, I know it’s true<br />\n  Bm                  A<br />\nIt’s my joy to honor You<br />\n          G    A     D<br />\nIn all I do I honor you</p>\n",
+    "songNumber": 243
   },
   {
     "title": "For Unto Us A Child is Born (Holy, Holy, Holy)",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3565",
     "id": "selah-3565",
@@ -88404,13 +88585,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE  Esus</p>\n<p><strong>Verse 1:</strong><br />\nE                                     A               B<br />\nFor unto us a child is born, a Son is given, a Son is given<br />\nE                                     A               B<br />\nFor unto us a child is born, a Son is given, a Son is given<br />\n        A/C#       B<br />\nThe Messiah, oh to see Him</p>\n<p><strong>Chorus:</strong><br />\n           B               C#m<br />\nTo see Him high and lifted up<br />\n A                             B<br />\nShining in the light of Your glory<br />\nB                          C#m<br />\nPour out Your power and love<br />\n           F#m          B<br />\nAs we sing holy, holy, holy </p>\n<p><strong>Bridge:</strong><br />\nA<br />\nHoly, holy, holy<br />\nF#m<br />\nHoly, holy, holy<br />\nC#m         B<br />\nHoly, holy, holy</p>\n<p><strong>Outro:</strong><br />\nE                            A<br />\nFor unto us a child is born, holy, holy, holy<br />\nC#m                           A<br />\nFor unto us a child is born, holy, holy, holy</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nE  Esus</p>\n<p><strong>Verse 1:</strong><br />\nE                                     A               B<br />\nFor unto us a child is born, a Son is given, a Son is given<br />\nE                                     A               B<br />\nFor unto us a child is born, a Son is given, a Son is given<br />\n        A/C#       B<br />\nThe Messiah, oh to see Him</p>\n<p><strong>Chorus:</strong><br />\n           B               C#m<br />\nTo see Him high and lifted up<br />\n A                             B<br />\nShining in the light of Your glory<br />\nB                          C#m<br />\nPour out Your power and love<br />\n           F#m          B<br />\nAs we sing holy, holy, holy </p>\n<p><strong>Bridge:</strong><br />\nA<br />\nHoly, holy, holy<br />\nF#m<br />\nHoly, holy, holy<br />\nC#m         B<br />\nHoly, holy, holy</p>\n<p><strong>Outro:</strong><br />\nE                            A<br />\nFor unto us a child is born, holy, holy, holy<br />\nC#m                           A<br />\nFor unto us a child is born, holy, holy, holy</p>\n",
+    "songNumber": 48
   },
   {
     "title": "O Come All Ye Faithful",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3555",
     "id": "selah-3555",
@@ -89058,13 +89240,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG  C  G/B  C </p>\n<p><strong>Verse 1:</strong><br />\n  G           D         G/B    C      D<br />\nO come all ye faithful, joyful and triumphant<br />\n  Em         D/F#      Asus A  D<br />\nO come ye, O come ye to Bethlehem<br />\nG/B  C    D/F#  G    Am7      G/B     D<br />\nCome and behold Him, born the King of angels</p>\n<p><strong>Chorus 1:</strong><br />\n  G<br />\nO come let us adore Him<br />\n  G/B      C   D<br />\nO come let us adore Him<br />\n  C             D   G/B C<br />\nO come let us adore Him<br />\nG   D      G      To Verses: G  C  G/B  C D (2x)<br />\nChrist the Lord</p>\n<p><strong>Verse 2:</strong><br />\n G              D       G/B    C   D<br />\nSing choirs of angels, sing in exultation<br />\n  Em          D/F#        Asus A   D<br />\nO sing all ye citizens of Heaven above<br />\nG/B C   D/F# G  Am7   G/B     D<br />\nGlory to God,  glory in the highest</p>\n<p><strong>Verse 3:</strong><br />\nG              D       G/B    C   D<br />\nYea Lord we greet Thee, born this happy morning<br />\nEm       D/F#        Asus A   D<br />\nJesus to Thee be all glory giv&#8217;n<br />\nG/B  C     D/F# G   Am7   G/B     D<br />\nWord of the Father now in flesh appearing </p>\n<p><strong>Outro:</strong><br />\n  G           C    G    G/B         C     G<br />\nO come all ye faithful, come let us adore Him<br />\n  G          C  G   C            D    G<br />\nO sing, hallelujah, come let us adore Him</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG  C  G/B  C </p>\n<p><strong>Verse 1:</strong><br />\n  G           D         G/B    C      D<br />\nO come all ye faithful, joyful and triumphant<br />\n  Em         D/F#      Asus A  D<br />\nO come ye, O come ye to Bethlehem<br />\nG/B  C    D/F#  G    Am7      G/B     D<br />\nCome and behold Him, born the King of angels</p>\n<p><strong>Chorus 1:</strong><br />\n  G<br />\nO come let us adore Him<br />\n  G/B      C   D<br />\nO come let us adore Him<br />\n  C             D   G/B C<br />\nO come let us adore Him<br />\nG   D      G      To Verses: G  C  G/B  C D (2x)<br />\nChrist the Lord</p>\n<p><strong>Verse 2:</strong><br />\n G              D       G/B    C   D<br />\nSing choirs of angels, sing in exultation<br />\n  Em          D/F#        Asus A   D<br />\nO sing all ye citizens of Heaven above<br />\nG/B C   D/F# G  Am7   G/B     D<br />\nGlory to God,  glory in the highest</p>\n<p><strong>Verse 3:</strong><br />\nG              D       G/B    C   D<br />\nYea Lord we greet Thee, born this happy morning<br />\nEm       D/F#        Asus A   D<br />\nJesus to Thee be all glory giv&#8217;n<br />\nG/B  C     D/F# G   Am7   G/B     D<br />\nWord of the Father now in flesh appearing </p>\n<p><strong>Outro:</strong><br />\n  G           C    G    G/B         C     G<br />\nO come all ye faithful, come let us adore Him<br />\n  G          C  G   C            D    G<br />\nO sing, hallelujah, come let us adore Him</p>\n",
+    "songNumber": 161
   },
   {
     "title": "Celebrate the Lord of Love",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3552",
     "id": "selah-3552",
@@ -89440,13 +89623,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Chorus:</strong><br />\nE            A      B          A        E<br />\nTrade your heavy heart for a heart of joy<br />\n     A2          B<br />\nCelebrate what God has done<br />\nE            A      B          A        E<br />\nJoin the song of praise as we gather here<br />\n    A2          B       E<br />\nCelebrate the Lord of Love<br />\nE      A      B            A        E<br />\nJesus is our Lord, He is reigning here<br />\n     A2            B<br />\nWe declare His kingdom&#8217;s come<br />\nE         A      B           A      E<br />\nDarkness has to flee in His holy light<br />\n    A2          B       E<br />\nCelebrate the Lord of Love</p>\n<p><strong>Verse:</strong><br />\nA        B      E     A          B    E<br />\n All creation sings, hear the oceans roar<br />\nC#/F            F#m7                 B7sus<br />\n Let the earth proclaim  that Christ is Lord</p>\n<p><strong>Outro:</strong><br />\nE/G#  A       B       C#m7<br />\nCelebrate the Lord of Love<br />\n    B         B       E<br />\nCelebrate the Lord of Love</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Chorus:</strong><br />\nE            A      B          A        E<br />\nTrade your heavy heart for a heart of joy<br />\n     A2          B<br />\nCelebrate what God has done<br />\nE            A      B          A        E<br />\nJoin the song of praise as we gather here<br />\n    A2          B       E<br />\nCelebrate the Lord of Love<br />\nE      A      B            A        E<br />\nJesus is our Lord, He is reigning here<br />\n     A2            B<br />\nWe declare His kingdom&#8217;s come<br />\nE         A      B           A      E<br />\nDarkness has to flee in His holy light<br />\n    A2          B       E<br />\nCelebrate the Lord of Love</p>\n<p><strong>Verse:</strong><br />\nA        B      E     A          B    E<br />\n All creation sings, hear the oceans roar<br />\nC#/F            F#m7                 B7sus<br />\n Let the earth proclaim  that Christ is Lord</p>\n<p><strong>Outro:</strong><br />\nE/G#  A       B       C#m7<br />\nCelebrate the Lord of Love<br />\n    B         B       E<br />\nCelebrate the Lord of Love</p>\n",
+    "songNumber": 27
   },
   {
     "title": "New Doxology",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3546",
     "id": "selah-3546",
@@ -89752,13 +89936,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG</p>\n<p><strong>Verse 1:</strong><br />\n       G<br />\nPraise God from whom all blessings flow<br />\n       G<br />\nPraise Him all creatures here below<br />\n       G<br />\nPraise Him above, ye heavenly hosts<br />\n       G                  D  G<br />\nPraise Father, Son and Ho-ly Ghost</p>\n<p><strong>Verse 2:</strong><br />\n    G<br />\nLet earth and heavenly saints proclaim<br />\n    G<br />\nThe power and might of His great name<br />\n    G<br />\nLet us exalt on bended knee<br />\n       G                   D     G<br />\nPraise God, the Holy Tri &#8211; ni &#8211; ty</p>\n<p><strong>Chorus:</strong><br />\n       C            G/B          Am7                 D<br />\nPraise God,  praise God,  praise God,  who saved my soul<br />\nG/B    C            G/B          Am7               Dsus     D      G<br />\nPraise God,  praise God,  praise God from Whom all bless &#8211; ings flow</p>\n<p><strong>Verse 3:</strong><br />\n       G<br />\nPraise to the King, His throne transcends<br />\n    G<br />\nHis crown and Kingdom never end<br />\n    G<br />\nNow and throughout eternity<br />\n     G                       D   G<br />\nI’ll praise the One who died for me</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG</p>\n<p><strong>Verse 1:</strong><br />\n       G<br />\nPraise God from whom all blessings flow<br />\n       G<br />\nPraise Him all creatures here below<br />\n       G<br />\nPraise Him above, ye heavenly hosts<br />\n       G                  D  G<br />\nPraise Father, Son and Ho-ly Ghost</p>\n<p><strong>Verse 2:</strong><br />\n    G<br />\nLet earth and heavenly saints proclaim<br />\n    G<br />\nThe power and might of His great name<br />\n    G<br />\nLet us exalt on bended knee<br />\n       G                   D     G<br />\nPraise God, the Holy Tri &#8211; ni &#8211; ty</p>\n<p><strong>Chorus:</strong><br />\n       C            G/B          Am7                 D<br />\nPraise God,  praise God,  praise God,  who saved my soul<br />\nG/B    C            G/B          Am7               Dsus     D      G<br />\nPraise God,  praise God,  praise God from Whom all bless &#8211; ings flow</p>\n<p><strong>Verse 3:</strong><br />\n       G<br />\nPraise to the King, His throne transcends<br />\n    G<br />\nHis crown and Kingdom never end<br />\n    G<br />\nNow and throughout eternity<br />\n     G                       D   G<br />\nI’ll praise the One who died for me</p>\n",
+    "songNumber": 157
   },
   {
     "title": "Holy, Holy, Holy (God With Us)",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3507",
     "id": "selah-3507",
@@ -90496,13 +90681,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nC  Csus</p>\n<p><strong>Verse 1:</strong><br />\nC           G/B<br />\nHoly, holy, holy<br />\nF2/A        C<br />\nLord, God Almighty<br />\nG            Am7  G<br />\nEarly in the morning<br />\n   Dsus        D       Gsus<br />\nOur song shall rise to Thee<br />\nC           G/B<br />\nHoly, holy, holy<br />\nF2/A         C<br />\nMerciful and mighty<br />\nAm7 G        F2  Am7<br />\nGod in three persons<br />\nF2      G    C  Csus<br />\nBlessed Trinity </p>\n<p><strong>Verse 2:</strong><br />\nC           G/B<br />\nHoly, holy, holy<br />\nF2/A            C<br />\nAll the saints adore Thee<br />\nG                  Am7    G<br />\nCasting down their golden crowns<br />\nDsus       D      Gsus<br />\nAround the glassy sea<br />\nC             G/B<br />\nCherubim and seraphim<br />\nF2/A           C<br />\nFalling down before Thee<br />\nAm7    G         F2  Am7<br />\nWhich, wert, and art and<br />\nF2   G          C  Csus<br />\nEvermore shalt be</p>\n<p><strong>Chorus:</strong><br />\n         G<br />\nFrom the cradle to the cross<br />\n         Am7  F       C<br />\nGod with us, God with us<br />\n         G<br />\nFor this broken world You love<br />\n         Am7  F       C<br />\nGod with us, God with us<br />\n         G<br />\nYou gave up Your only Son<br />\n         Am7  F       C<br />\nGod with us, God with us<br />\n        G                   Am7<br />\nSo that all the world would know<br />\n     F       C<br />\nOur God with us</p>\n<p><strong>Verse 3:</strong><br />\nC           G/B<br />\nHoly, holy, holy<br />\nF2/A        C<br />\nLord, God Almighty<br />\nG                   Am7        G<br />\nAll Thy works shall praise Thy name<br />\n   Dsus      D       Gsus<br />\nIn earth and sky and sea </p>\n<p>C           G/B<br />\nHoly, holy, holy<br />\nF2/A         C<br />\nMerciful and mighty<br />\nAm7 G  F2     Am7<br />\nGod in three persons<br />\nF2      G    C  Csus<br />\nBlessed Trinity </p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nC  Csus</p>\n<p><strong>Verse 1:</strong><br />\nC           G/B<br />\nHoly, holy, holy<br />\nF2/A        C<br />\nLord, God Almighty<br />\nG            Am7  G<br />\nEarly in the morning<br />\n   Dsus        D       Gsus<br />\nOur song shall rise to Thee<br />\nC           G/B<br />\nHoly, holy, holy<br />\nF2/A         C<br />\nMerciful and mighty<br />\nAm7 G        F2  Am7<br />\nGod in three persons<br />\nF2      G    C  Csus<br />\nBlessed Trinity </p>\n<p><strong>Verse 2:</strong><br />\nC           G/B<br />\nHoly, holy, holy<br />\nF2/A            C<br />\nAll the saints adore Thee<br />\nG                  Am7    G<br />\nCasting down their golden crowns<br />\nDsus       D      Gsus<br />\nAround the glassy sea<br />\nC             G/B<br />\nCherubim and seraphim<br />\nF2/A           C<br />\nFalling down before Thee<br />\nAm7    G         F2  Am7<br />\nWhich, wert, and art and<br />\nF2   G          C  Csus<br />\nEvermore shalt be</p>\n<p><strong>Chorus:</strong><br />\n         G<br />\nFrom the cradle to the cross<br />\n         Am7  F       C<br />\nGod with us, God with us<br />\n         G<br />\nFor this broken world You love<br />\n         Am7  F       C<br />\nGod with us, God with us<br />\n         G<br />\nYou gave up Your only Son<br />\n         Am7  F       C<br />\nGod with us, God with us<br />\n        G                   Am7<br />\nSo that all the world would know<br />\n     F       C<br />\nOur God with us</p>\n<p><strong>Verse 3:</strong><br />\nC           G/B<br />\nHoly, holy, holy<br />\nF2/A        C<br />\nLord, God Almighty<br />\nG                   Am7        G<br />\nAll Thy works shall praise Thy name<br />\n   Dsus      D       Gsus<br />\nIn earth and sky and sea </p>\n<p>C           G/B<br />\nHoly, holy, holy<br />\nF2/A         C<br />\nMerciful and mighty<br />\nAm7 G  F2     Am7<br />\nGod in three persons<br />\nF2      G    C  Csus<br />\nBlessed Trinity </p>\n",
+    "songNumber": 78
   },
   {
     "title": "Clap Your Hands",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3474",
     "id": "selah-3474",
@@ -90891,13 +91077,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key:A </strong></p>\n<p><strong>Intro:</strong> F  G  A (2x), F  G  E</p>\n<p><strong>Verse:</strong><br />\n           A            E/G#<br />\nClap your hands, all ye people<br />\n       F#m                            D   (E7)<br />\nMake a joyful noise unto the Lord our God<br />\n          A            E/G#<br />\nSing and shout, all ye people<br />\n       D                       E   (E7)<br />\nLet us magnify the Name of the Lord</p>\n<p><strong>Pre-chorus:</strong><br />\n         F#m          F#mM7/F<br />\nLift Him high all ye heavens<br />\n         F#m7/E       F#m6/Eb<br />\nLift Him high all ye earth<br />\n         F#m          F#mM7/F<br />\nLift Him high all ye nations<br />\n         F#m7/E       F#m6/Eb<br />\nLift Him high all ye land</p>\n<p><strong>Chorus:</strong><br />\n        Bm              A<br />\nFor the Lord our God is holy<br />\n    Bm              A<br />\nThe Lord our God is good<br />\n    Bm              A<br />\nThe Lord our God is worthy<br />\n    Bm              E7            C#7<br />\nThe Lord our God is worthy of all praise<br />\n    Bm              E7            A  (to verse: F-G-A (2x) F-G-E)<br />\nThe Lord our God is worthy of all praise</p>\n<p><strong>Bridge:</strong><br />\n   F         G            Em       Am<br />\nHe rides the wings of the cherubim<br />\n    F      G            A<br />\nHis mighty power is displayed<br />\nF        G                 Em             Am<br />\nWith one voice we sing our praises to the King<br />\nF                                A<br />\nProclaiming that Jesus Christ is Lord !</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key:A </strong></p>\n<p><strong>Intro:</strong> F  G  A (2x), F  G  E</p>\n<p><strong>Verse:</strong><br />\n           A            E/G#<br />\nClap your hands, all ye people<br />\n       F#m                            D   (E7)<br />\nMake a joyful noise unto the Lord our God<br />\n          A            E/G#<br />\nSing and shout, all ye people<br />\n       D                       E   (E7)<br />\nLet us magnify the Name of the Lord</p>\n<p><strong>Pre-chorus:</strong><br />\n         F#m          F#mM7/F<br />\nLift Him high all ye heavens<br />\n         F#m7/E       F#m6/Eb<br />\nLift Him high all ye earth<br />\n         F#m          F#mM7/F<br />\nLift Him high all ye nations<br />\n         F#m7/E       F#m6/Eb<br />\nLift Him high all ye land</p>\n<p><strong>Chorus:</strong><br />\n        Bm              A<br />\nFor the Lord our God is holy<br />\n    Bm              A<br />\nThe Lord our God is good<br />\n    Bm              A<br />\nThe Lord our God is worthy<br />\n    Bm              E7            C#7<br />\nThe Lord our God is worthy of all praise<br />\n    Bm              E7            A  (to verse: F-G-A (2x) F-G-E)<br />\nThe Lord our God is worthy of all praise</p>\n<p><strong>Bridge:</strong><br />\n   F         G            Em       Am<br />\nHe rides the wings of the cherubim<br />\n    F      G            A<br />\nHis mighty power is displayed<br />\nF        G                 Em             Am<br />\nWith one voice we sing our praises to the King<br />\nF                                A<br />\nProclaiming that Jesus Christ is Lord !</p>\n",
+    "songNumber": 29
   },
   {
     "title": "Awit ng Puso",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-1273",
     "id": "selah-1273",
@@ -91418,13 +91605,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse 1:</strong><br />\n    D       G/D       D<br />\nSa &#8216;Yo kami ay lumalapit<br />\n            G         A<br />\nAlay sa &#8216;Yo ay isang awit<br />\n    G         A          G       A<br />\nSa bawat paghimig, wagas na pag-ibig</p>\n<p><strong>Verse 2:</strong><br />\n    D       G/D      D<br />\nSa &#8216;Yo kami ay sumasamo<br />\n              G            A<br />\nDinggin nawa awit nitong puso<br />\n   G           A               G          A<br />\nSa bawat pagpintig, handog sa &#8216;Yo ay pag-ibig</p>\n<p><strong>Chorus:</strong><br />\n     D  Bm   G         A<br />\nIkaw lamang ang sasambahin<br />\n     D  Bm   G        A<br />\nIkaw lamang ang pupurihin<br />\n  F#m      F#        Bm  G<br />\nPanginoong Tagapagligtas<br />\n    Em                       A<br />\nSa &#8216;Yo ang pag-ibig naming wagas</p>\n<p><strong>Bridge:</strong><br />\n F#m          Bm          F#m         Bm<br />\nIkaw ang nagbigay nitong awit sa puso ko<br />\n   Em                      A<br />\nNgayon ito&#8217;y itinataas sa &#8216;Yo<br />\n            B<br />\nTanging sa &#8216;Yo</p>\n<p><strong>Chorus 2:</strong><br />\n     E-/D#-C#m-/B A          B<br />\nIkaw lamang       ang sasambahin<br />\n     E-/D#-C#m-/B A         B<br />\nIkaw lamang       ang pupurihin<br />\n  G#m      G#        C#m  A<br />\nPanginoong Tagapagligtas<br />\n    F#m                      B<br />\nSa &#8216;Yo ang pag-ibig naming wagas</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse 1:</strong><br />\n    D       G/D       D<br />\nSa &#8216;Yo kami ay lumalapit<br />\n            G         A<br />\nAlay sa &#8216;Yo ay isang awit<br />\n    G         A          G       A<br />\nSa bawat paghimig, wagas na pag-ibig</p>\n<p><strong>Verse 2:</strong><br />\n    D       G/D      D<br />\nSa &#8216;Yo kami ay sumasamo<br />\n              G            A<br />\nDinggin nawa awit nitong puso<br />\n   G           A               G          A<br />\nSa bawat pagpintig, handog sa &#8216;Yo ay pag-ibig</p>\n<p><strong>Chorus:</strong><br />\n     D  Bm   G         A<br />\nIkaw lamang ang sasambahin<br />\n     D  Bm   G        A<br />\nIkaw lamang ang pupurihin<br />\n  F#m      F#        Bm  G<br />\nPanginoong Tagapagligtas<br />\n    Em                       A<br />\nSa &#8216;Yo ang pag-ibig naming wagas</p>\n<p><strong>Bridge:</strong><br />\n F#m          Bm          F#m         Bm<br />\nIkaw ang nagbigay nitong awit sa puso ko<br />\n   Em                      A<br />\nNgayon ito&#8217;y itinataas sa &#8216;Yo<br />\n            B<br />\nTanging sa &#8216;Yo</p>\n<p><strong>Chorus 2:</strong><br />\n     E-/D#-C#m-/B A          B<br />\nIkaw lamang       ang sasambahin<br />\n     E-/D#-C#m-/B A         B<br />\nIkaw lamang       ang pupurihin<br />\n  G#m      G#        C#m  A<br />\nPanginoong Tagapagligtas<br />\n    F#m                      B<br />\nSa &#8216;Yo ang pag-ibig naming wagas</p>\n",
+    "songNumber": 14
   },
   {
     "title": "Diyos Nakamamangha",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-1277",
     "id": "selah-1277",
@@ -91793,13 +91981,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Verse:</strong><br />\nE       B/D#    C#m  B<br />\nDiyos nakamamangha<br />\n      A  B      E  B7<br />\nAng &#8216;Yong mga gawa<br />\nE      B/D#     C#m  B<br />\nAng langit at lupa<br />\n A  F#m         B<br />\nIkaw ang may likha</p>\n<p><strong>Pre-Chorus:</strong><br />\n       G#m             C#m<br />\nAming Diyos, Ika&#8217;y dakila<br />\n     A          B<br />\nSa &#8216;Yong pagpapala<br />\n       G#m             C#m<br />\nAming Diyos, kahanga-hanga<br />\n A             B7<br />\nPag-ibig Mo&#8217;t awa</p>\n<p><strong>Chorus:</strong><br />\n   G#m     A                        G#m<br />\nO Diyos, purihin Ka sa &#8216;Yong pagmamahal<br />\n  A       G#m    G#7    C#m<br />\nItataas Pangalan Mong banal<br />\n  F#m                    B7<br />\nPanginoon dakilang Maykapal</p>\n<p><strong>Bridge:</strong><br />\n   G#m     A                        G#m<br />\nO Diyos, nawa ay tanggapin ang alay ko<br />\n   A              G#m   G#7   C#m<br />\nO Diyos ang buhay ko&#8217;y Iyong-iyo<br />\n F#m                     B7      E<br />\nAko&#8217;y nakalaan na maglingkod sa &#8216;Yo</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Verse:</strong><br />\nE       B/D#    C#m  B<br />\nDiyos nakamamangha<br />\n      A  B      E  B7<br />\nAng &#8216;Yong mga gawa<br />\nE      B/D#     C#m  B<br />\nAng langit at lupa<br />\n A  F#m         B<br />\nIkaw ang may likha</p>\n<p><strong>Pre-Chorus:</strong><br />\n       G#m             C#m<br />\nAming Diyos, Ika&#8217;y dakila<br />\n     A          B<br />\nSa &#8216;Yong pagpapala<br />\n       G#m             C#m<br />\nAming Diyos, kahanga-hanga<br />\n A             B7<br />\nPag-ibig Mo&#8217;t awa</p>\n<p><strong>Chorus:</strong><br />\n   G#m     A                        G#m<br />\nO Diyos, purihin Ka sa &#8216;Yong pagmamahal<br />\n  A       G#m    G#7    C#m<br />\nItataas Pangalan Mong banal<br />\n  F#m                    B7<br />\nPanginoon dakilang Maykapal</p>\n<p><strong>Bridge:</strong><br />\n   G#m     A                        G#m<br />\nO Diyos, nawa ay tanggapin ang alay ko<br />\n   A              G#m   G#7   C#m<br />\nO Diyos ang buhay ko&#8217;y Iyong-iyo<br />\n F#m                     B7      E<br />\nAko&#8217;y nakalaan na maglingkod sa &#8216;Yo</p>\n",
+    "songNumber": 39
   },
   {
     "title": "Purihin Ka",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-1291",
     "id": "selah-1291",
@@ -92123,13 +92312,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\nA7     D           F#m<br />\nIkaw lamang, Panginoon<br />\n  G       A  A7<br />\nAng nagbibigay-buhay<br />\n     D            F#m<br />\nAng sala ko&#8217;y pinatawad<br />\n  G               A  A7<br />\nBagong pag-asa ay nakamtan</p>\n<p><strong>Chorus:</strong><br />\n  G        A       F#m        Bm<br />\nAking itataas ang aking mga kamay<br />\n   Em            A        D  D7<br />\nBilang tanda ng pag-aalay ko<br />\n  G        A        F#m    Bm<br />\nAking itataas ang Pangalan Mo<br />\n   Em        A            D  D7<br />\nPagpupuri at pagsamba sa &#8216;Yo</p>\n<p><strong>Verse 2:</strong><br />\n    D                 F#m<br />\nSa &#8216;Yo lamang, Panginoon<br />\n     G            A  A7<br />\nAng buhay ko&#8217;y iaalay<br />\n   D             F#m<br />\nKalakasan at panahon<br />\n    G          A  A7<br />\nSa &#8216;Yo ay ibibigay</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\nA7     D           F#m<br />\nIkaw lamang, Panginoon<br />\n  G       A  A7<br />\nAng nagbibigay-buhay<br />\n     D            F#m<br />\nAng sala ko&#8217;y pinatawad<br />\n  G               A  A7<br />\nBagong pag-asa ay nakamtan</p>\n<p><strong>Chorus:</strong><br />\n  G        A       F#m        Bm<br />\nAking itataas ang aking mga kamay<br />\n   Em            A        D  D7<br />\nBilang tanda ng pag-aalay ko<br />\n  G        A        F#m    Bm<br />\nAking itataas ang Pangalan Mo<br />\n   Em        A            D  D7<br />\nPagpupuri at pagsamba sa &#8216;Yo</p>\n<p><strong>Verse 2:</strong><br />\n    D                 F#m<br />\nSa &#8216;Yo lamang, Panginoon<br />\n     G            A  A7<br />\nAng buhay ko&#8217;y iaalay<br />\n   D             F#m<br />\nKalakasan at panahon<br />\n    G          A  A7<br />\nSa &#8216;Yo ay ibibigay</p>\n",
+    "songNumber": 181
   },
   {
     "title": "Every Praise",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3439",
     "id": "selah-3439",
@@ -92845,13 +93035,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nF   Dm   Bb   C&#8230;  (1-3-5-6-1)</p>\n<p><strong>Verse:</strong><br />\nF<br />\nEvery praise is to our God<br />\nDm<br />\nEvery word of worship with one accord<br />\nBb            C<br />\nEvery praise, every praise<br />\n   C/F    F&#8230;  (1-3-5-6-1)<br />\nIs to our God<br />\nF<br />\nSing Hallelujah to our God<br />\nDm<br />\nGlory Hallelujah is due our God<br />\nBb            C<br />\nEvery praise, every praise<br />\n   C/F    F&#8230;  (1-3-5-6-1)<br />\nIs to our God</p>\n<p><strong>Verse:</strong><br />\nF#<br />\nEvery praise is to our God<br />\nD#m<br />\nEvery word of worship with one accord<br />\nB             C#<br />\nEvery praise, every praise<br />\n   C#/F#   F#&#8230;  (1-3-5-6-1)<br />\nIs to our God<br />\nF#<br />\nSing Hallelujah to our God<br />\nD#m<br />\nGlory Hallelujah is due our God<br />\nB             C#<br />\nEvery praise, every praise<br />\n   C#/F#   F#&#8230;  (1-3-5-6-1)<br />\nIs to our God</p>\n<p><strong>Verse:</strong><br />\nG<br />\nEvery praise is to our God<br />\nEm<br />\nEvery word of worship with one accord<br />\nC             D<br />\nEvery praise, every praise<br />\n   D/G    G&#8230;  (1-3-5-6-1)<br />\nIs to our God<br />\nG<br />\nSing Hallelujah to our God<br />\nEm<br />\nGlory Hallelujah is due our God<br />\nC             D<br />\nEvery praise, every praise<br />\n   D/G    G&#8230;  (1-3-5-6-1)<br />\nIs to our God</p>\n<p><strong>Chorus:</strong><br />\nG<br />\nGod my Savior<br />\nEm<br />\nGod my Healer<br />\nC<br />\nGod my Deliverer<br />\nAm        F<br />\nYes He is, yes He is</p>\n<p><strong>Ending:</strong><br />\n   C             D<br />\n&#8230;Every praise, every praise<br />\nC/E           D/F#<br />\nEvery praise, every praise  (repeat)<br />\n   C &#8211; D  G<br />\nIs to our God</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nF   Dm   Bb   C&#8230;  (1-3-5-6-1)</p>\n<p><strong>Verse:</strong><br />\nF<br />\nEvery praise is to our God<br />\nDm<br />\nEvery word of worship with one accord<br />\nBb            C<br />\nEvery praise, every praise<br />\n   C/F    F&#8230;  (1-3-5-6-1)<br />\nIs to our God<br />\nF<br />\nSing Hallelujah to our God<br />\nDm<br />\nGlory Hallelujah is due our God<br />\nBb            C<br />\nEvery praise, every praise<br />\n   C/F    F&#8230;  (1-3-5-6-1)<br />\nIs to our God</p>\n<p><strong>Verse:</strong><br />\nF#<br />\nEvery praise is to our God<br />\nD#m<br />\nEvery word of worship with one accord<br />\nB             C#<br />\nEvery praise, every praise<br />\n   C#/F#   F#&#8230;  (1-3-5-6-1)<br />\nIs to our God<br />\nF#<br />\nSing Hallelujah to our God<br />\nD#m<br />\nGlory Hallelujah is due our God<br />\nB             C#<br />\nEvery praise, every praise<br />\n   C#/F#   F#&#8230;  (1-3-5-6-1)<br />\nIs to our God</p>\n<p><strong>Verse:</strong><br />\nG<br />\nEvery praise is to our God<br />\nEm<br />\nEvery word of worship with one accord<br />\nC             D<br />\nEvery praise, every praise<br />\n   D/G    G&#8230;  (1-3-5-6-1)<br />\nIs to our God<br />\nG<br />\nSing Hallelujah to our God<br />\nEm<br />\nGlory Hallelujah is due our God<br />\nC             D<br />\nEvery praise, every praise<br />\n   D/G    G&#8230;  (1-3-5-6-1)<br />\nIs to our God</p>\n<p><strong>Chorus:</strong><br />\nG<br />\nGod my Savior<br />\nEm<br />\nGod my Healer<br />\nC<br />\nGod my Deliverer<br />\nAm        F<br />\nYes He is, yes He is</p>\n<p><strong>Ending:</strong><br />\n   C             D<br />\n&#8230;Every praise, every praise<br />\nC/E           D/F#<br />\nEvery praise, every praise  (repeat)<br />\n   C &#8211; D  G<br />\nIs to our God</p>\n",
+    "songNumber": 44
   },
   {
     "title": "To The Ends of The Earth",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-1107",
     "id": "selah-1107",
@@ -93155,13 +93346,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro: G C </strong></p>\n<p><strong>Verse 1:</strong><br />\n        G         Am<br />\nYou are holy and just<br />\n   G/B         C<br />\nSo gracious to us<br />\n    G           Em<br />\nHow could we withhold<br />\n      D<br />\nYour praise<br />\n         G           Am<br />\nYou are faithful and wise<br />\n    G/B       C<br />\nSo majestic O Christ<br />\n        G       Em       D<br />\nYou are worthy to be proclaimed</p>\n<p><strong>Chorus:</strong><br />\n        G           C<br />\nTo the ends of the earth<br />\n        D<br />\nYou are Lord<br />\n         G<br />\nFrom the heavens<br />\n    C        D<br />\nAll glory is Yours<br />\n    C          G/B<br />\nWe exalt You O Christ<br />\n      C/A        G<br />\nAs we carry Your light<br />\n       Am   /B /C  D<br />\nTo the ends of the earth<br />\n  G C G C<br />\nO Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro: G C </strong></p>\n<p><strong>Verse 1:</strong><br />\n        G         Am<br />\nYou are holy and just<br />\n   G/B         C<br />\nSo gracious to us<br />\n    G           Em<br />\nHow could we withhold<br />\n      D<br />\nYour praise<br />\n         G           Am<br />\nYou are faithful and wise<br />\n    G/B       C<br />\nSo majestic O Christ<br />\n        G       Em       D<br />\nYou are worthy to be proclaimed</p>\n<p><strong>Chorus:</strong><br />\n        G           C<br />\nTo the ends of the earth<br />\n        D<br />\nYou are Lord<br />\n         G<br />\nFrom the heavens<br />\n    C        D<br />\nAll glory is Yours<br />\n    C          G/B<br />\nWe exalt You O Christ<br />\n      C/A        G<br />\nAs we carry Your light<br />\n       Am   /B /C  D<br />\nTo the ends of the earth<br />\n  G C G C<br />\nO Lord</p>\n",
+    "songNumber": 217
   },
   {
     "title": "This is a Great Day",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3379",
     "id": "selah-3379",
@@ -93717,13 +93909,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nF#m E/G#m A B C#m x2<br />\nF#m E/G#m A B E B</p>\n<p><strong>Chorus:</strong><br />\n          E                  A    B   E<br />\nThis is a great day that the Lord has made<br />\n          E                 A    B<br />\nThis is a great day that we celebrate<br />\n          E                  A    G#7   C#m<br />\nThis is a great day that the Lord has made<br />\nF#m E/G#m A B           E  (B)<br />\nI will rejoice and be glad<br />\n   Turnaround: C#m</p>\n<p><strong>Verse 1:</strong><br />\nBm7 &#8211; E7         A       B         E<br />\nThis is a great day the Spirit is moving<br />\nBm7 &#8211; E7        A     B         E<br />\nThis is a great day a season to rejoice<br />\nBm7 &#8211; E7        A   B7        G#m7 C#m7<br />\nThis is a great day we have a reason<br />\n   A               F#m             B<br />\nTo celebrate the presence of the Lord</p>\n<p><strong>Verse 2:</strong><br />\nBm7 &#8211; E7        A       B      E<br />\nThis is a great day of joy and jubilation<br />\nBm7 &#8211; E7        A       B          E<br />\nThis is a great day to sing in one accord<br />\nBm7 &#8211; E7         A      B7    G#m7 C#m7<br />\nThis is a great day to shout hallelujah<br />\n   A             F#m              B<br />\nTo celebrate the presence of the Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\nF#m E/G#m A B C#m x2<br />\nF#m E/G#m A B E B</p>\n<p><strong>Chorus:</strong><br />\n          E                  A    B   E<br />\nThis is a great day that the Lord has made<br />\n          E                 A    B<br />\nThis is a great day that we celebrate<br />\n          E                  A    G#7   C#m<br />\nThis is a great day that the Lord has made<br />\nF#m E/G#m A B           E  (B)<br />\nI will rejoice and be glad<br />\n   Turnaround: C#m</p>\n<p><strong>Verse 1:</strong><br />\nBm7 &#8211; E7         A       B         E<br />\nThis is a great day the Spirit is moving<br />\nBm7 &#8211; E7        A     B         E<br />\nThis is a great day a season to rejoice<br />\nBm7 &#8211; E7        A   B7        G#m7 C#m7<br />\nThis is a great day we have a reason<br />\n   A               F#m             B<br />\nTo celebrate the presence of the Lord</p>\n<p><strong>Verse 2:</strong><br />\nBm7 &#8211; E7        A       B      E<br />\nThis is a great day of joy and jubilation<br />\nBm7 &#8211; E7        A       B          E<br />\nThis is a great day to sing in one accord<br />\nBm7 &#8211; E7         A      B7    G#m7 C#m7<br />\nThis is a great day to shout hallelujah<br />\n   A             F#m              B<br />\nTo celebrate the presence of the Lord</p>\n",
+    "songNumber": 213
   },
   {
     "title": "Occupy The Nations",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3039",
     "id": "selah-3039",
@@ -94070,13 +94263,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\n           D &#8211; A G       D  A   G<br />\nO Lord our God, Creator of all things<br />\n            D                  Bm               Em  A7<br />\nYou have ordained that Your children rule and reign<br />\n           D &#8211; A G       D  A   G<br />\nBy Your Son, we have gained the victory<br />\n              D<br />\nAnd in Your name<br />\n           Bm               Em  A7<br />\nWe  claim this land for the King</p>\n<p><strong>Chorus:</strong><br />\n          G         A         F#m          Bm<br />\nWe will occupy the nations, occupy the nations<br />\n Em           A7               D  D7<br />\nOccupy the nations till You come<br />\n           G                 A<br />\nO Lord establish here Your Kingdom<br />\nF#m               Bm<br />\nLet Your will be done<br />\n   Em        A             Em      A<br />\nAs it is in heaven, let it be on earth<br />\n           Em          A7               D A G<br />\nWe will occupy the nations till You come</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\n           D &#8211; A G       D  A   G<br />\nO Lord our God, Creator of all things<br />\n            D                  Bm               Em  A7<br />\nYou have ordained that Your children rule and reign<br />\n           D &#8211; A G       D  A   G<br />\nBy Your Son, we have gained the victory<br />\n              D<br />\nAnd in Your name<br />\n           Bm               Em  A7<br />\nWe  claim this land for the King</p>\n<p><strong>Chorus:</strong><br />\n          G         A         F#m          Bm<br />\nWe will occupy the nations, occupy the nations<br />\n Em           A7               D  D7<br />\nOccupy the nations till You come<br />\n           G                 A<br />\nO Lord establish here Your Kingdom<br />\nF#m               Bm<br />\nLet Your will be done<br />\n   Em        A             Em      A<br />\nAs it is in heaven, let it be on earth<br />\n           Em          A7               D A G<br />\nWe will occupy the nations till You come</p>\n",
+    "songNumber": 166
   },
   {
     "title": "He Is The King",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3047",
     "id": "selah-3047",
@@ -94160,13 +94354,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p>            G<br />\nHe is the King of Kings<br />\n                    D<br />\nHe is the Lord of Lords<br />\n             G       G/B     C      C/C#<br />\nHis Name is Jesus,  Jesus,  Jesus, Jesus<br />\nD7<br />\nOh,  He is the King!</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p>            G<br />\nHe is the King of Kings<br />\n                    D<br />\nHe is the Lord of Lords<br />\n             G       G/B     C      C/C#<br />\nHis Name is Jesus,  Jesus,  Jesus, Jesus<br />\nD7<br />\nOh,  He is the King!</p>\n",
+    "songNumber": 69
   },
   {
     "title": "You Make Me Lie Down in Green Pastures",
     "artist": "Selah",
     "key": "Em",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3058",
     "id": "selah-3058",
@@ -94399,13 +94594,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Em</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nEm7          Am7<br />\nYou make me lie down<br />\n          Am7/D<br />\nIn green pastures<br />\n             Gmaj7       Cmaj7<br />\nYou make me wanting For nothing<br />\n              Fmaj7     Em/B  B7<br />\nYou fill my hunger with honey<br />\nEm/B  B7    Em    D/E   Em<br />\nFrom your sweet, sweet word</p>\n<p><strong>Chorus:</strong><br />\nEm7          Am7<br />\nYou let me worship<br />\n     Am7/D<br />\nBefore you<br />\n            Gmaj7         Cmaj7<br />\nSo I will love you and adore you<br />\n              Fmaj7<br />\nYou are my Shepherd<br />\n         Em/B B7<br />\nYou are my Jesus<br />\n              Em<br />\nYou are my Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Em</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nEm7          Am7<br />\nYou make me lie down<br />\n          Am7/D<br />\nIn green pastures<br />\n             Gmaj7       Cmaj7<br />\nYou make me wanting For nothing<br />\n              Fmaj7     Em/B  B7<br />\nYou fill my hunger with honey<br />\nEm/B  B7    Em    D/E   Em<br />\nFrom your sweet, sweet word</p>\n<p><strong>Chorus:</strong><br />\nEm7          Am7<br />\nYou let me worship<br />\n     Am7/D<br />\nBefore you<br />\n            Gmaj7         Cmaj7<br />\nSo I will love you and adore you<br />\n              Fmaj7<br />\nYou are my Shepherd<br />\n         Em/B B7<br />\nYou are my Jesus<br />\n              Em<br />\nYou are my Lord</p>\n",
+    "songNumber": 245
   },
   {
     "title": "You Are My Hiding Place",
     "artist": "Selah",
     "key": "Dm",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3060",
     "id": "selah-3060",
@@ -94627,13 +94823,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Dm</strong></p>\n<p>Dm          F/G    Gm7<br />\n You are my hiding place<br />\nCsus  C     Bb/F  Fmaj7<br />\n You always fill my heart<br />\nAm7   Bb2        F/G   Gm<br />\n With songs of deliverance<br />\n    Am            A<br />\n Whenever I am afraid<br />\n     G/A      A   Dm<br />\n I will trust in You<br />\n     Gm7         Csus<br />\n I will trust in You<br />\nFmaj7    F    F/A Bb Dm/A  Gm<br />\n Let the weak say I am strong<br />\n          Asus           A<br />\n In the strength of the Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Dm</strong></p>\n<p>Dm          F/G    Gm7<br />\n You are my hiding place<br />\nCsus  C     Bb/F  Fmaj7<br />\n You always fill my heart<br />\nAm7   Bb2        F/G   Gm<br />\n With songs of deliverance<br />\n    Am            A<br />\n Whenever I am afraid<br />\n     G/A      A   Dm<br />\n I will trust in You<br />\n     Gm7         Csus<br />\n I will trust in You<br />\nFmaj7    F    F/A Bb Dm/A  Gm<br />\n Let the weak say I am strong<br />\n          Asus           A<br />\n In the strength of the Lord</p>\n",
+    "songNumber": 241
   },
   {
     "title": "Who is Like Unto Thee",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3135",
     "id": "selah-3135",
@@ -94765,13 +94962,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p>E<br />\nWho is like unto thee<br />\n  F#m             B7<br />\nO Lord among the Gods?<br />\n        E<br />\nWho is like unto thee<br />\n         A     Am<br />\nGlorious in Holiness<br />\n              E    C#m<br />\nFearful in praises<br />\n        F#m<br />\nDoing wonders<br />\n        A     B7  E<br />\nWho is like unto thee</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p>E<br />\nWho is like unto thee<br />\n  F#m             B7<br />\nO Lord among the Gods?<br />\n        E<br />\nWho is like unto thee<br />\n         A     Am<br />\nGlorious in Holiness<br />\n              E    C#m<br />\nFearful in praises<br />\n        F#m<br />\nDoing wonders<br />\n        A     B7  E<br />\nWho is like unto thee</p>\n",
+    "songNumber": 234
   },
   {
     "title": "We Give You Glory",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3132",
     "id": "selah-3132",
@@ -95175,13 +95373,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Verse 1:</strong><br />\n      F                  C<br />\nWe&#8217;re here to bless your name<br />\nBb               F &#8211; C<br />\nGathered as your family<br />\n   F                  C<br />\nTo praise you and proclaim<br />\nBb                   F &#8211; C &#8211; C7<br />\nYour faithfulness and mercy</p>\n<p><strong>Chorus:</strong><br />\n           Dm/F &#8211; Bb<br />\nWe give you glory<br />\n           Dm/F &#8211; Bb<br />\nWe give you honor<br />\n            Am            Dm7<br />\nWe give you everything we are<br />\n             Bb<br />\nLifting our hearts<br />\n             C &#8211; C7       F<br />\nAnd hands before you&#8230; Lord</p>\n<p><strong>Verse 2:</strong><br />\nWe here to seek your face<br />\nTo gather in your presence<br />\nTo celebrate your grace<br />\nTo praise you for your blessing</p>\n<p><strong>Verse 3:</strong><br />\n         C        Bb            C<br />\nThere is no other reason why we came<br />\n        Bb           F<br />\nThan to glorify your name<br />\n            Dm     Bb    C<br />\nFor you are worthy to be praised<br />\n       Bb           C<br />\nNow we offer up our lives<br />\n     Bb          F<br />\nAs A living sacrifice<br />\n     Dm    Bb      C    C7<br />\nHoly acceptable to you</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Verse 1:</strong><br />\n      F                  C<br />\nWe&#8217;re here to bless your name<br />\nBb               F &#8211; C<br />\nGathered as your family<br />\n   F                  C<br />\nTo praise you and proclaim<br />\nBb                   F &#8211; C &#8211; C7<br />\nYour faithfulness and mercy</p>\n<p><strong>Chorus:</strong><br />\n           Dm/F &#8211; Bb<br />\nWe give you glory<br />\n           Dm/F &#8211; Bb<br />\nWe give you honor<br />\n            Am            Dm7<br />\nWe give you everything we are<br />\n             Bb<br />\nLifting our hearts<br />\n             C &#8211; C7       F<br />\nAnd hands before you&#8230; Lord</p>\n<p><strong>Verse 2:</strong><br />\nWe here to seek your face<br />\nTo gather in your presence<br />\nTo celebrate your grace<br />\nTo praise you for your blessing</p>\n<p><strong>Verse 3:</strong><br />\n         C        Bb            C<br />\nThere is no other reason why we came<br />\n        Bb           F<br />\nThan to glorify your name<br />\n            Dm     Bb    C<br />\nFor you are worthy to be praised<br />\n       Bb           C<br />\nNow we offer up our lives<br />\n     Bb          F<br />\nAs A living sacrifice<br />\n     Dm    Bb      C    C7<br />\nHoly acceptable to you</p>\n",
+    "songNumber": 229
   },
   {
     "title": "Thou Art Worthy",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3128",
     "id": "selah-3128",
@@ -95561,13 +95760,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p>A         /C#<br />\nThou art worthy<br />\nDm7      Bm7-/E<br />\nThou art worthy<br />\nA         F#m7     Gm7 &#8211; Bm7/E<br />\nThou art worthy, O Lord<br />\nEm7/A        A/C#<br />\nTo receive glory<br />\nDm7        Bm7 &#8211; /D<br />\nGlory and honor<br />\nA/E       Bm/E &#8211; E &#8211; D/A (A)<br />\nGlory and honor and pow&#8217;r<br />\n(Bm7) E       D/F#<br />\nFor Thou has created<br />\n      A          Bm/A &#8211; A (F#m7)<br />\nHast all things created<br />\nE            D/F# &#8211; E/G# &#8211; A  (A/E)<br />\nThou hast created all things<br />\nA           G/A &#8211; A (A/C#)<br />\nAnd for Thy pleasure<br />\nDm7         Bm7<br />\nThey are created<br />\nA/E       Bm7/E     D/A  A<br />\nThou art worthy, O Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p>A         /C#<br />\nThou art worthy<br />\nDm7      Bm7-/E<br />\nThou art worthy<br />\nA         F#m7     Gm7 &#8211; Bm7/E<br />\nThou art worthy, O Lord<br />\nEm7/A        A/C#<br />\nTo receive glory<br />\nDm7        Bm7 &#8211; /D<br />\nGlory and honor<br />\nA/E       Bm/E &#8211; E &#8211; D/A (A)<br />\nGlory and honor and pow&#8217;r<br />\n(Bm7) E       D/F#<br />\nFor Thou has created<br />\n      A          Bm/A &#8211; A (F#m7)<br />\nHast all things created<br />\nE            D/F# &#8211; E/G# &#8211; A  (A/E)<br />\nThou hast created all things<br />\nA           G/A &#8211; A (A/C#)<br />\nAnd for Thy pleasure<br />\nDm7         Bm7<br />\nThey are created<br />\nA/E       Bm7/E     D/A  A<br />\nThou art worthy, O Lord</p>\n",
+    "songNumber": 214
   },
   {
     "title": "Sing, Shout, Clap Your Hands",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3050",
     "id": "selah-3050",
@@ -95950,13 +96150,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nC# &#8211; C# &#8211; C# &#8211; C</p>\n<p><strong>Chorus:</strong><br />\nF     Am     Bb        Gm<br />\nSing, shout, clap your hands<br />\n     C                F<br />\nGive praise unto your maker<br />\nF      Am     Bb      Gm     C<br />\nMake a joyful noise unto the Lord<br />\nF     Am     Bb        Gm<br />\nSing, shout, clap your hands<br />\n     C                F<br />\nGive praise unto your maker<br />\n        Gm          C        F<br />\nFor the Lord, He is Almighty God</p>\n<p><strong>Refrain:</strong><br />\nC#          Eb/C#      Ab/C   &#8211; Fm<br />\nThis is the day of celebration<br />\nC#          Eb/C#    Cm     &#8211; Fm<br />\nThis is the day to rejoice (Rejoice)<br />\nC#           Eb/C#        C-Eb-Fm<br />\nThe Lord our God is our deliverer<br />\n   C#         Eb/C#      C  &#8211;  C7<br />\nSo let&#8217;s just praise His Name</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nC# &#8211; C# &#8211; C# &#8211; C</p>\n<p><strong>Chorus:</strong><br />\nF     Am     Bb        Gm<br />\nSing, shout, clap your hands<br />\n     C                F<br />\nGive praise unto your maker<br />\nF      Am     Bb      Gm     C<br />\nMake a joyful noise unto the Lord<br />\nF     Am     Bb        Gm<br />\nSing, shout, clap your hands<br />\n     C                F<br />\nGive praise unto your maker<br />\n        Gm          C        F<br />\nFor the Lord, He is Almighty God</p>\n<p><strong>Refrain:</strong><br />\nC#          Eb/C#      Ab/C   &#8211; Fm<br />\nThis is the day of celebration<br />\nC#          Eb/C#    Cm     &#8211; Fm<br />\nThis is the day to rejoice (Rejoice)<br />\nC#           Eb/C#        C-Eb-Fm<br />\nThe Lord our God is our deliverer<br />\n   C#         Eb/C#      C  &#8211;  C7<br />\nSo let&#8217;s just praise His Name</p>\n",
+    "songNumber": 195
   },
   {
     "title": "Our God Is Lifted Up",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3126",
     "id": "selah-3126",
@@ -96327,13 +96528,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse:</strong><br />\nG/A D              D/F#<br />\nOur God is lifted up<br />\n          G     G/A  D<br />\nMidst the shouts of joy<br />\nG/A D             Bm7<br />\nOur God is lifted up<br />\n       Em7               A<br />\nIn the sounding of the trumpets<br />\nG/A  D            D/F#<br />\nOur God is lifted up<br />\n            G   G/A  D<br />\nMidst the shouts of joy<br />\nFmaj9            G/A     D  Em7/D   D  Em7<br />\nShout joyfully unto our God<br />\nFmaj9            G/A     D  Em7/D   D  G/A<br />\nShout joyfully unto our God</p>\n<p><strong>Chorus:</strong><br />\nD        Bm7<br />\nLet the trumpets<br />\n               E<br />\nMake a joyful noise<br />\n        Bm7<br />\nLet us clap our hands<br />\n                E<br />\nAnd praise our God<br />\n        D/A             G/A<br />\nFor our God is lifted up<br />\n    D/A           G/A<br />\nOur God is lifted up<br />\n    D/A            G/A   D<br />\nOur God is lifted up on high</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse:</strong><br />\nG/A D              D/F#<br />\nOur God is lifted up<br />\n          G     G/A  D<br />\nMidst the shouts of joy<br />\nG/A D             Bm7<br />\nOur God is lifted up<br />\n       Em7               A<br />\nIn the sounding of the trumpets<br />\nG/A  D            D/F#<br />\nOur God is lifted up<br />\n            G   G/A  D<br />\nMidst the shouts of joy<br />\nFmaj9            G/A     D  Em7/D   D  Em7<br />\nShout joyfully unto our God<br />\nFmaj9            G/A     D  Em7/D   D  G/A<br />\nShout joyfully unto our God</p>\n<p><strong>Chorus:</strong><br />\nD        Bm7<br />\nLet the trumpets<br />\n               E<br />\nMake a joyful noise<br />\n        Bm7<br />\nLet us clap our hands<br />\n                E<br />\nAnd praise our God<br />\n        D/A             G/A<br />\nFor our God is lifted up<br />\n    D/A           G/A<br />\nOur God is lifted up<br />\n    D/A            G/A   D<br />\nOur God is lifted up on high</p>\n",
+    "songNumber": 172
   },
   {
     "title": "It is Good to Praise the Lord",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3033",
     "id": "selah-3033",
@@ -96579,13 +96781,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nD                          Dm7<br />\nIt is good to praise the Lord<br />\n         D               Dm7 D           Em A7<br />\nAnd make music to Your Name,  O Most High<br />\nEm                           A<br />\nIt is good to praise the Lord<br />\nEm                        A      Em &#8211; A   D<br />\nAnd make music to Your Name, O Most High<br />\n          D                    Dm7<br />\nTo proclaim Your love in the morning<br />\n          D                Dm7 D &#8211; D7  G<br />\nAnd Your faithfulness at night is my delight<br />\n       G<br />\nIt is good to praise the Lord<br />\n                          Bm<br />\nAnd make music to Your Name,<br />\nEm A7   D     A7<br />\nO Most High!!</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nD                          Dm7<br />\nIt is good to praise the Lord<br />\n         D               Dm7 D           Em A7<br />\nAnd make music to Your Name,  O Most High<br />\nEm                           A<br />\nIt is good to praise the Lord<br />\nEm                        A      Em &#8211; A   D<br />\nAnd make music to Your Name, O Most High<br />\n          D                    Dm7<br />\nTo proclaim Your love in the morning<br />\n          D                Dm7 D &#8211; D7  G<br />\nAnd Your faithfulness at night is my delight<br />\n       G<br />\nIt is good to praise the Lord<br />\n                          Bm<br />\nAnd make music to Your Name,<br />\nEm A7   D     A7<br />\nO Most High!!</p>\n",
+    "songNumber": 115
   },
   {
     "title": "In Him We Live",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3027",
     "id": "selah-3027",
@@ -96928,13 +97131,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\n           D &#8211; /E &#8211; /F# &#8211; /A<br />\nIn Him we live<br />\n    G &#8211; /A &#8211; /B<br />\nAnd move<br />\n    D         A<br />\nAnd have our being<br />\n           D &#8211; /E &#8211; /F# &#8211; /A<br />\nIn Him we live<br />\n    G &#8211; /A &#8211; /B<br />\nAnd move<br />\n    D         A<br />\nAnd have our being</p>\n<p><strong>Chorus:</strong><br />\nA                   A &#8211; Ab<br />\nMake a joyful noise<br />\nG                   G &#8211; Ab<br />\nSing unto the Lord<br />\nA                   A &#8211; Ab<br />\nTell Him of your love<br />\nG<br />\nDance before Him<br />\nA                   A &#8211; Ab<br />\nMake a joyful noise<br />\nG                   G &#8211; Ab<br />\nSing unto the Lord<br />\nA<br />\nTell Him of your love<br />\nG       A<br />\nHallelujah!</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\n           D &#8211; /E &#8211; /F# &#8211; /A<br />\nIn Him we live<br />\n    G &#8211; /A &#8211; /B<br />\nAnd move<br />\n    D         A<br />\nAnd have our being<br />\n           D &#8211; /E &#8211; /F# &#8211; /A<br />\nIn Him we live<br />\n    G &#8211; /A &#8211; /B<br />\nAnd move<br />\n    D         A<br />\nAnd have our being</p>\n<p><strong>Chorus:</strong><br />\nA                   A &#8211; Ab<br />\nMake a joyful noise<br />\nG                   G &#8211; Ab<br />\nSing unto the Lord<br />\nA                   A &#8211; Ab<br />\nTell Him of your love<br />\nG<br />\nDance before Him<br />\nA                   A &#8211; Ab<br />\nMake a joyful noise<br />\nG                   G &#8211; Ab<br />\nSing unto the Lord<br />\nA<br />\nTell Him of your love<br />\nG       A<br />\nHallelujah!</p>\n",
+    "songNumber": 113
   },
   {
     "title": "I Will Worship You Lord",
     "artist": "Selah",
     "key": "Dm",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3036",
     "id": "selah-3036",
@@ -97244,13 +97448,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Dm/strong&gt;</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nA7       Dm<br />\nI will worship You Lord<br />\n     Gm<br />\nWith all of my might<br />\n         Dm               A7<br />\nI will praise You with a song<br />\n         Dm<br />\nI will worship You Lord<br />\n     Gm<br />\nWith all of my might<br />\n         A7               Dm<br />\nI will praise You all day long</p>\n<p><strong>Chorus:</strong><br />\n     Gm     C      F    Dm<br />\nFor Thou O Lord art glorious<br />\n      Gm        C            Dm    D7<br />\nAnd Thy Name is greatly to be praised<br />\n      Gm        C<br />\nMay my heart be pure<br />\n    F           Dm<br />\nAnd holy in Thy sight<br />\n    A7                         Dm<br />\nAs I worship You with all of my might<br />\n           Dm                  Gm<br />\nI will love You, I will love You<br />\n             C      F         A<br />\nI will trust You, I will trust You<br />\n         Dm                Gm<br />\nI will love You, I will love You&#8230;<br />\n         A            A7<br />\nI will call upon the Lord<br />\n   (serve, seek)</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Dm/strong&gt;</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nA7       Dm<br />\nI will worship You Lord<br />\n     Gm<br />\nWith all of my might<br />\n         Dm               A7<br />\nI will praise You with a song<br />\n         Dm<br />\nI will worship You Lord<br />\n     Gm<br />\nWith all of my might<br />\n         A7               Dm<br />\nI will praise You all day long</p>\n<p><strong>Chorus:</strong><br />\n     Gm     C      F    Dm<br />\nFor Thou O Lord art glorious<br />\n      Gm        C            Dm    D7<br />\nAnd Thy Name is greatly to be praised<br />\n      Gm        C<br />\nMay my heart be pure<br />\n    F           Dm<br />\nAnd holy in Thy sight<br />\n    A7                         Dm<br />\nAs I worship You with all of my might<br />\n           Dm                  Gm<br />\nI will love You, I will love You<br />\n             C      F         A<br />\nI will trust You, I will trust You<br />\n         Dm                Gm<br />\nI will love You, I will love You&#8230;<br />\n         A            A7<br />\nI will call upon the Lord<br />\n   (serve, seek)</p>\n",
+    "songNumber": 108
   },
   {
     "title": "I Will Sing, I Will Dance",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3043",
     "id": "selah-3043",
@@ -97394,13 +97599,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\n        G<br />\nI will sing, I will dance<br />\n                               D<br />\nI will rejoice in the Lord my God<br />\n        G<br />\nI will sing I will dance<br />\n          Am           D7      G<br />\nI will rejoice in the Lord my God</p>\n<p>G<br />\nSinging is a pleasure to the Lord<br />\n                                      D<br />\nFor He inhabits the praises of His people<br />\nG<br />\nDancing is a joy unto His heart<br />\n             Am              D7             G     D7<br />\nSo, I will  sing and I will dance unto the Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\n        G<br />\nI will sing, I will dance<br />\n                               D<br />\nI will rejoice in the Lord my God<br />\n        G<br />\nI will sing I will dance<br />\n          Am           D7      G<br />\nI will rejoice in the Lord my God</p>\n<p>G<br />\nSinging is a pleasure to the Lord<br />\n                                      D<br />\nFor He inhabits the praises of His people<br />\nG<br />\nDancing is a joy unto His heart<br />\n             Am              D7             G     D7<br />\nSo, I will  sing and I will dance unto the Lord</p>\n",
+    "songNumber": 107
   },
   {
     "title": "I Will Enter His Gates",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-1187",
     "id": "selah-1187",
@@ -97681,13 +97887,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse:</strong><br />\nA7      D          G           D<br />\nI will enter His gates with thanksgiving<br />\n      G<br />\nIn my heart<br />\n        D            Bm          Em   A7<br />\nI will enter His courts with praise<br />\n        D                 G<br />\nI will say this is the day<br />\n          D         Bm<br />\nThat the Lord has made<br />\n   G                  A             D  A7<br />\nI will rejoice for Jesus made me glad</p>\n<p><strong>Chorus:</strong><br />\n D              G       D           Bm<br />\nJesus made me glad,  Jesus made me glad<br />\n   Em                 A             D  GA<br />\nI will rejoice for Jesus made me glad<br />\n D              G       D           Bm<br />\nJesus made me glad,  Jesus made me glad<br />\n   Em                 A             D<br />\nI will rejoice for Jesus made me glad</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse:</strong><br />\nA7      D          G           D<br />\nI will enter His gates with thanksgiving<br />\n      G<br />\nIn my heart<br />\n        D            Bm          Em   A7<br />\nI will enter His courts with praise<br />\n        D                 G<br />\nI will say this is the day<br />\n          D         Bm<br />\nThat the Lord has made<br />\n   G                  A             D  A7<br />\nI will rejoice for Jesus made me glad</p>\n<p><strong>Chorus:</strong><br />\n D              G       D           Bm<br />\nJesus made me glad,  Jesus made me glad<br />\n   Em                 A             D  GA<br />\nI will rejoice for Jesus made me glad<br />\n D              G       D           Bm<br />\nJesus made me glad,  Jesus made me glad<br />\n   Em                 A             D<br />\nI will rejoice for Jesus made me glad</p>\n",
+    "songNumber": 104
   },
   {
     "title": "I Just Want To Be Where You Are",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3038",
     "id": "selah-3038",
@@ -98251,13 +98458,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\nG               Am                   G/B &#8211; C<br />\n I just want to be where You are<br />\n           D              C/G &#8211; G<br />\n Dwelling daily in Your presence<br />\nEm7               Am7                G/B &#8211; C<br />\n I don&#8217;t want to worship from afar<br />\n         D                  G<br />\n Draw me near to where You are</p>\n<p><strong>Verse 2:</strong><br />\nG               Am                   G/B &#8211; C<br />\n I just want to be where You are<br />\n         D                 C/G &#8211; G<br />\n In Your dwelling place forever<br />\nEm7             Am7                 G/B &#8211; C<br />\n Take me to the place where You are,<br />\nC        D               G    C/G &#8211; G<br />\n I just want to be with You</p>\n<p><strong>Chorus:</strong><br />\n                  Am7     C/D<br />\nI want to be where You are<br />\n                  D/G &#8211; G   Em7<br />\nDwelling in Your presence<br />\n                  Am7     C/D<br />\nFeasting at Your table<br />\n                   D/E &#8211; Em<br />\nSurrounded by Your glory<br />\n         D/C &#8211; C      C/D<br />\nIn Your presence<br />\n             G         D/F#     Em &#8211; Em/D &#8211; C<br />\nThat&#8217;s where I always want to be<br />\n        D          Eb<br />\nI just want to be<br />\n         F               G<br />\nI just want to be with You</p>\n<p>       Em<br />\nOh, my God<br />\n           Am              D<br />\nYou are my strength and my song<br />\n    Bm               Em<br />\nAnd when I&#8217;m in Your presence<br />\n           Am                D<br />\nThough I&#8217;m weak, Your always strong</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse 1:</strong><br />\nG               Am                   G/B &#8211; C<br />\n I just want to be where You are<br />\n           D              C/G &#8211; G<br />\n Dwelling daily in Your presence<br />\nEm7               Am7                G/B &#8211; C<br />\n I don&#8217;t want to worship from afar<br />\n         D                  G<br />\n Draw me near to where You are</p>\n<p><strong>Verse 2:</strong><br />\nG               Am                   G/B &#8211; C<br />\n I just want to be where You are<br />\n         D                 C/G &#8211; G<br />\n In Your dwelling place forever<br />\nEm7             Am7                 G/B &#8211; C<br />\n Take me to the place where You are,<br />\nC        D               G    C/G &#8211; G<br />\n I just want to be with You</p>\n<p><strong>Chorus:</strong><br />\n                  Am7     C/D<br />\nI want to be where You are<br />\n                  D/G &#8211; G   Em7<br />\nDwelling in Your presence<br />\n                  Am7     C/D<br />\nFeasting at Your table<br />\n                   D/E &#8211; Em<br />\nSurrounded by Your glory<br />\n         D/C &#8211; C      C/D<br />\nIn Your presence<br />\n             G         D/F#     Em &#8211; Em/D &#8211; C<br />\nThat&#8217;s where I always want to be<br />\n        D          Eb<br />\nI just want to be<br />\n         F               G<br />\nI just want to be with You</p>\n<p>       Em<br />\nOh, my God<br />\n           Am              D<br />\nYou are my strength and my song<br />\n    Bm               Em<br />\nAnd when I&#8217;m in Your presence<br />\n           Am                D<br />\nThough I&#8217;m weak, Your always strong</p>\n",
+    "songNumber": 93
   },
   {
     "title": "I Am a New Creation",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3031",
     "id": "selah-3031",
@@ -98485,13 +98693,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nD            G<br />\n I am a new creation<br />\nD            G<br />\n No more in condemnation<br />\nD            A                D      A7<br />\n Here in the grace of God I stand<br />\nD            G<br />\n My heart is overflowing<br />\nD            G<br />\n My love just keeps on growing<br />\nD            A                D<br />\n Here in the grace of God I stand</p>\n<p>            G &#8211; A      D<br />\nAnd I will praise You, Lord<br />\n        G &#8211; A      D<br />\nI will praise You, Lord<br />\n       Bm       G                A7<br />\nI will sing of all that You have done</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nD            G<br />\n I am a new creation<br />\nD            G<br />\n No more in condemnation<br />\nD            A                D      A7<br />\n Here in the grace of God I stand<br />\nD            G<br />\n My heart is overflowing<br />\nD            G<br />\n My love just keeps on growing<br />\nD            A                D<br />\n Here in the grace of God I stand</p>\n<p>            G &#8211; A      D<br />\nAnd I will praise You, Lord<br />\n        G &#8211; A      D<br />\nI will praise You, Lord<br />\n       Bm       G                A7<br />\nI will sing of all that You have done</p>\n",
+    "songNumber": 86
   },
   {
     "title": "How Lovely Are..",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3139",
     "id": "selah-3139",
@@ -98671,13 +98880,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p> A       D                    A<br />\nHow lovely are thy dwelling places<br />\n D                           E7         A  Em &#8211; A7<br />\nMy soul longs for the courts of the Lord<br />\n      D                E           C#<br />\nMy heart and my flesh sing for joy<br />\n            F#m<br />\nTo the living God<br />\n  D            E7       D &#8211; C# &#8211; Bm &#8211; A<br />\nYou are my King and my God</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p> A       D                    A<br />\nHow lovely are thy dwelling places<br />\n D                           E7         A  Em &#8211; A7<br />\nMy soul longs for the courts of the Lord<br />\n      D                E           C#<br />\nMy heart and my flesh sing for joy<br />\n            F#m<br />\nTo the living God<br />\n  D            E7       D &#8211; C# &#8211; Bm &#8211; A<br />\nYou are my King and my God</p>\n",
+    "songNumber": 85
   },
   {
     "title": "Hosanna, Hosanna",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3137",
     "id": "selah-3137",
@@ -98881,13 +99091,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro</strong></p>\n<p><strong>Verse:</strong><br />\n    G       D         C           Em   D<br />\n Hosanna, Hosanna, Hosanna in the highest<br />\n    G       D         C                D &#8211; G<br />\n Hosanna, Hosanna, Hosanna in the highest<br />\nC          D                G<br />\n Lord, we lift up your name<br />\nC           D                   G<br />\n With our hearts field with praise<br />\nC     D            G  D/F#  Em<br />\n We exalt you, O Lord Our God<br />\n    C            D    G<br />\n Hosanna in the highest!</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro</strong></p>\n<p><strong>Verse:</strong><br />\n    G       D         C           Em   D<br />\n Hosanna, Hosanna, Hosanna in the highest<br />\n    G       D         C                D &#8211; G<br />\n Hosanna, Hosanna, Hosanna in the highest<br />\nC          D                G<br />\n Lord, we lift up your name<br />\nC           D                   G<br />\n With our hearts field with praise<br />\nC     D            G  D/F#  Em<br />\n We exalt you, O Lord Our God<br />\n    C            D    G<br />\n Hosanna in the highest!</p>\n",
+    "songNumber": 79
   },
   {
     "title": "How Great Are Thy Works (Psalm 92)",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3067",
     "id": "selah-3067",
@@ -99199,13 +99410,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Verse 1:</strong><br />\n      A                           F#m7<br />\nIt is good to give thanks to the Lord<br />\n        Bm                      E7<br />\nTo sing praises to Thy name, O Most High<br />\n     C#m7                            F#m7<br />\nTo declare Thy steadfast love in the mor&#8217;n<br />\n        Bm7             E7<br />\nAnd Thy faithfulness at night</p>\n<p><strong>Verse 2:</strong><br />\n       A                          F#m7<br />\nTo the music of the lute and the harp<br />\n       Bm          E7<br />\nTo the melody of the lyre<br />\n            C#m7                       F#m7<br />\nFor Thou, O Lord has made me glad by Thy works<br />\n       Bm7                         E7sus &#8211; E7<br />\nAt the works of Thy hands, I sing for joy</p>\n<p><strong>Chorus:</strong><br />\n(E7) A                      D<br />\nHow great are Thy works, O Lord<br />\n    C#7               F#m   F#m/E<br />\nThy thoughts are very deep<br />\n    D             E7/D<br />\nHow great are Thy works<br />\n    C#m/E C#7/F   F#m   F#/A#<br />\nHow great are Thy works<br />\n    Bm            E7sus<br />\nHow great are Thy works<br />\n  A<br />\nO Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Verse 1:</strong><br />\n      A                           F#m7<br />\nIt is good to give thanks to the Lord<br />\n        Bm                      E7<br />\nTo sing praises to Thy name, O Most High<br />\n     C#m7                            F#m7<br />\nTo declare Thy steadfast love in the mor&#8217;n<br />\n        Bm7             E7<br />\nAnd Thy faithfulness at night</p>\n<p><strong>Verse 2:</strong><br />\n       A                          F#m7<br />\nTo the music of the lute and the harp<br />\n       Bm          E7<br />\nTo the melody of the lyre<br />\n            C#m7                       F#m7<br />\nFor Thou, O Lord has made me glad by Thy works<br />\n       Bm7                         E7sus &#8211; E7<br />\nAt the works of Thy hands, I sing for joy</p>\n<p><strong>Chorus:</strong><br />\n(E7) A                      D<br />\nHow great are Thy works, O Lord<br />\n    C#7               F#m   F#m/E<br />\nThy thoughts are very deep<br />\n    D             E7/D<br />\nHow great are Thy works<br />\n    C#m/E C#7/F   F#m   F#/A#<br />\nHow great are Thy works<br />\n    Bm            E7sus<br />\nHow great are Thy works<br />\n  A<br />\nO Lord</p>\n",
+    "songNumber": 82
   },
   {
     "title": "Holy is the Lord of Hosts",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3062",
     "id": "selah-3062",
@@ -99606,13 +99818,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse:</strong><br />\nC           G/C  C<br />\nHoly, holy, ho&#8212;-ly<br />\nF/C            G/C<br />\nIs the Lord of hosts<br />\nC      /B  Am7   C/G  G/D &#8211; G &#8211; C<br />\nHo&#8212;&#8211;ly, ho&#8212;&#8211;ly, ho&#8212;&#8211;ly<br />\nF      Dm7      G    (-/F &#8211; Em7 &#8211; Dm7 &#8211; G)<br />\nIs the Lord of hosts</p>\n<p><strong>Chorus:</strong><br />\n     C                 Bb/D  C/E  F<br />\nThe whole earth is full of His    glo&#8212;&#8211;ry<br />\n     D7sus          D  C/E  D/F#  G       -/F#<br />\nThe whole earth is full of His    glo&#8212;&#8211;ry<br />\n     E7sus          E7 D/F# E/G#  Am    /G<br />\nThe whole earth is full of His    glo&#8212;&#8211;ry<br />\nF         G       C (-/B &#8211; Am7 &#8211; C/G)<br />\nHo&#8212;&#8211;ly is the Lord<br />\nF         G       C<br />\nHo&#8212;&#8211;ly is the Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse:</strong><br />\nC           G/C  C<br />\nHoly, holy, ho&#8212;-ly<br />\nF/C            G/C<br />\nIs the Lord of hosts<br />\nC      /B  Am7   C/G  G/D &#8211; G &#8211; C<br />\nHo&#8212;&#8211;ly, ho&#8212;&#8211;ly, ho&#8212;&#8211;ly<br />\nF      Dm7      G    (-/F &#8211; Em7 &#8211; Dm7 &#8211; G)<br />\nIs the Lord of hosts</p>\n<p><strong>Chorus:</strong><br />\n     C                 Bb/D  C/E  F<br />\nThe whole earth is full of His    glo&#8212;&#8211;ry<br />\n     D7sus          D  C/E  D/F#  G       -/F#<br />\nThe whole earth is full of His    glo&#8212;&#8211;ry<br />\n     E7sus          E7 D/F# E/G#  Am    /G<br />\nThe whole earth is full of His    glo&#8212;&#8211;ry<br />\nF         G       C (-/B &#8211; Am7 &#8211; C/G)<br />\nHo&#8212;&#8211;ly is the Lord<br />\nF         G       C<br />\nHo&#8212;&#8211;ly is the Lord</p>\n",
+    "songNumber": 76
   },
   {
     "title": "Forever Grateful",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3141",
     "id": "selah-3141",
@@ -100167,13 +100380,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nDsus &#8211; A6/C#     Bm &#8211; A/C#<br />\nDsus &#8211; A6/C#     Bm &#8211; E</p>\n<p><strong>Verse:</strong><br />\n    A                  Asus2  &#8211; D/A<br />\nYou did not wait for me to draw near to You<br />\n        E                     D           A  (Asus2 &#8211; Esus4)<br />\nBut You clothed Yourself with frail humanity<br />\n    A                  Asus2 &#8211; D/A<br />\nYou did not wait for me to cry out to You<br />\n        E                D             A<br />\nBut You let me hear Your voice calling me</p>\n<p><strong>Chorus:</strong><br />\n    Bm-A/C#-D-F#m  E    D/E    A<br />\nAnd I&#8217;m forever grateful to You<br />\nBm-A/C#-D-F#m  E    D/E      A<br />\nI&#8217;m forever grateful for the cross<br />\nBm-A/C#-D-F#m  E    C#m   F#m<br />\nI&#8217;m forever grateful to You<br />\n        Bsus4 B7   D/B       E        A<br />\nThat You came   to seek and save the lost</p>\n<p><strong>Ending:</strong><br />\n           Bsus4 B7   D/B       E<br />\n&#8230;That You came   to seek and save<br />\n     D      A/C#      Bm &#8211; E<br />\nThe lost<br />\n              A<br />\nI&#8217;m forever grateful</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nDsus &#8211; A6/C#     Bm &#8211; A/C#<br />\nDsus &#8211; A6/C#     Bm &#8211; E</p>\n<p><strong>Verse:</strong><br />\n    A                  Asus2  &#8211; D/A<br />\nYou did not wait for me to draw near to You<br />\n        E                     D           A  (Asus2 &#8211; Esus4)<br />\nBut You clothed Yourself with frail humanity<br />\n    A                  Asus2 &#8211; D/A<br />\nYou did not wait for me to cry out to You<br />\n        E                D             A<br />\nBut You let me hear Your voice calling me</p>\n<p><strong>Chorus:</strong><br />\n    Bm-A/C#-D-F#m  E    D/E    A<br />\nAnd I&#8217;m forever grateful to You<br />\nBm-A/C#-D-F#m  E    D/E      A<br />\nI&#8217;m forever grateful for the cross<br />\nBm-A/C#-D-F#m  E    C#m   F#m<br />\nI&#8217;m forever grateful to You<br />\n        Bsus4 B7   D/B       E        A<br />\nThat You came   to seek and save the lost</p>\n<p><strong>Ending:</strong><br />\n           Bsus4 B7   D/B       E<br />\n&#8230;That You came   to seek and save<br />\n     D      A/C#      Bm &#8211; E<br />\nThe lost<br />\n              A<br />\nI&#8217;m forever grateful</p>\n",
+    "songNumber": 53
   },
   {
     "title": "Blessed be the Lord God Almighty",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3149",
     "id": "selah-3149",
@@ -100574,13 +100788,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse 1:</strong><br />\nC         Em              Dm<br />\nFather in heaven, how we love You<br />\n   G                  G7     C      G7<br />\nWe lift Your name in all the earth<br />\n         C             Em               Dm<br />\nMay Your kingdom be established in our praises<br />\n         F      G            G7    C<br />\nAs Your people declare Your mighty works</p>\n<p><strong>Chorus:</strong><br />\nG7             C    Em    Dm<br />\nBlessed be the Lord God Almighty<br />\n    G                G7    C<br />\nWho was, Who is, and is to come<br />\nG7             C    Em     Dm<br />\nBlessed be the Lord God Almighty<br />\n    F        G  G7  C<br />\nWho reigns fore-ver-more</p>\n<p>(To End)<br />\n    F        G  G7  Am  D7<br />\nWho reigns fore-ver-more</p>\n<p><strong>Verse 2:</strong><br />\nC           Em         Dm<br />\nO, God Most Holy, we adore you,<br />\n   G             G7        C      G7<br />\nWe lay our all before Your throne<br />\n         C                Em           Dm<br />\nMay the fragrance of Your presence be about us<br />\n      F          G            G7    C<br />\nAs we purpose to worship You alone</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse 1:</strong><br />\nC         Em              Dm<br />\nFather in heaven, how we love You<br />\n   G                  G7     C      G7<br />\nWe lift Your name in all the earth<br />\n         C             Em               Dm<br />\nMay Your kingdom be established in our praises<br />\n         F      G            G7    C<br />\nAs Your people declare Your mighty works</p>\n<p><strong>Chorus:</strong><br />\nG7             C    Em    Dm<br />\nBlessed be the Lord God Almighty<br />\n    G                G7    C<br />\nWho was, Who is, and is to come<br />\nG7             C    Em     Dm<br />\nBlessed be the Lord God Almighty<br />\n    F        G  G7  C<br />\nWho reigns fore-ver-more</p>\n<p>(To End)<br />\n    F        G  G7  Am  D7<br />\nWho reigns fore-ver-more</p>\n<p><strong>Verse 2:</strong><br />\nC           Em         Dm<br />\nO, God Most Holy, we adore you,<br />\n   G             G7        C      G7<br />\nWe lay our all before Your throne<br />\n         C                Em           Dm<br />\nMay the fragrance of Your presence be about us<br />\n      F          G            G7    C<br />\nAs we purpose to worship You alone</p>\n",
+    "songNumber": 21
   },
   {
     "title": "We Bow Down",
     "artist": "Selah",
     "key": "",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3161",
     "id": "selah-3161",
@@ -101060,13 +101275,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Verse:</strong><br />\n         D                    A/D        D<br />\nYou are Lord of creation and Lord of my life<br />\n                          A/D<br />\nLord of the land and the sea<br />\n          D<br />\nYou were Lord of the heavens<br />\n A/C              Bm<br />\nBefore there was time<br />\n     G6           A             D<br />\nAnd Lord of all Lords You will be</p>\n<p><strong>Chorus 1:</strong><br />\n        G   D/F#   A       A/C#  D<br />\nWe bow down and we worship You Lord<br />\n        G   D/F#   A       A/C#  D<br />\nWe bow down and we worship You Lord<br />\n        G   D/F#   A       A     Bm<br />\nWe bow down and we worship You Lord<br />\n Em7         A              D<br />\nLord of all Lords You will be</p>\n<p><strong>Verse 2:</strong><br />\n         D                    A/D        D<br />\nYou are King of creation and King of my life<br />\n                          A/D<br />\nKing of the land and the sea<br />\n          D<br />\nYou were King of the heavens<br />\nA/C              Bm<br />\nBefore there was time<br />\n     G6           A             D<br />\nAnd King of all kings You will be</p>\n<p><strong>Chorus 2:</strong><br />\n        G   D/F#   A       A/C#  D<br />\nWe bow down and we crown You the King<br />\n        G   D/F#   A       A/C#  D<br />\nWe bow down and we crown You the King<br />\n        G   D/F#   A       A/C#  D<br />\nWe bow down and we crown You the King<br />\n Em7         A              D<br />\nKing of all Kings You will be</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Verse:</strong><br />\n         D                    A/D        D<br />\nYou are Lord of creation and Lord of my life<br />\n                          A/D<br />\nLord of the land and the sea<br />\n          D<br />\nYou were Lord of the heavens<br />\n A/C              Bm<br />\nBefore there was time<br />\n     G6           A             D<br />\nAnd Lord of all Lords You will be</p>\n<p><strong>Chorus 1:</strong><br />\n        G   D/F#   A       A/C#  D<br />\nWe bow down and we worship You Lord<br />\n        G   D/F#   A       A/C#  D<br />\nWe bow down and we worship You Lord<br />\n        G   D/F#   A       A     Bm<br />\nWe bow down and we worship You Lord<br />\n Em7         A              D<br />\nLord of all Lords You will be</p>\n<p><strong>Verse 2:</strong><br />\n         D                    A/D        D<br />\nYou are King of creation and King of my life<br />\n                          A/D<br />\nKing of the land and the sea<br />\n          D<br />\nYou were King of the heavens<br />\nA/C              Bm<br />\nBefore there was time<br />\n     G6           A             D<br />\nAnd King of all kings You will be</p>\n<p><strong>Chorus 2:</strong><br />\n        G   D/F#   A       A/C#  D<br />\nWe bow down and we crown You the King<br />\n        G   D/F#   A       A/C#  D<br />\nWe bow down and we crown You the King<br />\n        G   D/F#   A       A/C#  D<br />\nWe bow down and we crown You the King<br />\n Em7         A              D<br />\nKing of all Kings You will be</p>\n",
+    "songNumber": 227
   },
   {
     "title": "I will Rejoice",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3175",
     "id": "selah-3175",
@@ -101621,13 +101837,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG         C/G<br />\nG         A &#8211; D7<br />\nG         C/G<br />\nG    D7   G</p>\n<p><strong>Chorus:</strong><br />\nG         C<br />\nI will rejoice<br />\nG         A &#8211; D7<br />\nI will rejoice<br />\nG         C                    G<br />\nI will rejoice for I&#8217;ve made my choice<br />\n     A            D<br />\nTo rejoice in the Lord</p>\n<p>G         C<br />\nI will rejoice<br />\nG         A &#8211; D7<br />\nI will rejoice<br />\nG         C                     G<br />\nI will rejoice for I&#8217;ve made my choice<br />\n     D7           G<br />\nTo rejoice in the Lord</p>\n<p><strong>Verse:</strong><br />\n   D                     G<br />\nIt doesn&#8217;t depend on the circumstances<br />\n   D                         G<br />\nThe strength of my arm or my voice<br />\n   F                     Bb<br />\nIt doesn&#8217;t depend on the way I feel<br />\n     F                       D7<br />\nI&#8217;ve made up my mind and I&#8217;m gonna rejoice</p>\n<p><strong>Chorus (A):</strong><br />\nA         D<br />\nI will rejoice<br />\nA         B &#8211; E7<br />\nI will rejoice<br />\nA         D                     A<br />\nI will rejoice for I&#8217;ve made my choice<br />\n     B            E<br />\nTo rejoice in the Lord</p>\n<p>A         D<br />\nI will rejoice<br />\nA         B &#8211; E7<br />\nI will rejoice<br />\nA         D                     A<br />\nI will rejoice for I&#8217;ve made my choice<br />\n     E7           A<br />\nTo rejoice in the Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG         C/G<br />\nG         A &#8211; D7<br />\nG         C/G<br />\nG    D7   G</p>\n<p><strong>Chorus:</strong><br />\nG         C<br />\nI will rejoice<br />\nG         A &#8211; D7<br />\nI will rejoice<br />\nG         C                    G<br />\nI will rejoice for I&#8217;ve made my choice<br />\n     A            D<br />\nTo rejoice in the Lord</p>\n<p>G         C<br />\nI will rejoice<br />\nG         A &#8211; D7<br />\nI will rejoice<br />\nG         C                     G<br />\nI will rejoice for I&#8217;ve made my choice<br />\n     D7           G<br />\nTo rejoice in the Lord</p>\n<p><strong>Verse:</strong><br />\n   D                     G<br />\nIt doesn&#8217;t depend on the circumstances<br />\n   D                         G<br />\nThe strength of my arm or my voice<br />\n   F                     Bb<br />\nIt doesn&#8217;t depend on the way I feel<br />\n     F                       D7<br />\nI&#8217;ve made up my mind and I&#8217;m gonna rejoice</p>\n<p><strong>Chorus (A):</strong><br />\nA         D<br />\nI will rejoice<br />\nA         B &#8211; E7<br />\nI will rejoice<br />\nA         D                     A<br />\nI will rejoice for I&#8217;ve made my choice<br />\n     B            E<br />\nTo rejoice in the Lord</p>\n<p>A         D<br />\nI will rejoice<br />\nA         B &#8211; E7<br />\nI will rejoice<br />\nA         D                     A<br />\nI will rejoice for I&#8217;ve made my choice<br />\n     E7           A<br />\nTo rejoice in the Lord</p>\n",
+    "songNumber": 105
   },
   {
     "title": "Here We Are",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3164",
     "id": "selah-3164",
@@ -102035,13 +102252,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Chorus:</strong><br />\n           F                         Bb<br />\n   Here we are, lifting our hands to You<br />\n   /A      Gm   C                     Fsus     F   Bb/C<br />\n   Here we are, giving You praise for all You do<br />\n           F                           Bb<br />\n   As we praise and worship Your Holy Name<br />\n   /A      Gm     C                   F     Fsus &#8211; F<br />\n   You are here, dwelling within our praise</p>\n<p><strong>Verse 1:</strong><br />\n       /A              Bb<br />\n   For every answered prayer<br />\nC                   Fsus &#8211; F<br />\n   For always being there<br />\n                          Bbsus    Bb<br />\n   For love that hears us when we call<br />\nC                        Fsus     F<br />\n   For arms that lift us when we fall<br />\nEm7-A7              Dm           /C<br />\n   You have always been right beside us<br />\n           Bb               /Bb &#8211; /A<br />\n   Leading us all along the way<br />\n           Gm                Csus      C<br />\n   And we made it through, because of You</p>\n<p><strong>Verse 2:</strong></p>\n<p>       /A             Bb<br />\n   For days we cannot see<br />\nC                       Fsus &#8211; F<br />\n   For all that&#8217;s yet to be<br />\n                     Bsus     Bb<br />\n   The trials we may have to face<br />\nC                       Fsus       F<br />\n   When we’ll be leaning on Your grace<br />\nEm7-A7               Dm           /C<br />\n   It will be Your strength that saves us<br />\n                  Bb              /Bb &#8211; /A<br />\n   Your love that makes us strong<br />\n         Gm                  Csus      C<br />\n   And through it all, we’ll sing this song</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Chorus:</strong><br />\n           F                         Bb<br />\n   Here we are, lifting our hands to You<br />\n   /A      Gm   C                     Fsus     F   Bb/C<br />\n   Here we are, giving You praise for all You do<br />\n           F                           Bb<br />\n   As we praise and worship Your Holy Name<br />\n   /A      Gm     C                   F     Fsus &#8211; F<br />\n   You are here, dwelling within our praise</p>\n<p><strong>Verse 1:</strong><br />\n       /A              Bb<br />\n   For every answered prayer<br />\nC                   Fsus &#8211; F<br />\n   For always being there<br />\n                          Bbsus    Bb<br />\n   For love that hears us when we call<br />\nC                        Fsus     F<br />\n   For arms that lift us when we fall<br />\nEm7-A7              Dm           /C<br />\n   You have always been right beside us<br />\n           Bb               /Bb &#8211; /A<br />\n   Leading us all along the way<br />\n           Gm                Csus      C<br />\n   And we made it through, because of You</p>\n<p><strong>Verse 2:</strong></p>\n<p>       /A             Bb<br />\n   For days we cannot see<br />\nC                       Fsus &#8211; F<br />\n   For all that&#8217;s yet to be<br />\n                     Bsus     Bb<br />\n   The trials we may have to face<br />\nC                       Fsus       F<br />\n   When we’ll be leaning on Your grace<br />\nEm7-A7               Dm           /C<br />\n   It will be Your strength that saves us<br />\n                  Bb              /Bb &#8211; /A<br />\n   Your love that makes us strong<br />\n         Gm                  Csus      C<br />\n   And through it all, we’ll sing this song</p>\n",
+    "songNumber": 71
   },
   {
     "title": "He Paid the Debt",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3169",
     "id": "selah-3169",
@@ -102221,13 +102439,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro</strong></p>\n<p><strong>Verse:</strong></p>\n<p>            C              C7<br />\nHe paid the debt He did not owe<br />\n            F               F<br />\nI owed the debt I could not pay<br />\n            C      Am7           Dm   G7<br />\nI needed someone to wash my sins away<br />\n            C               C7            F<br />\nAnd now I sing a brand new song &#8220;Amazing Grace&#8221;<br />\n              Em       Am       Dm       G7    C<br />\nChrist Jesus paid the debt that I could never pay<br />\n                                      (A &#8211; C &#8211; G7)</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro</strong></p>\n<p><strong>Verse:</strong></p>\n<p>            C              C7<br />\nHe paid the debt He did not owe<br />\n            F               F<br />\nI owed the debt I could not pay<br />\n            C      Am7           Dm   G7<br />\nI needed someone to wash my sins away<br />\n            C               C7            F<br />\nAnd now I sing a brand new song &#8220;Amazing Grace&#8221;<br />\n              Em       Am       Dm       G7    C<br />\nChrist Jesus paid the debt that I could never pay<br />\n                                      (A &#8211; C &#8211; G7)</p>\n",
+    "songNumber": 70
   },
   {
     "title": "You are God Alone",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3052",
     "id": "selah-3052",
@@ -102650,13 +102869,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nA E F#m E (2x), A E A E</p>\n<p><strong>Verse:</strong><br />\nA                     D               A<br />\nYou are not a GOD created by human hands,<br />\n                        D                   A<br />\nYou are not a GOD dependent on any mortal man,<br />\n              E       F#m    D               A<br />\nYou are not a GOD in need of anything we can give<br />\n        E            F#m              D<br />\nBy Your plan, that&#8217;s just the way it is</p>\n<p><strong>Chorus:</strong><br />\n            A                          E<br />\nYou are GOD alone, from before time began<br />\n                 F#m                 D<br />\nYou were on Your throne, You are God alone<br />\n          A                          E<br />\nAnd right now, in the good times and bad<br />\n                F#m                 D<br />\nYou are on Your throne, You are God alone</p>\n<p><strong>Break:</strong><br />\nA E F#m D</p>\n<p><strong>Verse 2:</strong></p>\n<p>A                         D                  A<br />\nYou&#8217;re the only God whose power none can contend<br />\n                          D                          A<br />\nYou&#8217;re the only God whose name and praise will never end<br />\n                E            F#m    D                 A<br />\nYou&#8217;re the only God whose worthy of everything we can give<br />\n         E          F#m            D<br />\nYou are God that&#8217;s just the way it is</p>\n<p><strong>Bridge:</strong><br />\n         A            E            F#m<br />\nUnchangeable, Unshakeaable, unstoppable,<br />\n                D<br />\nThat&#8217;s what You are</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\nA E F#m E (2x), A E A E</p>\n<p><strong>Verse:</strong><br />\nA                     D               A<br />\nYou are not a GOD created by human hands,<br />\n                        D                   A<br />\nYou are not a GOD dependent on any mortal man,<br />\n              E       F#m    D               A<br />\nYou are not a GOD in need of anything we can give<br />\n        E            F#m              D<br />\nBy Your plan, that&#8217;s just the way it is</p>\n<p><strong>Chorus:</strong><br />\n            A                          E<br />\nYou are GOD alone, from before time began<br />\n                 F#m                 D<br />\nYou were on Your throne, You are God alone<br />\n          A                          E<br />\nAnd right now, in the good times and bad<br />\n                F#m                 D<br />\nYou are on Your throne, You are God alone</p>\n<p><strong>Break:</strong><br />\nA E F#m D</p>\n<p><strong>Verse 2:</strong></p>\n<p>A                         D                  A<br />\nYou&#8217;re the only God whose power none can contend<br />\n                          D                          A<br />\nYou&#8217;re the only God whose name and praise will never end<br />\n                E            F#m    D                 A<br />\nYou&#8217;re the only God whose worthy of everything we can give<br />\n         E          F#m            D<br />\nYou are God that&#8217;s just the way it is</p>\n<p><strong>Bridge:</strong><br />\n         A            E            F#m<br />\nUnchangeable, Unshakeaable, unstoppable,<br />\n                D<br />\nThat&#8217;s what You are</p>\n",
+    "songNumber": 240
   },
   {
     "title": "I Exalt Thee",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3275",
     "id": "selah-3275",
@@ -102829,13 +103049,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Verse:</strong><br />\n    E/G#    A       B<br />\nFor Thou O Lord art high<br />\n              E  B/D# &#8211; C#m<br />\nAbove all the earth<br />\n          A<br />\nThou art exalted<br />\n      B        E<br />\nFar above all gods  </p>\n<p><strong>Chorus:</strong><br />\n E<br />\nI exalt Thee<br />\n B/D#<br />\nI exalt Thee<br />\n  E/G# &#8211; A  B<br />\nI exalt Thee<br />\n E<br />\nO Lord </p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Verse:</strong><br />\n    E/G#    A       B<br />\nFor Thou O Lord art high<br />\n              E  B/D# &#8211; C#m<br />\nAbove all the earth<br />\n          A<br />\nThou art exalted<br />\n      B        E<br />\nFar above all gods  </p>\n<p><strong>Chorus:</strong><br />\n E<br />\nI exalt Thee<br />\n B/D#<br />\nI exalt Thee<br />\n  E/G# &#8211; A  B<br />\nI exalt Thee<br />\n E<br />\nO Lord </p>\n",
+    "songNumber": 90
   },
   {
     "title": "I Give You Glory",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3243",
     "id": "selah-3243",
@@ -103131,13 +103352,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nC G Am F (2x)</p>\n<p><strong>Alt Intro:</strong><br />\nAm C Dm (2x)</p>\n<p><strong>Verse:</strong><br />\n         C                 G<br />\nOh how beautiful are You, Lord<br />\n           Am               F<br />\nIt&#8217;s Your words, it&#8217;s Your love<br />\n         C                G<br />\nOh how glorious are You, Lord<br />\n           Am                  F<br />\nIt&#8217;s Your power, it was Your cross</p>\n<p><strong>Pre-Chorus:</strong><br />\n      C            G<br />\nThat saved me and rescued me<br />\n        Am                        F<br />\nJust a moment there, You set me free!</p>\n<p><strong>Chorus:</strong><br />\n             C                        G<br />\nI give You glory, glory, I give You glory, glory<br />\n             Am            F<br />\nI give You glory, glory, Jesus!</p>\n<p><strong>Bridge:</strong><br />\n     F                G           Am            C<br />\nAnd with a crown of thorns You became my King forever! (4x)<br />\n     F                G         E7/G#            Am<br />\nAnd with a crown of thorns You became my King forever! (2x)</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Intro:</strong><br />\nC G Am F (2x)</p>\n<p><strong>Alt Intro:</strong><br />\nAm C Dm (2x)</p>\n<p><strong>Verse:</strong><br />\n         C                 G<br />\nOh how beautiful are You, Lord<br />\n           Am               F<br />\nIt&#8217;s Your words, it&#8217;s Your love<br />\n         C                G<br />\nOh how glorious are You, Lord<br />\n           Am                  F<br />\nIt&#8217;s Your power, it was Your cross</p>\n<p><strong>Pre-Chorus:</strong><br />\n      C            G<br />\nThat saved me and rescued me<br />\n        Am                        F<br />\nJust a moment there, You set me free!</p>\n<p><strong>Chorus:</strong><br />\n             C                        G<br />\nI give You glory, glory, I give You glory, glory<br />\n             Am            F<br />\nI give You glory, glory, Jesus!</p>\n<p><strong>Bridge:</strong><br />\n     F                G           Am            C<br />\nAnd with a crown of thorns You became my King forever! (4x)<br />\n     F                G         E7/G#            Am<br />\nAnd with a crown of thorns You became my King forever! (2x)</p>\n",
+    "songNumber": 92
   },
   {
     "title": "Faithful",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-2767",
     "id": "selah-2767",
@@ -103898,13 +104120,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G </strong></p>\n<p><strong>Intro:</strong><br />\nEm7 Dsus C &#8230; Am7 (2x)</p>\n<p><strong>Verse 1:</strong><br />\nEm7 D/F# G   C2              D<br />\nFaithful, forever You are faithful<br />\nEm7 D/F# G       C2     D<br />\nFather   to the fatherless<br />\nEm7 D/F# G     C2               D<br />\nYou uphold the one who feels forsaken<br />\nAm7           D       G<br />\n   You are faithful, God</p>\n<p><strong>Verse 2:</strong><br />\nEm7 D/F# G   C2              D<br />\nFaithful, forever You are faithful<br />\nEm7 D/F# G        C2     D<br />\nLover    of the wounded heart<br />\nEm7 D/F# G     C2               D<br />\nYou defend the poor and the forgotten<br />\nAm7           D       G<br />\n   You are faithful, God</p>\n<p><strong>Chorus:</strong><br />\n            C2                   Dsus       G<br />\nAnd I will sing to the Maker of Heaven and Earth<br />\n          C2                    Dsus         G<br />\nGod, You reign forever and Your love will endure<br />\nC2                       Em7  D      C2 G/B<br />\nFaithful and true is the name of the Lord<br />\nAm7         Dsus      G<br />\n   You are faithful, God<br />\n         Turnaround:  Em7 D C2 G/B</p>\n<p><strong>Verse 3:</strong><br />\nEm7 D/F# G   C2              D<br />\nFaithful, forever You are faithful<br />\nEm7 D/F# G        C2     D<br />\nShelter for the fragile soul<br />\n    Em7 D/F# G      C2             D<br />\nYou lift us up, You hold us all together<br />\nAm7           D       G<br />\n   You are faithful, God</p>\n<p><strong>Bridge:</strong><br />\n          D              G<br />\nYou are there (You are there)<br />\n          G/B          C2<br />\nIn every season of my soul<br />\n          D              G<br />\nYou are there (You are there)<br />\n            G/B              C2<br />\nYou&#8217;re the anchor that will hold<br />\n          D             Em7<br />\nYou are there (You are there)<br />\n        Em7   D       C2 G/B<br />\nIn the valley of the shadows<br />\nAm7           D       G<br />\n   You are faithful, God</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G </strong></p>\n<p><strong>Intro:</strong><br />\nEm7 Dsus C &#8230; Am7 (2x)</p>\n<p><strong>Verse 1:</strong><br />\nEm7 D/F# G   C2              D<br />\nFaithful, forever You are faithful<br />\nEm7 D/F# G       C2     D<br />\nFather   to the fatherless<br />\nEm7 D/F# G     C2               D<br />\nYou uphold the one who feels forsaken<br />\nAm7           D       G<br />\n   You are faithful, God</p>\n<p><strong>Verse 2:</strong><br />\nEm7 D/F# G   C2              D<br />\nFaithful, forever You are faithful<br />\nEm7 D/F# G        C2     D<br />\nLover    of the wounded heart<br />\nEm7 D/F# G     C2               D<br />\nYou defend the poor and the forgotten<br />\nAm7           D       G<br />\n   You are faithful, God</p>\n<p><strong>Chorus:</strong><br />\n            C2                   Dsus       G<br />\nAnd I will sing to the Maker of Heaven and Earth<br />\n          C2                    Dsus         G<br />\nGod, You reign forever and Your love will endure<br />\nC2                       Em7  D      C2 G/B<br />\nFaithful and true is the name of the Lord<br />\nAm7         Dsus      G<br />\n   You are faithful, God<br />\n         Turnaround:  Em7 D C2 G/B</p>\n<p><strong>Verse 3:</strong><br />\nEm7 D/F# G   C2              D<br />\nFaithful, forever You are faithful<br />\nEm7 D/F# G        C2     D<br />\nShelter for the fragile soul<br />\n    Em7 D/F# G      C2             D<br />\nYou lift us up, You hold us all together<br />\nAm7           D       G<br />\n   You are faithful, God</p>\n<p><strong>Bridge:</strong><br />\n          D              G<br />\nYou are there (You are there)<br />\n          G/B          C2<br />\nIn every season of my soul<br />\n          D              G<br />\nYou are there (You are there)<br />\n            G/B              C2<br />\nYou&#8217;re the anchor that will hold<br />\n          D             Em7<br />\nYou are there (You are there)<br />\n        Em7   D       C2 G/B<br />\nIn the valley of the shadows<br />\nAm7           D       G<br />\n   You are faithful, God</p>\n",
+    "songNumber": 46
   },
   {
     "title": "Open The Eyes Of My Heart (Sonicflood)",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3212",
     "id": "selah-3212",
@@ -104245,13 +104468,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\n1st E (strings/Eguitar)<br />\n2nd E,  B/D#, A2,  E  (bass E notes throughout)<br />\n3rd E,  B/D#, A2,  E  (bass E riffs throughout) &#8211;  G   A   </p>\n<p><strong>Verse:</strong><br />\nE<br />\nOpen the eyes of my heart, Lord<br />\nB/D#<br />\nOpen the eyes of my heart<br />\n           A2          E              &#8211;     G    A2<br />\nI want to see You, I want to see You</p>\n<p><strong>Chorus:</strong><br />\n           B               C#m<br />\nTo see You high and lifted up<br />\n A2                             B<br />\nShining in the light of Your glory<br />\nB                          C#m<br />\nPour out Your power and love<br />\n           A2          B      (E riff)4x<br />\nAs we sing holy, holy, holy </p>\n<p><strong>Bridge:</strong><br />\n(E riff) 1st time<br />\n(soft)<br />\nE<br />\nHoly, holy, holy<br />\nB/D#<br />\nHoly, holy, holy<br />\n A2<br />\nHoly, holy, holy<br />\n          E<br />\nI want to see You</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Intro:</strong><br />\n1st E (strings/Eguitar)<br />\n2nd E,  B/D#, A2,  E  (bass E notes throughout)<br />\n3rd E,  B/D#, A2,  E  (bass E riffs throughout) &#8211;  G   A   </p>\n<p><strong>Verse:</strong><br />\nE<br />\nOpen the eyes of my heart, Lord<br />\nB/D#<br />\nOpen the eyes of my heart<br />\n           A2          E              &#8211;     G    A2<br />\nI want to see You, I want to see You</p>\n<p><strong>Chorus:</strong><br />\n           B               C#m<br />\nTo see You high and lifted up<br />\n A2                             B<br />\nShining in the light of Your glory<br />\nB                          C#m<br />\nPour out Your power and love<br />\n           A2          B      (E riff)4x<br />\nAs we sing holy, holy, holy </p>\n<p><strong>Bridge:</strong><br />\n(E riff) 1st time<br />\n(soft)<br />\nE<br />\nHoly, holy, holy<br />\nB/D#<br />\nHoly, holy, holy<br />\n A2<br />\nHoly, holy, holy<br />\n          E<br />\nI want to see You</p>\n",
+    "songNumber": 169
   },
   {
     "title": "Amazing Grace",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3143",
     "id": "selah-3143",
@@ -104969,13 +105193,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG &#8211; D/G &#8211; G &#8211; D/G<br />\nor G &#8211; C &#8211; G/B &#8211; D</p>\n<p><strong>Verse 1:</strong><br />\n G<br />\nAmazing grace<br />\n     C         G<br />\nHow sweet the sound<br />\n      G                  D<br />\nThat saved a wretch like me<br />\n   G/B                C       G<br />\nI once was lost, but now I&#8217;m found<br />\n     Em         D     G<br />\nWas blind, but now I see</p>\n<p><strong>Verse 2:</strong><br />\n       G                     C       G<br />\nT&#8217;was grace that taught my heart to fear<br />\n      G               D<br />\nAnd grace my fears relieved<br />\n      G/B               C     G<br />\nHow precious did that grace appear<br />\n     Em      D     G<br />\nThe hour I first believed</p>\n<p><strong>Chorus:</strong><br />\n    G/B        C<br />\nMy chains are gone<br />\n              G<br />\nI&#8217;ve been set free<br />\n   G/B      C                  D<br />\nMy God, my Savior has ransomed me<br />\n    G/B     C        D     Em7<br />\nAnd like a flood His mercy reigns<br />\n          D            G<br />\nUnending love, amazing grace<br />\n<strong>End: </strong><br />\n                    G/B  C<br />\nEm7  D  G/B  C (2x) &#8212; G<br />\n<strong>Verse 3:</strong><br />\n     G                 C      G<br />\nThe Lord has promised good to me<br />\n     G              D<br />\nHis Word my hope secures<br />\n    G/B                C      G<br />\nHe will my shield and portion be<br />\n    Em      D     G<br />\nAs long as life endures</p>\n<p><strong>Verse 4:</strong><br />\n     G                 C           G<br />\nThe earth shall soon dissolve like snow<br />\n     G              D<br />\nThe sun forbear to shine<br />\n    G/B                 C    G<br />\nBut God, who called me here below<br />\n     Em   D     G<br />\nWill be forever mine<br />\n     Em   D     G<br />\nWill be forever mine<br />\n     Em   D     G<br />\nYou are forever mine</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG &#8211; D/G &#8211; G &#8211; D/G<br />\nor G &#8211; C &#8211; G/B &#8211; D</p>\n<p><strong>Verse 1:</strong><br />\n G<br />\nAmazing grace<br />\n     C         G<br />\nHow sweet the sound<br />\n      G                  D<br />\nThat saved a wretch like me<br />\n   G/B                C       G<br />\nI once was lost, but now I&#8217;m found<br />\n     Em         D     G<br />\nWas blind, but now I see</p>\n<p><strong>Verse 2:</strong><br />\n       G                     C       G<br />\nT&#8217;was grace that taught my heart to fear<br />\n      G               D<br />\nAnd grace my fears relieved<br />\n      G/B               C     G<br />\nHow precious did that grace appear<br />\n     Em      D     G<br />\nThe hour I first believed</p>\n<p><strong>Chorus:</strong><br />\n    G/B        C<br />\nMy chains are gone<br />\n              G<br />\nI&#8217;ve been set free<br />\n   G/B      C                  D<br />\nMy God, my Savior has ransomed me<br />\n    G/B     C        D     Em7<br />\nAnd like a flood His mercy reigns<br />\n          D            G<br />\nUnending love, amazing grace<br />\n<strong>End: </strong><br />\n                    G/B  C<br />\nEm7  D  G/B  C (2x) &#8212; G<br />\n<strong>Verse 3:</strong><br />\n     G                 C      G<br />\nThe Lord has promised good to me<br />\n     G              D<br />\nHis Word my hope secures<br />\n    G/B                C      G<br />\nHe will my shield and portion be<br />\n    Em      D     G<br />\nAs long as life endures</p>\n<p><strong>Verse 4:</strong><br />\n     G                 C           G<br />\nThe earth shall soon dissolve like snow<br />\n     G              D<br />\nThe sun forbear to shine<br />\n    G/B                 C    G<br />\nBut God, who called me here below<br />\n     Em   D     G<br />\nWill be forever mine<br />\n     Em   D     G<br />\nWill be forever mine<br />\n     Em   D     G<br />\nYou are forever mine</p>\n",
+    "songNumber": 9
   },
   {
     "title": "For You Alone",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3056",
     "id": "selah-3056",
@@ -105304,13 +105529,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Verse:</strong><br />\nG                       Bm7       Em7<br />\nYou are the peace that guards my heart<br />\n    C                D7<br />\nMy help in times of need<br />\nG                      Bm7     Em7<br />\nYou are the hope that leads me on<br />\n    C                 B7<br />\nAnd brings me to my knees<br />\n    Em                Bm<br />\nFor there I find You waiting<br />\n    C               G<br />\nAnd there I find release<br />\n         Am/C            G      Em7<br />\nAnd with all my heart I worship<br />\n    C           D<br />\nAnd unto You I sing</p>\n<p><strong>Chorus:</strong><br />\n(G7)      C                 D7<br />\nFor You alone deserve all glory<br />\n          Bm7               Em<br />\nFor You alone deserve all praise<br />\n           C            D7<br />\nFather we worship and adore You<br />\n           Bm7               E<br />\nFather we long to seek Your face<br />\n          C                 D<br />\nFor You alone deserve all glory<br />\n          Bm7               Em<br />\nFor You alone deserve all praise<br />\n           Am               D<br />\nFather we love You, and we worship You<br />\n     G<br />\nThis day</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Verse:</strong><br />\nG                       Bm7       Em7<br />\nYou are the peace that guards my heart<br />\n    C                D7<br />\nMy help in times of need<br />\nG                      Bm7     Em7<br />\nYou are the hope that leads me on<br />\n    C                 B7<br />\nAnd brings me to my knees<br />\n    Em                Bm<br />\nFor there I find You waiting<br />\n    C               G<br />\nAnd there I find release<br />\n         Am/C            G      Em7<br />\nAnd with all my heart I worship<br />\n    C           D<br />\nAnd unto You I sing</p>\n<p><strong>Chorus:</strong><br />\n(G7)      C                 D7<br />\nFor You alone deserve all glory<br />\n          Bm7               Em<br />\nFor You alone deserve all praise<br />\n           C            D7<br />\nFather we worship and adore You<br />\n           Bm7               E<br />\nFather we long to seek Your face<br />\n          C                 D<br />\nFor You alone deserve all glory<br />\n          Bm7               Em<br />\nFor You alone deserve all praise<br />\n           Am               D<br />\nFather we love You, and we worship You<br />\n     G<br />\nThis day</p>\n",
+    "songNumber": 51
   },
   {
     "title": "Come Now Is The Time To Worship",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3156",
     "id": "selah-3156",
@@ -105513,13 +105739,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nD                        Dsus   D<br />\nCome, now is the time to worship<br />\nA                        Em7         G<br />\nCome, now is the time to give your heart<br />\nD                         Dsus   D<br />\nCome, just as you are to worship<br />\nA                     Em7          G<br />\nCome, just as you are before your God<br />\nD<br />\nCome</p>\n<p><strong>Chorus:</strong><br />\nG                            D<br />\nOne day ev&#8217;ry tongue will confess You are God<br />\nG                         D<br />\nOne day ev&#8217;ry knee will bow<br />\nG                            Bm<br />\nStill the greatest treasure remains<br />\n                G                A<br />\nFor those who gladly choose You now</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nD                        Dsus   D<br />\nCome, now is the time to worship<br />\nA                        Em7         G<br />\nCome, now is the time to give your heart<br />\nD                         Dsus   D<br />\nCome, just as you are to worship<br />\nA                     Em7          G<br />\nCome, just as you are before your God<br />\nD<br />\nCome</p>\n<p><strong>Chorus:</strong><br />\nG                            D<br />\nOne day ev&#8217;ry tongue will confess You are God<br />\nG                         D<br />\nOne day ev&#8217;ry knee will bow<br />\nG                            Bm<br />\nStill the greatest treasure remains<br />\n                G                A<br />\nFor those who gladly choose You now</p>\n",
+    "songNumber": 31
   },
   {
     "title": "Thank You for the Cross",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3113",
     "id": "selah-3113",
@@ -105902,13 +106129,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nA2                     A/C#                D2  D  A/C#<br />\nThank You for the cross    the mighty cross<br />\n     Bm7                    Bm/A             E/G#   D2/F#  E<br />\nThat God himself should die      for such as us<br />\n    Asus A          A/C#             D     A2/C#         Bm7<br />\nAnd everyday we&#8217;re changed into Your image more and more<br />\n     D/E                      E           A     D/F#  E/G#<br />\nYes, by the cross we&#8217;ve truly been transformed</p>\n<p><strong>Chorus:</strong><br />\n          E/A       A  A2/C#              A/D  D         Bm7<br />\nAnd we&#8217;re so amazed           and we give      You praise<br />\n    Bm7/E                             A  E/A  D/A  A<br />\nThat You would save us at such a cost<br />\n      E/A        F#m7  F#m/E           A/D  D         Bm7<br />\nWe&#8217;re so  amazed            and we give     You praise<br />\n        D/E   E  D/E  E  F#m    D#m7(b5)<br />\nFor the pow &#8211; er of  the cross<br />\n        Bm7   C#m7   D  E  A<br />\nFor the pow &#8211;  er   of the cross</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong></p>\n<p><strong>Verse:</strong><br />\nA2                     A/C#                D2  D  A/C#<br />\nThank You for the cross    the mighty cross<br />\n     Bm7                    Bm/A             E/G#   D2/F#  E<br />\nThat God himself should die      for such as us<br />\n    Asus A          A/C#             D     A2/C#         Bm7<br />\nAnd everyday we&#8217;re changed into Your image more and more<br />\n     D/E                      E           A     D/F#  E/G#<br />\nYes, by the cross we&#8217;ve truly been transformed</p>\n<p><strong>Chorus:</strong><br />\n          E/A       A  A2/C#              A/D  D         Bm7<br />\nAnd we&#8217;re so amazed           and we give      You praise<br />\n    Bm7/E                             A  E/A  D/A  A<br />\nThat You would save us at such a cost<br />\n      E/A        F#m7  F#m/E           A/D  D         Bm7<br />\nWe&#8217;re so  amazed            and we give     You praise<br />\n        D/E   E  D/E  E  F#m    D#m7(b5)<br />\nFor the pow &#8211; er of  the cross<br />\n        Bm7   C#m7   D  E  A<br />\nFor the pow &#8211;  er   of the cross</p>\n",
+    "songNumber": 204
   },
   {
     "title": "O Diyos Ika’y Sinasamba",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-1288",
     "id": "selah-1288",
@@ -106235,13 +106463,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse:</strong><br />\n  C              C/E F<br />\nO Diyos, Ika&#8217;y sinasamba<br />\n        C            C/E   F<br />\nBuong puso, isip, at kaluluwa<br />\n      Am7       G<br />\nDahil sa dakila Mong Ngalan<br />\n      Am7              G<br />\nAt taglay Mong kapangyarihan</p>\n<p><strong>Chorus:</strong><br />\n      C         C/E         F<br />\nKahit na sa kawalan, ako&#8217;y aawit<br />\n      C         C/E          F<br />\nKahit na sa kabiguan, papuri ay ihahatid<br />\n      Am7       /G              F<br />\nDahil sa Ikaw, Ama, ang tanging makakanlungan<br />\n      Am7         /G          F        (G)<br />\nDahil sa pag-ibig Mo ay pangwalang-hanggan</p>\n<p><strong>Bridge:</strong><br />\nC/E                F<br />\nItataas ang Ngalan Mong banal<br />\n     C/E                        F       (G)<br />\nIhahayag na Ikaw lang ang tangi kong mahal</p>\n<p><strong>End:</strong><br />\n  C              C/E F<br />\nO Diyos, Ika&#8217;y sinasamba<br />\n        C            C/E   F  G<br />\nBuong puso, isip, at kaluluwa<br />\n  C<br />\nO Diyos</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse:</strong><br />\n  C              C/E F<br />\nO Diyos, Ika&#8217;y sinasamba<br />\n        C            C/E   F<br />\nBuong puso, isip, at kaluluwa<br />\n      Am7       G<br />\nDahil sa dakila Mong Ngalan<br />\n      Am7              G<br />\nAt taglay Mong kapangyarihan</p>\n<p><strong>Chorus:</strong><br />\n      C         C/E         F<br />\nKahit na sa kawalan, ako&#8217;y aawit<br />\n      C         C/E          F<br />\nKahit na sa kabiguan, papuri ay ihahatid<br />\n      Am7       /G              F<br />\nDahil sa Ikaw, Ama, ang tanging makakanlungan<br />\n      Am7         /G          F        (G)<br />\nDahil sa pag-ibig Mo ay pangwalang-hanggan</p>\n<p><strong>Bridge:</strong><br />\nC/E                F<br />\nItataas ang Ngalan Mong banal<br />\n     C/E                        F       (G)<br />\nIhahayag na Ikaw lang ang tangi kong mahal</p>\n<p><strong>End:</strong><br />\n  C              C/E F<br />\nO Diyos, Ika&#8217;y sinasamba<br />\n        C            C/E   F  G<br />\nBuong puso, isip, at kaluluwa<br />\n  C<br />\nO Diyos</p>\n",
+    "songNumber": 162
   },
   {
     "title": "Sanctuary",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3103",
     "id": "selah-3103",
@@ -106349,13 +106578,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p>       D                  A<br />\nLord, prepare me to be a sanctuary<br />\n         G     Em             D    A7<br />\nPure and holy,     tried and true<br />\n            D                A<br />\nWith thanksgiving, I&#8217;ll be a living<br />\n      G  Em      D<br />\nSanctuary   for You</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p>       D                  A<br />\nLord, prepare me to be a sanctuary<br />\n         G     Em             D    A7<br />\nPure and holy,     tried and true<br />\n            D                A<br />\nWith thanksgiving, I&#8217;ll be a living<br />\n      G  Em      D<br />\nSanctuary   for You</p>\n",
+    "songNumber": 190
   },
   {
     "title": "We Bring the Sacrifice of Praise",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-3098",
     "id": "selah-3098",
@@ -106592,13 +106822,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse:</strong><br />\nD            Em7sus       F#m7   Bm7<br />\nWe bring the sac &#8211; ri &#8211; fice of praise<br />\n         G            D/F#  Em7sus  Em7sus/A<br />\nInto the house of the Lord<br />\nD            Em7sus       F#m7   Bm7<br />\nWe bring the sac &#8211; ri &#8211; fice of praise<br />\n          G    Em7 A   D<br />\nInto the house of the Lord</p>\n<p><strong>Chorus:</strong><br />\n       G           F#m7  Bm7<br />\nAnd we offer up to You<br />\n         Em7  A9      D     Em7 D/F#<br />\nThe sacrifi &#8211; ces of thanks-giv-ing<br />\nD      G           F#m7  Bm7<br />\nAnd we offer up to You<br />\n         Em7  A9      D<br />\nThe sacrifi &#8211; ces of joy</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse:</strong><br />\nD            Em7sus       F#m7   Bm7<br />\nWe bring the sac &#8211; ri &#8211; fice of praise<br />\n         G            D/F#  Em7sus  Em7sus/A<br />\nInto the house of the Lord<br />\nD            Em7sus       F#m7   Bm7<br />\nWe bring the sac &#8211; ri &#8211; fice of praise<br />\n          G    Em7 A   D<br />\nInto the house of the Lord</p>\n<p><strong>Chorus:</strong><br />\n       G           F#m7  Bm7<br />\nAnd we offer up to You<br />\n         Em7  A9      D     Em7 D/F#<br />\nThe sacrifi &#8211; ces of thanks-giv-ing<br />\nD      G           F#m7  Bm7<br />\nAnd we offer up to You<br />\n         Em7  A9      D<br />\nThe sacrifi &#8211; ces of joy</p>\n",
+    "songNumber": 228
   },
   {
     "title": "In Your Presence",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3096",
     "id": "selah-3096",
@@ -106789,13 +107020,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse:</strong><br />\n          D<br />\nIn Your presence<br />\n           DM7<br />\nIn Your presence<br />\n          Em7 &#8211; A7<br />\nThere is peace<br />\n          Em7<br />\nIn Your presence<br />\n          A7<br />\nIn Your presence<br />\n          DM7 &#8211; A7<br />\nThere is joy</p>\n<p><strong>Chorus:</strong><br />\n         D<br />\nI will linger<br />\n       D7/F#<br />\nI will stay<br />\n          GM7<br />\nIn Your presence<br />\n       Gm/Bb<br />\nDay by day<br />\n            DM7/A<br />\n&#8216;Til Your likeness<br />\n        A7     D<br />\nMay be seen in me</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse:</strong><br />\n          D<br />\nIn Your presence<br />\n           DM7<br />\nIn Your presence<br />\n          Em7 &#8211; A7<br />\nThere is peace<br />\n          Em7<br />\nIn Your presence<br />\n          A7<br />\nIn Your presence<br />\n          DM7 &#8211; A7<br />\nThere is joy</p>\n<p><strong>Chorus:</strong><br />\n         D<br />\nI will linger<br />\n       D7/F#<br />\nI will stay<br />\n          GM7<br />\nIn Your presence<br />\n       Gm/Bb<br />\nDay by day<br />\n            DM7/A<br />\n&#8216;Til Your likeness<br />\n        A7     D<br />\nMay be seen in me</p>\n",
+    "songNumber": 114
   },
   {
     "title": "Ikaw Lang",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-3094",
     "id": "selah-3094",
@@ -107052,13 +107284,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Verse:</strong><br />\n     C             D       Bm           Em<br />\nKay raming humahadlang na Kita&#8217;y papurihan<br />\nAm               D        G   G7<br />\nMga pagsubok, bawat kabiguan<br />\n    C             D      Bm             Em<br />\nNgunit ang biyaya Mo ay sapat kailan pa man<br />\n   Am             D           G   G7<br />\nMarapat lang na Kita&#8217;y papurihan</p>\n<p><strong>Chorus:</strong><br />\n        C            D/C             Bm           Em<br />\nKaya&#8217;t Ikaw lang, O Diyos, ang pupurihin ng tinig ko<br />\n C            D/C           Bm          Em<br />\nIkaw lang, O Diyos, ang iibigin ng puso ko<br />\n C            D/C           Bm           Em<br />\nIkaw lang, O Diyos, ang mahayag sa buhay ko<br />\n      Am              D            G<br />\nIkaw lang, O Diyos, tanging Ikaw lang</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Verse:</strong><br />\n     C             D       Bm           Em<br />\nKay raming humahadlang na Kita&#8217;y papurihan<br />\nAm               D        G   G7<br />\nMga pagsubok, bawat kabiguan<br />\n    C             D      Bm             Em<br />\nNgunit ang biyaya Mo ay sapat kailan pa man<br />\n   Am             D           G   G7<br />\nMarapat lang na Kita&#8217;y papurihan</p>\n<p><strong>Chorus:</strong><br />\n        C            D/C             Bm           Em<br />\nKaya&#8217;t Ikaw lang, O Diyos, ang pupurihin ng tinig ko<br />\n C            D/C           Bm          Em<br />\nIkaw lang, O Diyos, ang iibigin ng puso ko<br />\n C            D/C           Bm           Em<br />\nIkaw lang, O Diyos, ang mahayag sa buhay ko<br />\n      Am              D            G<br />\nIkaw lang, O Diyos, tanging Ikaw lang</p>\n",
+    "songNumber": 111
   },
   {
     "title": "There Is None Like You",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3086",
     "id": "selah-3086",
@@ -107329,13 +107562,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nEm  C  G/D  D</p>\n<p><strong>Chorus:</strong><br />\nG          D/F#      C/E    G/D<br />\n  There is none like You<br />\nC        G/B               Am             /D    D<br />\n  No one else can touch my heart like You do<br />\nG          D/F#            Dm/F   C/E<br />\n  I could search for all eternity long<br />\n         G/D        C/D   D    G<br />\nAnd find   there is none like You</p>\n<p><strong>Verse:</strong><br />\nG/B   CM7   /D          G  D/F#   Em7  /D<br />\nYour mercy flows like a river wide<br />\n    Am7      D/F#            G      G/B<br />\nAnd healing comes from Your hands<br />\nCM7        /D           G   D/F#   Em7  /D<br />\nSuffering children are safe in Your arms<br />\nAm          C/G      D/F#  (C/E &#8211; D7)<br />\n  There is none like You</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nEm  C  G/D  D</p>\n<p><strong>Chorus:</strong><br />\nG          D/F#      C/E    G/D<br />\n  There is none like You<br />\nC        G/B               Am             /D    D<br />\n  No one else can touch my heart like You do<br />\nG          D/F#            Dm/F   C/E<br />\n  I could search for all eternity long<br />\n         G/D        C/D   D    G<br />\nAnd find   there is none like You</p>\n<p><strong>Verse:</strong><br />\nG/B   CM7   /D          G  D/F#   Em7  /D<br />\nYour mercy flows like a river wide<br />\n    Am7      D/F#            G      G/B<br />\nAnd healing comes from Your hands<br />\nCM7        /D           G   D/F#   Em7  /D<br />\nSuffering children are safe in Your arms<br />\nAm          C/G      D/F#  (C/E &#8211; D7)<br />\n  There is none like You</p>\n",
+    "songNumber": 210
   },
   {
     "title": "Exalted (Yahweh)",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3084",
     "id": "selah-3084",
@@ -107567,13 +107801,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse:</strong><br />\nC    D          G<br />\nExalted, He is exalted<br />\n    C   /D                 G<br />\nOn high,   He is exalted<br />\n     C            D        Em              Am<br />\nFor great is the Lord, let all the nations say<br />\n C       D        G<br />\nExalted,   He is exalted</p>\n<p><strong>Chorus:</strong><br />\nC<br />\nBlessing and honor<br />\nD               G/B               C<br />\nGlory and power unto the Lord be praise<br />\n                      D<br />\nSing with a chorus resounding before us<br />\nG/B                 Em               C<br />\nHoly is His (Your) name, His (Your) name</p>\n<p><strong>Bridge:</strong><br />\n    G   D      Em       C<br />\nYahweh,   holy is Your name  (4X)</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse:</strong><br />\nC    D          G<br />\nExalted, He is exalted<br />\n    C   /D                 G<br />\nOn high,   He is exalted<br />\n     C            D        Em              Am<br />\nFor great is the Lord, let all the nations say<br />\n C       D        G<br />\nExalted,   He is exalted</p>\n<p><strong>Chorus:</strong><br />\nC<br />\nBlessing and honor<br />\nD               G/B               C<br />\nGlory and power unto the Lord be praise<br />\n                      D<br />\nSing with a chorus resounding before us<br />\nG/B                 Em               C<br />\nHoly is His (Your) name, His (Your) name</p>\n<p><strong>Bridge:</strong><br />\n    G   D      Em       C<br />\nYahweh,   holy is Your name  (4X)</p>\n",
+    "songNumber": 45
   },
   {
     "title": "When I Look Into Your Holiness",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3080",
     "id": "selah-3080",
@@ -108013,13 +108248,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse 1:</strong><br />\nFM7/G   C2                 F    F/G<br />\nWhen I look into Your holiness<br />\n        C            CM7/E   F   F/G<br />\nWhen I gaze into Your loveliness<br />\n          C2/E           Em7  C/E     F<br />\nWhen all things that surround become shadows<br />\n                F/G  G<br />\nIn the light of You</p>\n<p><strong>Verse 2:</strong><br />\nFM7/G   C2                              F    F/G<br />\nWhen I found the joy of reaching your heart<br />\n        C                 CM7/E           F   F/G<br />\nWhen my will becomes enthralled in Your love<br />\n          C2/E           Em7  C/E     F<br />\nWhen all things that surround become shadows<br />\n                F/G  Em/G  F/G  Gsus G<br />\nIn the light of You</p>\n<p><strong>Chorus:</strong><br />\nC-Dm7-Em7 FM7  G/F<br />\nI worship You<br />\n          Em7  Am<br />\nI worship You<br />\n    Dm           Dm7/G<br />\nThe reason I live<br />\n          G   CM7 Dm7 Em7<br />\nIs to worship You<br />\nC-Dm7-Em7 FM7  G/F<br />\nI worship You<br />\n          Em7  Am<br />\nI worship You<br />\n    Dm           Dm7/G<br />\nThe reason I live<br />\n          G   C<br />\nIs to worship You</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse 1:</strong><br />\nFM7/G   C2                 F    F/G<br />\nWhen I look into Your holiness<br />\n        C            CM7/E   F   F/G<br />\nWhen I gaze into Your loveliness<br />\n          C2/E           Em7  C/E     F<br />\nWhen all things that surround become shadows<br />\n                F/G  G<br />\nIn the light of You</p>\n<p><strong>Verse 2:</strong><br />\nFM7/G   C2                              F    F/G<br />\nWhen I found the joy of reaching your heart<br />\n        C                 CM7/E           F   F/G<br />\nWhen my will becomes enthralled in Your love<br />\n          C2/E           Em7  C/E     F<br />\nWhen all things that surround become shadows<br />\n                F/G  Em/G  F/G  Gsus G<br />\nIn the light of You</p>\n<p><strong>Chorus:</strong><br />\nC-Dm7-Em7 FM7  G/F<br />\nI worship You<br />\n          Em7  Am<br />\nI worship You<br />\n    Dm           Dm7/G<br />\nThe reason I live<br />\n          G   CM7 Dm7 Em7<br />\nIs to worship You<br />\nC-Dm7-Em7 FM7  G/F<br />\nI worship You<br />\n          Em7  Am<br />\nI worship You<br />\n    Dm           Dm7/G<br />\nThe reason I live<br />\n          G   C<br />\nIs to worship You</p>\n",
+    "songNumber": 233
   },
   {
     "title": "Come As a Mighty River",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3075",
     "id": "selah-3075",
@@ -108283,13 +108519,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Verse 1:</strong><br />\nE<br />\nCome as a mighty river<br />\nC#m<br />\nCome by Your hand deliver<br />\nA              F#m<br />\nLord, let Your presence<br />\n     B<br />\nWash over me </p>\n<p><strong>Verse 2:</strong><br />\nE<br />\nCome in Your awesome power<br />\nC#m<br />\nCome in this final hour<br />\nA              F#m<br />\nLord, let Your presence<br />\n     B<br />\nWash over me</p>\n<p><strong>Chorus:</strong><br />\nA             B              E &#8211; /Eb &#8211; C#m<br />\n   There is a river flowing from the throne<br />\n           A              B              E<br />\nIt brings healing to the nations of the earth<br />\nA                B             G#m    C#m<br />\nEverything will live where the river flows<br />\n        A                 F#m             B<br />\nLiving Water quench this thirsting in my soul</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Verse 1:</strong><br />\nE<br />\nCome as a mighty river<br />\nC#m<br />\nCome by Your hand deliver<br />\nA              F#m<br />\nLord, let Your presence<br />\n     B<br />\nWash over me </p>\n<p><strong>Verse 2:</strong><br />\nE<br />\nCome in Your awesome power<br />\nC#m<br />\nCome in this final hour<br />\nA              F#m<br />\nLord, let Your presence<br />\n     B<br />\nWash over me</p>\n<p><strong>Chorus:</strong><br />\nA             B              E &#8211; /Eb &#8211; C#m<br />\n   There is a river flowing from the throne<br />\n           A              B              E<br />\nIt brings healing to the nations of the earth<br />\nA                B             G#m    C#m<br />\nEverything will live where the river flows<br />\n        A                 F#m             B<br />\nLiving Water quench this thirsting in my soul</p>\n",
+    "songNumber": 30
   },
   {
     "title": "Kami’y Magpupuri Sa’Yo",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-3073",
     "id": "selah-3073",
@@ -108546,13 +108783,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse:</strong><br />\n    D         Bm<br />\nKami&#8217;y magpupuri sa &#8216;Yo<br />\n    D             Bm<br />\nSa tanging Pangalan Mo<br />\nD            Bm<br />\nO Hesus, ang awiting ito<br />\n   D       Bm<br />\nAy alay sa &#8216;Yo<br />\n   G          A<br />\nKami&#8217;y naririto<br />\n  G       A      D<br />\nUpang magpuri sa &#8216;Yo</p>\n<p><strong>Chorus:</strong><br />\n   G          A/G<br />\nPurihin Ka, purihin Ka<br />\n  F#m          Bm<br />\nPurihin Ka, Hesus<br />\n Em         A       D<br />\nIniligtas kami at Iyong tinubos<br />\n  G          A/G<br />\nPurihin Ka, purihin Ka<br />\n  F#m          Bm<br />\nPurihin Ka, Hesus<br />\n    Em         A               D<br />\nKailan pa ma&#8217;y Ikaw ang aming Diyos</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p><strong>Verse:</strong><br />\n    D         Bm<br />\nKami&#8217;y magpupuri sa &#8216;Yo<br />\n    D             Bm<br />\nSa tanging Pangalan Mo<br />\nD            Bm<br />\nO Hesus, ang awiting ito<br />\n   D       Bm<br />\nAy alay sa &#8216;Yo<br />\n   G          A<br />\nKami&#8217;y naririto<br />\n  G       A      D<br />\nUpang magpuri sa &#8216;Yo</p>\n<p><strong>Chorus:</strong><br />\n   G          A/G<br />\nPurihin Ka, purihin Ka<br />\n  F#m          Bm<br />\nPurihin Ka, Hesus<br />\n Em         A       D<br />\nIniligtas kami at Iyong tinubos<br />\n  G          A/G<br />\nPurihin Ka, purihin Ka<br />\n  F#m          Bm<br />\nPurihin Ka, Hesus<br />\n    Em         A               D<br />\nKailan pa ma&#8217;y Ikaw ang aming Diyos</p>\n",
+    "songNumber": 133
   },
   {
     "title": "Everlasting God",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-3005",
     "id": "selah-3005",
@@ -108961,13 +109199,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key:G </strong></p>\n<p><strong>Intro:</strong><br />\nG           Gsus &#8211; G<br />\nGsus &#8211; G    Gsus &#8211; G</p>\n<p><strong>Verse:</strong><br />\nG<br />\nStrength will rise<br />\n        Gsus          G<br />\n  As we wait upon the Lord<br />\n        Gsus          G<br />\nWe will wait upon the Lord<br />\n          Gsus          G<br />\n  We will wait upon the Lord</p>\n<p><strong>Pre-chorus:</strong><br />\nG/B &#8211; C<br />\nOur God<br />\nG/B &#8211; C &#8211; D  Em  D<br />\nYou reign forever<br />\nG/B &#8211; C<br />\nOur hope<br />\nG/B &#8211; C &#8211; D  Em   D<br />\nOur strong deliverer</p>\n<p><strong>Chorus:</strong><br />\nG                        C<br />\nYou are the everlasting God<br />\n                 Em<br />\nThe everlasting God<br />\nYou do not faint<br />\n    C<br />\nYou won&#8217;t grow weary<br />\nG                           C<br />\nYou&#8217;re the defender of the weak<br />\n                      Em<br />\nYou comfort those in need<br />\nYou lift us up<br />\n   C<br />\nOn wings like eagles</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key:G </strong></p>\n<p><strong>Intro:</strong><br />\nG           Gsus &#8211; G<br />\nGsus &#8211; G    Gsus &#8211; G</p>\n<p><strong>Verse:</strong><br />\nG<br />\nStrength will rise<br />\n        Gsus          G<br />\n  As we wait upon the Lord<br />\n        Gsus          G<br />\nWe will wait upon the Lord<br />\n          Gsus          G<br />\n  We will wait upon the Lord</p>\n<p><strong>Pre-chorus:</strong><br />\nG/B &#8211; C<br />\nOur God<br />\nG/B &#8211; C &#8211; D  Em  D<br />\nYou reign forever<br />\nG/B &#8211; C<br />\nOur hope<br />\nG/B &#8211; C &#8211; D  Em   D<br />\nOur strong deliverer</p>\n<p><strong>Chorus:</strong><br />\nG                        C<br />\nYou are the everlasting God<br />\n                 Em<br />\nThe everlasting God<br />\nYou do not faint<br />\n    C<br />\nYou won&#8217;t grow weary<br />\nG                           C<br />\nYou&#8217;re the defender of the weak<br />\n                      Em<br />\nYou comfort those in need<br />\nYou lift us up<br />\n   C<br />\nOn wings like eagles</p>\n",
+    "songNumber": 41
   },
   {
     "title": "Kahanga-hanga",
     "artist": "Selah",
     "key": "A",
-    "category": "Selah",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=selah-2971",
     "id": "selah-2971",
@@ -109569,13 +109808,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\n A/C# D A/E  Fdim, F#m  E B7/D#, Bm7  E</p>\n<p><strong>Verse:</strong><br />\n            A               F#m7<br />\nKahanga-hanga, Diyos na dakila<br />\n           B7/D#        E<br />\nKarapat-dapat sa pagsamba<br />\n              A            F#m7<br />\nKaluwalhatia’y walang katulad<br />\n             B7/D#       E/D<br />\nHigit sa sukdulan kailanman</p>\n<p><strong>Chorus:</strong><br />\n     C#m        D          Esus  E<br />\nAng alayan Ka’y tanging mithiin<br />\n    C#m         D          Esus  E<br />\nIhandog ang lahat-lahat sa &#8216;kin<br />\n      F#m7  E          B7/D#<br />\nBawat araw Ikaw ang naisin<br />\n    Bm7    E<br />\nIibigin</p>\n<p><ins><strong>Verse:</strong><br />\n            A               F#m7<br />\nKahanga-hanga, Diyos na dakila<br />\n           B7/D#        E<br />\nKarapat-dapat sa pagsamba<br />\n             A/C#          F#m7<br />\nKaluwalhatia’y walang katulad<br />\n             B7/D#       E/D<br />\nHigit sa sukdulan kailanman</ins></p>\n<p><strong>Chorus:</strong><br />\n     C#m        D          Esus E<br />\nAng alayan Ka’y tanging mithiin<br />\n    C#m       D         Esus  E<br />\nIhandog ang lahat-lahat sa &#8216;kin<br />\n      F#m7  E/G#        B7/D#<br />\nBawat araw Ikaw ang naisin<br />\n    Bm7   E<br />\nIibigin</p>\n<p><strong>Instrumental: </strong><br />\nC#m D C#m/E Fdim<br />\nF#m E B7/D#<br />\nBm7 E</p>\n<p><strong>Chorus 2:</strong><br />\n       C#m                 D<br />\nAng alayan Ka’y tanging mithiin<br />\n    E                      Fdim<br />\nIhandog ang lahat-lahat sa ’kin<br />\n       F#m7     E      B7/D#<br />\nBawat araw Ikaw ang naisin<br />\n    Bm7    E<br />\nIibigin<br />\n</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: A</strong></p>\n<p><strong>Intro:</strong><br />\n A/C# D A/E  Fdim, F#m  E B7/D#, Bm7  E</p>\n<p><strong>Verse:</strong><br />\n            A               F#m7<br />\nKahanga-hanga, Diyos na dakila<br />\n           B7/D#        E<br />\nKarapat-dapat sa pagsamba<br />\n              A            F#m7<br />\nKaluwalhatia’y walang katulad<br />\n             B7/D#       E/D<br />\nHigit sa sukdulan kailanman</p>\n<p><strong>Chorus:</strong><br />\n     C#m        D          Esus  E<br />\nAng alayan Ka’y tanging mithiin<br />\n    C#m         D          Esus  E<br />\nIhandog ang lahat-lahat sa &#8216;kin<br />\n      F#m7  E          B7/D#<br />\nBawat araw Ikaw ang naisin<br />\n    Bm7    E<br />\nIibigin</p>\n<p><ins><strong>Verse:</strong><br />\n            A               F#m7<br />\nKahanga-hanga, Diyos na dakila<br />\n           B7/D#        E<br />\nKarapat-dapat sa pagsamba<br />\n             A/C#          F#m7<br />\nKaluwalhatia’y walang katulad<br />\n             B7/D#       E/D<br />\nHigit sa sukdulan kailanman</ins></p>\n<p><strong>Chorus:</strong><br />\n     C#m        D          Esus E<br />\nAng alayan Ka’y tanging mithiin<br />\n    C#m       D         Esus  E<br />\nIhandog ang lahat-lahat sa &#8216;kin<br />\n      F#m7  E/G#        B7/D#<br />\nBawat araw Ikaw ang naisin<br />\n    Bm7   E<br />\nIibigin</p>\n<p><strong>Instrumental: </strong><br />\nC#m D C#m/E Fdim<br />\nF#m E B7/D#<br />\nBm7 E</p>\n<p><strong>Chorus 2:</strong><br />\n       C#m                 D<br />\nAng alayan Ka’y tanging mithiin<br />\n    E                      Fdim<br />\nIhandog ang lahat-lahat sa ’kin<br />\n       F#m7     E      B7/D#<br />\nBawat araw Ikaw ang naisin<br />\n    Bm7    E<br />\nIibigin<br />\n</p>\n",
+    "songNumber": 130
   },
   {
     "title": "No Other Name",
     "artist": "Selah",
     "key": "C",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-2958",
     "id": "selah-2958",
@@ -109904,13 +110144,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse:</strong><br />\n     C        G/B        Am        C/G<br />\nHis name is exalted, far above the earth<br />\n     F       C/E           Dm     Gsus-G<br />\nHis name is high above the heavens<br />\n     C        G/B        Am        C/G<br />\nHis name is exalted, far above the earth<br />\n     Dm         C/E       F              G<br />\nGive glory and honor and praise unto His Name</p>\n<p><strong>Chorus:</strong><br />\nC/E       F           G       C      C/E<br />\nNo other name but the name of Jesus<br />\n          F           G            Am   C/E<br />\nNo other name but the name of the Lord<br />\n          F           G       Am &#8211; G &#8211; F<br />\nNo other name but the name of Jesus<br />\n    C/G       G          C/G       G<br />\nIs worthy of glory, and worthy of honor<br />\n     C/G      Dm     G       C<br />\nand worthy of power and of praise</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: C</strong></p>\n<p><strong>Verse:</strong><br />\n     C        G/B        Am        C/G<br />\nHis name is exalted, far above the earth<br />\n     F       C/E           Dm     Gsus-G<br />\nHis name is high above the heavens<br />\n     C        G/B        Am        C/G<br />\nHis name is exalted, far above the earth<br />\n     Dm         C/E       F              G<br />\nGive glory and honor and praise unto His Name</p>\n<p><strong>Chorus:</strong><br />\nC/E       F           G       C      C/E<br />\nNo other name but the name of Jesus<br />\n          F           G            Am   C/E<br />\nNo other name but the name of the Lord<br />\n          F           G       Am &#8211; G &#8211; F<br />\nNo other name but the name of Jesus<br />\n    C/G       G          C/G       G<br />\nIs worthy of glory, and worthy of honor<br />\n     C/G      Dm     G       C<br />\nand worthy of power and of praise</p>\n",
+    "songNumber": 160
   },
   {
     "title": "I Love You Lord",
     "artist": "Selah",
     "key": "E",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-2827",
     "id": "selah-2827",
@@ -110076,13 +110317,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Verse:</strong><br />\n  E<br />\nI love You, Lord<br />\n      B/E     E<br />\nAnd I lift my voice<br />\n(/G#) A  E/G# F#m<br />\n To   worship You<br />\n      B    (/C#-/D#)<br />\nOh my soul rejoice<br />\n     E<br />\nTake joy my King<br />\n   B/E      E<br />\nIn what You hear<br />\nE/G#        A      E/G#  F#m<br />\nMay it be a sweet, sweet sound<br />\nB       E<br />\nIn Your ear</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: E</strong></p>\n<p><strong>Verse:</strong><br />\n  E<br />\nI love You, Lord<br />\n      B/E     E<br />\nAnd I lift my voice<br />\n(/G#) A  E/G# F#m<br />\n To   worship You<br />\n      B    (/C#-/D#)<br />\nOh my soul rejoice<br />\n     E<br />\nTake joy my King<br />\n   B/E      E<br />\nIn what You hear<br />\nE/G#        A      E/G#  F#m<br />\nMay it be a sweet, sweet sound<br />\nB       E<br />\nIn Your ear</p>\n",
+    "songNumber": 96
   },
   {
     "title": "Jesus You Are So Good",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-1050",
     "id": "selah-1050",
@@ -110767,13 +111009,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nC</p>\n<p><strong>Chorus:</strong><br />\n               F      (F-Gm-) Am<br />\nJesus, You are so good<br />\n               Bb      C<br />\nJesus, You are so good<br />\n                   F               Dm<br />\nThere&#8217;s nothing to fear &#8217;cause I&#8217;m here<br />\n           Am &#8211; Bb &#8211; B &#8211; C<br />\nIn Your presence<br />\n               F       Am<br />\nJesus, You are so good<br />\n               A &#8211; A/C# &#8211; Dm<br />\nJesus, You are so, so good<br />\n                   Gm    Am       Bb    C<br />\nAnd I just want to thank You with every beat<br />\n           Eb &#8211; Bb &#8211; F &#8211; (To Chorus: C , Tag/Outro: D7#9)<br />\nOf my heart</p>\n<p><strong>Verse 1:</strong><br />\n                 Bb         Bbsus &#8211; Bb<br />\nYou&#8217;ve given me eternal life<br />\n         Eb      Bb       F<br />\nAnd Your word to light my way<br />\n                    Bb    Bbsus &#8211; Bb<br />\nYou&#8217;ve given me the Spirit<br />\n         Gm7           C<br />\nWith new mercies every day</p>\n<p><strong>Verse 2:</strong><br />\n                Bb        Bbsus &#8211; Bb<br />\nYou&#8217;ve given me confidence<br />\n       Eb      Bb           F<br />\nAnd my soul is filled with peace<br />\n                  Bb   Bbsus &#8211; Bb<br />\nFor You are my provider<br />\n       Gm7          C<br />\nYou supply my every need</p>\n<p><strong>Outro:</strong><br />\n                   Gm   Am   Bb   Am<br />\nAnd I just want to thank You<br />\n               Gm   Am   Bb  Am<br />\nI just want to thank You<br />\n               Gm   Am        Eb    C<br />\nI just want to thank You with every beat<br />\nOf my heart<br />\n(b7-6-5-4-b7-7-1)<br />\n Eb   &#8211; Bb   &#8211; F<br />\n(2-1-b7-6-5-4-3)<br />\n Eb   &#8211; Bb  &#8211; F<br />\n(b7-6-5-4-b7-7-1)<br />\n Eb   &#8211; Bb   &#8211; F    F</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Intro:</strong><br />\nC</p>\n<p><strong>Chorus:</strong><br />\n               F      (F-Gm-) Am<br />\nJesus, You are so good<br />\n               Bb      C<br />\nJesus, You are so good<br />\n                   F               Dm<br />\nThere&#8217;s nothing to fear &#8217;cause I&#8217;m here<br />\n           Am &#8211; Bb &#8211; B &#8211; C<br />\nIn Your presence<br />\n               F       Am<br />\nJesus, You are so good<br />\n               A &#8211; A/C# &#8211; Dm<br />\nJesus, You are so, so good<br />\n                   Gm    Am       Bb    C<br />\nAnd I just want to thank You with every beat<br />\n           Eb &#8211; Bb &#8211; F &#8211; (To Chorus: C , Tag/Outro: D7#9)<br />\nOf my heart</p>\n<p><strong>Verse 1:</strong><br />\n                 Bb         Bbsus &#8211; Bb<br />\nYou&#8217;ve given me eternal life<br />\n         Eb      Bb       F<br />\nAnd Your word to light my way<br />\n                    Bb    Bbsus &#8211; Bb<br />\nYou&#8217;ve given me the Spirit<br />\n         Gm7           C<br />\nWith new mercies every day</p>\n<p><strong>Verse 2:</strong><br />\n                Bb        Bbsus &#8211; Bb<br />\nYou&#8217;ve given me confidence<br />\n       Eb      Bb           F<br />\nAnd my soul is filled with peace<br />\n                  Bb   Bbsus &#8211; Bb<br />\nFor You are my provider<br />\n       Gm7          C<br />\nYou supply my every need</p>\n<p><strong>Outro:</strong><br />\n                   Gm   Am   Bb   Am<br />\nAnd I just want to thank You<br />\n               Gm   Am   Bb  Am<br />\nI just want to thank You<br />\n               Gm   Am        Eb    C<br />\nI just want to thank You with every beat<br />\nOf my heart<br />\n(b7-6-5-4-b7-7-1)<br />\n Eb   &#8211; Bb   &#8211; F<br />\n(2-1-b7-6-5-4-3)<br />\n Eb   &#8211; Bb  &#8211; F<br />\n(b7-6-5-4-b7-7-1)<br />\n Eb   &#8211; Bb   &#8211; F    F</p>\n",
+    "songNumber": 125
   },
   {
     "title": "Joy In The House",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-1195",
     "id": "selah-1195",
@@ -111180,13 +111423,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG &#8211; G6 &#8211; G7 &#8211; G6  (8x)</p>\n<p><strong>Verse:</strong><br />\n              G          Gsus         G<br />\nThere will be joy in the house of the Lord<br />\n       Am              G/B<br />\nIn the presence of the Lord<br />\n         C          D &#8211; D7<br />\nThere is joy forevermore<br />\n              G          Gsus         Em   E/G#<br />\nThere will be joy in the house of the Lord<br />\n       Am           D         F &#8211; F &#8211; G<br />\nAs we celebrate His Holy Name</p>\n<p><strong>Chorus:</strong><br />\n           D             C/D             G<br />\nSo we will dive into the presence of the Lord<br />\n            D             C/D              G<br />\nAnd we will celebrate His goodness and His love<br />\n           D             C/D             Em   E/G#<br />\nSo we will dive into the presence of the Lord<br />\n         Am         D &#8211; E/G#<br />\nThere is joy in the house<br />\nAm         D &#8211; E/G#<br />\nJoy in the house<br />\nAm         D                 F &#8211; F &#8211; G<br />\nJoy in the house of the Lord</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Intro:</strong><br />\nG &#8211; G6 &#8211; G7 &#8211; G6  (8x)</p>\n<p><strong>Verse:</strong><br />\n              G          Gsus         G<br />\nThere will be joy in the house of the Lord<br />\n       Am              G/B<br />\nIn the presence of the Lord<br />\n         C          D &#8211; D7<br />\nThere is joy forevermore<br />\n              G          Gsus         Em   E/G#<br />\nThere will be joy in the house of the Lord<br />\n       Am           D         F &#8211; F &#8211; G<br />\nAs we celebrate His Holy Name</p>\n<p><strong>Chorus:</strong><br />\n           D             C/D             G<br />\nSo we will dive into the presence of the Lord<br />\n            D             C/D              G<br />\nAnd we will celebrate His goodness and His love<br />\n           D             C/D             Em   E/G#<br />\nSo we will dive into the presence of the Lord<br />\n         Am         D &#8211; E/G#<br />\nThere is joy in the house<br />\nAm         D &#8211; E/G#<br />\nJoy in the house<br />\nAm         D                 F &#8211; F &#8211; G<br />\nJoy in the house of the Lord</p>\n",
+    "songNumber": 126
   },
   {
     "title": "I Will Arise",
     "artist": "Selah",
     "key": "F",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-1169",
     "id": "selah-1169",
@@ -111451,13 +111695,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Verse 1:</strong><br />\n        F            C<br />\nI will arise and go forth<br />\n        F           Bb<br />\nIn the name of the Lord of Host<br />\n            F   &#8211;  Dm<br />\nFor He has conquered<br />\n      Gm &#8211; C     F  &#8211;  Dm      Gm &#8211; C<br />\nEvery foe by His Name, by His Name</p>\n<p><strong>Verse 2:</strong><br />\n        F            C<br />\nI will declare He is the Lord<br />\n        F            Bb<br />\nI will trust and not be afraid<br />\n        F &#8211; Dm      Gm &#8211; C<br />\nI will arise and go forth<br />\n        F &#8211; Dm      Gm &#8211; C<br />\nBy His Name, by His Name</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: F</strong></p>\n<p><strong>Verse 1:</strong><br />\n        F            C<br />\nI will arise and go forth<br />\n        F           Bb<br />\nIn the name of the Lord of Host<br />\n            F   &#8211;  Dm<br />\nFor He has conquered<br />\n      Gm &#8211; C     F  &#8211;  Dm      Gm &#8211; C<br />\nEvery foe by His Name, by His Name</p>\n<p><strong>Verse 2:</strong><br />\n        F            C<br />\nI will declare He is the Lord<br />\n        F            Bb<br />\nI will trust and not be afraid<br />\n        F &#8211; Dm      Gm &#8211; C<br />\nI will arise and go forth<br />\n        F &#8211; Dm      Gm &#8211; C<br />\nBy His Name, by His Name</p>\n",
+    "songNumber": 102
   },
   {
     "title": "I Will Celebrate",
     "artist": "Selah",
     "key": "Em",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-1185",
     "id": "selah-1185",
@@ -111659,13 +111904,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: Em</strong></p>\n<p><strong>Verse:</strong><br />\nEm                Am<br />\nI will celebrate, sing unto the Lord<br />\nB7                   Em<br />\nI will sing to Him a new song</p>\n<p><strong>Chorus:</strong><br />\nEm Am   D7     G   Am      B7           Em<br />\nI will praise Him, I will sing to Him a new song<br />\nEm Am   D7     G   B      B7            Em<br />\nI will praise Him, I will sing to Him a new song</p>\n<p><strong>Bridge:</strong><br />\nEm<br />\nHallelujah, Hallelujah,<br />\nAm<br />\nHallelujah, Hallelujah<br />\nB7                Em<br />\nHallelujah, Hallelujah</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: Em</strong></p>\n<p><strong>Verse:</strong><br />\nEm                Am<br />\nI will celebrate, sing unto the Lord<br />\nB7                   Em<br />\nI will sing to Him a new song</p>\n<p><strong>Chorus:</strong><br />\nEm Am   D7     G   Am      B7           Em<br />\nI will praise Him, I will sing to Him a new song<br />\nEm Am   D7     G   B      B7            Em<br />\nI will praise Him, I will sing to Him a new song</p>\n<p><strong>Bridge:</strong><br />\nEm<br />\nHallelujah, Hallelujah,<br />\nAm<br />\nHallelujah, Hallelujah<br />\nB7                Em<br />\nHallelujah, Hallelujah</p>\n",
+    "songNumber": 103
   },
   {
     "title": "Shout For Joy",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=selah-2781",
     "id": "selah-2781",
@@ -112211,13 +112457,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Chorus:</strong><br />\nG     C   G    C      G<br />\nShout for joy all the earth<br />\nC            D             G      C &#8211; D<br />\nPraise the Lord all with gladness<br />\nG     C   G    C      G<br />\nShout for joy all the earth<br />\nAm           D         G     C &#8211; D<br />\nPraise the Lord with gladness</p>\n<p><strong>Verse 1:</strong><br />\nC          D/C             C &#8211; G/B<br />\nEnter His gates with thanksgiving<br />\n    Am         D           G &#8211; G7<br />\nAnd into His courts with praise<br />\nC          D/C             C &#8211; G/B<br />\nEnter His gates with thanksgiving<br />\n    C          Am<br />\nAnd into His courts,<br />\nC          Am<br />\nInto His courts<br />\nC          Am        D &#8211; D7<br />\nInto His courts with praise</p>\n<p><strong>Verse 2:</strong><br />\nC            D/C    C &#8211; G/B<br />\nSing to the Lord a new song<br />\n     Am          D          G &#8211; G7<br />\nAnd lift up His name with praise<br />\nC            D/C    C &#8211; G/B<br />\nSing to the Lord a new song<br />\nC               Am<br />\nAnd lift up His name,<br />\nC           Am<br />\nLift up His name<br />\nC             Am        D &#8211; D7<br />\nLift up His name with praise</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G</strong></p>\n<p><strong>Chorus:</strong><br />\nG     C   G    C      G<br />\nShout for joy all the earth<br />\nC            D             G      C &#8211; D<br />\nPraise the Lord all with gladness<br />\nG     C   G    C      G<br />\nShout for joy all the earth<br />\nAm           D         G     C &#8211; D<br />\nPraise the Lord with gladness</p>\n<p><strong>Verse 1:</strong><br />\nC          D/C             C &#8211; G/B<br />\nEnter His gates with thanksgiving<br />\n    Am         D           G &#8211; G7<br />\nAnd into His courts with praise<br />\nC          D/C             C &#8211; G/B<br />\nEnter His gates with thanksgiving<br />\n    C          Am<br />\nAnd into His courts,<br />\nC          Am<br />\nInto His courts<br />\nC          Am        D &#8211; D7<br />\nInto His courts with praise</p>\n<p><strong>Verse 2:</strong><br />\nC            D/C    C &#8211; G/B<br />\nSing to the Lord a new song<br />\n     Am          D          G &#8211; G7<br />\nAnd lift up His name with praise<br />\nC            D/C    C &#8211; G/B<br />\nSing to the Lord a new song<br />\nC               Am<br />\nAnd lift up His name,<br />\nC           Am<br />\nLift up His name<br />\nC             Am        D &#8211; D7<br />\nLift up His name with praise</p>\n",
+    "songNumber": 193
   },
   {
     "title": "Turn Your Eyes Upon Jesus",
     "artist": "Selah",
     "key": "D",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-2784",
     "id": "selah-2784",
@@ -112359,13 +112606,14 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p> D        A/C#      Bm-/A<br />\nTurn your eyes upon Jesus<br />\n      G          D/F#       Em    G/A<br />\nLook full in His wonderful face<br />\n          D        /C<br />\nAnd the things of earth<br />\n           G/B      Gm/Bb<br />\nWill grow strangely dim<br />\n        D/A          G/A       /D    D<br />\nIn the light of His glory and grace</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: D</strong></p>\n<p> D        A/C#      Bm-/A<br />\nTurn your eyes upon Jesus<br />\n      G          D/F#       Em    G/A<br />\nLook full in His wonderful face<br />\n          D        /C<br />\nAnd the things of earth<br />\n           G/B      Gm/Bb<br />\nWill grow strangely dim<br />\n        D/A          G/A       /D    D<br />\nIn the light of His glory and grace</p>\n",
+    "songNumber": 222
   },
   {
     "title": "Our God",
     "artist": "Selah",
     "key": "G",
-    "category": "Selah",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-2763",
     "id": "selah-2763",
@@ -113058,6 +113306,7 @@ export const songs = [
     ],
     "contentVersion": 2,
     "sourceMigratedFromHtml": true,
-    "sourceHtmlPreserved": "<p><strong>Key: G </strong></p>\n<p><strong>Intro:</strong><br />\nEm7  C  /  G  Bm7<br />\nEm7  C  /  G  Bm7  </p>\n<p><strong>Verse 1:</strong><br />\nEm          C          G<br />\nWater You turned into wine<br />\nEm          C            G<br />\nOpened the eyes of the blind<br />\n               Am7<br />\nThere&#8217;s no one like You<br />\n          Dsus  D<br />\nNone like You</p>\n<p><strong>Verse 2:</strong><br />\nEm         C            G<br />\nInto the darkness You shine<br />\nEm          C        G<br />\nOut of the ashes we rise<br />\n                Am7<br />\nThere&#8217;s no one like You<br />\n          Dsus  D<br />\nNone like You</p>\n<p><strong>Chorus:</strong><br />\nEm                  C<br />\nOur God is greater, our God is stronger<br />\nG                       D/F#<br />\nGod You are higher than any other<br />\nEm                 C<br />\nOur God is healer, awesome in power<br />\n    G        Dsus<br />\nOur God, our God</p>\n<p><strong>Bridge:</strong><br />\nEm  C  /  G   D/F#<br />\nEm  C  /  G   Dsus<br />\nEm                        C<br />\nAnd if our God is for us, then who could ever stop us<br />\nG                          D/F#<br />\nAnd if our God is with us, then what could stand against<br />\nEm                        C<br />\nAnd if our God is for us, then who could ever stop us<br />\nG                          Dsus<br />\nAnd if our God is with us, then what could stand against<br />\nEm7 (break)  C2   (break)<br />\nG/B (break)  Dsus (break)<br />\n             Then what could stand against<br />\nEm7 (break)  C2   (break)<br />\nG/B (break)  Dsus (break)</p>\n<p><strong>Ending:</strong><br />\nC2</p>\n"
+    "sourceHtmlPreserved": "<p><strong>Key: G </strong></p>\n<p><strong>Intro:</strong><br />\nEm7  C  /  G  Bm7<br />\nEm7  C  /  G  Bm7  </p>\n<p><strong>Verse 1:</strong><br />\nEm          C          G<br />\nWater You turned into wine<br />\nEm          C            G<br />\nOpened the eyes of the blind<br />\n               Am7<br />\nThere&#8217;s no one like You<br />\n          Dsus  D<br />\nNone like You</p>\n<p><strong>Verse 2:</strong><br />\nEm         C            G<br />\nInto the darkness You shine<br />\nEm          C        G<br />\nOut of the ashes we rise<br />\n                Am7<br />\nThere&#8217;s no one like You<br />\n          Dsus  D<br />\nNone like You</p>\n<p><strong>Chorus:</strong><br />\nEm                  C<br />\nOur God is greater, our God is stronger<br />\nG                       D/F#<br />\nGod You are higher than any other<br />\nEm                 C<br />\nOur God is healer, awesome in power<br />\n    G        Dsus<br />\nOur God, our God</p>\n<p><strong>Bridge:</strong><br />\nEm  C  /  G   D/F#<br />\nEm  C  /  G   Dsus<br />\nEm                        C<br />\nAnd if our God is for us, then who could ever stop us<br />\nG                          D/F#<br />\nAnd if our God is with us, then what could stand against<br />\nEm                        C<br />\nAnd if our God is for us, then who could ever stop us<br />\nG                          Dsus<br />\nAnd if our God is with us, then what could stand against<br />\nEm7 (break)  C2   (break)<br />\nG/B (break)  Dsus (break)<br />\n             Then what could stand against<br />\nEm7 (break)  C2   (break)<br />\nG/B (break)  Dsus (break)</p>\n<p><strong>Ending:</strong><br />\nC2</p>\n",
+    "songNumber": 171
   }
 ];
