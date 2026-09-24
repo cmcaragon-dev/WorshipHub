@@ -58,9 +58,85 @@ function buildSections(html) {
   }
   return sections.filter(s=>s.lines.some(l=>String(l.lyrics||"").trim()||String(l.chordText||"").trim()));
 }
-function parseSelahRecord(record) {
+function normalizeArtistText(value){
+  let v=clean(value);
+  if(!v) return "";
+  v=v.replace(/^(?:by|artist|singer|performed\s+by|written\s+by|song\s+by)\\s*[:\\-]?\\s*/i,"").trim();
+  v=v.replace(/\\s*(?:\\||•|·|—|–)\\s*$/,"").trim();
+  if(!v || v.length>120) return "";
+  if(/^(?:selah|songs?|lyrics?|chords?|key|home|menu|search|share|copyright|admin|login|register)$/i.test(v)) return "";
+  if(/^(?:key|original\\s+key|song\\s+key|tonality)\\s*[:\\-]/i.test(v)) return "";
+  return v;
+}
+function extractDisplayedArtistFromPage(pageHtml,title){
+  if(!pageHtml) return "";
+  const doc=new DOMParser().parseFromString(String(pageHtml),"text/html");
+  const titleClean=clean(title).replace(/\\s+/g," ").toLowerCase();
+  const artistSelectors=[
+    '[class*="song-artist"]','[class*="song_artist"]','[class*="artist-name"]','[class*="artist_name"]',
+    '[class*="artist"]','[id*="song-artist"]','[id*="artist"]',
+    '[data-artist]','[itemprop="byArtist"]','[itemprop="artist"]'
+  ];
+  for(const selector of artistSelectors){
+    for(const el of [...doc.querySelectorAll(selector)]){
+      const value=normalizeArtistText(el.getAttribute("data-artist")||el.textContent||"");
+      if(value && value.toLowerCase()!==titleClean) return value;
+    }
+  }
+
+  // Selah's visible song header is the source of truth. Look around the H1/title
+  // instead of using WordPress's `author` field, which is the post/account owner.
+  const headings=[...doc.querySelectorAll("h1,h2,h3")];
+  const heading=headings.find(el=>clean(el.textContent).replace(/\\s+/g," ").toLowerCase()===titleClean)
+    || headings.find(el=>clean(el.textContent).replace(/\\s+/g," ").toLowerCase().includes(titleClean));
+  if(heading){
+    const candidates=[];
+    let node=heading;
+    for(let depth=0;depth<3 && node;depth++,node=node.parentElement){
+      for(const el of [...node.children, ...node.querySelectorAll(":scope > p,:scope > div,:scope > span")]){
+        const value=normalizeArtistText(el.textContent||"");
+        if(value && value.toLowerCase()!==titleClean) candidates.push({value,el});
+      }
+    }
+    for(const c of candidates){
+      const txt=c.value;
+      if(!/^(?:key|verse|chorus|bridge|intro|outro|lyrics|chords)\\b/i.test(txt) && !/[{}<>]/.test(txt)) return txt;
+    }
+  }
+
+  // Last visible-header fallback: find the title text and inspect the next short
+  // visible element. Do not inspect meta[name=author] or record.author.
+  const all=[...doc.querySelectorAll("body *")];
+  const titleEl=all.find(el=>el.children.length===0 && clean(el.textContent).replace(/\\s+/g," ").toLowerCase()===titleClean);
+  if(titleEl){
+    let next=titleEl.nextElementSibling;
+    for(let i=0;i<5 && next;i++,next=next.nextElementSibling){
+      const value=normalizeArtistText(next.textContent||"");
+      if(value && value.toLowerCase()!==titleClean && !/^(?:key|lyrics|chords)\\b/i.test(value)) return value;
+    }
+  }
+  return "";
+}
+async function fetchSelahSongPage(record){
+  const url=String(record?.link||"").trim();
+  if(!url) return "";
+  const targets=[url,`https://r.jina.ai/${url}`];
+  for(const target of targets){
+    try{
+      const response=await fetch(target,{mode:"cors",credentials:"omit",cache:"no-store"});
+      if(response.ok){
+        const text=await response.text();
+        if(text && text.length>200) return text;
+      }
+    }catch(error){
+      console.warn("Unable to read Selah song page:",url,error);
+    }
+  }
+  return "";
+}
+function parseSelahRecord(record,artist="") {
   const id=Number(record?.id),title=clean(record?.title?.rendered||record?.title||"Untitled Song"),html=String(record?.content?.rendered||""),key=guessKey(html),songId=`selah-${id}`;
-  return {id:songId,title,artist:"Selah",category:"Selah",language:"",key,originalKey:key,serviceKey:key||"C",youtube:"",source:"Selah",sourceId:id,sourceUrl:String(record?.link||""),file:`custom-song.html?id=${encodeURIComponent(songId)}`,customSong:true,structuredVersion:2,contentVersion:2,sourceMigratedFromHtml:true,sourceHtmlPreserved:html,selahModified:String(record?.modified||""),selahSlug:String(record?.slug||""),selahStatus:String(record?.status||"publish"),selahAuthorId:record?.author??null,sections:buildSections(html),updatedAt:new Date().toISOString(),createdAt:String(record?.date||new Date().toISOString())};
+  return {id:songId,title,artist:clean(artist)||"",category:"Selah",language:"",key,originalKey:key,serviceKey:key||"C",youtube:"",source:"Selah",sourceId:id,sourceUrl:String(record?.link||""),file:`custom-song.html?id=${encodeURIComponent(songId)}`,customSong:true,structuredVersion:2,contentVersion:2,sourceMigratedFromHtml:true,sourceHtmlPreserved:html,selahModified:String(record?.modified||""),selahSlug:String(record?.slug||""),selahStatus:String(record?.status||"publish"),selahAuthorId:record?.author??null,sections:buildSections(html),updatedAt:new Date().toISOString(),createdAt:String(record?.date||new Date().toISOString())};
 }
 async function fetchPage(page,useProxy=false) {
   const url=`${SELAH_API}?per_page=${PAGE_SIZE}&page=${page}&_envelope=1`,target=useProxy?`https://r.jina.ai/${url}`:url;
@@ -100,10 +176,37 @@ async function runImport(){
     renderStatus("Connecting to Selah…",2);let first;try{first=await fetchPage(1,false);}catch(error){console.warn("Direct Selah API access failed; trying public proxy:",error);first=await fetchPage(1,true);}
     const total=first.total||first.records.length,totalPages=first.totalPages||Math.max(1,Math.ceil(total/PAGE_SIZE));document.getElementById("selahImportPages").textContent=`1 / ${totalPages}`;const all=[...first.records];document.getElementById("selahImportCount").textContent=String(all.length);renderStatus(`Page 1 of ${totalPages} loaded — ${all.length} songs found.`,Math.min(100,1/totalPages*100));
     for(let page=2;page<=totalPages;page++){let result;try{result=await fetchPage(page,false);}catch(error){result=await fetchPage(page,true);}all.push(...result.records);document.getElementById("selahImportPages").textContent=`${page} / ${totalPages}`;document.getElementById("selahImportCount").textContent=String(all.length);renderStatus(`Downloading Selah page ${page} of ${totalPages}…`,page/totalPages*100);await new Promise(resolve=>setTimeout(resolve,25));}
-    const unique=new Map();all.forEach(record=>{if(record?.id!=null)unique.set(Number(record.id),record);});const imported=[...unique.values()].map(parseSelahRecord).filter(song=>song.sourceId&&song.title);
+    const unique=new Map();all.forEach(record=>{if(record?.id!=null)unique.set(Number(record.id),record);});
+    const records=[...unique.values()];
+    const imported=[];
+    const artistCache=new Map();
+    const DETAIL_CONCURRENCY=6;
+    for(let start=0;start<records.length;start+=DETAIL_CONCURRENCY){
+      const chunk=records.slice(start,start+DETAIL_CONCURRENCY);
+      const results=await Promise.all(chunk.map(async record=>{
+        const id=Number(record?.id);
+        let artist="",pageRead=false;
+        try{
+          const pageHtml=await fetchSelahSongPage(record);
+          pageRead=!!pageHtml;
+          artist=extractDisplayedArtistFromPage(pageHtml,clean(record?.title?.rendered||record?.title||""));
+        }catch(error){console.warn("Selah artist extraction failed for",record?.link,error);}
+        return {record,artist:clean(artist),id,pageRead};
+      }));
+      results.forEach(({record,artist,id,pageRead})=>{
+        artistCache.set(id,artist);
+        const song=parseSelahRecord(record,artist);
+        song._selahArtistPageRead=pageRead;
+        imported.push(song);
+      });
+      const processed=Math.min(start+chunk.length,records.length);
+      renderStatus(`Reading Selah song details… ${processed} of ${records.length}`,35+processed/records.length*35);
+      await new Promise(resolve=>setTimeout(resolve,10));
+    }
+    const validImported=imported.filter(song=>song.sourceId&&song.title);
     let added=0,updated=0,unchanged=0;
-    for(const incoming of imported){const existing=findSelahSong(incoming.sourceId);if(existing){const same=String(existing.selahModified||"")===String(incoming.selahModified||"")&&String(existing.sourceUrl||"")===String(incoming.sourceUrl||"");if(same){unchanged++;continue;}incoming.createdAt=existing.createdAt||incoming.createdAt;incoming.serviceKey=existing.serviceKey||incoming.serviceKey;incoming.transpose=existing.transpose??0;const idx=songs.indexOf(existing);if(idx>=0)songs[idx]={...existing,...incoming};updated++;}else{songs.push(incoming);added++;}}
-    saveLocal();const firebaseResult=await saveFirebaseBulk(imported);window.dispatchEvent(new CustomEvent("worshiphub:songs-updated",{detail:{selahImport:true,imported:imported.length,added,updated,unchanged}}));document.getElementById("selahImportAdded").textContent=String(added+updated);renderStatus(`Import complete — ${imported.length} Selah songs processed. ${added} new, ${updated} updated, ${unchanged} unchanged.${firebaseResult.failed?" Local library was updated, but Firebase sync needs to be retried.":" Firebase sync completed."}`,100,firebaseResult.failed?"warning":"success");if(start){start.disabled=false;start.innerHTML='<i class="fa-solid fa-rotate"></i> Run Again';}if(close)close.textContent="Close";alert(`Selah import complete.\n\n${imported.length} songs processed\n${added} new\n${updated} updated\n${unchanged} unchanged${firebaseResult.failed?"\n\nFirebase sync could not be completed.":""}`);
+    for(const incoming of validImported){const existing=findSelahSong(incoming.sourceId);if(existing){if(!incoming._selahArtistPageRead)incoming.artist=clean(existing.artist||"");delete incoming._selahArtistPageRead;const same=String(existing.selahModified||"")===String(incoming.selahModified||"")&&String(existing.sourceUrl||"")===String(incoming.sourceUrl||"")&&String(existing.artist||"")===String(incoming.artist||"");if(same){unchanged++;continue;}incoming.createdAt=existing.createdAt||incoming.createdAt;incoming.serviceKey=existing.serviceKey||incoming.serviceKey;incoming.transpose=existing.transpose??0;const idx=songs.indexOf(existing);if(idx>=0)songs[idx]={...existing,...incoming};updated++;}else{delete incoming._selahArtistPageRead;songs.push(incoming);added++;}}
+    saveLocal();const firebaseResult=await saveFirebaseBulk(validImported);window.dispatchEvent(new CustomEvent("worshiphub:songs-updated",{detail:{selahImport:true,imported:validImported.length,added,updated,unchanged}}));document.getElementById("selahImportAdded").textContent=String(added+updated);renderStatus(`Import complete — ${validImported.length} Selah songs processed. ${added} new, ${updated} updated, ${unchanged} unchanged.${firebaseResult.failed?" Local library was updated, but Firebase sync needs to be retried.":" Firebase sync completed."}`,100,firebaseResult.failed?"warning":"success");if(start){start.disabled=false;start.innerHTML='<i class="fa-solid fa-rotate"></i> Run Again';}if(close)close.textContent="Close";alert(`Selah import complete.\n\n${validImported.length} songs processed\n${added} new\n${updated} updated\n${unchanged} unchanged${firebaseResult.failed?"\n\nFirebase sync could not be completed.":""}`);
   }catch(error){console.error("CHORDIO Selah bulk import failed:",error);renderStatus(`Import stopped: ${error.message||error}`,null,"error");if(start){start.disabled=false;start.innerHTML='<i class="fa-solid fa-rotate"></i> Try Again';}if(close)close.textContent="Close";alert(`Selah import could not be completed.\n\n${error.message||error}`);}
   finally{window.__selahImportRunning=false;setButtonBusy(false);}
 }
