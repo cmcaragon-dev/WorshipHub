@@ -1015,6 +1015,60 @@ body.chordio-direct-printing #worshipHubPrintRoot .print-song-key{color:#c00000!
 body.chordio-direct-printing #worshipHubPrintRoot .print-song-passing .print-passing-value{color:#c00000!important;font-weight:900!important;}
 body.chordio-direct-printing #worshipHubPrintRoot .print-song-content-title{display:none!important;}
 </style>
+
+<style id="chordio-song-page-responsive-sept24">
+/* Song Page: artist italic; passing-chord values red while labels remain black. */
+#songArtist, .song-page-artist { font-style:italic !important; }
+.song-passing-chords .custom-presentation-passing-label { color:#111 !important; }
+.song-passing-chords .custom-presentation-passing-value { color:#c00000 !important; font-weight:900 !important; }
+.song-passing-chords .custom-presentation-passing-separator { color:#777 !important; }
+
+/* Responsive song page. The lyrics/stage gets its own horizontal scroll area on narrow devices. */
+html, body { max-width:100%; }
+.song-paper { width:min(920px, calc(100vw - 24px)) !important; max-width:100%; overflow:visible !important; }
+#stage { max-width:100%; min-width:0; overflow-x:auto !important; overflow-y:visible !important; -webkit-overflow-scrolling:touch; scrollbar-width:thin; padding-bottom:8px !important; }
+#stage .section { min-width:max-content; max-width:none; }
+#stage .line.song-line { min-width:max-content; width:max-content; overflow:visible !important; }
+#stage .line.song-line > .chord, #stage .line.song-line > .lyrics { white-space:pre !important; }
+
+@media (max-width: 700px) {
+  .song-paper { width:calc(100vw - 12px) !important; margin:6px auto 18px !important; padding:18px 12px 36px !important; }
+  .song-paper-topbar { align-items:flex-start !important; }
+  .song-paper-heading { min-width:0 !important; width:100% !important; }
+  .song-paper-heading h1, #songTitle { font-size:clamp(22px,7vw,32px) !important; overflow-wrap:anywhere; }
+  .song-page-artist { font-size:13px !important; }
+  .song-page-key-label { font-size:11px !important; }
+  .song-page-key, #songKey { font-size:15px !important; }
+  .song-passing-chords { max-width:100%; gap:6px 10px !important; }
+  .song-actions-menu { max-width:calc(100vw - 24px) !important; }
+  #stage { width:100% !important; max-width:100% !important; overflow-x:auto !important; }
+  #stage .section { margin-bottom:20px !important; }
+  #stage .line.song-line { margin-bottom:7px !important; }
+}
+
+@media print {
+  /* Print header: labels/metadata black; actual key and passing chord values red. */
+  #songArtist, .song-page-artist { font-style:italic !important; color:#111 !important; }
+  #songKey { color:#c00000 !important; }
+  .song-passing-chords .custom-presentation-passing-label { color:#111 !important; }
+  .song-passing-chords .custom-presentation-passing-value { color:#c00000 !important; }
+}
+</style>
+
+<style id="chordio-direct-print-color-final">
+#worshipHubPrintRoot .print-song-artist { font-style:italic !important; color:#111 !important; }
+#worshipHubPrintRoot .print-song-key { color:#111 !important; font-weight:800 !important; }
+#worshipHubPrintRoot .print-song-key .print-song-key-value { color:#c00000 !important; font-weight:900 !important; }
+#worshipHubPrintRoot .print-song-passing { color:#111 !important; }
+#worshipHubPrintRoot .print-song-passing .print-passing-value { color:#c00000 !important; font-weight:900 !important; }
+@media print {
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-artist { font-style:italic !important; color:#111 !important; }
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-key { color:#111 !important; }
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-key .print-song-key-value { color:#c00000 !important; }
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-passing { color:#111 !important; }
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-passing .print-passing-value { color:#c00000 !important; }
+}
+</style>
 </head>
 <body>
 <main class="song-paper" id="songPaper">

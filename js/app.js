@@ -1161,8 +1161,6 @@ function renderSongs(songList) {
         <div class="song-card" data-song-id="${escapeHtml(song.id)}">
             <h3>${escapeHtml(song.title || "Untitled Song")}</h3>
             <p><strong>Artist:</strong> ${escapeHtml(song.artist || "—")}</p>
-            <p><strong>ID:</strong> ${escapeHtml(song.songNumber ?? "—")}</p>
-            <p><strong>Key:</strong> ${escapeHtml(song.key || song.originalKey || "—")}</p>
             <p><strong>Category:</strong> ${escapeHtml(song.category || "—")}</p>
             <div class="song-card-actions ${canManageSongs ? "song-card-actions-managed" : "song-card-actions-basic"}">
                 <div class="song-card-action-row song-card-action-row-primary">
@@ -2135,8 +2133,8 @@ async function printServiceSongs(serviceId) {
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{display:flex!important;flex-direction:column!important;position:relative!important;width:297mm!important;height:210mm!important;min-height:210mm!important;box-sizing:border-box!important;padding:12mm 14mm 10mm!important;margin:0 auto!important;background:#fff!important;color:#111!important;overflow:hidden!important;break-after:page!important;page-break-after:always!important;font-family:Arial,Helvetica,sans-serif!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song:last-child{break-after:auto!important;page-break-after:auto!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song h1{margin:0 0 3px!important;font-size:22pt!important;line-height:1.08!important;color:#111!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-artist{font-size:11pt!important;font-weight:600!important;margin-bottom:4px!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-key{font-size:10pt!important;margin-bottom:5px!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-artist{font-size:11pt!important;font-weight:600!important;margin-bottom:4px!important;} body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-artist{font-style:italic!important;color:#111!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-key{font-size:10pt!important;margin-bottom:5px!important;} body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-key{color:#111!important;} body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-key .service-print-key-value{color:#c00000!important;font-weight:900!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing{font-size:8.5pt!important;line-height:1.3!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing-item{display:inline-block!important;margin-right:5px!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-rule,body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer-rule{height:1px!important;background:#222!important;width:100%!important;margin:6px 0 8px!important;flex:0 0 auto!important;}
@@ -2197,7 +2195,7 @@ async function printServiceSongs(serviceId) {
                 <header class="service-print-song-header">
                     <h1>${escPrint(song.title || "Untitled Song")}</h1>
                     <div class="service-print-artist">${escPrint(song.artist || "")}</div>
-                    <div class="service-print-key"><b>KEY:</b> ${escPrint(normalizePrintKey(song))}</div>
+                    <div class="service-print-key"><b>KEY:</b> <span class="service-print-key-value">${escPrint(normalizePrintKey(song))}</span></div>
                     <div class="service-print-passing" aria-label="Auto-generated passing chords">
                         <b>PASSING CHORDS:</b> ${passing.map(([label, value]) => `<span class="service-print-passing-item"><b>${escPrint(label)}:</b> <span>${escPrint(value)}</span></span>`).join(' <span class="service-print-separator" aria-hidden="true">|</span> ')}
                     </div>

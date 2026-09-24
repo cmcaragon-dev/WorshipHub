@@ -1172,7 +1172,7 @@ function printCustomSong(){
       <div class="print-song-header">
         <div class="print-song-title">${esc(song.title||"Untitled Song")}</div>
         <div class="print-song-artist">${esc(song.artist||"")}</div>
-        <div class="print-song-key">SONG KEY: ${esc(serviceKey||song.originalKey||song.key||"—")}</div>
+        <div class="print-song-key">SONG KEY: <span class="print-song-key-value">${esc(serviceKey||song.originalKey||song.key||"—")}</span></div>
         <div class="print-song-passing"><b>PASSING CHORDS:</b> <span class="print-passing-value">${esc(passingText||"—")}</span></div>
         <div class="print-song-rule"></div>
       </div>
