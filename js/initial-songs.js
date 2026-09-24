@@ -1,5 +1,5 @@
 // CHORDIO structured song library.
-// Existing CHORDIO songs + 200 imported Selah songs.
+// Shared Firebase master library is authoritative after sign-in.
 export const songs = [
   {
     "title": "Ako'y Magtitiwala Sa'Yo",
@@ -372,7 +372,7 @@ export const songs = [
     "title": "Ako'y Nananabik",
     "artist": "Spring Worship",
     "key": "E",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=akoynananabik",
     "id": "akoynananabik",
@@ -1276,7 +1276,7 @@ export const songs = [
     "title": "Always",
     "artist": "Marty Nystrom",
     "key": "D",
-    "category": "Praise",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=always",
     "id": "always",
@@ -1722,7 +1722,7 @@ export const songs = [
     "title": "Amazing Grace",
     "artist": "John Newton",
     "key": "G",
-    "category": "Hymn",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=amazing-grace",
     "id": "amazing-grace",
@@ -2007,7 +2007,7 @@ export const songs = [
     "title": "Awit ng Pasasalamat",
     "artist": "Shekinah Glory",
     "key": "B",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=awitngpasasalamat",
     "id": "awitngpasasalamat",
@@ -2512,7 +2512,7 @@ export const songs = [
     "title": "Awiting May Galak",
     "artist": "Faith Music Manila",
     "key": "E",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=awitingmaygalak",
     "id": "awitingmaygalak",
@@ -3018,7 +3018,7 @@ export const songs = [
     "title": "Beautiful Saviour",
     "artist": "Planet Shaker",
     "key": "A",
-    "category": "Hymn",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=beautifulsaviour",
     "id": "beautifulsaviour",
@@ -5760,7 +5760,7 @@ export const songs = [
     "title": "Freely Forgiven",
     "artist": "New Creation Church",
     "key": "G",
-    "category": "Praise",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=freelyforgiven",
     "id": "freelyforgiven",
@@ -6600,7 +6600,7 @@ export const songs = [
     "title": "Happy Day",
     "artist": "Tim Hughes",
     "key": "C",
-    "category": "Praise",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=happyday",
     "id": "happyday",
@@ -7749,7 +7749,7 @@ export const songs = [
     "title": "Holy, Holy, Holy",
     "artist": "Reginald Heber",
     "key": "G",
-    "category": "Hymn",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=holy-holy-holy",
     "id": "holy-holy-holy",
@@ -8029,7 +8029,7 @@ export const songs = [
     "title": "How Good It Is",
     "artist": "EDGAR GUNGOR- DANNY CHAMBERS",
     "key": "G",
-    "category": "Praise",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=howgooditis",
     "id": "howgooditis",
@@ -8540,7 +8540,7 @@ export const songs = [
     "title": "How Great is our God",
     "artist": "Chris Tomlin",
     "key": "G",
-    "category": "Worship",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=howgreatisourgod",
     "id": "howgreatisourgod",
@@ -9095,7 +9095,7 @@ export const songs = [
     "title": "I Love This Family",
     "artist": "JFCM",
     "key": "D",
-    "category": "Praise",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=ilovethisfamily",
     "id": "ilovethisfamily",
@@ -10465,7 +10465,7 @@ export const songs = [
     "title": "Kahanga Hanga",
     "artist": "Faith Music Manila",
     "key": "A",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=kahangahanga",
     "id": "kahangahanga",
@@ -10948,7 +10948,7 @@ export const songs = [
     "title": "Kamusta Ka Na",
     "artist": "Misc Praise Songs",
     "key": "D",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=kamustakana",
     "id": "kamustakana",
@@ -11310,7 +11310,7 @@ export const songs = [
     "title": "Magpakailanman",
     "artist": "Passion Generation Worship Band",
     "key": "D",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=magpakailanman",
     "id": "magpakailanman",
@@ -11674,7 +11674,7 @@ export const songs = [
     "artist": "Rommel Guevara",
     "key": "G",
     "category": "Worship",
-    "language": "Praise",
+    "language": "Tagalog",
     "file": "custom-song.html?id=mahalnamahalkita",
     "id": "mahalnamahalkita",
     "customSong": true,
@@ -12349,7 +12349,7 @@ export const songs = [
     "title": "My Life is in you Lord",
     "artist": "Joseph Garlington",
     "key": "G",
-    "category": "Praise",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=mylifeisinyoulord",
     "id": "mylifeisinyoulord",
@@ -13148,7 +13148,7 @@ export const songs = [
     "title": "O Kay Saya at Kay Ganda",
     "artist": "Misc Music Songs",
     "key": "A",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=okaysayaatkayganda",
     "id": "okaysayaatkayganda",
@@ -13560,7 +13560,7 @@ export const songs = [
     "title": "Papuri Kay Yahweh",
     "artist": "Hope Filipino Worship",
     "key": "E",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=papurikayyahweh",
     "id": "papurikayyahweh",
@@ -14071,7 +14071,7 @@ export const songs = [
     "title": "Sa Biyaya",
     "artist": "Spring Worship",
     "key": "C",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=sabiyaya",
     "id": "sabiyaya",
@@ -14751,7 +14751,7 @@ export const songs = [
     "title": "Sabik Sa Presensya",
     "artist": "Faith Music Manila",
     "key": "A",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=sabiksapresensya",
     "id": "sabiksapresensya",
@@ -15053,7 +15053,7 @@ export const songs = [
     "title": "Sama Samang Nagpupuri",
     "artist": "Musikatha",
     "key": "A",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=samasamangnagpupuri",
     "id": "samasamangnagpupuri",
@@ -15935,7 +15935,7 @@ export const songs = [
     "title": "Sumigaw sa Galak",
     "artist": "Musikatha",
     "key": "E",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=sumigawsagalak",
     "id": "sumigawsagalak",
@@ -16123,7 +16123,7 @@ export const songs = [
     "title": "Tayo Na Sama Sama",
     "artist": "Mega Harvest",
     "key": "C",
-    "category": "Praise",
+    "category": "Worship",
     "language": "Tagalog",
     "file": "custom-song.html?id=tayonasamasama",
     "id": "tayonasamasama",
@@ -18126,7 +18126,7 @@ export const songs = [
     "title": "You Are God Alone",
     "artist": "BILLY & CINDY FOOTE",
     "key": "G",
-    "category": "Worship",
+    "category": "Praise",
     "language": "English",
     "file": "custom-song.html?id=youaregodalone",
     "id": "youaregodalone",
@@ -19065,7 +19065,7 @@ export const songs = [
     "title": "Your Grace Is Enough",
     "artist": "Chris Tomlin",
     "key": "G",
-    "category": "Praise",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=yourgraceisenough",
     "id": "yourgraceisenough",
@@ -19988,7 +19988,7 @@ export const songs = [
     "title": "No More Night",
     "artist": "Selah",
     "key": "",
-    "category": "Praise",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-13317",
     "id": "selah-13317",
@@ -21093,23 +21093,13 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "G               D/F#        Em7                 C",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Every blessing You pour out, I’ll turn back to praise",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "G                      D/F#           Em7           C",
-            "chordText": "",
+            "chordText": "G               D/F#        Em7                 C",
             "chords": []
           },
           {
             "lyrics": "And when the darkness closes in, Lord, still I will say",
-            "chordText": "",
+            "chordText": "G                      D/F#           Em7           C",
             "chords": []
           }
         ]
@@ -21279,33 +21269,18 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "G               D/F#    Em7             C",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "You give and take away, You give and take away",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "G                    D/F#      Em7              C",
-            "chordText": "",
+            "chordText": "G               D/F#    Em7             C",
             "chords": []
           },
           {
             "lyrics": "My heart will choose to say, Lord, blessed be Your Name",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "G               D/F#    Em7             C",
-            "chordText": "",
+            "chordText": "G                    D/F#      Em7              C",
             "chords": []
           },
           {
             "lyrics": "You give and take away, You give and take away",
-            "chordText": "",
+            "chordText": "G               D/F#    Em7             C",
             "chords": []
           },
           {
@@ -21376,13 +21351,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "E                               A2/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Over the mountains and the sea, Your river runs with love for me",
-            "chordText": "",
+            "chordText": "E                               A2/F#",
             "chords": []
           },
           {
@@ -21404,13 +21374,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E                             A2/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I’m happy to be in the truth, and I will daily lift my hands",
-            "chordText": "",
+            "chordText": "E                             A2/F#",
             "chords": []
           },
           {
@@ -21438,13 +21403,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "E                     A2/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I could sing of Your love forever",
-            "chordText": "",
+            "chordText": "E                     A2/F#",
             "chords": []
           },
           {
@@ -21466,13 +21426,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E                     A2/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I could sing of Your love forever",
-            "chordText": "",
+            "chordText": "E                     A2/F#",
             "chords": []
           },
           {
@@ -21656,13 +21611,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "F#m7            E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Oh, I feel like dancing",
-            "chordText": "",
+            "chordText": "F#m7            E/G#",
             "chords": []
           },
           {
@@ -21684,13 +21634,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "F#m7                   E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "But when the world has seen the light",
-            "chordText": "",
+            "chordText": "F#m7                   E/G#",
             "chords": []
           },
           {
@@ -21730,13 +21675,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A2/C#                      B/D#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "They will dance with joy like we’re dancing now",
-            "chordText": "",
+            "chordText": "A2/C#                      B/D#",
             "chords": []
           }
         ]
@@ -22380,13 +22320,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D     A/C#         Am7     D7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Ngunit salamat      ako’y natagpuan",
-            "chordText": "",
+            "chordText": "D     A/C#         Am7     D7",
             "chords": []
           },
           {
@@ -22668,13 +22603,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D     A/C#         Am7      D7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Hinding-hindi na       ako mangangamba",
-            "chordText": "",
+            "chordText": "D     A/C#         Am7      D7",
             "chords": []
           },
           {
@@ -22888,13 +22818,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "D                D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Ika’y sadyang kahanga-hanga",
-            "chordText": "",
+            "chordText": "D                D/F#",
             "chords": []
           },
           {
@@ -22916,13 +22841,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D                D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Mahirap man isalarawan ang damdamin",
-            "chordText": "",
+            "chordText": "D                D/F#",
             "chords": []
           },
           {
@@ -22941,13 +22861,8 @@ export const songs = [
             "chords": []
           },
           {
-            "lyrics": "Bm          F#m7/A      G    D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Kung ang laman ng puso ko’y naawit na",
-            "chordText": "",
+            "chordText": "Bm          F#m7/A      G    D/F#",
             "chords": []
           },
           {
@@ -23017,13 +22932,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Em7             D/F#    GM7        A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Ang aking katugunan sa ‘Yong kadakilaan ay",
-            "chordText": "",
+            "chordText": "Em7             D/F#    GM7        A",
             "chords": []
           },
           {
@@ -23057,13 +22967,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Em7                D/F# G             A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Ang tanging kadahilanan ng buhay ko’t kalakasan",
-            "chordText": "",
+            "chordText": "Em7                D/F# G             A",
             "chords": []
           },
           {
@@ -23133,13 +23038,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "G/B          A/C#            D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Wo-oh, pagsambang walang hangganan",
-            "chordText": "",
+            "chordText": "G/B          A/C#            D/F#",
             "chords": []
           },
           {
@@ -24192,13 +24092,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Luwalhatiin Ka",
-            "chordText": "",
+            "chordText": "E/G#",
             "chords": []
           },
           {
@@ -24250,13 +24145,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Luwalhatiin Ka",
-            "chordText": "",
+            "chordText": "E/G#",
             "chords": []
           },
           {
@@ -24458,23 +24348,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F#          Dm/F",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Could not express my gratitude",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "C/E    Am7          A/C# – Dm7 – G",
-            "chordText": "",
+            "chordText": "D/F#          Dm/F",
             "chords": []
           },
           {
             "lyrics": "All that I am and ever hope to be",
-            "chordText": "",
+            "chordText": "C/E    Am7          A/C# – Dm7 – G",
             "chords": []
           },
           {
@@ -24642,13 +24522,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Am        Am7/G#   Am6/G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Let it be pleasing, Lord, to Thee",
-            "chordText": "",
+            "chordText": "Am        Am7/G#   Am6/G",
             "chords": []
           },
           {
@@ -24670,13 +24545,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F# – G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Let it go to calva..ry",
-            "chordText": "",
+            "chordText": "D/F# – G",
             "chords": []
           }
         ]
@@ -24766,7 +24636,7 @@ export const songs = [
     "artist": "Selah",
     "key": "G",
     "category": "Praise",
-    "language": "English",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-11328",
     "id": "selah-11328",
     "customSong": true,
@@ -25001,13 +24871,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Em          D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "O my soul, bless His Name",
-            "chordText": "",
+            "chordText": "Em          D/F#",
             "chords": []
           },
           {
@@ -25169,43 +25034,23 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "G            D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "All to Jesus I surrender",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Em9    CM7   D/F#   G",
-            "chordText": "",
+            "chordText": "G            D/F#",
             "chords": []
           },
           {
             "lyrics": "All to Him I freely give",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "G           D/F#",
-            "chordText": "",
+            "chordText": "Em9    CM7   D/F#   G",
             "chords": []
           },
           {
             "lyrics": "I will ever love and trust Him",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Em9    CM7      D/F#  G",
-            "chordText": "",
+            "chordText": "G           D/F#",
             "chords": []
           },
           {
             "lyrics": "In His presence daily live",
-            "chordText": "",
+            "chordText": "Em9    CM7      D/F#  G",
             "chords": []
           }
         ]
@@ -25215,43 +25060,23 @@ export const songs = [
         "number": 2,
         "lines": [
           {
-            "lyrics": "G            D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "All to Jesus I surrender",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Em9    CM7    D/F#  G",
-            "chordText": "",
+            "chordText": "G            D/F#",
             "chords": []
           },
           {
             "lyrics": "Humbly at His feet I bow",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "G                 D/F#",
-            "chordText": "",
+            "chordText": "Em9    CM7    D/F#  G",
             "chords": []
           },
           {
             "lyrics": "Worldly pleasures all forsaken",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Em9     CM7    D/F#    G",
-            "chordText": "",
+            "chordText": "G                 D/F#",
             "chords": []
           },
           {
             "lyrics": "Take me Jesus, take me now",
-            "chordText": "",
+            "chordText": "Em9     CM7    D/F#    G",
             "chords": []
           }
         ]
@@ -25261,43 +25086,23 @@ export const songs = [
         "number": 3,
         "lines": [
           {
-            "lyrics": "G            D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "All to Jesus I surrender",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Em9     CM7     D/F#   G",
-            "chordText": "",
+            "chordText": "G            D/F#",
             "chords": []
           },
           {
             "lyrics": "Make me Savior, wholly Thine",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "G               D/F#",
-            "chordText": "",
+            "chordText": "Em9     CM7     D/F#   G",
             "chords": []
           },
           {
             "lyrics": "Let me feel Thy Holy Spirit",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Em9   CM7       D/F#     G",
-            "chordText": "",
+            "chordText": "G               D/F#",
             "chords": []
           },
           {
             "lyrics": "Truly know that Thou art mine",
-            "chordText": "",
+            "chordText": "Em9   CM7       D/F#     G",
             "chords": []
           }
         ]
@@ -25325,13 +25130,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D    D/F#   G   Gsus",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I surrender all",
-            "chordText": "",
+            "chordText": "D    D/F#   G   Gsus",
             "chords": []
           },
           {
@@ -25539,43 +25339,23 @@ export const songs = [
         "number": 4,
         "lines": [
           {
-            "lyrics": "G            D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "All to Jesus I surrender",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Em9     CM7    D/F#    G",
-            "chordText": "",
+            "chordText": "G            D/F#",
             "chords": []
           },
           {
             "lyrics": "Lord, I give myself to Thee",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "G                D/F#",
-            "chordText": "",
+            "chordText": "Em9     CM7    D/F#    G",
             "chords": []
           },
           {
             "lyrics": "Fill me with Thy love and power",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Em9     CM7      D/F#    G",
-            "chordText": "",
+            "chordText": "G                D/F#",
             "chords": []
           },
           {
             "lyrics": "Let Thy blessing fall on me",
-            "chordText": "",
+            "chordText": "Em9     CM7      D/F#    G",
             "chords": []
           }
         ]
@@ -25603,13 +25383,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D    D/F#   G   Gsus",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I surrender all",
-            "chordText": "",
+            "chordText": "D    D/F#   G   Gsus",
             "chords": []
           },
           {
@@ -25733,13 +25508,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D    D/F#   G   Gsus",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I surrender all",
-            "chordText": "",
+            "chordText": "D    D/F#   G   Gsus",
             "chords": []
           },
           {
@@ -26829,13 +26599,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "G       E/G#     D/F#       B7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Lupa at langit sabay sa pag-awit",
-            "chordText": "",
+            "chordText": "G       E/G#     D/F#       B7",
             "chords": []
           },
           {
@@ -27075,23 +26840,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E/G#      D/F#      B7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Lalo na’t kung tayo ay   magkatipon",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "E/G#  A7  D",
-            "chordText": "",
+            "chordText": "E/G#      D/F#      B7",
             "chords": []
           },
           {
             "lyrics": "Siya’y pu    ri  hin",
-            "chordText": "",
+            "chordText": "E/G#  A7  D",
             "chords": []
           }
         ]
@@ -27325,7 +27080,7 @@ export const songs = [
     "artist": "Selah",
     "key": "D",
     "category": "Worship",
-    "language": "English",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-10502",
     "id": "selah-10502",
     "customSong": true,
@@ -27471,13 +27226,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D                   D/G         D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Lest I forget Thy thorn-crowned brow",
-            "chordText": "",
+            "chordText": "D                   D/G         D/F#",
             "chords": []
           },
           {
@@ -27697,13 +27447,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D                D/G         D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Even Thy cup of grief to share",
-            "chordText": "",
+            "chordText": "D                D/G         D/F#",
             "chords": []
           },
           {
@@ -27892,13 +27637,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E                   E/A         E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Lest I forget Thy thorn-crowned brow",
-            "chordText": "",
+            "chordText": "E                   E/A         E/G#",
             "chords": []
           },
           {
@@ -28118,13 +27858,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E                E/A         E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Even Thy cup of grief to share",
-            "chordText": "",
+            "chordText": "E                E/A         E/G#",
             "chords": []
           },
           {
@@ -29722,7 +29457,7 @@ export const songs = [
     "artist": "Selah",
     "key": "F",
     "category": "Worship",
-    "language": "English",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-10339",
     "id": "selah-10339",
     "customSong": true,
@@ -31801,13 +31536,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "C/D D/F#    G     C             D",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "All  a –   long, You’ve led me through",
-            "chordText": "",
+            "chordText": "C/D D/F#    G     C             D",
             "chords": []
           },
           {
@@ -33621,7 +33351,7 @@ export const songs = [
     "artist": "Selah",
     "key": "Bb",
     "category": "Worship",
-    "language": "Tagalog",
+    "language": "English",
     "file": "custom-song.html?id=selah-10005",
     "id": "selah-10005",
     "customSong": true,
@@ -34496,7 +34226,7 @@ export const songs = [
     "artist": "Selah",
     "key": "Bb",
     "category": "Worship",
-    "language": "Tagalog",
+    "language": "English",
     "file": "custom-song.html?id=selah-9699",
     "id": "selah-9699",
     "customSong": true,
@@ -35955,7 +35685,7 @@ export const songs = [
     "artist": "Selah",
     "key": "C",
     "category": "Worship",
-    "language": "English",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-9547",
     "id": "selah-9547",
     "customSong": true,
@@ -38429,13 +38159,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "G     D/F#   Em",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I can tell you where  I’d    be",
-            "chordText": "",
+            "chordText": "G     D/F#   Em",
             "chords": []
           },
           {
@@ -38449,13 +38174,8 @@ export const songs = [
             "chords": []
           },
           {
-            "lyrics": "G         D/F#     Em7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "With my salvation up       to me",
-            "chordText": "",
+            "chordText": "G         D/F#     Em7",
             "chords": []
           },
           {
@@ -38483,13 +38203,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Ddim – Esus – E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "The battles I would face",
-            "chordText": "",
+            "chordText": "Ddim – Esus – E/G#",
             "chords": []
           },
           {
@@ -38671,13 +38386,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "G     D/F#     Em",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I can tell you where       I’d be",
-            "chordText": "",
+            "chordText": "G     D/F#     Em",
             "chords": []
           },
           {
@@ -38691,13 +38401,8 @@ export const songs = [
             "chords": []
           },
           {
-            "lyrics": "G      D/F#     Em7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "With my salvation  up   to me",
-            "chordText": "",
+            "chordText": "G      D/F#     Em7",
             "chords": []
           },
           {
@@ -38725,13 +38430,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Ddim – Esus – E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "The battles I would face (ooohhh)",
-            "chordText": "",
+            "chordText": "Ddim – Esus – E/G#",
             "chords": []
           },
           {
@@ -39070,13 +38770,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "A/F#               B         B/A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "That I might know You",
-            "chordText": "",
+            "chordText": "A/F#               B         B/A",
             "chords": []
           },
           {
@@ -39128,13 +38823,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A/C#            Am/C",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "To see the Morning Star",
-            "chordText": "",
+            "chordText": "A/C#            Am/C",
             "chords": []
           },
           {
@@ -39330,13 +39020,8 @@ export const songs = [
         "number": 2,
         "lines": [
           {
-            "lyrics": "A/F#               B        B/A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "That I might know You",
-            "chordText": "",
+            "chordText": "A/F#               B        B/A",
             "chords": []
           },
           {
@@ -39388,13 +39073,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A/C#            Am/C",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "To see the Morning Star",
-            "chordText": "",
+            "chordText": "A/C#            Am/C",
             "chords": []
           },
           {
@@ -39446,13 +39126,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A/C#            Am/C",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "… To see the morning star",
-            "chordText": "",
+            "chordText": "A/C#            Am/C",
             "chords": []
           },
           {
@@ -39686,13 +39361,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "G   D/F# Em D   C  D    G G7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Itataas Kita, itataas Kita",
-            "chordText": "",
+            "chordText": "G   D/F# Em D   C  D    G G7",
             "chords": []
           },
           {
@@ -39742,13 +39412,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "G              D/F#              Em   D",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Habang may hininga, Sa’yo ako ay sasamba",
-            "chordText": "",
+            "chordText": "G              D/F#              Em   D",
             "chords": []
           },
           {
@@ -40108,13 +39773,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "C/E         D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "That they drop powerless behind you",
-            "chordText": "",
+            "chordText": "C/E         D/F#",
             "chords": []
           },
           {
@@ -40350,13 +40010,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "C/E         D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "That they drop powerless behind you",
-            "chordText": "",
+            "chordText": "C/E         D/F#",
             "chords": []
           },
           {
@@ -40501,13 +40156,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "C/E         D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "That they drop powerless behind you",
-            "chordText": "",
+            "chordText": "C/E         D/F#",
             "chords": []
           },
           {
@@ -40565,13 +40215,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "G/D  – A7/C#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "When you praise        Him",
-            "chordText": "",
+            "chordText": "G/D  – A7/C#",
             "chords": []
           },
           {
@@ -40702,13 +40347,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A/C#                D",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Habang buhay magpupuri sa ‘Yo",
-            "chordText": "",
+            "chordText": "A/C#                D",
             "chords": []
           }
         ]
@@ -40718,23 +40358,13 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "D/F# – G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Pupurihin Ka sa awit",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "D/F#",
-            "chordText": "",
+            "chordText": "D/F# – G",
             "chords": []
           },
           {
             "lyrics": "Itataas ang aking tinig",
-            "chordText": "",
+            "chordText": "D/F#",
             "chords": []
           },
           {
@@ -40768,23 +40398,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F# – G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Higit pa sa kalangitan",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "D/F#          Bm",
-            "chordText": "",
+            "chordText": "D/F# – G",
             "chords": []
           },
           {
             "lyrics": "Ang Iyong kaluwalhatian",
-            "chordText": "",
+            "chordText": "D/F#          Bm",
             "chords": []
           },
           {
@@ -40880,13 +40500,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D              Em    D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Hesus sa Iyo ang kapurihan",
-            "chordText": "",
+            "chordText": "D              Em    D/F#",
             "chords": []
           },
           {
@@ -40926,13 +40541,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Bm             A/C#   D",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Hesus sa Iyo ang karangalan",
-            "chordText": "",
+            "chordText": "Bm             A/C#   D",
             "chords": []
           },
           {
@@ -41764,7 +41374,7 @@ export const songs = [
     "artist": "Selah",
     "key": "Eb",
     "category": "Worship",
-    "language": "English",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-9162",
     "id": "selah-9162",
     "customSong": true,
@@ -42148,7 +41758,7 @@ export const songs = [
     "artist": "Selah",
     "key": "F",
     "category": "Worship",
-    "language": "Tagalog",
+    "language": "English",
     "file": "custom-song.html?id=selah-9160",
     "id": "selah-9160",
     "customSong": true,
@@ -43558,13 +43168,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F#            G                C",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Though I could pride myself in battles won",
-            "chordText": "",
+            "chordText": "D/F#            G                C",
             "chords": []
           },
           {
@@ -43580,23 +43185,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F#             G           D",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "And by His strength alone I overcome",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Am7          D/F#            C/G   G",
-            "chordText": "",
+            "chordText": "D/F#             G           D",
             "chords": []
           },
           {
             "lyrics": "Oh, I could stop and count successes",
-            "chordText": "",
+            "chordText": "Am7          D/F#            C/G   G",
             "chords": []
           },
           {
@@ -43690,23 +43285,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Am7         D/F#          C/G   G   G/B",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "And find my glory in the power of the cross",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "C     D              G  D/F#      Em7",
-            "chordText": "",
+            "chordText": "Am7         D/F#          C/G   G   G/B",
             "chords": []
           },
           {
             "lyrics": "In every victory, let it be said       of me",
-            "chordText": "",
+            "chordText": "C     D              G  D/F#      Em7",
             "chords": []
           },
           {
@@ -43800,13 +43385,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F#           G  G/B   C",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "For only by His grace I am redeemed",
-            "chordText": "",
+            "chordText": "D/F#           G  G/B   C",
             "chords": []
           },
           {
@@ -43828,23 +43408,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F#             G             D",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Could reach beyond my weakness to my need",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Am7      D/F#           G     G/B",
-            "chordText": "",
+            "chordText": "D/F#             G             D",
             "chords": []
           },
           {
             "lyrics": "And now I seek no greater honor",
-            "chordText": "",
+            "chordText": "Am7      D/F#           G     G/B",
             "chords": []
           },
           {
@@ -43938,23 +43508,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Am7         D/F#         C/G   G   G/B",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "And find my glory in the power of the cross",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "C      D             G  D/F#    Em7",
-            "chordText": "",
+            "chordText": "Am7         D/F#         C/G   G   G/B",
             "chords": []
           },
           {
             "lyrics": "In every victory, let it be said      of me",
-            "chordText": "",
+            "chordText": "C      D             G  D/F#    Em7",
             "chords": []
           },
           {
@@ -44012,13 +43572,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Am7          D/F#         C/G    G   G/B",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "And find my glory in the power of the cross",
-            "chordText": "",
+            "chordText": "Am7          D/F#         C/G    G   G/B",
             "chords": []
           },
           {
@@ -44396,13 +43951,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "E         F#m7     E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Ikaw ay mabuti bawat sandali",
-            "chordText": "",
+            "chordText": "E         F#m7     E/G#",
             "chords": []
           },
           {
@@ -44436,13 +43986,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E      F#m7    E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Hindi mapapawi o maikukubli",
-            "chordText": "",
+            "chordText": "E      F#m7    E/G#",
             "chords": []
           },
           {
@@ -44476,13 +44021,8 @@ export const songs = [
         "number": 2,
         "lines": [
           {
-            "lyrics": "E         F#m7     E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Sandigang matibay ang ‘Yong pangako",
-            "chordText": "",
+            "chordText": "E         F#m7     E/G#",
             "chords": []
           },
           {
@@ -44516,13 +44056,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E      F#m7         E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Hindi na mabilang, pagkakataon",
-            "chordText": "",
+            "chordText": "E      F#m7         E/G#",
             "chords": []
           },
           {
@@ -44580,13 +44115,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A/C#     B11   EM7  E",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Sa pagluha ng pusong nasugatan",
-            "chordText": "",
+            "chordText": "A/C#     B11   EM7  E",
             "chords": []
           },
           {
@@ -44654,13 +44184,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A/C#      B11     EM7  E",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Sa kalakasang sa ‘Yo nanggagaling",
-            "chordText": "",
+            "chordText": "A/C#      B11     EM7  E",
             "chords": []
           },
           {
@@ -44720,13 +44245,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "Aadd9             E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Ikaw ay mabuti,    Ikaw ay tapat",
-            "chordText": "",
+            "chordText": "Aadd9             E/G#",
             "chords": []
           },
           {
@@ -44760,13 +44280,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Aadd9             E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Ikaw ay mabuti,    Ikaw ay tapat   (O, Diyos)",
-            "chordText": "",
+            "chordText": "Aadd9             E/G#",
             "chords": []
           },
           {
@@ -44826,69 +44341,9 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "G – D/F# – Em – D – C9",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "GM7 – Cm9 – G#M7 – Bbm7b13 – Edim7 – Bm7 – Am7 – A7 -D",
-            "chordText": "Gm7 – Gm7/D – Gm7/C – DM7 – F",
-            "chords": [
-              {
-                "id": "chord-0-1-0",
-                "chord": "Gm7",
-                "originalChord": "Gm7",
-                "position": 0
-              },
-              {
-                "id": "chord-0-1-1",
-                "chord": "–",
-                "originalChord": "–",
-                "position": 4
-              },
-              {
-                "id": "chord-0-1-2",
-                "chord": "Gm7/D",
-                "originalChord": "Gm7/D",
-                "position": 6
-              },
-              {
-                "id": "chord-0-1-3",
-                "chord": "–",
-                "originalChord": "–",
-                "position": 12
-              },
-              {
-                "id": "chord-0-1-4",
-                "chord": "Gm7/C",
-                "originalChord": "Gm7/C",
-                "position": 14
-              },
-              {
-                "id": "chord-0-1-5",
-                "chord": "–",
-                "originalChord": "–",
-                "position": 20
-              },
-              {
-                "id": "chord-0-1-6",
-                "chord": "DM7",
-                "originalChord": "DM7",
-                "position": 22
-              },
-              {
-                "id": "chord-0-1-7",
-                "chord": "–",
-                "originalChord": "–",
-                "position": 26
-              },
-              {
-                "id": "chord-0-1-8",
-                "chord": "F",
-                "originalChord": "F",
-                "position": 28
-              }
-            ]
+            "chordText": "G – D/F# – Em – D – C9",
+            "chords": []
           }
         ]
       },
@@ -44959,13 +44414,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Bm9             A – D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Ay laging nararana  san",
-            "chordText": "",
+            "chordText": "Bm9             A – D/F#",
             "chords": []
           },
           {
@@ -45014,13 +44464,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Bm9          Am7 – Bm/G# – A7/G – D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Ay laging na ra     ra     na     san",
-            "chordText": "",
+            "chordText": "Bm9          Am7 – Bm/G# – A7/G – D/F#",
             "chords": []
           },
           {
@@ -46477,13 +45922,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "D2       A/C#   Bm7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Just the time I feel",
-            "chordText": "",
+            "chordText": "D2       A/C#   Bm7",
             "chords": []
           },
           {
@@ -46515,13 +45955,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F#      Em7- A    D    G/A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "My mind’s been bought by worldly wealth",
-            "chordText": "",
+            "chordText": "D/F#      Em7- A    D    G/A",
             "chords": []
           },
           {
@@ -46535,13 +45970,8 @@ export const songs = [
             "chords": []
           },
           {
-            "lyrics": "G2      D/F#     Em7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I know the Spirit’s call",
-            "chordText": "",
+            "chordText": "G2      D/F#     Em7",
             "chords": []
           },
           {
@@ -46579,13 +46009,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "D2    A/C#             Bm7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Oh, I want to know You more",
-            "chordText": "",
+            "chordText": "D2    A/C#             Bm7",
             "chords": []
           },
           {
@@ -46819,13 +46244,8 @@ export const songs = [
         "number": 2,
         "lines": [
           {
-            "lyrics": "D2    A/C#             Bm7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Oh, I want to know You more",
-            "chordText": "",
+            "chordText": "D2    A/C#             Bm7",
             "chords": []
           },
           {
@@ -47276,13 +46696,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "C/D       D/F#     Gsus4     G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Living fear           to fear",
-            "chordText": "",
+            "chordText": "C/D       D/F#     Gsus4     G",
             "chords": []
           },
           {
@@ -47356,23 +46771,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F#                G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "People need the Lord",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "A         A/G    D/F#         G",
-            "chordText": "",
+            "chordText": "D/F#                G",
             "chords": []
           },
           {
             "lyrics": "At the end of       broken dreams",
-            "chordText": "",
+            "chordText": "A         A/G    D/F#         G",
             "chords": []
           },
           {
@@ -47430,23 +46835,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F#               G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "People need the Lord",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "A            A/G   D/F#     G",
-            "chordText": "",
+            "chordText": "D/F#               G",
             "chords": []
           },
           {
             "lyrics": "When will we         realize",
-            "chordText": "",
+            "chordText": "A            A/G   D/F#     G",
             "chords": []
           },
           {
@@ -47600,13 +46995,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "C/D        D/F#   Gsus4      G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "All the grief        they bear",
-            "chordText": "",
+            "chordText": "C/D        D/F#   Gsus4      G",
             "chords": []
           },
           {
@@ -47680,23 +47070,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F#                G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "People need the Lord",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "A         A/G    D/F#         G",
-            "chordText": "",
+            "chordText": "D/F#                G",
             "chords": []
           },
           {
             "lyrics": "At the end of       broken dreams",
-            "chordText": "",
+            "chordText": "A         A/G    D/F#         G",
             "chords": []
           },
           {
@@ -47754,33 +47134,18 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F#               G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "People need the Lord",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "A            A/G   D/F#     G",
-            "chordText": "",
+            "chordText": "D/F#               G",
             "chords": []
           },
           {
             "lyrics": "When will we         realize",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "A       A/G      D/F#           G",
-            "chordText": "",
+            "chordText": "A            A/G   D/F#     G",
             "chords": []
           },
           {
             "lyrics": "That we  must      give our lives?",
-            "chordText": "",
+            "chordText": "A       A/G      D/F#           G",
             "chords": []
           },
           {
@@ -47880,13 +47245,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "G              D/F#              Em             Em7/D",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I long to be the bride that You’re returning for",
-            "chordText": "",
+            "chordText": "G              D/F#              Em             Em7/D",
             "chords": []
           },
           {
@@ -48324,23 +47684,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "B/D#               C#m7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Thank You for Your grace",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Aadd9              E/G#",
-            "chordText": "",
+            "chordText": "B/D#               C#m7",
             "chords": []
           },
           {
             "lyrics": "Thank You for Your blood",
-            "chordText": "",
+            "chordText": "Aadd9              E/G#",
             "chords": []
           },
           {
@@ -48386,13 +47736,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E7sus        Amaj7 E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "And glorify Your Name",
-            "chordText": "",
+            "chordText": "E7sus        Amaj7 E/G#",
             "chords": []
           },
           {
@@ -48702,23 +48047,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "B/D#            C#m7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Your love will never end",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Aadd9        E/G#",
-            "chordText": "",
+            "chordText": "B/D#            C#m7",
             "chords": []
           },
           {
             "lyrics": "For a thousand generations",
-            "chordText": "",
+            "chordText": "Aadd9        E/G#",
             "chords": []
           },
           {
@@ -48764,13 +48099,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E7sus                 Amaj7    E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "To those who fear Your Name",
-            "chordText": "",
+            "chordText": "E7sus                 Amaj7    E/G#",
             "chords": []
           },
           {
@@ -49789,13 +49119,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "D                              A/C#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "What do you say to someone who feels like they’ve lost it all",
-            "chordText": "",
+            "chordText": "D                              A/C#",
             "chords": []
           },
           {
@@ -49823,13 +49148,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D                              A/C#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "And what do you say to someone who feels so unloved",
-            "chordText": "",
+            "chordText": "D                              A/C#",
             "chords": []
           },
           {
@@ -49857,23 +49177,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Em                   D/F#              G              Bm        A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "And what do you say to a hopeless soul who can’t remember their way home",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Em            D/F#         Asus   A",
-            "chordText": "",
+            "chordText": "Em                   D/F#              G              Bm        A",
             "chords": []
           },
           {
             "lyrics": "And everything is out of their control",
-            "chordText": "",
+            "chordText": "Em            D/F#         Asus   A",
             "chords": []
           }
         ]
@@ -49979,13 +49289,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Em                  D/F#               A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "So before you think that you’re too lost to save,",
-            "chordText": "",
+            "chordText": "Em                  D/F#               A",
             "chords": []
           },
           {
@@ -50005,13 +49310,8 @@ export const songs = [
         "number": 2,
         "lines": [
           {
-            "lyrics": "D                                A/C#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "What do you say to someone whose life is on the line",
-            "chordText": "",
+            "chordText": "D                                A/C#",
             "chords": []
           },
           {
@@ -50039,23 +49339,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Em                   D/F#        G                 Bm         A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "What do you say to someone whose built a wall you can’t break through",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "Em                D/F#             Asus   A",
-            "chordText": "",
+            "chordText": "Em                   D/F#        G                 Bm         A",
             "chords": []
           },
           {
             "lyrics": "And it’s so hard for them to hear the truth",
-            "chordText": "",
+            "chordText": "Em                D/F#             Asus   A",
             "chords": []
           }
         ]
@@ -50397,23 +49687,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "F#m                 E/G#               B",
-            "chordText": "",
+            "lyrics": "So before you think that you’re too lost to save,",
+            "chordText": "F#m                 E/G#               B",
             "chords": []
           },
           {
             "lyrics": "So before you think that you’re too lost to save,",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "F#m                 E/G#               B",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "So before you think that you’re too lost to save,",
-            "chordText": "",
+            "chordText": "F#m                 E/G#               B",
             "chords": []
           },
           {
@@ -50591,13 +49871,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A2/F#     B",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Ay aawitin sa’Yo",
-            "chordText": "",
+            "chordText": "A2/F#     B",
             "chords": []
           },
           {
@@ -50673,13 +49948,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A2/F#    F#m/B  B",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Tanging pag-ibig sa’Yo",
-            "chordText": "",
+            "chordText": "A2/F#    F#m/B  B",
             "chords": []
           }
         ]
@@ -50753,13 +50023,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A            E/G#       F#m      B",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Ito’y hindi pa rin sapat sa alay na nararapat",
-            "chordText": "",
+            "chordText": "A            E/G#       F#m      B",
             "chords": []
           },
           {
@@ -51298,13 +50563,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "A/G       D/F#      G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Wala nang hahanapin pa",
-            "chordText": "",
+            "chordText": "A/G       D/F#      G",
             "chords": []
           },
           {
@@ -51332,13 +50592,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F#      Em9    D/F#    G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Kundi mamalagi sa piling Mo",
-            "chordText": "",
+            "chordText": "D/F#      Em9    D/F#    G",
             "chords": []
           },
           {
@@ -51401,13 +50656,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F#      Em9      D/F#   G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Kaya ang naisin ng puso ko’y",
-            "chordText": "",
+            "chordText": "D/F#      Em9      D/F#   G",
             "chords": []
           },
           {
@@ -53161,13 +52411,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E                            B/D#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I’m happy to be in the truth, and I will daily lift my hands",
-            "chordText": "",
+            "chordText": "E                            B/D#",
             "chords": []
           },
           {
@@ -53273,13 +52518,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "F#m7            E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Oh, I feel like dancing",
-            "chordText": "",
+            "chordText": "F#m7            E/G#",
             "chords": []
           },
           {
@@ -53301,13 +52541,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "F#m7                   E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "But when the world has seen the light",
-            "chordText": "",
+            "chordText": "F#m7                   E/G#",
             "chords": []
           },
           {
@@ -53341,7 +52576,7 @@ export const songs = [
     "artist": "Selah",
     "key": "",
     "category": "Worship",
-    "language": "Tagalog",
+    "language": "English",
     "file": "custom-song.html?id=selah-8781",
     "id": "selah-8781",
     "customSong": true,
@@ -54897,13 +54132,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "D                       A/C#              D",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "You came from heaven to earth to show the way",
-            "chordText": "",
+            "chordText": "D                       A/C#              D",
             "chords": []
           },
           {
@@ -54925,13 +54155,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D            A/C#            F#m          Bm",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "From the cross to the grave, from the grave to the sky",
-            "chordText": "",
+            "chordText": "D            A/C#            F#m          Bm",
             "chords": []
           },
           {
@@ -55511,13 +54736,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "G                    D/F#       Em7              C",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "My heart will choose to say, Lord, blessed be Your Name",
-            "chordText": "",
+            "chordText": "G                    D/F#       Em7              C",
             "chords": []
           },
           {
@@ -57461,23 +56681,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "B/D# – B      A/E  E – B/D# – C#m",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I was made to glorify Your name",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "E/F#  F#m",
-            "chordText": "",
+            "chordText": "B/D# – B      A/E  E – B/D# – C#m",
             "chords": []
           },
           {
             "lyrics": "In every circumstance",
-            "chordText": "",
+            "chordText": "E/F#  F#m",
             "chords": []
           },
           {
@@ -57559,23 +56769,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "B/D# – B      A/E     E – G# – C#m  Caug",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I was made to worship at Your feet",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "E/F#     F#",
-            "chordText": "",
+            "chordText": "B/D# – B      A/E     E – G# – C#m  Caug",
             "chords": []
           },
           {
             "lyrics": "And to obey You, Lord",
-            "chordText": "",
+            "chordText": "E/F#     F#",
             "chords": []
           },
           {
@@ -57711,13 +56911,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E/F#  F#m",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "In every circumstance",
-            "chordText": "",
+            "chordText": "E/F#  F#m",
             "chords": []
           },
           {
@@ -57799,23 +56994,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "B – B/D#      A/E     E – G#7 – C#m  Caug",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I was made to worship at Your feet",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "E/F#     F#",
-            "chordText": "",
+            "chordText": "B – B/D#      A/E     E – G#7 – C#m  Caug",
             "chords": []
           },
           {
             "lyrics": "And to obey You, Lord",
-            "chordText": "",
+            "chordText": "E/F#     F#",
             "chords": []
           },
           {
@@ -58071,13 +57256,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D – D/F#      C/G     G – B7 – Em  D#aug",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "I will always worship at Your feet",
-            "chordText": "",
+            "chordText": "D – D/F#      C/G     G – B7 – Em  D#aug",
             "chords": []
           },
           {
@@ -58238,13 +57418,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E/D   C#m7     F#m7    Bm7    E   D/F#   E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "You alone are worthy of my praise",
-            "chordText": "",
+            "chordText": "E/D   C#m7     F#m7    Bm7    E   D/F#   E/G#",
             "chords": []
           },
           {
@@ -58278,13 +57453,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "E#dim7 F#m       B7     Bm7/E   E  D/F#  E/G#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "With   all of my heart I sing",
-            "chordText": "",
+            "chordText": "E#dim7 F#m       B7     Bm7/E   E  D/F#  E/G#",
             "chords": []
           }
         ]
@@ -58294,33 +57464,18 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "A     E/G#     F#m    C#m/E",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Great are You, Lord",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "DM7  C#m7   Bm7    E  D/F#  E/G#",
-            "chordText": "",
+            "chordText": "A     E/G#     F#m    C#m/E",
             "chords": []
           },
           {
             "lyrics": "Worthy of praise",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "A C#7/G#  F#m       C#m7          Bm7",
-            "chordText": "",
+            "chordText": "DM7  C#m7   Bm7    E  D/F#  E/G#",
             "chords": []
           },
           {
             "lyrics": "Holy and true, great are You, Lord",
-            "chordText": "",
+            "chordText": "A C#7/G#  F#m       C#m7          Bm7",
             "chords": []
           },
           {
@@ -58635,13 +57790,8 @@ export const songs = [
             "chords": []
           },
           {
-            "lyrics": "A2           E/G#           F#m       A/B",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Ito’y hindi pa rin sapat sa alay na nararapat",
-            "chordText": "",
+            "chordText": "A2           E/G#           F#m       A/B",
             "chords": []
           },
           {
@@ -59154,43 +58304,23 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "D   A/C#        Bm          A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "O Yahweh, Ikaw ang aking kaligtasan",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "G       D/F#        Em      A",
-            "chordText": "",
+            "chordText": "D   A/C#        Bm          A",
             "chords": []
           },
           {
             "lyrics": "Moog at kanlungan, laging maaasahan",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "D   A/C#        Bm            A",
-            "chordText": "",
+            "chordText": "G       D/F#        Em      A",
             "chords": []
           },
           {
             "lyrics": "O Yahweh, pangako Mo’y panghahawakan",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "G       D/F#        Em        A",
-            "chordText": "",
+            "chordText": "D   A/C#        Bm            A",
             "chords": []
           },
           {
             "lyrics": "Na ako’y di Mo iiwan, ni pababayaan",
-            "chordText": "",
+            "chordText": "G       D/F#        Em        A",
             "chords": []
           },
           {
@@ -59246,43 +58376,23 @@ export const songs = [
             "chords": []
           },
           {
-            "lyrics": "D/F#                G",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Sa’Yo, O Diyos, ang awit ng papuri",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "D/F#                G",
-            "chordText": "",
+            "chordText": "D/F#                G",
             "chords": []
           },
           {
             "lyrics": "Sa’Yo, O Diyos, ang awit ng pagsamba",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "D/F#           G",
-            "chordText": "",
+            "chordText": "D/F#                G",
             "chords": []
           },
           {
             "lyrics": "Buong puso, isip, at kaluluwa",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "D/F#              G",
-            "chordText": "",
+            "chordText": "D/F#           G",
             "chords": []
           },
           {
             "lyrics": "Minamahal kita’t wala na ngang iba",
-            "chordText": "",
+            "chordText": "D/F#              G",
             "chords": []
           },
           {
@@ -59388,23 +58498,13 @@ export const songs = [
         "number": 2,
         "lines": [
           {
-            "lyrics": "D  A/C#       Bm        A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "O Yahweh, Ikaw ang aking katuwiran",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "G        D/F#",
-            "chordText": "",
+            "chordText": "D  A/C#       Bm        A",
             "chords": []
           },
           {
             "lyrics": "Landas ng kabanalan",
-            "chordText": "",
+            "chordText": "G        D/F#",
             "chords": []
           },
           {
@@ -59426,23 +58526,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D  A/C#     Bm         A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "O Yahweh, buhay man ay mahirapan",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "G       D/F#",
-            "chordText": "",
+            "chordText": "D  A/C#     Bm         A",
             "chords": []
           },
           {
             "lyrics": "Sa ‘Yo’y maninindigan,",
-            "chordText": "",
+            "chordText": "G       D/F#",
             "chords": []
           },
           {
@@ -60225,23 +59315,13 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "A            D/F#          E/G#      A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Great is the Lord and most worthy of praise",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "D/F#        E             F#m7",
-            "chordText": "",
+            "chordText": "A            D/F#          E/G#      A",
             "chords": []
           },
           {
             "lyrics": "The city of our God, the holy place",
-            "chordText": "",
+            "chordText": "D/F#        E             F#m7",
             "chords": []
           },
           {
@@ -60281,23 +59361,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A            D/F#            E/G#     A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Great is the Lord in whom we have the victory",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "D/F#     E          F#m7",
-            "chordText": "",
+            "chordText": "A            D/F#            E/G#     A",
             "chords": []
           },
           {
             "lyrics": "He aids us against the enemy",
-            "chordText": "",
+            "chordText": "D/F#     E          F#m7",
             "chords": []
           },
           {
@@ -60409,13 +59479,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D             A/C#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "For You alone are God eternal",
-            "chordText": "",
+            "chordText": "D             A/C#",
             "chords": []
           },
           {
@@ -60482,13 +59547,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D             A/C#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "For You alone are God eternal",
-            "chordText": "",
+            "chordText": "D             A/C#",
             "chords": []
           },
           {
@@ -61663,43 +60723,23 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "B/D# – E",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Our God",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "B/D# – E – F#  G#m  F#",
-            "chordText": "",
+            "chordText": "B/D# – E",
             "chords": []
           },
           {
             "lyrics": "You reign forever",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "B/D# – E",
-            "chordText": "",
+            "chordText": "B/D# – E – F#  G#m  F#",
             "chords": []
           },
           {
             "lyrics": "Our hope",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "B/D# – E – F#  G#m  F#",
-            "chordText": "",
+            "chordText": "B/D# – E",
             "chords": []
           },
           {
             "lyrics": "Our strong deliverer",
-            "chordText": "",
+            "chordText": "B/D# – E – F#  G#m  F#",
             "chords": []
           }
         ]
@@ -61810,23 +60850,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "B/D#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "You lift us up",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "E     E/F#  G#m7  F#/A#",
-            "chordText": "",
+            "chordText": "B/D#",
             "chords": []
           },
           {
             "lyrics": "On wings like eagles",
-            "chordText": "",
+            "chordText": "E     E/F#  G#m7  F#/A#",
             "chords": []
           }
         ]
@@ -61902,33 +60932,18 @@ export const songs = [
         "number": 2,
         "lines": [
           {
-            "lyrics": "B/D# – E",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Our God",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "B/D# – E – F#  G#m  F#",
-            "chordText": "",
+            "chordText": "B/D# – E",
             "chords": []
           },
           {
             "lyrics": "You reign forever",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "B/D# – E",
-            "chordText": "",
+            "chordText": "B/D# – E – F#  G#m  F#",
             "chords": []
           },
           {
             "lyrics": "Our hope",
-            "chordText": "",
+            "chordText": "B/D# – E",
             "chords": []
           },
           {
@@ -62068,23 +61083,13 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "G#m                      B/D#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Strength will rise as we wait upon the Lord",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "E             E/F#  G#m7          F#/A#     B",
-            "chordText": "",
+            "chordText": "G#m                      B/D#",
             "chords": []
           },
           {
             "lyrics": "Wait upon the Lord, wait upon the Lord",
-            "chordText": "",
+            "chordText": "E             E/F#  G#m7          F#/A#     B",
             "chords": []
           }
         ]
@@ -63141,13 +62146,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "C#m             B/D#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Yet love us way too much",
-            "chordText": "",
+            "chordText": "C#m             B/D#",
             "chords": []
           },
           {
@@ -63223,13 +62223,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "C#m         B/D#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "What if trials of this life",
-            "chordText": "",
+            "chordText": "C#m         B/D#",
             "chords": []
           },
           {
@@ -63527,13 +62522,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "C#m                 B/D#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "And long that we’d have faith",
-            "chordText": "",
+            "chordText": "C#m                 B/D#",
             "chords": []
           },
           {
@@ -63609,13 +62599,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "C#m         B/D#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "What if trials of this life",
-            "chordText": "",
+            "chordText": "C#m         B/D#",
             "chords": []
           },
           {
@@ -63661,13 +62646,8 @@ export const songs = [
         "number": 1,
         "lines": [
           {
-            "lyrics": "C#m             B/D#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "When friends betray us",
-            "chordText": "",
+            "chordText": "C#m             B/D#",
             "chords": []
           },
           {
@@ -63689,13 +62669,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "C#m             B/D#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "We know the pain reminds this heart",
-            "chordText": "",
+            "chordText": "C#m             B/D#",
             "chords": []
           },
           {
@@ -63927,13 +62902,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "C#m         B/D#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "What if trials of this life",
-            "chordText": "",
+            "chordText": "C#m         B/D#",
             "chords": []
           },
           {
@@ -64561,13 +63531,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Em7          A7/C#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Damdamin ma’y pagod",
-            "chordText": "",
+            "chordText": "Em7          A7/C#",
             "chords": []
           },
           {
@@ -64726,13 +63691,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "FM7   Em7  A/C#            Dm7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "O Diyos, Ikaw aking gabay sa kaguluhan",
-            "chordText": "",
+            "chordText": "FM7   Em7  A/C#            Dm7",
             "chords": []
           },
           {
@@ -64948,13 +63908,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A/C#       F#m",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Maging buong sanlibutan",
-            "chordText": "",
+            "chordText": "A/C#       F#m",
             "chords": []
           },
           {
@@ -64976,13 +63931,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "A/C#    F#m           Bm           D/E",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Kalooban Mo’y dakila, Kay buti Mo o aking Diyos",
-            "chordText": "",
+            "chordText": "A/C#    F#m           Bm           D/E",
             "chords": []
           },
           {
@@ -69110,7 +68060,7 @@ export const songs = [
     "title": "Worthy Of It All",
     "artist": "Selah",
     "key": "D",
-    "category": "Praise",
+    "category": "Worship",
     "language": "English",
     "file": "custom-song.html?id=selah-7702",
     "id": "selah-7702",
@@ -69197,13 +68147,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "G2             A          D/F#",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "All the elders cast their crowns",
-            "chordText": "",
+            "chordText": "G2             A          D/F#",
             "chords": []
           },
           {
@@ -69261,13 +68206,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "D/F# –  G                  Bm –    A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "For from You are all things, and to You are all things",
-            "chordText": "",
+            "chordText": "D/F# –  G                  Bm –    A",
             "chords": []
           },
           {
@@ -73856,13 +72796,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "G/D                  Em9",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "No other love is greater than Yours",
-            "chordText": "",
+            "chordText": "G/D                  Em9",
             "chords": []
           },
           {
@@ -73914,13 +72849,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "G/D           Em9",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Through Your death, God’s grace abounds",
-            "chordText": "",
+            "chordText": "G/D           Em9",
             "chords": []
           },
           {
@@ -74024,13 +72954,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Em9          Dsus",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Redeemer of my soul",
-            "chordText": "",
+            "chordText": "Em9          Dsus",
             "chords": []
           },
           {
@@ -74088,13 +73013,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "Em9           Dsus",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "The rock of my salvation",
-            "chordText": "",
+            "chordText": "Em9           Dsus",
             "chords": []
           },
           {
@@ -77606,7 +76526,7 @@ export const songs = [
     "artist": "Selah",
     "key": "A",
     "category": "Worship",
-    "language": "English",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-5658",
     "id": "selah-5658",
     "customSong": true,
@@ -87424,7 +86344,7 @@ export const songs = [
     "artist": "Selah",
     "key": "D",
     "category": "Worship",
-    "language": "English",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-3592",
     "id": "selah-3592",
     "customSong": true,
@@ -90833,43 +89753,23 @@ export const songs = [
         "type": "Pre-Chorus",
         "lines": [
           {
-            "lyrics": "F#m          F#mM7/F",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Lift Him high all ye heavens",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "F#m7/E       F#m6/Eb",
-            "chordText": "",
+            "chordText": "F#m          F#mM7/F",
             "chords": []
           },
           {
             "lyrics": "Lift Him high all ye earth",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "F#m          F#mM7/F",
-            "chordText": "",
+            "chordText": "F#m7/E       F#m6/Eb",
             "chords": []
           },
           {
             "lyrics": "Lift Him high all ye nations",
-            "chordText": "",
-            "chords": []
-          },
-          {
-            "lyrics": "F#m7/E       F#m6/Eb",
-            "chordText": "",
+            "chordText": "F#m          F#mM7/F",
             "chords": []
           },
           {
             "lyrics": "Lift Him high all ye land",
-            "chordText": "",
+            "chordText": "F#m7/E       F#m6/Eb",
             "chords": []
           }
         ]
@@ -95404,13 +94304,8 @@ export const songs = [
             "chords": []
           },
           {
-            "lyrics": "Dm7      Bm7-/E",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Thou art worthy",
-            "chordText": "",
+            "chordText": "Dm7      Bm7-/E",
             "chords": []
           },
           {
@@ -97139,7 +96034,7 @@ export const songs = [
     "artist": "Selah",
     "key": "Dm",
     "category": "Worship",
-    "language": "English",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-3036",
     "id": "selah-3036",
     "customSong": true,
@@ -100388,7 +99283,7 @@ export const songs = [
     "artist": "Selah",
     "key": "C",
     "category": "Worship",
-    "language": "English",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-3149",
     "id": "selah-3149",
     "customSong": true,
@@ -101845,7 +100740,7 @@ export const songs = [
     "artist": "Selah",
     "key": "F",
     "category": "Worship",
-    "language": "English",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-3164",
     "id": "selah-3164",
     "customSong": true,
@@ -106629,13 +105524,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "G            D/F#  Em7sus  Em7sus/A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "Into the house of the Lord",
-            "chordText": "",
+            "chordText": "G            D/F#  Em7sus  Em7sus/A",
             "chords": []
           },
           {
@@ -106830,7 +105720,7 @@ export const songs = [
     "artist": "Selah",
     "key": "D",
     "category": "Worship",
-    "language": "English",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-3096",
     "id": "selah-3096",
     "customSong": true,
@@ -106855,13 +105745,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "DM7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "In Your presence",
-            "chordText": "",
+            "chordText": "DM7",
             "chords": []
           },
           {
@@ -106966,13 +105851,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "GM7",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "In Your presence",
-            "chordText": "",
+            "chordText": "GM7",
             "chords": []
           },
           {
@@ -106988,13 +105868,8 @@ export const songs = [
             ]
           },
           {
-            "lyrics": "DM7/A",
-            "chordText": "",
-            "chords": []
-          },
-          {
             "lyrics": "‘Til Your likeness",
-            "chordText": "",
+            "chordText": "DM7/A",
             "chords": []
           },
           {
@@ -110152,7 +109027,7 @@ export const songs = [
     "artist": "Selah",
     "key": "E",
     "category": "Worship",
-    "language": "English",
+    "language": "Tagalog",
     "file": "custom-song.html?id=selah-2827",
     "id": "selah-2827",
     "customSong": true,

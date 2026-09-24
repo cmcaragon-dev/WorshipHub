@@ -57,7 +57,7 @@ function syncCustomSongsIntoLibrary() {
 // =====================================
 // SONG LIBRARY QUALITY / SELAH REPAIR
 // =====================================
-const SONG_LIBRARY_REPAIR_VERSION = "2026-09-24-v2";
+const SONG_LIBRARY_REPAIR_VERSION = "2026-09-24-v3-shared-master";
 const TAGALOG_WORDS = ["ang","ng","mga","ako","ikaw","siya","atin","ating","aming","mo","ko","ka","sa","kay","para","hindi","wala","may","ito","iyon","bawat","lahat","puso","pag","panginoon","hesus","salamat","pag-ibig","kanya","inyong","aking","buhay","ganda","umaawit","awit","puri","magpuri","dakila","banal","kamay","umawit","ligaya","ngiti","ginawa","pag-ibig"];
 const PRAISE_WORDS = ["praise","praising","rejoice","celebrate","celebration","shout","dance","hallelujah","glory","victory","joy"];
 const WORSHIP_WORDS = ["worship","holy","presence","surrender","adore","adoration","bow","kneel","majesty","faithful","lord","jesus","savior","saviour","cross","sacrifice","love"];
@@ -113,66 +113,131 @@ function detectSongLanguage(song,pageHtml=""){
     if(/song-category-tagalog|\btagalog\b|\bfilipino\b/.test(page))return "Tagalog";
     if(/song-category-english|\benglish\b/.test(page))return "English";
     const text=[song?.title,song?.sourceHtmlPreserved,...(song?.sections||[]).flatMap(s=>(s.lines||[]).map(l=>l?.lyrics||""))].join(" ").toLowerCase();
-    const words=(text.match(/[a-záéíóúñ'-]+/g)||[]); let score=0;
-    words.forEach(w=>{if(TAGALOG_WORDS.includes(w))score++;});
-    return score>=2?"Tagalog":"English";
+    const words=(text.match(/[a-záéíóúñ'-]+/g)||[]);
+    let tag=0, eng=0;
+    words.forEach(w=>{if(TAGALOG_WORDS.includes(w))tag++;});
+    // Strong Filipino/Tagalog function words and common worship vocabulary.
+    ["ang","ng","mga","ako","ikaw","sa","kay","para","hindi","wala","ito","iyon","bawat","lahat","puso","pag","panginoon","hesus","salamat","kanya","inyong","aking","buhay","umaawit","awit","puri","magpuri","dakila","banal","kamay","umawit","ligaya","ngiti","ginawa","pag-ibig"].forEach(w=>{if(words.includes(w))tag+=0.75;});
+    ["the","and","your","you","lord","jesus","god","holy","love","heart","my","me","we","our","i","is","are","to","of","in","with"].forEach(w=>{if(words.includes(w))eng+=0.2;});
+    return tag>eng && tag>=2 ? "Tagalog" : "English";
 }
 function detectSongCategory(song,pageHtml=""){
     const page=String(pageHtml||"").toLowerCase();
-    if(/(?:category|class|tag)[^\n]{0,80}\bpraise\b|song-category-praise|\bpraise\b/.test(page))return "Praise";
-    if(/(?:category|class|tag)[^\n]{0,80}\bworship\b|song-category-worship|\bworship\b/.test(page))return "Worship";
+    // Prefer an explicit category/tag/class on the source page.
+    if(/(?:category|class|tag|genre)[^\n]{0,120}\bpraise\b|song-category-praise|\bpraise[-_ ]song\b/.test(page))return "Praise";
+    if(/(?:category|class|tag|genre)[^\n]{0,120}\bworship\b|song-category-worship|\bworship[-_ ]song\b/.test(page))return "Worship";
     const text=[song?.title,song?.sourceHtmlPreserved,...(song?.sections||[]).flatMap(s=>(s.lines||[]).map(l=>l?.lyrics||""))].join(" ").toLowerCase();
     const p=PRAISE_WORDS.reduce((n,w)=>n+(text.match(new RegExp(`\\b${w}\\b`,"g"))||[]).length,0);
     const w=WORSHIP_WORDS.reduce((n,x)=>n+(text.match(new RegExp(`\\b${x}\\b`,"g"))||[]).length,0);
-    return p>w?"Praise":"Worship";
+    // Clear action/celebration language is generally praise; surrender/adore/holy/presence language is generally worship.
+    return p>w ? "Praise" : "Worship";
+}
+function cleanExtractedArtist(v){
+    let x=repairClean(v).replace(/^(?:by|artist|singer|performed\\s+by|song\\s+by|originally\\s+by)\\s*[:\\-]?\\s*/i,"").trim();
+    x=x.replace(/^(?:lyrics|chords|key|song)\\s*[:\\-]?\\s*/i,"").trim();
+    if(!x||x.length>120)return "";
+    if(/^(?:selah|songs?|lyrics?|chords?|key|home|menu|search|share|copyright|admin|login|register|tagalog|english|praise|worship)$/i.test(x))return "";
+    return x;
 }
 function extractArtistFromSelahHtml(pageHtml,title){
-    if(!pageHtml)return ""; const doc=new DOMParser().parseFromString(String(pageHtml),"text/html");
-    const cleanArtist=v=>{let x=repairClean(v).replace(/^(?:by|artist|singer|performed\s+by|song\s+by)\s*[:\-]?\s*/i,"").trim(); if(!x||x.length>120)return ""; if(/^(?:selah|songs?|lyrics?|chords?|key|home|menu|search|share|copyright|admin|login|register)$/i.test(x))return ""; return x;};
+    if(!pageHtml)return "";
+    const doc=new DOMParser().parseFromString(String(pageHtml),"text/html");
     const target=repairClean(title).toLowerCase();
-    for(const sel of ['[data-artist]','[itemprop="byArtist"]','[itemprop="artist"]','[class*="song-artist"]','[class*="artist-name"]','[class*="artist"]','[id*="artist"]'])for(const el of [...doc.querySelectorAll(sel)]){const v=cleanArtist(el.getAttribute("data-artist")||el.textContent||"");if(v&&v.toLowerCase()!==target)return v;}
-    const hs=[...doc.querySelectorAll("h1,h2,h3")]; const h=hs.find(el=>repairClean(el.textContent).toLowerCase()===target)||hs.find(el=>repairClean(el.textContent).toLowerCase().includes(target));
-    if(h){let n=h;for(let d=0;d<3&&n;d++,n=n.parentElement){for(const el of [...n.children]){const v=cleanArtist(el.textContent||"");if(v&&v.toLowerCase()!==target&&!/^(?:key|verse|chorus|bridge|intro|outro|lyrics|chords)\b/i.test(v))return v;}}}
+    const candidates=[];
+    for(const sel of ['[data-artist]','[data-artist-name]','[itemprop="byArtist"]','[itemprop="artist"]','[class*="song-artist"]','[class*="artist-name"]','[class*="artist"]','[id*="artist"]','meta[name="artist"]','meta[property="music:musician"]']){
+        for(const el of [...doc.querySelectorAll(sel)]){
+            candidates.push(el.getAttribute("data-artist")||el.getAttribute("data-artist-name")||el.getAttribute("content")||el.textContent||"");
+        }
+    }
+    // JSON-LD is common on WordPress music pages.
+    for(const script of [...doc.querySelectorAll('script[type="application/ld+json"]')]){
+        try{
+            const raw=JSON.parse(script.textContent||"null");
+            const arr=Array.isArray(raw)?raw:[raw];
+            for(const item of arr){
+                const by=item?.byArtist||item?.artist||item?.performer;
+                const vals=Array.isArray(by)?by:[by];
+                vals.forEach(v=>candidates.push(v?.name||v?.url||v||""));
+            }
+        }catch(_){ }
+    }
+    for(const v of candidates){const a=cleanExtractedArtist(v);if(a&&a.toLowerCase()!==target)return a;}
+    const hs=[...doc.querySelectorAll("h1,h2,h3")];
+    const h=hs.find(el=>repairClean(el.textContent).toLowerCase()===target)||hs.find(el=>repairClean(el.textContent).toLowerCase().includes(target));
+    if(h){let n=h;for(let d=0;d<4&&n;d++,n=n.parentElement){for(const el of [...n.children]){const a=cleanExtractedArtist(el.textContent||"");if(a&&a.toLowerCase()!==target&&!/^(?:key|verse|chorus|bridge|intro|outro|lyrics|chords)\b/i.test(a))return a;}}}
     return "";
 }
 async function fetchRepairPage(url){
-    for(const target of [url,`https://r.jina.ai/${url}`]){try{const r=await fetch(target,{mode:"cors",credentials:"omit",cache:"no-store"});if(r.ok){const t=await r.text();if(t&&t.length>200)return t;}}catch(_){} }
+    const targets=[String(url||""),`https://r.jina.ai/http://${String(url||"").replace(/^https?:\\/\\//,"")}`,`https://r.jina.ai/${String(url||"")}`];
+    for(const target of targets){try{const r=await fetch(target,{mode:"cors",credentials:"omit",cache:"no-store"});if(r.ok){const t=await r.text();if(t&&t.length>200)return t;}}catch(_){} }
     return "";
 }
 async function repairSongLibrary(records){
-    const source=Array.isArray(records)?records:[]; let changed=0; const updated=[];
+    const source=Array.isArray(records)?records.filter(Boolean):[];
+    const updated=[];
+    // Check source pages in small parallel batches so a 477-song library does not take several minutes.
+    const pageMap=new Map();
+    const webSongs=source.filter(s=>s?.sourceUrl);
+    for(let i=0;i<webSongs.length;i+=8){
+        const batch=webSongs.slice(i,i+8);
+        const results=await Promise.all(batch.map(async s=>[String(s.id),await fetchRepairPage(String(s.sourceUrl))]));
+        results.forEach(([id,page])=>pageMap.set(id,page));
+    }
     for(const original of source){
-        const s={...original}; let page="";
-        const isSelah=s?.source==="Selah"||String(s?.id||"").startsWith("selah-");
-        if(isSelah&&s.sourceUrl)page=await fetchRepairPage(String(s.sourceUrl));
-        const rebuilt=rebuildSectionsFromSource(s); if(rebuilt){s.sections=rebuilt;s.structuredVersion=2;s.contentVersion=2;}
-        if(isSelah){
-            const artist=extractArtistFromSelahHtml(page,s.title); if(artist)s.artist=artist;
-            s.language=detectSongLanguage(s,page);
-            s.category=detectSongCategory(s,page);
-        }else if(!["English","Tagalog"].includes(String(s.language||""))) s.language=detectSongLanguage(s,"");
+        const s={...original};
+        const page=pageMap.get(String(s.id))||"";
+        const rebuilt=rebuildSectionsFromSource(s);
+        if(rebuilt){s.sections=rebuilt;s.structuredVersion=2;s.contentVersion=2;}
+        if(page){
+            const artist=extractArtistFromSelahHtml(page,s.title);
+            if(artist)s.artist=artist;
+        }
+        // Normalize every song, not only Selah songs.
+        s.language=detectSongLanguage(s,page);
+        s.category=detectSongCategory(s,page);
         updated.push(s);
     }
     const sorted=[...updated].sort((a,b)=>String(a.title||"").localeCompare(String(b.title||""),undefined,{sensitivity:"base",numeric:true}));
     const numberById=new Map(sorted.map((s,i)=>[String(s.id),i+1]));
     updated.forEach(s=>{const n=numberById.get(String(s.id));if(n)s.songNumber=n;});
-    changed=updated.length;
-    return {songs:updated,changed,total:updated.length};
+    return {songs:updated,changed:updated.length,total:updated.length};
 }
-async function runSongLibraryRepairIfNeeded(){
-    if(localStorage.getItem("chordioSongLibraryRepairVersion")==SONG_LIBRARY_REPAIR_VERSION)return;
+async function seedBundledSongsToSharedFirebase(){
+    if(!auth.currentUser || !canManageSongs) return false;
     try{
+        const snap=await getDocs(collection(db,"songs"));
+        const existing=new Set();
+        snap.forEach(d=>{const data=d.data()||{};if(data.deletedSong!==true && !String(d.id).startsWith(DELETED_SONG_DOC_PREFIX)) existing.add(String(data.id||d.id));});
+        const missingOrBundled=songs.filter(s=>s&&s.id&&!existing.has(String(s.id))&&!isAnyDeletedSong(s));
+        // Only add missing bundled songs. Existing Firebase documents remain the shared master copy
+        // and are normalized by the repair pass below, preventing stale bundled data from overwriting edits.
+        for(let start=0;start<missingOrBundled.length;start+=400){
+            const batch=writeBatch(db);
+            for(const s of missingOrBundled.slice(start,start+400)){
+                batch.set(doc(db,"songs",String(s.id)),{...s,customSong:true,updatedAt:serverTimestamp()},{merge:false});
+            }
+            await batch.commit();
+        }
+        return true;
+    }catch(error){console.warn("Unable to seed bundled songs to shared Firebase library:",error);return false;}
+}
+async function runSongLibraryRepairIfNeeded(force=false){
+    if(!force && localStorage.getItem("chordioSongLibraryRepairVersion")==SONG_LIBRARY_REPAIR_VERSION)return;
+    try{
+        // Read the shared master first. This is what makes the same song data visible to every account.
+        if(auth.currentUser) await syncAllSongDocumentsIntoLibrary();
         const repaired=await repairSongLibrary(songs);
-        repaired.songs.forEach(s=>{const i=songs.findIndex(x=>String(x.id)===String(s.id));if(i>=0)songs[i]=s;});
-        try{localStorage.setItem("worshipHubCustomSongs",JSON.stringify(songs.filter(s=>s.customSong)));}catch(_){}
+        repaired.songs.forEach(s=>{const i=songs.findIndex(x=>String(x.id)===String(s.id));if(i>=0)songs[i]=s;else songs.push(s);});
+        try{localStorage.setItem("worshipHubCustomSongs",JSON.stringify(songs.filter(s=>s.customSong)));}catch(_){ }
         if(auth.currentUser && repaired.songs.length){
-            for(let start=0;start<repaired.songs.length;start+=400){const batch=writeBatch(db);for(const s of repaired.songs.slice(start,start+400))batch.set(doc(collection(db,"songs"),String(s.id)),{...s,updatedAt:serverTimestamp()},{merge:true});await batch.commit();}
+            for(let start=0;start<repaired.songs.length;start+=400){const batch=writeBatch(db);for(const s of repaired.songs.slice(start,start+400))batch.set(doc(db,"songs",String(s.id)),{...s,customSong:true,updatedAt:serverTimestamp()},{merge:true});await batch.commit();}
         }
         localStorage.setItem("chordioSongLibraryRepairVersion",SONG_LIBRARY_REPAIR_VERSION);
         if(typeof renderSongs==="function")renderSongs(songs);
         if(typeof renderAllSongsTable==="function")renderAllSongsTable(songs);
-        console.info(`CHORDIO Song Library repair complete: ${repaired.total} songs normalized and numbered.`);
-    }catch(error){console.warn("CHORDIO Song Library repair skipped/failed:",error);}
+        console.info(`CHORDIO shared Song Library repair complete: ${repaired.total} songs normalized, categorized and numbered.`);
+        return repaired;
+    }catch(error){console.warn("CHORDIO Song Library repair skipped/failed:",error);return null;}
 }
 
 function hasStructuredLyrics(song){
@@ -559,7 +624,10 @@ onAuthStateChanged(auth, async function(user) {
         if (guestName) guestName.textContent = "Guest";
         renderSongs(songs);
         if (typeof renderAllSongsTable === "function") renderAllSongsTable(songs);
-        await runSongLibraryRepairIfNeeded();
+        // Guests/read-only users also read the shared master collection when Firestore rules allow public reads.
+        // If public reads are disabled, the bundled library remains available offline.
+        try { await syncAllSongDocumentsIntoLibrary(); } catch (_) {}
+        await runSongLibraryRepairIfNeeded(true);
         if (typeof renderServices === "function") renderServices();
         if (typeof updateDashboard === "function") updateDashboard();
         await loadSiteVisitCount();
@@ -598,9 +666,11 @@ onAuthStateChanged(auth, async function(user) {
 
     (async function syncLibraryInBackground(){
         try {
+            await loadCurrentUserProfile();
             await migrateLocalDeletedTitlesToFirebase();
+            await seedBundledSongsToSharedFirebase();
             await syncAllSongDocumentsIntoLibrary();
-            await runSongLibraryRepairIfNeeded();
+            await runSongLibraryRepairIfNeeded(true);
             filterDeletedSongsFromLibrary();
             removeDuplicateSongTitles();
             songsReady = true;
