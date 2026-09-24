@@ -1161,6 +1161,7 @@ function printCustomSong(){
         <div class="print-song-passing"><b>PASSING CHORDS:</b> ${esc(passingText||"—")}</div>
         <div class="print-song-rule"></div>
       </div>
+      <div class="print-song-content-title">LYRICS AND CHORDS</div>
       <div class="print-song-content">
         <div class="wh-print-source-content song"></div>
       </div>`;

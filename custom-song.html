@@ -852,6 +852,149 @@ body .multi-output-settings-in-preview.chordio-screen-settings-popup .multi-scre
 #multiScreenControl .multi-screen-head #multiScreenClose{order:4!important;margin-left:0!important;}
 </style>
 
+
+<style id="chordio-song-print-final">
+@media print{
+  @page{size:A4 landscape;margin:5mm;}
+
+  body.chordio-direct-printing #worshipHubPrintRoot{
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    padding:0!important;
+    background:#fff!important;
+    color:#111!important;
+  }
+
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-header{
+    margin:0 0 3mm!important;
+    padding:0!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-title{
+    font-size:18pt!important;
+    line-height:1.05!important;
+    margin:0 0 1mm!important;
+  }
+
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-artist{
+    font-size:10pt!important;
+    line-height:1.1!important;
+    margin:0 0 1mm!important;
+  }
+
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-key,
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-passing{
+    font-size:9pt!important;
+    line-height:1.15!important;
+    margin:0 0 .8mm!important;
+  }
+
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-rule{
+    border-top:1px solid #111!important;
+    margin:2mm 0 2mm!important;
+  }
+
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-content-title{
+    display:block!important;
+    font-size:9pt!important;
+    font-weight:900!important;
+    line-height:1.1!important;
+    margin:0 0 1.5mm!important;
+    color:#111!important;
+    break-after:avoid!important;
+    page-break-after:avoid!important;
+  }
+
+  /* Exactly two sequential columns: column 1 fills first, then column 2. */
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-content{
+    display:block!important;
+    width:100%!important;
+    height:170mm!important;
+    max-height:170mm!important;
+    overflow:visible!important;
+    column-count:2!important;
+    column-width:auto!important;
+    column-gap:8mm!important;
+    column-fill:auto!important;
+    column-rule:none!important;
+    box-sizing:border-box!important;
+  }
+
+  body.chordio-direct-printing #worshipHubPrintRoot .wh-print-source-content.song{
+    display:block!important;
+    width:100%!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  /* Sections may continue into column 2 when column 1 reaches its height. */
+  body.chordio-direct-printing #worshipHubPrintRoot .song-section{
+    display:block!important;
+    break-inside:auto!important;
+    page-break-inside:auto!important;
+    margin:0 0 2.5mm!important;
+    padding:0!important;
+  }
+
+  body.chordio-direct-printing #worshipHubPrintRoot .section-title{
+    break-after:avoid!important;
+    page-break-after:avoid!important;
+    font-size:8.5pt!important;
+    line-height:1.1!important;
+    margin:0 0 1mm!important;
+    font-weight:900!important;
+  }
+
+  /* Keep each chord + lyric pair together while allowing the section itself to flow. */
+  body.chordio-direct-printing #worshipHubPrintRoot .song-line{
+    display:block!important;
+    width:max-content!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+    line-height:1!important;
+    white-space:normal!important;
+  }
+
+  body.chordio-direct-printing #worshipHubPrintRoot .song-line .chord{
+    display:block!important;
+    position:static!important;
+    width:max-content!important;
+    max-width:100%!important;
+    height:17px!important;
+    margin:0!important;
+    padding:0!important;
+    line-height:17px!important;
+    white-space:pre!important;
+    font-family:Consolas,Monaco,"Courier New",monospace!important;
+    font-size:17px!important;
+    font-weight:800!important;
+    color:#c00000!important;
+  }
+
+  body.chordio-direct-printing #worshipHubPrintRoot .song-line .print-lyric-text{
+    display:block!important;
+    width:max-content!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    line-height:17px!important;
+    white-space:pre!important;
+    font-family:Consolas,Monaco,"Courier New",monospace!important;
+    font-size:17px!important;
+    color:#111!important;
+  }
+
+  body.chordio-direct-printing #worshipHubPrintRoot .song-line br{
+    display:none!important;
+  }
+}
+</style>
 </head>
 <body>
 <main class="song-paper" id="songPaper">
