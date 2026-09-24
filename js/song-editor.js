@@ -913,7 +913,9 @@ function addLineToLast() {
 }
 
 onAuthStateChanged(auth, user => {
-    if (user) loadCustomSongsFromFirebase();
+    // index.html already performs the single shared-library Firebase sync.
+    // Avoid a second full `songs` collection read on the main page.
+    if (user && !document.getElementById("songGrid")) loadCustomSongsFromFirebase();
 });
 
 document.addEventListener("DOMContentLoaded", () => {

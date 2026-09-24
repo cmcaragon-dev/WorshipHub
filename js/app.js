@@ -57,7 +57,8 @@ function syncCustomSongsIntoLibrary() {
 // =====================================
 // SONG LIBRARY QUALITY / SELAH REPAIR
 // =====================================
-const SONG_LIBRARY_REPAIR_VERSION = "2026-09-24-v3-shared-master";
+const SONG_LIBRARY_REPAIR_VERSION = "2026-09-24-v4-fast-library";
+const FIREBASE_SONG_CACHE_KEY = "chordioSharedSongLibraryCacheV1";
 const TAGALOG_WORDS = ["ang","ng","mga","ako","ikaw","siya","atin","ating","aming","mo","ko","ka","sa","kay","para","hindi","wala","may","ito","iyon","bawat","lahat","puso","pag","panginoon","hesus","salamat","pag-ibig","kanya","inyong","aking","buhay","ganda","umaawit","awit","puri","magpuri","dakila","banal","kamay","umawit","ligaya","ngiti","ginawa","pag-ibig"];
 const PRAISE_WORDS = ["praise","praising","rejoice","celebrate","celebration","shout","dance","hallelujah","glory","victory","joy"];
 const WORSHIP_WORDS = ["worship","holy","presence","surrender","adore","adoration","bow","kneel","majesty","faithful","lord","jesus","savior","saviour","cross","sacrifice","love"];
@@ -422,6 +423,33 @@ filterDeletedSongsFromLibrary();
 removeUnstructuredSongsFromLibrary();
 removeDuplicateSongTitles();
 
+function loadCachedSharedSongLibrary(){
+    try{
+        const raw=localStorage.getItem(FIREBASE_SONG_CACHE_KEY);
+        if(!raw) return false;
+        const cached=JSON.parse(raw);
+        if(!Array.isArray(cached?.songs) || !cached.songs.length) return false;
+        const deletedTitles=new Set(Array.isArray(cached.deletedTitles)?cached.deletedTitles:[]);
+        cached.songs.forEach(data=>{
+            const id=String(data?.id||"").trim(); if(!id) return;
+            let index=songs.findIndex(x=>String(x?.id||"").trim()===id);
+            if(index<0) index=songs.findIndex(x=>normalizeDeletedSongTitle(x?.title)===normalizeDeletedSongTitle(data?.title));
+            if(index>=0) songs[index]={...data,id}; else songs.push({...data,id});
+        });
+        firebaseDeletedSongTitles=deletedTitles;
+        filterDeletedSongsFromLibrary(); removeUnstructuredSongsFromLibrary(); removeDuplicateSongTitles();
+        songsReady=true;
+        return true;
+    }catch(_){ return false; }
+}
+
+function saveSharedSongLibraryCache(){
+    try{
+        const payload={savedAt:Date.now(),songs:songs.filter(s=>s&&s.id).map(s=>({...s})),deletedTitles:[...firebaseDeletedSongTitles]};
+        localStorage.setItem(FIREBASE_SONG_CACHE_KEY,JSON.stringify(payload));
+    }catch(error){ console.warn("Unable to cache shared song library:",error); }
+}
+
 async function syncAllSongDocumentsIntoLibrary(){
     if(songsSyncInProgress) return;
     songsSyncInProgress = true;
@@ -443,6 +471,7 @@ async function syncAllSongDocumentsIntoLibrary(){
         filterDeletedSongsFromLibrary();
         removeUnstructuredSongsFromLibrary();
         removeDuplicateSongTitles();
+        saveSharedSongLibraryCache();
         songsReady = true;
         if (typeof renderSongs === "function") renderSongs(songs);
         if (typeof renderAllSongsTable === "function" && document.getElementById("allSongsPanel")?.classList.contains("show")) renderAllSongsTable(songs);
@@ -622,12 +651,12 @@ onAuthStateChanged(auth, async function(user) {
         removeDuplicateSongTitles();
         const guestName = document.getElementById("userName");
         if (guestName) guestName.textContent = "Guest";
+        const hadCachedLibrary=loadCachedSharedSongLibrary();
         renderSongs(songs);
         if (typeof renderAllSongsTable === "function") renderAllSongsTable(songs);
-        // Guests/read-only users also read the shared master collection when Firestore rules allow public reads.
-        // If public reads are disabled, the bundled library remains available offline.
+        // Guests/read-only users get the cached shared master immediately, then
+        // refresh it once in the background. Never run the expensive web repair here.
         try { await syncAllSongDocumentsIntoLibrary(); } catch (_) {}
-        await runSongLibraryRepairIfNeeded(true);
         if (typeof renderServices === "function") renderServices();
         if (typeof updateDashboard === "function") updateDashboard();
         await loadSiteVisitCount();
@@ -652,6 +681,7 @@ onAuthStateChanged(auth, async function(user) {
     // show immediately and is reconciled with Firebase in the background.
     filterDeletedSongsFromLibrary();
     removeDuplicateSongTitles();
+    loadCachedSharedSongLibrary();
     songsReady = true;
     renderSongs(songs);
     if (typeof renderAllSongsTable === "function") renderAllSongsTable(songs);
@@ -670,7 +700,10 @@ onAuthStateChanged(auth, async function(user) {
             await migrateLocalDeletedTitlesToFirebase();
             await seedBundledSongsToSharedFirebase();
             await syncAllSongDocumentsIntoLibrary();
-            await runSongLibraryRepairIfNeeded(true);
+            // The Selah/web repair is expensive because it can inspect hundreds
+            // of source pages. Run it only once for an administrator; ordinary
+            // users consume the repaired shared Firebase master without waiting.
+            if (canManageSongs) await runSongLibraryRepairIfNeeded(false);
             filterDeletedSongsFromLibrary();
             removeDuplicateSongTitles();
             songsReady = true;
