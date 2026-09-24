@@ -1069,6 +1069,26 @@ html, body { max-width:100%; }
   body.chordio-direct-printing #worshipHubPrintRoot .print-song-passing .print-passing-value { color:#c00000 !important; }
 }
 </style>
+
+<style id="chordio-print-colors-final-v2">
+/* FINAL PRINT COLOR RULES — labels black, actual key/passing values red. */
+#worshipHubPrintRoot .print-song-artist{font-style:italic!important;color:#111!important;}
+#worshipHubPrintRoot .print-song-key,#worshipHubPrintRoot .print-song-key-label{color:#111!important;}
+#worshipHubPrintRoot .print-song-key .print-song-key-value{color:#c00000!important;font-weight:900!important;}
+#worshipHubPrintRoot .print-song-passing,#worshipHubPrintRoot .print-song-passing-label,#worshipHubPrintRoot .print-passing-label{color:#111!important;}
+#worshipHubPrintRoot .print-song-passing .print-passing-value{color:#c00000!important;font-weight:900!important;}
+#worshipHubPrintRoot .print-passing-separator{color:#777!important;}
+@media print{
+ body.chordio-direct-printing #worshipHubPrintRoot .print-song-artist{font-style:italic!important;color:#111!important;}
+ body.chordio-direct-printing #worshipHubPrintRoot .print-song-key,
+ body.chordio-direct-printing #worshipHubPrintRoot .print-song-key-label,
+ body.chordio-direct-printing #worshipHubPrintRoot .print-song-passing,
+ body.chordio-direct-printing #worshipHubPrintRoot .print-song-passing-label,
+ body.chordio-direct-printing #worshipHubPrintRoot .print-passing-label{color:#111!important;}
+ body.chordio-direct-printing #worshipHubPrintRoot .print-song-key .print-song-key-value,
+ body.chordio-direct-printing #worshipHubPrintRoot .print-song-passing .print-passing-value{color:#c00000!important;font-weight:900!important;}
+}
+</style>
 </head>
 <body>
 <main class="song-paper" id="songPaper">

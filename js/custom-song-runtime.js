@@ -726,10 +726,24 @@ function passingTransposeKey(key, steps){
     return /b/.test(root) ? flat[idx] : sharp[idx];
 }
 function customServiceKey(){
+    // The Song Page is the live source of truth while the user transposes.
+    // Do not wait for the debounced Firebase save before recalculating the
+    // passing chords; use the current on-screen transpose immediately.
     const serviceSong=service?.songs?.[index];
-    return normalizePassingKey(serviceSong?.serviceKey || serviceSong?.key || song?.serviceKey || song?.key || song?.originalKey || "C");
+    const baseKey = normalizePassingKey(
+        song?.originalKey ||
+        song?.baseKey ||
+        serviceSong?.originalKey ||
+        serviceSong?.baseKey ||
+        song?.key ||
+        serviceSong?.key ||
+        "C"
+    );
+    return passingTransposeKey(baseKey, Number(transposeSteps) || 0);
 }
 function customPassingChords(){
+    // Always calculate from the CURRENT Song Page key so + / - transpose
+    // updates Return to Verse 1, Last 3, Outro and Spirit immediately.
     const key=customServiceKey();
     const result=[
         ["RETURN TO VERSE 1",passingTransposeKey(key,7)],
@@ -1172,8 +1186,8 @@ function printCustomSong(){
       <div class="print-song-header">
         <div class="print-song-title">${esc(song.title||"Untitled Song")}</div>
         <div class="print-song-artist">${esc(song.artist||"")}</div>
-        <div class="print-song-key">SONG KEY: <span class="print-song-key-value">${esc(serviceKey||song.originalKey||song.key||"—")}</span></div>
-        <div class="print-song-passing"><b>PASSING CHORDS:</b> <span class="print-passing-value">${esc(passingText||"—")}</span></div>
+        <div class="print-song-key"><span class="print-song-key-label">SONG KEY:</span> <span class="print-song-key-value">${esc(serviceKey||song.originalKey||song.key||"—")}</span></div>
+        <div class="print-song-passing"><span class="print-song-passing-label">PASSING CHORDS:</span> ${passingItems.map(([label,value],i)=>`<span class="print-passing-item"><span class="print-passing-label">${esc(label)}:</span> <span class="print-passing-value">${esc(value)}</span></span>${i<passingItems.length-1?' <span class="print-passing-separator">|</span> ':''}`).join("")}</div>
         <div class="print-song-rule"></div>
       </div>
       <div class="print-song-content">

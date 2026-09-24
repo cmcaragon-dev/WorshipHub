@@ -2134,8 +2134,11 @@ async function printServiceSongs(serviceId) {
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song:last-child{break-after:auto!important;page-break-after:auto!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song h1{margin:0 0 3px!important;font-size:22pt!important;line-height:1.08!important;color:#111!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-artist{font-size:11pt!important;font-weight:600!important;margin-bottom:4px!important;} body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-artist{font-style:italic!important;color:#111!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-key{font-size:10pt!important;margin-bottom:5px!important;} body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-key{color:#111!important;} body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-key .service-print-key-value{color:#c00000!important;font-weight:900!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing{font-size:8.5pt!important;line-height:1.3!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-key{font-size:10pt!important;margin-bottom:5px!important;color:#111!important;} body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-key .service-print-key-value{color:#c00000!important;font-weight:900!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing{font-size:8.5pt!important;line-height:1.3!important;color:#111!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing-item .service-print-passing-label{color:#111!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing-item>span:not(.service-print-passing-label){color:#c00000!important;font-weight:900!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-separator{color:#777!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing-item{display:inline-block!important;margin-right:5px!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-rule,body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer-rule{height:1px!important;background:#222!important;width:100%!important;margin:6px 0 8px!important;flex:0 0 auto!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-content{font-size:9.5pt!important;line-height:1.08!important;column-count:2!important;column-gap:9mm!important;column-fill:auto!important;column-width:auto!important;flex:1 1 auto!important;min-height:0!important;height:auto!important;overflow:hidden!important;}
@@ -2197,7 +2200,7 @@ async function printServiceSongs(serviceId) {
                     <div class="service-print-artist">${escPrint(song.artist || "")}</div>
                     <div class="service-print-key"><b>KEY:</b> <span class="service-print-key-value">${escPrint(normalizePrintKey(song))}</span></div>
                     <div class="service-print-passing" aria-label="Auto-generated passing chords">
-                        <b>PASSING CHORDS:</b> ${passing.map(([label, value]) => `<span class="service-print-passing-item"><b>${escPrint(label)}:</b> <span>${escPrint(value)}</span></span>`).join(' <span class="service-print-separator" aria-hidden="true">|</span> ')}
+                        <b>PASSING CHORDS:</b> ${passing.map(([label, value]) => `<span class="service-print-passing-item"><b class="service-print-passing-label">${escPrint(label)}:</b> <span class="service-print-passing-value">${escPrint(value)}</span></span>`).join(' <span class="service-print-separator" aria-hidden="true">|</span> ')}
                     </div>
                     <div class="service-print-rule"></div>
                 </header>
