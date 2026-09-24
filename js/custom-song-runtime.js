@@ -1165,15 +1165,15 @@ function printCustomSong(){
     root.className="chordio-direct-print-root";
 
     const passingItems=customPassingChords();
-    const passingHtml=passingItems.map(([label,value])=>`<span class="print-passing-item"><span class="print-passing-label">${esc(label)}:</span> <span class="print-passing-value">${esc(value)}</span></span>`).join(` <span class="print-passing-sep">|</span> `);
+    const passingText=passingItems.map(([label,value])=>`${label}: ${value}`).join("  |  ");
     const serviceKey=customServiceKey();
 
     root.innerHTML=`
       <div class="print-song-header">
         <div class="print-song-title">${esc(song.title||"Untitled Song")}</div>
         <div class="print-song-artist">${esc(song.artist||"")}</div>
-        <div class="print-song-key">SONG KEY: <span class="print-key-value">${esc(serviceKey||song.originalKey||song.key||"—")}</span></div>
-        <div class="print-song-passing"><b>PASSING CHORDS:</b> ${passingHtml || `<span class="print-passing-value">—</span>`}</div>
+        <div class="print-song-key">SONG KEY: ${esc(serviceKey||song.originalKey||song.key||"—")}</div>
+        <div class="print-song-passing"><b>PASSING CHORDS:</b> <span class="print-passing-value">${esc(passingText||"—")}</span></div>
         <div class="print-song-rule"></div>
       </div>
       <div class="print-song-content">
