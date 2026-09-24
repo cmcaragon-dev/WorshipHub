@@ -8,7 +8,6 @@
 <link rel="icon" type="image/png" href="images/chordio-favicon.png">
 <title>CHORDIO — Song</title>
 <link href="css/modern.css" rel="stylesheet"/>
-<style>@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800;900&display=swap");</style>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#05070c;color:#fff;font-family:Inter,"Segoe UI",Arial,sans-serif}button{cursor:pointer}.top{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;padding:14px 18px;background:#10182a;border-bottom:1px solid #26334d}.title{flex:1}.title h1{margin:0;font-size:20px}.title small{color:#9fb0ca}.key{font-weight:800;color:#D4AF37}.controls button{border:1px solid #D4AF37;background:#182238;color:#fff;border-radius:8px;padding:8px 12px}.controls button:hover{background:#3a3117;color:#FFD966}.stage{max-width:1400px;margin:0 auto;padding:36px 5vw}.section{margin-bottom:44px}.section-title{text-transform:uppercase;letter-spacing:.12em;color:#D4AF37;font-size:18px;font-weight:800;margin-bottom:22px}.line{font-family:Consolas,Monaco,"Courier New",monospace;margin-bottom:22px;overflow-x:auto}.chords{position:relative;height:32px;white-space:pre;color:#D4AF37 !important;font-size:clamp(18px,2vw,27px);font-weight:800}.chord{position:absolute;white-space:nowrap;color:#D4AF37 !important}.lyrics{white-space:pre;font-size:clamp(22px,3vw,40px);line-height:1.35}.nav{display:flex;justify-content:center;gap:10px;padding:14px;background:#0c1220;border-top:1px solid #26334d;position:sticky;bottom:0}.nav button{border:1px solid #35435e;background:#182238;color:#fff;border-radius:8px;padding:10px 16px;font-weight:800}.nav span{padding:10px 14px;color:#aebbd0}.nav button:disabled{opacity:.35;cursor:not-allowed}.chord{color:#D4AF37 !important}.empty{padding:80px;text-align:center;color:#9fb0ca}
 </style>
@@ -421,13 +420,10 @@ body{min-height:100vh!important}
 .song-actions-menu #saveServiceKeyBtn{color:#14724a!important}
 #stage{display:block!important;width:100%!important;column-count:1!important}
 #stage .section{margin:0 0 24px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;break-inside:avoid!important}
-#stage .section-title{display:inline-block!important;color:#202832!important;background:#e5e7eb!important;padding:4px 9px!important;margin:0 0 10px!important;text-transform:uppercase!important;letter-spacing:.10em!important;font-size:13px!important;font-weight:900!important;border-radius:3px!important}
+#stage .section-title{color:#202832!important;background:transparent!important;padding:0!important;margin:0 0 8px!important;text-transform:uppercase!important;letter-spacing:.10em!important;font-size:13px!important;font-weight:900!important}
 #stage .line.song-line{margin:0 0 9px!important;padding:0!important;overflow:visible!important}
-#stage .line.song-line>.chord{color:#d21f2f!important;font-weight:800!important;font-family:Roboto,sans-serif!important}
-#stage .line.song-line>.lyrics{color:#111!important;font-family:Roboto,sans-serif!important}
-#stage .line.song-line>.chord,#stage .line.song-line>.lyrics{font-family:Roboto,sans-serif!important}
-.song-page-key{color:#d21f2f!important;font-family:Roboto,sans-serif!important}
-.song-passing-chords .custom-presentation-passing-value{color:#d21f2f!important;font-family:Roboto,sans-serif!important}
+#stage .line.song-line>.chord{color:#d21f2f!important;font-weight:800!important}
+#stage .line.song-line>.lyrics{color:#111!important}
 .song-page-meta{margin:0!important;color:#667085!important;font-size:10px!important;letter-spacing:.02em!important}
 .saved-service-note{position:absolute!important;right:20mm!important;bottom:14mm!important;max-width:55%!important;padding:8px 10px!important;border-left:3px solid #8b6500!important;background:#faf8ef!important;color:#30353b!important;font:12px/1.35 Inter,"Segoe UI",Arial,sans-serif!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important}
 .saved-service-note::before{content:"SERVICE NOTE";display:block!important;margin-bottom:3px!important;color:#8b6500!important;font-size:9px!important;font-weight:900!important;letter-spacing:.08em!important}
@@ -438,7 +434,7 @@ body{min-height:100vh!important}
 
 <style id="chordio-song-page-final-controls">
 .song-paper{--song-font-extra:3px;}
-#stage .line.song-line>.chord,#stage .line.song-line>.lyrics{font-size:calc(20px + var(--song-font-extra)) !important;font-family:Roboto,sans-serif!important;}
+#stage .line.song-line>.chord,#stage .line.song-line>.lyrics{font-size:calc(20px + var(--song-font-extra)) !important;}
 #stage .line.song-line>.chord{line-height:calc(20px + var(--song-font-extra)) !important;}
 .song-paper.lyrics-only-mode #stage .line.song-line>.chord{display:none!important;}
 .song-paper.lyrics-only-mode #stage .line.song-line>br{display:none!important;}
@@ -2681,12 +2677,12 @@ body.custom-dark{background:#eef1f5!important;color:#151a20!important;}
 .song-page-heading{min-width:0;flex:1 1 auto;}
 .song-page-title-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
 .song-page-title-row h1{margin:0!important;font-size:clamp(25px,3vw,40px)!important;line-height:1.08!important;font-weight:850!important;color:#18212b!important;}
-.song-page-key{font-size:18px!important;font-weight:800!important;color:#d22d2d!important;font-family:Roboto,sans-serif!important;}
+.song-page-key{font-size:18px!important;font-weight:800!important;color:#8a6500!important;}
 .song-page-artist{margin-top:4px!important;font-size:14px!important;color:#66727d!important;font-weight:600!important;}
 .song-passing-chords{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:12px!important;font-size:12px!important;}
 .song-passing-chords .custom-presentation-passing-item{display:inline-flex!important;gap:5px!important;align-items:center!important;}
 .song-passing-chords .custom-presentation-passing-label{font-size:10px!important;color:#7b5a00!important;font-weight:850!important;letter-spacing:.04em!important;}
-.song-passing-chords .custom-presentation-passing-value{font-size:13px!important;color:#d22d2d!important;font-weight:800!important;font-family:Roboto,sans-serif!important;}
+.song-passing-chords .custom-presentation-passing-value{font-size:13px!important;color:#17212b!important;font-weight:800!important;}
 .song-passing-chords .custom-presentation-passing-separator{color:#b5bcc4!important;}
 .song-page-rule{height:1px!important;background:#d7dde4!important;margin:13px 0 8px!important;width:100%!important;}
 .song-page-meta{font-size:10px!important;color:#87919b!important;letter-spacing:.02em!important;}
@@ -2711,17 +2707,16 @@ body.custom-dark{background:#eef1f5!important;color:#151a20!important;}
   break-inside:avoid!important;
 }
 .song-paper .section-title{
-  display:inline-block!important;
-  color:#202832!important;background:#e5e7eb!important;padding:4px 9px!important;margin:0 0 10px!important;
-  text-transform:uppercase!important;letter-spacing:.10em!important;font-size:13px!important;font-weight:900!important;border-radius:3px!important;
+  color:#202832!important;background:transparent!important;padding:0!important;margin:0 0 10px!important;
+  text-transform:uppercase!important;letter-spacing:.10em!important;font-size:13px!important;font-weight:900!important;
 }
 .song-paper .line{margin:0!important;padding:0!important;overflow:visible!important;}
 .song-paper .chord{
   color:#d22d2d!important;font-weight:800!important;
-  font-family:Roboto,sans-serif!important;
+  font-family:Consolas,Monaco,"Courier New",monospace!important;
 }
 .song-paper .lyrics{
-  color:#111!important;font-family:Roboto,sans-serif!important;
+  color:#111!important;font-family:Consolas,Monaco,"Courier New",monospace!important;
 }
 .service-note-popup{
   position:fixed;right:24px;top:76px;z-index:3000;width:min(360px,calc(100vw - 40px));
