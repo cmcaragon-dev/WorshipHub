@@ -28,7 +28,7 @@
     const side=document.querySelector('.sidebar');
     if(!side || side.dataset.chordioV65Sidebar==='1') return;
     side.dataset.chordioV65Sidebar='1';
-    side.innerHTML=`<button type="button" class="chordio-mobile-sidebar-toggle" aria-label="Open menu" aria-expanded="false">☰</button><div class="chordio-sidebar-welcome">
+    side.innerHTML=`<div class="chordio-sidebar-welcome">
       <div class="chordio-sidebar-welcome-icon modern-wave-hand" aria-hidden="true">👋</div>
       <div class="chordio-sidebar-welcome-text"><div class="chordio-sidebar-welcome-label">HELLO, WELCOME</div><div id="userName" class="chordio-sidebar-welcome-name">User</div></div>
     </div>
@@ -58,7 +58,18 @@
       if(t==='help'){document.dispatchEvent(new KeyboardEvent('keydown',{key:'?',bubbles:true}));return;}
       if(t==='import') return document.getElementById('importSongBtn')?.click();
     });
-    const mobileToggle=side.querySelector('.chordio-mobile-sidebar-toggle');
+    let mobileToggle=document.getElementById('chordioFloatingMenuToggle');
+    if(!mobileToggle){
+      mobileToggle=document.createElement('button');
+      mobileToggle.type='button';
+      mobileToggle.id='chordioFloatingMenuToggle';
+      mobileToggle.className='chordio-mobile-sidebar-toggle';
+      mobileToggle.setAttribute('aria-label','Open menu');
+      mobileToggle.setAttribute('aria-expanded','false');
+      mobileToggle.setAttribute('aria-controls','chordioSidebar');
+      mobileToggle.textContent='☰';
+      document.body.appendChild(mobileToggle);
+    }
     const closeMobileSidebar=()=>{
       document.body.classList.remove('chordio-sidebar-open');
       mobileToggle?.setAttribute('aria-expanded','false');

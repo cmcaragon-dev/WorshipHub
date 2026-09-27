@@ -1123,3 +1123,22 @@ button,input,select,textarea{max-width:100%;box-sizing:border-box}
     word-break:normal!important;
   }
 }
+
+
+/* CHORDIO V75 — true floating mobile menu toggle. The button lives on BODY, never inside the off-canvas sidebar. */
+#chordioFloatingMenuToggle{display:none!important}
+@media(max-width:700px){
+  #chordioFloatingMenuToggle{
+    display:grid!important;position:fixed!important;left:12px!important;top:64px!important;
+    width:44px!important;height:44px!important;z-index:2147483646!important;
+    place-items:center!important;border:1px solid #d7dfe6!important;border-radius:12px!important;
+    background:#fff!important;color:#172a3a!important;font-size:22px!important;line-height:1!important;
+    box-shadow:0 6px 20px rgba(15,23,42,.18)!important;cursor:pointer!important;
+    -webkit-tap-highlight-color:transparent!important;touch-action:manipulation!important;
+  }
+  body.chordio-sidebar-open #chordioFloatingMenuToggle{
+    left:calc(min(82vw,300px) + 12px)!important;
+  }
+  /* Keep the old in-layout toggle hidden; the body-level toggle is always reachable in portrait. */
+  #sidebarMobileToggle,.sidebar-mobile-toggle:not(#chordioFloatingMenuToggle){display:none!important}
+}
