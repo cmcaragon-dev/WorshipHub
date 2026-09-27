@@ -2985,6 +2985,6 @@ onAuthStateChanged(auth,async()=>{
 });
 
 window.stopService = stopCustomService;
-window.WorshipHubCustomSong={transposeUp:()=>setTranspose(1),transposeDown:()=>setTranspose(-1),getTranspose:()=>transposeSteps,getSong:()=>song,startPresentation:startCustomPresentation,exitPresentation:exitCustomPresentation,loadServiceIndex,reload:()=>{song=null;service=null;loading=false;bootPromise=null;load();}};
+window.WorshipHubCustomSong={transposeUp:()=>setTranspose(1),transposeDown:()=>setTranspose(-1),getTranspose:()=>transposeSteps,getSong:()=>song,startPresentation:startCustomPresentation,exitPresentation:exitCustomPresentation,loadServiceIndex,refreshSongLibrary:refreshMultiSongLibrary,reload:()=>{song=null;service=null;loading=false;bootPromise=null;load();}};
 
 setInterval(()=>{try{updateMultiScreenLiveStatus();}catch(_){ }},1500);

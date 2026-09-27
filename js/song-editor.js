@@ -13,6 +13,22 @@ function deletedSongDocId(titleKey){ return DELETED_SONG_DOC_PREFIX + encodeURIC
 function normalizeDeletedTitle(title){
     return String(title || "").trim().replace(/\s+/g, " ").toLocaleLowerCase();
 }
+function normalizeMetadataTitle(title){
+    return String(title || "").trim().replace(/[’‘]/g,"'").replace(/[“”]/g,'"').replace(/\s+/g," ").toLocaleLowerCase();
+}
+function repairSelahMetadata(song){
+    const key=normalizeMetadataTitle(song?.title);
+    if(!key) return {song,changed:false};
+    const reference=songs.find(item=>normalizeMetadataTitle(item?.title)===key && String(item?.source||"").toLowerCase()==="selah");
+    if(!reference) return {song,changed:false};
+    const badArtist=/^selah$/i.test(String(song?.artist||"").trim());
+    const missingLanguage=!String(song?.language||"").trim();
+    if(!badArtist && !missingLanguage) return {song,changed:false};
+    const repaired={...song};
+    if(badArtist && reference.artist) repaired.artist=reference.artist;
+    if(missingLanguage && reference.language) repaired.language=reference.language;
+    return {song:repaired,changed:true};
+}
 function isDeletedTitle(title){
     const key = normalizeDeletedTitle(title);
     if(!key) return false;
@@ -201,7 +217,12 @@ async function loadCustomSongsFromFirebase() {
                 return;
             }
             if (window.WorshipHubDeletedSongs?.isDeletedTitle?.(song.title) || isDeletedTitle(song.title)) return;
-            const normalized = { ...song, id: String(song.id || docSnap.id) };
+            let normalized = { ...song, id: String(song.id || docSnap.id) };
+            const repaired=repairSelahMetadata(normalized);
+            normalized=repaired.song;
+            if(repaired.changed){
+                try{await setDoc(doc(db,"songs",String(normalized.id)),{artist:normalized.artist,language:normalized.language,updatedAt:serverTimestamp()},{merge:true});}catch(error){console.warn("Unable to persist repaired Selah metadata:",error);}
+            }
             let index = songs.findIndex(existing => String(existing.id) === normalized.id);
             if (index < 0) {
                 const titleKey = normalizeDeletedTitle(normalized.title);
@@ -878,8 +899,12 @@ async function saveSong() {
     // master record so its active service occurrence can refresh immediately.
     try {
         const channel = new BroadcastChannel("chordio-song-sync");
-        channel.postMessage({type:"song-updated", song});
+        channel.postMessage({type:"song-updated", song, savedAt:Date.now()});
         channel.close();
+    } catch(_) {}
+    try {
+        localStorage.setItem("chordioSongLastUpdated", JSON.stringify({id:String(song.id), savedAt:Date.now()}));
+        localStorage.removeItem("chordioSongLastUpdated");
     } catch(_) {}
 
     renderLibrary();

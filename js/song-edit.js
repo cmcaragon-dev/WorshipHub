@@ -175,6 +175,11 @@ function openEditor() {
                 });
             });
             document.dispatchEvent(new CustomEvent("worshiphub:song-layout-saved"));
+            try {
+                const channel = new BroadcastChannel("chordio-song-sync");
+                channel.postMessage({type:"song-updated", song:{id:songId, title:window.currentSong?.title||document.title, artist:window.currentSong?.artist||"", chordLayouts:layouts, updatedAt:Date.now()}});
+                channel.close();
+            } catch(_) {}
             panel.remove();
             if (window.WorshipHubSongRuntime?.updateAll) window.WorshipHubSongRuntime.updateAll();
             alert("Song chord positions saved.");

@@ -10,16 +10,14 @@
     const st=document.createElement('style'); st.id='chordio-mobile-sidebar-style';
     st.textContent=`
       #chordioMobileSidebarOverlay{display:none}
-      .chordio-mobile-sidebar-close{display:none}
       @media(max-width:700px){
         body{overflow-x:hidden}
         .sidebar{position:fixed!important;left:0!important;top:0!important;bottom:0!important;width:min(84vw,320px)!important;max-width:320px!important;z-index:10020!important;transform:translateX(-105%)!important;transition:transform .22s ease!important;box-shadow:18px 0 45px rgba(0,0,0,.22)!important;overflow-y:auto!important;background:#fff!important}
         body.chordio-sidebar-open .sidebar{transform:translateX(0)!important}
         .chordio-mobile-sidebar-toggle{display:grid!important;position:fixed!important;left:12px!important;top:12px!important;z-index:10010!important;width:42px!important;height:42px!important;place-items:center!important;border:1px solid #d7dfe5!important;border-radius:10px!important;background:#fff!important;color:#1d2c38!important;font-size:22px!important;box-shadow:0 4px 16px rgba(0,0,0,.12)!important}
-        .chordio-mobile-sidebar-close{display:grid!important;position:absolute!important;right:12px!important;top:12px!important;width:36px!important;height:36px!important;place-items:center!important;border:1px solid #d7dfe5!important;border-radius:9px!important;background:#fff!important;color:#4b5964!important;font-size:17px!important;z-index:2!important}
         #chordioMobileSidebarOverlay{display:block;position:fixed;inset:0;z-index:10015;border:0;background:rgba(10,20,28,.34);opacity:0;pointer-events:none;transition:opacity .2s ease}
         body.chordio-sidebar-open #chordioMobileSidebarOverlay{opacity:1;pointer-events:auto}
-        .chordio-sidebar-welcome{padding-top:64px!important}
+        .chordio-sidebar-welcome{padding-top:18px!important}
       }
     `;
     document.head.appendChild(st);
@@ -30,7 +28,7 @@
     const side=document.querySelector('.sidebar');
     if(!side || side.dataset.chordioV65Sidebar==='1') return;
     side.dataset.chordioV65Sidebar='1';
-    side.innerHTML=`<button type="button" class="chordio-mobile-sidebar-toggle" aria-label="Open menu" aria-expanded="false">☰</button><button type="button" class="chordio-mobile-sidebar-close" aria-label="Close menu">✕</button><div class="chordio-sidebar-welcome">
+    side.innerHTML=`<button type="button" class="chordio-mobile-sidebar-toggle" aria-label="Open menu" aria-expanded="false">☰</button><div class="chordio-sidebar-welcome">
       <div class="chordio-sidebar-welcome-icon modern-wave-hand" aria-hidden="true">👋</div>
       <div class="chordio-sidebar-welcome-text"><div class="chordio-sidebar-welcome-label">HELLO, WELCOME</div><div id="userName" class="chordio-sidebar-welcome-name">User</div></div>
     </div>
@@ -61,7 +59,6 @@
       if(t==='import') return document.getElementById('importSongBtn')?.click();
     });
     const mobileToggle=side.querySelector('.chordio-mobile-sidebar-toggle');
-    const mobileClose=side.querySelector('.chordio-mobile-sidebar-close');
     const closeMobileSidebar=()=>{
       document.body.classList.remove('chordio-sidebar-open');
       mobileToggle?.setAttribute('aria-expanded','false');
@@ -230,7 +227,7 @@
       document.body.appendChild(m);
       m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('show')});
       $$('[data-close]',m).forEach(b=>b.onclick=()=>m.classList.remove('show'));
-      $('#v64AddSongButton',m).onclick=()=>{$('#v64SongPicker',m).classList.add('show');renderSongPicker(m);setTimeout(()=>$('#v64PickerSearch',m)?.focus(),50)};
+      $('#v64AddSongButton',m).onclick=async()=>{$('#v64SongPicker',m).classList.add('show');if(window.WorshipHubCustomSong?.refreshSongLibrary){try{await window.WorshipHubCustomSong.refreshSongLibrary();}catch(_){}}renderSongPicker(m);setTimeout(()=>$('#v64PickerSearch',m)?.focus(),50)};
       $('.v64-picker-close',m).onclick=()=>$('#v64SongPicker',m).classList.remove('show');
       $('#v64PickerSearch',m).addEventListener('input',()=>renderSongPicker(m));
       $('#v63SaveService',m).onclick=saveNewService;

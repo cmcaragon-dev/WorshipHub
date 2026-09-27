@@ -34,6 +34,29 @@ import {
 import { songs } from "./initial-songs.js";
 window.songs = songs;
 
+
+function normalizeSongTitleKey(value){
+    return String(value || "").trim().replace(/[’‘]/g,"'").replace(/[“”]/g,'"').replace(/\s+/g," ").toLocaleLowerCase();
+}
+
+// The bundled Selah import already contains the researched artist/language
+// metadata. Use it as the authoritative fallback whenever an older Firebase
+// document still contains the placeholder artist "Selah" or an empty language.
+function repairLegacySelahMetadata(song){
+    if(!song) return {song,changed:false};
+    const key=normalizeSongTitleKey(song.title);
+    if(!key) return {song,changed:false};
+    const reference=songs.find(item=>normalizeSongTitleKey(item?.title)===key && String(item?.source||"").toLowerCase()==="selah");
+    if(!reference) return {song,changed:false};
+    const badArtist=/^selah$/i.test(String(song.artist||"").trim());
+    const missingLanguage=!String(song.language||"").trim();
+    if(!badArtist && !missingLanguage) return {song,changed:false};
+    const repaired={...song};
+    if(badArtist && reference.artist) repaired.artist=reference.artist;
+    if(missingLanguage && reference.language) repaired.language=reference.language;
+    return {song:repaired,changed:true};
+}
+
 // =====================================
 // CUSTOM SONG LIBRARY SYNC
 // =====================================
@@ -392,13 +415,34 @@ async function syncAllSongDocumentsIntoLibrary(){
     }
 }
 
-window.addEventListener("worshiphub:songs-updated", function() {
+window.addEventListener("worshiphub:songs-updated", function(event) {
+    const updated=event?.detail?.song;
+    if(updated?.id){
+        const i=songs.findIndex(x=>String(x?.id||"")===String(updated.id));
+        if(i>=0) songs[i]={...songs[i],...updated};
+        // Refresh every in-memory Service Planner occurrence from the edited
+        // master song while preserving service-specific settings.
+        services.forEach(service=>{
+            if(!Array.isArray(service?.songs)) return;
+            service.songs=service.songs.map(item=>{
+                if(String(item?.id||"")!==String(updated.id)) return item;
+                const keep={};
+                ["_chordioInstanceId","serviceKey","transpose","presentationNote","pageSlides","hiddenParts","hiddenSections","partVisibility","lyricsDisplay","customLineBreaks","customSpacing","arrangement","selectedPart","selectedPartIndex"].forEach(k=>{if(Object.prototype.hasOwnProperty.call(item,k))keep[k]=item[k];});
+                return {...updated,...keep,serviceKey:item?.serviceKey||updated.serviceKey||updated.key,transpose:item?.transpose??updated.transpose??0};
+            });
+        });
+        window.services=services;
+        const activeId=localStorage.getItem("currentServiceId");
+        const active=services.find(x=>String(x.id)===String(activeId));
+        if(active){try{localStorage.setItem("currentServiceSnapshot",JSON.stringify(active));}catch(_){} }
+    }
     syncCustomSongsIntoLibrary();
     filterDeletedSongsFromLibrary();
     removeUnstructuredSongsFromLibrary();
     removeDuplicateSongTitles();
     if (typeof renderSongs === "function") renderSongs(songs);
     if (typeof renderAllSongsTable === "function") renderAllSongsTable(songs);
+    if (typeof renderSongPicker === "function") renderSongPicker(songs);
     if (typeof updateDashboard === "function") updateDashboard();
 });
 
