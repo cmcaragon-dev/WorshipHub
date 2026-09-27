@@ -148,6 +148,29 @@ function sizeSongColumnsToContent(stage) {
     stage.style.setProperty("--wh-song-stage-width", `${stageWidth}px`);
     stage.style.width = `${stageWidth}px`;
     stage.style.maxWidth = "none";
+
+    // MOBILE SONG PAGE: keep the complete A4-style song canvas intact, but
+    // proportionally scale the whole page so its full width fits the phone.
+    // This is deliberately a scale/zoom rather than wrapping the chord grid,
+    // so title, artist, key, passing chords, lyrics and chord alignment remain
+    // visible together on a small screen.
+    if (window.matchMedia && window.matchMedia("(max-width: 700px)").matches) {
+        const available = Math.max(240, window.innerWidth - 20);
+        const scale = Math.min(1, available / stageWidth);
+        stage.style.setProperty("--chordio-mobile-song-scale", String(scale));
+        stage.style.setProperty("zoom", String(scale));
+        stage.style.transform = "none";
+        stage.style.transformOrigin = "top left";
+        stage.style.marginRight = "0";
+        stage.style.marginBottom = "0";
+    } else {
+        stage.style.removeProperty("--chordio-mobile-song-scale");
+        stage.style.removeProperty("zoom");
+        stage.style.removeProperty("transform");
+        stage.style.removeProperty("transform-origin");
+        stage.style.removeProperty("margin-right");
+        stage.style.removeProperty("margin-bottom");
+    }
     stage.dataset.measuredSong = String(song.id || song.title || "");
 }
 

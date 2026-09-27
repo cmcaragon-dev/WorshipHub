@@ -1142,3 +1142,29 @@ button,input,select,textarea{max-width:100%;box-sizing:border-box}
   /* Keep the old in-layout toggle hidden; the body-level toggle is always reachable in portrait. */
   #sidebarMobileToggle,.sidebar-mobile-toggle:not(#chordioFloatingMenuToggle){display:none!important}
 }
+
+/* CHORDIO V5 — Small-device Song Page: fit the complete A4-style canvas
+   to the phone width instead of cropping, wrapping, or requiring a horizontal
+   page scroll. custom-song-runtime.js calculates the proportional zoom. */
+@media (max-width:700px){
+  #stage.stage,
+  .stage#stage{
+    overflow:visible!important;
+    box-sizing:border-box!important;
+    transform-origin:top left!important;
+    -webkit-transform-origin:top left!important;
+    touch-action:pan-y!important;
+  }
+  #stage .section,
+  #stage .line.song-line,
+  #stage .line.song-line > .chord,
+  #stage .line.song-line > .lyrics{
+    overflow:visible!important;
+    max-width:100%!important;
+  }
+  #stage .line.song-line > .chord,
+  #stage .line.song-line > .lyrics{
+    word-break:normal!important;
+    overflow-wrap:normal!important;
+  }
+}
