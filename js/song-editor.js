@@ -563,10 +563,18 @@ async function refreshCustomSongInServices(updatedSong){
             const nextSongs=data.songs.map(item=>{
                 if(String(item?.id||"")!==String(updatedSong.id)) return item;
                 changed=true;
+                // Master song content is authoritative, but preserve fields that
+                // belong to this particular Service Planner occurrence.
+                const occurrenceOnly = {};
+                ["_chordioInstanceId","serviceKey","transpose","presentationNote",
+                 "pageSlides","hiddenParts","hiddenSections","partVisibility",
+                 "lyricsDisplay","customLineBreaks","customSpacing","arrangement",
+                 "selectedPart","selectedPartIndex"].forEach(key=>{
+                    if(Object.prototype.hasOwnProperty.call(item,key)) occurrenceOnly[key]=item[key];
+                });
                 return {
-                    ...item,
                     ...updatedSong,
-                    // Service-specific key/transpose remain authoritative.
+                    ...occurrenceOnly,
                     serviceKey:item?.serviceKey || updatedSong.serviceKey || updatedSong.key,
                     transpose:item?.transpose ?? updatedSong.transpose ?? 0
                 };
@@ -866,6 +874,13 @@ async function saveSong() {
     window.dispatchEvent(new CustomEvent("worshiphub:songs-updated", {
         detail: { song }
     }));
+    // Multi-Screen can be running in another tab/window. Broadcast the saved
+    // master record so its active service occurrence can refresh immediately.
+    try {
+        const channel = new BroadcastChannel("chordio-song-sync");
+        channel.postMessage({type:"song-updated", song});
+        channel.close();
+    } catch(_) {}
 
     renderLibrary();
     closeEditor();

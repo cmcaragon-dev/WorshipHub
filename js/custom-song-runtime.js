@@ -1649,6 +1649,55 @@ window.chordioSyncServicePlannerOrder = async function(updatedSongs){
 };
 
 let multiSongLibraryCache=null;
+async function refreshActiveServiceOccurrenceFromMaster(updatedSong){
+    if(!updatedSong?.id || !service?.songs?.length) return false;
+    let changed=false;
+    const nextSongs=service.songs.map(item=>{
+        if(String(item?.id||"")!==String(updatedSong.id)) return item;
+        changed=true;
+        const occurrenceOnly={};
+        ["_chordioInstanceId","serviceKey","transpose","presentationNote",
+         "pageSlides","hiddenParts","hiddenSections","partVisibility",
+         "lyricsDisplay","customLineBreaks","customSpacing","arrangement",
+         "selectedPart","selectedPartIndex"].forEach(key=>{
+            if(Object.prototype.hasOwnProperty.call(item,key)) occurrenceOnly[key]=item[key];
+        });
+        return {...updatedSong,...occurrenceOnly,
+            serviceKey:item?.serviceKey || updatedSong.serviceKey || updatedSong.key,
+            transpose:item?.transpose ?? updatedSong.transpose ?? 0};
+    });
+    if(!changed) return false;
+    service={...service,songs:nextSongs};
+    try{localStorage.setItem("currentServiceSnapshot",JSON.stringify(service));}catch(_){}
+    const active=service.songs[index];
+    if(active && String(active.id)===String(updatedSong.id)){
+        song=applyServiceKeyToSong({...active,sections:normalizeSections(active.sections)});
+        transposeSteps=Number(song.transpose||0);
+        render();
+        if(document.getElementById("customPresentationScreen")?.classList.contains("show")) renderCustomPresentation();
+        if(multiScreenIsOutput){multiScreenLastOutputState=multiScreenMessage();renderMultiScreenOutput(multiScreenLastOutputState);}
+    }
+    return true;
+}
+
+function initSongSyncChannel(){
+    try{
+        const channel=new BroadcastChannel("chordio-song-sync");
+        channel.onmessage=async event=>{
+            const msg=event?.data||{};
+            if(msg.type!=="song-updated" || !msg.song?.id) return;
+            multiSongLibraryCache=null;
+            const master=await refreshMasterSong(msg.song.id);
+            const updated=master||msg.song;
+            await refreshActiveServiceOccurrenceFromMaster(updated);
+            // Refresh the Multi-Screen Add Song picker if it is open.
+            renderMultiAddSongList();
+        };
+        window.addEventListener("beforeunload",()=>{try{channel.close();}catch(_){}},{once:true});
+        window.chordioSongSyncChannel=channel;
+    }catch(_){}
+}
+
 async function refreshMultiSongLibrary(){
     try{
         // Keep local custom songs consistent with the main WorshipHub library.
@@ -1659,7 +1708,8 @@ async function refreshMultiSongLibrary(){
             if(i>=0) worshipHubSongs[i]=item; else worshipHubSongs.push(item);
         });
     }catch(_){}
-    if(multiSongLibraryCache)return multiSongLibraryCache;
+    // The song picker must be a fresh view of the shared song library after
+    // any song edit. Do not return a stale in-memory cache here.
     multiSongLibraryCache=worshipHubSongs;
     // Also pick up custom/master song documents saved directly in Firebase.
     if(auth.currentUser){
@@ -1681,6 +1731,7 @@ function multiSongLibrary(){
 }
 function openMultiAddSong(){
     const modal=document.getElementById("multiAddSongModal"); if(!modal)return;
+    multiSongLibraryCache=null;
     modal.classList.add("open"); modal.setAttribute("aria-hidden","false");
     const search=document.getElementById("multiAddSongSearch"); if(search){search.value="";setTimeout(()=>search.focus(),50);}
     renderMultiAddSongList();
@@ -2699,6 +2750,7 @@ function loadOutputSongFallback(id){
 }
 
 function initMultiScreen(){
+    initSongSyncChannel();
     initOnlineBibleControls();
     const params=new URLSearchParams(location.search);multiScreenIsOutput=params.get("multiScreen")==="1";multiScreenDisplayId=params.get("display")||"";
     try{multiScreenChannel=new BroadcastChannel("chordio-multiscreen");}catch(_){multiScreenChannel=null;}
