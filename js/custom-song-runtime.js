@@ -1263,7 +1263,11 @@ let multiScreenPreviewSlots = (()=>{ try { const a=JSON.parse(localStorage.getIt
 let multiScreenPreviewExpanded = 0;
 let multiScreenBackground = (()=>{ try{return JSON.parse(localStorage.getItem("chordioMultiScreenBackground")||"null")||{type:"none",url:""};}catch(_){return {type:"none",url:""};} })();
 let multiScreenSongBackgrounds = (()=>{ try{return JSON.parse(localStorage.getItem("chordioMultiScreenSongBackgrounds")||"null")||{};}catch(_){return {};} })();
-function multiScreenSongBackgroundKey(data=song){return String(data?.id||data?.title||"song");}
+function multiScreenSongBackgroundKey(data=song){
+    const serviceId=String(localStorage.getItem("currentServiceId")||service?.id||"service");
+    const songId=String(data?.id||data?.title||"song");
+    return `${serviceId}::${songId}`;
+}
 function getMultiScreenSongBackground(data=song){const key=multiScreenSongBackgroundKey(data);return multiScreenSongBackgrounds[key]||((service?.multiScreenSongBackgrounds||{})[key]||null)||null;}
 function getMultiScreenActiveBackground(data=song){return getMultiScreenSongBackground(data)||multiScreenBackground||{type:"none",url:""};}
 

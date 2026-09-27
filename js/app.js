@@ -1266,7 +1266,7 @@ if (newServiceFromPlanner) {
     };
 }
 
-servicePlannerBtn.onclick = async function(){
+window.openServicePlanner = async function(){
 
     servicePanel.classList.add("show");
     document.body.classList.add("service-planner-open");
@@ -1285,7 +1285,9 @@ servicePlannerBtn.onclick = async function(){
     }
 
     renderServices();
-}
+};
+
+servicePlannerBtn.onclick = window.openServicePlanner;
 
 function clearActiveServiceState(){
     // Closing the planner must fully clear the presentation session.

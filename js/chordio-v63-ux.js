@@ -67,7 +67,6 @@
       const open=document.body.classList.toggle('chordio-sidebar-open');
       mobileToggle.setAttribute('aria-expanded',String(open));
     });
-    mobileClose?.addEventListener('click',closeMobileSidebar);
     let mobileOverlay=document.getElementById('chordioMobileSidebarOverlay');
     if(!mobileOverlay){
       mobileOverlay=document.createElement('button');
@@ -95,7 +94,7 @@
     const support=document.createElement('div'); support.className='chordio-hidden-support';
     support.innerHTML='<button id="servicePlannerBtn" type="button"></button><button id="addSongBtn" type="button"></button><button id="importSongBtn" type="button"></button>';
     side.appendChild(support);
-    support.querySelector('#servicePlannerBtn').onclick=()=>document.querySelector('#servicePanel')?.classList.add('show');
+    support.querySelector('#servicePlannerBtn').onclick=()=>window.openServicePlanner?.();
     support.querySelector('#addSongBtn').onclick=()=>document.querySelector('#songEditorPanel,#songEditor')?.classList.add('show');
   }
 
