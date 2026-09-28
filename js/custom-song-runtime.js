@@ -1820,12 +1820,16 @@ async function addSongToCurrentMultiService(source){
 function openEmbeddedMultiSongEditor(songId, sourceSong=null){
     const existing=document.getElementById("multiSongEditorModal");
     if(existing) existing.remove();
-    const modal=document.createElement("div");
+    // Use the browser's native top layer so the editor is always in front of the
+    // Multi-Screen page and cannot be trapped behind another stacking context.
+    const modal=document.createElement("dialog");
     modal.id="multiSongEditorModal";
     modal.className="multi-song-editor-modal";
-    modal.innerHTML=`<div class="multi-song-editor-backdrop" data-close-editor="1"></div><section class="multi-song-editor-dialog" role="dialog" aria-modal="true" aria-label="Edit Song"><div class="multi-song-editor-head"><strong>EDIT SONG</strong><button type="button" class="multi-song-editor-close" aria-label="Close">✕</button></div><iframe title="CHORDIO Song Editor" src="index.html?editSong=${encodeURIComponent(songId)}&embeddedEditor=1" loading="eager"></iframe></section>`;
+    modal.setAttribute("aria-label","Edit Song");
+    modal.innerHTML=`<div class="multi-song-editor-backdrop" data-close-editor="1"></div><section class="multi-song-editor-dialog" role="document"><div class="multi-song-editor-head"><strong>EDIT SONG</strong><button type="button" class="multi-song-editor-close" aria-label="Close">✕</button></div><iframe title="CHORDIO Song Editor" src="index.html?editSong=${encodeURIComponent(songId)}&embeddedEditor=1" loading="eager"></iframe></section>`;
     document.body.appendChild(modal);
-    const close=()=>modal.remove();
+    try{ modal.showModal(); }catch(_){ modal.setAttribute("open",""); }
+    const close=()=>{ try{ if(modal.open) modal.close(); }catch(_){} modal.remove(); };
     const iframe=modal.querySelector("iframe");
     iframe?.addEventListener("load",()=>{
         try{

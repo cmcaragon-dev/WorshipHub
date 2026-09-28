@@ -3014,3 +3014,45 @@ html,body{max-width:100%;overflow-x:hidden!important;}
   #multiScreenControl .multi-song-editor-dialog{width:100vw!important;height:100dvh!important;}
 }
 </style>
+<style id="chordio-v79-multiscreen-editor-top-layer">
+/* V79 — Multi-Screen Song Editor always stays in the browser top layer. */
+#multiSongEditorModal.multi-song-editor-modal{
+  position:fixed!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  max-width:none!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:14px!important;
+  border:0!important;
+  background:transparent!important;
+  overflow:hidden!important;
+  z-index:2147483647!important;
+}
+#multiSongEditorModal.multi-song-editor-modal::backdrop{
+  background:rgba(0,0,0,.72)!important;
+  backdrop-filter:blur(2px)!important;
+}
+#multiSongEditorModal .multi-song-editor-backdrop{
+  position:absolute!important;
+  inset:0!important;
+  background:transparent!important;
+  z-index:0!important;
+}
+#multiSongEditorModal .multi-song-editor-dialog{
+  position:relative!important;
+  z-index:1!important;
+  width:min(1180px,96vw)!important;
+  height:min(900px,94vh)!important;
+  margin:auto!important;
+}
+#multiSongEditorModal .multi-song-editor-dialog iframe{
+  position:relative!important;
+  z-index:2!important;
+}
+@media(max-width:700px){
+  #multiSongEditorModal.multi-song-editor-modal{padding:0!important;}
+  #multiSongEditorModal .multi-song-editor-dialog{width:100vw!important;height:100dvh!important;border-radius:0!important;}
+}
+</style>
