@@ -908,6 +908,12 @@ async function saveSong() {
     } catch(_) {}
 
     renderLibrary();
+    const embeddedEditor = new URLSearchParams(window.location.search).get("embeddedEditor") === "1";
+    if(embeddedEditor){
+        try{ window.parent.postMessage({type:"chordio-embedded-song-saved",song},"*"); }catch(_){}
+        closeEditor();
+        return;
+    }
     closeEditor();
     alert("Song saved successfully. It is now available in All Songs and Service Planner.");
 }

@@ -1817,6 +1817,41 @@ async function addSongToCurrentMultiService(source){
         setMultiSlideStatus(`"${source.title||"Song"}" added to Service`);
     }catch(error){console.error("Unable to add song to Service Planner:",error);alert("Unable to add song to this Service Planner.");}
 }
+function openEmbeddedMultiSongEditor(songId){
+    const existing=document.getElementById("multiSongEditorModal");
+    if(existing) existing.remove();
+    const modal=document.createElement("div");
+    modal.id="multiSongEditorModal";
+    modal.className="multi-song-editor-modal";
+    modal.innerHTML=`<div class="multi-song-editor-backdrop" data-close-editor="1"></div><section class="multi-song-editor-dialog" role="dialog" aria-modal="true" aria-label="Edit Song"><div class="multi-song-editor-head"><strong>EDIT SONG</strong><button type="button" class="multi-song-editor-close" aria-label="Close">✕</button></div><iframe title="CHORDIO Song Editor" src="index.html?editSong=${encodeURIComponent(songId)}&embeddedEditor=1" loading="eager"></iframe></section>`;
+    document.body.appendChild(modal);
+    const close=()=>modal.remove();
+    modal.querySelector(".multi-song-editor-close")?.addEventListener("click",close);
+    modal.querySelector("[data-close-editor]")?.addEventListener("click",close);
+    window.addEventListener("message",function handler(ev){
+        if(ev.source!==modal.querySelector("iframe")?.contentWindow) return;
+        if(ev.data?.type!=="chordio-embedded-song-saved") return;
+        window.removeEventListener("message",handler);
+        close();
+        void (async()=>{
+            try{
+                const serviceId=localStorage.getItem("currentServiceId");
+                if(serviceId&&auth.currentUser){
+                    const snap=await getDoc(doc(db,"users",auth.currentUser.uid,"services",String(serviceId)));
+                    if(snap.exists()) service={id:snap.id,...snap.data()};
+                }
+                if(ev.data.song) await refreshActiveServiceOccurrenceFromMaster(ev.data.song);
+                await refreshMultiSongLibrary();
+                renderMultiServiceSongs();
+                renderMultiAddSongList();
+                renderMultiScreenControl();
+                multiScreenBroadcast({});
+                setMultiSlideStatus(`"${ev.data.song?.title||"Song"}" updated`);
+            }catch(error){console.warn("Unable to refresh Multi Screen after embedded song edit:",error);}
+        })();
+    },{once:false});
+}
+
 function renderMultiServiceSongs(){
     const box=document.getElementById("multiServiceSongList");if(!box)return;box.innerHTML="";
     const queue=multiScreenQueue();
@@ -1837,12 +1872,7 @@ function renderMultiServiceSongs(){
             e.preventDefault();e.stopPropagation();
             const songId=String(item?.id||"").trim();
             if(!songId){alert("This song does not have a valid Song ID.");return;}
-            // Open the existing full CHORDIO Song Editor with this exact master
-            // song. Saving there writes to /songs and refreshes every Service
-            // Planner occurrence while preserving occurrence-specific settings.
-            const editorUrl=`index.html?editSong=${encodeURIComponent(songId)}&fromMultiScreen=1`;
-            const win=window.open(editorUrl,"_blank","noopener");
-            if(!win) alert("The Song Editor could not be opened. Please allow pop-ups for CHORDIO.");
+            openEmbeddedMultiSongEditor(songId);
         });
         b.querySelector(".multi-service-song-delete")?.addEventListener("click",async e=>{
             e.preventDefault();e.stopPropagation();

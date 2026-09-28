@@ -2438,7 +2438,7 @@ body.multi-screen-output-page #multiOutputPageSlide:has(+ *){}
   position:relative!important;
   cursor:grab!important;
   display:grid!important;
-  grid-template-columns:20px 25px minmax(0,1fr) 28px!important;
+  grid-template-columns:20px 25px minmax(0,1fr) 34px 28px!important;
   grid-template-rows:auto auto auto!important;
   column-gap:6px!important;
   align-items:center!important;
@@ -2450,7 +2450,7 @@ body.multi-screen-output-page #multiOutputPageSlide:has(+ *){}
 #multiScreenControl .multi-service-song .song-meta{grid-column:3!important;grid-row:2!important;min-width:0!important}
 #multiScreenControl .multi-service-song .song-note{grid-column:3!important;grid-row:3!important;min-width:0!important}
 #multiScreenControl .multi-service-song-delete{
-  grid-column:4!important;grid-row:1/4!important;
+  grid-column:5!important;grid-row:1/4!important;
   width:28px!important;height:28px!important;padding:0!important;
   border:1px solid #7f3b3b!important;border-radius:5px!important;
   background:#2a1719!important;color:#ff9b9b!important;
@@ -2911,4 +2911,33 @@ body.custom-dark{background:#eef1f5!important;color:#151a20!important;}
 #multiScreenControl .multi-service-song-edit:hover{background:#ffeaa0!important;border-color:#b89000!important;}
 #multiScreenControl .multi-service-song-delete{margin-left:0!important;}
 @media(max-width:700px){#multiScreenControl .multi-service-song-edit{padding:6px 7px!important;font-size:10px!important;}}
+</style>
+
+<style id="chordio-v77-mobile-song-page-and-editor">
+/* Mobile Song Page: preserve the normal page proportions/typography. Do not shrink the page. */
+html,body{overflow-x:auto!important;-webkit-overflow-scrolling:touch!important;}
+.song-paper{width:210mm!important;min-width:210mm!important;max-width:none!important;min-height:297mm!important;box-sizing:border-box!important;}
+@media (max-width:850px){
+  .song-paper{width:210mm!important;min-width:210mm!important;max-width:none!important;margin:12px 12px 32px!important;padding:20mm!important;}
+  .song-paper-heading h1{font-size:30px!important;}
+  .song-page-artist{font-size:15px!important;}
+  #stage .line.song-line>.chord,#stage .line.song-line>.lyrics{font-size:23px!important;line-height:1.25!important;}
+}
+@media (max-width:600px){
+  .song-paper{width:210mm!important;min-width:210mm!important;margin:10px 10px 28px!important;padding:20mm!important;}
+}
+
+/* Multi Screen inline editor: no popup/window permission required. */
+.multi-song-editor-modal{position:fixed!important;inset:0!important;z-index:999999!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:14px!important;}
+.multi-song-editor-backdrop{position:absolute!important;inset:0!important;background:rgba(0,0,0,.72)!important;backdrop-filter:blur(2px)!important;}
+.multi-song-editor-dialog{position:relative!important;z-index:1!important;width:min(1180px,96vw)!important;height:min(900px,94vh)!important;background:#fff!important;border-radius:12px!important;overflow:hidden!important;box-shadow:0 24px 80px rgba(0,0,0,.4)!important;display:flex!important;flex-direction:column!important;}
+.multi-song-editor-head{height:48px!important;flex:0 0 48px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:0 14px!important;background:#10182a!important;color:#fff!important;border-bottom:1px solid #26334d!important;}
+.multi-song-editor-close{width:34px!important;height:34px!important;border:1px solid #53627a!important;border-radius:7px!important;background:#182238!important;color:#fff!important;font-size:16px!important;font-weight:900!important;cursor:pointer!important;}
+.multi-song-editor-close:hover{background:#6b2228!important;border-color:#ff7777!important;}
+.multi-song-editor-dialog iframe{display:block!important;flex:1 1 auto!important;width:100%!important;height:100%!important;border:0!important;background:#fff!important;}
+@media(max-width:700px){.multi-song-editor-modal{padding:0!important}.multi-song-editor-dialog{width:100vw!important;height:100vh!important;border-radius:0!important}.multi-song-editor-head{height:46px!important;flex-basis:46px!important}}
+</style>
+
+<style id="chordio-v77-multiscreen-edit-placement">
+#multiScreenControl .multi-service-song-edit{grid-column:4!important;grid-row:1/4!important;width:30px!important;height:28px!important;margin:0!important;padding:0!important;align-self:center!important;justify-self:end!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;}
 </style>
