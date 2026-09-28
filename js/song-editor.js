@@ -969,6 +969,22 @@ onAuthStateChanged(auth, user => {
 document.addEventListener("DOMContentLoaded", () => {
     loadCustomSongs();
 
+    // Multi-Screen opens this page inside an embedded editor. The parent already
+    // has the exact Service Planner song occurrence, so accept it directly to
+    // avoid waiting for the Firebase library/query race that previously left
+    // the Edit button appearing to do nothing.
+    window.addEventListener("message", (event) => {
+        if (event.data?.type !== "chordio-open-embedded-song-editor") return;
+        const incoming = event.data?.song;
+        if (!incoming || !incoming.id) return;
+        try {
+            openEditor(incoming);
+            document.body.classList.add("chordio-embedded-editor-active");
+        } catch (error) {
+            console.error("Unable to open embedded CHORDIO song editor:", error);
+        }
+    });
+
     const keySelect = document.getElementById("editorSongKey");
     if (keySelect) keySelect.innerHTML = SHARP_KEYS.map(key => `<option value="${key}">${key}</option>`).join("");
 

@@ -1817,7 +1817,7 @@ async function addSongToCurrentMultiService(source){
         setMultiSlideStatus(`"${source.title||"Song"}" added to Service`);
     }catch(error){console.error("Unable to add song to Service Planner:",error);alert("Unable to add song to this Service Planner.");}
 }
-function openEmbeddedMultiSongEditor(songId){
+function openEmbeddedMultiSongEditor(songId, sourceSong=null){
     const existing=document.getElementById("multiSongEditorModal");
     if(existing) existing.remove();
     const modal=document.createElement("div");
@@ -1826,6 +1826,12 @@ function openEmbeddedMultiSongEditor(songId){
     modal.innerHTML=`<div class="multi-song-editor-backdrop" data-close-editor="1"></div><section class="multi-song-editor-dialog" role="dialog" aria-modal="true" aria-label="Edit Song"><div class="multi-song-editor-head"><strong>EDIT SONG</strong><button type="button" class="multi-song-editor-close" aria-label="Close">✕</button></div><iframe title="CHORDIO Song Editor" src="index.html?editSong=${encodeURIComponent(songId)}&embeddedEditor=1" loading="eager"></iframe></section>`;
     document.body.appendChild(modal);
     const close=()=>modal.remove();
+    const iframe=modal.querySelector("iframe");
+    iframe?.addEventListener("load",()=>{
+        try{
+            iframe.contentWindow?.postMessage({type:"chordio-open-embedded-song-editor",song:sourceSong||null},"*");
+        }catch(_){ }
+    });
     modal.querySelector(".multi-song-editor-close")?.addEventListener("click",close);
     modal.querySelector("[data-close-editor]")?.addEventListener("click",close);
     window.addEventListener("message",function handler(ev){
@@ -1872,7 +1878,7 @@ function renderMultiServiceSongs(){
             e.preventDefault();e.stopPropagation();
             const songId=String(item?.id||"").trim();
             if(!songId){alert("This song does not have a valid Song ID.");return;}
-            openEmbeddedMultiSongEditor(songId);
+            openEmbeddedMultiSongEditor(songId, item);
         });
         b.querySelector(".multi-service-song-delete")?.addEventListener("click",async e=>{
             e.preventDefault();e.stopPropagation();

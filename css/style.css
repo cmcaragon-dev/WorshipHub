@@ -1000,3 +1000,44 @@ img,video,iframe{max-width:100%}
   table{display:block;max-width:100%;overflow-x:auto}
   .modal-content,.panel,.card{max-width:96vw!important;box-sizing:border-box}
 }
+
+
+/* CHORDIO V78 — cross-page responsive layout finalization */
+html,body{width:100%;max-width:100%;overflow-x:hidden!important;}
+img,video,iframe,canvas{max-width:100%;}
+button,input,select,textarea{max-width:100%;box-sizing:border-box;}
+@media(max-width:900px){
+  .login-container,.register-box,.settings-shell,.settings-page-main{width:min(100%,96vw)!important;max-width:96vw!important;box-sizing:border-box!important;}
+  .login-container{padding:24px 18px!important;}
+  .register-box{padding:24px 18px!important;}
+  .settings-page-header{padding:12px 14px!important;gap:10px!important;flex-wrap:wrap!important;}
+  .settings-page-brand{min-width:0!important;}
+  .settings-back{margin-left:auto!important;}
+  .settings-page-main{padding:16px 10px 28px!important;}
+  .settings-shell{grid-template-columns:1fr!important;}
+  .settings-card,.settings-section-head,.settings-slide-bg-grid,.settings-slide-bg-actions{min-width:0!important;}
+}
+@media(max-width:700px){
+  .login-container,.register-box,.settings-shell,.settings-page-main{width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important;}
+  .login-container{padding:18px 12px!important;}
+  .register-box{padding:18px 12px!important;}
+  .chordio-login-logo{width:min(78vw,320px)!important;height:auto!important;}
+  .settings-page-header{padding:10px 12px!important;}
+  .settings-back{width:100%!important;margin-left:0!important;}
+  .settings-page-main{padding:12px 8px 24px!important;}
+  .settings-card{padding:14px!important;}
+  .settings-slide-bg-actions{display:flex!important;flex-wrap:wrap!important;gap:8px!important;}
+  .settings-slide-bg-actions button{flex:1 1 130px!important;}
+  .popup-box,.modal-content,.song-editor-dialog,.service-panel{max-width:calc(100vw - 16px)!important;}
+  .service-panel{width:calc(100vw - 16px)!important;max-height:92vh!important;}
+  .service-top{flex-wrap:wrap!important;gap:8px!important;}
+  .service-song{min-width:0!important;flex-wrap:wrap!important;}
+  .service-song-info{min-width:0!important;flex:1 1 180px!important;}
+  .service-song-actions{margin-left:0!important;}
+}
+@media(max-width:480px){
+  .login-container,.register-box{border-radius:12px!important;}
+  .topbar{padding-left:56px!important;}
+  .song-card-actions{flex-wrap:wrap!important;}
+  .song-card-actions>*{flex:1 1 auto!important;min-width:0!important;}
+}
