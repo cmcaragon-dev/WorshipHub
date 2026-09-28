@@ -209,7 +209,7 @@ async function loadCustomSongsFromFirebase() {
     try {
         const snap = await getDocs(collection(db, "songs"));
         let changed = false;
-        snap.forEach(docSnap => {
+        for (const docSnap of snap.docs) {
             const song = docSnap.data();
             if (!song || song.metadataOnly === true || song.deletedSong === true || String(docSnap.id).startsWith(DELETED_SONG_DOC_PREFIX)) return;
             if (window.WorshipHubDeletedSongs?.isDeleted?.(song.id || docSnap.id)) {
@@ -236,7 +236,7 @@ async function loadCustomSongsFromFirebase() {
             if (index >= 0) songs[index] = normalized;
             else songs.push(normalized);
             changed = true;
-        });
+        }
         if (changed) {
             saveCustomSongs();
             window.dispatchEvent(new CustomEvent("worshiphub:songs-updated", { detail: { loadedFromFirebase: true } }));
