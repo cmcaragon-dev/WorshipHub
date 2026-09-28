@@ -994,19 +994,41 @@ window.renderAllSongsTable = renderAllSongsTable;
 document.addEventListener("DOMContentLoaded", function(){
     const editSongId=new URLSearchParams(window.location.search).get("editSong");
     if(editSongId){
+        let resolvedTarget=null;
+        let firebaseLookupStarted=false;
         const openRequestedEditor=()=>{
-            const target=songs.find(x=>String(x?.id||"")===String(editSongId));
+            const target=resolvedTarget || songs.find(x=>String(x?.id||"")===String(editSongId));
             if(target && window.WorshipHubSongEditor?.open){
                 window.WorshipHubSongEditor.open(target);
                 return true;
             }
             return false;
         };
+        const startFirebaseLookup=async()=>{
+            if(firebaseLookupStarted) return;
+            firebaseLookupStarted=true;
+            try{
+                const snap=await getDoc(doc(db,"songs",String(editSongId)));
+                if(snap.exists()){
+                    resolvedTarget={id:snap.id,...snap.data()};
+                    const existingIndex=songs.findIndex(x=>String(x?.id||"")===String(editSongId));
+                    if(existingIndex>=0) songs[existingIndex]=resolvedTarget;
+                    else songs.push(resolvedTarget);
+                    openRequestedEditor();
+                }
+            }catch(error){
+                console.warn("Unable to load requested song for editor:",error);
+            }
+        };
         let attempts=0;
         const timer=setInterval(()=>{
             attempts++;
-            if(openRequestedEditor() || attempts>=30) clearInterval(timer);
+            if(openRequestedEditor() || attempts>=30){
+                clearInterval(timer);
+                if(!resolvedTarget) void startFirebaseLookup();
+            }
         },250);
+        void startFirebaseLookup();
     }
     const searchInput=document.getElementById("allSongsSearch");
     if(searchInput && !searchInput.dataset.liveBound){
