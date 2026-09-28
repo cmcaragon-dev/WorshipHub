@@ -42,6 +42,10 @@ const SHARP_KEYS = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
 let sections = [];
 let editingId = null;
 
+// Public editor API is initialized immediately because drag/drop bridge code
+// runs before DOMContentLoaded. The existing object is populated later.
+window.WorshipHubSongEditor = window.WorshipHubSongEditor || {};
+
 function uid(prefix = "id") {
     return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
 }
@@ -211,12 +215,12 @@ async function loadCustomSongsFromFirebase() {
         let changed = false;
         for (const docSnap of snap.docs) {
             const song = docSnap.data();
-            if (!song || song.metadataOnly === true || song.deletedSong === true || String(docSnap.id).startsWith(DELETED_SONG_DOC_PREFIX)) return;
+            if (!song || song.metadataOnly === true || song.deletedSong === true || String(docSnap.id).startsWith(DELETED_SONG_DOC_PREFIX)) continue;
             if (window.WorshipHubDeletedSongs?.isDeleted?.(song.id || docSnap.id)) {
                 if (window.WorshipHubDeletedSongs?.rememberTitle) window.WorshipHubDeletedSongs.rememberTitle(song.title);
-                return;
+                continue;
             }
-            if (window.WorshipHubDeletedSongs?.isDeletedTitle?.(song.title) || isDeletedTitle(song.title)) return;
+            if (window.WorshipHubDeletedSongs?.isDeletedTitle?.(song.title) || isDeletedTitle(song.title)) continue;
             let normalized = { ...song, id: String(song.id || docSnap.id) };
             const repaired=repairSelahMetadata(normalized);
             normalized=repaired.song;
