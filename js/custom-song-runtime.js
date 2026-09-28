@@ -1828,10 +1828,21 @@ function renderMultiServiceSongs(){
         b.className="multi-service-song"+(i===multiScreenQueueIndex?" active":"")+(entry.type==="presentation"?" presentation-item":"");
         b.dataset.queueIndex=String(i);
         const isPresentation=entry.type==="presentation";
-        b.innerHTML=`<span class="song-drag" title="Drag to reorder">☷</span><span class="song-num">${String(i+1).padStart(2,"0")}</span><span class="song-name">${isPresentation?"📄 ":""}${esc(item.title||"Untitled")}</span><span class="song-meta">${isPresentation?"PRESENTATION":"KEY: "+esc(item.serviceKey||item.key||item.originalKey||"—")+(item.presentationNote?` <span class="song-note-inline">| ${esc(item.presentationNote)}</span>`:"")}</span>${isPresentation?`<span class="song-note">${esc(String(item.presentationSlide?.text||"").replace(/\s+/g," ").slice(0,70))}</span>`:""}${isPresentation?`<button type="button" class="multi-service-presentation-delete" title="Remove this presentation" aria-label="Remove presentation">✕</button>`:`<button type="button" class="multi-service-song-delete" title="Remove this song from the Service Planner" aria-label="Remove ${esc(item.title||"song")} from Service Planner">✕</button>`}`;
+        b.innerHTML=`<span class="song-drag" title="Drag to reorder">☷</span><span class="song-num">${String(i+1).padStart(2,"0")}</span><span class="song-name">${isPresentation?"📄 ":""}${esc(item.title||"Untitled")}</span><span class="song-meta">${isPresentation?"PRESENTATION":"KEY: "+esc(item.serviceKey||item.key||item.originalKey||"—")+(item.presentationNote?` <span class="song-note-inline">| ${esc(item.presentationNote)}</span>`:"")}</span>${isPresentation?`<span class="song-note">${esc(String(item.presentationSlide?.text||"").replace(/\s+/g," ").slice(0,70))}</span>`:""}${isPresentation?`<button type="button" class="multi-service-presentation-delete" title="Remove this presentation" aria-label="Remove presentation">✕</button>`:`<button type="button" class="multi-service-song-edit" title="Edit this song" aria-label="Edit ${esc(item.title||"song")}">✎</button><button type="button" class="multi-service-song-delete" title="Remove this song from the Service Planner" aria-label="Remove ${esc(item.title||"song")} from Service Planner">✕</button>`}`;
         b.addEventListener("click",async e=>{
             if(e.target.closest("button"))return;
             await selectMultiScreenQueueEntry(i);
+        });
+        b.querySelector(".multi-service-song-edit")?.addEventListener("click",async e=>{
+            e.preventDefault();e.stopPropagation();
+            const songId=String(item?.id||"").trim();
+            if(!songId){alert("This song does not have a valid Song ID.");return;}
+            // Open the existing full CHORDIO Song Editor with this exact master
+            // song. Saving there writes to /songs and refreshes every Service
+            // Planner occurrence while preserving occurrence-specific settings.
+            const editorUrl=`index.html?editSong=${encodeURIComponent(songId)}&fromMultiScreen=1`;
+            const win=window.open(editorUrl,"_blank","noopener");
+            if(!win) alert("The Song Editor could not be opened. Please allow pop-ups for CHORDIO.");
         });
         b.querySelector(".multi-service-song-delete")?.addEventListener("click",async e=>{
             e.preventDefault();e.stopPropagation();

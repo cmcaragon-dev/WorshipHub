@@ -992,6 +992,22 @@ function escapeHtml(value) {
 window.renderAllSongsTable = renderAllSongsTable;
 
 document.addEventListener("DOMContentLoaded", function(){
+    const editSongId=new URLSearchParams(window.location.search).get("editSong");
+    if(editSongId){
+        const openRequestedEditor=()=>{
+            const target=songs.find(x=>String(x?.id||"")===String(editSongId));
+            if(target && window.WorshipHubSongEditor?.open){
+                window.WorshipHubSongEditor.open(target);
+                return true;
+            }
+            return false;
+        };
+        let attempts=0;
+        const timer=setInterval(()=>{
+            attempts++;
+            if(openRequestedEditor() || attempts>=30) clearInterval(timer);
+        },250);
+    }
     const searchInput=document.getElementById("allSongsSearch");
     if(searchInput && !searchInput.dataset.liveBound){
         searchInput.dataset.liveBound="1";

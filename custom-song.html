@@ -1565,6 +1565,30 @@ body.multi-screen-output-page #multiOutputBackground{inset:0!important}
   #multiScreenControl .multi-bible-actions{grid-column:1/-1!important;grid-template-columns:1fr!important}
 }
 </style>
+
+<style id="chordio-song-page-mobile-fixed-a4-v76">
+/* V76: Mobile Song Page keeps the same page scale/width; the viewport scrolls
+   horizontally instead of shrinking or reflowing the A4-style song page. */
+@media(max-width:600px){
+  html,body{width:auto!important;max-width:none!important;overflow-x:auto!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch!important;}
+  .song-page-header{min-width:920px!important;box-sizing:border-box!important;}
+  .song-paper{
+    width:920px!important;min-width:920px!important;max-width:none!important;
+    margin:8px 12px 50px!important;padding:48px 64px 72px!important;
+    box-sizing:border-box!important;overflow:visible!important;
+    border-left:1px solid #e0e4e8!important;border-right:1px solid #e0e4e8!important;
+    border-radius:2px!important;box-shadow:0 10px 35px rgba(20,30,40,.09)!important;
+  }
+  #stage{width:100%!important;max-width:none!important;overflow:visible!important;padding-bottom:0!important;}
+  #stage .section{width:auto!important;min-width:0!important;max-width:none!important;}
+  #stage .line.song-line{width:auto!important;min-width:0!important;max-width:none!important;}
+  #stage .line.song-line>.chord,#stage .line.song-line>.lyrics{font-size:inherit!important;line-height:inherit!important;}
+  .song-page-title-row h1{font-size:40px!important;}
+  .song-page-artist{font-size:14px!important;}
+  .song-page-key{font-size:18px!important;}
+  .song-passing-chords{font-size:12px!important;gap:7px 16px!important;}
+}
+</style>
 </body>
 
 <style id="chordio-v58-bible-and-output-fixes">
@@ -2876,4 +2900,15 @@ body.custom-dark{background:#eef1f5!important;color:#151a20!important;}
   #stage .line.song-line>.chord,#stage .line.song-line>.lyrics{font-size:clamp(16px,4.4vw,21px)!important;line-height:1.15!important;}
   .saved-service-note{right:12px!important;bottom:14px!important;max-width:70%!important;font-size:10px!important;}
 }
+</style>
+<style id="chordio-multiscreen-song-edit-v76">
+#multiScreenControl .multi-service-song-edit{
+  margin-left:auto!important;flex:0 0 auto!important;
+  border:1px solid #d3aa00!important;background:#fff8d6!important;color:#6f5200!important;
+  border-radius:6px!important;padding:5px 7px!important;font-size:11px!important;font-weight:900!important;
+  cursor:pointer!important;line-height:1!important;
+}
+#multiScreenControl .multi-service-song-edit:hover{background:#ffeaa0!important;border-color:#b89000!important;}
+#multiScreenControl .multi-service-song-delete{margin-left:0!important;}
+@media(max-width:700px){#multiScreenControl .multi-service-song-edit{padding:6px 7px!important;font-size:10px!important;}}
 </style>
