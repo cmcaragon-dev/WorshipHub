@@ -1133,7 +1133,11 @@ html, body { max-width:100%; }
       <span id="serviceSongNoteStatus" aria-live="polite"></span>
     </div>
   </div>
-  <span id="serviceSongPosition" class="service-song-position" aria-hidden="true">—</span>
+  <div class="service-song-navigation" aria-label="Service Planner song navigation">
+    <button id="serviceSongPrevious" type="button" title="Previous song" aria-label="Previous song">‹</button>
+    <span id="serviceSongPosition" aria-live="polite">—</span>
+    <button id="serviceSongNext" type="button" title="Next song" aria-label="Next song">›</button>
+  </div>
 </div>
 <div hidden="" id="counter">Custom Song</div>
 <div aria-hidden="true" id="multiScreenControl">

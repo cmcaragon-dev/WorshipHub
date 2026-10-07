@@ -1537,7 +1537,20 @@ function multiScreenOpenControl(){
     [1,2,3,4].forEach(n=>{const el=document.getElementById(`multiMode${n}`);if(el)el.value=multiScreenModes[n]||"lyrics";const cb=document.getElementById(`multiEnabled${n}`);if(cb)cb.checked=multiScreenEnabled[n]!==false;const bgm=document.getElementById(`multiBackgroundMode${n}`);if(bgm)bgm.value=multiScreenBackgroundModes[n]||"common";});
     initMultiFeatureAccordions();renderMultiServiceSongs();renderMultiScreenSectionButtons();renderMultiPartLyricsPreview();renderMultiStructureList();renderMultiBackgroundControls();syncMultiLyricsSettingsControls();syncMultiLyricsEditor();renderMultiSlides();renderMultiScreenPreviews();multiScreenBroadcast({});
 }
-function multiScreenCloseControl(){try{localStorage.removeItem("chordioMultiScreenControlOpen");}catch(_){} const panel=document.getElementById("multiScreenControl");if(panel){panel.classList.remove("show");panel.setAttribute("aria-hidden","true");}}
+function multiScreenCloseControl(){
+    try{localStorage.removeItem("chordioMultiScreenControlOpen");}catch(_){}
+    // Closing Multi-Screen exits the Song Page session and returns directly
+    // to the main Index page. It must not leave the user on the Song Page.
+    try{
+        clearMultiScreenServiceSession();
+        sessionStorage.setItem("worshiphubSongOpenedFromIndex","true");
+    }catch(_){}
+    if(typeof window.chordioGoHome === "function"){
+        window.chordioGoHome();
+        return;
+    }
+    window.location.href = new URL("index.html", window.location.href).href;
+}
 function multiScreenQueue(){
     if(!service)return [];
     const songs=Array.isArray(service.songs)?service.songs:[];
@@ -2942,7 +2955,8 @@ window.chordioGoHome = function(){
     try {
         clearMultiScreenServiceSession();
         localStorage.removeItem("currentService");
-        sessionStorage.removeItem("worshiphubSongOpenedFromIndex");
+        // Keep the index-origin marker until history.back() has returned to
+        // the existing Index page. Removing it here would force a full reload.
     } catch(_) {}
 
     try {
@@ -2951,8 +2965,14 @@ window.chordioGoHome = function(){
         }
     } catch(_) {}
 
-    // custom-song.html is always one level below the application root.
-    // Use the current document path rather than browser history.
+    // Prefer the existing Index page in browser history. This avoids a full
+    // Firebase/Auth bootstrap when leaving Song Page or Multi-Screen. If the
+    // page was opened directly, fall back to index.html.
+    let canReturnToIndex=false;
+    try{ canReturnToIndex=sessionStorage.getItem("worshiphubSongOpenedFromIndex")==="true"; }catch(_){}
+    if(canReturnToIndex && window.history.length>1){
+        try{ window.history.back(); return; }catch(_){}
+    }
     const homeUrl = new URL("index.html", window.location.href).href;
     window.location.href = homeUrl;
 };

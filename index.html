@@ -524,6 +524,18 @@ All Songs
 
 <script src="js/chordio-v63-ux.js"></script>
 
+<script id="chordio-return-state-script">
+(function(){
+  // Song Page / Multi-Screen now returns with history.back() so the existing
+  // Index page can be reused instead of re-running the Firebase/Auth bootstrap.
+  // Clear the one-shot navigation marker once Index is visible again.
+  const clearReturnMarker=()=>{
+    try{ sessionStorage.removeItem('worshiphubSongOpenedFromIndex'); }catch(_){}
+  };
+  window.addEventListener('pageshow', clearReturnMarker);
+})();
+</script>
+
 <script id="chordio-sidebar-mobile-script">
 (function(){
   const btn=document.getElementById('sidebarMobileToggle');

@@ -1427,6 +1427,7 @@ function renderServices() {
                     <div class="service-action-bar">
                         <button type="button" class="edit-service-btn" onclick="editService('${escapeHtml(service.id)}')">✎ Edit Service</button>
                         <button type="button" class="start-multi-screen-service-btn" onclick="startMultiScreenService('${escapeHtml(service.id)}')" title="Open Multi-Screen for this Service Planner">🖥 Multi-Screen</button>
+                        <button type="button" class="start-song-page-service-btn" onclick="openServiceSongPage('${escapeHtml(service.id)}')" title="Open Song Page for this Service Planner">🎵 Song Page</button>
                         <button type="button" class="service-print-btn" onclick="printServiceSongs('${escapeHtml(service.id)}')"><i class="fas fa-print"></i> Print</button>
                         <button type="button" onclick="duplicateService('${escapeHtml(service.id)}')">⧉ Duplicate</button>
                         <button type="button" onclick="renameService('${escapeHtml(service.id)}')">✏ Rename</button>
@@ -1870,6 +1871,7 @@ async function startMultiScreenService(serviceId){
     // Set the exact planner session before opening the dedicated Multi-Screen
     // control. The Multi-Screen page reads these values on startup.
     try{
+        sessionStorage.setItem("worshiphubSongOpenedFromIndex","true");
         localStorage.setItem("currentServiceId",id);
         localStorage.setItem("currentServiceName",String(selected.name||"Service Planner"));
         localStorage.setItem("currentServiceSnapshot",JSON.stringify(selected));
@@ -1886,6 +1888,32 @@ async function startMultiScreenService(serviceId){
     window.location.assign(target);
 }
 window.startMultiScreenService = startMultiScreenService;
+
+// Open the normal Song Page using the selected Service Planner as its
+// navigation context. Unlike Multi-Screen, this does NOT open the Multi-Screen
+// control automatically. Previous/Next on the Song Page will use the planner
+// order, while a standalone Song Page remains disabled.
+async function openServiceSongPage(serviceId){
+    const id=String(serviceId||"");
+    const selected=services.find(s=>String(s.id)===id);
+    if(!selected){ alert("Service Planner not found."); return; }
+    const serviceSongs=Array.isArray(selected.songs)?selected.songs:[];
+    if(!serviceSongs.length){ alert("This Service Planner has no songs yet."); return; }
+    try{
+        localStorage.setItem("currentServiceId",id);
+        localStorage.setItem("currentServiceName",String(selected.name||"Service Planner"));
+        localStorage.setItem("currentServiceSnapshot",JSON.stringify(selected));
+        localStorage.setItem("currentSongIndex","0");
+        localStorage.setItem("resumePresentation","true");
+        localStorage.setItem("presentationMode","service");
+        localStorage.removeItem("startMultiScreenOnLoad");
+        localStorage.removeItem("chordioMultiScreenControlOpen");
+        sessionStorage.setItem("worshiphubSongOpenedFromIndex","true");
+    }catch(error){ console.warn("Unable to save Song Page service session:",error); }
+    const first=serviceSongs[0]||{};
+    window.location.assign(`custom-song.html?id=${encodeURIComponent(first.id||"")}`);
+}
+window.openServiceSongPage = openServiceSongPage;
 
 function displayCurrentServiceName() {
 
