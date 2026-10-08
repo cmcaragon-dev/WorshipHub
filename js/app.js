@@ -2212,6 +2212,50 @@ async function printServiceSongs(serviceId) {
     const normalizePrintKey = song =>
         song?.serviceKey || song?.key || song?.originalKey || "—";
 
+    // The Service Planner stores the selected key on each song occurrence.
+    // Calculate the exact semitone offset from the song's original key to that
+    // selected Service Planner key, then apply that offset to every chord row
+    // printed below. This mirrors the live Song Page transpose behavior.
+    const printKeyIndex = value => {
+        const sharp = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+        const flatToSharp = {Db:"C#", Eb:"D#", Gb:"F#", Ab:"G#", Bb:"A#"};
+        const normalized = String(value || "C").trim().replace(/\s*(major|minor|maj|m)\s*$/i, "");
+        const root = normalized.match(/^[A-G](?:#|b)?/i)?.[0] || "C";
+        return sharp.indexOf(flatToSharp[root] || (root[0].toUpperCase() + root.slice(1)));
+    };
+    const printTransposeSteps = song => {
+        const stored = Number(song?.transpose);
+        if (Number.isFinite(stored) && stored !== 0) return stored;
+        const original = song?.originalKey || song?.baseKey || song?.key || "C";
+        const selected = song?.serviceKey || song?.key || original;
+        const from = printKeyIndex(original);
+        const to = printKeyIndex(selected);
+        if (from < 0 || to < 0) return 0;
+        return ((to - from + 6) % 12) - 6;
+    };
+    const printTransposeChord = (chord, steps) => {
+        const value = String(chord ?? "");
+        if (!value.trim() || !steps) return value;
+        const sharp = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+        const flatToSharp = {Db:"C#", Eb:"D#", Gb:"F#", Ab:"G#", Bb:"A#"};
+        const transposeRoot = root => {
+            const normalized = String(root || "");
+            const canonical = flatToSharp[normalized] || normalized;
+            const idx = sharp.indexOf(canonical);
+            if (idx < 0) return normalized;
+            return sharp[((idx + Number(steps)) % 12 + 12) % 12];
+        };
+        const transposeToken = token => {
+            const root = token.match(/^([A-Ga-g])([#b]?)/);
+            if (!root) return token;
+            let result = transposeRoot(root[1].toUpperCase() + root[2]) + token.slice(root[0].length);
+            return result.replace(/\/([A-Ga-g])([#b]?)(?=$|[^A-Za-z])/g, (_, letter, accidental) =>
+                "/" + transposeRoot(letter.toUpperCase() + accidental)
+            );
+        };
+        return value.replace(/\S+/g, transposeToken);
+    };
+
     // Service Planner occurrences may contain only the service-specific fields
     // (key, transpose, note, instance id, etc.). Always resolve the full song
     // from the current library before printing so the actual lyrics/chords are
@@ -2332,6 +2376,7 @@ async function printServiceSongs(serviceId) {
             let lyricsMarkup = "";
 
             if (Array.isArray(song.sections) && song.sections.length) {
+                const transposeSteps = printTransposeSteps(song);
                 lyricsMarkup = song.sections.map(section => `
                     <section class="song-section">
                         <div class="section-title">${escPrint(`${section.type || ""} ${section.number || ""}`.trim())}</div>
@@ -2348,7 +2393,8 @@ async function printServiceSongs(serviceId) {
                                 });
                                 return chars.join("");
                             })();
-                            return `<div class="song-line"><span class="chord">${escPrint(chordText)}</span><br><span class="print-lyric-text">${escPrint(line?.lyrics || "")}</span></div>`;
+                            const transposedChordText = printTransposeChord(chordText, transposeSteps);
+                            return `<div class="song-line"><span class="chord">${escPrint(transposedChordText)}</span><br><span class="print-lyric-text">${escPrint(line?.lyrics || "")}</span></div>`;
                         }).join("")}
                     </section>
                 `).join("");
