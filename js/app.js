@@ -2201,6 +2201,41 @@ async function printServiceSongs(serviceId) {
     const normalizePrintKey = song =>
         song?.serviceKey || song?.key || song?.originalKey || "—";
 
+    // Service Planner occurrences may contain only the service-specific fields
+    // (key, transpose, note, instance id, etc.). Always resolve the full song
+    // from the current library before printing so the actual lyrics/chords are
+    // never lost from the print job.
+    const resolvePrintSong = occurrence => {
+        const id = String(occurrence?.id || "").trim();
+        const title = String(occurrence?.title || "").trim().toLowerCase();
+        const library = Array.isArray(window.songs) ? window.songs : (Array.isArray(songs) ? songs : []);
+        let master = id ? library.find(x => String(x?.id || "").trim() === id) : null;
+        if (!master && title) master = library.find(x => String(x?.title || "").trim().toLowerCase() === title);
+
+        // Also check locally stored custom songs in case the current library
+        // has not finished its Firebase refresh yet.
+        if (!master) {
+            try {
+                const local = JSON.parse(localStorage.getItem("worshipHubCustomSongs") || "[]");
+                if (Array.isArray(local)) {
+                    master = id ? local.find(x => String(x?.id || "").trim() === id) : null;
+                    if (!master && title) master = local.find(x => String(x?.title || "").trim().toLowerCase() === title);
+                }
+            } catch (_) {}
+        }
+
+        const merged = master ? { ...master, ...occurrence } : { ...occurrence };
+        // Master structured content must win when the occurrence only has
+        // presentation/service metadata. Preserve occurrence-specific settings.
+        if ((!Array.isArray(occurrence?.sections) || !occurrence.sections.length) && Array.isArray(master?.sections)) {
+            merged.sections = master.sections;
+        }
+        if (!merged.artist && master?.artist) merged.artist = master.artist;
+        if (!merged.category && master?.category) merged.category = master.category;
+        if (!merged.originalKey && master?.originalKey) merged.originalKey = master.originalKey;
+        return merged;
+    };
+
     const buildPassing = song => {
         const key = normalizePrintKey(song);
         const roots = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
@@ -2253,7 +2288,7 @@ async function printServiceSongs(serviceId) {
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-separator{color:#777!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing-item{display:inline-block!important;margin-right:5px!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-rule,body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer-rule{height:1px!important;background:#222!important;width:100%!important;margin:6px 0 8px!important;flex:0 0 auto!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-content{font-size:9.5pt!important;line-height:1.08!important;column-count:2!important;column-gap:9mm!important;column-fill:auto!important;column-width:auto!important;flex:1 1 auto!important;min-height:0!important;height:auto!important;overflow:hidden!important;padding-bottom:18mm!important;box-sizing:border-box!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-content{font-size:9.5pt!important;line-height:1.08!important;column-count:2!important;column-gap:9mm!important;column-fill:auto!important;column-width:auto!important;flex:1 1 auto!important;min-height:0!important;height:0!important;overflow:hidden!important;padding-bottom:18mm!important;box-sizing:border-box!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-note{position:absolute!important;right:14mm!important;bottom:13mm!important;max-width:82mm!important;min-width:35mm!important;box-sizing:border-box!important;padding:3mm 4mm!important;background:#fff2a8!important;color:#111!important;border:1px solid #d8c56a!important;border-radius:2mm!important;font-size:8.5pt!important;line-height:1.25!important;font-weight:700!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;text-align:left!important;z-index:5!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-note-label{display:block!important;margin-bottom:1.5mm!important;color:#8b6500!important;font-size:7pt!important;font-weight:900!important;letter-spacing:.08em!important;text-transform:uppercase!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .song-section{display:block!important;margin:0 0 8px!important;break-inside:avoid!important;page-break-inside:avoid!important;}
@@ -2267,16 +2302,17 @@ async function printServiceSongs(serviceId) {
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer .service-print-footer-right{margin-left:auto!important;color:#555!important;white-space:nowrap!important;}
       @page{size:A4 landscape;margin:0;}
       @media screen{body.worshiphub-service-printing #worshipHubServicePrintRoot{position:fixed!important;inset:0!important;z-index:999999!important;background:#e9edf2!important;overflow:auto!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{margin:0 auto 18px!important;box-shadow:0 4px 18px rgba(0,0,0,.12)!important;}}
-      @media print{body.worshiphub-service-printing>*:not(#worshipHubServicePrintRoot){display:none!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot{display:block!important;position:static!important;background:#fff!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{box-shadow:none!important;margin:0!important;} }`
+      @media print{body.worshiphub-service-printing>*:not(#worshipHubServicePrintRoot){display:none!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot{display:block!important;position:static!important;background:#fff!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{box-shadow:none!important;margin:0!important;width:297mm!important;height:210mm!important;min-height:210mm!important;max-height:210mm!important;overflow:hidden!important;break-before:auto!important;break-after:page!important;page-break-before:auto!important;page-break-after:always!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song:last-child{break-after:auto!important;page-break-after:auto!important;} }`
     document.head.appendChild(servicePrintStyle);
     document.body.classList.add("worshiphub-service-printing");
 
     try {
         for (let i = 0; i < songs.length; i++) {
-            const song = songs[i] || {};
+            const occurrence = songs[i] || {};
+            const song = resolvePrintSong(occurrence);
             let lyricsMarkup = "";
 
-            if (song.customSong && Array.isArray(song.sections)) {
+            if (Array.isArray(song.sections) && song.sections.length) {
                 lyricsMarkup = song.sections.map(section => `
                     <section class="song-section">
                         <div class="section-title">${escPrint(`${section.type || ""} ${section.number || ""}`.trim())}</div>
@@ -2306,6 +2342,7 @@ async function printServiceSongs(serviceId) {
             }
 
             const passing = buildPassing(song);
+            const serviceNote = String(occurrence.presentationNote ?? occurrence.serviceNote ?? occurrence.note ?? song.presentationNote ?? song.serviceNote ?? "").trim();
             const article = document.createElement("article");
             article.className = "service-print-song";
             article.innerHTML = `
@@ -2319,7 +2356,7 @@ async function printServiceSongs(serviceId) {
                     <div class="service-print-rule"></div>
                 </header>
                 <div class="service-print-content">${lyricsMarkup}</div>
-                ${String(song.presentationNote || "").trim() ? `<div class="service-print-note"><span class="service-print-note-label">SERVICE NOTE</span>${escPrint(String(song.presentationNote || "").trim())}</div>` : ""}
+                ${serviceNote ? `<div class="service-print-note"><span class="service-print-note-label">SERVICE NOTE</span>${escPrint(serviceNote)}</div>` : ""}
                 <div class="service-print-footer-rule"></div>
                 <footer class="service-print-footer"><span class="service-print-footer-left">${escPrint(service.name || service.title || "Service Planner")} | ${escPrint(service.date || "Date not set")}</span><span class="service-print-footer-right">Page ${i + 1} / ${songs.length}</span></footer>
             `;
@@ -2342,27 +2379,31 @@ async function printServiceSongs(serviceId) {
 
         await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
-        // Keep the requested one-song-per-A4-page format even for longer songs.
-        // Reduce only the song body text when needed; the title/header/footer
-        // remain readable and the page never spills into a second sheet.
+        // Keep exactly one song on each A4 landscape page. The print body has a
+        // fixed measurable height; reduce only the song text until its rendered
+        // content fits inside that height, leaving the header/footer/note intact.
         list.querySelectorAll('.service-print-song').forEach(article=>{
             const content=article.querySelector('.service-print-content');
             if(!content) return;
-            // Reserve the lower-right service-note area while fitting the song body.
             const note=article.querySelector('.service-print-note');
             if(note) content.style.paddingBottom='24mm';
+
             let size=9.5;
-            const min=5.8;
+            const min=5.5;
             const fit=()=>{
                 let guard=0;
-                const overflows=()=> content.scrollWidth>content.clientWidth+2 || content.scrollHeight>content.clientHeight+2;
-                while(overflows() && size>min && guard<30){
-                    size=Math.max(min,size-0.25);
+                while(guard<40){
+                    const overflow = content.scrollHeight > content.clientHeight + 2;
+                    if(!overflow || size<=min) break;
+                    size=Math.max(min,size-0.2);
                     content.style.fontSize=`${size}pt`;
-                    content.style.lineHeight=String(Math.max(.88,1.08-(9.5-size)*0.012));
+                    content.style.lineHeight=String(Math.max(.84,1.08-(9.5-size)*0.02));
                     guard++;
                 }
             };
+            // Force layout before measuring, then give the browser one frame to
+            // recalculate the two-column flow after each size change.
+            void content.offsetHeight;
             fit();
         });
 
