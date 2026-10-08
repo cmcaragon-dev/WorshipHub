@@ -2350,8 +2350,8 @@ async function printServiceSongs(serviceId) {
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing-item>span:not(.service-print-passing-label){color:#c00000!important;font-weight:900!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-separator{color:#777!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-passing-item{display:inline-block!important;margin-right:5px!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-rule,body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer-rule{height:1px!important;background:#222!important;width:100%!important;margin:6px 0 8px!important;flex:0 0 auto!important;}
-      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-content{font-size:9.5pt!important;line-height:1.08!important;column-count:2!important;column-gap:9mm!important;column-fill:auto!important;column-width:auto!important;flex:1 1 auto!important;min-height:0!important;height:0!important;overflow:hidden!important;padding-bottom:18mm!important;box-sizing:border-box!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-rule{display:block!important;height:0!important;border-top:1.2px solid #222!important;width:100%!important;margin:7px 0 9px!important;flex:0 0 auto!important;} body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-footer-rule{display:block!important;height:0!important;border-top:1.2px solid #222!important;width:100%!important;margin:7px 0 5px!important;flex:0 0 auto!important;}
+      body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-content{font-size:9.5pt!important;line-height:1.08!important;column-count:2!important;column-gap:9mm!important;column-fill:auto!important;column-width:auto!important;flex:1 1 auto!important;min-height:0!important;height:0!important;overflow:hidden!important;padding-bottom:20mm!important;box-sizing:border-box!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-note{position:absolute!important;right:14mm!important;bottom:13mm!important;max-width:82mm!important;min-width:35mm!important;box-sizing:border-box!important;padding:3mm 4mm!important;background:#fff2a8!important;color:#111!important;border:1px solid #d8c56a!important;border-radius:2mm!important;font-size:8.5pt!important;line-height:1.25!important;font-weight:700!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;text-align:left!important;z-index:5!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-note-label{display:block!important;margin-bottom:1.5mm!important;color:#8b6500!important;font-size:7pt!important;font-weight:900!important;letter-spacing:.08em!important;text-transform:uppercase!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .song-section{display:block!important;margin:0 0 8px!important;break-inside:avoid!important;page-break-inside:avoid!important;}
@@ -2421,8 +2421,8 @@ async function printServiceSongs(serviceId) {
                     <div class="service-print-rule"></div>
                 </header>
                 <div class="service-print-content">${lyricsMarkup}</div>
+                <div class="service-print-footer-rule" aria-hidden="true"></div>
                 ${serviceNote ? `<div class="service-print-note"><span class="service-print-note-label">SERVICE NOTE</span>${escPrint(serviceNote)}</div>` : ""}
-                <div class="service-print-footer-rule"></div>
                 <footer class="service-print-footer"><span class="service-print-footer-left">${escPrint(service.name || service.title || "Service Planner")} | ${escPrint(service.date || "Date not set")}</span><span class="service-print-footer-right">Page ${i + 1} / ${songs.length}</span></footer>
             `;
 
@@ -2451,7 +2451,7 @@ async function printServiceSongs(serviceId) {
             const content=article.querySelector('.service-print-content');
             if(!content) return;
             const note=article.querySelector('.service-print-note');
-            if(note) content.style.paddingBottom='24mm';
+            if(note) content.style.paddingBottom='25mm';
 
             let size=9.5;
             const min=5.5;
