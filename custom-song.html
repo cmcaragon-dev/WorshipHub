@@ -1005,6 +1005,28 @@ body .multi-output-settings-in-preview.chordio-screen-settings-popup .multi-scre
   }
 }
 </style>
+<style id="chordio-service-note-print-final">
+@media print{
+  body.chordio-direct-printing #worshipHubPrintRoot{position:relative!important;width:100%!important;min-height:200mm!important;height:200mm!important;box-sizing:border-box!important;}
+  body.chordio-direct-printing #worshipHubPrintRoot .print-service-note{
+    position:absolute!important;right:5mm!important;bottom:5mm!important;
+    max-width:75mm!important;min-width:35mm!important;box-sizing:border-box!important;
+    padding:3mm 4mm!important;background:#fff2a8!important;color:#111!important;
+    border:1px solid #d8c56a!important;border-radius:2mm!important;
+    font-size:8.5pt!important;line-height:1.25!important;font-weight:700!important;
+    white-space:pre-wrap!important;overflow-wrap:anywhere!important;text-align:left!important;
+    z-index:20!important;display:block!important;
+  }
+  body.chordio-direct-printing #worshipHubPrintRoot .print-service-note-label{
+    display:block!important;margin-bottom:1.5mm!important;color:#8b6500!important;
+    font-size:7pt!important;font-weight:900!important;letter-spacing:.08em!important;
+    text-transform:uppercase!important;
+  }
+  body.chordio-direct-printing #worshipHubPrintRoot .print-song-content{
+    padding-bottom:22mm!important;
+  }
+}
+</style>
 <style id="chordio-song-format-final">
 /* Final CHORDIO song-page formatting overrides */
 .song-passing-chords .custom-presentation-passing-value,.custom-presentation-passing-value{color:#c00000!important;font-weight:900!important;}

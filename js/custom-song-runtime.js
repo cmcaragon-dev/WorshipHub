@@ -1204,6 +1204,7 @@ function printCustomSong(){
     const passingItems=customPassingChords();
     const passingText=passingItems.map(([label,value])=>`${label}: ${value}`).join("  |  ");
     const serviceKey=customServiceKey();
+    const serviceNote=String(service?.songs?.[index]?.presentationNote || service?.songs?.[index]?.serviceNote || service?.songs?.[index]?.note || "").trim();
 
     root.innerHTML=`
       <div class="print-song-header">
@@ -1213,6 +1214,7 @@ function printCustomSong(){
         <div class="print-song-passing"><span class="print-song-passing-label">PASSING CHORDS:</span> ${passingItems.map(([label,value],i)=>`<span class="print-passing-item"><span class="print-passing-label">${esc(label)}:</span> <span class="print-passing-value">${esc(value)}</span></span>${i<passingItems.length-1?' <span class="print-passing-separator">|</span> ':''}`).join("")}</div>
         <div class="print-song-rule"></div>
       </div>
+      ${serviceNote ? `<div class="print-service-note"><span class="print-service-note-label">SERVICE NOTE</span><span class="print-service-note-text">${esc(serviceNote)}</span></div>` : ""}
       <div class="print-song-content">
         <div class="wh-print-source-content song"></div>
       </div>`;

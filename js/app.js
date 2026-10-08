@@ -2179,14 +2179,25 @@ async function printServiceSongs(serviceId) {
         ? String(serviceId)
         : String(localStorage.getItem("currentServiceId") || "");
 
+    // Open the print document immediately from the button click. This keeps the
+    // operation inside the browser's user-gesture context and prevents popup/
+    // print blockers from silently swallowing the print action after async work.
+    const printWindow = window.open("", "_blank", "width=1200,height=850");
+    if (!printWindow) {
+        alert("Please allow pop-ups for CHORDIO so the Service Planner can open the print page.");
+        return;
+    }
+
     const service = services.find(s => String(s.id) === id);
     if (!service) {
+        printWindow.close();
         alert("Please select a valid Service Planner first.");
         return;
     }
 
     const songs = Array.isArray(service.songs) ? service.songs : [];
     if (!songs.length) {
+        printWindow.close();
         alert("This service has no songs to print.");
         return;
     }
@@ -2269,13 +2280,21 @@ async function printServiceSongs(serviceId) {
         <div class="service-print-songs"></div>
     `;
     const list = printRoot.querySelector(".service-print-songs");
-    document.body.appendChild(printRoot);
-    let servicePrintStyle = document.getElementById("chordioServicePrintStyle");
+    // Build the complete printable document in the dedicated print window.
+    // This avoids the application's normal page CSS/overlays interfering with
+    // the Service Planner print output.
+    const printDocument = printWindow.document;
+    printDocument.open();
+    printDocument.write(`<!doctype html><html><head><meta charset="utf-8"><title>${escPrint(service.name || "Service Planner")} - CHORDIO</title></head><body></body></html>`);
+    printDocument.close();
+    printDocument.body.appendChild(printRoot);
+    let servicePrintStyle = printDocument.getElementById("chordioServicePrintStyle");
     if(servicePrintStyle) servicePrintStyle.remove();
-    servicePrintStyle=document.createElement("style");
+    servicePrintStyle=printDocument.createElement("style");
     servicePrintStyle.id="chordioServicePrintStyle";
     servicePrintStyle.textContent=`
       #worshipHubServicePrintRoot{display:none;}
+      body.worshiphub-service-printing{margin:0!important;padding:0!important;background:#fff!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot{display:block!important;position:static!important;visibility:visible!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{display:flex!important;flex-direction:column!important;position:relative!important;width:297mm!important;height:210mm!important;min-height:210mm!important;box-sizing:border-box!important;padding:12mm 14mm 10mm!important;margin:0 auto!important;background:#fff!important;color:#111!important;overflow:hidden!important;break-after:page!important;page-break-after:always!important;font-family:Arial,Helvetica,sans-serif!important;}
       body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song:last-child{break-after:auto!important;page-break-after:auto!important;}
@@ -2303,8 +2322,8 @@ async function printServiceSongs(serviceId) {
       @page{size:A4 landscape;margin:0;}
       @media screen{body.worshiphub-service-printing #worshipHubServicePrintRoot{position:fixed!important;inset:0!important;z-index:999999!important;background:#e9edf2!important;overflow:auto!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{margin:0 auto 18px!important;box-shadow:0 4px 18px rgba(0,0,0,.12)!important;}}
       @media print{body.worshiphub-service-printing>*:not(#worshipHubServicePrintRoot){display:none!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot{display:block!important;position:static!important;background:#fff!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song{box-shadow:none!important;margin:0!important;width:297mm!important;height:210mm!important;min-height:210mm!important;max-height:210mm!important;overflow:hidden!important;break-before:auto!important;break-after:page!important;page-break-before:auto!important;page-break-after:always!important;}body.worshiphub-service-printing #worshipHubServicePrintRoot .service-print-song:last-child{break-after:auto!important;page-break-after:auto!important;} }`
-    document.head.appendChild(servicePrintStyle);
-    document.body.classList.add("worshiphub-service-printing");
+    printDocument.head.appendChild(servicePrintStyle);
+    printDocument.body.classList.add("worshiphub-service-printing");
 
     try {
         for (let i = 0; i < songs.length; i++) {
@@ -2407,25 +2426,23 @@ async function printServiceSongs(serviceId) {
             fit();
         });
 
-        const cleanup = () => {
-            document.body.classList.remove("worshiphub-service-printing");
-            document.getElementById("worshipHubServicePrintRoot")?.remove();
-            document.getElementById("chordioServicePrintStyle")?.remove();
-            window.removeEventListener("afterprint", cleanup);
-        };
-
-        // Service Planner printing is intentionally a direct A4 browser print.
-        // Do not send it through the multi-column Print Preview: every song must
-        // start on its own A4 page.
-        window.addEventListener("afterprint", cleanup, { once: true });
-        setTimeout(cleanup, 60000);
-        window.print();
+        // Service Planner printing is intentionally isolated from the main app.
+        // Every .service-print-song is one fixed A4-landscape page.
+        printWindow.focus();
+        setTimeout(() => {
+            try {
+                printWindow.print();
+            } catch (printError) {
+                console.error("Service print dialog error:", printError);
+            }
+        }, 250);
+        printWindow.addEventListener("afterprint", () => {
+            setTimeout(() => { try { printWindow.close(); } catch (_) {} }, 150);
+        }, { once: true });
     } catch (error) {
         console.error("Service print error:", error);
-        document.body.classList.remove("worshiphub-service-printing");
-        document.getElementById("worshipHubServicePrintRoot")?.remove();
-        document.getElementById("chordioServicePrintStyle")?.remove();
-        alert("Unable to prepare the Service Planner print preview. Please try again.");
+        try { printWindow.close(); } catch (_) {}
+        alert("Unable to prepare the Service Planner print page. Please try again.");
     }
 }
 window.printServiceSongs = printServiceSongs;
