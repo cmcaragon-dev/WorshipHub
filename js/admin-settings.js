@@ -88,59 +88,76 @@ async function renderSettings() {
     }
 
     if (!isAdmin(user)) {
-        const allowed = await canAddSongs(user);
+        const [addAllowed, editAllowed] = await Promise.all([canAddSongs(user), canEditSongs(user)]);
         root.innerHTML = `
-            <section class="settings-hero">
+            <section class="settings-hero settings-admin-hero">
                 <div class="settings-admin-icon">👤</div>
                 <div class="settings-card-main">
                     <div class="settings-card-title">My Account</div>
                     <div class="settings-card-subtitle">${escapeHtml(user.email || "Signed-in user")}</div>
+                    <p class="settings-admin-description">Your account access is managed by a CHORDIO administrator. These statuses update when the page is refreshed.</p>
                 </div>
-                <span class="permission-badge ${allowed ? "enabled" : "disabled"}">${allowed ? "✓ Add Song enabled" : "× Add Song disabled"}</span>
+                <span class="role-badge user">USER</span>
+            </section>
+            <section class="settings-metrics settings-user-permission-metrics">
+                <article class="settings-metric"><span class="settings-metric-icon">🎵</span><div><span class="settings-metric-label">Add Song</span><strong class="permission-badge ${addAllowed ? "enabled" : "disabled"}">${addAllowed ? "✓ Enabled" : "× Disabled"}</strong></div></article>
+                <article class="settings-metric"><span class="settings-metric-icon">✏️</span><div><span class="settings-metric-label">Edit Song</span><strong class="permission-badge ${editAllowed ? "enabled" : "disabled"}">${editAllowed ? "✓ Enabled" : "× Disabled"}</strong></div></article>
             </section>
             <section class="settings-card">
-                <div class="settings-card-title">Song permissions</div>
-                <p class="settings-help">The administrator controls who can add and edit songs.</p>
+                <div class="settings-card-title">How permissions work</div>
+                <p class="settings-help">If Add Song or Edit Song is disabled, contact an administrator and ask them to enable the relevant permission. You cannot change your own access from this page.</p>
             </section>`;
         return;
     }
 
     root.innerHTML = `
-        <section class="settings-hero">
+        <section class="settings-hero settings-admin-hero">
             <div class="settings-admin-icon">🛡️</div>
             <div class="settings-card-main">
-                <div class="settings-card-title">Administrator</div>
+                <div class="settings-card-title">Administrator Console</div>
                 <div class="settings-card-subtitle">${ADMIN_EMAIL}</div>
+                <p class="settings-admin-description">Manage song-creation and editing access for each registered user. Changes are saved to the user account immediately.</p>
             </div>
             <span class="admin-badge">ADMIN</span>
         </section>
-        <section class="settings-card settings-collapsible-card">
-            <details class="settings-collapsible">
-                <summary class="settings-collapsible-summary">
-                    <span class="settings-card-title">User Song Permissions</span>
-                    <span class="settings-collapse-hint">Click title to open ▾</span>
-                </summary>
-                <div class="settings-collapsible-content">
-            <div class="settings-section-head">
-                <div>
-                    <div class="settings-help">Allow or block each user from adding songs and editing existing song chords.</div>
-                </div>
-                <button id="refreshUserPermissions" class="settings-secondary" type="button">↻ Refresh</button>
+        <section class="settings-metrics" id="permissionMetrics" aria-label="Permission overview">
+            <article class="settings-metric"><span class="settings-metric-icon">👥</span><div><span class="settings-metric-label">Registered users</span><strong id="metricUsers">—</strong></div></article>
+            <article class="settings-metric"><span class="settings-metric-icon">🎵</span><div><span class="settings-metric-label">Add Song enabled</span><strong id="metricAdd">—</strong></div></article>
+            <article class="settings-metric"><span class="settings-metric-icon">✏️</span><div><span class="settings-metric-label">Edit Song enabled</span><strong id="metricEdit">—</strong></div></article>
+            <article class="settings-metric"><span class="settings-metric-icon">🔒</span><div><span class="settings-metric-label">No song access</span><strong id="metricRestricted">—</strong></div></article>
+        </section>
+        <section class="settings-card settings-permissions-panel">
+            <div class="settings-panel-heading">
+                <div><div class="settings-card-title">User access & approvals</div><p class="settings-help">Turn Add Song and Edit Song access on or off individually. Admin accounts always retain both permissions.</p></div>
+                <button id="refreshUserPermissions" class="settings-secondary" type="button">↻ Refresh list</button>
             </div>
-            <div class="settings-search-wrap"><input id="userPermissionSearch" type="search" placeholder="Search users by name or email…"></div>
-            <div class="permission-table-head"><span>User</span><span>Role</span><span>Add Song</span><span>Edit Song</span></div>
-            <div id="userPermissionList" class="user-permission-list"><div class="settings-loading">Loading users…</div></div>
+            <div class="settings-tools-row">
+                <div class="settings-search-wrap"><span aria-hidden="true">⌕</span><input id="userPermissionSearch" type="search" placeholder="Search by name or email…" aria-label="Search users by name or email"></div>
+                <div class="settings-filter-group" role="group" aria-label="Filter users">
+                    <button type="button" class="settings-filter active" data-permission-filter="all">All users</button>
+                    <button type="button" class="settings-filter" data-permission-filter="add">Add enabled</button>
+                    <button type="button" class="settings-filter" data-permission-filter="edit">Edit enabled</button>
+                    <button type="button" class="settings-filter" data-permission-filter="restricted">Restricted</button>
                 </div>
-            </details>
+            </div>
+            <div class="permission-table-head"><span>User account</span><span>Role</span><span>Add Song access</span><span>Edit Song access</span></div>
+            <div id="userPermissionList" class="user-permission-list"><div class="settings-loading">Loading users…</div></div>
+            <div class="settings-permissions-footnote"><span>ⓘ</span><span>Permission changes are saved immediately. If a change fails, the switch will revert and an error message will appear.</span></div>
         </section>`;
 
     document.getElementById("refreshUserPermissions")?.addEventListener("click", loadUsers);
     document.getElementById("userPermissionSearch")?.addEventListener("input", filterUsers);
+    document.querySelectorAll("[data-permission-filter]").forEach(button => button.addEventListener("click", () => {
+        activePermissionFilter = button.dataset.permissionFilter || "all";
+        document.querySelectorAll("[data-permission-filter]").forEach(item => item.classList.toggle("active", item === button));
+        filterUsers();
+    }));
     await loadUsers();
 }
 
 
 let cachedUsers = [];
+let activePermissionFilter = "all";
 async function loadUsers() {
     const list = document.getElementById("userPermissionList");
     if (!list) return;
@@ -149,7 +166,8 @@ async function loadUsers() {
         const snap = await getDocs(collection(db, "users"));
         cachedUsers = snap.docs.map(d => ({ id: d.id, ...d.data() }))
             .sort((a,b) => String(a.name || a.email || "").localeCompare(String(b.name || b.email || "")));
-        renderUserRows(cachedUsers);
+        updatePermissionMetrics();
+        filterUsers();
     } catch (error) {
         console.error("Unable to load users:", error);
         list.innerHTML = `<div class="settings-error">Unable to load users. Check your Firestore rules.</div>`;
@@ -158,14 +176,36 @@ async function loadUsers() {
 
 function filterUsers() {
     const q = String(document.getElementById("userPermissionSearch")?.value || "").toLowerCase().trim();
-    renderUserRows(cachedUsers.filter(u => `${u.name || ""} ${u.email || ""}`.toLowerCase().includes(q)));
+    const matches = cachedUsers.filter(u => {
+        const textMatch = `${u.name || ""} ${u.email || ""}`.toLowerCase().includes(q);
+        const admin = ADMIN_EMAILS.has(normalizeEmail(u.email)) || u.role === "admin" || u.isAdmin === true || u.admin === true;
+        const add = admin || u.allowAddSongs === true;
+        const edit = admin || u.allowEditSongs === true;
+        const filterMatch = activePermissionFilter === "add" ? add
+            : activePermissionFilter === "edit" ? edit
+            : activePermissionFilter === "restricted" ? (!add && !edit)
+            : true;
+        return textMatch && filterMatch;
+    });
+    renderUserRows(matches);
+}
+
+function updatePermissionMetrics() {
+    const isAdminUser = u => ADMIN_EMAILS.has(normalizeEmail(u.email)) || u.role === "admin" || u.isAdmin === true || u.admin === true;
+    const add = u => isAdminUser(u) || u.allowAddSongs === true;
+    const edit = u => isAdminUser(u) || u.allowEditSongs === true;
+    const set = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = String(value); };
+    set("metricUsers", cachedUsers.length);
+    set("metricAdd", cachedUsers.filter(add).length);
+    set("metricEdit", cachedUsers.filter(edit).length);
+    set("metricRestricted", cachedUsers.filter(u => !add(u) && !edit(u)).length);
 }
 
 function renderUserRows(users) {
     const list = document.getElementById("userPermissionList");
     if (!list) return;
     if (!users.length) {
-        list.innerHTML = '<div class="settings-empty">No users found.</div>';
+        list.innerHTML = '<div class="settings-empty settings-no-users"><span>🔎</span><strong>No matching users</strong><small>Try another search or choose a different filter.</small></div>';
         return;
     }
     list.innerHTML = users.map(u => {
@@ -197,6 +237,7 @@ function renderUserRows(users) {
                 await setUserSongPermission(uid, event.target.checked);
                 const target = cachedUsers.find(u => u.id === uid);
                 if (target) target.allowAddSongs = event.target.checked;
+                updatePermissionMetrics();
                 row.querySelector(".add-toggle + .switch + .toggle-state")?.replaceChildren(document.createTextNode(event.target.checked ? "ON" : "OFF"));
                 window.dispatchEvent(new CustomEvent("worshiphub:permissions-updated"));
             } catch (error) {
@@ -217,6 +258,7 @@ function renderUserRows(users) {
                 await setUserEditPermission(uid, event.target.checked);
                 const target = cachedUsers.find(u => u.id === uid);
                 if (target) target.allowEditSongs = event.target.checked;
+                updatePermissionMetrics();
                 row.querySelector(".edit-toggle + .switch + .toggle-state")?.replaceChildren(document.createTextNode(event.target.checked ? "ON" : "OFF"));
                 window.dispatchEvent(new CustomEvent("worshiphub:permissions-updated"));
             } catch (error) {

@@ -35,19 +35,22 @@ const applyServiceKeyToSong = (candidate, master = null) => {
     const hasSavedSteps = occurrence.transpose !== undefined && occurrence.transpose !== null && Number.isFinite(savedStepsValue);
     const explicitServiceKey = String(occurrence.serviceKey || "").trim();
     const occurrenceKey = String(occurrence.key || "").trim();
+    const normalizedKey = value => String(value || "").trim().replace(/\s*(major|minor|maj|m)\s*$/i, "").toUpperCase();
+    // Priority is intentional: the saved per-planner serviceKey wins; for older
+    // records, a key different from the library key wins even if transpose is 0.
+    // Only use the stored semitone offset when no selected key was saved.
     let serviceKey = explicitServiceKey;
-
-    if (!serviceKey) {
-        // In older planner records `key` is often the selected key while
-        // `originalKey` is the library key. If those differ, `key` wins.
-        if (occurrenceKey && occurrenceKey.toUpperCase() !== originalKey.toUpperCase()) {
-            serviceKey = occurrenceKey;
-        } else if (hasSavedSteps && savedStepsValue !== 0) {
-            serviceKey = transposeChord(originalKey, savedStepsValue);
-        } else {
-            serviceKey = occurrenceKey || originalKey;
-        }
+    const occurrenceKeyDiffersFromOriginal = occurrenceKey && normalizedKey(occurrenceKey) !== normalizedKey(originalKey);
+    // Some older planner snapshots accidentally kept serviceKey=originalKey
+    // while storing the user's real selection in key. In that specific stale
+    // case, prefer the differing occurrence key rather than resetting it.
+    if (occurrenceKeyDiffersFromOriginal && (!serviceKey || normalizedKey(serviceKey) === normalizedKey(originalKey))) {
+        serviceKey = occurrenceKey;
     }
+    if (!serviceKey && hasSavedSteps && savedStepsValue !== 0) {
+        serviceKey = transposeChord(originalKey, savedStepsValue);
+    }
+    if (!serviceKey) serviceKey = occurrenceKey || originalKey;
 
     // Always derive the actual offset from the authoritative selected key.
     // A stale `transpose: 0` must never override a saved key such as C when
@@ -486,7 +489,7 @@ async function redirectSong(nextSong, targetIndex=index){
         if(candidate?.id){
             void refreshMasterSong(candidate.id).then(master=>{
                 if(!master || String(song?.id||"")!==String(candidate.id||"")) return;
-                song=applyServiceKeyToSong({...song, ...master, sections:normalizeSections(master.sections)}, candidate);
+                song=applyServiceKeyToSong({...candidate, sections:normalizeSections(master.sections)}, master);
                 transposeSteps=Number(song.transpose||0);
                 render();
                 if(document.getElementById("customPresentationScreen")?.classList.contains("show")) renderCustomPresentation();
@@ -588,8 +591,7 @@ async function loadFromService(){
                 if(String(song?.id||"")!==String(candidate.id||"")) return;
                 song=applyServiceKeyToSong({
                     ...candidate,
-                    ...song,
-                    serviceKey:candidate.serviceKey || song.serviceKey || (candidate.originalKey && candidate.key && candidate.key !== candidate.originalKey ? candidate.key : undefined),
+                    serviceKey:candidate.serviceKey || (candidate.key && candidate.originalKey && candidate.key !== candidate.originalKey ? candidate.key : undefined),
                     sections:normalizeSections(master.sections)
                 }, master);
                 transposeSteps=Number(song.transpose||0);
@@ -1175,7 +1177,7 @@ async function loadServiceIndex(targetIndex){
     if(candidate.id){
         void refreshMasterSong(candidate.id).then(master=>{
             if(!master || String(song?.id||"")!==String(candidate.id||"")) return;
-            song=applyServiceKeyToSong({...song, ...master, sections:normalizeSections(master.sections)}, candidate);
+            song=applyServiceKeyToSong({...candidate, sections:normalizeSections(master.sections)}, master);
             transposeSteps=Number(song.transpose||0);
             render();
             if(document.getElementById("customPresentationScreen")?.classList.contains("show")) renderCustomPresentation();
@@ -1733,8 +1735,17 @@ async function refreshActiveServiceOccurrenceFromMaster(updatedSong){
          "selectedPart","selectedPartIndex"].forEach(key=>{
             if(Object.prototype.hasOwnProperty.call(item,key)) occurrenceOnly[key]=item[key];
         });
+        const itemOriginalKey=String(item?.originalKey || updatedSong.originalKey || updatedSong.key || "").trim();
+        const itemKey=String(item?.key || "").trim();
+        const itemServiceKey=String(item?.serviceKey || "").trim();
+        const itemKeyDiffers=!!itemKey && itemOriginalKey && itemKey.toUpperCase()!==itemOriginalKey.toUpperCase();
+        const itemSelectedKey=(itemKeyDiffers && (!itemServiceKey || itemServiceKey.toUpperCase()===itemOriginalKey.toUpperCase())) ? itemKey : (itemServiceKey || (itemKeyDiffers ? itemKey : "")).trim();
         return {...updatedSong,...occurrenceOnly,
-            serviceKey:item?.serviceKey || updatedSong.serviceKey || updatedSong.key,
+            // Keep the planner occurrence's selected key. The master song's
+            // key is its library/original key and must never reset this value.
+            serviceKey:itemSelectedKey || updatedSong.serviceKey || updatedSong.key,
+            key:itemSelectedKey || item?.key || updatedSong.key,
+            originalKey:itemOriginalKey || updatedSong.key,
             transpose:item?.transpose ?? updatedSong.transpose ?? 0};
     });
     if(!changed) return false;
