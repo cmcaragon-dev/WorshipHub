@@ -22,9 +22,11 @@ const serviceKeyTransposeSteps = (originalKey, serviceKey) => {
 };
 
 const applyServiceKeyToSong = (candidate, master = null) => {
-    const merged = { ...(candidate || {}), ...(master || {}) };
-    const serviceKey = String(candidate?.serviceKey || candidate?.key || merged.serviceKey || merged.key || merged.originalKey || "C").trim();
-    const originalKey = String(candidate?.originalKey || merged.originalKey || merged.key || serviceKey || "C").trim();
+    // Merge current master content, but always preserve the Service Planner's
+    // occurrence-specific key. The master song's `key` must never override it.
+    const merged = { ...(master || {}), ...(candidate || {}) };
+    const originalKey = String(candidate?.originalKey || master?.originalKey || master?.key || candidate?.key || "C").trim();
+    const serviceKey = String(candidate?.serviceKey || candidate?.key || master?.serviceKey || originalKey || "C").trim();
     const steps = serviceKeyTransposeSteps(originalKey, serviceKey);
     return { ...merged, originalKey, serviceKey, key: serviceKey, transpose: steps };
 };
@@ -551,18 +553,18 @@ async function loadFromService(){
         // Render the service snapshot immediately. It already contains the song
         // content, so presentation startup does not wait for another Firestore
         // document read. Refresh from the master copy in the background only.
-        song={...candidate,sections:normalizeSections(candidate.sections)};
+        song=applyServiceKeyToSong({...candidate,sections:normalizeSections(candidate.sections)});
+        transposeSteps=Number(song.transpose||0);
         if(candidate.customSong===true || String(candidate.file||"").startsWith("custom-song.html")){
             void refreshMasterSong(candidate.id).then(master=>{
                 if(!master) return;
                 if(String(song?.id||"")!==String(candidate.id||"")) return;
-                song={
+                song=applyServiceKeyToSong({
+                    ...candidate,
                     ...song,
-                    ...master,
-                    sections:normalizeSections(master.sections),
-                    serviceKey:candidate.serviceKey || master.serviceKey || master.key,
-                    transpose:Number(candidate.transpose ?? master.transpose ?? 0)
-                };
+                    serviceKey:candidate.serviceKey || candidate.key || song.serviceKey,
+                    sections:normalizeSections(master.sections)
+                }, master);
                 transposeSteps=Number(song.transpose||0);
                 render();
                 if(document.getElementById("customPresentationScreen")?.classList.contains("show")) renderCustomPresentation();

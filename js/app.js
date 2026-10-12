@@ -457,13 +457,13 @@ let currentUserProfile = null;
 let canManageSongs = false;
 function updateNormalUserToolState(){
     const admin = isCurrentAdmin();
-    ['settingsBtn','addSongBtn','importSongBtn'].forEach(id=>{
+    ['addSongBtn','importSongBtn'].forEach(id=>{
         const el=document.getElementById(id);
         if(!el) return;
         el.disabled=!admin;
         el.setAttribute('aria-disabled',String(!admin));
         el.classList.toggle('permission-disabled',!admin);
-        if(!admin) el.title = id==='settingsBtn' ? 'Settings are available to administrators only' : (id==='addSongBtn' ? 'Add Song is available to administrators only' : 'Import Song is available to administrators only');
+        if(!admin) el.title = id==='addSongBtn' ? 'Adding songs is available to administrators or approved users' : 'Importing songs is available to administrators only';
     });
     document.querySelectorAll('[data-sidebar-quick="addsong"],[data-sidebar-quick="import"],.settings-action').forEach(el=>{
         el.disabled=!admin;
