@@ -29,9 +29,7 @@
 @media(max-width:640px){.settings-collapsible-summary{padding:18px 16px;align-items:flex-start}.settings-collapse-hint{display:none}.settings-collapsible-content{padding:0 16px 18px}}
 </style>
 
-<style>
-.settings-slide-background-card{margin-top:18px}.settings-slide-bg-grid{display:grid;grid-template-columns:minmax(240px,360px) 1fr;gap:14px;align-items:stretch}.settings-file-label{display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:800;color:#475569}.settings-file-label input{padding:12px;border:1px solid #d8dee8;border-radius:10px;background:#fff}.settings-slide-bg-preview{min-height:150px;border:1px dashed #cbd5e1;border-radius:12px;background:#f8fafc center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px;text-align:center;padding:16px}.settings-slide-bg-actions{display:flex;align-items:center;gap:8px;margin-top:12px}.settings-slide-bg-actions span{font-size:12px;color:#64748b}@media(max-width:700px){.settings-slide-bg-grid{grid-template-columns:1fr}}
-</style>
+
 <style id="chordio-settings-responsive-sept24">
 @media(max-width:760px){
  .settings-page-header{padding:12px 14px;gap:10px;flex-wrap:wrap;}
@@ -46,6 +44,19 @@
  .settings-page-brand img{width:36px;height:36px;}
 }
 </style>
+
+<style id="chordio-settings-layout-refresh">
+.settings-page-main{max-width:1120px}.settings-page-intro{padding:24px 26px;border:1px solid #e2e8f0;border-radius:18px;background:linear-gradient(120deg,#fff 0%,#f8fafc 100%);box-shadow:0 8px 24px rgba(15,23,42,.04)}
+.settings-page-intro h2{font-size:28px;letter-spacing:-.6px}.settings-page-intro p{line-height:1.65;max-width:760px}
+.settings-page .settings-shell{background:transparent;box-shadow:none;border:0}.settings-page .settings-content{padding:0;background:transparent}
+.settings-page .settings-card,.settings-page .settings-hero{border-radius:16px;box-shadow:0 8px 24px rgba(15,23,42,.05);border:1px solid #e2e8f0}
+.settings-help-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.settings-help-card{display:flex;align-items:flex-start;gap:13px;padding:19px;border:1px solid #e2e8f0;border-radius:16px;background:#fff;box-shadow:0 8px 24px rgba(15,23,42,.04)}
+.settings-help-icon{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:12px;background:#f1f5f9;font-size:20px}
+.settings-help-card h3{margin:1px 0 7px;font-size:15px;color:#172033}.settings-help-card p{margin:0;color:#64748b;font-size:13px;line-height:1.65}
+@media(max-width:760px){.settings-help-grid{grid-template-columns:1fr}.settings-page-intro{padding:18px}.settings-page-intro h2{font-size:24px}}
+</style>
+
 </head>
 <body class="settings-page">
 <header class="settings-page-header">
@@ -66,29 +77,17 @@
     </div>
   </div>
 
-<section class="settings-card settings-slide-background-card">
-  <div class="settings-section-head"><div><div class="settings-card-title">Slides / Service Slides Background</div><div class="settings-help">Upload one background image for Scripture, announcements and other service page slides.</div></div></div>
-  <div class="settings-slide-bg-grid">
-    <label class="settings-file-label">Background Image<input id="serviceSlidesBackgroundFile" type="file" accept="image/*"></label>
-    <div class="settings-slide-bg-preview" id="serviceSlidesBackgroundPreview">No background image selected.</div>
-  </div>
-  <div class="settings-slide-bg-actions"><button id="serviceSlidesBackgroundApply" class="settings-primary" type="button">✓ Save Background</button><button id="serviceSlidesBackgroundClear" class="settings-secondary" type="button">✕ Remove</button><span id="serviceSlidesBackgroundStatus" aria-live="polite"></span></div>
-</section>
+
+
+  <section class="settings-help-grid" aria-label="Settings help">
+    <article class="settings-help-card"><span class="settings-help-icon">🎵</span><div><h3>Song permissions</h3><p>Add Song and Edit Song access are managed by an administrator. If a control is unavailable, ask your administrator to review your account.</p></div></article>
+    <article class="settings-help-card"><span class="settings-help-icon">📋</span><div><h3>Service Planner tip</h3><p>Choose the key for each song inside the Service Planner, then save the key before opening the Song Page or Multi-Screen.</p></div></article>
+    <article class="settings-help-card"><span class="settings-help-icon">🔒</span><div><h3>Account & access</h3><p>Use your own signed-in account. Administrators can search for a user and switch Add Song or Edit Song permissions on or off.</p></div></article>
+  </section>
 </main>
 <script type="module" src="js/firebase.js"></script>
 <script type="module" src="js/admin-settings.js"></script>
 
-<script>
-(function(){
- const key='chordioServiceSlidesBackground';
- const file=document.getElementById('serviceSlidesBackgroundFile'), preview=document.getElementById('serviceSlidesBackgroundPreview'), apply=document.getElementById('serviceSlidesBackgroundApply'), clear=document.getElementById('serviceSlidesBackgroundClear'), status=document.getElementById('serviceSlidesBackgroundStatus');
- let pending=null;
- function load(){try{const bg=JSON.parse(localStorage.getItem(key)||'null'); if(bg?.url){preview.style.backgroundImage=`url(${JSON.stringify(bg.url)})`;preview.textContent='Current service slides background';}else{preview.style.backgroundImage='none';preview.textContent='No background image selected.';}}catch(_){}}
- file?.addEventListener('change',()=>{const f=file.files?.[0];if(!f)return;const r=new FileReader();r.onload=()=>{pending={type:'image',url:String(r.result||'')};preview.style.backgroundImage=`url(${JSON.stringify(pending.url)})`;preview.textContent='New background ready to save';};r.readAsDataURL(f);});
- apply?.addEventListener('click',()=>{if(!pending){status.textContent='Choose an image first.';return;}try{localStorage.setItem(key,JSON.stringify(pending));localStorage.setItem('chordioServiceSlidesBackgroundUpdatedAt',String(Date.now()));status.textContent='Background saved.';pending=null;load();}catch(e){status.textContent='Unable to save image in this browser.';}});
- clear?.addEventListener('click',()=>{localStorage.removeItem(key);pending=null;if(file)file.value='';load();status.textContent='Background removed.';});
- load();
-})();
-</script>
+
 </body>
 </html>

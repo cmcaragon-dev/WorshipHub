@@ -22,30 +22,37 @@ const serviceKeyTransposeSteps = (originalKey, serviceKey) => {
 };
 
 const applyServiceKeyToSong = (candidate, master = null) => {
-    // Master data supplies the latest lyrics/chords, while the planner occurrence
-    // is authoritative for its saved key. Do not let a master `key` overwrite a
-    // key selected for this specific Service Planner occurrence.
+    // The Service Planner occurrence owns the selected key; the master song
+    // owns the original key and latest lyrics/chords. Keep those two roles
+    // separate so a background master refresh cannot reset the selected key.
     const occurrence = candidate || {};
     const masterSong = master || {};
     const merged = { ...masterSong, ...occurrence };
     const originalKey = String(
-        masterSong.originalKey || masterSong.key || occurrence.originalKey || occurrence.key || "C"
+        masterSong.originalKey || occurrence.originalKey || masterSong.key || occurrence.key || "C"
     ).trim();
+    const savedStepsValue = Number(occurrence.transpose);
+    const hasSavedSteps = occurrence.transpose !== undefined && occurrence.transpose !== null && Number.isFinite(savedStepsValue);
+    const explicitServiceKey = String(occurrence.serviceKey || "").trim();
+    const occurrenceKey = String(occurrence.key || "").trim();
+    let serviceKey = explicitServiceKey;
 
-    // Older planner records may contain only `transpose`; newer records also
-    // persist `serviceKey`. Prefer the explicitly saved service key when present,
-    // otherwise reconstruct it from the saved semitone offset.
-    const hasSavedServiceKey = String(occurrence.serviceKey || "").trim().length > 0;
-    const savedSteps = Number(occurrence.transpose);
-    const serviceKey = hasSavedServiceKey
-        ? String(occurrence.serviceKey).trim()
-        : (Number.isFinite(savedSteps) && savedSteps !== 0
-            ? transposeChord(originalKey, savedSteps)
-            : String(occurrence.key || originalKey).trim());
-    const steps = hasSavedServiceKey
-        ? serviceKeyTransposeSteps(originalKey, serviceKey)
-        : (Number.isFinite(savedSteps) ? savedSteps : serviceKeyTransposeSteps(originalKey, serviceKey));
+    if (!serviceKey) {
+        // In older planner records `key` is often the selected key while
+        // `originalKey` is the library key. If those differ, `key` wins.
+        if (occurrenceKey && occurrenceKey.toUpperCase() !== originalKey.toUpperCase()) {
+            serviceKey = occurrenceKey;
+        } else if (hasSavedSteps && savedStepsValue !== 0) {
+            serviceKey = transposeChord(originalKey, savedStepsValue);
+        } else {
+            serviceKey = occurrenceKey || originalKey;
+        }
+    }
 
+    // Always derive the actual offset from the authoritative selected key.
+    // A stale `transpose: 0` must never override a saved key such as C when
+    // the library's original key is G.
+    const steps = serviceKeyTransposeSteps(originalKey, serviceKey || originalKey);
     return { ...merged, originalKey, serviceKey: serviceKey || originalKey, key: serviceKey || originalKey, transpose: steps };
 };
 
@@ -582,7 +589,7 @@ async function loadFromService(){
                 song=applyServiceKeyToSong({
                     ...candidate,
                     ...song,
-                    serviceKey:candidate.serviceKey || candidate.key || song.serviceKey,
+                    serviceKey:candidate.serviceKey || song.serviceKey || (candidate.originalKey && candidate.key && candidate.key !== candidate.originalKey ? candidate.key : undefined),
                     sections:normalizeSections(master.sections)
                 }, master);
                 transposeSteps=Number(song.transpose||0);
