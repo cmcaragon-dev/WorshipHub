@@ -22,13 +22,31 @@ const serviceKeyTransposeSteps = (originalKey, serviceKey) => {
 };
 
 const applyServiceKeyToSong = (candidate, master = null) => {
-    // Merge current master content, but always preserve the Service Planner's
-    // occurrence-specific key. The master song's `key` must never override it.
-    const merged = { ...(master || {}), ...(candidate || {}) };
-    const originalKey = String(candidate?.originalKey || master?.originalKey || master?.key || candidate?.key || "C").trim();
-    const serviceKey = String(candidate?.serviceKey || candidate?.key || master?.serviceKey || originalKey || "C").trim();
-    const steps = serviceKeyTransposeSteps(originalKey, serviceKey);
-    return { ...merged, originalKey, serviceKey, key: serviceKey, transpose: steps };
+    // Master data supplies the latest lyrics/chords, while the planner occurrence
+    // is authoritative for its saved key. Do not let a master `key` overwrite a
+    // key selected for this specific Service Planner occurrence.
+    const occurrence = candidate || {};
+    const masterSong = master || {};
+    const merged = { ...masterSong, ...occurrence };
+    const originalKey = String(
+        masterSong.originalKey || masterSong.key || occurrence.originalKey || occurrence.key || "C"
+    ).trim();
+
+    // Older planner records may contain only `transpose`; newer records also
+    // persist `serviceKey`. Prefer the explicitly saved service key when present,
+    // otherwise reconstruct it from the saved semitone offset.
+    const hasSavedServiceKey = String(occurrence.serviceKey || "").trim().length > 0;
+    const savedSteps = Number(occurrence.transpose);
+    const serviceKey = hasSavedServiceKey
+        ? String(occurrence.serviceKey).trim()
+        : (Number.isFinite(savedSteps) && savedSteps !== 0
+            ? transposeChord(originalKey, savedSteps)
+            : String(occurrence.key || originalKey).trim());
+    const steps = hasSavedServiceKey
+        ? serviceKeyTransposeSteps(originalKey, serviceKey)
+        : (Number.isFinite(savedSteps) ? savedSteps : serviceKeyTransposeSteps(originalKey, serviceKey));
+
+    return { ...merged, originalKey, serviceKey: serviceKey || originalKey, key: serviceKey || originalKey, transpose: steps };
 };
 
 function transposeChord(chord, steps = transposeSteps) {
@@ -352,8 +370,10 @@ async function saveTransposeToSelectedService(options = {}){
         );
         service = updatedService;
         localStorage.setItem("currentSongIndex", String(index));
-        // Store a small client-side snapshot as well. This makes the index
-        // planner reflect the new key immediately after returning to it.
+        // Keep the active snapshot in sync with Firebase so returning to the
+        // planner (or reopening this song) cannot restore an older/original key.
+        try { localStorage.setItem("currentServiceSnapshot", JSON.stringify(updatedService)); } catch(_) {}
+        // Store a small client-side marker as well for the index planner.
         localStorage.setItem("worshipHubServiceKeyUpdate", JSON.stringify({
             serviceId: String(serviceId),
             songId: String(updatedServiceSong.id || ""),

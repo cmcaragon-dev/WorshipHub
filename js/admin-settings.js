@@ -4,9 +4,10 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/f
 import { collection, doc, getDoc, getDocs, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 export const ADMIN_EMAIL = "cmcaragon@gmail.com";
+const ADMIN_EMAILS = new Set(["cmcaragon@gmail.com", "jfcm.s07@gmail.com"]);
 
 const normalizeEmail = value => String(value || "").trim().toLowerCase();
-export const isAdmin = (user = auth.currentUser) => normalizeEmail(user?.email) === ADMIN_EMAIL;
+export const isAdmin = (user = auth.currentUser) => ADMIN_EMAILS.has(normalizeEmail(user?.email)) || user?.role === "admin" || user?.isAdmin === true || user?.admin === true;
 
 let settingsAuthReadyResolve;
 const settingsAuthReady = new Promise(resolve => { settingsAuthReadyResolve = resolve; });
@@ -168,7 +169,7 @@ function renderUserRows(users) {
         return;
     }
     list.innerHTML = users.map(u => {
-        const admin = normalizeEmail(u.email) === ADMIN_EMAIL;
+        const admin = ADMIN_EMAILS.has(normalizeEmail(u.email)) || u.role === "admin" || u.isAdmin === true || u.admin === true;
         const addAllowed = admin || u.allowAddSongs === true;
         const editAllowed = admin || u.allowEditSongs === true;
         const label = String(u.name || u.email || "U").trim().charAt(0).toUpperCase();

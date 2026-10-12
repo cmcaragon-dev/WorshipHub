@@ -457,20 +457,40 @@ let currentUserProfile = null;
 let canManageSongs = false;
 function updateNormalUserToolState(){
     const admin = isCurrentAdmin();
-    ['addSongBtn','importSongBtn'].forEach(id=>{
+    const canAdd = admin || currentUserProfile?.allowAddSongs === true;
+    const canEdit = admin || currentUserProfile?.allowEditSongs === true;
+    const states = [
+        ['addSongBtn', canAdd, 'Add Song is available to administrators or users approved to add songs.'],
+        ['importSongBtn', admin, 'Importing songs is available to administrators only.']
+    ];
+    states.forEach(([id, allowed, deniedTitle])=>{
         const el=document.getElementById(id);
         if(!el) return;
+        el.disabled=!allowed;
+        el.setAttribute('aria-disabled',String(!allowed));
+        el.classList.toggle('permission-disabled',!allowed);
+        el.title = allowed ? (id==='addSongBtn' ? 'Add a new song' : 'Import songs') : deniedTitle;
+    });
+    document.querySelectorAll('[data-sidebar-quick="addsong"]').forEach(el=>{
+        el.disabled=!canAdd;
+        el.setAttribute('aria-disabled',String(!canAdd));
+        el.classList.toggle('permission-disabled',!canAdd);
+        el.title=canAdd?'Add a new song':'Add Song is disabled by the administrator';
+    });
+    document.querySelectorAll('[data-sidebar-quick="import"]').forEach(el=>{
         el.disabled=!admin;
         el.setAttribute('aria-disabled',String(!admin));
         el.classList.toggle('permission-disabled',!admin);
-        if(!admin) el.title = id==='addSongBtn' ? 'Adding songs is available to administrators or approved users' : 'Importing songs is available to administrators only';
     });
-    document.querySelectorAll('[data-sidebar-quick="addsong"],[data-sidebar-quick="import"],.settings-action').forEach(el=>{
-        el.disabled=!admin;
-        el.setAttribute('aria-disabled',String(!admin));
-        el.classList.toggle('permission-disabled',!admin);
+    // Settings remains available to everyone so users can see their own
+    // permissions; admin-only controls are enforced inside Settings itself.
+    document.querySelectorAll('.settings-action').forEach(el=>{
+        el.disabled=false;
+        el.removeAttribute('aria-disabled');
+        el.classList.remove('permission-disabled');
     });
-    window.dispatchEvent(new CustomEvent('worshiphub:permissions-updated',{detail:{isAdmin:admin}}));
+    canManageSongs = canEdit;
+    window.dispatchEvent(new CustomEvent('worshiphub:permissions-updated',{detail:{isAdmin:admin,canAddSongs:canAdd,canEditSongs:canEdit}}));
 }
 
 const isCurrentAdmin = () => {
