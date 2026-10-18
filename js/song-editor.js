@@ -37,6 +37,11 @@ function isDeletedTitle(title){
         return Array.isArray(v) && v.map(normalizeDeletedTitle).includes(key);
     } catch(e){ return false; }
 }
+function isAdminUser(user = auth.currentUser) {
+    const email = String(user?.email || "").trim().toLowerCase();
+    return isAdmin(user) || email === String(ADMIN_EMAIL || "").trim().toLowerCase();
+}
+
 const SHARP_KEYS = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
 
 let sections = [];
@@ -821,12 +826,18 @@ async function importChordPage() {
 
 async function saveSong() {
     const user = auth.currentUser;
-    const allowed = await canAddSongs(user);
     const existing = editingId ? songs.find(existing => String(existing.id) === String(editingId)) : null;
-    const isAdmin = String(user?.email || "").toLowerCase() === ADMIN_EMAIL;
-    const isOwner = existing && existing.createdByUid && existing.createdByUid === user?.uid;
-    if (!user || (!allowed && !isOwner && !isAdmin)) {
-        alert("You do not have permission to add or edit songs.");
+    const isAdmin = isAdminUser(user);
+    // IMPORTANT: adding and editing are separate administrator-approved permissions.
+    // Previously Edit Song users were incorrectly checked against allowAddSongs,
+    // so an administrator could approve Edit Song and the Save operation still failed.
+    const allowed = existing
+        ? await canEditSongs(user)
+        : await canAddSongs(user);
+    if (!user || (!allowed && !isAdmin)) {
+        alert(existing
+            ? "You do not have permission to edit songs. Ask an administrator to enable Edit Song access."
+            : "You do not have permission to add songs. Ask an administrator to enable Add Song access.");
         return;
     }
     const title = document.getElementById("editorSongTitle").value.trim();

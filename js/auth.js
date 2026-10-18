@@ -539,6 +539,13 @@ onAuthStateChanged(
             return;
         }
 
+        // Show an immediate Firebase-auth fallback while the Firestore profile
+        // is being restored. This removes the blank/loading feeling on return
+        // to Home; the real profile name replaces it when available.
+        const immediateName = String(user.displayName || user.email || "User")
+            .trim()
+            .split("@")[0];
+        userNameElement.textContent = immediateName || "User";
 
         // --------------------------------------
         // GET FIRESTORE PROFILE

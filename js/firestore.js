@@ -89,6 +89,29 @@ async function getFirebaseUser() {
 // =====================================
 // LOAD USER SERVICES
 // =====================================
+// Small local cache used only to make the Home/Index feel instant when returning
+// from Song Page or Multi Screen. Firestore remains the source of truth.
+const SERVICES_CACHE_PREFIX = "chordioServicesCache:";
+function servicesCacheKey(uid) { return SERVICES_CACHE_PREFIX + String(uid || ""); }
+
+export function getCachedServices(uid) {
+    if (!uid) return [];
+    try {
+        const raw = localStorage.getItem(servicesCacheKey(uid));
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (_) {
+        return [];
+    }
+}
+
+function setCachedServices(uid, services) {
+    if (!uid || !Array.isArray(services)) return;
+    try {
+        localStorage.setItem(servicesCacheKey(uid), JSON.stringify(services));
+    } catch (_) {}
+}
+
 
 export async function loadServices() {
 
@@ -168,6 +191,7 @@ export async function loadServices() {
                 }
             );
 
+        setCachedServices(user.uid, services);
 
         console.log(
             "FIREBASE SERVICES LOADED:",

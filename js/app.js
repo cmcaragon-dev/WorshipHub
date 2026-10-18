@@ -26,6 +26,7 @@ import {
 
 import {
     loadServices,
+    getCachedServices,
     saveService,
     saveServices,
     deleteServiceCloud
@@ -682,72 +683,42 @@ onAuthStateChanged(auth, async function(user) {
     console.log("Logged in user:", currentUser.uid);
     console.log("Email:", currentUser.email);
 
-
     /* =====================================
        LOAD USER SERVICES
     ===================================== */
 
-    try {
-console.log(
-    "Loading services for UID:",
-    currentUser.uid
-);
-        services = await loadServices(
-            currentUser.uid
-        );
+    // Render cached Service Planner data immediately when returning to Home.
+    // Firestore is refreshed in the background so navigation does not wait for
+    // a network read before the user can interact with the page.
+    const cachedServices = getCachedServices(currentUser.uid);
+    if (cachedServices.length) {
+        services = cachedServices;
+        services.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
         window.services = services;
-
-        services.sort(function(a, b) {
-
-            return (a.name || "").localeCompare(
-                b.name || ""
-            );
-
-        });
-
-        console.log(
-            "User services:",
-            services
-        );
-
-    }
-    catch(error) {
-
-        console.error(
-            "Service loading error:",
-            error
-        );
-
-        services = [];
-
+        if (typeof renderServices === "function") renderServices();
+        if (typeof updateDashboard === "function") updateDashboard();
     }
 
+    void (async function refreshServicesInBackground() {
+        try {
+            const freshServices = await loadServices(currentUser.uid);
+            services = Array.isArray(freshServices) ? freshServices : [];
+            services.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+            window.services = services;
+            if (typeof renderServices === "function") renderServices();
+            if (typeof updateDashboard === "function") updateDashboard();
+        } catch (error) {
+            console.warn("Service loading error:", error);
+            // Keep cached services visible if Firestore is temporarily slow.
+        }
+    })();
 
     /* =====================================
        RENDER
     ===================================== */
 
-
-    if (typeof renderServices === "function") {
-
-        renderServices();
-
-    }
-
-
-
-
-    if (typeof updateDashboard === "function") {
-
-        updateDashboard();
-
-    }
-
-
     if (typeof renderSongs === "function") {
-
         renderSongs(songs);
-
     }
 
 });
