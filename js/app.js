@@ -1244,16 +1244,17 @@ function renderSongs(songList) {
                     <a class="open-song" href="${song.customSong ? `custom-song.html?id=${encodeURIComponent(song.id)}` : (song.file || "#")}">🎵 Open Song</a>
                 </div>
                 <div class="song-card-action-row song-card-action-row-secondary">
-                    <a class="youtube-song-btn${song.youtube ? "" : " disabled"}"
+                    <a class="song-icon-action youtube-song-btn${song.youtube ? "" : " disabled"}"
                        href="${song.youtube ? escapeHtml(song.youtube) : "#"}"
                        ${song.youtube ? 'target="_blank" rel="noopener noreferrer"' : 'aria-disabled="true" onclick="return false;"'}
-                       title="${song.youtube ? "Open YouTube link" : "No YouTube link added"}"><i class="fa-brands fa-youtube youtube-real-icon" aria-hidden="true"></i></a>
+                       aria-label="${song.youtube ? "Open YouTube link" : "No YouTube link added"}"
+                       title="${song.youtube ? "YouTube" : "No YouTube link added"}">▶</a>
                     ${canManageSongs ? `
-                        <button type="button" class="song-action-btn edit" data-card-action="edit" data-song-id="${escapeHtml(song.id)}">✏ Edit</button>
-                        <button type="button" class="song-action-btn delete" data-card-action="delete" data-song-id="${escapeHtml(song.id)}">🗑 Delete</button>
+                        <button type="button" class="song-icon-action song-action-btn edit" data-card-action="edit" data-song-id="${escapeHtml(song.id)}" aria-label="Edit song" title="Edit">✎</button>
+                        <button type="button" class="song-icon-action song-action-btn delete" data-card-action="delete" data-song-id="${escapeHtml(song.id)}" aria-label="Delete song" title="Delete">🗑</button>
                     ` : ""}
                     ${canDuplicateSongs ? `
-                        <button type="button" class="song-action-btn duplicate" data-card-action="duplicate" data-song-id="${escapeHtml(song.id)}">⧉ Duplicate</button>
+                        <button type="button" class="song-icon-action duplicate" data-card-action="duplicate" data-song-id="${escapeHtml(song.id)}" aria-label="Duplicate song" title="Duplicate">⧉</button>
                     ` : ""}
                 </div>
             </div>

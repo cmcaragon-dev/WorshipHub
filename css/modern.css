@@ -1168,3 +1168,35 @@ button,input,select,textarea{max-width:100%;box-sizing:border-box}
     overflow-wrap:normal!important;
   }
 }
+
+
+/* CHORDIO song-card action arrangement — Open Song button first; text actions followed by icon-only Duplicate. */
+#songGrid .song-card-actions-managed{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;width:100%!important;overflow:visible!important;white-space:normal!important;}
+#songGrid .song-card-action-row-primary{width:100%!important;}
+#songGrid .song-card-action-row-primary .open-song{display:flex!important;width:100%!important;min-height:44px!important;align-items:center!important;justify-content:center!important;}
+#songGrid .song-card-action-row-secondary{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:14px!important;width:100%!important;min-width:0!important;}
+#songGrid .song-card-action-row-secondary .song-text-action{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-height:34px!important;padding:4px 0!important;border:0!important;border-radius:0!important;background:transparent!important;color:#344054!important;font-size:13px!important;font-weight:800!important;text-decoration:none!important;cursor:pointer!important;flex:0 0 auto!important;box-shadow:none!important;}
+#songGrid .song-card-action-row-secondary .song-text-action:hover{color:#0f766e!important;text-decoration:underline!important;background:transparent!important;}
+#songGrid .song-card-action-row-secondary .youtube-song-btn.disabled{opacity:.45!important;cursor:not-allowed!important;text-decoration:none!important;}
+#songGrid .song-card-action-row-secondary .song-icon-action{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:34px!important;height:34px!important;min-width:34px!important;padding:0!important;margin-left:auto!important;border:0!important;background:transparent!important;color:#667085!important;border-radius:7px!important;font-size:19px!important;line-height:1!important;font-weight:700!important;cursor:pointer!important;box-shadow:none!important;}
+#songGrid .song-card-action-row-secondary .song-icon-action:hover{color:#0f766e!important;background:#eef8f6!important;}
+#songGrid .song-card-action-row-secondary .song-icon-action:focus-visible{outline:2px solid #0f766e!important;outline-offset:2px!important;}
+@media(max-width:520px){
+  #songGrid .song-card-action-row-secondary{gap:11px!important;}
+  #songGrid .song-card-action-row-secondary .song-text-action{font-size:12px!important;min-height:34px!important;}
+  #songGrid .song-card-action-row-secondary .song-icon-action{width:34px!important;height:34px!important;min-width:34px!important;}
+}
+
+/* CHORDIO: song card secondary actions are icon-only — no text and no button styling. */
+#songGrid .song-card-action-row-secondary{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:16px!important;width:100%!important;min-width:0!important;}
+#songGrid .song-card-action-row-secondary .song-icon-action,
+#songGrid .song-card-action-row-secondary .song-text-action{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#667085!important;font-size:18px!important;font-weight:700!important;line-height:1!important;text-decoration:none!important;cursor:pointer!important;flex:0 0 auto!important;}
+#songGrid .song-card-action-row-secondary .song-icon-action:hover,
+#songGrid .song-card-action-row-secondary .song-text-action:hover{color:#0f766e!important;background:transparent!important;text-decoration:none!important;}
+#songGrid .song-card-action-row-secondary .youtube-song-btn.disabled{opacity:.4!important;cursor:not-allowed!important;}
+#songGrid .song-card-action-row-secondary .song-icon-action:focus-visible{outline:2px solid #0f766e!important;outline-offset:2px!important;}
+@media(max-width:520px){
+  #songGrid .song-card-action-row-secondary{gap:13px!important;}
+  #songGrid .song-card-action-row-secondary .song-icon-action,
+  #songGrid .song-card-action-row-secondary .song-text-action{width:30px!important;height:30px!important;min-width:30px!important;font-size:17px!important;}
+}
