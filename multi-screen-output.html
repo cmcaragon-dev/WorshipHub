@@ -82,6 +82,8 @@ html:fullscreen,html:-webkit-full-screen,body:fullscreen,body:-webkit-full-scree
 }
 </style>
 <link rel="stylesheet" href="css/responsive.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0F766E">
 </head><body><div id="app"><div id="bg"></div><div id="shade"></div><div id="header"><div><span id="title">CHORDIO</span><span id="artist"></span></div><span id="key"></span><div id="passing"></div><span id="mode"></span></div><div id="content"></div><div id="lower" class="lower"><div id="note" class="box"><span>SERVICE NOTE</span><strong></strong></div><div id="next" class="box"><span>NEXT SONG</span><strong>END OF SERVICE</strong><small></small></div></div></div><script>(function(){
 'use strict';
 const params=new URLSearchParams(location.search);
@@ -416,4 +418,5 @@ setTimeout(()=>render(read()),150);
 setTimeout(()=>render(read()),600);
 setTimeout(()=>render(read()),1500);
 })();
-</script></body></html>
+</script>  <script src="js/pwa.js"></script>
+</body></html>

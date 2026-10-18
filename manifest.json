@@ -1,0 +1,15 @@
+{
+  "name": "CHORDIO – Worship Lyrics & Service Planner",
+  "short_name": "CHORDIO",
+  "description": "Offline-capable worship lyrics, song page, service planner and multi-screen presentation app.",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#0F766E",
+  "icons": [
+    {"src":"images/chordio-favicon.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"images/chordio-favicon.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ]
+}

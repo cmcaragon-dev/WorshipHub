@@ -251,3 +251,12 @@ button, input, select, textarea { max-width:100%; }
   }
   .settings-metric { padding:12px !important; }
 }
+
+/* =========================================================
+   CHORDIO PWA / OFFLINE CONNECTION STATUS
+   ========================================================= */
+#chordioConnectionStatus{position:fixed;right:14px;bottom:14px;z-index:99999;display:flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid #dbe2ea;border-radius:999px;background:rgba(255,255,255,.94);box-shadow:0 6px 22px rgba(15,23,42,.12);font:700 11px/1 system-ui,sans-serif;color:#334155;backdrop-filter:blur(8px);pointer-events:none;transition:opacity .2s,transform .2s}
+#chordioConnectionStatus .chordio-connection-dot{width:8px;height:8px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 3px #dcfce7}
+#chordioConnectionStatus.offline{color:#92400e;border-color:#fed7aa;background:#fffaf5}
+#chordioConnectionStatus.offline .chordio-connection-dot{background:#f59e0b;box-shadow:0 0 0 3px #fef3c7}
+@media(max-width:560px){#chordioConnectionStatus{right:9px;bottom:9px;font-size:10px;padding:6px 9px}}

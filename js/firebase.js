@@ -5,11 +5,15 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
-    getAuth
+    getAuth,
+    setPersistence,
+    browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
-    getFirestore
+    initializeFirestore,
+    persistentLocalCache,
+    persistentMultipleTabManager
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // ==========================================
@@ -54,13 +58,29 @@ const app =
 const auth =
     getAuth(app);
 
+// Keep the signed-in session on the device so CHORDIO can reopen offline.
+setPersistence(auth, browserLocalPersistence).catch(function (error) {
+    console.warn("CHORDIO Auth persistence unavailable:", error);
+});
+
 
 /* =====================================
    FIRESTORE
 ===================================== */
 
-const db =
-    getFirestore(app);
+let db;
+try {
+    // Firestore stores previously read data locally and queues writes while offline.
+    db = initializeFirestore(app, {
+        localCache: persistentLocalCache({
+            tabManager: persistentMultipleTabManager()
+        })
+    });
+} catch (error) {
+    console.warn("Persistent Firestore cache could not be initialized:", error);
+    // Fallback for browsers/environments that do not support persistent cache.
+    db = initializeFirestore(app);
+}
 
 
 /* =====================================

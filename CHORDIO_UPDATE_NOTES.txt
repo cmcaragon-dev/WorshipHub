@@ -1,0 +1,18 @@
+CHORDIO update - 2026-10-18
+
+1. Permission approval fix
+- Add Song and Edit Song approvals are now enforced independently.
+- Editing an existing song checks allowEditSongs.
+- Adding a new song checks allowAddSongs.
+- Owner status no longer bypasses the administrator's Edit Song approval.
+
+2. Responsive web app
+- Added a shared responsive CSS layer across Index/Home, Settings, Song Page, Multi Screen, Login and Register.
+- Added mobile/tablet layouts, responsive cards/forms/toolbars, safe table scrolling and mobile-friendly song editor/modal behavior.
+- Added dedicated responsive rules for Multi Screen output.
+
+3. Faster return to Home/Index
+- Service Planner data is cached locally and rendered immediately on return.
+- Firestore refresh runs in the background instead of blocking Home interaction.
+- Service save/delete operations keep the local cache synchronized.
+- Logged-in user's email/display-name fallback is shown immediately while the Firestore profile loads.
