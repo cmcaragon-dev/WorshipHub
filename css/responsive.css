@@ -260,3 +260,25 @@ button, input, select, textarea { max-width:100%; }
 #chordioConnectionStatus.offline{color:#92400e;border-color:#fed7aa;background:#fffaf5}
 #chordioConnectionStatus.offline .chordio-connection-dot{background:#f59e0b;box-shadow:0 0 0 3px #fef3c7}
 @media(max-width:560px){#chordioConnectionStatus{right:9px;bottom:9px;font-size:10px;padding:6px 9px}}
+
+
+/* CHORDIO PWA INSTALL UI */
+.chordio-install-btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;min-height:36px!important;padding:0 11px!important;border:1px solid #0f766e!important;border-radius:9px!important;background:#0f766e!important;color:#fff!important;font-weight:800!important;font-size:11px!important;white-space:nowrap!important;cursor:pointer!important;box-shadow:0 2px 7px rgba(15,118,110,.18)!important}
+.chordio-install-btn:hover{filter:brightness(.96)!important;transform:translateY(-1px)}
+.chordio-install-btn.installed{background:#edf8f5!important;color:#0f766e!important;border-color:#8fd4c7!important;cursor:default!important}
+.chordio-install-modal{display:none;position:fixed;inset:0;z-index:2147483647}
+.chordio-install-modal.show{display:block}
+.chordio-install-backdrop{position:absolute;inset:0;background:rgba(15,25,35,.48);backdrop-filter:blur(2px)}
+.chordio-install-dialog{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(460px,calc(100vw - 28px));max-height:calc(100vh - 28px);overflow:auto;background:#fff;border-radius:18px;padding:26px;box-shadow:0 20px 70px rgba(0,0,0,.25);color:#24313b}
+.chordio-install-dialog h2{margin:10px 0 8px;font-size:23px;color:#17313a}
+.chordio-install-dialog p{font-size:14px;line-height:1.55;margin:8px 0}
+.chordio-install-dialog ol{padding-left:23px;font-size:14px;line-height:1.8}
+.chordio-install-icon{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:#e5f5f1;color:#0f766e;font-size:21px}
+.chordio-install-close{position:absolute;right:12px;top:10px;border:0;background:transparent;font-size:28px;line-height:1;color:#667781;cursor:pointer}
+.chordio-install-ok{margin-top:10px;width:100%;height:42px;border:0;border-radius:10px;background:#0f766e;color:#fff;font-weight:800;cursor:pointer}
+.chordio-install-note{font-size:12px!important;color:#667781!important}
+@media(max-width:620px){
+  .chordio-install-btn{flex:0 0 36px!important;width:36px!important;min-width:36px!important;padding:0!important}
+  .chordio-install-btn span{display:none!important}
+  .chordio-install-dialog{padding:22px}
+}
