@@ -46,6 +46,7 @@ const SHARP_KEYS = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
 
 let sections = [];
 let editingId = null;
+let duplicateMode = false;
 
 // Public editor API is initialized immediately because drag/drop bridge code
 // runs before DOMContentLoaded. The existing object is populated later.
@@ -330,7 +331,8 @@ function openEditor(song = null) {
     const panel = document.getElementById("songEditorPanel");
     if (!panel) return;
 
-    editingId = song?.id || null;
+    duplicateMode = Boolean(song?.__chordioDuplicate);
+    editingId = duplicateMode ? null : (song?.id || null);
     document.getElementById("editorSongTitle").value = song?.title || "";
     document.getElementById("editorSongArtist").value = song?.artist || "";
     document.getElementById("editorSongCategory").value = song?.category || "Worship";
@@ -355,6 +357,7 @@ function closeEditor() {
     panel.classList.remove("show");
     panel.setAttribute("aria-hidden", "true");
     editingId = null;
+    duplicateMode = false;
 }
 
 function renderEditor() {
@@ -828,16 +831,22 @@ async function saveSong() {
     const user = auth.currentUser;
     const existing = editingId ? songs.find(existing => String(existing.id) === String(editingId)) : null;
     const isAdmin = isAdminUser(user);
+    // Duplicating creates a new song. It is intentionally allowed for an admin
+    // or a user approved for either Add Song or Edit Song, then the copy opens
+    // in the editor so the user can arrange lyrics/chords before saving.
+    const allowedDuplicate = duplicateMode && (await canAddSongs(user) || await canEditSongs(user));
     // IMPORTANT: adding and editing are separate administrator-approved permissions.
     // Previously Edit Song users were incorrectly checked against allowAddSongs,
     // so an administrator could approve Edit Song and the Save operation still failed.
-    const allowed = existing
-        ? await canEditSongs(user)
-        : await canAddSongs(user);
+    const allowed = duplicateMode
+        ? allowedDuplicate
+        : (existing ? await canEditSongs(user) : await canAddSongs(user));
     if (!user || (!allowed && !isAdmin)) {
-        alert(existing
-            ? "You do not have permission to edit songs. Ask an administrator to enable Edit Song access."
-            : "You do not have permission to add songs. Ask an administrator to enable Add Song access.");
+        alert(duplicateMode
+            ? "You do not have permission to duplicate songs. Ask an administrator to enable Add Song or Edit Song access."
+            : (existing
+                ? "You do not have permission to edit songs. Ask an administrator to enable Edit Song access."
+                : "You do not have permission to add songs. Ask an administrator to enable Add Song access."));
         return;
     }
     const title = document.getElementById("editorSongTitle").value.trim();
@@ -1025,20 +1034,25 @@ document.addEventListener("DOMContentLoaded", () => {
         save: saveSong,
         deleteFirebaseSong: deleteSongFromFirebase,
         deleteSong,
-        duplicate: async function(source, newTitle){
+        duplicate: async function(source){
             const user=auth.currentUser;
-            const allowed=await canAddSongs(user);
-            const isAdmin=String(user?.email || "").toLowerCase()===ADMIN_EMAIL;
-            if(!user || (!allowed && !isAdmin)) throw new Error("You do not have permission to duplicate songs.");
+            const allowedAdd=await canAddSongs(user);
+            const allowedEdit=await canEditSongs(user);
+            const admin=isAdminUser(user);
+            if(!user || (!admin && !allowedAdd && !allowedEdit)) throw new Error("You do not have permission to duplicate songs. Ask an administrator to enable Add Song or Edit Song access.");
             const copy=JSON.parse(JSON.stringify(source || {}));
-            copy.id=`song-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
-            copy.title=String(newTitle || "").trim();
-            if(!copy.title) throw new Error("A song title is required.");
+            delete copy.__chordioDuplicate;
+            copy.id=`duplicate-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+            copy.title = `Copy of ${String(source?.title || "Untitled Song").trim()}`;
             copy.createdByUid=user.uid;
+            copy.createdByEmail=user.email || "";
             copy.createdAt=new Date().toISOString();
             copy.updatedAt=new Date().toISOString();
-            await saveSongToFirebase(copy);
-            return copy;
+            copy.customSong=true;
+            // Do not save yet. Open the new copy in the editor first so the
+            // user can rename it and arrange all lyrics/chords before saving.
+            copy.__chordioDuplicate=true;
+            openEditor(copy);
         }
     };
 });

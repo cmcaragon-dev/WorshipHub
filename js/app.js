@@ -456,6 +456,7 @@ let currentUser = null;
 const ADMIN_EMAILS = new Set(["jfcm.s07@gmail.com", "cmcaragon@gmail.com"]);
 let currentUserProfile = null;
 let canManageSongs = false;
+let canDuplicateSongs = false;
 function updateNormalUserToolState(){
     const admin = isCurrentAdmin();
     const canAdd = admin || currentUserProfile?.allowAddSongs === true;
@@ -491,7 +492,8 @@ function updateNormalUserToolState(){
         el.classList.remove('permission-disabled');
     });
     canManageSongs = canEdit;
-    window.dispatchEvent(new CustomEvent('worshiphub:permissions-updated',{detail:{isAdmin:admin,canAddSongs:canAdd,canEditSongs:canEdit}}));
+    canDuplicateSongs = admin || canAdd || canEdit;
+    window.dispatchEvent(new CustomEvent('worshiphub:permissions-updated',{detail:{isAdmin:admin,canAddSongs:canAdd,canEditSongs:canEdit,canDuplicateSongs}}));
 }
 
 const isCurrentAdmin = () => {
@@ -502,6 +504,7 @@ const isCurrentAdmin = () => {
 async function loadCurrentUserProfile(){
     currentUserProfile = null;
     canManageSongs = false;
+    canDuplicateSongs = false;
     if(!currentUser?.uid) return;
     try{
         const snap = await getDoc(doc(db, "users", currentUser.uid));
@@ -510,6 +513,7 @@ async function loadCurrentUserProfile(){
         console.warn("Unable to load current user profile:", error);
     }
     canManageSongs = isCurrentAdmin() || currentUserProfile?.allowEditSongs === true;
+    canDuplicateSongs = isCurrentAdmin() || currentUserProfile?.allowAddSongs === true || currentUserProfile?.allowEditSongs === true;
     updateNormalUserToolState();
 }
 
@@ -1248,6 +1252,9 @@ function renderSongs(songList) {
                         <button type="button" class="song-action-btn edit" data-card-action="edit" data-song-id="${escapeHtml(song.id)}">✏ Edit</button>
                         <button type="button" class="song-action-btn delete" data-card-action="delete" data-song-id="${escapeHtml(song.id)}">🗑 Delete</button>
                     ` : ""}
+                    ${canDuplicateSongs ? `
+                        <button type="button" class="song-action-btn duplicate" data-card-action="duplicate" data-song-id="${escapeHtml(song.id)}">⧉ Duplicate</button>
+                    ` : ""}
                 </div>
             </div>
         </div>
@@ -1266,6 +1273,20 @@ function renderSongs(songList) {
             if(!canManageSongs) return;
             if (window.WorshipHubSongEditor?.deleteSong) {
                 await window.WorshipHubSongEditor.deleteSong(btn.dataset.songId);
+            }
+        });
+    });
+
+    songGrid.querySelectorAll('[data-card-action="duplicate"]').forEach(btn => {
+        btn.addEventListener("click", async () => {
+            if(!canDuplicateSongs) return;
+            const target = songs.find(x => String(x.id) === String(btn.dataset.songId));
+            if (!target || !window.WorshipHubSongEditor?.duplicate) return;
+            try {
+                await window.WorshipHubSongEditor.duplicate(target);
+            } catch (error) {
+                console.error("Unable to duplicate song:", error);
+                alert(error?.message || "Unable to duplicate this song.");
             }
         });
     });
