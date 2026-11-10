@@ -670,8 +670,13 @@ async function load(){
         const params=new URLSearchParams(location.search);
         const id=params.get("id");
         index=Number(localStorage.getItem("currentSongIndex")||0);
+        const launchParams=new URLSearchParams(location.search);
+        const urlServiceId=launchParams.get("serviceId");
+        if(urlServiceId && !localStorage.getItem("currentServiceId")){
+            try{localStorage.setItem("currentServiceId",urlServiceId);}catch(_){}
+        }
         const hasService=!!localStorage.getItem("currentServiceId");
-        const resumePresentation=localStorage.getItem("resumePresentation")==="true";
+        const resumePresentation=localStorage.getItem("resumePresentation")==="true" || launchParams.get("multiScreenStart")==="1";
 
         // A service requires the authenticated UID. Do not start a competing
         // direct-song read before Auth resolves; that used to cause duplicate
@@ -3117,9 +3122,17 @@ document.addEventListener("DOMContentLoaded",()=>{
 onAuthStateChanged(auth,async()=>{
     authResolved=true;
     const activeServiceId=localStorage.getItem("currentServiceId");
-    const resume=localStorage.getItem("resumePresentation")==="true";
-    if(activeServiceId && resume && !song){
+    const requestedParams=new URLSearchParams(location.search);
+    const resume=localStorage.getItem("resumePresentation")==="true" || requestedParams.get("multiScreenStart")==="1";
+    const requestedServiceId=requestedParams.get("serviceId");
+    if(requestedServiceId && !activeServiceId){
+        try{localStorage.setItem("currentServiceId",requestedServiceId);}catch(_){}
+    }
+    if((activeServiceId || requestedServiceId) && resume && (!song || !service || String(service.id)!==String(activeServiceId||requestedServiceId))){
         index=Number(localStorage.getItem("currentSongIndex")||0);
+        // A previous unauthenticated attempt may have left the loader marked
+        // busy. Reset only the failed, empty attempt before retrying.
+        if(!song){loading=false;bootPromise=null;}
         await load();
     }
 });

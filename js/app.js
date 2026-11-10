@@ -1911,8 +1911,14 @@ async function startMultiScreenService(serviceId){
     // Always enter the CHORDIO song runtime: it is also the host for the
     // Multi-Screen controller and can render both Firebase/custom songs from
     // the Service Planner snapshot.
-    const target=`custom-song.html?id=${encodeURIComponent(first.id||"")}`;
-    window.location.assign(target);
+    // Pass the launch intent in the URL as well as localStorage. This makes
+    // the launch reliable when the browser restores a tab or localStorage is
+    // briefly unavailable during navigation.
+    const target=new URL("custom-song.html", window.location.href);
+    target.searchParams.set("id", String(first.id||""));
+    target.searchParams.set("multiScreenStart", "1");
+    target.searchParams.set("serviceId", id);
+    window.location.assign(target.href);
 }
 window.startMultiScreenService = startMultiScreenService;
 
