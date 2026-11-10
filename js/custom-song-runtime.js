@@ -529,7 +529,16 @@ function ensureServiceSongInstanceIds(){
 }
 
 async function loadFromService(){
-    const serviceId = localStorage.getItem("currentServiceId");
+    const params=new URLSearchParams(location.search);
+    const urlServiceId=params.get("serviceId");
+    const serviceId = urlServiceId || localStorage.getItem("currentServiceId");
+    if(urlServiceId && urlServiceId!==localStorage.getItem("currentServiceId")){
+        localStorage.setItem("currentServiceId",urlServiceId);
+        localStorage.setItem("resumePresentation","true");
+        localStorage.setItem("presentationMode","service");
+    }
+    const requestedIndex=params.has("serviceIndex")?Number(params.get("serviceIndex")):null;
+    if(Number.isInteger(requestedIndex)&&requestedIndex>=0){index=requestedIndex;localStorage.setItem("currentSongIndex",String(requestedIndex));}
     if(!serviceId) return false;
     try {
         // Prefer the confirmed local snapshot. This also lets Guest mode keep
@@ -670,13 +679,8 @@ async function load(){
         const params=new URLSearchParams(location.search);
         const id=params.get("id");
         index=Number(localStorage.getItem("currentSongIndex")||0);
-        const launchParams=new URLSearchParams(location.search);
-        const urlServiceId=launchParams.get("serviceId");
-        if(urlServiceId && !localStorage.getItem("currentServiceId")){
-            try{localStorage.setItem("currentServiceId",urlServiceId);}catch(_){}
-        }
         const hasService=!!localStorage.getItem("currentServiceId");
-        const resumePresentation=localStorage.getItem("resumePresentation")==="true" || launchParams.get("multiScreenStart")==="1";
+        const resumePresentation=localStorage.getItem("resumePresentation")==="true";
 
         // A service requires the authenticated UID. Do not start a competing
         // direct-song read before Auth resolves; that used to cause duplicate
@@ -3113,6 +3117,15 @@ function bindControls(){
 
 document.addEventListener("DOMContentLoaded",()=>{
     bindControls();
+    const launchParams=new URLSearchParams(location.search);
+    const launchServiceId=launchParams.get("serviceId");
+    if(launchServiceId){
+        localStorage.setItem("currentServiceId",launchServiceId);
+        localStorage.setItem("resumePresentation","true");
+        localStorage.setItem("presentationMode","service");
+        if(launchParams.has("serviceIndex"))localStorage.setItem("currentSongIndex",String(Math.max(0,Number(launchParams.get("serviceIndex"))||0)));
+        if(launchParams.get("multiScreenStart")==="1")localStorage.setItem("startMultiScreenOnLoad","true");
+    }
     const hasService=!!localStorage.getItem("currentServiceId");
     const resumePresentation=localStorage.getItem("resumePresentation")==="true";
     // Direct Song Page: start immediately; it does not need Auth to render.
@@ -3122,17 +3135,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 onAuthStateChanged(auth,async()=>{
     authResolved=true;
     const activeServiceId=localStorage.getItem("currentServiceId");
-    const requestedParams=new URLSearchParams(location.search);
-    const resume=localStorage.getItem("resumePresentation")==="true" || requestedParams.get("multiScreenStart")==="1";
-    const requestedServiceId=requestedParams.get("serviceId");
-    if(requestedServiceId && !activeServiceId){
-        try{localStorage.setItem("currentServiceId",requestedServiceId);}catch(_){}
-    }
-    if((activeServiceId || requestedServiceId) && resume && (!song || !service || String(service.id)!==String(activeServiceId||requestedServiceId))){
+    const resume=localStorage.getItem("resumePresentation")==="true";
+    if(activeServiceId && resume && !song){
         index=Number(localStorage.getItem("currentSongIndex")||0);
-        // A previous unauthenticated attempt may have left the loader marked
-        // busy. Reset only the failed, empty attempt before retrying.
-        if(!song){loading=false;bootPromise=null;}
         await load();
     }
 });
