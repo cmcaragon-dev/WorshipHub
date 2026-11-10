@@ -1522,39 +1522,53 @@ function renderServices() {
 
 async function duplicateService(id){
     if(!currentUser){ alert("Please login first."); return; }
+
     const source = services.find(s => String(s.id) === String(id));
     if(!source){ alert("Service not found."); return; }
+
     const baseName = String(source.name || "Service Planner").trim();
     const suggested = `${baseName} — Copy`;
     const name = prompt("Name for the duplicated Service Planner:", suggested);
     if(name === null) return;
     const finalName = String(name).trim();
     if(!finalName){ alert("Please enter a service name."); return; }
-    const copy = JSON.parse(JSON.stringify(source));
-    const oldId = String(copy.id || "");
-    copy.id = `service-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
-    if(copy.presentationLayouts && typeof copy.presentationLayouts === "object") {
-        const migratedLayouts={};
-        Object.entries(copy.presentationLayouts).forEach(([key,value])=>{
-            migratedLayouts[String(key).startsWith(oldId+":") ? copy.id+String(key).slice(oldId.length) : key]=value;
-        });
-        copy.presentationLayouts=migratedLayouts;
-    }
-    copy.name = finalName;
-    copy.createdAt = new Date().toISOString();
-    copy.updatedAt = new Date().toISOString();
-    delete copy.status;
-    services.push(copy);
-    try{
-        await saveServicesCloud();
+
+    // Make a fully independent copy. A new Firestore document ID is required;
+    // saving the entire services array can fail because of unrelated records.
+    let copy;
+    try {
+        copy = JSON.parse(JSON.stringify(source));
+        const oldId = String(copy.id || "");
+        copy.id = `service-${Date.now()}-${Math.random().toString(36).slice(2,10)}`;
+
+        // Presentation layout keys are scoped to the original service ID.
+        if(copy.presentationLayouts && typeof copy.presentationLayouts === "object") {
+            const migratedLayouts = {};
+            Object.entries(copy.presentationLayouts).forEach(([key, value]) => {
+                const newKey = oldId && String(key).startsWith(oldId + ":")
+                    ? copy.id + String(key).slice(oldId.length)
+                    : key;
+                migratedLayouts[newKey] = value;
+            });
+            copy.presentationLayouts = migratedLayouts;
+        }
+
+        copy.name = finalName;
+        copy.createdAt = new Date().toISOString();
+        copy.updatedAt = new Date().toISOString();
+        delete copy.status;
+
+        // Persist the new document first. Only show it in the list after the
+        // Firestore write succeeds, so the UI cannot report a false duplicate.
+        await saveService(currentUser.uid, copy);
+        services.push(copy);
+        window.services = services;
         renderServices();
         updateDashboard();
-        try{ localStorage.setItem("chordioToastMessage", `Duplicated “${baseName}” successfully.`); }catch(_){ }
-    }catch(error){
-        services = services.filter(s => String(s.id) !== String(copy.id));
-        window.services = services;
+        try { localStorage.setItem("chordioToastMessage", `Duplicated “${baseName}” successfully.`); } catch(_) {}
+    } catch(error) {
         console.error("Duplicate service save failed:", error);
-        alert("Unable to duplicate this Service Planner. Please try again.");
+        alert(error?.message || "Unable to duplicate this Service Planner. Please check your connection and try again.");
     }
 }
 window.duplicateService = duplicateService;
@@ -1897,7 +1911,10 @@ async function startMultiScreenService(serviceId){
     // Always enter the CHORDIO song runtime: it is also the host for the
     // Multi-Screen controller and can render both Firebase/custom songs from
     // the Service Planner snapshot.
-    const target=`custom-song.html?id=${encodeURIComponent(first.id||"")}`;
+    // Include the planner ID in the URL as the authoritative launch context.
+    // The runtime will fetch this exact planner from Firestore before rendering
+    // the Multi-Screen queue, rather than trusting a potentially stale list cache.
+    const target=`custom-song.html?id=${encodeURIComponent(first.id||"")}&serviceId=${encodeURIComponent(id)}&multiScreenStart=1`;
     window.location.assign(target);
 }
 window.startMultiScreenService = startMultiScreenService;

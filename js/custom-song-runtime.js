@@ -529,22 +529,39 @@ function ensureServiceSongInstanceIds(){
 }
 
 async function loadFromService(){
-    const serviceId = localStorage.getItem("currentServiceId");
+    const params = new URLSearchParams(location.search);
+    // URL context wins over old browser state. This prevents a previous
+    // Service Planner from being restored when another planner is selected.
+    const serviceId = String(params.get("serviceId") || localStorage.getItem("currentServiceId") || "");
     if(!serviceId) return false;
     try {
-        // Prefer the confirmed local snapshot. This also lets Guest mode keep
-        // working with a service that was opened before the user signed out.
-        let cached = null;
-        try { cached = JSON.parse(localStorage.getItem("currentServiceSnapshot") || "null"); } catch(e) {}
-        if(cached && String(cached.id) === String(serviceId) && Array.isArray(cached.songs)){
-            service = cached;
-        } else if(auth.currentUser) {
-            const snap = await getDoc(doc(db,"users",auth.currentUser.uid,"services",String(serviceId)));
-            if(!snap.exists()) return false;
+        localStorage.setItem("currentServiceId", serviceId);
+        // Always read the selected planner by its exact Firestore document ID
+        // when authenticated. The dashboard cache can be stale or incomplete;
+        // using it here was the source of partial song lists in Multi-Screen.
+        let loadedFromCloud = false;
+        if(auth.currentUser) {
+            const snap = await getDoc(doc(db,"users",auth.currentUser.uid,"services",serviceId));
+            if(!snap.exists()) throw new Error(`Service Planner ${serviceId} was not found in Firestore.`);
             service = {id:snap.id,...snap.data()};
-        } else {
-            return false;
+            loadedFromCloud = true;
         }
+        if(!loadedFromCloud) {
+            let cached = null;
+            try { cached = JSON.parse(localStorage.getItem("currentServiceSnapshot") || "null"); } catch(e) {}
+            if(cached && String(cached.id) === serviceId && Array.isArray(cached.songs)) service = cached;
+            else return false;
+        }
+        if(String(service?.id||"") !== serviceId || !Array.isArray(service?.songs)) {
+            throw new Error("The selected Service Planner data is incomplete or does not match the requested planner.");
+        }
+        // Keep the exact cloud copy as the current snapshot so all Multi-Screen
+        // renderers and queue builders use the same complete song array.
+        try {
+            localStorage.setItem("currentServiceSnapshot", JSON.stringify(service));
+            localStorage.setItem("currentServiceName", String(service.name || "Service Planner"));
+            localStorage.setItem("currentSongIndex", "0");
+        } catch(_) {}
         // Give every occurrence in the Service Planner its own stable identity.
         // This is critical when the same master song is intentionally added
         // twice: Multi-Screen structure, hidden sections, and formatting are
@@ -678,7 +695,10 @@ async function load(){
         // Firestore reads and a race between the service and song loaders.
         let found=false;
         if(hasService && resumePresentation){
-            if(!auth.currentUser){ loading=false; return false; }
+            // Wait for Firebase Auth to finish restoring the session. Once it has
+            // resolved (even with no user) loadFromService() falls back to the local
+            // planner snapshot instead of leaving a blank "Song could not be loaded".
+            if(!auth.currentUser && !authResolved){ loading=false; return false; }
             found=await loadFromService();
         }else{
             // Prefer local sources for direct Song Page opens. A locally saved
@@ -1567,6 +1587,7 @@ function multiScreenOpenControl(){
     initMultiScreenPartKeyboard();
     panel.classList.add("show");panel.setAttribute("aria-hidden","false");
     const serviceTitle=document.getElementById("multiServiceSongTitle");if(serviceTitle)serviceTitle.textContent=service?.name?`SERVICE SONG - ${service.name}`:"SERVICE SONG";
+    updateMultiServiceSongCount();
     [1,2,3,4].forEach(n=>{const el=document.getElementById(`multiMode${n}`);if(el)el.value=multiScreenModes[n]||"lyrics";const cb=document.getElementById(`multiEnabled${n}`);if(cb)cb.checked=multiScreenEnabled[n]!==false;const bgm=document.getElementById(`multiBackgroundMode${n}`);if(bgm)bgm.value=multiScreenBackgroundModes[n]||"common";});
     initMultiFeatureAccordions();renderMultiServiceSongs();renderMultiScreenSectionButtons();renderMultiPartLyricsPreview();renderMultiStructureList();renderMultiBackgroundControls();syncMultiLyricsSettingsControls();syncMultiLyricsEditor();renderMultiSlides();renderMultiScreenPreviews();multiScreenBroadcast({});
 }
@@ -1602,6 +1623,9 @@ function multiScreenQueue(){
     });
     const byPresentation=new Map(uniquePresentations.map(x=>[String(x?.id||""),x]));
     const raw=Array.isArray(service.multiScreenQueue)?service.multiScreenQueue:[];
+    // A persisted sequence from an older planner revision may contain stale
+    // song indexes. Keep explicit valid ordering entries, then append every
+    // planner occurrence not represented; never drop songs from service.songs.
     const queue=[];
     const seenQueue=new Set();
     raw.forEach(ref=>{
@@ -1613,19 +1637,22 @@ function multiScreenQueue(){
             if(seenQueue.has(key))return;
             seenQueue.add(key);queue.push({type,id,item,sourceIndex:-1});
         }else{
-            const sourceIndex=Number.isInteger(Number(ref?.songIndex))?Number(ref.songIndex):-1;
-            if(sourceIndex>=0&&sourceIndex<songs.length&&songs[sourceIndex]){
-                const key=`song-index:${sourceIndex}`;
-                if(seenQueue.has(key))return;
-                seenQueue.add(key);queue.push({type:"song",id:String(songs[sourceIndex]?.id||""),item:songs[sourceIndex],sourceIndex});
-            }else{
-                const id=String(ref?.id||"");const sourceIndex2=songs.findIndex(x=>String(x?.id||"")===id);
-                if(sourceIndex2>=0){
-                    const key=`song-index:${sourceIndex2}`;
-                    if(seenQueue.has(key))return;
-                    seenQueue.add(key);queue.push({type:"song",id,item:songs[sourceIndex2],sourceIndex:sourceIndex2});
-                }
-            }
+            // Resolve the saved reference to a CURRENT planner occurrence.
+            // 1) exact occurrence id, 2) saved index only if it still holds the
+            // same song, 3) first not-yet-used copy of that song id. A bare
+            // saved index is no longer trusted, because after the planner is
+            // reordered or edited on the Home page it points at another song.
+            const used=i=>seenQueue.has(`song-index:${i}`);
+            const wantedInstance=String(ref?.instanceId||"");
+            const wantedId=String(ref?.id||"");
+            const savedIndex=Number.isInteger(Number(ref?.songIndex))?Number(ref.songIndex):-1;
+            let sourceIndex=-1;
+            if(wantedInstance)sourceIndex=songs.findIndex((x,i)=>!used(i)&&String(x?._chordioInstanceId||"")===wantedInstance);
+            if(sourceIndex<0&&savedIndex>=0&&savedIndex<songs.length&&songs[savedIndex]&&!used(savedIndex)&&(!wantedId||String(songs[savedIndex]?.id||"")===wantedId))sourceIndex=savedIndex;
+            if(sourceIndex<0&&wantedId)sourceIndex=songs.findIndex((x,i)=>!used(i)&&String(x?.id||"")===wantedId);
+            if(sourceIndex<0)return;
+            seenQueue.add(`song-index:${sourceIndex}`);
+            queue.push({type:"song",id:String(songs[sourceIndex]?.id||""),item:songs[sourceIndex],sourceIndex});
         }
     });
     // Keep every Service Planner song occurrence, including intentionally
@@ -1659,9 +1686,13 @@ function multiScreenQueueIndexForSong(songId,sourceIndex=index){
     const id=String(songId||"");
     return queue.findIndex(x=>x.type==="song"&&String(x.id)===id);
 }
+function multiScreenQueueRef(x){
+    if(x.type==="presentation")return {type:"presentation",id:String(x.id||"")};
+    return {type:"song",id:String(x.id||""),instanceId:String(x.item?._chordioInstanceId||""),songIndex:Number.isInteger(Number(x.sourceIndex))?Number(x.sourceIndex):-1};
+}
 async function saveMultiScreenQueue(queue){
     if(!service)return false;
-    const normalized=queue.map(x=>x.type==="presentation"?({type:"presentation",id:String(x.id||"")}):({type:"song",id:String(x.id||""),songIndex:Number.isInteger(Number(x.sourceIndex))?Number(x.sourceIndex):-1})).filter(x=>x.id);
+    const normalized=queue.map(multiScreenQueueRef).filter(x=>x.id||x.instanceId);
     service={...service,multiScreenQueue:normalized};
     try{localStorage.setItem("currentServiceSnapshot",JSON.stringify(service));}catch(_){}
     const serviceId=localStorage.getItem("currentServiceId");
@@ -1712,7 +1743,7 @@ window.chordioSyncServicePlannerOrder = async function(updatedSongs){
     const rebuilt=[...songQueue,...presentations];
     await saveMultiScreenQueue(rebuilt);
     const serviceId=localStorage.getItem("currentServiceId");
-    if(serviceId&&auth.currentUser){try{await setDoc(doc(db,"users",auth.currentUser.uid,"services",String(serviceId)),{songs:normalized,multiScreenQueue:rebuilt.map(x=>x.type==="presentation"?{type:"presentation",id:String(x.id||"")}:{type:"song",id:String(x.id||""),songIndex:Number(x.sourceIndex)}),updatedAt:serverTimestamp()},{merge:true});}catch(error){console.warn("Unable to sync Service Planner order to Multi-Screen:",error);return false;}}
+    if(serviceId&&auth.currentUser){try{await setDoc(doc(db,"users",auth.currentUser.uid,"services",String(serviceId)),{songs:normalized,multiScreenQueue:rebuilt.map(multiScreenQueueRef),updatedAt:serverTimestamp()},{merge:true});}catch(error){console.warn("Unable to sync Service Planner order to Multi-Screen:",error);return false;}}
     if(Number.isInteger(index)&&index>=normalized.length) index=Math.max(0,normalized.length-1);
     if(normalized[index]) song={...normalized[index],sections:normalizeSections(normalized[index].sections),serviceKey:normalized[index].serviceKey||normalized[index].key,transpose:Number(normalized[index].transpose||0)};
     multiScreenQueueIndex=multiScreenQueueIndexForSong(song?.id,index);
@@ -1917,9 +1948,17 @@ function openEmbeddedMultiSongEditor(songId, sourceSong=null){
     },{once:false});
 }
 
+function updateMultiServiceSongCount(){
+    const title=document.getElementById("multiServiceSongTitle");if(!title)return;
+    let badge=title.querySelector(".multi-service-song-count");
+    if(!badge){badge=document.createElement("span");badge.className="multi-service-song-count";title.appendChild(badge);}
+    const queue=multiScreenQueue(),songs=queue.filter(x=>x.type==="song").length;
+    badge.textContent=queue.length?`(${songs} song${songs===1?"":"s"}${queue.length>songs?` + ${queue.length-songs} slide${queue.length-songs===1?"":"s"}`:""})`:"";
+}
 function renderMultiServiceSongs(){
     const box=document.getElementById("multiServiceSongList");if(!box)return;box.innerHTML="";
     const queue=multiScreenQueue();
+    updateMultiServiceSongCount();
     if(!queue.length){box.innerHTML='<div class="multi-preview-empty" style="height:120px">No songs in this Service Planner.</div>';return;}
     queue.forEach((entry,i)=>{
         const item=entry.item||{};
@@ -1943,7 +1982,11 @@ function renderMultiServiceSongs(){
             e.preventDefault();e.stopPropagation();
             const title=item.title||"this song";
             if(!confirm(`Remove "${title}" from this Service Planner?\n\nThis removes it only from the selected Service Planner. The song remains in the main song library.`))return;
-            const nextSongs=[...(service.songs||[])];const songIndex=nextSongs.findIndex(x=>String(x?.id||"")===String(item.id||""));
+            const nextSongs=[...(service.songs||[])];
+            // Remove the exact occurrence that was clicked. The same song can be in the
+            // planner up to 3 times; matching by id alone deleted the first copy.
+            let songIndex=Number.isInteger(Number(entry.sourceIndex))?Number(entry.sourceIndex):-1;
+            if(songIndex<0||songIndex>=nextSongs.length)songIndex=nextSongs.findIndex(x=>String(x?.id||"")===String(item.id||""));
             if(songIndex<0)return;nextSongs.splice(songIndex,1);
             const nextQueue=multiScreenQueue().filter(x=>!(x.type==="song"&&Number(x.sourceIndex)===songIndex)).map(x=>x.type==="song"&&Number(x.sourceIndex)>songIndex?{...x,sourceIndex:Number(x.sourceIndex)-1}:x);
             service={...service,songs:nextSongs};
@@ -2216,7 +2259,8 @@ function initMultiFeatureAccordions(){
     root.querySelectorAll(".multi-feature-panel").forEach(panel=>panel.classList.remove("tab-active"));
 }
 function renderMultiScreenControl(){
-    const title=document.getElementById("multiServiceSongTitle");if(title)title.textContent=service?.name?`SERVICE SONG - ${service.name}`:"SERVICE SONG";
+    const title=document.getElementById("multiServiceSongTitle");
+    if(title) title.textContent=service?.name?`SERVICE SONG - ${service.name}`:"NO SERVICE PLANNER SELECTED";
     renderMultiServiceSongs();renderMultiScreenSectionButtons();renderMultiPartLyricsPreview();renderMultiStructureList();renderMultiBackgroundControls();syncMultiLyricsSettingsControls();syncMultiLyricsEditor();renderMultiSlides();renderMultiScreenPreviews();
 }
 function renderMultiLivePreview(){renderMultiPartLyricsPreview();}

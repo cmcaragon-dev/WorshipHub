@@ -1,6 +1,7 @@
 /* CHORDIO offline application shell */
-const CACHE = 'chordio-shell-v1';
-const RUNTIME = 'chordio-runtime-v1';
+// Bump these when shipping. Old caches are deleted on activate.
+const CACHE = 'chordio-shell-v2';
+const RUNTIME = 'chordio-runtime-v2';
 const SHELL = [
   './', './index.html', './login.html', './register.html', './settings.html',
   './custom-song.html', './multi-screen-output.html', './offline.html',
@@ -36,19 +37,35 @@ self.addEventListener('fetch', event => {
   const sameOrigin = url.origin === self.location.origin;
   if (!sameOrigin && !isCdn) return;
 
+  // App code (pages, JS, CSS, JSON) is NETWORK-FIRST so a deployed fix reaches the
+  // user on the next load; the cache is only the offline fallback. The old
+  // cache-first rule kept serving the first copy of custom-song-runtime.js forever.
+  // Images and CDN modules stay cache-first (they rarely change).
+  const isCode = sameOrigin && (request.mode === 'navigate' || /\.(?:html|js|css|json)$/i.test(url.pathname) || url.pathname.endsWith('/'));
+  const store = response => {
+    if (response && (response.ok || response.type === 'opaque')) {
+      const copy = response.clone();
+      caches.open(RUNTIME).then(cache => cache.put(request, copy)).catch(() => {});
+    }
+    return response;
+  };
+  const offlineFallback = cached => {
+    if (cached) return cached;
+    if (request.mode === 'navigate') return caches.match('./offline.html');
+    return new Response('', { status: 503, statusText: 'Offline' });
+  };
+
+  if (isCode) {
+    event.respondWith(
+      fetch(request).then(store).catch(() => caches.match(request, { ignoreSearch: true }).then(offlineFallback))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(request).then(cached => {
       if (cached) return cached;
-      return fetch(request).then(response => {
-        if (response && (response.ok || response.type === 'opaque')) {
-          const copy = response.clone();
-          caches.open(RUNTIME).then(cache => cache.put(request, copy)).catch(() => {});
-        }
-        return response;
-      }).catch(() => {
-        if (request.mode === 'navigate') return caches.match('./offline.html');
-        return cached || new Response('', { status: 503, statusText: 'Offline' });
-      });
+      return fetch(request).then(store).catch(() => offlineFallback(null));
     })
   );
 });

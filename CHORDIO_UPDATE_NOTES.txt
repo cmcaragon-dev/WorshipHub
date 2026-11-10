@@ -26,3 +26,12 @@ CHORDIO Multi-Screen Service Planner loading fix - 2026-11-10
 - The queue retains valid saved ordering but appends every missing Service Planner song occurrence, so stale saved queue indexes cannot hide songs.
 - Existing Multi-Screen design and layout were not changed.
 - JavaScript syntax validation passed for js/app.js and js/custom-song-runtime.js.
+
+CHORDIO Multi-Screen review and cleanup - 2026-11-10 (second pass)
+
+- service-worker.js: app code (HTML/JS/CSS/JSON) is now network-first and the cache names were bumped to v2. Before, cache-first meant an installed copy kept running the OLD custom-song-runtime.js, so earlier fixes never reached the browser.
+- Multi-Screen queue: saved sequence entries are matched by Service Planner occurrence id (then by index only if the song id still matches, then by song id) so a reordered/edited planner can no longer map to the wrong song. Every planner song is still appended if missing.
+- Multi-Screen delete now removes the exact occurrence that was clicked, not the first copy of that song id.
+- Multi-Screen no longer shows a blank page when Firebase Auth resolves with no user; it falls back to the local planner snapshot.
+- Service Song panel shows the song count, and its list CSS was consolidated from ~12 conflicting rules into one scrollable rule.
+- Removed unreferenced duplicates (Selah 100/200 data files, import manifests, initial-songs.before-selah-100.js). Their 200 songs are already inside js/initial-songs.js.
