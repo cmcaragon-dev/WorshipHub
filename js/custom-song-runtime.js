@@ -679,6 +679,28 @@ function loadFromLocalCustomSong(id){
 
 let bootPromise=null;
 let customPresentationSectionIndex=0;
+// The planner ID in the URL (?serviceId=...) is the authoritative launch context.
+// Adopt it BEFORE anything reads localStorage, one key at a time, so a failed
+// write (e.g. full browser storage) can never make the page ignore the planner
+// and open a single song instead of the whole Service Planner.
+function adoptUrlServiceContext(){
+    const urlServiceId=String(new URLSearchParams(location.search).get("serviceId")||"").trim();
+    if(!urlServiceId) return false;
+    const set=(k,v)=>{try{localStorage.setItem(k,v);}catch(_){}};
+    let previous="";try{previous=String(localStorage.getItem("currentServiceId")||"");}catch(_){}
+    if(previous!==urlServiceId){try{localStorage.removeItem("currentServiceSnapshot");}catch(_){} set("currentSongIndex","0");}
+    set("currentServiceId",urlServiceId);
+    set("resumePresentation","true");
+    set("presentationMode","service");
+    return true;
+}
+function serviceLaunchRequested(){
+    adoptUrlServiceContext();
+    let id="",resume="";
+    try{id=localStorage.getItem("currentServiceId")||"";resume=localStorage.getItem("resumePresentation")||"";}catch(_){}
+    if(new URLSearchParams(location.search).get("serviceId")) return true;
+    return !!id && resume==="true";
+}
 async function load(){
     if(bootPromise) return bootPromise;
     bootPromise=(async()=>{
@@ -687,8 +709,8 @@ async function load(){
         const params=new URLSearchParams(location.search);
         const id=params.get("id");
         index=Number(localStorage.getItem("currentSongIndex")||0);
-        const hasService=!!localStorage.getItem("currentServiceId");
-        const resumePresentation=localStorage.getItem("resumePresentation")==="true";
+        const hasService=serviceLaunchRequested();
+        const resumePresentation=hasService;
 
         // A service requires the authenticated UID. Do not start a competing
         // direct-song read before Auth resolves; that used to cause duplicate
@@ -3152,17 +3174,13 @@ function bindControls(){
 
 document.addEventListener("DOMContentLoaded",()=>{
     bindControls();
-    const hasService=!!localStorage.getItem("currentServiceId");
-    const resumePresentation=localStorage.getItem("resumePresentation")==="true";
     // Direct Song Page: start immediately; it does not need Auth to render.
     // Service launch: wait for Auth so we can read the user's service once.
-    if(!(hasService && resumePresentation)) void load();
+    if(!serviceLaunchRequested()) void load();
 });
 onAuthStateChanged(auth,async()=>{
     authResolved=true;
-    const activeServiceId=localStorage.getItem("currentServiceId");
-    const resume=localStorage.getItem("resumePresentation")==="true";
-    if(activeServiceId && resume && !song){
+    if(serviceLaunchRequested() && !song){
         index=Number(localStorage.getItem("currentSongIndex")||0);
         await load();
     }

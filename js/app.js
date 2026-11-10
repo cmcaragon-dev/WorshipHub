@@ -1897,16 +1897,18 @@ async function startMultiScreenService(serviceId){
     if(!serviceSongs.length){ alert("This Service Planner has no songs yet."); return; }
     // Set the exact planner session before opening the dedicated Multi-Screen
     // control. The Multi-Screen page reads these values on startup.
-    try{
-        sessionStorage.setItem("worshiphubSongOpenedFromIndex","true");
-        localStorage.setItem("currentServiceId",id);
-        localStorage.setItem("currentServiceName",String(selected.name||"Service Planner"));
-        localStorage.setItem("currentServiceSnapshot",JSON.stringify(selected));
-        localStorage.setItem("currentSongIndex","0");
-        localStorage.setItem("resumePresentation","true");
-        localStorage.setItem("presentationMode","service");
-        localStorage.setItem("startMultiScreenOnLoad","true");
-    }catch(error){ console.warn("Unable to save Multi-Screen service session:",error); }
+    // Write each key on its own: the planner snapshot can be large and may hit the
+    // browser storage quota. That must never stop the small launch flags from
+    // being saved (the Multi-Screen page also re-reads the planner from Firestore).
+    const put=(k,v)=>{try{localStorage.setItem(k,v);}catch(error){console.warn("Unable to save "+k+":",error);}};
+    try{sessionStorage.setItem("worshiphubSongOpenedFromIndex","true");}catch(_){}
+    put("currentServiceId",id);
+    put("currentServiceName",String(selected.name||"Service Planner"));
+    put("currentSongIndex","0");
+    put("resumePresentation","true");
+    put("presentationMode","service");
+    put("startMultiScreenOnLoad","true");
+    put("currentServiceSnapshot",JSON.stringify(selected));
     const first=serviceSongs[0]||{};
     // Always enter the CHORDIO song runtime: it is also the host for the
     // Multi-Screen controller and can render both Firebase/custom songs from
