@@ -16,3 +16,13 @@ CHORDIO update - 2026-10-18
 - Firestore refresh runs in the background instead of blocking Home interaction.
 - Service save/delete operations keep the local cache synchronized.
 - Logged-in user's email/display-name fallback is shown immediately while the Firestore profile loads.
+
+CHORDIO Multi-Screen Service Planner loading fix - 2026-11-10
+
+- Multi-Screen launch now includes the exact selected Service Planner ID in the URL.
+- The Song Runtime uses that URL planner ID as the authoritative context, not an old currentServiceId value.
+- When authenticated, the runtime fetches the exact Service Planner document from Firestore before rendering Multi-Screen.
+- The freshly fetched planner snapshot is synchronized to local storage and used by the Multi-Screen song queue.
+- The queue retains valid saved ordering but appends every missing Service Planner song occurrence, so stale saved queue indexes cannot hide songs.
+- Existing Multi-Screen design and layout were not changed.
+- JavaScript syntax validation passed for js/app.js and js/custom-song-runtime.js.

@@ -529,31 +529,39 @@ function ensureServiceSongInstanceIds(){
 }
 
 async function loadFromService(){
-    const params=new URLSearchParams(location.search);
-    const urlServiceId=params.get("serviceId");
-    const serviceId = urlServiceId || localStorage.getItem("currentServiceId");
-    if(urlServiceId && urlServiceId!==localStorage.getItem("currentServiceId")){
-        localStorage.setItem("currentServiceId",urlServiceId);
-        localStorage.setItem("resumePresentation","true");
-        localStorage.setItem("presentationMode","service");
-    }
-    const requestedIndex=params.has("serviceIndex")?Number(params.get("serviceIndex")):null;
-    if(Number.isInteger(requestedIndex)&&requestedIndex>=0){index=requestedIndex;localStorage.setItem("currentSongIndex",String(requestedIndex));}
+    const params = new URLSearchParams(location.search);
+    // URL context wins over old browser state. This prevents a previous
+    // Service Planner from being restored when another planner is selected.
+    const serviceId = String(params.get("serviceId") || localStorage.getItem("currentServiceId") || "");
     if(!serviceId) return false;
     try {
-        // Prefer the confirmed local snapshot. This also lets Guest mode keep
-        // working with a service that was opened before the user signed out.
-        let cached = null;
-        try { cached = JSON.parse(localStorage.getItem("currentServiceSnapshot") || "null"); } catch(e) {}
-        if(cached && String(cached.id) === String(serviceId) && Array.isArray(cached.songs)){
-            service = cached;
-        } else if(auth.currentUser) {
-            const snap = await getDoc(doc(db,"users",auth.currentUser.uid,"services",String(serviceId)));
-            if(!snap.exists()) return false;
+        localStorage.setItem("currentServiceId", serviceId);
+        // Always read the selected planner by its exact Firestore document ID
+        // when authenticated. The dashboard cache can be stale or incomplete;
+        // using it here was the source of partial song lists in Multi-Screen.
+        let loadedFromCloud = false;
+        if(auth.currentUser) {
+            const snap = await getDoc(doc(db,"users",auth.currentUser.uid,"services",serviceId));
+            if(!snap.exists()) throw new Error(`Service Planner ${serviceId} was not found in Firestore.`);
             service = {id:snap.id,...snap.data()};
-        } else {
-            return false;
+            loadedFromCloud = true;
         }
+        if(!loadedFromCloud) {
+            let cached = null;
+            try { cached = JSON.parse(localStorage.getItem("currentServiceSnapshot") || "null"); } catch(e) {}
+            if(cached && String(cached.id) === serviceId && Array.isArray(cached.songs)) service = cached;
+            else return false;
+        }
+        if(String(service?.id||"") !== serviceId || !Array.isArray(service?.songs)) {
+            throw new Error("The selected Service Planner data is incomplete or does not match the requested planner.");
+        }
+        // Keep the exact cloud copy as the current snapshot so all Multi-Screen
+        // renderers and queue builders use the same complete song array.
+        try {
+            localStorage.setItem("currentServiceSnapshot", JSON.stringify(service));
+            localStorage.setItem("currentServiceName", String(service.name || "Service Planner"));
+            localStorage.setItem("currentSongIndex", "0");
+        } catch(_) {}
         // Give every occurrence in the Service Planner its own stable identity.
         // This is critical when the same master song is intentionally added
         // twice: Multi-Screen structure, hidden sections, and formatting are
@@ -1611,6 +1619,9 @@ function multiScreenQueue(){
     });
     const byPresentation=new Map(uniquePresentations.map(x=>[String(x?.id||""),x]));
     const raw=Array.isArray(service.multiScreenQueue)?service.multiScreenQueue:[];
+    // A persisted sequence from an older planner revision may contain stale
+    // song indexes. Keep explicit valid ordering entries, then append every
+    // planner occurrence not represented; never drop songs from service.songs.
     const queue=[];
     const seenQueue=new Set();
     raw.forEach(ref=>{
@@ -2225,7 +2236,8 @@ function initMultiFeatureAccordions(){
     root.querySelectorAll(".multi-feature-panel").forEach(panel=>panel.classList.remove("tab-active"));
 }
 function renderMultiScreenControl(){
-    const title=document.getElementById("multiServiceSongTitle");if(title)title.textContent=service?.name?`SERVICE SONG - ${service.name}`:"SERVICE SONG";
+    const title=document.getElementById("multiServiceSongTitle");
+    if(title) title.textContent=service?.name?`SERVICE SONG - ${service.name}`:"NO SERVICE PLANNER SELECTED";
     renderMultiServiceSongs();renderMultiScreenSectionButtons();renderMultiPartLyricsPreview();renderMultiStructureList();renderMultiBackgroundControls();syncMultiLyricsSettingsControls();syncMultiLyricsEditor();renderMultiSlides();renderMultiScreenPreviews();
 }
 function renderMultiLivePreview(){renderMultiPartLyricsPreview();}
@@ -3117,15 +3129,6 @@ function bindControls(){
 
 document.addEventListener("DOMContentLoaded",()=>{
     bindControls();
-    const launchParams=new URLSearchParams(location.search);
-    const launchServiceId=launchParams.get("serviceId");
-    if(launchServiceId){
-        localStorage.setItem("currentServiceId",launchServiceId);
-        localStorage.setItem("resumePresentation","true");
-        localStorage.setItem("presentationMode","service");
-        if(launchParams.has("serviceIndex"))localStorage.setItem("currentSongIndex",String(Math.max(0,Number(launchParams.get("serviceIndex"))||0)));
-        if(launchParams.get("multiScreenStart")==="1")localStorage.setItem("startMultiScreenOnLoad","true");
-    }
     const hasService=!!localStorage.getItem("currentServiceId");
     const resumePresentation=localStorage.getItem("resumePresentation")==="true";
     // Direct Song Page: start immediately; it does not need Auth to render.
