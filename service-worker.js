@@ -1,13 +1,13 @@
 /* CHORDIO offline application shell */
 // Bump these when shipping. Old caches are deleted on activate.
-const CACHE = 'chordio-shell-v2';
-const RUNTIME = 'chordio-runtime-v2';
+const CACHE = 'chordio-shell-v3';
+const RUNTIME = 'chordio-runtime-v3';
 const SHELL = [
   './', './index.html', './login.html', './register.html', './settings.html',
   './custom-song.html', './multi-screen-output.html', './offline.html',
-  './manifest.json', './css/style.css', './css/responsive.css', './css/modern.css',
+  './manifest.json', './css/style.css', './css/responsive.css', './css/modern.css', './css/chordio-modern-v2.css', './css/chordio-multiscreen-v2.css',
   './js/pwa.js', './js/app.js', './js/auth.js', './js/firebase.js', './js/firestore.js', './js/initial-songs.js',
-  './js/admin-settings.js', './js/song-editor.js', './js/song-edit.js',
+  './js/admin-settings.js', './js/song-editor.js',
   './js/presentation-runtime.js', './js/custom-song-runtime.js', './js/chordio-v63-ux.js',
   './js/print-preview.js', './js/register.js',
   './images/chordio-favicon.png', './images/chordio-logo.png', './images/chordio-topbar.png',
