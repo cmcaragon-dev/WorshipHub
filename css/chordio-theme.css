@@ -1,0 +1,105 @@
+/* =========================================================
+   CHORDIO theme tokens — shared by every page.
+   Night stage (dark, default) and Day (light).
+   Switch with:  chordioSetTheme('dark' | 'light')
+   Dark rules live under @media screen so printing stays on white.
+   ========================================================= */
+
+:root{
+  color-scheme:light;
+  --cx-font:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --cx-serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --cx-mono:ui-monospace,"Cascadia Mono",Consolas,"Courier New",monospace;
+
+  /* Day */
+  --cx-ink:#0F1B2D;
+  --cx-ink-2:#2A3A50;
+  --cx-muted:#5F6E82;
+  --cx-paper:#F3F5F8;
+  --cx-surface:#FFFFFF;
+  --cx-surface-solid:#FFFFFF;
+  --cx-surface-2:#F8FAFC;
+  --cx-line:#E2E7EE;
+  --cx-line-soft:#EEF1F5;
+  --cx-line-strong:#CBD3DE;
+  --cx-hover:#F3F5F8;
+  --cx-brass:#B7861A;
+  --cx-brass-deep:#8A6410;
+  --cx-teal:#0F766E;
+  --cx-teal-deep:#0B5E58;
+  --cx-teal-soft:#E6F4F2;
+  --cx-danger:#B42318;
+  --cx-danger-bg:#FEF3F2;
+  --cx-danger-line:#F3C5C0;
+  --cx-ring:rgba(15,118,110,.28);
+  --cx-overlay:rgba(15,23,42,.55);
+  --cx-accent-grad:linear-gradient(135deg,#0F766E,#0D9488);
+  --cx-on-accent:#FFFFFF;
+  --cx-glow:0 1px 2px rgba(15,27,45,.12);
+  --cx-shadow-sm:0 4px 16px rgba(15,27,45,.06);
+  --cx-shadow:0 18px 50px rgba(15,27,45,.18);
+  --cx-blur:none;
+  --cx-mesh:none;
+  --cx-number-grad:linear-gradient(180deg,#0F1B2D,#0F1B2D);
+}
+
+@media screen{
+  html[data-cx-theme="dark"]{
+    color-scheme:dark;
+    --cx-ink:#E9EEF8;
+    --cx-ink-2:#C3CEDF;
+    --cx-muted:#8A98AE;
+    --cx-paper:#070B14;
+    --cx-surface:rgba(18,28,48,.72);
+    --cx-surface-solid:#0E1729;
+    --cx-surface-2:rgba(26,38,62,.62);
+    --cx-line:rgba(148,163,184,.16);
+    --cx-line-soft:rgba(148,163,184,.10);
+    --cx-line-strong:rgba(148,163,184,.32);
+    --cx-hover:rgba(148,163,184,.09);
+    --cx-brass:#F2C14E;
+    --cx-brass-deep:#F2C14E;
+    --cx-teal:#14B8A6;
+    --cx-teal-deep:#2DD4BF;
+    --cx-teal-soft:rgba(45,212,191,.13);
+    --cx-danger:#F87171;
+    --cx-danger-bg:rgba(248,113,113,.12);
+    --cx-danger-line:rgba(248,113,113,.38);
+    --cx-ring:rgba(45,212,191,.42);
+    --cx-overlay:rgba(3,6,12,.72);
+    --cx-accent-grad:linear-gradient(135deg,#14B8A6 0%,#22D3EE 100%);
+    --cx-on-accent:#03141A;
+    --cx-glow:0 0 0 1px rgba(45,212,191,.35),0 8px 26px rgba(20,184,166,.26);
+    --cx-shadow-sm:0 6px 22px rgba(0,0,0,.35);
+    --cx-shadow:0 24px 70px rgba(0,0,0,.6);
+    --cx-blur:blur(16px) saturate(140%);
+    --cx-mesh:
+      radial-gradient(1000px 560px at 6% -8%,rgba(20,184,166,.18),transparent 62%),
+      radial-gradient(900px 560px at 100% 0%,rgba(99,102,241,.15),transparent 58%),
+      radial-gradient(800px 500px at 50% 112%,rgba(242,193,78,.07),transparent 60%);
+    --cx-number-grad:linear-gradient(180deg,#FFFFFF 0%,#9DB2CC 100%);
+  }
+}
+
+/* Page canvas: deep stage with soft colored light */
+html body{
+  background-color:var(--cx-paper)!important;
+  background-image:var(--cx-mesh)!important;
+  background-attachment:fixed;
+  color:var(--cx-ink);
+  font-family:var(--cx-font);
+  -webkit-font-smoothing:antialiased;
+}
+html[data-cx-theme="dark"]{background:#070B14}
+
+/* Native controls and scrollbars follow the theme */
+@media screen{
+  html[data-cx-theme="dark"] *{scrollbar-color:rgba(148,163,184,.35) transparent;scrollbar-width:thin}
+  html[data-cx-theme="dark"] ::-webkit-scrollbar{width:10px;height:10px}
+  html[data-cx-theme="dark"] ::-webkit-scrollbar-thumb{background:rgba(148,163,184,.32);border-radius:10px;border:2px solid transparent;background-clip:padding-box}
+  html[data-cx-theme="dark"] ::selection{background:rgba(45,212,191,.35);color:#fff}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html body *,html body *::before,html body *::after{scroll-behavior:auto!important}
+}

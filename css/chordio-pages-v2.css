@@ -1,0 +1,237 @@
+/* =========================================================
+   CHORDIO Pages v2 — Login, Register, Settings, Song page
+   Needs css/chordio-theme.css (tokens). Loaded LAST on each page.
+   Visual layer only: no markup, IDs or JS behavior changed.
+   Remove the <link> to this file to return to the previous look.
+   ========================================================= */
+
+/* ---------- Login + Register ---------- */
+html body .login-container,
+html body .register-box{
+  width:min(420px,calc(100vw - 32px))!important;max-width:none!important;
+  background:var(--cx-surface)!important;
+  -webkit-backdrop-filter:var(--cx-blur);backdrop-filter:var(--cx-blur);
+  border:1px solid var(--cx-line-strong)!important;
+  border-radius:24px!important;
+  padding:34px 32px!important;
+  box-shadow:var(--cx-shadow)!important;
+  color:var(--cx-ink)!important;
+}
+html body .login-container h1,
+html body .register-box h1{
+  text-align:center;font-size:26px;font-weight:700;letter-spacing:-.02em;color:var(--cx-ink)!important;margin:0 0 22px;
+}
+html body .chordio-login-logo{
+  /* The logo artwork is dark; a light plate keeps it readable in both themes. */
+  background:#fff;border-radius:16px;padding:12px 16px;box-shadow:0 8px 30px rgba(0,0,0,.25);
+}
+html body .login-subtitle{color:var(--cx-muted)!important;font-size:14px;margin:0 0 22px!important}
+html body .login-container input,
+html body .register-box input{
+  width:100%;height:46px;padding:0 14px!important;margin:0 0 12px!important;
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;
+  border:1px solid var(--cx-line)!important;border-radius:12px!important;
+  font-family:var(--cx-font);font-size:15px!important;box-shadow:none!important;
+}
+html body .login-container input::placeholder,
+html body .register-box input::placeholder{color:var(--cx-muted)}
+html body .login-container input:focus,
+html body .register-box input:focus{
+  border-color:var(--cx-teal)!important;box-shadow:0 0 0 3px var(--cx-ring)!important;outline:none;background:var(--cx-surface-solid)!important;
+}
+html body .login-container button,
+html body .register-box button{
+  width:100%;height:46px;border:0!important;border-radius:12px!important;
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;
+  font-family:var(--cx-font);font-size:15px!important;font-weight:700;cursor:pointer;
+  box-shadow:var(--cx-glow)!important;transition:filter .15s ease;
+}
+html body .login-container button:hover,
+html body .register-box button:hover{filter:brightness(1.08)}
+html body .login-container .guest-login-btn{
+  margin-top:10px;background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;
+  border:1px solid var(--cx-line)!important;box-shadow:none!important;font-weight:600;
+}
+html body .login-container .guest-login-btn:hover{background:var(--cx-surface-2)!important;filter:none}
+html body #loginMessage,
+html body #message{min-height:20px;margin-top:12px;text-align:center;font-size:14px;color:var(--cx-danger)}
+html body .register-link,
+html body .login-link{margin-top:18px;text-align:center;font-size:14px;color:var(--cx-muted)!important}
+html body .register-link a,
+html body .login-link a{color:var(--cx-teal-deep)!important;font-weight:700;text-decoration:none}
+html body .register-link a:hover,
+html body .login-link a:hover{text-decoration:underline}
+
+/* ---------- Settings ---------- */
+html body.settings-page{background-color:var(--cx-paper)!important;color:var(--cx-ink)}
+html body .settings-page-header{
+  background:var(--cx-surface)!important;-webkit-backdrop-filter:var(--cx-blur);backdrop-filter:var(--cx-blur);
+  border-bottom:1px solid var(--cx-line)!important;box-shadow:none!important;color:var(--cx-ink)!important;
+}
+html body .settings-page-brand h1{color:var(--cx-ink)!important;letter-spacing:.04em}
+html body .settings-page-brand p{color:var(--cx-muted)!important}
+html body .settings-back{
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;
+  border-radius:12px!important;font-weight:600;box-shadow:none!important;cursor:pointer;
+}
+html body .settings-back:hover{background:var(--cx-surface-2)!important;border-color:var(--cx-line-strong)!important}
+html body .settings-page-intro h2{color:var(--cx-ink)!important;font-size:24px;font-weight:700;letter-spacing:-.01em}
+html body .settings-page-intro p{color:var(--cx-muted)!important}
+html body .settings-shell,
+html body .settings-content{background:transparent!important;box-shadow:none!important;border:0!important}
+html body .settings-card,
+html body .settings-hero,
+html body .settings-metric,
+html body .settings-help-card{
+  background:var(--cx-surface)!important;-webkit-backdrop-filter:var(--cx-blur);backdrop-filter:var(--cx-blur);
+  border:1px solid var(--cx-line)!important;border-radius:18px!important;box-shadow:none!important;color:var(--cx-ink)!important;
+}
+html body .settings-card-title{color:var(--cx-ink)!important;font-weight:700}
+html body .settings-card-subtitle,
+html body .settings-help,
+html body .settings-admin-description,
+html body .settings-metric-label,
+html body .settings-permissions-footnote,
+html body .settings-loading,
+html body .settings-help-card p{color:var(--cx-muted)!important}
+html body .settings-help-card h3{color:var(--cx-ink)!important}
+html body .settings-admin-icon,
+html body .settings-metric-icon,
+html body .settings-help-icon,
+html body .settings-state-icon{background:var(--cx-teal-soft)!important;color:var(--cx-teal-deep)!important;border-radius:14px!important;box-shadow:inset 0 0 0 1px var(--cx-ring)}
+html body .settings-metric strong{
+  font-family:var(--cx-mono);font-size:26px;letter-spacing:-.02em;color:var(--cx-ink)!important;font-variant-numeric:tabular-nums;
+}
+html body .admin-badge,
+html body .role-badge{
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border:0!important;border-radius:999px!important;font-weight:700;
+}
+html body .role-badge.user{background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;box-shadow:inset 0 0 0 1px var(--cx-line)}
+html body .permission-badge.enabled{background:var(--cx-teal-soft)!important;color:var(--cx-teal-deep)!important}
+html body .permission-badge.disabled{background:var(--cx-danger-bg)!important;color:var(--cx-danger)!important}
+html body .settings-search-wrap input{
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line)!important;border-radius:12px!important;
+}
+html body .settings-search-wrap input:focus{border-color:var(--cx-teal)!important;box-shadow:0 0 0 3px var(--cx-ring)!important;outline:none}
+html body .settings-filter,
+html body .settings-secondary{
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;border-radius:999px!important;font-weight:600;box-shadow:none!important;cursor:pointer;
+}
+html body .settings-filter.active{background:var(--cx-teal-soft)!important;color:var(--cx-teal-deep)!important;border-color:var(--cx-ring)!important}
+html body .settings-primary{background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border:0!important;border-radius:12px!important;font-weight:700}
+html body .permission-table-head{color:var(--cx-muted)!important;background:transparent!important;border-bottom:1px solid var(--cx-line)!important;text-transform:none!important;letter-spacing:0!important;font-size:12px!important}
+html body .user-permission-row{background:transparent!important;border-bottom:1px solid var(--cx-line-soft)!important}
+html body .user-permission-row:hover{background:var(--cx-hover)!important}
+html body .user-name{color:var(--cx-ink)!important;font-weight:650}
+html body .user-email,
+html body .user-role{color:var(--cx-muted)!important}
+html body .user-avatar{background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important}
+html body .switch .slider,
+html body .switch span{border-radius:999px}
+html body .settings-error{background:var(--cx-danger-bg)!important;color:var(--cx-danger)!important;border:1px solid var(--cx-danger-line)!important;border-radius:12px!important}
+
+
+/* Settings: beat the inline .settings-page .x rules in settings.html */
+html body.settings-page,
+html body.settings-page .settings-page-main,
+html body.settings-page .settings-page-shell{background-color:var(--cx-paper)!important;background-image:var(--cx-mesh)!important;color:var(--cx-ink)!important}
+html body.settings-page .settings-page-header{background:var(--cx-surface-solid)!important;color:var(--cx-ink)!important}
+html body.settings-page .settings-page-intro{background:var(--cx-surface)!important;border:1px solid var(--cx-line)!important;box-shadow:none!important}
+html body.settings-page .settings-page-intro h2{color:var(--cx-ink)!important;-webkit-text-fill-color:var(--cx-ink)!important}
+html body.settings-page .settings-card,
+html body.settings-page .settings-hero,
+html body.settings-page .settings-metric,
+html body.settings-page .settings-help-card{background:var(--cx-surface-solid)!important;border:1px solid var(--cx-line)!important;color:var(--cx-ink)!important}
+html body.settings-page .settings-card-head,
+html body.settings-page .settings-card-header{background:transparent!important;padding:20px 24px 4px!important}
+html body.settings-page .user-permission-list{background:transparent!important}
+html body.settings-page .user-permission-row{background:transparent!important;border-bottom:1px solid var(--cx-line-soft)!important}
+html body.settings-page .user-permission-row:hover{background:var(--cx-hover)!important}
+html body.settings-page .permission-table-head{background:transparent!important;color:var(--cx-muted)!important}
+html body.settings-page .settings-search-wrap{background:var(--cx-hover)!important;border:1px solid var(--cx-line)!important;color:var(--cx-muted)!important}
+html body.settings-page .settings-search-wrap input{color:var(--cx-ink)!important}
+html body.settings-page .user-name{color:var(--cx-ink)!important}
+html body.settings-page .user-email,
+html body.settings-page .user-role{color:var(--cx-muted)!important}
+html body.settings-page .permission-toggle{background:var(--cx-hover)!important;border:1px solid var(--cx-line)!important}
+html body.settings-page .permission-label{color:var(--cx-ink-2)!important}
+html body.settings-page .permission-toggle .toggle-state{color:var(--cx-muted)!important}
+html body.settings-page .permission-toggle .switch{background:var(--cx-line-strong)!important}
+html body.settings-page .permission-toggle input:checked + .switch{background:var(--cx-teal)!important}
+html body.settings-page .role-badge.admin,
+html body.settings-page .admin-badge{background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important}
+html body.settings-page .settings-permissions-footnote{background:var(--cx-teal-soft)!important;border-color:var(--cx-ring)!important;color:var(--cx-ink-2)!important}
+html body.settings-page .settings-no-users{color:var(--cx-muted)!important}
+html body.settings-page .settings-no-users strong{color:var(--cx-ink)!important}
+html body.settings-page .settings-back{white-space:nowrap;margin-right:56px}
+
+/* ---------- Song page: a sheet of music on a dark stage ---------- */
+/* The stage stays dark in both themes: the multi-screen control on this page is designed for dark. */
+html body:has(#songPaper){background-color:#05070C!important;background-image:
+  radial-gradient(1000px 560px at 6% -8%,rgba(20,184,166,.16),transparent 62%),
+  radial-gradient(900px 560px at 100% 0%,rgba(99,102,241,.13),transparent 58%)!important;color:#fff}
+
+html body #songPaper.song-paper{
+  border-radius:6px!important;
+  box-shadow:0 0 0 1px rgba(148,163,184,.18),0 30px 80px rgba(0,0,0,.45),0 0 120px -30px var(--cx-ring)!important;
+}
+@media print{
+  html body #songPaper.song-paper{box-shadow:none!important;border-radius:0!important}
+}
+html body .song-actions-toggle{
+  border:1px solid #cfd5dc!important;border-radius:10px!important;background:#fff!important;box-shadow:0 2px 8px rgba(15,27,45,.12)!important;
+  transition:border-color .15s ease,box-shadow .15s ease;
+}
+html body .song-actions-toggle:hover{border-color:#0F766E!important;box-shadow:0 0 0 3px rgba(15,118,110,.2)!important}
+html body .song-actions-menu{
+  border-radius:14px!important;border:1px solid #d9dfe7!important;box-shadow:0 18px 50px rgba(15,27,45,.28)!important;
+}
+html body .song-actions-menu button{border-radius:10px!important;transition:background-color .15s ease}
+html body .song-actions-menu button:hover{background:#E6F4F2!important}
+html body .song-page-key{
+  display:inline-block;padding:2px 10px;margin-left:4px;border-radius:8px;
+  background:#E6F4F2!important;color:#0B5E58!important;font-family:var(--cx-mono);
+}
+html body #stage .empty{color:var(--cx-muted)}
+
+/* Service Planner controls under the sheet */
+html body .service-song-tools{font-family:var(--cx-font)}
+html body .service-song-navigation{
+  width:fit-content;margin:0 auto;padding:6px 8px!important;
+  background:var(--cx-surface);-webkit-backdrop-filter:var(--cx-blur);backdrop-filter:var(--cx-blur);
+  border:1px solid var(--cx-line-strong);border-radius:999px;
+}
+html body .service-song-navigation button{
+  width:38px;height:38px;border-radius:50%!important;border:1px solid var(--cx-line)!important;
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;font-size:20px;cursor:pointer;
+}
+html body .service-song-navigation button:hover{background:var(--cx-teal-soft)!important;border-color:var(--cx-teal)!important}
+html body #serviceSongPosition{color:var(--cx-ink-2)!important;font-weight:650;min-width:70px;text-align:center}
+html body .service-note-popup{
+  background:var(--cx-surface-solid)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line-strong)!important;
+  border-radius:16px!important;box-shadow:var(--cx-shadow)!important;
+}
+html body .service-note-popup textarea{
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line)!important;border-radius:10px!important;font-family:var(--cx-font);
+}
+html body .service-note-popup textarea:focus{border-color:var(--cx-teal)!important;box-shadow:0 0 0 3px var(--cx-ring)!important;outline:none}
+html body .service-song-note-actions button,
+html body #serviceSongNoteSave{
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border:0!important;border-radius:10px!important;font-weight:700;
+}
+html body #serviceNoteClose{background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;border-radius:8px!important}
+
+/* ---------- Focus + motion ---------- */
+html body a:focus-visible,
+html body button:focus-visible,
+html body input:focus-visible,
+html body select:focus-visible,
+html body textarea:focus-visible{outline:2px solid var(--cx-teal-deep)!important;outline-offset:2px!important}
+@media (prefers-reduced-motion:reduce){
+  html body *,html body *::before,html body *::after{transition:none!important;animation:none!important}
+}
+
+/* Settings: user-access card header and toolbar */
+html body.settings-page .settings-tools-row{background:transparent!important;border-bottom:1px solid var(--cx-line)!important}
+html body.settings-page .settings-card-main{padding:20px 24px 14px!important}
+html body.settings-page .settings-card-subtitle{margin-top:4px}

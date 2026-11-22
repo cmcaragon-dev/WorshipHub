@@ -1,96 +1,72 @@
 /* =========================================================
-   CHORDIO Modern v2 — Home, Song List, All Songs
+   CHORDIO Modern v2 — Night stage / Day
+   Home, Song List, All Songs, Service Planner, Song Picker,
+   Song Editor and dialogs.
+
+   Needs css/chordio-theme.css (tokens) and js/chordio-theme.js.
    Loaded LAST. Visual layer only: no markup, IDs or JS behavior changed.
-   Selectors are prefixed "html body" so they outrank the older
-   !important rules in style.css / modern.css / responsive.css.
+   Selectors start with "html body" (and use ids where the older
+   stylesheets do) so they outrank the older !important rules.
    Remove the <link> to this file to return to the previous look.
    ========================================================= */
-
-:root{
-  --cx-ink:#0F1B2D;
-  --cx-ink-2:#2A3A50;
-  --cx-muted:#5F6E82;
-  --cx-paper:#F3F5F8;
-  --cx-surface:#FFFFFF;
-  --cx-line:#E2E7EE;
-  --cx-line-soft:#EEF1F5;
-  --cx-brass:#B7861A;
-  --cx-brass-deep:#8A6410;
-  --cx-teal:#0F766E;
-  --cx-teal-deep:#0B5E58;
-  --cx-teal-soft:#E6F4F2;
-  --cx-danger:#B42318;
-  --cx-font:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
-  --cx-serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
-  --cx-mono:ui-monospace,"Cascadia Mono",Consolas,"Courier New",monospace;
-}
-
-html body{
-  background:var(--cx-paper);
-  color:var(--cx-ink);
-  font-family:var(--cx-font);
-  -webkit-font-smoothing:antialiased;
-}
 
 /* ---------- Top bar ---------- */
 html body .topbar{
   background:var(--cx-surface)!important;
+  -webkit-backdrop-filter:var(--cx-blur);backdrop-filter:var(--cx-blur);
   border-bottom:1px solid var(--cx-line)!important;
-  box-shadow:none!important;
-  backdrop-filter:none!important;
+  box-shadow:0 1px 0 var(--cx-line-soft),0 14px 40px -26px var(--cx-ring)!important;
 }
+html body .topbar .chordio-wordmark .chordio-name{color:var(--cx-ink)!important;letter-spacing:.04em!important}
+html body .topbar .chordio-wordmark .chordio-name-accent{color:var(--cx-brass)!important}
+html[data-cx-theme="dark"] body .topbar .chordio-wordmark .chordio-name-accent{text-shadow:0 0 20px rgba(242,193,78,.55)}
 html body .topbar .top-actions input,
 html body .topbar #searchBox{
   border:1px solid var(--cx-line)!important;
-  border-radius:10px!important;
-  background:var(--cx-paper)!important;
+  border-radius:12px!important;
+  background:var(--cx-hover)!important;
   color:var(--cx-ink)!important;
   font-family:var(--cx-font);
   box-shadow:none!important;
 }
+html body .topbar #searchBox::placeholder{color:var(--cx-muted)!important}
 html body .topbar #searchBox:focus{
-  background:var(--cx-surface)!important;
+  background:var(--cx-surface-solid)!important;
   border-color:var(--cx-teal)!important;
-  box-shadow:0 0 0 3px rgba(15,118,110,.22)!important;
+  box-shadow:0 0 0 3px var(--cx-ring)!important;
   outline:none;
 }
 html body .topbar .top-actions button{
   border:1px solid var(--cx-line)!important;
-  border-radius:10px!important;
-  background:var(--cx-surface)!important;
+  border-radius:12px!important;
+  background:var(--cx-hover)!important;
   color:var(--cx-ink-2)!important;
   font-weight:600;
   box-shadow:none!important;
-  transition:background-color .15s ease,border-color .15s ease;
+  transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease;
 }
-html body .topbar .top-actions button:hover{background:var(--cx-paper)!important;border-color:#CBD3DE!important}
-html body .topbar #logoutBtn{
-  background:var(--cx-ink)!important;
-  border-color:var(--cx-ink)!important;
-  color:#fff!important;
-}
-html body .topbar #logoutBtn:hover{background:#1C2E47!important}
-html body .topbar #logoutBtn i{color:#fff!important}
+html body .topbar .top-actions button:hover{border-color:var(--cx-line-strong)!important;background:var(--cx-surface-2)!important}
+html body .topbar #logoutBtn{background:var(--cx-hover)!important;border:1px solid var(--cx-line)!important;box-shadow:none!important}
+html body .topbar #logoutBtn,
+html body .topbar #logoutBtn i{color:var(--cx-ink-2)!important}
+html body .topbar #logoutBtn:hover{border-color:var(--cx-danger-line)!important;background:var(--cx-danger-bg)!important}
+html body .topbar #logoutBtn:hover,
+html body .topbar #logoutBtn:hover i{color:var(--cx-danger)!important}
 html body .topbar #loginAccountBtn{
-  background:var(--cx-teal)!important;
-  border-color:var(--cx-teal)!important;
-  color:#fff!important;
+  background:var(--cx-accent-grad)!important;border-color:transparent!important;
+  color:var(--cx-on-accent)!important;box-shadow:var(--cx-glow)!important;
 }
-html body .topbar #loginAccountBtn:hover{background:var(--cx-teal-deep)!important}
 
 /* ---------- Sidebar ---------- */
 html body .sidebar{
   background:var(--cx-surface)!important;
+  -webkit-backdrop-filter:var(--cx-blur);backdrop-filter:var(--cx-blur);
   border-right:1px solid var(--cx-line)!important;
   box-shadow:none;
 }
 html body .sidebar h3{
-  font-size:12px!important;
-  font-weight:650!important;
-  letter-spacing:0!important;
-  text-transform:none!important;
-  color:var(--cx-muted)!important;
-  margin:18px 16px 6px!important;
+  font-size:12px!important;font-weight:650!important;letter-spacing:0!important;text-transform:none!important;
+  color:var(--cx-muted)!important;margin:18px 16px 6px!important;
 }
 html body .sidebar hr{border:0!important;border-top:1px solid var(--cx-line)!important;margin:14px 16px!important}
 html body .sidebar .sidebar-section-help{color:var(--cx-muted)!important;font-size:12px;line-height:1.5;margin:0 16px 10px!important}
@@ -98,40 +74,33 @@ html body .sidebar button{
   color:var(--cx-ink-2)!important;
   background:transparent!important;
   border:0!important;
-  border-radius:10px!important;
-  font-family:var(--cx-font);
-  font-size:14px;
-  font-weight:600;
-  text-align:left;
+  border-radius:12px!important;
+  font-family:var(--cx-font);font-size:14px;font-weight:600;text-align:left;
   box-shadow:none!important;
   transition:background-color .15s ease,color .15s ease;
 }
-html body .sidebar button:hover{background:var(--cx-paper)!important;transform:none!important}
+html body .sidebar button:hover{background:var(--cx-hover)!important;color:var(--cx-ink)!important;transform:none!important}
 html body .sidebar button.active{
-  background:var(--cx-teal-soft)!important;
-  color:var(--cx-teal-deep)!important;
+  background:var(--cx-teal-soft)!important;color:var(--cx-teal-deep)!important;
   box-shadow:inset 3px 0 0 var(--cx-brass)!important;
 }
+html body .sidebar .chordio-sidebar-action .quick-icon{
+  background:var(--cx-hover)!important;color:var(--cx-teal-deep)!important;box-shadow:inset 0 0 0 1px var(--cx-line)!important;
+}
+html body .sidebar .chordio-sidebar-action.primary .quick-icon{
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;box-shadow:var(--cx-glow)!important;
+}
 html body .sidebar .user-welcome{
-  background:var(--cx-paper)!important;
-  border:1px solid var(--cx-line)!important;
-  border-radius:12px!important;
-  box-shadow:none!important;
+  background:var(--cx-hover)!important;border:1px solid var(--cx-line)!important;border-radius:14px!important;box-shadow:none!important;
 }
 html body .sidebar .welcome-label{color:var(--cx-muted)!important;font-size:12px}
 html body .sidebar .welcome-name{color:var(--cx-ink)!important;font-weight:700}
 
 /* ---------- Content ---------- */
-html body .content{
-  max-width:1360px!important;
-  padding:28px clamp(16px,3vw,40px)!important;
-}
+html body .content{max-width:1360px!important;padding:28px clamp(16px,3vw,40px)!important}
 html body .content>h2{
-  font-size:22px!important;
-  font-weight:700!important;
-  letter-spacing:-.01em!important;
-  color:var(--cx-ink)!important;
-  margin:30px 0 14px!important;
+  font-size:22px!important;font-weight:700!important;letter-spacing:-.01em!important;
+  color:var(--cx-ink)!important;margin:30px 0 14px!important;
 }
 
 /* ---------- Dashboard ---------- */
@@ -139,70 +108,64 @@ html body .dashboard .card::before{display:none!important}
 html body .dashboard .card{
   background:var(--cx-surface)!important;
   border:1px solid var(--cx-line)!important;
-  border-radius:14px!important;
+  border-radius:16px!important;
   box-shadow:none!important;
   padding:18px 22px!important;
   transform:none!important;
 }
 html body .dashboard .number{
-  font-size:32px!important;
-  font-weight:700!important;
-  letter-spacing:-.02em!important;
-  font-variant-numeric:tabular-nums;
-  color:var(--cx-ink)!important;
-  line-height:1.1!important;
+  font-family:var(--cx-mono);
+  font-size:34px!important;font-weight:700!important;letter-spacing:-.03em!important;
+  font-variant-numeric:tabular-nums;line-height:1.1!important;
+  background:var(--cx-number-grad);-webkit-background-clip:text;background-clip:text;
+  color:transparent!important;-webkit-text-fill-color:transparent;
 }
 html body .dashboard .label{
-  font-size:13px!important;
-  font-weight:500!important;
-  color:var(--cx-muted)!important;
-  text-transform:none!important;
-  letter-spacing:0!important;
-  margin-top:6px!important;
+  font-size:13px!important;font-weight:500!important;color:var(--cx-muted)!important;
+  text-transform:none!important;letter-spacing:0!important;margin-top:6px!important;
 }
 html body .dashboard .chordio-bible-dashboard-head{
-  display:flex;align-items:center;gap:8px;
-  color:var(--cx-brass-deep)!important;
-  font-size:12px!important;
-  font-weight:650!important;
-  letter-spacing:0!important;
-  margin-bottom:8px;
+  display:flex;align-items:center;gap:8px;color:var(--cx-brass-deep)!important;
+  font-size:12px!important;font-weight:650!important;letter-spacing:0!important;margin-bottom:8px;
 }
 html body .dashboard .chordio-bible-dashboard-text{
-  font-family:var(--cx-serif);
-  font-size:16px!important;
-  line-height:1.5!important;
-  color:var(--cx-ink-2)!important;
+  font-family:var(--cx-serif);font-size:16px!important;line-height:1.5!important;color:var(--cx-ink-2)!important;
 }
-html body .dashboard .chordio-bible-dashboard-ref{
-  margin-top:6px;
-  font-size:13px!important;
-  font-weight:650!important;
-  color:var(--cx-muted)!important;
-}
+html body .dashboard .chordio-bible-dashboard-ref{margin-top:6px;font-size:13px!important;font-weight:650!important;color:var(--cx-muted)!important}
 
-/* One connected strip on desktop instead of four separate cards */
 @media (min-width:901px){
   html body .dashboard{
     display:grid!important;
     grid-template-columns:minmax(120px,.8fr) minmax(120px,.8fr) minmax(120px,.8fr) minmax(280px,1.8fr)!important;
     gap:0!important;
     background:var(--cx-surface);
+    -webkit-backdrop-filter:var(--cx-blur);backdrop-filter:var(--cx-blur);
     border:1px solid var(--cx-line);
-    border-radius:16px;
+    border-radius:18px;
     overflow:hidden;
     margin-bottom:8px!important;
+    box-shadow:var(--cx-shadow-sm);
   }
-  html body .dashboard .card{
-    border:0!important;
-    border-radius:0!important;
-    background:transparent!important;
-    padding:20px 26px!important;
-  }
+  html body .dashboard .card{border:0!important;border-radius:0!important;background:transparent!important;padding:20px 26px!important}
   html body .dashboard .card + .card{border-left:1px solid var(--cx-line)!important}
 }
 
-/* ---------- Song list (home) — setlist rows ---------- */
+/* Quick actions block created by chordio-v63-ux.js */
+html body .chordio-quick{
+  background:var(--cx-surface)!important;border:1px solid var(--cx-line)!important;border-radius:18px!important;box-shadow:var(--cx-shadow-sm)!important;
+}
+html body .chordio-quick-head h2{color:var(--cx-ink)!important}
+html body .chordio-quick-head p{color:var(--cx-muted)!important}
+html body .chordio-quick-head span{color:var(--cx-brass-deep)!important}
+html body .chordio-quick-grid button{
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;border-radius:12px!important;
+}
+html body .chordio-quick-grid button:hover{border-color:var(--cx-teal)!important;box-shadow:0 0 0 3px var(--cx-ring)!important}
+html body .chordio-quick-grid button.primary{background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border-color:transparent!important}
+html body .chordio-quick-grid .quick-icon{background:var(--cx-surface-solid)!important;color:var(--cx-teal-deep)!important;box-shadow:inset 0 0 0 1px var(--cx-line)!important}
+html body .chordio-quick-grid button.primary .quick-icon{background:rgba(255,255,255,.22)!important;color:var(--cx-on-accent)!important}
+
+/* ---------- Song list (home): setlist rows ---------- */
 html body #songGrid{
   display:grid!important;
   grid-template-columns:repeat(auto-fill,minmax(min(100%,480px),1fr))!important;
@@ -215,81 +178,57 @@ html body #songGrid .song-card{
   display:grid!important;
   grid-template-columns:auto minmax(0,1fr) auto!important;
   grid-template-areas:"t t x" "a c x"!important;
-  column-gap:12px!important;
-  row-gap:5px!important;
+  column-gap:12px!important;row-gap:5px!important;
   align-items:center;
   padding:14px 16px 14px 22px!important;
   border:1px solid var(--cx-line)!important;
-  border-radius:12px!important;
+  border-radius:14px!important;
   background:var(--cx-surface)!important;
   box-shadow:none!important;
   transform:none!important;
   transition:border-color .15s ease,box-shadow .15s ease!important;
 }
 html body #songGrid .song-card::before{
-  content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;
-  border-radius:0 3px 3px 0;background:var(--cx-line);
-  transition:background-color .15s ease;
+  content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:0 3px 3px 0;
+  background:var(--cx-line);transition:background .15s ease,box-shadow .15s ease;
 }
-html body #songGrid .song-card:hover{
-  border-color:#CBD3DE!important;
-  box-shadow:0 4px 16px rgba(15,27,45,.06)!important;
-}
-html body #songGrid .song-card:hover::before{background:var(--cx-brass)}
+html body #songGrid .song-card:hover{border-color:var(--cx-line-strong)!important;box-shadow:var(--cx-shadow-sm)!important}
+html body #songGrid .song-card:hover::before{background:var(--cx-brass);box-shadow:0 0 14px rgba(242,193,78,.55)}
 
-html body #songGrid .song-card h3{
-  grid-area:t;margin:0;
-  font-size:16px;font-weight:650;line-height:1.3;
-  color:var(--cx-ink);overflow-wrap:anywhere;
-}
+html body #songGrid .song-card h3{grid-area:t;margin:0;font-size:16px;font-weight:650;line-height:1.3;color:var(--cx-ink);overflow-wrap:anywhere}
 html body #songGrid .song-card p{margin:0;font-size:13px;color:var(--cx-muted)}
 html body #songGrid .song-card p strong{display:none}
-html body #songGrid .song-card p:nth-of-type(1){
-  grid-area:a;max-width:170px;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-}
+html body #songGrid .song-card p:nth-of-type(1){grid-area:a;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 html body #songGrid .song-card p:nth-of-type(2){
-  grid-area:c;justify-self:start;
-  padding:2px 9px;border:1px solid var(--cx-line);border-radius:999px;
-  background:var(--cx-paper);color:var(--cx-ink-2);font-size:12px;font-weight:600;white-space:nowrap;
+  grid-area:c;justify-self:start;padding:2px 9px;border:1px solid var(--cx-line);border-radius:999px;
+  background:var(--cx-hover);color:var(--cx-ink-2);font-size:12px;font-weight:600;white-space:nowrap;
 }
-
 html body #songGrid .song-card .song-card-actions{
-  grid-area:x;
-  display:flex!important;flex-direction:row!important;align-items:center!important;
-  gap:6px!important;width:auto!important;margin:0!important;
-  overflow:visible!important;white-space:nowrap!important;
+  grid-area:x;display:flex!important;flex-direction:row!important;align-items:center!important;
+  gap:6px!important;width:auto!important;margin:0!important;overflow:visible!important;white-space:nowrap!important;
 }
 html body #songGrid .song-card .song-card-action-row{display:contents!important}
 html body #songGrid .song-card .open-song{
   display:inline-flex!important;align-items:center;justify-content:center;
-  width:auto!important;min-height:36px!important;height:36px;
-  padding:0 14px!important;border-radius:9px!important;
-  background:var(--cx-teal)!important;color:#fff!important;
-  font-size:13px!important;font-weight:650;text-decoration:none;white-space:nowrap;
-  box-shadow:none!important;
-  transition:background-color .15s ease;
+  width:auto!important;min-height:36px!important;height:36px;padding:0 14px!important;border-radius:10px!important;
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;
+  font-size:13px!important;font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:var(--cx-glow)!important;
+  transition:filter .15s ease;
 }
-html body #songGrid .song-card .open-song:hover{background:var(--cx-teal-deep)!important}
+html body #songGrid .song-card .open-song:hover{filter:brightness(1.1)}
 html body #songGrid .song-card .song-icon-action{
   display:inline-flex!important;align-items:center;justify-content:center;
-  width:36px!important;min-width:36px;height:36px!important;min-height:36px!important;
-  padding:0!important;margin:0!important;
-  border:1px solid var(--cx-line)!important;border-radius:9px!important;
-  background:var(--cx-surface)!important;color:var(--cx-ink-2)!important;
-  font-size:14px;text-decoration:none;cursor:pointer;
+  width:36px!important;min-width:36px;height:36px!important;min-height:36px!important;padding:0!important;margin:0!important;
+  border:1px solid var(--cx-line)!important;border-radius:10px!important;
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;font-size:14px;text-decoration:none;cursor:pointer;
   transition:background-color .15s ease,border-color .15s ease,color .15s ease;
 }
-html body #songGrid .song-card .song-icon-action:hover{background:var(--cx-paper)!important;border-color:#CBD3DE!important}
-html body #songGrid .song-card .song-icon-action.delete:hover{background:#FEF3F2!important;border-color:#F3C5C0!important;color:var(--cx-danger)!important}
+html body #songGrid .song-card .song-icon-action:hover{background:var(--cx-surface-2)!important;border-color:var(--cx-line-strong)!important}
+html body #songGrid .song-card .song-icon-action.delete:hover{background:var(--cx-danger-bg)!important;border-color:var(--cx-danger-line)!important;color:var(--cx-danger)!important}
 html body #songGrid .song-card .youtube-song-btn.disabled{opacity:.4}
 
 @media (max-width:700px){
-  html body #songGrid .song-card{
-    grid-template-columns:minmax(0,1fr)!important;
-    grid-template-areas:"t" "a" "c" "x"!important;
-    row-gap:6px!important;
-  }
+  html body #songGrid .song-card{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"t" "a" "c" "x"!important;row-gap:6px!important}
   html body #songGrid .song-card p:nth-of-type(1){max-width:100%}
   html body #songGrid .song-card .song-card-actions{margin-top:8px!important;flex-wrap:wrap!important}
   html body #songGrid .song-card .open-song{flex:1 1 auto}
@@ -297,102 +236,323 @@ html body #songGrid .song-card .youtube-song-btn.disabled{opacity:.4}
 
 /* ---------- All Songs panel ---------- */
 html body #allSongsPanel{font-family:var(--cx-font)}
-html body #allSongsPanel .all-songs-header{
-  background:var(--cx-surface)!important;
-  border-bottom:1px solid var(--cx-line)!important;
-  box-shadow:none!important;
+html body #allSongsPanel .all-songs-header,
+html body #allSongsPanel .all-songs-search,
+html body #allSongsPanel .all-songs-filterbar{
+  background:var(--cx-surface-solid)!important;border-color:var(--cx-line)!important;box-shadow:none!important;
 }
-html body #allSongsPanel .all-songs-header h2{
-  font-size:22px!important;font-weight:700!important;letter-spacing:-.01em!important;color:var(--cx-ink)!important;
-}
+html body #allSongsPanel .all-songs-header{border-bottom:1px solid var(--cx-line)!important}
+html body #allSongsPanel .all-songs-header h2{font-size:22px!important;font-weight:700!important;letter-spacing:-.01em!important;color:var(--cx-ink)!important}
 html body #allSongsPanel .all-songs-header p{color:var(--cx-muted)!important;font-size:13px}
 html body #allSongsPanel .all-songs-library-meta{
-  background:var(--cx-teal-soft)!important;color:var(--cx-teal-deep)!important;
-  border:0!important;border-radius:999px!important;
+  background:var(--cx-teal-soft)!important;color:var(--cx-teal-deep)!important;border:0!important;border-radius:999px!important;
   padding:4px 12px!important;font-size:12px!important;font-weight:650!important;
 }
 html body #allSongsPanel .close-all-songs{
-  width:36px;height:36px;padding:0!important;
-  border:1px solid var(--cx-line)!important;border-radius:10px!important;
-  background:var(--cx-surface)!important;color:var(--cx-ink-2)!important;
-  box-shadow:none!important;cursor:pointer;
+  width:36px;height:36px;padding:0!important;border:1px solid var(--cx-line)!important;border-radius:10px!important;
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;box-shadow:none!important;cursor:pointer;
 }
-html body #allSongsPanel .close-all-songs:hover{background:var(--cx-paper)!important}
-
+html body #allSongsPanel .close-all-songs:hover{background:var(--cx-surface-2)!important}
 html body #allSongsPanel .all-songs-search input,
 html body #allSongsPanel .all-songs-filterbar select{
-  height:40px;
-  border:1px solid var(--cx-line)!important;border-radius:10px!important;
-  background:var(--cx-surface)!important;color:var(--cx-ink)!important;
-  font-family:var(--cx-font);font-size:14px;box-shadow:none!important;
+  height:40px;border:1px solid var(--cx-line)!important;border-radius:12px!important;
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;font-family:var(--cx-font);font-size:14px;box-shadow:none!important;
 }
+html body #allSongsPanel .all-songs-filterbar select option{background:var(--cx-surface-solid);color:var(--cx-ink)}
+html body #allSongsPanel .all-songs-search input::placeholder{color:var(--cx-muted)}
 html body #allSongsPanel .all-songs-search input:focus,
-html body #allSongsPanel .all-songs-filterbar select:focus{
-  border-color:var(--cx-teal)!important;
-  box-shadow:0 0 0 3px rgba(15,118,110,.22)!important;
-  outline:none;
-}
+html body #allSongsPanel .all-songs-filterbar select:focus{border-color:var(--cx-teal)!important;box-shadow:0 0 0 3px var(--cx-ring)!important;outline:none}
 html body #allSongsPanel .all-songs-search button{
-  height:40px;border-radius:10px!important;font-weight:650;box-shadow:none!important;cursor:pointer;
-  border:1px solid var(--cx-line)!important;background:var(--cx-surface)!important;color:var(--cx-ink-2)!important;
+  height:40px;border-radius:12px!important;font-weight:650;box-shadow:none!important;cursor:pointer;
+  border:1px solid var(--cx-line)!important;background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;
 }
 html body #allSongsPanel .all-songs-search button:nth-of-type(1){
-  background:var(--cx-teal)!important;border-color:var(--cx-teal)!important;color:#fff!important;
+  background:var(--cx-accent-grad)!important;border-color:transparent!important;color:var(--cx-on-accent)!important;box-shadow:var(--cx-glow)!important;
 }
-html body #allSongsPanel .all-songs-search button:nth-of-type(1):hover{background:var(--cx-teal-deep)!important}
-html body #allSongsPanel .all-songs-search button:nth-of-type(2):hover{background:var(--cx-paper)!important}
-
+html body #allSongsPanel .all-songs-search button:nth-of-type(1):hover{filter:brightness(1.1)}
 html body #allSongsPanel .all-songs-table-wrapper{
-  background:var(--cx-surface)!important;
-  border:1px solid var(--cx-line)!important;
-  border-radius:14px!important;
-  box-shadow:none!important;
-  overflow:auto;
+  background:var(--cx-surface-solid)!important;border:1px solid var(--cx-line)!important;border-radius:16px!important;box-shadow:none!important;overflow:auto;
 }
 html body #allSongsPanel .all-songs-table{border-collapse:separate!important;border-spacing:0!important;width:100%}
 html body #allSongsPanel .all-songs-table thead th{
-  position:sticky;top:0;z-index:2;
-  background:#F8FAFC!important;color:var(--cx-muted)!important;
-  font-size:12px!important;font-weight:650!important;
-  letter-spacing:0!important;text-transform:none!important;
-  padding:12px 14px!important;
-  border-bottom:1px solid var(--cx-line)!important;
-  text-align:left;
+  position:sticky;top:0;z-index:2;background:var(--cx-surface-solid)!important;color:var(--cx-muted)!important;
+  font-size:12px!important;font-weight:650!important;letter-spacing:0!important;text-transform:none!important;
+  padding:12px 14px!important;border-bottom:1px solid var(--cx-line-strong)!important;text-align:left;
 }
 html body #allSongsPanel .all-songs-table tbody td{
-  padding:12px 14px!important;
-  border-bottom:1px solid var(--cx-line-soft)!important;
-  font-size:14px;color:var(--cx-ink-2);vertical-align:middle;
+  padding:12px 14px!important;border-bottom:1px solid var(--cx-line-soft)!important;font-size:14px;color:var(--cx-ink-2);vertical-align:middle;
 }
-html body #allSongsPanel .all-songs-table tbody tr:hover td{background:#F8FAFC!important}
+html body #allSongsPanel .all-songs-table tbody tr:hover td{background:var(--cx-hover)!important}
 html body #allSongsPanel .all-songs-table tbody td:first-child{color:var(--cx-muted);font-variant-numeric:tabular-nums;width:48px}
-html body #allSongsPanel .all-songs-table .all-song-title{
-  color:var(--cx-ink)!important;font-weight:650;text-decoration:none;
-}
+html body #allSongsPanel .all-songs-table .all-song-title{color:var(--cx-ink)!important;font-weight:650;text-decoration:none}
 html body #allSongsPanel .all-songs-table .all-song-title:hover{color:var(--cx-teal-deep)!important;text-decoration:underline}
+html body #allSongsPanel .all-songs-table tbody td:nth-child(2),
+html body #allSongsPanel .all-songs-table tbody td:nth-child(3){font-size:14px!important;font-weight:500;color:var(--cx-ink-2)!important}
+html body #allSongsPanel .all-songs-table tbody td:nth-child(4),
+html body #allSongsPanel .all-songs-table tbody td:nth-child(5){font-size:14px!important;font-weight:500;color:var(--cx-muted)!important}
 /* Key column: musicians scan by key, so it gets its own typographic voice */
 html body #allSongsPanel .all-songs-table tbody td:nth-child(6){
-  font-family:var(--cx-mono)!important;font-weight:700!important;font-size:14px!important;
-  color:var(--cx-brass-deep)!important;text-align:center!important;
+  font-family:var(--cx-mono)!important;font-weight:700!important;font-size:14px!important;color:var(--cx-brass-deep)!important;text-align:center!important;
 }
-html body #allSongsPanel .all-songs-table tbody td:nth-child(2),
-html body #allSongsPanel .all-songs-table tbody td:nth-child(3),
-html body #allSongsPanel .all-songs-table tbody td:nth-child(4),
-html body #allSongsPanel .all-songs-table tbody td:nth-child(5){
-  font-size:14px!important;font-weight:500;color:var(--cx-ink-2)!important;
+
+/* ---------- Service Planner ---------- */
+html body #servicePanel.service-panel{
+  background:var(--cx-surface-solid)!important;
+  border:1px solid var(--cx-line-strong)!important;
+  border-radius:20px!important;
+  box-shadow:var(--cx-shadow)!important;
+  color:var(--cx-ink);
 }
-html body #allSongsPanel .all-songs-table tbody td:nth-child(4),
-html body #allSongsPanel .all-songs-table tbody td:nth-child(5){color:var(--cx-muted)!important}
+html body #servicePanel .service-top{
+  background:transparent!important;border-bottom:1px solid var(--cx-line)!important;box-shadow:none!important;
+}
+html body #servicePanel .chordio-panel-kicker{color:var(--cx-brass-deep)!important;font-size:12px!important;font-weight:650!important;letter-spacing:0!important;text-transform:none!important}
+html body #servicePanel .service-top h2{color:var(--cx-ink)!important;font-size:22px!important;font-weight:700!important;letter-spacing:-.01em}
+html body #servicePanel .service-top p{color:var(--cx-muted)!important}
+html body #servicePanel .planner-add-icon{
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border:0!important;border-radius:12px!important;box-shadow:var(--cx-glow)!important;
+}
+html body #servicePanel .planner-close-icon{
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;border-radius:12px!important;box-shadow:none!important;
+}
+html body #servicePanel .chordio-service-list{background:transparent!important}
+html body #servicePanel .service-item{
+  background:var(--cx-surface)!important;border:1px solid var(--cx-line)!important;border-radius:16px!important;box-shadow:none!important;
+  transition:border-color .15s ease;
+}
+html body #servicePanel .service-item:hover{border-color:var(--cx-line-strong)!important}
+html body #servicePanel .service-header{background:transparent!important;color:var(--cx-ink)!important}
+html body #servicePanel .service-number{
+  background:var(--cx-teal-soft)!important;color:var(--cx-teal-deep)!important;font-family:var(--cx-mono);font-weight:700;border-radius:10px!important;
+}
+html body #servicePanel .service-arrow{color:var(--cx-muted)!important}
+html body #servicePanel .service-name-text{color:var(--cx-ink)!important;font-weight:700}
+html body #servicePanel .chordio-service-status{
+  border-radius:999px!important;padding:2px 10px!important;font-size:11px!important;font-weight:700!important;letter-spacing:.02em;
+}
+html body #servicePanel .chordio-service-status.active{background:var(--cx-teal-soft)!important;color:var(--cx-teal-deep)!important;box-shadow:inset 0 0 0 1px var(--cx-ring)}
+html body #servicePanel .chordio-service-status.ready{background:rgba(183,134,26,.15)!important;color:var(--cx-brass-deep)!important}
+html body #servicePanel .service-count,
+html body #servicePanel .chordio-service-date,
+html body #servicePanel .chordio-service-song-count{color:var(--cx-muted)!important}
+html body #servicePanel .service-body{background:transparent!important;border-top:1px solid var(--cx-line)!important}
+html body #servicePanel .service-body hr{border:0!important;border-top:1px solid var(--cx-line)!important}
+html body #servicePanel .service-action-bar button{
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;border-radius:10px!important;
+  font-weight:600;box-shadow:none!important;transition:background-color .15s ease,border-color .15s ease;
+}
+html body #servicePanel .service-action-bar button:hover{background:var(--cx-surface-2)!important;border-color:var(--cx-line-strong)!important}
+html body #servicePanel .service-action-bar .start-multi-screen-service-btn{
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border-color:transparent!important;box-shadow:var(--cx-glow)!important;font-weight:700;
+}
+html body #servicePanel .service-action-bar .danger-action{color:var(--cx-danger)!important}
+html body #servicePanel .service-action-bar .danger-action:hover{background:var(--cx-danger-bg)!important;border-color:var(--cx-danger-line)!important}
+html body #servicePanel .service-song-hint{color:var(--cx-muted)!important}
+html body #servicePanel .service-song{
+  background:var(--cx-hover)!important;border:1px solid var(--cx-line)!important;border-radius:12px!important;box-shadow:none!important;
+}
+html body #servicePanel .service-song.dragging{outline:2px dashed var(--cx-teal)!important}
+html body #servicePanel .service-song-drag{color:var(--cx-muted)!important;background:var(--cx-surface-solid)!important;border:1px dashed var(--cx-line-strong)!important}
+html body #servicePanel .service-song-drag:active,
+html body #servicePanel .service-song.drag-handle-active .service-song-drag{background:var(--cx-teal-soft)!important;border-color:var(--cx-teal)!important;color:var(--cx-teal-deep)!important}
+html body #servicePanel .service-song-title{color:var(--cx-ink)!important;font-weight:650}
+html body #servicePanel .service-song-artist{color:var(--cx-muted)!important}
+html body #servicePanel .service-song-key{color:var(--cx-brass-deep)!important;background:transparent!important;border:0!important;padding:0!important;font-family:var(--cx-mono);font-weight:700}
+html body #servicePanel .service-song-note-inline{color:var(--cx-ink-2)!important;font-family:var(--cx-font);font-weight:500}
+html body #servicePanel .service-youtube-btn,
+html body #servicePanel .remove-song-btn{
+  background:var(--cx-surface-solid)!important;border:1px solid var(--cx-line)!important;border-radius:10px!important;box-shadow:none!important;
+}
+html body #servicePanel .remove-song-btn{color:var(--cx-danger)!important}
+html body #servicePanel .remove-song-btn:hover{background:var(--cx-danger-bg)!important;border-color:var(--cx-danger-line)!important}
+html body #servicePanel .service-empty-songs{color:var(--cx-muted)!important;text-align:center;padding:18px}
+
+/* ---------- Song picker ---------- */
+html body #songPicker.popup{background:var(--cx-overlay)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+html body #songPicker .popup-box{
+  background:var(--cx-surface-solid)!important;border:1px solid var(--cx-line-strong)!important;border-radius:20px!important;
+  box-shadow:var(--cx-shadow)!important;color:var(--cx-ink);
+}
+html body #songPicker .popup-header h2{color:var(--cx-ink)!important;font-size:20px;font-weight:700}
+html body #songPicker .popup-header button{
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;border-radius:10px!important;
+}
+html body #songPicker #songPickerSearch{
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line)!important;border-radius:12px!important;
+}
+html body #songPicker #songPickerSearch:focus{border-color:var(--cx-teal)!important;box-shadow:0 0 0 3px var(--cx-ring)!important;outline:none}
+html body #songPicker .song-picker-card{
+  background:var(--cx-hover)!important;border:1px solid var(--cx-line)!important;border-radius:12px!important;box-shadow:none!important;
+  transition:border-color .15s ease;
+}
+html body #songPicker .song-picker-card:hover{border-color:var(--cx-line-strong)!important}
+html body #songPicker .song-picker-title{color:var(--cx-ink)!important;font-weight:650}
+html body #songPicker .song-picker-artist{color:var(--cx-muted)!important}
+html body #songPicker .song-picker-add-btn{
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border:0!important;border-radius:10px!important;font-weight:700;box-shadow:var(--cx-glow)!important;
+}
+html body #songPicker .song-picker-add-btn.added,
+html body #songPicker .song-picker-add-btn:disabled{background:var(--cx-hover)!important;color:var(--cx-muted)!important;box-shadow:none!important}
+
+/* ---------- Song editor ---------- */
+html body #songEditorPanel{background:var(--cx-overlay)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+html body #songEditorPanel .song-editor-shell{
+  background:var(--cx-surface-solid)!important;border:1px solid var(--cx-line-strong)!important;border-radius:20px!important;
+  box-shadow:var(--cx-shadow)!important;color:var(--cx-ink);
+}
+html body #songEditorPanel .song-editor-header{border-bottom:1px solid var(--cx-line)!important;background:transparent!important}
+html body #songEditorPanel .song-editor-header h2{color:var(--cx-ink)!important;font-size:22px;font-weight:700;letter-spacing:-.01em}
+html body #songEditorPanel .song-editor-header p{color:var(--cx-muted)!important}
+html body #songEditorPanel .song-editor-close{
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;border-radius:10px!important;
+}
+html body #songEditorPanel .song-editor-meta label{color:var(--cx-muted)!important;font-size:12px!important;font-weight:650!important;letter-spacing:0!important;text-transform:none!important}
+html body #songEditorPanel .song-editor-meta input,
+html body #songEditorPanel .song-editor-meta select{
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line)!important;border-radius:10px!important;font-family:var(--cx-font);
+}
+html body #songEditorPanel .song-editor-meta input:focus,
+html body #songEditorPanel .song-editor-meta select:focus,
+html body #songEditorPanel .editor-chord-input:focus,
+html body #songEditorPanel .editor-lyric-input:focus{border-color:var(--cx-teal)!important;box-shadow:0 0 0 3px var(--cx-ring)!important;outline:none}
+html body #songEditorPanel select option{background:var(--cx-surface-solid);color:var(--cx-ink)}
+html body #songEditorPanel .song-editor-toolbar{background:transparent!important;border-color:var(--cx-line)!important}
+html body #songEditorPanel .song-editor-toolbar button{
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;border-radius:10px!important;font-weight:600;
+}
+html body #songEditorPanel .song-editor-toolbar button:hover{background:var(--cx-surface-2)!important;border-color:var(--cx-line-strong)!important}
+html body #songEditorPanel .song-editor-tip{color:var(--cx-muted)!important}
+html body #songEditorPanel .editor-section{
+  background:var(--cx-hover)!important;border:1px solid var(--cx-line)!important;border-radius:14px!important;box-shadow:none!important;
+}
+html body #songEditorPanel .editor-section-head{background:transparent!important;border-bottom:1px solid var(--cx-line)!important}
+html body #songEditorPanel .editor-section-type,
+html body #songEditorPanel .editor-section-number{
+  background:var(--cx-surface-solid)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line)!important;border-radius:10px!important;
+}
+html body #songEditorPanel .editor-icon-btn,
+html body #songEditorPanel .editor-line-delete{
+  background:var(--cx-surface-solid)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;border-radius:9px!important;
+}
+html body #songEditorPanel .editor-icon-btn.section-delete,
+html body #songEditorPanel .editor-line-delete{color:var(--cx-danger)!important}
+html body #songEditorPanel .editor-chord-input{
+  background:var(--cx-surface-solid)!important;color:var(--cx-brass-deep)!important;border:1px solid var(--cx-line)!important;border-radius:9px!important;
+  font-family:var(--cx-mono)!important;font-weight:700;
+}
+html body #songEditorPanel .editor-lyric-input{
+  background:var(--cx-surface-solid)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line)!important;border-radius:9px!important;font-family:var(--cx-mono)!important;
+}
+html body #songEditorPanel .song-editor-footer{background:transparent!important;border-top:1px solid var(--cx-line)!important}
+html body #songEditorPanel .editor-secondary{
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;border-radius:12px!important;font-weight:600;
+}
+html body #songEditorPanel .editor-primary{
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border:0!important;border-radius:12px!important;font-weight:700;box-shadow:var(--cx-glow)!important;
+}
+html body .editor-preview-card{background:var(--cx-surface-solid)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line-strong)!important;border-radius:18px!important}
+html body .editor-preview-section-title{color:var(--cx-brass-deep)!important}
+html body .editor-preview-line .chord{color:var(--cx-brass-deep)!important}
+
+
+/* ---------- Song picker + editor: match the older ID-based rules ---------- */
+html body #songPicker.popup{background:var(--cx-overlay)!important}
+html body #songPicker.popup .popup-box{
+  background:var(--cx-surface-solid)!important;color:var(--cx-ink)!important;
+  border:1px solid var(--cx-line-strong)!important;border-radius:20px!important;box-shadow:var(--cx-shadow)!important;
+}
+html body #songPicker.popup .popup-header{background:transparent!important;border-bottom:1px solid var(--cx-line)!important}
+html body #songPicker.popup .popup-header h2{color:var(--cx-ink)!important}
+html body #songPicker.popup #songPickerList{background:transparent!important}
+html body #songPicker.popup .song-picker-card{background:var(--cx-hover)!important}
+
+html body #songEditorPanel.song-editor-panel{background:var(--cx-overlay)!important}
+html body #songEditorPanel .song-editor-shell{background:var(--cx-surface-solid)!important;border-radius:20px!important;overflow:hidden}
+html body #songEditorPanel .song-editor-header{background:transparent!important;border-bottom:1px solid var(--cx-line)!important}
+html body #songEditorPanel .song-editor-meta{background:var(--cx-surface-2)!important;border-bottom:1px solid var(--cx-line)!important}
+html body #songEditorPanel .song-editor-toolbar{background:transparent!important;border-bottom:1px solid var(--cx-line)!important}
+html body #songEditorPanel .song-editor-toolbar button{background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important}
+html body #songEditorPanel .song-editor-toolbar button:hover{background:var(--cx-surface-2)!important;border-color:var(--cx-line-strong)!important}
+html body #songEditorPanel .song-editor-toolbar #importChordPageBtn{background:var(--cx-teal-soft)!important;color:var(--cx-teal-deep)!important;border-color:var(--cx-ring)!important}
+html body #songEditorPanel .song-editor-tip{background:var(--cx-hover)!important;color:var(--cx-muted)!important;border:1px solid var(--cx-line)!important;border-radius:12px!important}
+html body #songEditorPanel .song-editor-sections{background:transparent!important}
+html body #songEditorPanel .song-editor-meta input,
+html body #songEditorPanel .song-editor-meta select{background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line)!important}
+html body #songEditorPanel .song-editor-meta input::placeholder{color:var(--cx-muted)}
+html body #songEditorPanel .song-editor-footer{background:var(--cx-surface-solid)!important;border-top:1px solid var(--cx-line)!important}
+html body #songEditorPanel .song-editor-footer .editor-secondary{background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important}
+html body #songEditorPanel .song-editor-footer .editor-primary{background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border:0!important;box-shadow:var(--cx-glow)!important}
+html body #songEditorPanel .editor-section{background:var(--cx-hover)!important}
+html body #songEditorPanel .editor-section-head{background:transparent!important}
+html body #songEditorPanel .editor-line,
+html body #songEditorPanel .editor-line-main{background:transparent!important;border-color:var(--cx-line)!important}
+html body #songEditorPanel .editor-line-main *{border-color:var(--cx-line)}
+html body #songEditorPanel .editor-chord-input,
+html body #songEditorPanel .editor-lyric-input{background:var(--cx-surface-solid)!important}
+html body #songEditorPanel .editor-chord-input{color:var(--cx-brass-deep)!important}
+html body #songEditorPanel .editor-lyric-input{color:var(--cx-ink)!important}
+
+
+html body #songEditorPanel .editor-lines,
+html body #songEditorPanel .editor-section .editor-lines>*,
+html body #songEditorPanel .editor-line>*:not(input):not(button):not(select){background:transparent!important}
+html body #songEditorPanel .editor-line{border:1px solid var(--cx-line)!important;border-radius:12px!important}
+html body #songEditorPanel .editor-line::before,
+html body #songEditorPanel .editor-line::after,
+html body #songEditorPanel .editor-line-main::before,
+html body #songEditorPanel .editor-line-main::after{color:var(--cx-muted)!important;background:transparent!important}
+html body #songEditorPanel .editor-line-delete{background:var(--cx-danger-bg)!important;border-color:var(--cx-danger-line)!important}
+
+/* Song picker rows */
+html body #songPicker.popup .popup-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px!important}
+html body #songPicker.popup #songPickerSearch{display:block;width:calc(100% - 44px)!important;height:44px;margin:14px 22px!important;padding:0 14px!important;font-family:var(--cx-font);font-size:15px}
+html body #songPicker.popup #songPickerList{display:flex;flex-direction:column;gap:8px;padding:0 22px 22px}
+html body #songPicker.popup .song-picker-card{display:flex!important;align-items:center;justify-content:space-between;gap:14px;padding:12px 14px!important;min-height:0!important}
+html body #songPicker.popup .song-picker-info{min-width:0;flex:1}
+html body #songPicker.popup .song-picker-title{font-size:15px;line-height:1.3}
+html body #songPicker.popup .song-picker-artist{font-size:13px;margin-top:2px}
+html body #songPicker.popup .song-picker-add-btn{flex:none;height:36px;min-width:84px;padding:0 14px!important;cursor:pointer}
+html body #songPicker.popup .popup-header button{width:36px;height:36px;padding:0!important;cursor:pointer;flex:none}
+
+/* ---------- Dialogs (new / edit service, add songs) ---------- */
+html body .chordio-modal{background:var(--cx-overlay)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+html body .chordio-dialog{
+  background:var(--cx-surface-solid)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line-strong);
+  border-radius:20px!important;box-shadow:var(--cx-shadow)!important;
+}
+html body .chordio-dialog-head{border-bottom:1px solid var(--cx-line)!important}
+html body .chordio-dialog-head h3{color:var(--cx-ink)!important}
+html body .chordio-dialog-head span{color:var(--cx-brass-deep)!important}
+html body .chordio-dialog-head>button{background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;border-radius:10px!important}
+html body .chordio-dialog-help{color:var(--cx-muted)!important}
+html body .chordio-service-choice{background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line)!important;border-radius:12px!important}
+html body .chordio-service-choice:hover{border-color:var(--cx-teal)!important;background:var(--cx-teal-soft)!important}
+html body .chordio-service-choice small{color:var(--cx-muted)!important}
+html body .chordio-service-choice b{color:var(--cx-brass-deep)!important}
+html body .chordio-empty{color:var(--cx-muted)!important}
+html body .chordio-form-grid label,
+html body .v63-selected-head span,
+html body .v63-create-footer span{color:var(--cx-muted)!important}
+html body .v63-selected-head strong{color:var(--cx-ink-2)!important}
+html body .chordio-form-grid input,
+html body .v63-song-search,
+html body .v63-song-key{
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line)!important;border-radius:10px!important;font-family:var(--cx-font);
+}
+html body .chordio-form-grid input:focus,
+html body .v63-song-search:focus{border-color:var(--cx-teal)!important;box-shadow:0 0 0 3px var(--cx-ring)!important;outline:none}
+html body .v63-song-choice{border-bottom:1px solid var(--cx-line-soft)!important}
+html body .v63-song-check small{color:var(--cx-muted)!important}
+html body .v63-create-footer{background:var(--cx-surface-2)!important;border-top:1px solid var(--cx-line)!important}
+html body .v63-create-footer button{background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;border-radius:10px!important}
+html body .v63-create-footer button.primary{background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border-color:transparent!important;box-shadow:var(--cx-glow)!important}
 
 /* ---------- Focus + motion ---------- */
 html body a:focus-visible,
 html body button:focus-visible,
 html body input:focus-visible,
 html body select:focus-visible,
-html body textarea:focus-visible{
-  outline:2px solid var(--cx-teal)!important;
-  outline-offset:2px!important;
-}
+html body textarea:focus-visible{outline:2px solid var(--cx-teal-deep)!important;outline-offset:2px!important}
 @media (prefers-reduced-motion:reduce){
   html body *,html body *::before,html body *::after{transition:none!important;animation:none!important}
 }
