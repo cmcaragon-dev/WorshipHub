@@ -103,3 +103,7 @@ html[data-cx-theme="dark"]{background:#070B14}
 @media (prefers-reduced-motion:reduce){
   html body *,html body *::before,html body *::after{scroll-behavior:auto!important}
 }
+
+/* Online / Offline badge (created by js/pwa.js): shown only while the Multi-Screen control is open */
+html body #chordioConnectionStatus{display:none!important}
+html body:has(#multiScreenControl.show) #chordioConnectionStatus{display:flex!important;left:50%!important;right:auto!important;bottom:auto!important;top:24px!important;transform:translateX(-50%);z-index:2147483647!important}

@@ -1181,6 +1181,22 @@ html, body { max-width:100%; }
 <div class="multi-screen-head-brand"><img src="images/chordio-logo.png" alt="CHORDIO" class="multi-screen-head-logo"><div><h2>Multi-Screen Control</h2><p>Control the service, song, section and all HDMI outputs from one main control screen.</p></div></div>
 <button id="multiScreenClose" type="button">✕</button>
 </div>
+<div class="ms-transport" id="msTransport" role="toolbar" aria-label="Presentation controls">
+<div class="ms-now" aria-live="polite"><span class="ms-now-label">Now showing</span><strong id="msNowSong">No song selected</strong><span class="ms-now-part" id="msNowPart">—</span><span class="ms-now-black" id="msNowBlack" hidden>Screens black</span></div>
+<div class="ms-group" aria-label="Move through the service">
+<button type="button" data-ms-key="PageUp" title="Previous song (Page Up)"><i aria-hidden="true">⏮</i><span>Song</span></button>
+<button type="button" data-ms-key="ArrowUp" title="Previous part (↑)"><i aria-hidden="true">▲</i><span>Part</span></button>
+<button type="button" data-ms-key="ArrowDown" title="Next part (↓)"><i aria-hidden="true">▼</i><span>Part</span></button>
+<button type="button" data-ms-key="PageDown" title="Next song (Page Down)"><span>Song</span><i aria-hidden="true">⏭</i></button>
+</div>
+<div class="ms-group ms-group-outputs" aria-label="Screens">
+<button type="button" id="multiOpenAll" class="ms-open" title="Open every screen that is set to USE"><i aria-hidden="true">▣</i><span>Open screens</span></button>
+<button type="button" id="multiBlackAll" class="ms-black" data-ms-black="on" title="Black out all screens (B)"><i aria-hidden="true">■</i><span>Black</span></button>
+<button type="button" class="ms-restore" data-ms-key="r" data-ms-black="off" title="Bring the words back (R)"><i aria-hidden="true">↺</i><span>Restore</span></button>
+<button type="button" id="multiCloseAll" class="ms-close-all" title="Close all screen windows"><i aria-hidden="true">✕</i><span>Close screens</span></button>
+</div>
+<div class="ms-clock" id="msClock" aria-label="Time">--:--</div>
+</div>
 <div class="multi-control-layout v53-layout">
 <aside class="multi-service-column">
 <div class="multi-song-panel multi-song-panel-left">
@@ -3092,3 +3108,5 @@ html,body{max-width:100%;overflow-x:hidden!important;}
   #multiSongEditorModal .multi-song-editor-dialog{width:100vw!important;height:100dvh!important;border-radius:0!important;}
 }
 </style>
+<link rel="stylesheet" href="css/chordio-multiscreen-control-v2.css">
+<script src="js/chordio-ms-extras.js" defer></script>

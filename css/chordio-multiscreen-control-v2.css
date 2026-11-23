@@ -1,0 +1,648 @@
+/* =========================================================
+   CHORDIO Multi-Screen CONTROL v2
+   Needs css/chordio-theme.css (tokens). Loaded LAST on custom-song.html.
+   Layout idea (familiar to worship-software users):
+     command bar  ->  Service (left) | Part + preview (center) | Screens (right)  ->  dock
+   Visual layer only: every existing ID, class and handler is untouched.
+   Remove the <link> to this file to return to the previous look.
+   ========================================================= */
+
+/* ---------- Local tokens ---------- */
+#multiScreenControl{
+  --ms-part-verse:#60A5FA;
+  --ms-part-chorus:#2DD4BF;
+  --ms-part-pre:#A78BFA;
+  --ms-part-bridge:#F2C14E;
+  --ms-part-outro:#FB7185;
+  --ms-part-intro:#94A3B8;
+  --ms-part-other:#94A3B8;
+  --ms-panel:var(--cx-surface);
+  --ms-panel-solid:var(--cx-surface-solid);
+  --ms-radius:16px;
+  --ms-live:#22C55E;
+  --ms-warn:#F59E0B;
+  --ms-off:#64748B;
+}
+
+/* ---------- Canvas ---------- */
+html body #multiScreenControl#multiScreenControl{
+  background-color:var(--cx-paper)!important;
+  background-image:var(--cx-mesh),
+    linear-gradient(rgba(148,163,184,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(148,163,184,.045) 1px,transparent 1px)!important;
+  background-size:auto,44px 44px,44px 44px!important;
+  background-attachment:fixed!important;
+  color:var(--cx-ink)!important;
+  font-family:var(--cx-font)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-screen-shell{
+  display:flex!important;flex-direction:column!important;gap:14px!important;
+  padding:14px clamp(12px,1.6vw,24px) 22px!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;color:var(--cx-ink)!important;
+}
+
+/* ---------- Header ---------- */
+html body #multiScreenControl#multiScreenControl .multi-screen-head{
+  display:flex!important;align-items:center!important;gap:14px!important;
+  padding:10px 16px!important;margin:0!important;
+  background:var(--ms-panel)!important;-webkit-backdrop-filter:var(--cx-blur);backdrop-filter:var(--cx-blur);
+  border:1px solid var(--cx-line)!important;border-radius:var(--ms-radius)!important;box-shadow:var(--cx-shadow-sm)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-screen-head-brand{display:flex!important;align-items:center!important;gap:14px!important;min-width:0;flex:1 1 auto}
+html body #multiScreenControl#multiScreenControl .multi-screen-head-logo{
+  height:44px!important;width:auto!important;padding:5px 8px;border-radius:12px;background:#fff!important;
+  box-shadow:0 4px 18px rgba(0,0,0,.25);object-fit:contain;
+}
+html body #multiScreenControl#multiScreenControl .multi-screen-head h2{
+  margin:0!important;font-size:clamp(16px,1.5vw,21px)!important;font-weight:750!important;letter-spacing:-.01em!important;color:var(--cx-ink)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-screen-head p{margin:2px 0 0!important;font-size:12.5px!important;color:var(--cx-muted)!important;max-width:70ch}
+html body #multiScreenControl#multiScreenControl .chordio-autosave{
+  font-size:12px!important;color:var(--cx-muted)!important;background:transparent!important;border:0!important;
+}
+html body #multiScreenControl#multiScreenControl .chordio-live-toggle{
+  height:36px!important;padding:0 16px!important;border-radius:999px!important;font-size:12px!important;font-weight:800!important;letter-spacing:.06em!important;cursor:pointer;
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line-strong)!important;box-shadow:none!important;
+}
+html body #multiScreenControl#multiScreenControl .chordio-live-toggle.live{
+  background:rgba(239,68,68,.16)!important;color:#FCA5A5!important;border-color:rgba(239,68,68,.6)!important;
+  box-shadow:0 0 0 1px rgba(239,68,68,.25),0 0 22px rgba(239,68,68,.35)!important;
+}
+html body #multiScreenControl#multiScreenControl #multiScreenClose,
+html body #multiScreenControl#multiScreenControl .chordio-multi-close-bottom{
+  width:40px!important;height:40px!important;flex:none;border-radius:12px!important;padding:0!important;cursor:pointer;
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line-strong)!important;box-shadow:none!important;
+  display:inline-flex!important;align-items:center;justify-content:center;font-size:16px!important;transition:background .15s,border-color .15s,color .15s;
+}
+html body #multiScreenControl#multiScreenControl #multiScreenClose:hover,
+html body #multiScreenControl#multiScreenControl .chordio-multi-close-bottom:hover{background:var(--cx-danger-bg)!important;border-color:var(--cx-danger-line)!important;color:var(--cx-danger)!important}
+
+/* ---------- Command bar (Now showing + transport) ---------- */
+html body #multiScreenControl#multiScreenControl .ms-transport{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:10px 14px;border-radius:var(--ms-radius);
+  background:var(--ms-panel);-webkit-backdrop-filter:var(--cx-blur);backdrop-filter:var(--cx-blur);
+  border:1px solid var(--cx-line);box-shadow:var(--cx-shadow-sm);
+}
+html body #multiScreenControl#multiScreenControl .ms-now{display:flex;align-items:baseline;gap:10px;min-width:0;flex:1 1 280px;flex-wrap:wrap}
+html body #multiScreenControl#multiScreenControl .ms-now-label{font-size:12px;font-weight:600;color:var(--cx-muted)}
+html body #multiScreenControl#multiScreenControl .ms-now strong{font-size:16px;font-weight:700;color:var(--cx-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+html body #multiScreenControl#multiScreenControl .ms-now-part{
+  padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700;color:var(--cx-teal-deep);
+  background:var(--cx-teal-soft);box-shadow:inset 0 0 0 1px var(--cx-ring);
+}
+html body #multiScreenControl#multiScreenControl .ms-now-black{
+  padding:2px 10px;border-radius:999px;font-size:12px;font-weight:800;color:var(--cx-danger);
+  background:var(--cx-danger-bg);box-shadow:inset 0 0 0 1px var(--cx-danger-line);
+}
+html body #multiScreenControl#multiScreenControl .ms-now-black[hidden]{display:none}
+html body #multiScreenControl#multiScreenControl .ms-group{display:flex;align-items:center;gap:6px;padding:4px;border-radius:14px;background:var(--cx-hover);box-shadow:inset 0 0 0 1px var(--cx-line)}
+html body #multiScreenControl#multiScreenControl .ms-group button{
+  display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 13px;border-radius:10px;
+  border:1px solid transparent;background:transparent;color:var(--cx-ink-2);
+  font:600 13px var(--cx-font);cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s,color .15s,box-shadow .15s;
+}
+html body #multiScreenControl#multiScreenControl .ms-group button i{font-style:normal;font-size:13px;line-height:1}
+html body #multiScreenControl#multiScreenControl .ms-group button:hover{background:var(--cx-surface-2);border-color:var(--cx-line-strong);color:var(--cx-ink)}
+html body #multiScreenControl#multiScreenControl .ms-group button:active{transform:translateY(1px)}
+html body #multiScreenControl#multiScreenControl .ms-group .ms-open{color:var(--cx-on-accent);background:var(--cx-accent-grad);box-shadow:var(--cx-glow);font-weight:700}
+html body #multiScreenControl#multiScreenControl .ms-group .ms-open:hover{color:var(--cx-on-accent);filter:brightness(1.08);background:var(--cx-accent-grad)}
+html body #multiScreenControl#multiScreenControl .ms-group .ms-black{color:var(--cx-ink);background:rgba(0,0,0,.35);border-color:var(--cx-line-strong)}
+html body #multiScreenControl#multiScreenControl .ms-transport.is-black .ms-group .ms-black{background:var(--cx-danger-bg);color:var(--cx-danger);border-color:var(--cx-danger-line);box-shadow:0 0 18px rgba(248,113,113,.25)}
+html body #multiScreenControl#multiScreenControl .ms-group .ms-close-all:hover{background:var(--cx-danger-bg);border-color:var(--cx-danger-line);color:var(--cx-danger)}
+html body #multiScreenControl#multiScreenControl .ms-clock{
+  min-width:64px;text-align:center;font:600 18px var(--cx-mono);letter-spacing:.04em;color:var(--cx-ink-2);font-variant-numeric:tabular-nums;
+}
+
+/* ---------- Three-pane layout ---------- */
+html body #multiScreenControl#multiScreenControl .multi-control-layout{
+  display:grid!important;
+  grid-template-columns:minmax(290px,.8fr) minmax(360px,1.25fr) minmax(380px,1.15fr)!important;
+  gap:14px!important;align-items:stretch!important;
+  padding:0!important;margin:0!important;min-height:min(640px,calc(100vh - 330px))!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-service-column,
+html body #multiScreenControl#multiScreenControl .multi-main-panel,
+html body #multiScreenControl#multiScreenControl .multi-screen-column{
+  display:flex!important;flex-direction:column!important;gap:14px!important;min-width:0!important;
+  width:auto!important;max-width:none!important;height:auto!important;max-height:none!important;
+  padding:0!important;margin:0!important;background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important;
+}
+/* Every pane is one glass card */
+html body #multiScreenControl#multiScreenControl .multi-song-panel,
+html body #multiScreenControl#multiScreenControl .multi-top-center-panel,
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-panel,
+html body #multiScreenControl#multiScreenControl .multi-output-settings-in-preview,
+html body #multiScreenControl#multiScreenControl .multi-lower-settings-row{
+  background:var(--ms-panel)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  border:1px solid var(--cx-line)!important;border-radius:var(--ms-radius)!important;box-shadow:var(--cx-shadow-sm)!important;
+  color:var(--cx-ink)!important;margin:0!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-song-panel{flex:1 1 auto;display:flex!important;flex-direction:column!important;padding:0!important;min-height:0}
+html body #multiScreenControl#multiScreenControl .multi-top-center-panel{flex:1 1 auto;display:flex!important;flex-direction:column!important;padding:0!important;min-height:0}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-panel{flex:1 1 auto;padding:0!important}
+
+/* Pane headings */
+html body #multiScreenControl#multiScreenControl .multi-panel-title,
+html body #multiScreenControl#multiScreenControl .multi-section-head{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;
+  padding:13px 16px!important;margin:0!important;min-height:0!important;
+  background:transparent!important;border:0!important;border-bottom:1px solid var(--cx-line)!important;border-radius:0!important;
+  box-shadow:none!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-panel-title strong,
+html body #multiScreenControl#multiScreenControl .multi-section-head strong,
+html body #multiScreenControl#multiScreenControl .multi-part-preview-head strong{
+  font-size:14px!important;font-weight:750!important;letter-spacing:0!important;text-transform:none!important;color:var(--cx-ink)!important;
+  display:inline-flex;align-items:center;gap:8px;
+}
+html body #multiScreenControl#multiScreenControl .multi-panel-title strong::before,
+html body #multiScreenControl#multiScreenControl .multi-section-head strong::before,
+html body #multiScreenControl#multiScreenControl .multi-part-preview-head strong::before{
+  content:"";width:4px;height:16px;border-radius:2px;background:var(--cx-accent-grad);box-shadow:0 0 10px var(--cx-ring);
+}
+html body #multiScreenControl#multiScreenControl .multi-section-head>span{
+  font-size:12px!important;font-weight:700!important;color:var(--cx-teal-deep)!important;
+  padding:3px 11px;border-radius:999px;background:var(--cx-teal-soft);box-shadow:inset 0 0 0 1px var(--cx-ring);opacity:1!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-right-help,
+html body #multiScreenControl#multiScreenControl .multi-part-preview-help{
+  padding:8px 16px!important;margin:0!important;font-size:12px!important;color:var(--cx-muted)!important;background:transparent!important;border:0!important;
+}
+
+/* Buttons used across panes */
+html body #multiScreenControl#multiScreenControl .multi-add-song-open,
+html body #multiScreenControl#multiScreenControl .multi-edit-service-open{
+  height:34px!important;padding:0 14px!important;border-radius:10px!important;cursor:pointer;
+  background:var(--cx-hover)!important;color:var(--cx-teal-deep)!important;border:1px solid var(--cx-ring)!important;
+  font:700 12px var(--cx-font)!important;letter-spacing:0!important;text-transform:none!important;box-shadow:none!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-add-song-open:hover{background:var(--cx-teal-soft)!important}
+
+/* ---------- Service song list ---------- */
+html body #multiScreenControl#multiScreenControl .multi-service-song-list{
+  flex:1 1 auto;display:flex!important;flex-direction:column!important;gap:8px!important;padding:6px 12px 12px!important;
+  overflow:auto!important;max-height:none!important;min-height:120px;
+}
+html body #multiScreenControl#multiScreenControl .multi-service-song{
+  position:relative;display:grid!important;grid-template-columns:18px 30px minmax(0,1fr) auto auto!important;
+  column-gap:10px!important;row-gap:2px!important;align-items:center!important;
+  padding:10px 12px!important;margin:0!important;min-height:0!important;border-radius:14px!important;
+  background:var(--cx-hover)!important;border:1px solid var(--cx-line)!important;color:var(--cx-ink)!important;box-shadow:none!important;
+  cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s;
+}
+html body #multiScreenControl#multiScreenControl .multi-service-song:hover{background:var(--cx-surface-2)!important;border-color:var(--cx-line-strong)!important}
+html body #multiScreenControl#multiScreenControl .multi-service-song.active{
+  background:linear-gradient(90deg,var(--cx-teal-soft),transparent 85%),var(--cx-hover)!important;
+  border-color:var(--cx-teal)!important;box-shadow:0 0 0 1px var(--cx-ring),0 8px 26px -10px var(--cx-ring)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-service-song.active::before{
+  content:"";position:absolute;left:-1px;top:12px;bottom:12px;width:4px;border-radius:0 4px 4px 0;background:var(--cx-accent-grad);box-shadow:0 0 12px var(--cx-ring);
+}
+html body #multiScreenControl#multiScreenControl .multi-service-song .song-drag{grid-column:1;grid-row:1/span 3;color:var(--cx-muted)!important;font-size:15px;cursor:grab;opacity:.7}
+html body #multiScreenControl#multiScreenControl .multi-service-song .song-num{
+  grid-column:2;grid-row:1/span 3;justify-self:center;display:grid;place-items:center;width:28px;height:28px;border-radius:9px;
+  font:700 12px var(--cx-mono)!important;color:var(--cx-muted)!important;background:var(--cx-hover)!important;box-shadow:inset 0 0 0 1px var(--cx-line);
+}
+html body #multiScreenControl#multiScreenControl .multi-service-song.active .song-num{color:var(--cx-on-accent)!important;background:var(--cx-accent-grad)!important;box-shadow:none}
+html body #multiScreenControl#multiScreenControl .multi-service-song .song-name{
+  grid-column:3;grid-row:1;font-size:14.5px!important;font-weight:700!important;color:var(--cx-ink)!important;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+html body #multiScreenControl#multiScreenControl .multi-service-song .song-meta{
+  grid-column:3;grid-row:2;font:600 12px var(--cx-font)!important;color:var(--cx-muted)!important;letter-spacing:0!important;text-transform:none!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+html body #multiScreenControl#multiScreenControl .multi-service-song .song-note-inline{color:var(--cx-brass)!important;font-weight:600}
+html body #multiScreenControl#multiScreenControl .multi-service-song .song-note{grid-column:3;grid-row:3;font-size:12px!important;color:var(--cx-muted)!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html body #multiScreenControl#multiScreenControl .multi-service-song.presentation-item{border-style:dashed!important;background:transparent!important}
+html body #multiScreenControl#multiScreenControl .multi-service-song-edit,
+html body #multiScreenControl#multiScreenControl .multi-service-song-delete,
+html body #multiScreenControl#multiScreenControl .multi-service-presentation-delete{
+  grid-row:1/span 3;width:32px!important;height:32px!important;padding:0!important;border-radius:10px!important;cursor:pointer;
+  display:inline-grid!important;place-items:center;font-size:13px!important;box-shadow:none!important;
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-service-song-edit{grid-column:4}
+html body #multiScreenControl#multiScreenControl .multi-service-song-delete{grid-column:5}
+html body #multiScreenControl#multiScreenControl .multi-service-presentation-delete{grid-column:5}
+html body #multiScreenControl#multiScreenControl .multi-service-song-edit:hover{background:var(--cx-teal-soft)!important;border-color:var(--cx-ring)!important;color:var(--cx-teal-deep)!important}
+html body #multiScreenControl#multiScreenControl .multi-service-song-delete:hover,
+html body #multiScreenControl#multiScreenControl .multi-service-presentation-delete:hover{background:var(--cx-danger-bg)!important;border-color:var(--cx-danger-line)!important;color:var(--cx-danger)!important}
+
+/* ---------- Background settings (drawer + panel) ---------- */
+html body #multiScreenControl#multiScreenControl .multi-background-drawer{
+  margin:0!important;padding:12px!important;background:transparent!important;border:0!important;border-top:1px solid var(--cx-line)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-background-settings-toggle{
+  width:100%!important;height:42px!important;border-radius:12px!important;cursor:pointer;
+  display:flex!important;align-items:center!important;justify-content:center!important;gap:8px;
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line-strong)!important;box-shadow:none!important;
+  font:700 13px var(--cx-font)!important;letter-spacing:0!important;text-transform:none!important;transition:background .15s,border-color .15s;
+}
+html body #multiScreenControl#multiScreenControl .multi-background-settings-toggle:hover{background:var(--cx-teal-soft)!important;border-color:var(--cx-teal)!important;color:var(--cx-teal-deep)!important}
+html body #multiScreenControl#multiScreenControl .multi-background-settings-panel{
+  background:var(--ms-panel-solid)!important;color:var(--cx-ink)!important;
+  border:1px solid var(--cx-line-strong)!important;border-radius:20px!important;box-shadow:var(--cx-shadow)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-background-master-head{
+  background:transparent!important;border-bottom:1px solid var(--cx-line)!important;color:var(--cx-ink)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-background-master-head strong{color:var(--cx-ink)!important;font-size:16px!important;letter-spacing:0!important;text-transform:none!important}
+html body #multiScreenControl#multiScreenControl .multi-background-master-head span{color:var(--cx-muted)!important;letter-spacing:0!important;text-transform:none!important}
+html body #multiScreenControl#multiScreenControl .multi-bg-scope{
+  color:var(--cx-teal-deep)!important;background:var(--cx-teal-soft)!important;border:1px solid var(--cx-ring)!important;border-radius:999px!important;padding:4px 12px!important;font-weight:700!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-background-master-grid label,
+html body #multiScreenControl#multiScreenControl .multi-bg-library-head span{color:var(--cx-muted)!important;font-size:12px!important;font-weight:600!important;text-transform:none!important;letter-spacing:0!important}
+html body #multiScreenControl#multiScreenControl .multi-bg-library-head strong{color:var(--cx-ink)!important;font-size:13px!important;letter-spacing:0!important;text-transform:none!important}
+html body #multiScreenControl#multiScreenControl .multi-bg-library{background:var(--cx-hover)!important;border:1px solid var(--cx-line)!important;border-radius:14px!important}
+html body #multiScreenControl#multiScreenControl .chordio-bg-library-open{
+  height:46px!important;width:100%!important;border-radius:12px!important;cursor:pointer;
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border:0!important;box-shadow:var(--cx-glow)!important;font:700 13px var(--cx-font)!important;letter-spacing:0!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-background-master-actions{background:transparent!important;border-top:1px solid var(--cx-line)!important;color:var(--cx-muted)!important}
+html body #multiScreenControl#multiScreenControl #multiBackgroundApply{
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border:0!important;border-radius:10px!important;font:700 13px var(--cx-font)!important;letter-spacing:0!important;cursor:pointer;
+}
+html body #multiScreenControl#multiScreenControl #multiBackgroundClear{
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line-strong)!important;border-radius:10px!important;font:600 13px var(--cx-font)!important;letter-spacing:0!important;cursor:pointer;
+}
+
+/* ---------- Part chooser: colored tiles ---------- */
+html body #multiScreenControl#multiScreenControl .multi-section-buttons{
+  display:flex!important;flex-wrap:wrap!important;gap:8px!important;padding:12px 16px!important;margin:0!important;background:transparent!important;border:0!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-section-buttons button{
+  --pc:var(--ms-part-other);
+  position:relative;height:40px!important;padding:0 16px 0 28px!important;border-radius:11px!important;cursor:pointer;
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line)!important;box-shadow:none!important;
+  font:650 13.5px var(--cx-font)!important;letter-spacing:0!important;text-transform:none!important;
+  transition:background .15s,border-color .15s,box-shadow .15s,transform .1s;
+}
+html body #multiScreenControl#multiScreenControl .multi-section-buttons button::before{
+  content:"";position:absolute;left:12px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:var(--pc);box-shadow:0 0 8px var(--pc);
+}
+html body #multiScreenControl#multiScreenControl .multi-section-buttons button[data-part="verse"]{--pc:var(--ms-part-verse)}
+html body #multiScreenControl#multiScreenControl .multi-section-buttons button[data-part="chorus"]{--pc:var(--ms-part-chorus)}
+html body #multiScreenControl#multiScreenControl .multi-section-buttons button[data-part="pre"]{--pc:var(--ms-part-pre)}
+html body #multiScreenControl#multiScreenControl .multi-section-buttons button[data-part="bridge"]{--pc:var(--ms-part-bridge)}
+html body #multiScreenControl#multiScreenControl .multi-section-buttons button[data-part="outro"]{--pc:var(--ms-part-outro)}
+html body #multiScreenControl#multiScreenControl .multi-section-buttons button[data-part="intro"]{--pc:var(--ms-part-intro)}
+html body #multiScreenControl#multiScreenControl .multi-section-buttons button:hover{background:var(--cx-surface-2)!important;border-color:var(--pc)!important}
+html body #multiScreenControl#multiScreenControl .multi-section-buttons button:active{transform:translateY(1px)}
+html body #multiScreenControl#multiScreenControl .multi-section-buttons button.active{
+  background:color-mix(in srgb,var(--pc) 20%,transparent)!important;border-color:var(--pc)!important;color:var(--cx-ink)!important;
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--pc) 40%,transparent),0 8px 24px -8px var(--pc)!important;
+}
+
+/* ---------- Selected part: lyrics preview ---------- */
+html body #multiScreenControl#multiScreenControl .multi-part-preview-head{
+  display:flex;align-items:center;padding:10px 16px 8px!important;margin:0!important;background:transparent!important;border:0!important;border-top:1px solid var(--cx-line)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-part-lyrics-preview{
+  flex:1 1 auto;margin:0 12px 4px!important;padding:2px!important;min-height:220px;max-height:none!important;overflow:auto!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;display:flex;flex-direction:column;gap:8px;
+}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section{
+  --pc:var(--ms-part-other);
+  position:relative;padding:10px 14px 12px 18px!important;margin:0!important;border-radius:14px!important;
+  background:var(--cx-hover)!important;border:1px solid var(--cx-line)!important;color:var(--cx-ink)!important;box-shadow:none!important;cursor:pointer;
+  transition:background .15s,border-color .15s,box-shadow .15s;
+}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:4px;border-radius:0 4px 4px 0;background:var(--pc);opacity:.85}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section[data-part="verse"]{--pc:var(--ms-part-verse)}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section[data-part="chorus"]{--pc:var(--ms-part-chorus)}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section[data-part="pre"]{--pc:var(--ms-part-pre)}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section[data-part="bridge"]{--pc:var(--ms-part-bridge)}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section[data-part="outro"]{--pc:var(--ms-part-outro)}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section:hover{background:var(--cx-surface-2)!important;border-color:var(--cx-line-strong)!important}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section.active{
+  background:color-mix(in srgb,var(--pc) 13%,transparent)!important;border-color:var(--pc)!important;
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--pc) 35%,transparent),0 10px 30px -14px var(--pc)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section.hidden-part{opacity:.5;border-style:dashed!important}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 6px!important;background:transparent!important;border:0!important;padding:0!important}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section-title{
+  font:700 12px var(--cx-font)!important;letter-spacing:.02em!important;text-transform:none!important;color:var(--pc)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-hide{
+  height:26px!important;padding:0 11px!important;border-radius:8px!important;cursor:pointer;
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;box-shadow:none!important;font:700 11px var(--cx-font)!important;letter-spacing:0!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-hide:hover{background:var(--cx-surface-2)!important;border-color:var(--cx-line-strong)!important}
+html body #multiScreenControl#multiScreenControl .multi-part-preview-section-lines>div{
+  color:var(--cx-ink)!important;font-family:var(--cx-font)!important;font-weight:500!important;font-style:normal!important;text-decoration:none!important;letter-spacing:0!important;
+  font-size:clamp(15px,1.1vw,19px)!important;line-height:1.45!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-preview-empty{
+  display:grid;place-items:center;min-height:120px;padding:18px;color:var(--cx-muted)!important;font-size:13px;text-align:center;
+  border:1px dashed var(--cx-line-strong);border-radius:14px;background:transparent!important;
+}
+
+/* ---------- Screen output preview: little monitors ---------- */
+html body #multiScreenControl#multiScreenControl .multi-screen-output-settings-btn,
+html body #multiScreenControl#multiScreenControl .multi-preview-settings-button{
+  height:32px!important;padding:0 12px!important;border-radius:9px!important;cursor:pointer;
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line-strong)!important;box-shadow:none!important;
+  font:650 12px var(--cx-font)!important;letter-spacing:0!important;text-transform:none!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-screen-output-settings-btn:hover,
+html body #multiScreenControl#multiScreenControl .multi-preview-settings-button:hover{background:var(--cx-teal-soft)!important;border-color:var(--cx-teal)!important;color:var(--cx-teal-deep)!important}
+html body #multiScreenControl#multiScreenControl .multi-screen-previews{padding:12px!important;margin:0!important;background:transparent!important;border:0!important;height:auto!important;max-height:none!important;overflow:visible!important}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-layout{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;height:auto!important;
+}
+html body #multiScreenControl#multiScreenControl .preview-count-1 .multi-screen-preview-layout{grid-template-columns:minmax(0,1fr)!important}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card{
+  display:flex!important;flex-direction:column!important;gap:0!important;padding:8px!important;margin:0!important;border-radius:14px!important;height:auto!important;min-height:0!important;
+  background:var(--cx-hover)!important;border:1px solid var(--cx-line)!important;box-shadow:none!important;overflow:visible!important;
+  transition:border-color .15s,box-shadow .15s;
+}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card:hover{border-color:var(--cx-teal)!important;box-shadow:0 0 0 1px var(--cx-ring)!important}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card.drag-over{border-color:var(--cx-brass)!important}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card-head{
+  display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;grid-template-areas:"name mode led" "set set set";
+  align-items:center!important;gap:4px 8px!important;padding:2px 4px 8px!important;margin:0!important;background:transparent!important;border:0!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card-head strong{grid-area:name;font:750 12.5px var(--cx-font)!important;letter-spacing:.02em!important;color:var(--cx-ink)!important}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card-head>span:nth-of-type(1){grid-area:mode;font:600 11.5px var(--cx-font)!important;color:var(--cx-muted)!important;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card-head .multi-screen-live-status{
+  grid-area:led;display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:999px;
+  font:800 10px var(--cx-font)!important;letter-spacing:.06em!important;text-transform:uppercase;background:rgba(100,116,139,.16);color:var(--ms-off)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card-head .multi-screen-live-status.online{background:rgba(34,197,94,.14);color:var(--ms-live)!important;box-shadow:0 0 14px rgba(34,197,94,.22)}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card-head .multi-screen-live-status.stale{background:rgba(245,158,11,.14);color:var(--ms-warn)!important}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card-head .multi-preview-settings-button{grid-area:set;width:100%!important;height:30px!important}
+/* the monitor itself */
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-stage{
+  position:relative!important;width:100%!important;height:auto!important;min-height:0!important;aspect-ratio:16/9;padding:0!important;margin:0!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;
+  background-color:#000!important;border-radius:9px!important;border:1px solid rgba(148,163,184,.28)!important;
+  box-shadow:0 0 0 3px rgba(2,6,12,.85),0 0 0 4px rgba(148,163,184,.16),0 12px 28px -12px rgba(0,0,0,.7)!important;
+  color:#fff!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-stage::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:3;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);
+}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-stage .preview-selected-lyrics{position:relative;z-index:2;width:100%;padding:4%;font-size:clamp(11px,1.15vw,17px)!important;line-height:1.25!important;text-shadow:0 2px 8px rgba(0,0,0,.8)}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-stage .multi-preview-empty{border:0;color:rgba(255,255,255,.55)!important;font-size:11px}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-stage .preview-chords-section{position:relative;z-index:2;width:92%;padding:6px 8px!important;border-radius:6px!important;font-size:clamp(9px,.85vw,13px)!important}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-stage .preview-chords-section b{font-size:.9em!important;border-radius:4px}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-stage .pc-chord{color:var(--cx-brass)!important;font-family:var(--cx-mono)!important}
+
+/* ---------- Dock: control settings / song content ---------- */
+html body #multiScreenControl#multiScreenControl .multi-lower-settings-row{
+  display:flex!important;flex-direction:column!important;gap:0!important;padding:0!important;margin:0!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-lower-divider{
+  display:none!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-feature-tabs{
+  display:flex!important;align-items:center!important;gap:6px!important;padding:10px 12px!important;margin:0!important;flex-wrap:wrap;
+  background:transparent!important;border:0!important;border-bottom:1px solid var(--cx-line)!important;border-radius:0!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-feature-tabs::before{
+  content:"Control settings and song content";margin:0 10px 0 6px;font:750 14px var(--cx-font);color:var(--cx-ink);display:inline-flex;align-items:center;gap:8px;
+}
+html body #multiScreenControl#multiScreenControl .multi-feature-tab-separator{display:none!important}
+html body #multiScreenControl#multiScreenControl .multi-feature-tab{
+  height:38px!important;padding:0 16px!important;border-radius:11px!important;cursor:pointer;
+  background:transparent!important;color:var(--cx-ink-2)!important;border:1px solid transparent!important;
+  font:650 13px var(--cx-font)!important;letter-spacing:0!important;text-transform:none!important;
+  display:inline-flex!important;align-items:center;gap:8px;transition:background .15s,color .15s,border-color .15s;
+}
+html body #multiScreenControl#multiScreenControl .multi-feature-tab::before{font-size:14px;opacity:.9}
+html body #multiScreenControl#multiScreenControl .multi-feature-tab[data-feature-tab="lyrics"]::before{content:"Aa";font-weight:800;font-family:var(--cx-serif)}
+html body #multiScreenControl#multiScreenControl .multi-feature-tab[data-feature-tab="slides"]::before{content:"▤"}
+html body #multiScreenControl#multiScreenControl .multi-feature-tab[data-feature-tab="bible"]::before{content:"✝"}
+html body #multiScreenControl#multiScreenControl .multi-feature-tab:hover{background:var(--cx-hover)!important;color:var(--cx-ink)!important}
+html body #multiScreenControl#multiScreenControl .multi-feature-tab.active{
+  background:var(--cx-teal-soft)!important;color:var(--cx-teal-deep)!important;border-color:var(--cx-ring)!important;box-shadow:0 0 20px -6px var(--cx-ring)!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-feature-panel.tab-active{
+  display:block!important;margin:0!important;padding:14px 16px 18px!important;background:transparent!important;border:0!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-feature-content{background:transparent!important;border:0!important;padding:0!important}
+html body #multiScreenControl#multiScreenControl .multi-settings-grid,
+html body #multiScreenControl#multiScreenControl .multi-bible-grid,
+html body #multiScreenControl#multiScreenControl .multi-slide-editor-grid{
+  display:grid!important;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))!important;gap:12px!important;margin:0 0 12px!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-feature-panel label{
+  display:flex!important;flex-direction:column!important;gap:6px!important;font:650 12px var(--cx-font)!important;color:var(--cx-muted)!important;letter-spacing:0!important;text-transform:none!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-feature-panel output{color:var(--cx-teal-deep)!important;font:700 12px var(--cx-mono)!important;align-self:flex-end;margin-top:-4px}
+html body #multiScreenControl#multiScreenControl .multi-feature-panel input[type="range"]{accent-color:var(--cx-teal);width:100%}
+html body #multiScreenControl#multiScreenControl .multi-feature-panel input:not([type="range"]):not([type="color"]):not([type="checkbox"]),
+html body #multiScreenControl#multiScreenControl .multi-feature-panel select,
+html body #multiScreenControl#multiScreenControl .multi-feature-panel textarea{
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line)!important;border-radius:11px!important;
+  padding:0 12px!important;min-height:40px;font:500 14px var(--cx-font)!important;box-shadow:none!important;transition:border-color .15s,box-shadow .15s;
+}
+html body #multiScreenControl#multiScreenControl .multi-feature-panel textarea{padding:10px 12px!important;line-height:1.45;resize:vertical}
+html body #multiScreenControl#multiScreenControl .multi-feature-panel input:focus,
+html body #multiScreenControl#multiScreenControl .multi-feature-panel select:focus,
+html body #multiScreenControl#multiScreenControl .multi-feature-panel textarea:focus{border-color:var(--cx-teal)!important;box-shadow:0 0 0 3px var(--cx-ring)!important;outline:none!important}
+html body #multiScreenControl#multiScreenControl .multi-feature-panel select option{background:var(--cx-surface-solid);color:var(--cx-ink)}
+html body #multiScreenControl#multiScreenControl .multi-color-picker-wrap{display:flex;align-items:center;gap:10px;height:40px}
+html body #multiScreenControl#multiScreenControl .multi-color-picker-wrap input[type="color"]{width:44px;height:36px;padding:2px;border-radius:10px;border:1px solid var(--cx-line-strong);background:var(--cx-hover);cursor:pointer}
+html body #multiScreenControl#multiScreenControl .multi-color-picker-wrap span{font:700 12px var(--cx-mono);color:var(--cx-ink-2)}
+html body #multiScreenControl#multiScreenControl .multi-font-toolbar{
+  display:flex!important;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px!important;padding:0!important;background:transparent!important;border:0!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-font-toolbar button{
+  width:40px;height:40px;border-radius:11px;cursor:pointer;background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line-strong)!important;font-size:15px;
+}
+html body #multiScreenControl#multiScreenControl .multi-font-toolbar button[aria-pressed="true"]{background:var(--cx-teal-soft)!important;color:var(--cx-teal-deep)!important;border-color:var(--cx-teal)!important}
+html body #multiScreenControl#multiScreenControl .multi-font-toolbar label{flex-direction:row!important;align-items:center;gap:8px!important}
+html body #multiScreenControl#multiScreenControl .multi-font-toolbar input{width:76px}
+html body #multiScreenControl#multiScreenControl .multi-lyrics-editor-label{margin-top:4px}
+html body #multiScreenControl#multiScreenControl .multi-settings-actions{display:flex!important;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0 4px!important;padding:0!important;background:transparent!important;border:0!important}
+html body #multiScreenControl#multiScreenControl .multi-settings-actions button,
+html body #multiScreenControl#multiScreenControl .multi-bible-action{
+  height:40px!important;padding:0 16px!important;border-radius:11px!important;cursor:pointer;
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line-strong)!important;box-shadow:none!important;
+  font:650 13px var(--cx-font)!important;letter-spacing:0!important;text-transform:none!important;transition:background .15s,border-color .15s,filter .15s;
+}
+html body #multiScreenControl#multiScreenControl .multi-settings-actions button:hover,
+html body #multiScreenControl#multiScreenControl .multi-bible-action:hover{background:var(--cx-surface-2)!important;border-color:var(--cx-teal)!important}
+html body #multiScreenControl#multiScreenControl #multiLyricsSettingsApply,
+html body #multiScreenControl#multiScreenControl #multiLyricsEditorSave,
+html body #multiScreenControl#multiScreenControl #multiSlideCast,
+html body #multiScreenControl#multiScreenControl #multiSlideAdd,
+html body #multiScreenControl#multiScreenControl .multi-bible-action.primary{
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border:0!important;box-shadow:var(--cx-glow)!important;font-weight:700!important;
+}
+html body #multiScreenControl#multiScreenControl #multiLyricsSettingsApply:hover,
+html body #multiScreenControl#multiScreenControl #multiLyricsEditorSave:hover,
+html body #multiScreenControl#multiScreenControl #multiSlideCast:hover,
+html body #multiScreenControl#multiScreenControl #multiSlideAdd:hover,
+html body #multiScreenControl#multiScreenControl .multi-bible-action.primary:hover{filter:brightness(1.08)}
+html body #multiScreenControl#multiScreenControl #multiSlideStop,
+html body #multiScreenControl#multiScreenControl #multiSlideDelete{color:var(--cx-danger)!important}
+html body #multiScreenControl#multiScreenControl .multi-settings-actions span{font-size:12px;color:var(--cx-teal-deep)}
+html body #multiScreenControl#multiScreenControl .multi-slide-list,
+html body #multiScreenControl#multiScreenControl .multi-bible-results{margin-top:8px}
+
+/* ---------- Dialogs: add song, screen settings, background library ---------- */
+/* Add-song modal lives inside the panel; the other two are appended to <body>. */
+html body .multi-add-song-modal.multi-add-song-modal,
+html body .multi-preview-card-settings.multi-preview-card-settings,
+html body .chordio-background-library-modal.chordio-background-library-modal{
+  background:var(--cx-overlay)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+}
+html body .multi-add-song-dialog.multi-add-song-dialog,
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-dialog.multi-preview-card-settings-dialog,
+html body .chordio-background-library-dialog.chordio-background-library-dialog{
+  background:var(--cx-surface-solid)!important;color:var(--cx-ink)!important;
+  border:1px solid var(--cx-line-strong)!important;border-radius:22px!important;box-shadow:var(--cx-shadow)!important;
+}
+html body .multi-add-song-head.multi-add-song-head,
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-head.multi-preview-card-settings-head,
+html body .chordio-background-library-head.chordio-background-library-head{
+  background:transparent!important;border-bottom:1px solid var(--cx-line)!important;color:var(--cx-ink)!important;
+}
+html body .multi-add-song-head strong,
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-head strong,
+html body .chordio-background-library-head h3{color:var(--cx-ink)!important;letter-spacing:0!important;text-transform:none!important;font-weight:750!important}
+html body .multi-add-song-head span,
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-head span,
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-head small,
+html body .chordio-background-library-head p{color:var(--cx-muted)!important;letter-spacing:0!important;text-transform:none!important;font-weight:500!important}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-card-settings-head span{color:var(--cx-teal-deep)!important;font-weight:700!important}
+html body .multi-add-song-search-wrap input,
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-settings-grid select{
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line)!important;border-radius:12px!important;min-height:42px;
+}
+html body .multi-add-song-footer{background:transparent!important;border-top:1px solid var(--cx-line)!important;color:var(--cx-muted)!important}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-settings-grid>label{color:var(--cx-muted)!important;font-weight:650!important}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-enable{background:var(--cx-hover)!important;border:1px solid var(--cx-line)!important;border-radius:12px!important}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-enable b{color:var(--cx-ink)!important}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-enable small{color:var(--cx-muted)!important}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-settings-actions{background:transparent!important;border-top:1px solid var(--cx-line)!important}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-settings-primary{
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border:0!important;box-shadow:var(--cx-glow)!important;font-weight:700!important;
+}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-settings-secondary,
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-settings-close,
+html body #chordioBackgroundLibraryClose,
+html body #multiAddSongClose,
+html body #multiAddSongCancel{background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line-strong)!important;border-radius:10px!important}
+html body .chordio-background-group h4{color:var(--cx-muted)!important;letter-spacing:.01em!important;text-transform:none!important;font-size:13px!important;font-weight:700!important}
+html body .chordio-background-grid{gap:12px!important}
+html body .chordio-background-grid>*{border-radius:14px!important;border:1px solid var(--cx-line)!important;overflow:hidden;background:var(--cx-hover)!important;color:var(--cx-ink)!important;transition:border-color .15s,box-shadow .15s,transform .15s}
+html body .chordio-background-grid>*:hover{border-color:var(--cx-teal)!important;box-shadow:0 0 0 1px var(--cx-ring),0 12px 26px -12px rgba(0,0,0,.6)!important;transform:translateY(-2px)}
+html body .chordio-background-empty-video{color:var(--cx-muted)!important}
+
+/* ---------- Narrow screens ---------- */
+@media (max-width:1280px){
+  html body #multiScreenControl#multiScreenControl .multi-control-layout{grid-template-columns:minmax(260px,.9fr) minmax(320px,1.2fr)!important}
+  html body #multiScreenControl#multiScreenControl .multi-screen-column{grid-column:1/-1!important}
+  html body #multiScreenControl#multiScreenControl .multi-screen-preview-layout{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+@media (max-width:900px){
+  html body #multiScreenControl#multiScreenControl .multi-control-layout{grid-template-columns:minmax(0,1fr)!important;min-height:0!important}
+  html body #multiScreenControl#multiScreenControl .multi-screen-preview-layout{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  html body #multiScreenControl#multiScreenControl .ms-transport{gap:10px}
+  html body #multiScreenControl#multiScreenControl .ms-group{flex-wrap:wrap}
+  html body #multiScreenControl#multiScreenControl .ms-group button span{display:none}
+  html body #multiScreenControl#multiScreenControl .ms-group .ms-open span,
+  html body #multiScreenControl#multiScreenControl .ms-group .ms-black span{display:inline}
+  html body #multiScreenControl#multiScreenControl .multi-screen-head p{display:none}
+}
+@media (max-width:560px){
+  html body #multiScreenControl#multiScreenControl .multi-screen-preview-layout{grid-template-columns:minmax(0,1fr)!important}
+  html body #multiScreenControl#multiScreenControl .ms-clock{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html body #multiScreenControl#multiScreenControl *{transition:none!important}
+}
+
+/* ---------- Specificity fixes (legacy rules use ID chains and fixed heights) ---------- */
+html body #multiScreenControl#multiScreenControl .multi-screen-head #multiScreenClose{
+  width:40px!important;height:40px!important;border-radius:12px!important;margin-left:0!important;order:5!important;
+  background:var(--cx-hover)!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line-strong)!important;box-shadow:none!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-screen-head #multiScreenClose:hover{background:var(--cx-danger-bg)!important;border-color:var(--cx-danger-line)!important;color:var(--cx-danger)!important}
+html body #multiScreenControl#multiScreenControl .multi-screen-head{flex:none!important}
+html body #multiScreenControl#multiScreenControl .ms-transport,
+html body #multiScreenControl#multiScreenControl .multi-control-layout,
+html body #multiScreenControl#multiScreenControl .multi-lower-settings-row{flex:none!important}
+html body #multiScreenControl#multiScreenControl #multiSectionButtons{max-height:none!important;height:auto!important;overflow:visible!important}
+html body #multiScreenControl#multiScreenControl #multiPartLyricsPreview{
+  height:auto!important;min-height:260px!important;max-height:none!important;overflow:auto!important;
+  background:transparent!important;color:var(--cx-ink)!important;border:0!important;
+}
+html body #multiScreenControl#multiScreenControl #multiPartLyricsPreview .multi-part-preview-section-lines{
+  max-height:none!important;overflow:visible!important;color:var(--cx-ink)!important;font-size:inherit!important;line-height:inherit!important;
+}
+html body #multiScreenControl#multiScreenControl #multiPartLyricsPreview .multi-part-preview-section-lines>div{
+  color:var(--cx-ink)!important;font-family:var(--cx-font)!important;font-weight:500!important;font-style:normal!important;
+  text-decoration:none!important;letter-spacing:0!important;font-size:clamp(15px,1.1vw,19px)!important;line-height:1.5!important;
+}
+html body #multiScreenControl#multiScreenControl #multiPartLyricsPreview .multi-part-preview-section.hidden-part{background:var(--cx-hover)!important}
+html body #multiScreenControl#multiScreenControl #multiPartLyricsPreview .multi-part-preview-section.active{background:color-mix(in srgb,var(--pc) 13%,transparent)!important}
+html body #multiScreenControl#multiScreenControl .multi-top-center-panel{overflow:visible!important}
+/* screen cards: name + LED on top, mode + settings below */
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card-head{
+  grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"name led" "mode set"!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card-head>span:nth-of-type(1){text-align:left!important}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card-head .multi-preview-settings-button{width:auto!important;justify-self:end}
+/* status badge: small pill centered at the bottom, only while this panel is open */
+html body:has(#multiScreenControl.show) #chordioConnectionStatus{
+  left:50%!important;right:auto!important;bottom:auto!important;top:24px!important;transform:translateX(-50%);
+  background:var(--cx-surface-solid)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line-strong)!important;box-shadow:var(--cx-shadow-sm)!important;
+}
+
+/* card header must grow with its two rows */
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card-head{height:auto!important;min-height:0!important;overflow:visible!important}
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card-head>span:nth-of-type(1){align-self:center}
+
+/* ---------- Final polish: card header spacing, background popup fields, output-settings dialog ---------- */
+html body #multiScreenControl#multiScreenControl .multi-screen-preview-card .multi-screen-preview-stage{margin-top:6px!important}
+
+html body #multiScreenControl#multiScreenControl .multi-background-settings-panel.open{
+  width:min(720px,94vw)!important;max-height:90vh!important;overflow:auto!important;padding:0!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-background-master-head{display:flex!important;align-items:center!important;gap:12px!important;padding:16px 20px!important;flex-wrap:wrap}
+html body #multiScreenControl#multiScreenControl .multi-background-master-head>div{flex:1 1 240px;min-width:0}
+html body #multiScreenControl#multiScreenControl .multi-bg-scope{font-size:11px!important;white-space:nowrap}
+html body #multiScreenControl#multiScreenControl .multi-background-master-grid{
+  display:grid!important;grid-template-columns:1fr 1fr!important;gap:14px!important;padding:16px 20px!important;background:transparent!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-background-master-grid>.multi-bg-library,
+html body #multiScreenControl#multiScreenControl .multi-background-master-grid>.multi-bg-url-wrap{grid-column:1/-1}
+html body #multiScreenControl#multiScreenControl .multi-background-master-grid label{display:flex!important;flex-direction:column!important;gap:6px!important}
+html body #multiScreenControl#multiScreenControl .multi-background-master-grid select,
+html body #multiScreenControl#multiScreenControl .multi-background-master-grid input[type="text"],
+html body #multiScreenControl#multiScreenControl .multi-background-master-grid input[type="file"]{
+  min-height:42px!important;padding:0 12px!important;border-radius:11px!important;background:var(--cx-hover)!important;color:var(--cx-ink)!important;
+  border:1px solid var(--cx-line)!important;font:500 14px var(--cx-font)!important;box-shadow:none!important;
+}
+html body #multiScreenControl#multiScreenControl .multi-background-master-grid input[type="file"]{padding:7px 10px!important}
+html body #multiScreenControl#multiScreenControl .multi-background-master-grid select:focus,
+html body #multiScreenControl#multiScreenControl .multi-background-master-grid input:focus{border-color:var(--cx-teal)!important;box-shadow:0 0 0 3px var(--cx-ring)!important;outline:none}
+html body #multiScreenControl#multiScreenControl .multi-bg-library{padding:14px!important;display:flex;flex-direction:column;gap:10px}
+html body #multiScreenControl#multiScreenControl .multi-background-master-actions{display:flex!important;align-items:center!important;gap:10px!important;padding:14px 20px!important}
+html body #multiScreenControl#multiScreenControl .multi-background-master-actions>span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px;font-weight:600}
+html body #multiScreenControl#multiScreenControl #multiBackgroundApply,
+html body #multiScreenControl#multiScreenControl #multiBackgroundClear{height:42px!important;padding:0 18px!important;width:auto!important}
+
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-settings-grid{
+  background:transparent!important;padding:18px 20px!important;gap:14px!important;display:grid!important;grid-template-columns:1fr 1fr!important;
+}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-settings-grid>label{display:flex!important;flex-direction:column!important;gap:6px!important}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-enable{
+  grid-column:1/-1;flex-direction:row!important;align-items:center!important;gap:12px!important;padding:12px 14px!important;
+}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-enable input{width:20px!important;height:20px!important;accent-color:var(--cx-teal)!important}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-enable span{display:flex;flex-direction:column;gap:2px}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-settings-grid select{width:100%!important;padding:0 12px!important}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-settings-actions{display:flex!important;justify-content:flex-end!important;gap:10px!important;padding:14px 20px!important}
+html body .multi-preview-card-settings[data-portal="1"] .multi-preview-settings-actions button{height:42px!important;padding:0 20px!important;width:auto!important;min-width:96px;font:700 13px var(--cx-font)!important;cursor:pointer}
+html body #multiScreenControl#multiScreenControl .multi-background-settings-panel.open{position:fixed!important}
+html body #multiScreenControl#multiScreenControl .multi-background-master-head{padding-right:64px!important}
+html body #multiScreenControl#multiScreenControl .multi-background-settings-panel .multi-popup-close{
+  position:absolute!important;top:14px!important;right:16px!important;width:36px!important;height:36px!important;margin:0!important;display:inline-grid!important;place-items:center;cursor:pointer;
+}
