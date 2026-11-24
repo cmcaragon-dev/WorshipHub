@@ -13,7 +13,7 @@
 .cp-key b{font-weight:700}
 .cp-cols{display:flex;gap:10mm;flex:1 1 auto;min-height:0}
 .cp-col{flex:1 1 0;min-width:0;overflow:hidden}
-.cp-label{color:#c00000;font-weight:700;white-space:pre}
+.cp-label{text-transform:uppercase;color:#c00000;font-weight:700;white-space:pre;background:#ffeb3b;display:inline-block;padding:0 1.5mm;margin-bottom:.6mm;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .cp-chords{color:#c00000;font-weight:700;white-space:pre}
 .cp-lyrics{color:#000;white-space:pre}
 .cp-gap{display:block}
