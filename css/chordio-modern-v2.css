@@ -556,3 +556,34 @@ html body textarea:focus-visible{outline:2px solid var(--cx-teal-deep)!important
 @media (prefers-reduced-motion:reduce){
   html body *,html body *::before,html body *::after{transition:none!important;animation:none!important}
 }
+
+/* ---------- v3.2 responsive refinements ---------- */
+@media (max-width:700px){
+  html body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))!important}
+  html body .dashboard{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+  html body .dashboard .card{padding:12px 12px!important;min-width:0;border-radius:14px!important}
+  html body .dashboard .card:nth-child(n+4){grid-column:1/-1}
+  html body .dashboard .number{font-size:26px!important;line-height:1.1!important}
+  html body .dashboard .label{font-size:12px!important}
+  html body .chordio-service-planner-top{display:flex!important;flex-wrap:nowrap!important;align-items:flex-start!important;gap:12px!important}
+  html body .chordio-service-planner-top>div:first-child{min-width:0;flex:1 1 auto}
+  html body .chordio-service-planner-head-actions{display:flex!important;flex-direction:row!important;flex:none!important;gap:8px!important}
+  html body .planner-add-icon,
+  html body .planner-close-icon{width:42px!important;height:42px!important;min-width:42px!important;padding:0!important;flex:none!important;display:inline-grid!important;place-items:center}
+}
+@media (max-width:360px){
+  html body .dashboard .number{font-size:22px!important}
+}
+
+/* Planner header buttons: beat the legacy ID rules, drop the duplicate plus glyph */
+html body #servicePanel .chordio-service-planner-top #closeService{
+  width:42px!important;height:42px!important;border-radius:12px!important;padding:0!important;
+  background:var(--cx-hover)!important;color:var(--cx-ink-2)!important;border:1px solid var(--cx-line)!important;box-shadow:none!important;
+}
+html body #servicePanel .chordio-service-planner-top #closeService:hover{background:var(--cx-danger-bg)!important;border-color:var(--cx-danger-line)!important;color:var(--cx-danger)!important}
+html body #servicePanel .chordio-service-planner-top #newServiceFromPlanner{
+  width:42px!important;height:42px!important;border-radius:12px!important;padding:0!important;font-size:22px!important;
+  background:var(--cx-accent-grad)!important;color:var(--cx-on-accent)!important;border:0!important;box-shadow:var(--cx-glow)!important;
+}
+html body #servicePanel #newServiceFromPlanner::before,
+html body #servicePanel #newServiceFromPlanner::after{content:none!important;display:none!important}

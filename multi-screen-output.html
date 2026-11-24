@@ -308,7 +308,7 @@ function render(msg){
   const mode=state?.modes?.[display]||forcedMode||'lyrics';
   const enabled=state?.enabled?.[display]!==false;
   const set=settings(state);
-  const bg=resolveBackground(state,song);
+  const bg=state.black?{type:'none',url:''}:resolveBackground(state,song);
   const vis=layoutVisible(song,state);
   const idx=Math.max(0,Math.min(Number(state.sectionIndex??0),Math.max(0,vis.length-1)));
 
@@ -327,7 +327,7 @@ function render(msg){
   $('lower').style.display=mode==='chords'&&enabled?'flex':'none';
   void applyBackground(bg);
 
-  if(state.activePageSlide&&enabled){
+  if(state.activePageSlide&&enabled&&!state.black&&!state.logo){
     $('header').style.display='none';$('lower').style.display='none';
     $('content').innerHTML='';
     const pg=document.createElement('div');pg.className='page';
@@ -337,7 +337,7 @@ function render(msg){
     b.style.fontFamily=set.fontFamily;b.style.color=set.color;b.style.fontWeight=set.bold?'800':'400';b.style.fontStyle=set.italic?'italic':'normal';b.style.textDecoration=set.underline?'underline':'none';b.style.letterSpacing=`${Number(set.letterSpacing||0)}px`;b.style.fontSize=`${Number(set.fontPx||42)}px`;b.style.lineHeight=String(set.spacing||1.15);
     card.append(t,b);pg.append(card);$('content').append(pg);return;
   }
-  if(state.black||!enabled||mode==='blank'){$('content').innerHTML='';return;}
+  if(state.black||state.logo||!enabled||mode==='blank'){$('content').innerHTML='';return;}
   if(!vis.length){$('content').innerHTML='<div class="empty">No lyrics available for this song.</div>';return;}
 
   $('content').innerHTML='';

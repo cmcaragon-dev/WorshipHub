@@ -1183,19 +1183,14 @@ html, body { max-width:100%; }
 </div>
 <div class="ms-transport" id="msTransport" role="toolbar" aria-label="Presentation controls">
 <div class="ms-now" aria-live="polite"><span class="ms-now-label">Now showing</span><strong id="msNowSong">No song selected</strong><span class="ms-now-part" id="msNowPart">—</span><span class="ms-now-black" id="msNowBlack" hidden>Screens black</span></div>
-<div class="ms-group" aria-label="Move through the service">
-<button type="button" data-ms-key="PageUp" title="Previous song (Page Up)"><i aria-hidden="true">⏮</i><span>Song</span></button>
-<button type="button" data-ms-key="ArrowUp" title="Previous part (↑)"><i aria-hidden="true">▲</i><span>Part</span></button>
-<button type="button" data-ms-key="ArrowDown" title="Next part (↓)"><i aria-hidden="true">▼</i><span>Part</span></button>
-<button type="button" data-ms-key="PageDown" title="Next song (Page Down)"><span>Song</span><i aria-hidden="true">⏭</i></button>
-</div>
 <div class="ms-group ms-group-outputs" aria-label="Screens">
 <button type="button" id="multiOpenAll" class="ms-open" title="Open every screen that is set to USE"><i aria-hidden="true">▣</i><span>Open screens</span></button>
 <button type="button" id="multiBlackAll" class="ms-black" data-ms-black="on" title="Black out all screens (B)"><i aria-hidden="true">■</i><span>Black</span></button>
+<button type="button" id="multiLogoAll" class="ms-logo" data-ms-black="logo" title="Show only the background image or video, no lyrics (L)"><i aria-hidden="true">◈</i><span>Logo</span></button>
 <button type="button" class="ms-restore" data-ms-key="r" data-ms-black="off" title="Bring the words back (R)"><i aria-hidden="true">↺</i><span>Restore</span></button>
 <button type="button" id="multiCloseAll" class="ms-close-all" title="Close all screen windows"><i aria-hidden="true">✕</i><span>Close screens</span></button>
 </div>
-<div class="ms-clock" id="msClock" aria-label="Time">--:--</div>
+<button type="button" class="ms-clock" id="msClock" title="Time since Multi-Screen started. Click to restart.">00:00:00</button>
 </div>
 <div class="multi-control-layout v53-layout">
 <aside class="multi-service-column">

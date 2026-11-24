@@ -1592,10 +1592,13 @@ function initMultiPartKeyboard(){
             await selectMultiScreenQueueEntry(Math.max(0,multiScreenQueueIndex-1));
         }else if(event.key.toLowerCase()==="b"){
             event.preventDefault();
-            multiScreenBroadcast({black:true});
+            multiScreenBroadcast({black:true,logo:false});
         }else if(event.key.toLowerCase()==="r"){
             event.preventDefault();
-            multiScreenBroadcast({black:false});
+            multiScreenBroadcast({black:false,logo:false});
+        }else if(event.key.toLowerCase()==="l"){
+            event.preventDefault();
+            multiScreenBroadcast({logo:true,black:false});
         }else if(event.key==="Escape"){
             multiScreenCloseControl();
         }
@@ -2706,7 +2709,8 @@ function multiScreenCloseAll(){
     Object.values(multiScreenWindows).forEach(w=>{try{if(w&&!w.closed)w.close();}catch(_){}});
     multiScreenWindows={};
 }
-function multiScreenBlackAll(){multiScreenBroadcast({black:true});}
+function multiScreenBlackAll(){multiScreenBroadcast({black:true,logo:false});}
+function multiScreenLogoAll(){multiScreenBroadcast({logo:true,black:false});}
 function fitMultiLyricsToScreen(output, section, settings){
     if(!output||!section)return;
     const width=Math.max(320,output.clientWidth||window.innerWidth||1280);
@@ -2793,7 +2797,7 @@ function renderMultiScreenOutput(message){
     const data=message?.song||song;if(!data)return;const display=String(multiScreenDisplayId);const mode=message?.modes?.[display]||new URLSearchParams(location.search).get("mode")||"lyrics";const enabled=message?.enabled?.[display]!==false;
     root.classList.add("active");root.classList.remove("multi-page-slide-active");document.body.classList.add("multi-output-active");
     const bgMode=message?.backgroundModes?.[display]||multiScreenBackgroundModes[display]||"common";
-    let bg=(bgMode==="black")?{type:"none",url:""}:(message?.songBackground||message?.background||{type:"none",url:""});
+    let bg=(bgMode==="black"||message?.black)?{type:"none",url:""}:(message?.songBackground||message?.background||{type:"none",url:""});
     if(message?.activePageSlide && bgMode!=="black"){bg=message?.serviceSlidesBackground||getMultiServiceSlidesBackground()||bg;}
     // Fullscreen/output reload fallback: recover the song-specific background directly from localStorage.
     if(bgMode!=="black" && (!bg.url || bg.type==="none")){try{const saved=JSON.parse(localStorage.getItem("chordioMultiScreenSongBackgrounds")||"{}");const key=String(data?.id||data?.title||"song");if(saved?.[key]?.url)bg=saved[key];}catch(_){} }
@@ -2818,7 +2822,7 @@ function renderMultiScreenOutput(message){
     const pageSlide=message?.activePageSlide||null;
     if(pageSlide && enabled){
         root.classList.add("multi-page-slide-active");output.className="multi-output-page-slide";output.innerHTML="";const slide=document.createElement("div");slide.className="multi-page-slide-output-card";const st=document.createElement("div");st.className="multi-page-slide-output-title";st.textContent=pageSlide.title||"";const body=document.createElement("div");body.className="multi-page-slide-output-text";body.textContent=String(pageSlide.text||"");const typ=message?.lyricsSettings||getMultiLyricsSettings();body.style.fontFamily=typ.fontFamily||"Arial";body.style.fontWeight=typ.bold?"800":"400";body.style.fontStyle=typ.italic?"italic":"normal";body.style.textDecoration=typ.underline?"underline":"none";body.style.color=typ.color||"#FFFFFF";body.style.letterSpacing=`${Number(typ.letterSpacing||0)}px`;slide.append(st,body);output.appendChild(slide);fitMultiPageSlideText(output,body,typ);document.getElementById("multiOutputSection").textContent="PAGE SLIDE";return;}
-    if(message?.black||!enabled||mode==="blank"){output.innerHTML="";return;}
+    if(message?.black||message?.logo||!enabled||mode==="blank"){output.innerHTML="";return;}
     const source=normalizeSections(data.sections||[]),layout=message?.layout||getPresentationLayout();const visible=layout.map(item=>({item,section:source[Number(item.id)]})).filter(x=>x.section&&x.item.visible!==false);const idx=Math.max(0,Math.min(Number(message?.sectionIndex??0),Math.max(0,visible.length-1)));const settings={spacing:1.15,vertical:50,font:100,align:"center",...(message?.lyricsSettings||{})};const outputLyricsOverrides=message?.lyricsOverrides||{};
     output.innerHTML="";
     if(mode==="lyrics"){
@@ -3000,7 +3004,7 @@ function initMultiScreen(){
         document.getElementById("multiAddSongCancel")?.addEventListener("click",closeMultiAddSong);
         document.getElementById("multiAddSongSearch")?.addEventListener("input",renderMultiAddSongList);
         document.getElementById("multiAddSongModal")?.addEventListener("click",e=>{if(e.target.id==="multiAddSongModal")closeMultiAddSong();});
-        document.getElementById("multiOpenAll")?.addEventListener("click",multiScreenOpenAll);document.getElementById("multiBlackAll")?.addEventListener("click",multiScreenBlackAll);document.getElementById("multiCloseAll")?.addEventListener("click",multiScreenCloseAll);
+        document.getElementById("multiOpenAll")?.addEventListener("click",multiScreenOpenAll);document.getElementById("multiBlackAll")?.addEventListener("click",multiScreenBlackAll);document.getElementById("multiLogoAll")?.addEventListener("click",multiScreenLogoAll);document.getElementById("multiCloseAll")?.addEventListener("click",multiScreenCloseAll);
         document.getElementById("multiPreviewSong")?.addEventListener("click",()=>multiScreenBroadcast({sectionIndex:multiScreenCurrentSection}));
         ["multiLyricsSpacing","multiLyricsVertical","multiLyricsFontPx","multiLyricsAlign","multiLyricsFontFamily","multiLyricsColor","multiLyricsLetterSpacing"].forEach(id=>document.getElementById(id)?.addEventListener("input",()=>{
     // Do not re-sync form controls while the user is editing. Reassigning
