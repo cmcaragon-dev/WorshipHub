@@ -2214,22 +2214,23 @@ async function printServiceSongs(serviceId) {
     // Open the print document immediately from the button click. This keeps the
     // operation inside the browser's user-gesture context and prevents popup/
     // print blockers from silently swallowing the print action after async work.
-    const printWindow = window.open("", "_blank", "width=1200,height=850");
-    if (!printWindow) {
+    const useMinimalPrint = !!(window.chordioPrint && typeof window.chordioPrint.open === "function");
+    const printWindow = useMinimalPrint ? null : window.open("", "_blank", "width=1200,height=850");
+    if (!useMinimalPrint && !printWindow) {
         alert("Please allow pop-ups for CHORDIO so the Service Planner can open the print page.");
         return;
     }
 
     const service = services.find(s => String(s.id) === id);
     if (!service) {
-        printWindow.close();
+        printWindow?.close();
         alert("Please select a valid Service Planner first.");
         return;
     }
 
     const songs = Array.isArray(service.songs) ? service.songs : [];
     if (!songs.length) {
-        printWindow.close();
+        printWindow?.close();
         alert("This service has no songs to print.");
         return;
     }
@@ -2348,6 +2349,48 @@ async function printServiceSongs(serviceId) {
         }
         return items;
     };
+
+    if (useMinimalPrint) {
+        // Minimalist print: same layout as the single-song print (Portrait or
+        // Landscape, bold red highlighted section labels, red chords, black
+        // lyrics, "Page i of N" across the whole service).
+        const models = songs.map(occurrence => {
+            const song = resolvePrintSong(occurrence || {});
+            const steps = printTransposeSteps(song);
+            const secs = Array.isArray(song.sections) ? song.sections : [];
+            const counts = {};
+            secs.forEach(sec => { const t = String(sec?.type || "").trim().toLowerCase(); counts[t] = (counts[t] || 0) + 1; });
+            return {
+                title: song.title || "Untitled Song",
+                artist: song.artist || "",
+                key: normalizePrintKey(song),
+                sections: secs.map(sec => {
+                    const t = String(sec?.type || "").trim().toLowerCase();
+                    const label = counts[t] > 1 ? `${sec?.type || ""} ${sec?.number || ""}`.trim() : String(sec?.type || "").trim();
+                    return {
+                        label: label || "Section",
+                        lines: (Array.isArray(sec?.lines) ? sec.lines : []).map(line => {
+                            const chords = Array.isArray(line?.chords) ? line.chords : [];
+                            let chordText = typeof line?.chordText === "string" ? line.chordText : "";
+                            if (!chordText && chords.length) {
+                                const chars = [];
+                                chords.slice().sort((a,b)=>(Number(a?.position)||0)-(Number(b?.position)||0)).forEach(c => {
+                                    const pos = Math.max(0, Number(c?.position)||0);
+                                    const text = String(c?.originalChord || c?.chord || c?.value || "").trim();
+                                    while (chars.length < pos) chars.push(" ");
+                                    Array.from(text).forEach((ch,i) => { chars[pos+i] = ch; });
+                                });
+                                chordText = chars.join("");
+                            }
+                            return { chords: printTransposeChord(chordText, steps), lyrics: String(line?.lyrics || "") };
+                        })
+                    };
+                })
+            };
+        });
+        window.chordioPrint.open({ heading: `Print service — ${service.name || service.title || "Service Planner"}`, songs: models });
+        return;
+    }
 
     document.getElementById("worshipHubServicePrintRoot")?.remove();
     const printRoot = document.createElement("div");

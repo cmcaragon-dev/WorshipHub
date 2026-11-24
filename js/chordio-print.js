@@ -85,10 +85,21 @@
     return {pages:pages,pt:pt,lh:lh,orient:orient};
   }
 
-  function renderPages(m,res){
+  function songsOf(m){return Array.isArray(m.songs)&&m.songs.length?m.songs:[m];}
+  function layoutAll(m,orient,sizeKey){
+    var all=[];
+    songsOf(m).forEach(function(sg){
+      var r=layout(sg,orient,sizeKey);
+      r.pages.forEach(function(pg){all.push({pg:pg,song:sg,pt:r.pt,lh:r.lh});});
+    });
+    return {pages:all,orient:orient};
+  }
+  function renderPages(res){
     var frag=document.createDocumentFragment(),total=res.pages.length;
-    res.pages.forEach(function(pg,pi){
-      var sheet=el("div","cp-sheet "+res.orient);
+    res.pages.forEach(function(item,pi){
+      var pg=item.pg,m=item.song;
+      var rp={pt:item.pt,lh:item.lh,orient:res.orient};
+      var sheet=el("div","cp-sheet "+rp.orient);
       var body=el("div","cp-body");
       if(pg.first){
         var head=el("div","cp-head");
@@ -99,7 +110,7 @@
       }
       var cols=el("div","cp-cols");
       pg.cols.forEach(function(items){
-        var c=el("div","cp-col");c.style.fontSize=res.pt+"pt";c.style.lineHeight=res.lh+"px";
+        var c=el("div","cp-col");c.style.fontSize=rp.pt+"pt";c.style.lineHeight=rp.lh+"px";
         items.forEach(function(u){
           if(u.kind==="gap"){var g=el("span","cp-gap");g.style.height=u.h+"px";c.appendChild(g);}
           else if(u.kind==="label"){c.appendChild(el("div","cp-label",u.text));}
@@ -121,10 +132,10 @@
   }
 
   function build(){
-    var res=layout(model,st.orient,st.size);
+    var res=layoutAll(model,st.orient,st.size);
     var doc=document.getElementById("chordioPrintDoc");
     if(!doc){doc=el("div");doc.id="chordioPrintDoc";document.body.appendChild(doc);}
-    doc.innerHTML="";doc.appendChild(renderPages(model,res));
+    doc.innerHTML="";doc.appendChild(renderPages(res));
     var ps=document.getElementById("chordioPrintPageStyle");
     if(!ps){ps=el("style");ps.id="chordioPrintPageStyle";}
     ps.textContent="@page{size:A4 "+st.orient+";margin:0}";
@@ -168,12 +179,13 @@
 
   function open(m){
     model=m;close();
-    dlg=el("div");dlg.id="chordioPrintDlg";dlg.setAttribute("role","dialog");dlg.setAttribute("aria-modal","true");dlg.setAttribute("aria-label","Print song");
-    dlg.innerHTML='<div class="cp-card"><div class="cp-bar"><div class="cp-h">Print song</div>'+
+    dlg=el("div");dlg.id="chordioPrintDlg";dlg.setAttribute("role","dialog");dlg.setAttribute("aria-modal","true");dlg.setAttribute("aria-label",model.heading||"Print song");
+    dlg.innerHTML='<div class="cp-card"><div class="cp-bar"><div class="cp-h"></div>'+
       '<div class="cp-grp">Page<span class="cp-seg"><button type="button" data-orient="portrait">Portrait</button><button type="button" data-orient="landscape">Landscape</button></span></div>'+
       '<div class="cp-grp">Text<span class="cp-seg"><button type="button" data-size="S">Small</button><button type="button" data-size="M">Medium</button><button type="button" data-size="L">Large</button></span></div>'+
       '<span class="cp-count"></span><button type="button" class="cp-x">Cancel</button><button type="button" class="cp-go">Print</button></div>'+
       '<div class="cp-view"></div></div>';
+    dlg.querySelector(".cp-h").textContent=m.heading||"Print song";
     document.body.appendChild(dlg);
     dlg.addEventListener("click",function(e){
       var t=e.target;
