@@ -1268,6 +1268,29 @@ async function stopCustomService(){
 function printCustomSong(){
     if(!song) return;
 
+    if(window.chordioPrint&&typeof window.chordioPrint.open==="function"){
+        const secs=normalizeSections(song.sections);
+        const typeCount={};
+        secs.forEach(s=>{const t=String(s.type||"").trim().toLowerCase();typeCount[t]=(typeCount[t]||0)+1;});
+        window.chordioPrint.open({
+            title:song.title||"Untitled Song",
+            artist:song.artist||"",
+            key:customServiceKey()||song.originalKey||song.key||"",
+            sections:secs.map(section=>{
+                const t=String(section.type||"").trim().toLowerCase();
+                const label=typeCount[t]>1?`${section.type||""} ${section.number||""}`.trim():String(section.type||"").trim();
+                return {
+                    label:label||"Section",
+                    lines:(section.lines||[]).map(line=>({
+                        chords:transposeChord(line.chordText||chordRowFromPositions(line),transposeSteps),
+                        lyrics:line.lyrics||""
+                    }))
+                };
+            })
+        });
+        return;
+    }
+
     // Build a clean print-only document. There is intentionally no preview/modal:
     // the browser's normal print dialog opens immediately.
     const root=document.createElement("div");

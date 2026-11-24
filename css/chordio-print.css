@@ -1,0 +1,52 @@
+/* CHORDIO minimalist print — dialog (screen) + paginated sheets (screen preview & print) */
+#chordioPrintDoc{display:none}
+.cp-sheet{box-sizing:border-box;position:relative;background:#fff;color:#000;overflow:hidden;
+  font-family:"DejaVu Sans Mono","Consolas","Menlo","Courier New",monospace;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+.cp-sheet.portrait{width:210mm;height:296mm}
+.cp-sheet.landscape{width:297mm;height:209mm}
+.cp-body{display:flex;flex-direction:column;position:absolute;left:14mm;right:14mm;top:13mm;bottom:17mm}
+.cp-head{margin:0 0 5mm;padding-bottom:3mm;border-bottom:.3mm solid #000}
+.cp-title{font:700 20pt/1.15 Helvetica,Arial,sans-serif;color:#000;margin:0}
+.cp-artist{font:400 11pt/1.3 Helvetica,Arial,sans-serif;color:#000;margin:1mm 0 0}
+.cp-key{font:400 11pt/1.3 Helvetica,Arial,sans-serif;color:#000;margin:.5mm 0 0}
+.cp-key b{font-weight:700}
+.cp-cols{display:flex;gap:10mm;flex:1 1 auto;min-height:0}
+.cp-col{flex:1 1 0;min-width:0;overflow:hidden}
+.cp-label{color:#c00000;font-weight:700;white-space:pre}
+.cp-chords{color:#c00000;font-weight:700;white-space:pre}
+.cp-lyrics{color:#000;white-space:pre}
+.cp-gap{display:block}
+.cp-foot{position:absolute;left:14mm;right:14mm;bottom:8mm;display:flex;justify-content:space-between;
+  font:400 9pt/1 Helvetica,Arial,sans-serif;color:#000;border-top:.2mm solid #999;padding-top:2mm}
+
+/* dialog */
+#chordioPrintDlg{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;
+  background:rgba(4,8,16,.72);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#chordioPrintDlg .cp-card{width:min(960px,96vw);height:min(760px,94dvh);display:flex;flex-direction:column;
+  background:var(--cx-panel,#0f1626);color:var(--cx-text,#e8eefc);border:1px solid var(--cx-line,rgba(255,255,255,.14));
+  border-radius:14px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.55)}
+#chordioPrintDlg .cp-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:14px 18px;
+  border-bottom:1px solid var(--cx-line,rgba(255,255,255,.14))}
+#chordioPrintDlg .cp-h{font-size:16px;font-weight:700;margin-right:auto}
+#chordioPrintDlg .cp-grp{display:flex;align-items:center;gap:8px;font-size:13px;opacity:.95}
+#chordioPrintDlg .cp-seg{display:inline-flex;border:1px solid var(--cx-line,rgba(255,255,255,.2));border-radius:9px;overflow:hidden}
+#chordioPrintDlg .cp-seg button{all:unset;cursor:pointer;padding:7px 13px;font-size:13px;color:inherit}
+#chordioPrintDlg .cp-seg button[aria-pressed="true"]{background:#c00000;color:#fff;font-weight:700}
+#chordioPrintDlg .cp-seg button:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+#chordioPrintDlg .cp-go,#chordioPrintDlg .cp-x{all:unset;cursor:pointer;padding:8px 16px;border-radius:9px;font-size:14px;font-weight:700}
+#chordioPrintDlg .cp-go{background:#c00000;color:#fff}
+#chordioPrintDlg .cp-x{border:1px solid var(--cx-line,rgba(255,255,255,.25))}
+#chordioPrintDlg .cp-go:focus-visible,#chordioPrintDlg .cp-x:focus-visible{outline:2px solid #fff;outline-offset:2px}
+#chordioPrintDlg .cp-view{flex:1;overflow:auto;padding:18px;background:#2a3042;display:flex;flex-direction:column;align-items:center;gap:16px}
+#chordioPrintDlg .cp-view .cp-sheet{flex:none;box-shadow:0 4px 22px rgba(0,0,0,.45)}
+#chordioPrintDlg .cp-count{font-size:12px;opacity:.75}
+@media (max-width:560px){#chordioPrintDlg .cp-bar{padding:10px 12px}#chordioPrintDlg .cp-view{padding:10px}}
+
+@media print{
+  html body.chordio-printing>*:not(#chordioPrintDoc){display:none!important}
+  html body.chordio-printing{margin:0!important;padding:0!important;background:#fff!important;overflow:visible!important;height:auto!important}
+  html body.chordio-printing #chordioPrintDoc{display:block!important;position:static!important}
+  html body.chordio-printing #chordioPrintDoc .cp-sheet{break-after:page;page-break-after:always;margin:0;box-shadow:none;zoom:1!important}
+  html body.chordio-printing #chordioPrintDoc .cp-sheet:last-child{break-after:auto;page-break-after:auto}
+}
