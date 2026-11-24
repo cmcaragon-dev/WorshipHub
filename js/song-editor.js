@@ -827,7 +827,64 @@ async function importChordPage() {
     }
 }
 
+/* ---- Save feedback popup (success / error) ---- */
+function showSongDialog({ type = "success", title = "", message = "", autoClose = 0 } = {}) {
+    try {
+        document.getElementById("chordioSongDialog")?.remove();
+        const wrap = document.createElement("div");
+        wrap.id = "chordioSongDialog";
+        wrap.className = "chordio-song-dialog " + (type === "error" ? "is-error" : "is-success");
+        wrap.setAttribute("role", "alertdialog");
+        wrap.setAttribute("aria-modal", "true");
+        wrap.innerHTML = `<div class="chordio-song-dialog-card">
+            <div class="chordio-song-dialog-icon" aria-hidden="true">${type === "error" ? "!" : "✓"}</div>
+            <h3>${esc(title)}</h3>
+            <p>${esc(message)}</p>
+            <button type="button" class="chordio-song-dialog-ok">${type === "error" ? "Close" : "OK"}</button>
+        </div>`;
+        const close = () => wrap.remove();
+        wrap.addEventListener("click", event => { if (event.target === wrap) close(); });
+        wrap.querySelector(".chordio-song-dialog-ok").addEventListener("click", close);
+        document.body.appendChild(wrap);
+        wrap.querySelector(".chordio-song-dialog-ok").focus();
+        if (autoClose) setTimeout(close, autoClose);
+    } catch (error) {
+        alert(`${title}\n\n${message}`);
+    }
+}
+
+let songSaveInFlight = false;
+function setSongSaving(on) {
+    const button = document.getElementById("saveSongEditor");
+    if (!button) return;
+    if (!button.dataset.label) button.dataset.label = button.textContent;
+    button.disabled = on;
+    button.textContent = on ? "⏳ Saving…" : button.dataset.label;
+}
+
+// One Save at a time. Nothing is added to the local library until the cloud
+// write succeeds, so a failed attempt can never leave a half-saved copy that
+// later blocks the same title as "already available".
 async function saveSong() {
+    if (songSaveInFlight) return;
+    songSaveInFlight = true;
+    setSongSaving(true);
+    try {
+        await saveSongInner();
+    } catch (error) {
+        console.error("Song save failed:", error);
+        const code = String(error?.code || "");
+        const reason = /permission/i.test(code) || /permission/i.test(String(error?.message || ""))
+            ? "Firebase did not allow this save. Ask an administrator to check your Add Song permission."
+            : "Please check your internet connection and try again. Your lyrics and chords are still in the editor.";
+        showSongDialog({ type: "error", title: "Song not saved", message: reason });
+    } finally {
+        songSaveInFlight = false;
+        setSongSaving(false);
+    }
+}
+
+async function saveSongInner() {
     const user = auth.currentUser;
     const existing = editingId ? songs.find(existing => String(existing.id) === String(editingId)) : null;
     const isAdmin = isAdminUser(user);
@@ -857,11 +914,26 @@ async function saveSong() {
 
     // Prevent duplicate song titles. This applies to both built-in songs and
     // songs created through Add Song. Editing the same song is allowed.
+    let targetId = editingId;
+    let existingRecord = existing;
     const duplicateSong = await findDuplicateSongTitle(title, editingId);
     if (duplicateSong) {
         const duplicateTitle = String(duplicateSong.title || title).trim();
-        alert(`Song Already Available\n\n"${duplicateTitle}" is already available in CHORDIO.\n\nPlease use a different Song Title.`);
-        return;
+        const ownCopy = duplicateSong.customSong === true && user && String(duplicateSong.createdByUid || "") === String(user.uid);
+        if (ownCopy && !duplicateMode) {
+            // Usually an earlier attempt of this same song that did not finish.
+            const replace = confirm(`"${duplicateTitle}" was already saved from your account.\n\nPress OK to replace it with this version, or Cancel to keep editing.`);
+            if (!replace) return;
+            targetId = String(duplicateSong.id);
+            existingRecord = songs.find(item => String(item?.id) === targetId) || duplicateSong;
+        } else {
+            showSongDialog({
+                type: "error",
+                title: "Song already available",
+                message: `"${duplicateTitle}" is already in CHORDIO. Please use a different song title.`
+            });
+            return;
+        }
     }
 
     // Normalize every chord so the presentation renderer can bind it to <span class="chord">.
@@ -877,7 +949,7 @@ async function saveSong() {
         }))
     }));
 
-    const id = editingId || uid("song");
+    const id = targetId || uid("song");
     const song = {
         id,
         title,
@@ -889,7 +961,7 @@ async function saveSong() {
         // Keep the Service Planner key when editing an existing song. The
         // song's original key may be changed, but an existing service should
         // not silently lose its selected Service Key.
-        serviceKey: existing?.serviceKey || existing?.key || document.getElementById("editorSongKey").value,
+        serviceKey: existingRecord?.serviceKey || existingRecord?.key || document.getElementById("editorSongKey").value,
         youtube: document.getElementById("editorSongYoutube").value.trim(),
         sourceUrl: document.getElementById("editorSourceUrl")?.value.trim() || "",
         file: `custom-song.html?id=${encodeURIComponent(id)}`,
@@ -898,29 +970,28 @@ async function saveSong() {
         sections: JSON.parse(JSON.stringify(sections)),
         contentVersion: 2,
         linkedChordFormat: "span.chord-above-lyrics",
-        createdAt: editingId ? (existing?.createdAt || new Date().toISOString()) : new Date().toISOString(),
+        createdAt: targetId ? (existingRecord?.createdAt || new Date().toISOString()) : new Date().toISOString(),
         updatedAt: new Date().toISOString(),
-        createdByUid: existing?.createdByUid || user.uid,
-        createdByEmail: existing?.createdByEmail || user.email || ""
+        createdByUid: existingRecord?.createdByUid || user.uid,
+        createdByEmail: existingRecord?.createdByEmail || user.email || ""
     };
 
-    const index = songs.findIndex(existing => String(existing.id) === String(id));
+    // 1. Save permanently to the cloud FIRST. If this fails the error is shown
+    //    and the local library is left exactly as it was.
+    await saveSongToFirebase(song);
+
+    // 2. Cloud save worked: update the local library.
+    const index = songs.findIndex(item => String(item.id) === String(id));
     if (index >= 0) songs[index] = song;
     else songs.push(song);
+    try { saveCustomSongs(); } catch (error) { console.warn("Unable to cache the song locally:", error); }
 
-    saveCustomSongs();
-
-    // Save permanently so every authenticated user can access the song.
-    await saveSongToFirebase(song);
-    await refreshCustomSongInServices(song);
-
-    // Notify the main CHORDIO app immediately. This keeps All Songs and
-    // the Service Planner picker synchronized without requiring a page reload.
-    window.dispatchEvent(new CustomEvent("worshiphub:songs-updated", {
-        detail: { song }
-    }));
-    // Multi-Screen can be running in another tab/window. Broadcast the saved
-    // master record so its active service occurrence can refresh immediately.
+    // 3. Everything below is best-effort. A problem here must never leave the
+    //    editor open or make the user save the same song twice.
+    try { await refreshCustomSongInServices(song); } catch (error) { console.warn(error); }
+    try {
+        window.dispatchEvent(new CustomEvent("worshiphub:songs-updated", { detail: { song } }));
+    } catch (error) { console.warn(error); }
     try {
         const channel = new BroadcastChannel("chordio-song-sync");
         channel.postMessage({type:"song-updated", song, savedAt:Date.now()});
@@ -930,8 +1001,8 @@ async function saveSong() {
         localStorage.setItem("chordioSongLastUpdated", JSON.stringify({id:String(song.id), savedAt:Date.now()}));
         localStorage.removeItem("chordioSongLastUpdated");
     } catch(_) {}
+    try { renderLibrary(); } catch (error) { console.warn("Unable to refresh the song list:", error); }
 
-    renderLibrary();
     const embeddedEditor = new URLSearchParams(window.location.search).get("embeddedEditor") === "1";
     if(embeddedEditor){
         try{ window.parent.postMessage({type:"chordio-embedded-song-saved",song},"*"); }catch(_){}
@@ -939,7 +1010,12 @@ async function saveSong() {
         return;
     }
     closeEditor();
-    alert("Song saved successfully. It is now available in All Songs and Service Planner.");
+    showSongDialog({
+        type: "success",
+        title: "Song saved",
+        message: `"${song.title}" is now in All Songs and the Service Planner.`,
+        autoClose: 3500
+    });
 }
 
 function renderLibrary() {

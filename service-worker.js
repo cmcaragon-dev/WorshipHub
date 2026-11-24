@@ -1,7 +1,7 @@
 /* CHORDIO offline application shell */
 // Bump these when shipping. Old caches are deleted on activate.
-const CACHE = 'chordio-shell-v6';
-const RUNTIME = 'chordio-runtime-v6';
+const CACHE = 'chordio-shell-v7';
+const RUNTIME = 'chordio-runtime-v7';
 const SHELL = [
   './', './index.html', './login.html', './register.html', './settings.html',
   './custom-song.html', './multi-screen-output.html', './offline.html',
