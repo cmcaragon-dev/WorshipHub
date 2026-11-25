@@ -1254,59 +1254,88 @@ html, body { max-width:100%; }
 </div>
 </div>
 </aside>
-</div><div class="multi-lower-settings-row"><div class="multi-lower-divider">CONTROL SETTINGS / SONG CONTENT</div>
-<div class="multi-feature-tabs" role="tablist" aria-label="Control settings and song content">
-<button type="button" class="multi-feature-tab" data-feature-tab="lyrics" role="tab">LYRICS DISPLAY SETTINGS</button>
-<span class="multi-feature-tab-separator">|</span>
-<button type="button" class="multi-feature-tab" data-feature-tab="slides" role="tab">PAGE SLIDES / SERVICE SLIDES</button>
-<span class="multi-feature-tab-separator">|</span>
-<button type="button" class="multi-feature-tab" data-feature-tab="bible" role="tab">ONLINE BIBLE</button>
+</div><div class="multi-lower-settings-row">
+<div class="multi-feature-tabs" role="tablist" aria-label="Display, slides and Bible">
+<button type="button" class="multi-feature-tab" data-feature-tab="lyrics" role="tab">Lyrics display</button>
+<button type="button" class="multi-feature-tab" data-feature-tab="slides" role="tab">Page &amp; service slides</button>
+<button type="button" class="multi-feature-tab" data-feature-tab="bible" role="tab">Online Bible</button>
 </div><div class="multi-lyrics-settings multi-feature-panel" data-feature-panel="lyrics">
-<div class="multi-settings-title multi-feature-toggle" data-feature-toggle="lyrics" role="button" tabindex="0"><strong>LYRICS DISPLAY SETTINGS</strong><span>Use exact pixel font size and text formatting.</span><b>▾</b></div>
+<div class="multi-settings-title multi-feature-toggle" data-feature-toggle="lyrics" role="button" tabindex="0"><strong>Lyrics display</strong><span>Font, size, color and layout for the screens.</span><b>▾</b></div>
 <div class="multi-feature-content">
+<div class="ms-two">
+<div class="ms-stack">
+<section class="ms-card"><h4>Text</h4>
 <div class="multi-settings-grid multi-font-editor-grid">
-<label>Line spacing <input id="multiLyricsSpacing" max="2.2" min="0.7" step="0.05" type="range" value="1.15"/><output id="multiLyricsSpacingValue">1.15</output></label>
-<label>Vertical position <input id="multiLyricsVertical" max="100" min="0" step="1" type="range" value="50"/><output id="multiLyricsVerticalValue">50%</output></label>
-<label>Font size (px) <input id="multiLyricsFontPx" max="240" min="10" step="1" type="number" value="100"/><output id="multiLyricsFontValue">100 px</output></label>
-<label>Font style <select id="multiLyricsFontFamily"><option value="Arial">Arial</option><option value="Georgia">Georgia</option><option value="Verdana">Verdana</option><option value="Tahoma">Tahoma</option><option value="Trebuchet MS">Trebuchet MS</option><option value="Consolas">Consolas</option><option value="Courier New">Courier New</option><option value="Times New Roman">Times New Roman</option></select></label>
-<label class="multi-color-picker-field">Text color
+<label>Font <select id="multiLyricsFontFamily"><option value="Arial">Arial</option><option value="Georgia">Georgia</option><option value="Verdana">Verdana</option><option value="Tahoma">Tahoma</option><option value="Trebuchet MS">Trebuchet MS</option><option value="Consolas">Consolas</option><option value="Courier New">Courier New</option><option value="Times New Roman">Times New Roman</option></select></label>
+<label>Size <span class="ms-step"><button type="button" data-ms-step="-4" aria-label="Smaller">−</button><input id="multiLyricsFontPx" max="240" min="10" step="1" type="number" value="100"/><button type="button" data-ms-step="4" aria-label="Larger">+</button></span><output id="multiLyricsFontValue">100 px</output></label>
+<label class="multi-color-picker-field">Color
 <div class="multi-color-picker-wrap"><input id="multiLyricsColor" type="color" value="#FFFFFF" aria-label="Choose text color" title="Choose text color"><span id="multiLyricsColorValue">#FFFFFF</span></div>
 </label>
-<label>Alignment <select id="multiLyricsAlign"><option value="left">Left</option><option selected="" value="center">Center</option><option value="right">Right</option></select></label>
 </div>
 <div aria-label="Lyrics font formatting" class="multi-font-toolbar" role="toolbar">
-<button aria-pressed="false" id="multiLyricsBold" type="button"><b>B</b></button>
-<button aria-pressed="false" id="multiLyricsItalic" type="button"><i>I</i></button>
-<button aria-pressed="false" id="multiLyricsUnderline" type="button"><u>U</u></button>
+<button aria-pressed="false" id="multiLyricsBold" type="button" title="Bold"><b>B</b></button>
+<button aria-pressed="false" id="multiLyricsItalic" type="button" title="Italic"><i>I</i></button>
+<button aria-pressed="false" id="multiLyricsUnderline" type="button" title="Underline"><u>U</u></button>
 <label>Letter spacing <input id="multiLyricsLetterSpacing" max="12" min="-2" step="0.5" type="number" value="0"/> px</label>
 </div>
-<div class="multi-settings-actions"><button id="multiLyricsSettingsApply" type="button">✓ Apply Font / Lyrics Settings</button><span aria-live="polite" id="multiLyricsSettingsStatus"></span></div>
-<label class="multi-lyrics-editor-label">CUSTOM LYRICS LINE BREAKS / SPACING
-            <textarea id="multiLyricsEditor" placeholder="One displayed lyric line per row." rows="5"></textarea>
+</section>
+<section class="ms-card"><h4>Layout</h4>
+<div class="multi-settings-grid">
+<label>Alignment <select id="multiLyricsAlign"><option value="left">Left</option><option selected="" value="center">Center</option><option value="right">Right</option></select>
+<span class="ms-seg" id="msAlignSeg" role="group" aria-label="Alignment"><button type="button" data-align="left">Left</button><button type="button" data-align="center">Center</button><button type="button" data-align="right">Right</button></span></label>
+<label>Line spacing <input id="multiLyricsSpacing" max="2.2" min="0.7" step="0.05" type="range" value="1.15"/><output id="multiLyricsSpacingValue">1.15</output></label>
+<label>Vertical position <input id="multiLyricsVertical" max="100" min="0" step="1" type="range" value="50"/><output id="multiLyricsVerticalValue">50%</output></label>
+</div>
+</section>
+</div>
+<div class="ms-stack">
+<section class="ms-card ms-sample-card"><h4>Preview</h4>
+<div class="ms-sample" id="msLyricsSample"><span>Great is Thy faithfulness</span><span>Morning by morning new mercies I see</span></div>
+</section>
+<section class="ms-card"><h4>Line breaks &amp; spacing</h4>
+<label class="multi-lyrics-editor-label"><span class="ms-hint">One displayed lyric line per row. Blank rows add spacing.</span>
+<textarea id="multiLyricsEditor" placeholder="One displayed lyric line per row." rows="5"></textarea>
 </label>
-<div class="multi-settings-actions"><button id="multiLyricsEditorSave" type="button">✓ Save Lyrics Formatting</button><button id="multiLyricsEditorReset" type="button">↺ Reset to Song</button><span aria-live="polite" id="multiLyricsEditorStatus"></span></div>
+<div class="multi-settings-actions"><button id="multiLyricsEditorSave" type="button">✓ Save lyrics</button><button id="multiLyricsEditorReset" type="button">↺ Reset to song</button><span aria-live="polite" id="multiLyricsEditorStatus"></span></div>
+</section>
+</div>
+</div>
+<div class="multi-settings-actions ms-apply-bar"><button id="multiLyricsSettingsApply" type="button">✓ Apply to screens</button><span aria-live="polite" id="multiLyricsSettingsStatus"></span></div>
 </div></div>
 <div class="multi-feature-panel multi-page-slides-panel" data-feature-panel="slides">
-<div class="multi-structure-head multi-feature-toggle" data-feature-toggle="slides" role="button" tabindex="0"><strong>PAGE SLIDES / SERVICE SLIDES</strong><span>Prepare slides here; the HDMI output auto-fits the text when cast.</span><b>▾</b></div><div class="multi-feature-content">
+<div class="multi-structure-head multi-feature-toggle" data-feature-toggle="slides" role="button" tabindex="0"><strong>Page &amp; service slides</strong><span>Prepare slides here; the output auto-fits the text.</span><b>▾</b></div><div class="multi-feature-content">
+<div class="ms-two">
+<section class="ms-card"><h4>Slide</h4>
 <div class="multi-slide-editor-grid">
-<input id="multiSlideTitle" placeholder="Slide title (optional)" type="text"/>
-<textarea id="multiSlideText" placeholder="Type slide words, announcement, prayer, scripture, or message..." rows="4"></textarea>
+<input id="multiSlideTitle" placeholder="Title (optional)" type="text"/>
+<textarea id="multiSlideText" placeholder="Announcement, prayer, scripture or message…" rows="6"></textarea>
 </div>
-<div class="multi-settings-actions"><button id="multiSlideAdd" type="button">＋ Add Page Slide</button><button id="multiSlideSave" type="button">✓ Save Slide</button><button id="multiSlideDelete" type="button">✕ Delete Slide</button><button id="multiSlideCast" type="button">📺 Cast Selected Slide</button><button id="multiSlideStop" type="button">■ Stop Slide</button><span aria-live="polite" id="multiSlideStatus"></span></div>
+<div class="multi-settings-actions"><button id="multiSlideAdd" type="button">＋ Add slide</button><button id="multiSlideSave" type="button">✓ Save</button><button id="multiSlideDelete" type="button">✕ Delete</button></div>
+</section>
+<section class="ms-card"><h4>Slides in this service</h4>
 <div class="multi-slide-list" id="multiSlideList"></div>
+<div class="multi-settings-actions"><button id="multiSlideCast" type="button">📺 Show selected</button><button id="multiSlideStop" type="button">■ Stop</button><span aria-live="polite" id="multiSlideStatus"></span></div>
+</section>
+</div>
 </div></div><div class="multi-feature-panel multi-bible-panel" data-feature-panel="bible">
-<div class="multi-structure-head multi-feature-toggle" data-feature-toggle="bible" role="button" tabindex="0"><strong>ONLINE BIBLE</strong><span>Search a Bible verse online — simple and verse-only.</span><b>▾</b></div><div class="multi-feature-content">
+<div class="multi-structure-head multi-feature-toggle" data-feature-toggle="bible" role="button" tabindex="0"><strong>Online Bible</strong><span>Search a verse online.</span><b>▾</b></div><div class="multi-feature-content">
+<div class="ms-two">
+<section class="ms-card"><h4>Find a verse</h4>
 <div class="multi-bible-grid v53-bible-grid">
-<label>Book<input id="multiBibleBook" list="multiBibleBookList" placeholder="Genesis" autocomplete="off" type="text"/><datalist id="multiBibleBookList"></datalist></label>
-<label>Chapter<input id="multiBibleChapter" min="1" placeholder="1" type="number" inputmode="numeric"/></label>
-<label>Verse<input id="multiBibleVerse" placeholder="1" type="text" inputmode="numeric"/></label>
+<label>Book<input id="multiBibleBook" list="multiBibleBookList" placeholder="John" autocomplete="off" type="text"/><datalist id="multiBibleBookList"></datalist></label>
+<label>Chapter<input id="multiBibleChapter" min="1" placeholder="3" type="number" inputmode="numeric"/></label>
+<label>Verse<input id="multiBibleVerse" placeholder="16" type="text" inputmode="numeric"/></label>
 <div class="multi-bible-actions">
-<button class="multi-bible-action primary" id="multiBibleSearch" type="button">⌕ FIND VERSE ONLINE</button>
-<button class="multi-bible-action secondary" id="multiBibleAdd" type="button">＋ ADD SCRIPTURE SLIDE</button>
+<button class="multi-bible-action primary" id="multiBibleSearch" type="button">⌕ Find verse</button>
+<button class="multi-bible-action secondary" id="multiBibleAdd" type="button">＋ Add as slide</button>
 </div>
 </div>
-<div class="multi-bible-results" id="multiBibleResults"></div>
+</section>
+<section class="ms-card"><h4>Result</h4>
+<div class="multi-bible-results" id="multiBibleResults"><span class="ms-hint">Enter a book, chapter and verse, then choose Find verse.</span></div>
 <textarea id="multiBibleText" aria-hidden="true" tabindex="-1" rows="1"></textarea>
+</section>
+</div>
 </div></div>
 </div>
 </div>
@@ -1631,6 +1660,9 @@ body.multi-screen-output-page #multiOutputBackground{inset:0!important}
 }
 </style>
   <script src="js/pwa.js"></script>
+<script src="js/chordio-save-status.js"></script>
+<link rel="stylesheet" href="css/chordio-song-view.css">
+<link rel="stylesheet" href="css/chordio-minimal.css">
 </body>
 
 <style id="chordio-v58-bible-and-output-fixes">
@@ -3104,6 +3136,9 @@ html,body{max-width:100%;overflow-x:hidden!important;}
 }
 </style>
 <link rel="stylesheet" href="css/chordio-multiscreen-control-v2.css">
+<link rel="stylesheet" href="css/chordio-ms-dock-v3.css">
 <script src="js/chordio-ms-extras.js" defer></script>
+<script src="js/chordio-ms-dock.js" defer></script>
+<script src="js/chordio-song-view.js" defer></script>
 <link rel="stylesheet" href="css/chordio-print.css">
 <script src="js/chordio-print.js" defer></script>

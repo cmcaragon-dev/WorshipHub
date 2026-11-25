@@ -1,0 +1,67 @@
+/* CHORDIO minimal layer (loads last): flat surfaces, quiet borders, no glow/blur,
+   plus the save-status pill and Settings extras. */
+
+/* ---- tokens: calmer palette, solid surfaces ---- */
+:root{
+  --cx-paper:#FAFAF8;--cx-surface:#FFFFFF;--cx-surface-solid:#FFFFFF;--cx-surface-2:#F5F5F2;
+  --cx-line:#E8E8E3;--cx-line-soft:#F0F0EC;--cx-line-strong:#D4D4CD;--cx-hover:#F3F3EF;
+  --cx-glow:none;--cx-shadow-sm:0 1px 2px rgba(15,23,42,.05);--cx-shadow:0 12px 36px rgba(15,23,42,.14);
+  --cx-blur:none;--cx-mesh:none;
+  --cx-accent-grad:linear-gradient(0deg,#0F766E,#0F766E);
+  --cx-number-grad:linear-gradient(0deg,currentColor,currentColor);
+}
+@media screen{
+  html[data-cx-theme="dark"]{
+    --cx-paper:#0C1018;--cx-surface:#121722;--cx-surface-solid:#121722;--cx-surface-2:#171D2A;
+    --cx-line:rgba(255,255,255,.08);--cx-line-soft:rgba(255,255,255,.05);--cx-line-strong:rgba(255,255,255,.18);
+    --cx-hover:rgba(255,255,255,.05);--cx-ring:rgba(45,212,191,.35);
+    --cx-glow:none;--cx-shadow-sm:none;--cx-shadow:0 18px 50px rgba(0,0,0,.5);
+    --cx-blur:none;--cx-mesh:none;
+    --cx-accent-grad:linear-gradient(0deg,#2DD4BF,#2DD4BF);
+    --cx-number-grad:linear-gradient(0deg,currentColor,currentColor);
+  }
+  html[data-cx-theme="dark"]{background:#0C1018}
+}
+html body{background-image:none!important}
+
+/* ---- quiet everything ---- */
+html body *,html body *::before,html body *::after{text-shadow:none!important}
+html[data-cx-motion="reduced"] *,html[data-cx-motion="reduced"] *::before,html[data-cx-motion="reduced"] *::after{
+  animation:none!important;transition:none!important;scroll-behavior:auto!important}
+
+/* ---- save status pill ---- */
+#chordioSaveStatus{position:fixed;left:50%;bottom:20px;z-index:2147482000;display:flex;align-items:center;gap:8px;
+  padding:8px 14px;border-radius:999px;font:600 13px/1 var(--cx-font,system-ui,sans-serif);
+  background:var(--cx-surface-solid,#fff);color:var(--cx-ink,#111);border:1px solid var(--cx-line-strong,#ccc);
+  box-shadow:0 6px 24px rgba(0,0,0,.22);transform:translate(-50%,14px);opacity:0;pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease;max-width:calc(100vw - 32px)}
+#chordioSaveStatus.show{opacity:1;transform:translate(-50%,0)}
+#chordioSaveStatus .css-dot{width:9px;height:9px;border-radius:50%;background:#94a3b8;flex:none}
+#chordioSaveStatus[data-state="saving"] .css-dot{background:#f59e0b;animation:cssPulse 1s ease-in-out infinite}
+#chordioSaveStatus[data-state="saved"] .css-dot{background:#16a34a}
+#chordioSaveStatus[data-state="error"]{border-color:var(--cx-danger,#b42318);color:var(--cx-danger,#b42318)}
+#chordioSaveStatus[data-state="error"] .css-dot{background:var(--cx-danger,#b42318)}
+@keyframes cssPulse{50%{opacity:.35}}
+@media print{#chordioSaveStatus{display:none!important}}
+
+/* ---- Settings extras ---- */
+.cx-extra{display:grid;gap:14px;max-width:1100px;margin:18px auto 0;padding:0 16px}
+.cx-pref .settings-card-title{margin-bottom:4px}
+.cx-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--cx-line)}
+.cx-row:first-of-type{border-top:0}
+.cx-row>div{min-width:0}
+.cx-row strong{display:block;font-size:14px;font-weight:600;color:var(--cx-ink)}
+.cx-row small{display:block;margin-top:2px;font-size:12.5px;line-height:1.4;color:var(--cx-muted)}
+.cx-seg{display:inline-flex;flex:none;border:1px solid var(--cx-line-strong);border-radius:9px;overflow:hidden}
+.cx-seg button{all:unset;cursor:pointer;padding:7px 14px;font-size:13px;color:var(--cx-ink-2)}
+.cx-seg button+button{border-left:1px solid var(--cx-line-strong)}
+.cx-seg button[aria-pressed="true"]{background:var(--cx-teal);color:var(--cx-on-accent,#fff);font-weight:600}
+.cx-seg button:focus-visible{outline:2px solid var(--cx-teal);outline-offset:-2px}
+.cx-msg{min-height:18px;margin-top:8px;font-size:12.5px;color:var(--cx-muted)}
+.cx-msg[data-type="error"]{color:var(--cx-danger)}
+.cx-msg[data-type="ok"]{color:var(--cx-teal)}
+@media (max-width:560px){.cx-row{flex-direction:column;align-items:flex-start}}
+.cx-extra .cx-pref{padding:20px 24px;background:var(--cx-surface);border:1px solid var(--cx-line);border-radius:16px;box-shadow:none}
+.cx-extra .cx-pref .settings-help{margin:2px 0 8px;font-size:13px}
+.cx-extra .settings-secondary{flex:none;white-space:nowrap}
+html body .admin-badge{display:inline-flex;align-items:center;white-space:nowrap;padding:4px 10px;line-height:1.2;overflow:visible}

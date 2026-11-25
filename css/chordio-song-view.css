@@ -1,0 +1,18 @@
+/* Song page view: Portrait (default A4 sheet) or Landscape (wide sheet, chords + lyrics in 2 columns) */
+@media screen{
+  html body #songPaper.song-landscape#songPaper{width:min(297mm,calc(100vw - 24px))!important;min-height:0!important;padding:14mm 14mm 16mm!important}
+  html body #songPaper.song-landscape #stage{
+    display:block!important;width:100%!important;max-width:100%!important;overflow:visible!important;
+    column-count:2!important;column-gap:12mm!important;column-fill:balance!important;column-rule:1px solid #e5e7eb;
+    font-size:14px!important}
+  html body #songPaper.song-landscape #stage .section{break-inside:auto!important;page-break-inside:auto!important;margin:0 0 16px!important}
+  html body #songPaper.song-landscape #stage .section-title{break-after:avoid;page-break-after:avoid}
+  html body #songPaper.song-landscape #stage .line.song-line{break-inside:avoid;width:auto!important;min-width:0!important;overflow-x:auto!important}
+  @media (max-width:760px){
+    html body #songPaper.song-landscape#songPaper{width:calc(100vw - 16px)!important;padding:12mm 8mm 16mm!important}
+    html body #songPaper.song-landscape #stage{column-count:1!important;column-rule:0}
+  }
+}
+/* view toggle button inside the song menu */
+#songViewBtn{font-size:15px}
+#songViewBtn[aria-pressed="true"]{background:#0f766e!important;color:#fff!important;border-color:#0f766e!important}

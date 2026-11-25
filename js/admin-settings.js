@@ -1,7 +1,10 @@
 import { auth, db } from "./firebase.js";
 import { songs as staticSongs } from "./initial-songs.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { collection, doc, getDoc, getDocs, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { collection, doc, getDoc, getDocs, setDoc as _setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const __track=p=>window.chordioSaveStatus?window.chordioSaveStatus.track(p):p;
+const setDoc=(...a)=>__track(_setDoc(...a));
+
 
 export const ADMIN_EMAIL = "cmcaragon@gmail.com";
 const ADMIN_EMAILS = new Set(["cmcaragon@gmail.com", "jfcm.s07@gmail.com"]);

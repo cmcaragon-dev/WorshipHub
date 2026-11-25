@@ -1,0 +1,89 @@
+/* Multi-Screen dock v3: Lyrics display, Slides, Online Bible — calm cards, one clear action per card */
+:root{--msd-r:12px}
+html body #multiScreenControl#multiScreenControl .multi-feature-tabs{padding:8px 14px 0!important;gap:2px!important;border-bottom:1px solid var(--cx-line)!important}
+html body #multiScreenControl#multiScreenControl .multi-feature-tab{
+  height:42px!important;border-radius:0!important;padding:0 16px!important;background:transparent!important;border:0!important;
+  border-bottom:2px solid transparent!important;margin-bottom:-1px;box-shadow:none!important;color:var(--cx-muted)!important;font-weight:600!important}
+html body #multiScreenControl#multiScreenControl .multi-feature-tab::before{display:none!important}
+html body #multiScreenControl#multiScreenControl .multi-feature-tab:hover{color:var(--cx-ink)!important;background:transparent!important}
+html body #multiScreenControl#multiScreenControl .multi-feature-tab.active{
+  color:var(--cx-ink)!important;background:transparent!important;border-bottom-color:var(--cx-teal)!important;box-shadow:none!important}
+
+html body #multiScreenControl#multiScreenControl .multi-feature-panel.tab-active{padding:16px 16px 18px!important}
+html body #multiScreenControl#multiScreenControl .ms-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+html body #multiScreenControl#multiScreenControl .ms-stack{display:grid;gap:14px;min-width:0}
+html body #multiScreenControl#multiScreenControl .ms-card{
+  min-width:0;padding:16px!important;border:1px solid var(--cx-line);border-radius:var(--msd-r);background:var(--cx-surface-2);box-shadow:none}
+html body #multiScreenControl#multiScreenControl .ms-card h4{margin:0 0 12px;font:650 13px var(--cx-font);color:var(--cx-ink);letter-spacing:0;text-transform:none}
+html body #multiScreenControl#multiScreenControl .ms-hint{display:block;margin:0 0 8px;font:400 12.5px/1.4 var(--cx-font);color:var(--cx-muted)}
+html body #multiScreenControl#multiScreenControl .ms-card .multi-settings-grid,
+html body #multiScreenControl#multiScreenControl .ms-card .multi-bible-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))!important;gap:12px!important;margin:0 0 12px!important}
+html body #multiScreenControl#multiScreenControl .ms-card .multi-settings-grid:last-child{margin-bottom:0!important}
+html body #multiScreenControl#multiScreenControl .ms-card .multi-font-toolbar{margin:0!important}
+
+/* stepper */
+html body #multiScreenControl#multiScreenControl .ms-step{display:flex!important;align-items:stretch;border:1px solid var(--cx-line-strong);border-radius:11px;overflow:hidden;background:var(--cx-hover)}
+html body #multiScreenControl#multiScreenControl .ms-step button{all:unset;cursor:pointer;width:38px;text-align:center;font:600 16px/38px var(--cx-font);color:var(--cx-ink)}
+html body #multiScreenControl#multiScreenControl .ms-step button:hover{background:var(--cx-line)}
+html body #multiScreenControl#multiScreenControl .ms-step input{border:0!important;border-radius:0!important;background:transparent!important;text-align:center;min-width:0;width:100%;border-left:1px solid var(--cx-line-strong)!important;border-right:1px solid var(--cx-line-strong)!important}
+html body #multiScreenControl#multiScreenControl .ms-step+output{display:none!important}
+
+/* alignment segmented control (select kept for the script, hidden) */
+html body #multiScreenControl#multiScreenControl #multiLyricsAlign{display:none!important}
+html body #multiScreenControl#multiScreenControl .ms-seg{display:inline-flex;border:1px solid var(--cx-line-strong);border-radius:11px;overflow:hidden;width:max-content;max-width:100%}
+html body #multiScreenControl#multiScreenControl .ms-seg button{all:unset;cursor:pointer;padding:0 14px;height:38px;line-height:38px;font:600 13px/38px var(--cx-font);color:var(--cx-ink-2)}
+html body #multiScreenControl#multiScreenControl .ms-seg button+button{border-left:1px solid var(--cx-line-strong)}
+html body #multiScreenControl#multiScreenControl .ms-seg button[aria-pressed="true"]{background:var(--cx-teal);color:var(--cx-on-accent,#fff)}
+html body #multiScreenControl#multiScreenControl .ms-seg button:focus-visible{outline:2px solid var(--cx-teal);outline-offset:-2px}
+
+/* sample */
+html body #multiScreenControl#multiScreenControl .ms-sample{
+  display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:150px;padding:18px;border-radius:10px;overflow:hidden;
+  background:#0A0E16;color:#fff;text-align:center;font-family:Arial,sans-serif;line-height:1.15;border:1px solid var(--cx-line)}
+html body #multiScreenControl#multiScreenControl .ms-sample span{display:block;overflow-wrap:anywhere}
+
+/* editor + lists */
+html body #multiScreenControl#multiScreenControl .ms-card textarea{width:100%;box-sizing:border-box}
+html body #multiScreenControl#multiScreenControl .ms-card .multi-slide-editor-grid{display:grid!important;grid-template-columns:1fr!important;gap:10px!important}
+html body #multiScreenControl#multiScreenControl .ms-card .multi-settings-actions{margin:12px 0 0!important}
+html body #multiScreenControl#multiScreenControl .ms-apply-bar{justify-content:flex-end;margin:14px 0 0!important}
+html body #multiScreenControl#multiScreenControl .multi-slide-list{display:grid!important;gap:6px;max-height:240px;overflow:auto;margin:0!important}
+html body #multiScreenControl#multiScreenControl .multi-slide-row{
+  display:grid!important;grid-template-columns:28px 1fr;grid-template-rows:auto auto;column-gap:10px;padding:10px 12px!important;cursor:pointer;
+  border:1px solid var(--cx-line)!important;border-radius:10px!important;background:var(--cx-surface)!important;color:var(--cx-ink)!important}
+html body #multiScreenControl#multiScreenControl .multi-slide-row .multi-slide-number{grid-row:1/3;align-self:center;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:600 12px var(--cx-font);background:var(--cx-hover);color:var(--cx-ink-2)}
+html body #multiScreenControl#multiScreenControl .multi-slide-row strong{font:600 13px var(--cx-font);color:var(--cx-ink)}
+html body #multiScreenControl#multiScreenControl .multi-slide-row span:last-child{font:400 12px var(--cx-font);color:var(--cx-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html body #multiScreenControl#multiScreenControl .multi-slide-row.active{border-color:var(--cx-teal)!important;background:var(--cx-teal-soft)!important}
+
+/* Bible */
+html body #multiScreenControl#multiScreenControl .ms-card .multi-bible-grid{grid-template-columns:2fr 1fr 1fr!important}
+html body #multiScreenControl#multiScreenControl .multi-bible-actions{grid-column:1/-1!important;display:flex!important;gap:8px;flex-wrap:wrap;margin:0!important}
+html body #multiScreenControl#multiScreenControl .multi-bible-action.primary,
+html body #multiScreenControl#multiScreenControl #multiBibleSearch{background:var(--cx-teal)!important;color:var(--cx-on-accent,#fff)!important;border-color:var(--cx-teal)!important;transform:none!important}
+html body #multiScreenControl#multiScreenControl .multi-bible-action.secondary,
+html body #multiScreenControl#multiScreenControl #multiBibleAdd{background:transparent!important;color:var(--cx-ink)!important;border:1px solid var(--cx-line-strong)!important;transform:none!important}
+html body #multiScreenControl#multiScreenControl .multi-bible-results{min-height:120px;margin:0!important;color:var(--cx-ink)}
+html body #multiScreenControl#multiScreenControl .multi-bible-result{
+  background:transparent!important;color:var(--cx-ink)!important;border:0!important;border-left:3px solid var(--cx-teal)!important;border-radius:0!important;
+  padding:2px 0 2px 14px!important;font:400 16px/1.6 var(--cx-serif)!important}
+html body #multiScreenControl#multiScreenControl #multiBibleText{display:none!important}
+
+@media (max-width:900px){
+  html body #multiScreenControl#multiScreenControl .ms-two{grid-template-columns:1fr}
+  html body #multiScreenControl#multiScreenControl .ms-card .multi-bible-grid{grid-template-columns:1fr 1fr!important}
+  html body #multiScreenControl#multiScreenControl .ms-card .multi-bible-grid label:first-child{grid-column:1/-1}
+  html body #multiScreenControl#multiScreenControl .ms-apply-bar{justify-content:stretch}
+  html body #multiScreenControl#multiScreenControl .ms-apply-bar button{flex:1}
+}
+
+/* alignment + control polish */
+html body #multiScreenControl#multiScreenControl .ms-card label{text-align:left!important;align-items:flex-start!important}
+html body #multiScreenControl#multiScreenControl .ms-card label>span:not(.ms-step):not(.ms-seg):not(.ms-hint){text-align:left}
+html body #multiScreenControl#multiScreenControl .ms-card input[type="range"]{accent-color:var(--cx-teal)!important;height:auto!important;min-height:0!important;padding:0!important;background:transparent!important;border:0!important}
+html body #multiScreenControl#multiScreenControl .ms-card .multi-color-picker-wrap{height:40px}
+html body #multiScreenControl#multiScreenControl .ms-card .multi-color-picker-wrap input[type="color"]{width:48px!important;height:36px!important;min-height:0!important;padding:2px!important;flex:none}
+html body #multiScreenControl#multiScreenControl .ms-card .multi-color-picker-wrap span{color:var(--cx-ink-2)!important}
+html body #multiScreenControl#multiScreenControl .ms-card .multi-bible-actions .multi-bible-action{width:auto!important;flex:0 0 auto;grid-column:auto!important}
+html body #multiScreenControl#multiScreenControl .ms-card .multi-font-toolbar label{flex-direction:row!important;align-items:center!important}
+html body #multiScreenControl#multiScreenControl .ms-step input{background:transparent!important;border-radius:0!important;height:38px;min-height:0!important}

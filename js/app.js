@@ -2588,9 +2588,15 @@ async function renameService(id){
         return;
     }
 
-    service.name = newName;
+    const previousName = service.name;
+    service.name = String(newName).trim() || previousName;
 
-    await saveServicesCloud();
+    try {
+        await saveServicesCloud();
+    } catch (error) {
+        service.name = previousName;
+        alert("Unable to rename the service. Please try again.");
+    }
 
     renderServices();
 
@@ -2625,12 +2631,17 @@ async function removeSongFromService(serviceId, songIndex){
 
     }
 
-    service.songs.splice(
+    const removedSongs = service.songs.splice(
         songIndex,
         1
     );
 
-    await saveServicesCloud();
+    try {
+        await saveServicesCloud();
+    } catch (error) {
+        service.songs.splice(songIndex, 0, ...removedSongs);
+        alert("Unable to remove the song. Please try again.");
+    }
 
     renderServices();
 

@@ -293,10 +293,21 @@
     const draft=Array.isArray(m?._draftSongs)?m._draftSongs:[];
     if(!draft.length)return toast('Add at least one song','error');
     const songsOut=cloneServiceSongs(draft).map(s=>({...s,updatedAt:new Date().toISOString()}));
+    const btn=$('#v63SaveService',m);
+    if(btn&&btn.disabled)return; // already saving
+    const idleLabel=btn?btn.textContent:'';
+    if(btn){btn.disabled=true;btn.textContent='Saving…';}
     let ok=false;
-    if(editService && typeof window.chordioUpdateService==='function') ok=await window.chordioUpdateService(editService.id,{name:title,date,songs:songsOut});
-    else if(typeof window.chordioCreateService==='function') ok=await window.chordioCreateService({name:title,date,songs:songsOut});
-    if(ok){m.classList.remove('show');toast(editService?'Service updated successfully':'Service saved successfully');}
+    try{
+      if(editService && typeof window.chordioUpdateService==='function') ok=await window.chordioUpdateService(editService.id,{name:title,date,songs:songsOut});
+      else if(typeof window.chordioCreateService==='function') ok=await window.chordioCreateService({name:title,date,songs:songsOut});
+    }finally{
+      if(btn){btn.disabled=false;btn.textContent=idleLabel;}
+    }
+    if(ok){
+      if(btn){btn.textContent='Saved ✓';setTimeout(()=>{btn.textContent=idleLabel;},900);}
+      m.classList.remove('show');toast(editService?'Service updated successfully':'Service saved successfully');
+    }
   }
   function openEditService(service){if(service)openNewService(service);}
 

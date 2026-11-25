@@ -17,10 +17,14 @@ import {
     collection,
     doc,
     getDocs,
-    setDoc,
-    deleteDoc,
+    setDoc as _setDoc,
+    deleteDoc as _deleteDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const __track=p=>window.chordioSaveStatus?window.chordioSaveStatus.track(p):p;
+const setDoc=(...a)=>__track(_setDoc(...a));
+const deleteDoc=(...a)=>__track(_deleteDoc(...a));
+
 
 
 // =====================================

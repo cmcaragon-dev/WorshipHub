@@ -4,7 +4,11 @@ import { songs } from "./initial-songs.js";
 import { auth, db } from "./firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { canAddSongs, canEditSongs, isAdmin, ADMIN_EMAIL } from "./admin-settings.js";
-import { collection, doc, setDoc, deleteDoc, serverTimestamp, getDoc, getDocs, collectionGroup, writeBatch } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { collection, doc, setDoc as _setDoc, deleteDoc as _deleteDoc, serverTimestamp, getDoc, getDocs, collectionGroup, writeBatch } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const __track=p=>window.chordioSaveStatus?window.chordioSaveStatus.track(p):p;
+const setDoc=(...a)=>__track(_setDoc(...a));
+const deleteDoc=(...a)=>__track(_deleteDoc(...a));
+
 
 const STORAGE_KEY = "worshipHubCustomSongs";
 const DELETED_SONG_TITLES_KEY = "worshipHubDeletedSongTitles";

@@ -2,7 +2,10 @@
 
 import { auth, db } from "./firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { doc, getDoc, setDoc, serverTimestamp, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { doc, getDoc, setDoc as _setDoc, serverTimestamp, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const __track=p=>window.chordioSaveStatus?window.chordioSaveStatus.track(p):p;
+const setDoc=(...a)=>__track(_setDoc(...a));
+
 import { songs as worshipHubSongs } from "./initial-songs.js";
 
 const SHARP = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];

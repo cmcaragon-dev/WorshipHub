@@ -31,6 +31,7 @@
     return setTheme(window.chordioGetTheme() === 'dark' ? 'light' : 'dark');
   };
 
+  try { root.setAttribute('data-cx-motion', localStorage.getItem('chordioMotion') === 'reduced' ? 'reduced' : 'full'); } catch (_) {}
   paint(read());
   // The <meta name="theme-color"> tag is parsed after this script runs, so sync it once more.
   document.addEventListener('DOMContentLoaded', function () { paint(read()); });
