@@ -87,3 +87,40 @@ html body #multiScreenControl#multiScreenControl .ms-card .multi-color-picker-wr
 html body #multiScreenControl#multiScreenControl .ms-card .multi-bible-actions .multi-bible-action{width:auto!important;flex:0 0 auto;grid-column:auto!important}
 html body #multiScreenControl#multiScreenControl .ms-card .multi-font-toolbar label{flex-direction:row!important;align-items:center!important}
 html body #multiScreenControl#multiScreenControl .ms-step input{background:transparent!important;border-radius:0!important;height:38px;min-height:0!important}
+
+/* Backgrounds gallery */
+html body #multiScreenControl#multiScreenControl .ms-gallery-bar{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;margin:0 0 14px}
+html body #multiScreenControl#multiScreenControl .ms-gallery-hint{flex:1 1 260px;margin:0}
+html body #multiScreenControl#multiScreenControl .ms-upload{display:inline-flex!important;flex-direction:row!important;align-items:center;height:38px;padding:0 14px;border-radius:11px;cursor:pointer;
+  background:var(--cx-teal);color:var(--cx-on-accent,#fff)!important;font:600 13px var(--cx-font)!important}
+html body #multiScreenControl#multiScreenControl .ms-link{all:unset;cursor:pointer;font:600 13px var(--cx-font);color:var(--cx-ink-2);text-decoration:underline;text-underline-offset:3px}
+html body #multiScreenControl#multiScreenControl .ms-link:hover{color:var(--cx-teal)}
+html body #multiScreenControl#multiScreenControl .ms-bg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;max-height:340px;overflow:auto;padding:2px}
+html body #multiScreenControl#multiScreenControl .bg-tile{display:flex;flex-direction:column;gap:6px;cursor:grab;border-radius:10px;outline:0}
+html body #multiScreenControl#multiScreenControl .bg-tile:active{cursor:grabbing}
+html body #multiScreenControl#multiScreenControl .bg-thumb{position:relative;display:block;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#0A0E16;border:2px solid transparent;transition:border-color .15s}
+html body #multiScreenControl#multiScreenControl .bg-thumb img,
+html body #multiScreenControl#multiScreenControl .bg-thumb video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+html body #multiScreenControl#multiScreenControl .bg-thumb.bg-missing{display:grid;place-items:center;padding:8px;font:500 11px var(--cx-font);color:var(--cx-muted);text-align:center}
+html body #multiScreenControl#multiScreenControl .bg-kind{position:absolute;right:6px;top:6px;padding:2px 7px;border-radius:999px;font:600 10px var(--cx-font);background:rgba(0,0,0,.65);color:#fff}
+html body #multiScreenControl#multiScreenControl .bg-name{font:500 12px var(--cx-font);color:var(--cx-ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html body #multiScreenControl#multiScreenControl .bg-tile:hover .bg-thumb,
+html body #multiScreenControl#multiScreenControl .bg-tile:focus-visible .bg-thumb{border-color:var(--cx-line-strong)}
+html body #multiScreenControl#multiScreenControl .bg-tile.active .bg-thumb{border-color:var(--cx-teal)}
+html body #multiScreenControl#multiScreenControl .bg-tile-common .bg-thumb{display:grid;place-items:center;background:transparent;border:2px dashed var(--cx-line-strong)}
+html body #multiScreenControl#multiScreenControl .bg-tile-common .bg-thumb i{font:500 12px var(--cx-font);font-style:normal;color:var(--cx-muted)}
+/* drop target feedback on service song rows */
+html body #multiScreenControl#multiScreenControl.show .multi-service-song.bg-drop{outline:2px solid var(--cx-teal);outline-offset:-2px;background:var(--cx-teal-soft)!important}
+html body.chordio-bg-dragging #multiScreenControl#multiScreenControl .multi-service-song{box-shadow:inset 0 0 0 1px var(--cx-line-strong)}
+html body #multiScreenControl#multiScreenControl .multi-service-song.has-bg::after{content:"▣";position:absolute;right:46px;top:8px;font-size:12px;color:var(--cx-teal);opacity:.9}
+html body #multiScreenControl#multiScreenControl .multi-service-song{position:relative}
+/* the old Background Settings button now lives inside the Backgrounds tab */
+html body #multiScreenControl#multiScreenControl #multiBackgroundSettingsToggle{display:none!important}
+html body #multiScreenControl#multiScreenControl .ms-drop-strip{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 14px;padding:10px 12px;border:1px dashed var(--cx-line-strong);border-radius:12px}
+html body #multiScreenControl#multiScreenControl .ms-drop-label{font:600 12.5px var(--cx-font);color:var(--cx-muted);margin-right:4px}
+html body #multiScreenControl#multiScreenControl .ms-drop-chip{padding:7px 12px;border-radius:999px;border:1px solid var(--cx-line-strong);background:var(--cx-surface);color:var(--cx-ink);font:500 13px var(--cx-font);white-space:pre;max-width:260px;overflow:hidden;text-overflow:ellipsis;transition:background .12s,border-color .12s}
+html body #multiScreenControl#multiScreenControl .ms-drop-chip.active{border-color:var(--cx-teal)}
+html body #multiScreenControl#multiScreenControl .ms-drop-chip.has-bg::after{content:"  ▣";color:var(--cx-teal)}
+html body #multiScreenControl#multiScreenControl .ms-drop-chip.bg-drop{background:var(--cx-teal);color:var(--cx-on-accent,#fff);border-color:var(--cx-teal)}
+html body.chordio-bg-dragging #multiScreenControl#multiScreenControl .ms-drop-strip{border-color:var(--cx-teal)}
+html body #multiScreenControl#multiScreenControl .ms-upload,html body #multiScreenControl#multiScreenControl .ms-upload *{color:var(--cx-on-accent,#fff)!important;opacity:1!important}

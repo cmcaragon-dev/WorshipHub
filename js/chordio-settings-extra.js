@@ -32,7 +32,7 @@ function prefsHtml() {
         <p class="settings-help">Saved on this device and applied across every page.</p>
         <div class="cx-row"><div><strong>Appearance</strong><small>Night is easier in dim sanctuaries; Day suits bright rooms.</small></div>${seg("theme", theme, [["dark", "Night"], ["light", "Day"]])}</div>
         <div class="cx-row"><div><strong>Print orientation</strong><small>Default for the Print button on songs and Service Planner.</small></div>${seg("printOrient", lsGet("chordioPrintOrient", "portrait"), [["portrait", "Portrait"], ["landscape", "Landscape"]])}</div>
-        <div class="cx-row"><div><strong>Print columns</strong><small>Split each printed page into two columns or keep one.</small></div>${seg("printCols", lsGet("chordioPrintCols", "2"), [["1", "1"], ["2", "2"]])}</div>
+        <div class="cx-row"><div><strong>Print columns</strong><small>Print each page in 1, 2 or 3 columns.</small></div>${seg("printCols", lsGet("chordioPrintCols", "2"), [["1", "1"], ["2", "2"], ["3", "3"]])}</div>
         <div class="cx-row"><div><strong>Print text size</strong><small>Long lines still shrink automatically to fit the page.</small></div>${seg("printSize", lsGet("chordioPrintSize", "M"), [["S", "Small"], ["M", "Medium"], ["L", "Large"]])}</div>
         <div class="cx-row"><div><strong>Reduce motion</strong><small>Turns off animations and transitions.</small></div>${seg("motion", lsGet("chordioMotion", "full"), [["full", "Off"], ["reduced", "On"]])}</div>
     </section>`;

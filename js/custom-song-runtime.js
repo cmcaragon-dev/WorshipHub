@@ -1511,6 +1511,115 @@ async function openChordioBackgroundLibrary(){
     for(const item of metas){const card=await addCard(item,true);if(card)(chordioIsVideoType(item.type)?gridVid:gridImg).appendChild(card);}
     modal.classList.add("show");modal.setAttribute("aria-hidden","false");
 }
+
+/* ---------- Backgrounds gallery tab: browse all backgrounds, drag onto a service song ---------- */
+const chordioBgThumbCache=new Map();
+function chordioBgResolve(value){
+    const v=String(value||"");
+    if(v.startsWith("idb://")){const m=chordioGetUploadedBackgroundMeta().find(x=>chordioUploadedBackgroundUrl(x.id)===v);return {type:m&&chordioIsVideoType(m.type)?"video":"image",url:v};}
+    return {type:/\.(mp4|webm|ogg|mov|m4v)$/i.test(v)?"video":"image",url:chordioCmgBackgroundUrl(v)};
+}
+function chordioBgItems(){
+    const items=CHORDIO_CMG_BACKGROUNDS.map(n=>({value:n,name:chordioBackgroundDisplayName(n),kind:/\.(mp4|webm|ogg|mov|m4v)$/i.test(n)?"video":"image",upload:false}));
+    chordioGetUploadedBackgroundMeta().forEach(m=>items.push({value:chordioUploadedBackgroundUrl(m.id),name:String(m.name||"Upload").replace(/\.[^.]+$/,""),kind:chordioIsVideoType(m.type)?"video":"image",upload:true}));
+    return items;
+}
+async function chordioBgThumbUrl(item){
+    if(!item.upload)return chordioCmgBackgroundUrl(item.value);
+    if(chordioBgThumbCache.has(item.value))return chordioBgThumbCache.get(item.value);
+    const rec=await chordioGetUploadedBackground(item.value.slice(6));
+    const url=rec?.blob?URL.createObjectURL(rec.blob):"";
+    chordioBgThumbCache.set(item.value,url);return url;
+}
+function renderChordioBgSongStrip(){
+    const strip=document.getElementById("chordioBgSongStrip");if(!strip)return;
+    strip.innerHTML="";
+    const label=document.createElement("span");label.className="ms-drop-label";label.textContent="Drop on a song:";strip.appendChild(label);
+    const queue=multiScreenQueue();let shown=0;
+    queue.forEach((entry,i)=>{
+        if(entry.type!=="song"||!entry.item)return;shown++;
+        const chip=document.createElement("div");chip.className="ms-drop-chip"+(getMultiScreenSongBackground(entry.item)?" has-bg":"")+(i===multiScreenQueueIndex?" active":"");
+        chip.dataset.queueIndex=String(i);chip.textContent=`${String(i+1).padStart(2,"0")}  ${entry.item.title||"Untitled"}`;
+        strip.appendChild(chip);
+    });
+    if(!shown){const em=document.createElement("span");em.className="ms-hint";em.textContent="Open a Service Planner to give its songs their own backgrounds.";strip.appendChild(em);}
+}
+async function renderChordioBgGallery(){
+    renderChordioBgSongStrip();
+    const grid=document.getElementById("chordioBgGalleryGrid");if(!grid)return;
+    const filter=grid.dataset.filter||"all";
+    document.querySelectorAll("[data-bg-filter]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.bgFilter===filter)));
+    grid.innerHTML="";
+    const none=document.createElement("div");none.className="bg-tile bg-tile-common";none.draggable=true;none.dataset.value="__common__";
+    none.innerHTML='<span class="bg-thumb"><i>Use common</i></span><span class="bg-name">Common background</span>';
+    none.addEventListener("dragstart",e=>{e.dataTransfer.effectAllowed="copy";e.dataTransfer.setData("application/x-chordio-bg","__common__");});
+    none.title="Drag onto a song to remove its own background";grid.appendChild(none);
+    const items=chordioBgItems().filter(x=>filter==="all"||x.kind===(filter==="videos"?"video":"image"));
+    for(const item of items){
+        const tile=document.createElement("div");tile.className="bg-tile";tile.draggable=true;tile.dataset.value=item.value;tile.tabIndex=0;
+        const thumb=document.createElement("span");thumb.className="bg-thumb";
+        const url=await chordioBgThumbUrl(item);
+        if(url){
+            if(item.kind==="video"){const v=document.createElement("video");v.src=url;v.muted=true;v.loop=true;v.playsInline=true;v.preload="metadata";v.draggable=false;tile.addEventListener("mouseenter",()=>void v.play().catch(()=>{}));tile.addEventListener("mouseleave",()=>v.pause());thumb.appendChild(v);}
+            else{const img=document.createElement("img");img.alt="";img.loading="lazy";img.draggable=false;img.src=url;img.onerror=()=>{img.remove();thumb.classList.add("bg-missing");thumb.textContent=item.name;};thumb.appendChild(img);}
+        }
+        if(item.kind==="video"){const tag=document.createElement("b");tag.className="bg-kind";tag.textContent="Video";thumb.appendChild(tag);}
+        const name=document.createElement("span");name.className="bg-name";name.textContent=item.name;
+        tile.append(thumb,name);tile.title="Click to use on all screens, or drag onto a song in the service list";
+        tile.addEventListener("dragstart",e=>{e.dataTransfer.effectAllowed="copy";e.dataTransfer.setData("application/x-chordio-bg",item.value);document.body.classList.add("chordio-bg-dragging");});
+        tile.addEventListener("dragend",()=>document.body.classList.remove("chordio-bg-dragging"));
+        const use=async()=>{const r=chordioBgResolve(item.value);await setMultiScreenBackground(r.type,r.url,false);setMultiSlideStatus("Background applied to all screens");grid.querySelectorAll(".bg-tile.active").forEach(t=>t.classList.remove("active"));tile.classList.add("active");};
+        tile.addEventListener("click",use);tile.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();use();}});
+        grid.appendChild(tile);
+    }
+    if(!items.length){const em=document.createElement("div");em.className="multi-preview-empty";em.textContent=filter==="videos"?"No videos yet. Use Upload to add one.":"No backgrounds yet.";grid.appendChild(em);}
+}
+async function chordioAssignBackground(value,queueIndex){
+    const entry=multiScreenQueue()[queueIndex];
+    if(!entry||entry.type!=="song"||!entry.item){setMultiSlideStatus("Drop a background on a song, not a presentation");return false;}
+    const item=entry.item,key=multiScreenSongBackgroundKey(item),clear=value==="__common__";
+    let bg=null;
+    if(clear){delete multiScreenSongBackgrounds[key];}
+    else{const r=chordioBgResolve(value);bg={type:r.type,url:r.url};multiScreenSongBackgrounds[key]=bg;}
+    try{localStorage.setItem("chordioMultiScreenSongBackgrounds",JSON.stringify(multiScreenSongBackgrounds));}catch(_){}
+    const serviceId=localStorage.getItem("currentServiceId");
+    if(serviceId&&service){
+        const all={...(service.multiScreenSongBackgrounds||{}),[key]:bg};
+        service={...service,multiScreenSongBackgrounds:all};
+        try{localStorage.setItem("currentServiceSnapshot",JSON.stringify(service));}catch(_){}
+        if(auth.currentUser){try{await setDoc(doc(db,"users",auth.currentUser.uid,"services",String(serviceId)),{multiScreenSongBackgrounds:all,updatedAt:serverTimestamp()},{merge:true});}catch(error){console.warn("Unable to save song background:",error);setMultiSlideStatus("Couldn't save the background");return false;}}
+    }
+    renderMultiBackgroundControls();renderMultiScreenPreviews();renderMultiServiceSongs();renderChordioBgSongStrip();
+    multiScreenBroadcast({background:{...multiScreenBackground},songBackground:getMultiScreenSongBackground(song)});
+    setMultiSlideStatus(clear?`Background removed from "${item.title||"song"}"`:`Background set for "${item.title||"song"}"`);
+    return true;
+}
+function initChordioBgGallery(){
+    // Drop targets: the real service list AND the song strip inside the Backgrounds tab
+    // (the strip stays visible next to the thumbnails, so no scrolling is needed while dragging).
+    [["multiServiceSongList",".multi-service-song"],["chordioBgSongStrip",".ms-drop-chip"]].forEach(([id,sel])=>{
+        const list=document.getElementById(id);
+        if(!list||list.dataset.bgDrop==="1")return;
+        list.dataset.bgDrop="1";
+        const isBg=e=>Array.from(e.dataTransfer?.types||[]).includes("application/x-chordio-bg");
+        list.addEventListener("dragover",e=>{if(!isBg(e))return;e.preventDefault();e.stopPropagation();e.dataTransfer.dropEffect="copy";list.querySelectorAll(".bg-drop").forEach(r=>r.classList.remove("bg-drop"));e.target.closest?.(sel)?.classList.add("bg-drop");},true);
+        list.addEventListener("dragleave",e=>{if(!isBg(e))return;e.target.closest?.(sel)?.classList.remove("bg-drop");},true);
+        list.addEventListener("drop",async e=>{if(!isBg(e))return;e.preventDefault();e.stopPropagation();const row=e.target.closest?.(sel);list.querySelectorAll(".bg-drop").forEach(r=>r.classList.remove("bg-drop"));document.body.classList.remove("chordio-bg-dragging");if(!row)return;await chordioAssignBackground(e.dataTransfer.getData("application/x-chordio-bg"),Number(row.dataset.queueIndex));},true);
+    });
+    const tab=document.querySelector('[data-feature-tab="gallery"]');
+    if(tab&&tab.dataset.galleryBound!=="1"){
+        tab.dataset.galleryBound="1";
+        tab.addEventListener("click",()=>void renderChordioBgGallery());
+        document.querySelectorAll("[data-bg-filter]").forEach(b=>b.addEventListener("click",()=>{const g=document.getElementById("chordioBgGalleryGrid");if(g){g.dataset.filter=b.dataset.bgFilter;void renderChordioBgGallery();}}));
+        document.getElementById("chordioBgGalleryUpload")?.addEventListener("change",async e=>{
+            const files=Array.from(e.target.files||[]);let n=0;
+            for(const f of files){if(!/^(image|video)\//.test(f.type))continue;try{await chordioSaveUploadedBackground(f);n++;}catch(err){console.warn("Background upload failed",err);}}
+            e.target.value="";await initCmgBackgroundLibrary();await renderChordioBgGallery();
+            window.chordioSaveStatus?.flash(n?`${n} background${n===1?"":"s"} added`:"No supported files",n?"saved":"error");
+        });
+        document.getElementById("chordioBgAdvanced")?.addEventListener("click",()=>document.getElementById("multiBackgroundSettingsToggle")?.click());
+    }
+}
 function closeChordioBackgroundLibrary(){const modal=document.getElementById("chordioBackgroundLibraryModal");if(modal){modal.classList.remove("show");modal.setAttribute("aria-hidden","true");}}
 async function useSelectedCmgBackground(){
     const value=String(document.getElementById("multiCmgBackground")?.value||"").trim();
@@ -2018,6 +2127,7 @@ function renderMultiServiceSongs(){
         b.className="multi-service-song"+(i===multiScreenQueueIndex?" active":"")+(entry.type==="presentation"?" presentation-item":"");
         b.dataset.queueIndex=String(i);
         const isPresentation=entry.type==="presentation";
+        if(entry.type!=="presentation"&&getMultiScreenSongBackground(item))b.classList.add("has-bg");
         b.innerHTML=`<span class="song-drag" title="Drag to reorder">☷</span><span class="song-num">${String(i+1).padStart(2,"0")}</span><span class="song-name">${isPresentation?"📄 ":""}${esc(item.title||"Untitled")}</span><span class="song-meta">${isPresentation?"PRESENTATION":"KEY: "+esc(item.serviceKey||item.key||item.originalKey||"—")+(item.presentationNote?` <span class="song-note-inline">| ${esc(item.presentationNote)}</span>`:"")}</span>${isPresentation?`<span class="song-note">${esc(String(item.presentationSlide?.text||"").replace(/\s+/g," ").slice(0,70))}</span>`:""}${isPresentation?`<button type="button" class="multi-service-presentation-delete" title="Remove this presentation" aria-label="Remove presentation">✕</button>`:`<button type="button" class="multi-service-song-edit" title="Edit this song" aria-label="Edit ${esc(item.title||"song")}">✎</button><button type="button" class="multi-service-song-delete" title="Remove this song from the Service Planner" aria-label="Remove ${esc(item.title||"song")} from Service Planner">✕</button>`}`;
         b.addEventListener("click",async e=>{
             if(e.target.closest("button"))return;
@@ -2308,6 +2418,7 @@ function initMultiFeatureAccordions(){
         tab.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();tab.click();}});
     });
     root.querySelectorAll(".multi-feature-panel").forEach(panel=>panel.classList.remove("tab-active"));
+    initChordioBgGallery();
 }
 function renderMultiScreenControl(){
     const title=document.getElementById("multiServiceSongTitle");

@@ -1259,6 +1259,7 @@ html, body { max-width:100%; }
 <button type="button" class="multi-feature-tab" data-feature-tab="lyrics" role="tab">Lyrics display</button>
 <button type="button" class="multi-feature-tab" data-feature-tab="slides" role="tab">Page &amp; service slides</button>
 <button type="button" class="multi-feature-tab" data-feature-tab="bible" role="tab">Online Bible</button>
+<button type="button" class="multi-feature-tab" data-feature-tab="gallery" role="tab">Backgrounds</button>
 </div><div class="multi-lyrics-settings multi-feature-panel" data-feature-panel="lyrics">
 <div class="multi-settings-title multi-feature-toggle" data-feature-toggle="lyrics" role="button" tabindex="0"><strong>Lyrics display</strong><span>Font, size, color and layout for the screens.</span><b>▾</b></div>
 <div class="multi-feature-content">
@@ -1336,6 +1337,17 @@ html, body { max-width:100%; }
 <textarea id="multiBibleText" aria-hidden="true" tabindex="-1" rows="1"></textarea>
 </section>
 </div>
+</div></div>
+<div class="multi-feature-panel multi-gallery-panel" data-feature-panel="gallery">
+<div class="multi-structure-head multi-feature-toggle" data-feature-toggle="gallery" role="button" tabindex="0"><strong>Backgrounds</strong><span>Drag a background onto a song.</span><b>▾</b></div><div class="multi-feature-content">
+<div class="ms-gallery-bar">
+<span class="ms-seg" role="group" aria-label="Show"><button type="button" data-bg-filter="all" aria-pressed="true">All</button><button type="button" data-bg-filter="images" aria-pressed="false">Images</button><button type="button" data-bg-filter="videos" aria-pressed="false">Videos</button></span>
+<span class="ms-hint ms-gallery-hint">Click to use on all screens. Drag onto a song in the service list to set that song's background.</span>
+<label class="ms-upload">＋ Upload<input id="chordioBgGalleryUpload" type="file" accept="image/*,video/*" multiple hidden></label>
+<button type="button" id="chordioBgAdvanced" class="ms-link">Paste a link or scope…</button>
+</div>
+<div class="ms-drop-strip" id="chordioBgSongStrip" aria-label="Songs in this service"></div>
+<div class="ms-bg-grid" id="chordioBgGalleryGrid" data-filter="all"></div>
 </div></div>
 </div>
 </div>

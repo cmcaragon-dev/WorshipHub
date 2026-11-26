@@ -8,7 +8,7 @@
   --cx-glow:none;--cx-shadow-sm:0 1px 2px rgba(15,23,42,.05);--cx-shadow:0 12px 36px rgba(15,23,42,.14);
   --cx-blur:none;--cx-mesh:none;
   --cx-accent-grad:linear-gradient(0deg,#0F766E,#0F766E);
-  --cx-number-grad:linear-gradient(0deg,currentColor,currentColor);
+  --cx-number-grad:linear-gradient(0deg,#0F1B2D,#0F1B2D);
 }
 @media screen{
   html[data-cx-theme="dark"]{
@@ -18,7 +18,7 @@
     --cx-glow:none;--cx-shadow-sm:none;--cx-shadow:0 18px 50px rgba(0,0,0,.5);
     --cx-blur:none;--cx-mesh:none;
     --cx-accent-grad:linear-gradient(0deg,#2DD4BF,#2DD4BF);
-    --cx-number-grad:linear-gradient(0deg,currentColor,currentColor);
+    --cx-number-grad:linear-gradient(0deg,#E9EEF8,#E9EEF8);
   }
   html[data-cx-theme="dark"]{background:#0C1018}
 }
@@ -65,3 +65,21 @@ html[data-cx-motion="reduced"] *,html[data-cx-motion="reduced"] *::before,html[d
 .cx-extra .cx-pref .settings-help{margin:2px 0 8px;font-size:13px}
 .cx-extra .settings-secondary{flex:none;white-space:nowrap}
 html body .admin-badge{display:inline-flex;align-items:center;white-space:nowrap;padding:4px 10px;line-height:1.2;overflow:visible}
+
+/* Online/Offline badge: never shown (Multi-Screen included). Overrides every earlier rule. */
+html body #chordioConnectionStatus,
+html body:has(#multiScreenControl.show) #chordioConnectionStatus{display:none!important}
+
+/* Logged-in sidebar (built by app.js): follow the active theme instead of the legacy light cards */
+html body .sidebar .chordio-sidebar-welcome{background:transparent!important;border:0!important;border-bottom:1px solid var(--cx-line)!important;border-radius:0!important;box-shadow:none!important}
+html body .sidebar .chordio-sidebar-welcome-icon{background:var(--cx-surface-2)!important;box-shadow:none!important}
+html body .sidebar .chordio-sidebar-welcome-label{color:var(--cx-muted)!important}
+html body .sidebar .chordio-sidebar-welcome-name{color:var(--cx-ink)!important}
+html body .sidebar .chordio-sidebar-action,
+html body .sidebar .chordio-sidebar-action.settings-action{background:transparent!important;color:var(--cx-ink-2)!important;border:1px solid transparent!important;box-shadow:none!important;border-radius:10px!important;transform:none!important}
+html body .sidebar .chordio-sidebar-action:hover,
+html body .sidebar .chordio-sidebar-action.settings-action:hover{background:var(--cx-hover)!important;color:var(--cx-ink)!important;border-color:var(--cx-line)!important;transform:none!important;box-shadow:none!important}
+html body .sidebar .chordio-sidebar-action.primary{background:var(--cx-teal)!important;color:var(--cx-on-accent,#fff)!important;border-color:var(--cx-teal)!important}
+html body .sidebar .chordio-sidebar-action.primary:hover{filter:brightness(1.06);background:var(--cx-teal)!important;color:var(--cx-on-accent,#fff)!important}
+html body .sidebar .chordio-sidebar-action .quick-icon{background:var(--cx-surface-2)!important;color:var(--cx-ink)!important}
+html body .sidebar .chordio-sidebar-action.primary .quick-icon{background:rgba(255,255,255,.2)!important;color:inherit!important}

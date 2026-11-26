@@ -5,7 +5,7 @@
   var SIZES={S:9.5,M:11,L:13};
   var st={orient:"portrait",size:"M",cols:2};
   try{var o=localStorage.getItem("chordioPrintOrient");if(o==="landscape"||o==="portrait")st.orient=o;
-      var z=localStorage.getItem("chordioPrintSize");if(SIZES[z])st.size=z;var c=localStorage.getItem("chordioPrintCols");if(c==="1"||c==="2")st.cols=Number(c);}catch(e){}
+      var z=localStorage.getItem("chordioPrintSize");if(SIZES[z])st.size=z;var c=localStorage.getItem("chordioPrintCols");if(c==="1"||c==="2"||c==="3")st.cols=Number(c);}catch(e){}
   var model=null, dlg=null;
 
   function el(tag,cls,txt){var n=document.createElement(tag);if(cls)n.className=cls;if(txt!=null)n.textContent=txt;return n;}
@@ -35,7 +35,7 @@
     var landscape=orient==="landscape";
     var W=(landscape?297:210)*MM, H=(landscape?209:296)*MM;
     var bodyW=W-28*MM, bodyH=H-(13+17)*MM;
-    var cols=colCount===1?1:2, gap=10*MM;
+    var cols=Math.max(1,Math.min(3,Number(colCount)||2)), gap=(cols===3?7:10)*MM;
     var colW=(bodyW-gap*(cols-1))/cols;
     var pt=SIZES[sizeKey];
     var maxChars=function(p){return Math.floor(colW/charWidthPx(p));};
@@ -183,7 +183,7 @@
     dlg=el("div");dlg.id="chordioPrintDlg";dlg.setAttribute("role","dialog");dlg.setAttribute("aria-modal","true");dlg.setAttribute("aria-label",model.heading||"Print song");
     dlg.innerHTML='<div class="cp-card"><div class="cp-bar"><div class="cp-h"></div>'+
       '<div class="cp-grp">Page<span class="cp-seg"><button type="button" data-orient="portrait">Portrait</button><button type="button" data-orient="landscape">Landscape</button></span></div>'+
-      '<div class="cp-grp">Columns<span class="cp-seg"><button type="button" data-cols="1">1</button><button type="button" data-cols="2">2</button></span></div>'+
+      '<div class="cp-grp">Columns<span class="cp-seg"><button type="button" data-cols="1">1</button><button type="button" data-cols="2">2</button><button type="button" data-cols="3">3</button></span></div>'+
       '<div class="cp-grp">Text<span class="cp-seg"><button type="button" data-size="S">Small</button><button type="button" data-size="M">Medium</button><button type="button" data-size="L">Large</button></span></div>'+
       '<span class="cp-count"></span><button type="button" class="cp-x">Cancel</button><button type="button" class="cp-go">Print</button></div>'+
       '<div class="cp-view"></div></div>';
